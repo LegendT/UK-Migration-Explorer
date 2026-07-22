@@ -219,10 +219,54 @@ was added. It immediately caught an undeclared figure.
 `sources.json` still described Home Office visa and citizenship figures as coming from the
 year ending December 2025 release, after those figures moved to year ending March 2026.
 
+### Changed — every figure now carries a publication date
+
+The 33 figures without one are resolved. Nine came from evidence already in the repo: they
+sit on topic pages of the Home Office year ending March 2026 release or the ONS year ending
+December 2025 bulletin, both published 21 May 2026 and both already recorded against
+sibling metrics. The original pass matched on period label and missed these because they
+carry point-in-time or cumulative periods instead.
+
+The remaining 24 were researched against their sources, each date taken from a fetched page
+and quoted. Where a source shows both a first-published and a last-updated date, the
+last-updated date is recorded: a briefing first posted in 2017 and revised in 2024 is cited
+for what it says now, so the earlier date would misrepresent the figure's currency.
+
+Three findings from the pass:
+
+- **A recorded date was wrong.** The Commons Library asylum statistics briefing was
+  recorded in `source_name` as "SN01403, 29 May 2026". It was published 1 June 2026.
+- **The OBR lifetime-contribution figure now cites OBR directly** rather than the Migration
+  Observatory briefing that summarised it, since the primary report was located and dated
+  (12 September 2024). Citing the intermediary was weaker traceability than necessary.
+- **The Home Office has renamed a dataset.** "Irregular migration to the UK detailed
+  dataset" became "Illegal entry routes to the UK detailed dataset" from the year ending
+  December 2025 edition, and the old dedicated URL now redirects. Worth knowing before the
+  next update, and worth noting given the site's own wording rules.
+
+Three Commons Library dates were verified from Internet Archive snapshots because the live
+host returns 403 to every automated request. The Commons Library revises its single
+"Published" date in place, so those dates are correct as of the snapshot rather than
+necessarily as of today.
+
+One figure is deliberately left undated. The 2026 year-to-date small boats count comes from
+a daily-updated operational page, where the publication date of a past snapshot cannot be
+recovered. It now carries `published_date_unavailable` explaining why, and the validator
+treats a documented impossibility as settled rather than as outstanding debt — a counter
+that can never reach zero stops being read.
+
+That figure remains a maintenance liability: it is approximate, it decays weekly, and it
+should probably not ship at all.
+
+### Fixed — moved source URLs
+
+Two Skills for Care URLs redirected; both updated to their targets, verified as resolving.
+The Home Office data tables redirect is left alone, since it only strips a fragment
+identifier useful to a reader.
+
 ### Outstanding
 
-- 33 figures have `published_date: null`. The validator reports the count on every run.
-  Record each one the next time its source is checked rather than inferring it.
+- One figure has no publication date, documented and exempted; see above.
 - Five Commons Library URLs cannot be checked automatically: the host returns 403 to every
   request, including deliberately invalid paths, with or without a browser user-agent.
   `scripts/check-sources.mjs` reports them as uncheckable rather than broken, because calling
