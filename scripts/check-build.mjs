@@ -43,21 +43,21 @@ for (const file of pages) {
 
   // Template or citation syntax that reached the output.
   for (const stray of html.match(/\{\{[^}]*\}\}|\{#[a-z0-9-]+\}/g) ?? []) {
-    errors.push(`${where}: unrendered template syntax in output — ${stray}`);
+    errors.push(`${where}: unrendered template syntax in output, ${stray}`);
   }
 
-  // A template engine that consumes a citation leaves no {{ }} behind to find — it leaves
+  // A template engine that consumes a citation leaves no {{ }} behind to find, it leaves
   // NaN, which reads as a number and shipped once inside a table of statistics. Checking
   // for leftover syntax is not enough; the failed result has to be checked for too.
   const text = html.replace(/<[^>]+>/g, ' ');
   for (const value of ['NaN', 'undefined', '[object Object]']) {
     const pattern = new RegExp(`\\b${value.replace(/[[\]]/g, '\\$&')}\\b`, 'g');
     const inText = (text.match(pattern) ?? []).length;
-    if (inText) errors.push(`${where}: "${value}" appears ${inText} time(s) in visible text — a citation or filter failed`);
+    if (inText) errors.push(`${where}: "${value}" appears ${inText} time(s) in visible text, a citation or filter failed`);
     // Chart maths fails into ATTRIBUTES, not text: a broken path renders blank while every
     // text node stays clean. Stripping tags before searching hid exactly that.
     const inAttrs = (html.match(pattern) ?? []).length - inText;
-    if (inAttrs > 0) errors.push(`${where}: "${value}" appears ${inAttrs} time(s) inside attributes — chart or template maths failed`);
+    if (inAttrs > 0) errors.push(`${where}: "${value}" appears ${inAttrs} time(s) inside attributes, chart or template maths failed`);
   }
 
   for (const [, d] of html.matchAll(/<path class="series[^"]*" d="([^"]*)"/g)) {
@@ -105,24 +105,24 @@ for (const file of pages) {
 // someone removes this check on purpose.
 const robots = built.find((f) => f.endsWith('robots.txt'));
 if (!robots) {
-  errors.push('robots.txt: missing from the build — the site would become crawlable. Remove this check deliberately at launch.');
+  errors.push('robots.txt: missing from the build, the site would become crawlable. Remove this check deliberately at launch.');
 } else {
   // The rule must apply to the wildcard agent. A Disallow under one named bot satisfied the
   // previous check while everything else stayed allowed.
   const groups = readFileSync(robots, 'utf8').split(/\n(?=\s*User-agent:)/i)
     .map((g) => g.trim()).filter((g) => /^User-agent:/i.test(g));
   const wildcard = groups.find((g) => /^User-agent:\s*\*/im.test(g));
-  if (!wildcard) errors.push('robots.txt: no "User-agent: *" group — named-bot rules do not cover other crawlers.');
-  else if (!/^\s*Disallow:\s*\/\s*$/m.test(wildcard)) errors.push('robots.txt: the "User-agent: *" group does not Disallow: / — the site would be crawlable.');
+  if (!wildcard) errors.push('robots.txt: no "User-agent: *" group, named-bot rules do not cover other crawlers.');
+  else if (!/^\s*Disallow:\s*\/\s*$/m.test(wildcard)) errors.push('robots.txt: the "User-agent: *" group does not Disallow: /, the site would be crawlable.');
   else if (/^\s*Allow:/im.test(wildcard)) errors.push('robots.txt: the "User-agent: *" group contains an Allow rule, which may re-open paths.');
 }
 
 if (errors.length) {
-  console.error(`Build checks failed — ${errors.length} problem(s):\n`);
+  console.error(`Build checks failed, ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
   process.exit(1);
 }
 
 const internal = pages.reduce((n, f) => n + (readFileSync(f, 'utf8').match(/href="\/[^"]*"/g) ?? []).length, 0);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; robots.txt disallows all crawlers.`);
-console.log('External source URLs are not checked here — run npm run check-sources.');
+console.log('External source URLs are not checked here, run npm run check-sources.');

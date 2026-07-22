@@ -18,7 +18,7 @@ const sources = read('sources.json').sources;
 
 const escape = (text) => String(text).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-// A figure renders as its formatted value and nothing else — the unit is prose, written by
+// A figure renders as its formatted value and nothing else, the unit is prose, written by
 // the author. See the token contract in docs/foundation.md section 15. The wrapper carries
 // the metric id so a published figure can always be traced back to its record.
 function renderFigure(ref) {
@@ -71,16 +71,33 @@ export default function (eleventyConfig) {
     asylumBacklog: read('asylumBacklogTimeseries.json'),
   }));
 
-  // Charts are built from series data, never from figures typed into a template.
+  // Line charts are built from series files. Bar charts cite records: a bar names a metric
+  // and the value comes from that record, so a data update reaches the chart.
   eleventyConfig.addFilter('points', (data) =>
     data.map((point) => ({ year: Number(point.date.slice(0, 4)), value: point.value })));
   // Markdown content cites figures as {{theme/id}}, which survives because markdown is not
   // pre-processed as a template. Nunjucks pages are pre-processed, so the same braces would
-  // be evaluated as an expression and silently produce NaN — which shipped once. They use
+  // be evaluated as an expression and silently produce NaN, which shipped once. They use
   // this shortcode instead, which goes through exactly the same renderer.
   eleventyConfig.addShortcode('figure', (ref) => renderFigure(ref));
   eleventyConfig.addShortcode('lineChart', (options) => lineChart(options));
-  eleventyConfig.addShortcode('barChart', (options) => barChart(options));
+
+  // A bar names the metric it draws. A literal value here would be a second home for a
+  // figure, outside the citation contract and invisible to a data update, which is exactly
+  // what the sources page tells readers cannot happen. Refusing the literal is the only
+  // version of that promise a reader can rely on.
+  eleventyConfig.addShortcode('barChart', (options) => barChart({
+    ...options,
+    bars: options.bars.map((bar) => {
+      if ('value' in bar) {
+        throw new Error(`Bar "${bar.name}" in chart "${options.id}" carries a literal value. Cite a record with ref instead.`);
+      }
+      const metric = registry.get(bar.ref);
+      if (!metric) throw new Error(`Bar "${bar.name}" in chart "${options.id}" cites ${bar.ref}, which is not a metric in the data layer`);
+      if (typeof metric.value !== 'number') throw new Error(`Bar "${bar.name}" in chart "${options.id}" cites ${bar.ref}, which has no single value to draw`);
+      return { ...bar, value: metric.value };
+    }),
+  }));
 
   // Resolve a dashboard card or denominator reference to the metric that owns it.
   eleventyConfig.addFilter('metric', (ref) => {
@@ -104,6 +121,16 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addFilter('limit', (array, n) => array.slice(0, n));
 
+  // The claims page states its own split. Typed by hand it was a number the next claim
+  // added would silently falsify, on the page whose subject is other people's numbers.
+  eleventyConfig.addFilter('countWhere', (items, key, value) =>
+    items.filter((item) => item.data[key] === value).length);
+
+  // A derived count still has to read like the sentence around it, which spells small
+  // numbers out. Falls back to the numeral above ten, where prose would too.
+  const SMALL_NUMBERS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+  eleventyConfig.addFilter('inWords', (n) => SMALL_NUMBERS[n] ?? String(n));
+
   eleventyConfig.addCollection('claims', (api) =>
     api.getFilteredByGlob('content/claims/*.md').sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)));
 
@@ -111,7 +138,7 @@ export default function (eleventyConfig) {
   // unresolved throws rather than shipping a literal {{...}} to a reader.
   //
   // Two wrinkles, both from markdown running first. It escapes the ">" in a partial to
-  // "&gt;", and it wraps a partial sitting on its own line in a <p> — which would nest a
+  // "&gt;", and it wraps a partial sitting on its own line in a <p>, which would nest a
   // table inside a paragraph. So block partials are unwrapped before anything else.
   const PARTIAL_TOKEN = String.raw`\{\{\s*(?:>|&gt;)\s*([a-z-]+)\s*\}\}`;
 
@@ -131,7 +158,7 @@ export default function (eleventyConfig) {
   });
 
   // Heading anchors. Markdown does not support {#id} natively, so without this the syntax
-  // renders as visible junk inside the heading and every link to a definition is dead —
+  // renders as visible junk inside the heading and every link to a definition is dead,
   // which is exactly what shipped until the built page was actually looked at.
   eleventyConfig.addTransform('heading-anchors', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html')) return content;

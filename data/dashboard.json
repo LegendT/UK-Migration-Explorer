@@ -39,7 +39,7 @@
       "shortLabel": "Small boat arrivals",
       "display": "people",
       "explanation": "The number of people detected arriving in the UK on small boats across the English Channel in the 2025 calendar year.",
-      "whatThisMeans": "This was the second-highest annual total on record (the peak was 45,774 in 2022) and 13% higher than 2024. Around 90% of all detected unauthorised arrivals come by small boat, and almost all go on to claim asylum."
+      "whatThisMeans": "This was the second-highest annual total on record (the peak was 45,774 in 2022) and 13% higher than 2024. It is a calendar-year count, so it does not line up with the year-ending-March figures elsewhere on this site, which give a different number for the same route."
     },
     {
       "id": "foreign-born-share",
@@ -47,7 +47,7 @@
       "shortLabel": "Born abroad",
       "display": "percent",
       "explanation": "The proportion of UK residents who were born outside the UK, at the time of the 2021/22 Census.",
-      "whatThisMeans": "About 10.7 million people, or roughly one in six residents, were born abroad — up from about 9% in 2004. The foreign-born population has continued to grow since 2021, but there is no reliable official total after that because ONS paused its survey-based series."
+      "whatThisMeans": "About 10.7 million people, or roughly one in six residents, were born abroad, up from about 9% in 2004. The foreign-born population has continued to grow since 2021, but there is no reliable official total after that because ONS paused its survey-based series."
     },
     {
       "id": "asylum-system-cost",
@@ -63,7 +63,7 @@
       "shortLabel": "Citizenship grants",
       "display": "people",
       "explanation": "The number of people granted British citizenship over the latest year, through naturalisation or registration.",
-      "whatThisMeans": "Down 12% on the previous year but still the second-highest annual total since the series began in 2005. The top three nationalities (India, Pakistan, Nigeria) accounted for almost a quarter of all grants."
+      "whatThisMeans": "Down 12% on the previous year, from 269,178. Naturalisation accounted for 165,429 of the grants and registration for 71,083. Applications rose 18% over the same period, so grants and demand are moving in opposite directions."
     }
   ]
 }

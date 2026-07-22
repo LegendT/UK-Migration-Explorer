@@ -21,8 +21,16 @@ layout: base.njk
 
   <p class="claim-tags">
     <span class="tag">Misuse: {{ error_type }}</span>
-    <span class="tag">Direction: {% if direction == 'pro-migration' %}pro-migration{% elif direction == 'restrictionist' %}restrictionist{% else %}both{% endif %}</span>
+    <span class="tag">Direction: {{ direction }}</span>
   </p>
+
+  {#- A substantive revision is disclosed on the claim it changed, not only in the
+      changelog, because a reader of this page will not go looking for the changelog. See
+      the corrections policy on the sources page. -#}
+  {% if correction %}
+  <p class="correction" role="note"><strong>Correction, {{ corrected_on | longDate }}.</strong>
+  {{ correction }}</p>
+  {% endif %}
 
   {{ content | safe }}
 

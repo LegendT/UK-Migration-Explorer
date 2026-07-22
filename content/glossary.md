@@ -52,9 +52,9 @@ A **stock** counts a state at a single moment: people waiting for a decision tod
 in supported accommodation on 31 March, people living in the UK who were born abroad.
 
 **Why it matters.** The two answer different questions and cannot be compared or
-subtracted. Around 100,000 people claimed asylum during 2025 — a flow. About
+subtracted. Around 100,000 people claimed asylum during 2025, a flow. About
 {{asylum/people-in-receipt-of-asylum-support}} people were receiving asylum support on one
-day in March 2026 — a stock. Those figures are of similar size and describe entirely
+day in March 2026, a stock. Those figures are of similar size and describe entirely
 different things. Someone who claimed in 2023 and is still waiting appears in the second
 but not the first.
 
@@ -106,7 +106,7 @@ migration estimates.
 
 **Why it matters.** These are not decorative labels. Net migration for the year ending
 December 2024 was first published as 431,000, revised to about 345,000, and now stands at
-{{migration/net-migration-2}} — a change of 100,000 without anybody's movement changing. Anyone who quoted the
+{{migration/net-migration-2}}, a change of 100,000 without anybody's movement changing. Anyone who quoted the
 first figure was quoting the best available number, and was also going to be wrong within
 a year.
 
@@ -197,8 +197,8 @@ People detected arriving by small boat across the Channel:
 
 **Why it matters.** This is one route of arrival, not the asylum system. Most people who
 arrive this way do claim asylum, but they are a subset of all claims, and the figure is
-published on several bases at once — calendar year, year ending, and year to date — which
-give three different numbers for what sounds like the same thing.
+published on three bases at once: calendar year, year ending, and year to date. Those give
+three different numbers for what sounds like the same thing.
 
 **The common mistake.** Using small boat arrivals as a proxy for asylum claims, or
 comparing figures on different bases without saying which is which.
@@ -241,7 +241,7 @@ of very different sizes:
 | --- | --- | --- |
 | Initial decision backlog | {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people (31 March 2026) | Waiting for a first Home Office decision |
 | Appeals backlog | {{asylum/asylum-appeals-backlog}} cases (31 March 2026) | Refused, appealing to the First-tier Tribunal |
-| Total casework work in progress | About {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current** — the breakdown was suspended |
+| Total casework work in progress | {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current**: the breakdown was suspended |
 
 **Why it matters.** These measure different things and move independently. The initial
 decision queue has fallen sharply while the appeals queue has risen to a record. Someone
@@ -299,7 +299,7 @@ Becoming a British citizen. **Naturalisation** is the main route for adults:
 
 **Why it matters.** Citizenship usually follows settlement rather than replacing it, so a
 person may appear in both statistics in different years. Neither figure is a count of
-arrivals — people granted citizenship in 2026 typically arrived years earlier.
+arrivals, people granted citizenship in 2026 typically arrived years earlier.
 
 ### Foreign-born population {#foreign-born}
 
@@ -318,7 +318,9 @@ check.
 ### Foreign national, or non-British citizen {#foreign-national}
 
 People living in the UK who do not hold British citizenship:
-{{population/non-british-share-of-uk-population}}% of the population.
+{{population/non-british-share-of-uk-population}}% of the population at the 2021/22 Census.
+As with [foreign-born](#foreign-born), ONS discontinued the annual series in October 2022,
+so there is no official figure for the current period.
 
 **Why it matters.** This is a different measure from [foreign-born](#foreign-born) and a
 smaller number. Many people born abroad have become British citizens; some people born in
@@ -351,7 +353,7 @@ Whether migration adds to or subtracts from the public finances overall, once ta
 and services used are both counted.
 
 **Why it matters.** There is no agreed figure. Across studies the estimate falls within
-roughly plus or minus 1% of GDP — a range that spans zero. The answer depends on method,
+roughly plus or minus 1% of GDP, a range that spans zero. The answer depends on method,
 on assumptions about who leaves and when, and on which collective spending is attributed
 to migrants.
 

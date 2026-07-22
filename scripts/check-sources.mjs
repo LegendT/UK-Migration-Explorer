@@ -4,7 +4,7 @@
 // publishing, not on every commit.
 //
 // gov.uk statistics URLs are release-specific slugs ("...year-ending-march-2026/...")
-// that churn every quarter, so link rot is silent until a reader clicks through — on a
+// that churn every quarter, so link rot is silent until a reader clicks through, on a
 // site whose trust model is "click the source".
 //
 // Run: node scripts/check-sources.mjs
@@ -94,18 +94,18 @@ for (let i = 0; i < entries.length; i += CONCURRENCY) {
 const broken = results.filter((r) => !r.ok);
 const uncheckable = results.filter((r) => r.uncheckable);
 // A redirect is not an error, but a moved statistics release usually means a newer
-// edition exists — which is a staleness signal worth seeing.
+// edition exists, which is a staleness signal worth seeing.
 const redirected = results.filter((r) => r.ok && r.finalUrl && r.finalUrl !== r.url);
 
 console.log('\n');
 if (uncheckable.length) {
-  console.log(`${uncheckable.length} URL(s) could not be checked automatically — verify by hand:`);
+  console.log(`${uncheckable.length} URL(s) could not be checked automatically, verify by hand:`);
   for (const r of uncheckable) console.log(`  ${r.url}\n    cited by: ${r.citations.join(', ')}`);
   console.log('');
 }
 
 if (redirected.length) {
-  console.log(`${redirected.length} URL(s) redirected — check whether a newer release has superseded the figure:`);
+  console.log(`${redirected.length} URL(s) redirected, check whether a newer release has superseded the figure:`);
   for (const r of redirected) {
     console.log(`  ${r.url}\n    -> ${r.finalUrl}\n    cited by: ${r.citations.join(', ')}`);
   }

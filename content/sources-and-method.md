@@ -36,7 +36,7 @@ update, not a real-time count. There are no live counters on this site, delibera
 
 It is **not** neutral about statistical misuse, though it takes no position on what
 immigration policy should be. Where a claim misuses a definition, a denominator or a
-time period, we say so — and we apply that test in every direction. How claims are chosen
+time period, we say so, and we apply that test in every direction. How claims are chosen
 is set out on the [common claims](/common-claims) page.
 
 ---
@@ -51,7 +51,7 @@ for context and for periods official sources no longer cover.
 **On the Migration Observatory and Skills for Care.** These are not official statistics
 producers, and figures attributed to them are marked as such. They are used where they add
 methodological context, or where they hold the most reliable available figure for something
-the official series no longer covers — the foreign-born population being the main example.
+the official series no longer covers, the foreign-born population being the main example.
 
 **On the Office for Statistics Regulation.** No figure on this site comes from OSR. Its
 guidance informs how we present and caveat the figures that do.
@@ -71,21 +71,42 @@ notes on what it does and does not show, and a confidence level.
 Three consequences worth stating plainly:
 
 - **A figure exists in one place only.** Nothing on this site copies a value from somewhere
-  else on this site. Pages reference the record. This is why you will not find two
-  different figures for the same measure on different pages — a failure common enough on
+  else on this site. Pages reference the record, and so do the charts: a bar names the
+  record it draws rather than carrying a number of its own. This is why you will not find
+  two different figures for the same measure on different pages, a failure common enough on
   data sites to be worth designing against.
 - **Prose cites records, it does not restate them.** Where a number appears in a sentence
   on this site, it is inserted from the record when the page is built. Updating a figure
-  updates every sentence that quotes it.
+  updates every sentence that quotes it, chart summaries included.
 - **The rules are enforced automatically**, not by remembering them. A figure missing its
   source, a date that does not fall within the period it claims, a range presented as a
-  single number, or two versions of the same measure will all stop the site being built.
+  single number, two versions of the same measure, a chart bar with a number typed into it,
+  or a current value written out longhand anywhere in a page will each stop the site being
+  built.
 
 ### Confidence levels {#confidence}
 
-Every figure is graded. The grades mean:
+Every figure is graded. The grades are this site's own judgement about how far a figure can
+be relied on, not the publisher's, and one of them, "calculated", exists to mark a figure
+this site derived rather than read off a release. The grades mean:
 
 {{> confidence-levels }}
+
+### What the checks do not establish {#limits}
+
+They are about where a number comes from, not about whether the sentence around it is
+right. Three limits, stated because a check trusted for more than it does is worse than no
+check at all:
+
+- **A description of a figure is not checked against the figure.** A chart summary saying a
+  series rose when it fell would build cleanly. Four such summaries were found on this
+  site, by reading, not by tooling.
+- **Values quoted from a long-run series are not individually cited.** A chart's own data
+  come from a series file, but where a summary names a single year in that series, that
+  number is read against the file by a person.
+- **Values under 100 are reported for review rather than refused.** Too many measures share
+  a small value for a match to mean much, so those are flagged on every build and looked
+  at, not blocked.
 
 ---
 
@@ -140,9 +161,10 @@ The proposed commitment is to update within **fourteen days** of a source publis
 figures, for the Home Office quarterly release and the ONS migration release, which between
 them drive most of the site. Other sources follow as their material changes.
 
-Every page shows when its figures were last checked. If that date is older than the
-schedule implies, this site is late, and you should treat the figures as superseded rather
-than assume nothing has changed.
+Every page shows the date it was last reviewed, and every figure carries the date it was
+last checked against its source inside the published data files. If the page date is older
+than the schedule implies, this site is late, and you should treat the figures as
+superseded rather than assume nothing has changed.
 
 Updating is manual and deliberate. There is no automated pipeline pulling numbers straight
 onto the site, because an automated update that publishes an error is worse than a slow one
@@ -158,7 +180,7 @@ are at handling its own mistakes.
 - Every change to a published figure is recorded in a public changelog, with the reason and
   the source.
 - Where a revision changes the substance of a claim, the claim carries a dated correction
-  note. It is not silently edited.
+  note at the top of the page. It is not silently edited. No claim currently carries one.
 - Where a revision changes a number but not the conclusion, the figure updates and the
   changelog records it.
 - Every claim shows when it was last reviewed. A claim unreviewed for twelve months is
@@ -221,5 +243,4 @@ If you reuse them, keep the source and period attached. A figure stripped of its
 its basis and its source is the raw material for exactly the confusion this site exists to
 reduce.
 
-The site's code and original writing are openly licensed, and the underlying data files —
-including the source of every figure — are public.
+The site's code and original writing are openly licensed, and the underlying data files, including the source of every figure, are public.

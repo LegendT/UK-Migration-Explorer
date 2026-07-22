@@ -60,12 +60,27 @@
       "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/05/home-offices-asylum-accommodation-contracts.pdf",
       "published_date": "2025-05-07",
       "retrieved_date": "2026-06-17",
-      "notes": "Compares with about £20 per night for dispersal (non-hotel) accommodation. Shows why hotels dominate cost despite housing a minority of people.",
+      "notes": "Compares with about £20 per night for dispersal (non-hotel) accommodation, recorded separately as cost-of-a-dispersal-accommodation-place-per-person-per-night. Shows why hotels dominate cost despite housing a minority of people.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "cost-of-a-dispersal-accommodation-place-per-person-per-night",
+      "metric_name": "Cost of a dispersal accommodation place per person per night",
+      "value": 20,
+      "unit": "£ per night",
+      "date": "2024-12-31",
+      "period_label": "2024",
+      "geography": "United Kingdom",
+      "source_name": "National Audit Office, The Home Office's asylum accommodation contracts (HC 874, 2024-25)",
+      "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/05/home-offices-asylum-accommodation-contracts.pdf",
+      "published_date": "2025-05-07",
+      "retrieved_date": "2026-06-17",
+      "notes": "The NAO states this as an approximate rate, so read it as about £20 rather than an exact one. Dispersal is non-hotel accommodation, mostly houses and flats. The comparison with the hotel rate is the reason accommodation type, not the number of people, drives the bill.",
       "confidence_level": "official"
     },
     {
       "id": "asylum-accommodation-contracts-revised-10-year-cost-projecti",
-      "metric_name": "Asylum accommodation contracts — revised 10-year cost projection",
+      "metric_name": "Asylum accommodation contracts, revised 10-year cost projection",
       "value": 15.3,
       "unit": "£ billion",
       "date": "2029-03-31",
@@ -113,7 +128,7 @@
     },
     {
       "id": "employment-rate-eu-born-residents",
-      "metric_name": "Employment rate — EU-born residents",
+      "metric_name": "Employment rate, EU-born residents",
       "value": 80.4,
       "unit": "%",
       "date": "2025-12-31",
@@ -128,7 +143,7 @@
     },
     {
       "id": "employment-rate-uk-born-population",
-      "metric_name": "Employment rate — UK-born population",
+      "metric_name": "Employment rate, UK-born population",
       "value": 74.7,
       "unit": "%",
       "date": "2025-12-31",
@@ -228,7 +243,7 @@
       "source_url": "https://www.gov.uk/government/publications/migration-advisory-committee-annual-report-2025/mac-letter-to-the-home-secretary-on-the-2025-annual-report-and-salary-requirements-report-accessible",
       "published_date": "2025-12-17",
       "retrieved_date": "2026-06-17",
-      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m — illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners.",
+      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m, illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners.",
       "confidence_level": "official"
     }
   ]

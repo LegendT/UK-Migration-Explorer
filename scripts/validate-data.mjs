@@ -64,8 +64,8 @@ function checkFields(where, item, required) {
   for (const field of required) {
     const value = item[field];
     if (value === null && NULLABLE.has(field)) {
-      // A documented impossibility is not debt. Some sources — a daily-updated operational
-      // page, say — have no recoverable publication date for a past snapshot, and nagging
+      // A documented impossibility is not debt. Some sources, a daily-updated operational
+      // page, say, have no recoverable publication date for a past snapshot, and nagging
       // about it forever would train everyone to ignore the count.
       if (!item[`${field}_unavailable`]) warnings.push(`${where}: ${field} not yet recorded`);
       continue;
@@ -82,7 +82,7 @@ function checkFields(where, item, required) {
     }
   }
   if (item.source_url && !item.source_url.startsWith('https://')) {
-    errors.push(`${where}: source_url is not https — ${item.source_url}`);
+    errors.push(`${where}: source_url is not https, ${item.source_url}`);
   }
   if (item.source_url && !catalogued.has(resolveHost(item.source_url))) {
     errors.push(`${where}: cites ${new URL(item.source_url).hostname}, which is not a publisher in sources.json`);
@@ -122,7 +122,7 @@ function checkPeriod(where, metric) {
 const present = readdirSync(dataDir).filter((f) => f.endsWith('.json'));
 for (const file of present) {
   if (!THEME_FILES.includes(file) && !SPECIAL_FILES.includes(file)) {
-    errors.push(`${file}: unrecognised data file — add it to THEME_FILES or SPECIAL_FILES so it is validated`);
+    errors.push(`${file}: unrecognised data file, add it to THEME_FILES or SPECIAL_FILES so it is validated`);
   }
 }
 for (const file of [...THEME_FILES, ...SPECIAL_FILES]) {
@@ -150,7 +150,7 @@ for (const file of THEME_FILES) {
 // --- dashboard holds references, never copies -----------------------------------
 const dashboard = read('dashboard.json');
 if (dashboard.metrics) {
-  errors.push('dashboard.json: has a "metrics" array — cards must reference theme metrics by ref, not copy their values');
+  errors.push('dashboard.json: has a "metrics" array, cards must reference theme metrics by ref, not copy their values');
 }
 for (const [i, card] of (dashboard.cards ?? []).entries()) {
   const where = `dashboard.json cards[${i}] ${card.id ?? '(unidentified)'}`;
@@ -201,7 +201,7 @@ for (const file of TIMESERIES_FILES) {
     // series unpublishable.
     const vintages = new Set((block.data ?? []).map((p) => p.published_date));
     if (vintages.size > 1) {
-      errors.push(`${file}: ${label || 'primary'} series mixes ${vintages.size} vintages (${[...vintages].join(', ')}) — use the full series from a single release`);
+      errors.push(`${file}: ${label || 'primary'} series mixes ${vintages.size} vintages (${[...vintages].join(', ')}), use the full series from a single release`);
     }
   }
 }
@@ -229,7 +229,7 @@ for (const file of [...THEME_FILES, ...SPECIAL_FILES]) {
 
 // --- report ---------------------------------------------------------------------
 if (errors.length) {
-  console.error(`Data contract failed — ${errors.length} problem(s):\n`);
+  console.error(`Data contract failed, ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
   process.exit(1);
 }
@@ -237,10 +237,10 @@ if (errors.length) {
 // States only what the code establishes. It previously claimed "all sourced, dated, graded
 // and singly held": "sourced" was a hostname match, "dated" tolerated missing dates, and
 // "singly held" was true of the data layer but not of the site.
-console.log(`Data contract passed: ${counted} figures — required fields present, dates internally consistent, publishers catalogued, no duplicate values within data/.`);
+console.log(`Data contract passed: ${counted} figures, required fields present, dates internally consistent, publishers catalogued, no duplicate values within data/.`);
 console.log('This checks metadata, not whether the figures are right.');
 if (blocked.length) {
-  console.error(`\nDO NOT PUBLISH — ${blocked.length} file(s) are flagged as unfit for publication:\n`);
+  console.error(`\nDO NOT PUBLISH, ${blocked.length} file(s) are flagged as unfit for publication:\n`);
   for (const file of blocked) console.error(`  ${file}: ${read(file).status_note?.split('.')[0] ?? 'see status_note'}.`);
   console.error('\nThis fails the build deliberately. A flag that only warned would deploy, and');
   console.error('the banner would scroll past in a log nobody reads.');

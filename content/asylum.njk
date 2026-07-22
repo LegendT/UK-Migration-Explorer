@@ -6,13 +6,19 @@ strapline: >-
   The asylum system is a sequence of stages, not a single number. Most confusion about it
   comes from treating one stage as though it were the whole.
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 eleventyExcludeFromCollections: true
 figures:
+  - asylum/asylum-appeal-success-rate
   - asylum/asylum-appeals-backlog
   - asylum/asylum-applications
+  - asylum/asylum-initial-decision-grant-rate
   - asylum/asylum-applications-main-applicants
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
   - asylum/asylum-initial-decisions-total
+  - asylum/asylum-refusals
+  - asylum/asylum-withdrawals
+  - asylum/people-granted-protection-or-other-leave-at-initial-decision
   - asylum/people-in-asylum-hotel-accommodation
   - asylum/people-in-receipt-of-asylum-support
   - asylum/small-boat-arrivals-year-ending-march-2026
@@ -37,7 +43,7 @@ at its own moment. A figure from one stage tells you very little about another.<
 </div>
 
 <p>Those five numbers cannot be added, subtracted or compared with one another. Three are
-stocks and two are flows; four are on the people basis and one — the appeals queue — is on
+stocks and two are flows; four are on the people basis and one, the appeals queue, is on
 the cases basis; and that one also comes from a different publisher on a different cycle. See
 <a href="/what-the-words-mean/#flow-and-stock">flow and stock</a> and
 <a href="/what-the-words-mean/#people-and-cases">people and cases</a>.</p>
@@ -48,7 +54,7 @@ the cases basis; and that one also comes from a different publisher on a differe
   id: 'asylum-applications-over-time',
   series: [{ name: 'People claiming asylum', points: series.asylumApplications.data | points }],
   title: 'People claiming asylum in the UK, 2010 to 2025',
-  summary: 'Claims roughly doubled across the 2010s, from 22,644 in 2010 to 45,537 in 2019, then rose steeply from 2021 to a peak of 104,764 in 2024 before easing slightly in 2025.',
+  summary: 'Claims roughly doubled across the 2010s, from 22,644 in 2010 to 45,537 in 2019. They rose steeply to 95,007 in 2022, fell 8% in 2023, and reached a high of 104,764 in 2024 before easing to 100,625 in 2025.',
   unit: 'people per calendar year',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',
@@ -60,19 +66,25 @@ the cases basis; and that one also comes from a different publisher on a differe
 <p>Outcomes are counted on the people basis here. Withdrawals sit outside the decisions
 total rather than inside it, which is why grants and refusals sum to the whole.</p>
 
+{% set decisions = "asylum/asylum-initial-decisions-total" | metric %}
+{% set granted = "asylum/people-granted-protection-or-other-leave-at-initial-decision" | metric %}
+{% set refused = "asylum/asylum-refusals" | metric %}
+{% set withdrawn = "asylum/asylum-withdrawals" | metric %}
+{% set grantRate = "asylum/asylum-initial-decision-grant-rate" | metric %}
+{% set appealRate = "asylum/asylum-appeal-success-rate" | metric %}
 {% barChart {
   id: 'initial-decisions-by-outcome',
   bars: [
-    { name: 'Refused', value: 79719, note: 'Up 57% on the previous year. Around 40% of appeals are allowed, so this overstates final refusals' },
-    { name: 'Granted protection or leave', value: 48581, note: 'Up 5% on the previous year' },
-    { name: 'Withdrawn', value: 16901, note: 'Not part of the decisions total, and excluded from the grant rate' }
+    { name: 'Refused', ref: 'asylum/asylum-refusals', note: 'Up 57% on the previous year. Around ' ~ appealRate.value ~ '% of appeals are allowed, so this overstates final refusals' },
+    { name: 'Granted protection or leave', ref: 'asylum/people-granted-protection-or-other-leave-at-initial-decision', note: 'Up 5% on the previous year' },
+    { name: 'Withdrawn', ref: 'asylum/asylum-withdrawals', note: 'Not part of the decisions total, and excluded from the grant rate' }
   ],
   title: 'Initial decisions by outcome, year ending March 2026',
-  summary: 'Of 128,300 people receiving a first decision, 48,581 were granted protection or other leave and 79,719 were refused. A further 16,901 claims were withdrawn.',
+  summary: 'Of ' ~ (decisions.value | number) ~ ' people receiving a first decision, ' ~ (granted.value | number) ~ ' were granted protection or other leave and ' ~ (refused.value | number) ~ ' were refused. A further ' ~ (withdrawn.value | number) ~ ' claims were withdrawn.',
   unit: 'people',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',
-  note: 'The published grant rate of 39% is calculated on main applicants. Recomputing it from these people-based figures gives 37.9%, which is a different measure — a worked example of why the basis has to be checked before dividing one figure by another.'
+  note: 'The published grant rate of ' ~ grantRate.value ~ '% is calculated on main applicants. Recomputing it from these people-based figures gives 37.9%, which is a different measure, a worked example of why the basis has to be checked before dividing one figure by another.'
 } %}
 
 <p>A refusal at first decision is not the end. The grant rate measured at final outcome,
@@ -108,7 +120,7 @@ they are counted differently, and they have been moving in opposite directions.<
   <tbody>
     <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people, 31 March 2026</td><td>Down 55% on the year, and 72% below the June 2023 peak</td></tr>
     <tr><th scope="row">Awaiting an appeal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases, 31 March 2026</td><td>A record high, up from about 51,000 a year earlier</td></tr>
-    <tr><th scope="row">Total casework in progress</th><td>About {% figure "asylum/total-asylum-cases-in-the-casework-system" %} cases, June 2024</td><td><strong>Not current.</strong> The breakdown was suspended and no later complete figure exists</td></tr>
+    <tr><th scope="row">Total casework in progress</th><td>{% figure "asylum/total-asylum-cases-in-the-casework-system" %} cases, June 2024</td><td><strong>Not current.</strong> The breakdown was suspended and no later complete figure exists</td></tr>
   </tbody>
 </table>
 </div>
@@ -119,8 +131,9 @@ quarter, and the mean age of an asylum appeal at conclusion is 67 weeks.</p>
 
 <h2>Support and accommodation</h2>
 
-<p>{% figure "asylum/people-in-receipt-of-asylum-support" %} people were receiving asylum support at 31
-March 2026 — accommodation, subsistence, or both. Of those,
+<p>{% figure "asylum/people-in-receipt-of-asylum-support" %} people were receiving asylum
+support at 31 March 2026. Support means accommodation, subsistence payments, or both. Of
+those,
 {% figure "asylum/people-in-asylum-hotel-accommodation" %} were in hotels, around 21%.</p>
 
 <p>This is a stock, counted on one day. It includes people at every stage of the system, some
@@ -135,7 +148,7 @@ local authorities and counted separately.</p>
 small boat in the year ending March 2026, against
 {% figure "asylum/asylum-applications" %} people claiming asylum over the same period.</p>
 
-<p>Most people arriving this way do claim asylum, so the categories overlap heavily — but
+<p>Most people arriving this way do claim asylum, so the categories overlap heavily, but
 they are not the same category, and the figure is published on three different bases at once
 (calendar year, year ending, and year to date) which give three different numbers for what
 sounds like one thing. Route of arrival also does not determine the outcome of a claim.</p>

@@ -6,7 +6,7 @@ This is not an immigration dashboard. It is a public-service explainer that sepa
 migration, immigration, net migration and asylum, shows what each figure counts, and
 checks common claims against definitions, denominators and comparable time periods.
 
-The site is neutral on policy preferences. It is not neutral on statistical misuse — in
+The site is neutral on policy preferences. It is not neutral on statistical misuse, in
 either direction. The claim set corrects misuses from both sides of the debate, and the
 selection criteria are published rather than assumed.
 
@@ -19,7 +19,7 @@ governed data layer of 66 metrics and four timeseries. No framework has been cho
 
 ```
 eleventy.config.js   Build: citation resolution, partials, filters
-content/             Eleventy input — pages, layouts, assets
+content/             Eleventy input, pages, layouts, assets
 docs/foundation.md   Positioning, editorial principles, IA, data governance, risk register, build phases
 data/                Governed data layer, one file per theme
 content/claims/      Claim checks, citing live figures by token
@@ -57,8 +57,8 @@ The data model is the trust model. Every published figure carries its own metada
 
 `date` is the **end of the period covered**, never the publication date. Confidence levels
 are `official`, `provisional`, `estimated` and `calculated`, defined in `data/meta.json`.
-Figures that span a range rather than a point — the net fiscal impact of immigration, for
-instance — set `value_type: "range"` with explicit bounds and a null `value`, so no card
+Figures that span a range rather than a point, the net fiscal impact of immigration, for
+instance, set `value_type: "range"` with explicit bounds and a null `value`, so no card
 can render a range as a point estimate.
 
 **One figure, one home.** `dashboard.json` holds no values of its own. Its cards and its
@@ -103,8 +103,7 @@ node scripts/check-sources.mjs            # network check that every source URL 
 `content/claims/` holds the claim checks and `content/glossary.md` the definitions. Six are drafted; the full set of fourteen is
 specified in `docs/foundation.md` section 8.5.3.
 
-Content never hard-codes a figure that will change. It cites the data layer by token —
-`{{theme/metric-id}}` — so updating a figure in `data/` updates everywhere it is cited, and
+Content never hard-codes a figure that will change. It cites the data layer by token, `{{theme/metric-id}}`, so updating a figure in `data/` updates everywhere it is cited, and
 content citing a metric that no longer exists fails the build rather than quietly publishing
 a stale number.
 
@@ -112,7 +111,7 @@ In Nunjucks pages use `{% figure "theme/metric-id" %}` instead: those files *are
 pre-processed as templates, so the brace syntax would be evaluated as an expression and
 silently produce `NaN`. Both forms call the same renderer.
 
-A token renders the **formatted value only** — `48,758`, `4.9`, `39` — never the unit.
+A token renders the **formatted value only**, `48,758`, `4.9`, `39`, never the unit.
 Units are prose: `%` attaches, `£` prefixes, `people` follows. The author writes them and
 the validator confirms it, because the first draft rendered "4.9 billion" where it meant
 "£4.9 billion". Range metrics have no single value and cannot be tokenised at all.
@@ -130,7 +129,7 @@ Two further rules the validator enforces rather than trusting to review:
   resting on a superseded figure is worse than no claim.
 - **No more than two-thirds of the published set may run in one direction.** A claim list
   that only ever corrects one side does not implement "neutral on policy, not neutral on
-  statistical misuse" — it implements something else, and anyone can count. This rule
+  statistical misuse", it implements something else, and anyone can count. This rule
   failed on its first run against the originally specified five; see `CHANGELOG.md`.
 
 It checks that every figure carries all thirteen fields; that dates are real calendar dates

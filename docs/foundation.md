@@ -98,7 +98,7 @@ The honest answer is presentation and findability, not scholarship:
 
 This matters for where the effort goes. If the differentiator is presentation and
 distribution rather than analysis, the project should be weighted towards design, search and
-shareable components — and it should cite the incumbents generously rather than competing
+shareable components, and it should cite the incumbents generously rather than competing
 with them.
 
 ## 4.2 Identity, funding and success
@@ -117,7 +117,7 @@ assumption is reasonable.
   organic search entries on definitional queries; return visits in the week after a major
   data release. Note what is deliberately not a measure: total traffic, and whether anyone
   changed their mind. The second is the thing the project would most like to claim and the
-  thing it is least able to demonstrate — the evidence that correcting statistics shifts
+  thing it is least able to demonstrate, the evidence that correcting statistics shifts
   beliefs is weak, and the realistic audience is the persuadable middle and professionals who
   need a citation quickly, not the committed of either side.
 
@@ -153,14 +153,14 @@ distinguishing the backlogs, separating claim status from route of arrival. Thos
 contestable and need no defence.
 
 The other two are editorial and values-based. "Illegal migrants" is avoided because it is
-loaded and imprecise, and "flooding" because it is dehumanising — both defensible, both
+loaded and imprecise, and "flooding" because it is dehumanising, both defensible, both
 aligned with one side's preferred vocabulary, and neither a neutral statistical requirement.
 Presenting them as though they were is the same move the site exists to criticise.
 
 There is a specific hazard here. The project's own primary sources use the banned words: the
 Home Office publishes an "Irregular migration to the UK detailed dataset (illegal entry
 routes)", and the ONS reason split includes people arriving "via illegal entry". A reader who
-follows a source link — the behaviour this site actively encourages — will find the site
+follows a source link, the behaviour this site actively encourages, will find the site
 renaming what its sources call things, without explanation. That looks like concealment even
 when it is not.
 
@@ -246,7 +246,7 @@ and no per-capita denominators have been gathered. Cost is also the claim catego
 actually circulates, and refusing to address it reads as evasion rather than restraint.
 
 The distinction that makes this safe is between **spending** and **impact**. What the asylum
-system costs is audited, sourced and reasonably firm — the NAO figures. Whether immigration
+system costs is audited, sourced and reasonably firm, the NAO figures. Whether immigration
 pays for itself is contested, method-dependent and lands within roughly plus or minus 1% of
 GDP across the literature. The first belongs in the MVP. The second needs a page that is
 mostly about method, and it can wait.
@@ -318,7 +318,7 @@ groups. The eight terms above are all included.
 It grew beyond eight because the eight were not enough to read the site's own figures. Four
 additions do most of the work, and none is optional:
 
-- **Flow and stock**, and **people, main applicants and cases** — the two distinctions
+- **Flow and stock**, and **people, main applicants and cases**, the two distinctions
   responsible for most misreadings on this subject, and the reason two honest sources appear
   to contradict each other.
 - **Backlog** had to become a table rather than a definition. There is no such thing as the
@@ -368,7 +368,7 @@ the restrictionist side of the debate. Not one corrected a misuse from the other
 
 Section 1 of this document states that the site is "neutral on policy preferences, but not
 neutral on statistical misuse". A claim list that only ever corrects one side does not
-implement that sentence — it implements a different one, and the difference will be noticed
+implement that sentence, it implements a different one, and the difference will be noticed
 within a week of launch by exactly the audience most inclined to distrust the site. The risk
 register scores political capture as high likelihood and high impact, and then mitigates it
 with "keep policy preferences out of core pages". A one-directional claim list is not a
@@ -377,7 +377,7 @@ policy preference kept out of core pages. It is a policy preference expressed as
 This is not a hypothetical fix. The research layer already contains the corrective material
 for the other direction and the original list simply did not use it. `data/fiscal.json`
 flags the Office for Budget Responsibility's £341,000 lifetime-contribution figure as a
-stylised single-case scenario that must not be presented as typical — a figure misused
+stylised single-case scenario that must not be presented as typical, a figure misused
 almost exclusively by the pro-migration side. The same file records that the net fiscal
 impact of immigration is contested, method-dependent and lands within roughly plus or minus
 1% of GDP across studies, which falsifies "immigrants are a drain on the public finances"
@@ -405,7 +405,7 @@ find qualifying claims in the other direction, that is evidence our sourcing is 
 not evidence the other side never misuses statistics.
 
 **What we do not cover, and why.** Crime and migration is absent from this list and from the
-data layer. The statistics are genuinely difficult — nationality is inconsistently recorded,
+data layer. The statistics are genuinely difficult, nationality is inconsistently recorded,
 the denominators are contested, and the honest answer is largely "the data cannot tell you
 that". State this openly on the Sources and method page. Scope silence is indistinguishable
 from bias.
@@ -452,7 +452,7 @@ The data model is the trust model. The site should not treat figures as loose va
 This section previously specified a schema that the data layer never implemented, leaving
 three competing definitions of "required" in circulation: this document, the files in
 `data/`, and the validator. As of 22 July 2026 there is one. The schema below is what
-`scripts/validate-data.mjs` enforces, and the validator is the authority — if this section
+`scripts/validate-data.mjs` enforces, and the validator is the authority, if this section
 and the script ever disagree, the script wins and this section is the bug.
 
 ```json
@@ -502,7 +502,7 @@ should be recorded so they are not silently reinstated:
   half-written ones. One field that must be complete beats two that can each be thin. If the
   site later needs them rendered separately, split then, on real copy.
 - **`statistical_status` is replaced by `confidence_level`.** The data layer invented a
-  four-level scale — official, provisional, estimated, calculated — that is sharper than the
+  four-level scale, official, provisional, estimated, calculated, that is sharper than the
   original field and is already applied consistently across every figure. It is the better
   idea and it wins.
 - **`source_title` is merged into `source_name`.** The two were never populated separately.
@@ -581,7 +581,7 @@ data/                       66 governed metrics and four timeseries
   asylumApplicationsTimeseries.json
   asylumBacklogTimeseries.json     both the people and cases bases
   migrationFlowsTimeseries.json    immigration and emigration
-  dashboard.json            homepage cards — references only, holds no values
+  dashboard.json            homepage cards, references only, holds no values
   sources.json              publisher catalogue
   meta.json                 confidence definitions and cross-cutting caveats
 docs/foundation.md          this document
@@ -599,7 +599,7 @@ src/pages/                  index, migration, asylum, costs, about
 src/components/             MetricCard, SourceNote, CaveatBox, ClaimCheck, DataTable
 ```
 
-Data stays as JSON rather than the mixed CSV/JSON suggested previously — the contract in
+Data stays as JSON rather than the mixed CSV/JSON suggested previously, the contract in
 section 9 is per-figure metadata, which CSV expresses badly.
 
 The link checker is built and has already earned its place: it found that five Commons
@@ -631,7 +631,7 @@ other people do to you regardless of your intent.
 | Risk | Likelihood | Impact | Mitigation (verifiable) |
 | --- | --- | --- | --- |
 | **Silent staleness** | **High** | **High** | Publish an update commitment per source; the site displays its own lateness against it. The validator reports figures older than their source's update frequency. Cap the MVP at 15-20 figures so updating is a session, not a project. |
-| Political capture | High | High | Published claim-selection criteria (8.5.2) and the two-thirds balance rule, checked at review. A second reader signs off the claim set before launch and after each revision. |
+| Political capture | High | High | Published claim-selection criteria (8.5.2). A representation floor enforced in CI: at least two claims correcting each direction, so a set that only ever corrects one side fails the build. The real split is generated from the claim set and disclosed on the claims page. The style guide separates the precision rules from the value-based choices. |
 | Misleading comparisons | High | High | The data contract, enforced in CI on every push, not by memory. Period and basis inside every card. |
 | Quote-mining and selective citation | High | Medium | Period, source and date inside the card's visual boundary and inside the share image (8.5.4). Short answers written to survive being quoted alone. |
 | Data revision confusion | High | Medium | Corrections policy with a public log (section 13.1). `published_date`, `retrieved_date` and `confidence_level` on every figure. |
@@ -643,9 +643,17 @@ other people do to you regardless of your intent.
 | Maintainer burnout or abandonment | Medium | High | Publish the update commitment and a dated last-reviewed stamp. If the project stops, the site says so rather than quietly rotting. |
 | Legal exposure from attributed claims | Low | High | Claims are stated as circulating propositions, not attributed to named individuals, unless there is a specific reason to attribute and it has been considered. See 13.2. |
 
+**Two mitigations for political capture were withdrawn and this records what replaced them.**
+The two-thirds balance rule was removed because it blocked a correction a pro-migration
+reader would most want to see; the reasoning is in `scripts/validate-content.mjs` beside the
+floor that replaced it. The second reader signing off the claim set does not exist: this is a
+single-maintainer project and the about page says so. Nothing has replaced it, and the
+top-rated risk is therefore mitigated by published criteria, a CI-enforced floor and
+disclosure, all of which a reader can check, and by no independent judgement at all.
+
 ## 13.1 Corrections policy
 
-Required before launch. Official statistics are revised, sometimes heavily — net migration
+Required before launch. Official statistics are revised, sometimes heavily, net migration
 for year ending December 2024 moved from 431,000 to about 345,000 to 331,000 across
 successive releases. A site that corrects other people's use of statistics has to be visibly
 better than they are at handling its own.
@@ -670,14 +678,14 @@ sustained argument about whether the person meant precisely that, and shifts the
 explaining statistics to litigating individuals.
 
 Unattributed claims avoid all of that and carry one real cost: the "nobody actually says
-that" rebuttal. The mitigation is criterion 1 in section 8.5.2 — a claim qualifies only if it
-demonstrably circulates — and holding the evidence for each claim in the project's own files
+that" rebuttal. The mitigation is criterion 1 in section 8.5.2, a claim qualifies only if it
+demonstrably circulates, and holding the evidence for each claim in the project's own files
 without publishing it as an accusation. Revisit this decision if the strawman rebuttal
 becomes the dominant criticism after launch.
 
 # 14. Build phases
 
-## Phase 1: Discovery and framing — COMPLETE except where marked
+## Phase 1: Discovery and framing, COMPLETE except where marked
 
 Declared complete on 22 July 2026. For a solo builder this phase had become documentation
 theatre: most of it already existed as this document and the files in `data/`, and keeping it
@@ -725,7 +733,7 @@ summary, its source, and a zero-based axis. The remaining work is build work:
   need no exception to the content security policy. Three rules are enforced in the chart
   code rather than left to whoever writes the page: the y-axis always starts at zero,
   every chart carries its figures as a real table, and no series is distinguished by colour
-  alone — lines differ in stroke pattern and are labelled directly.
+  alone, lines differ in stroke pattern and are labelled directly.
 - ~~Write the glossary and at least five claims.~~ Done: `content/glossary.md` and six claims.
 - ~~Write the sources and methodology page.~~ Done: `content/sources-and-method.md`.
 - Publish the about and funding page. **Blocked: needs a named owner and a funding statement.**
@@ -763,7 +771,7 @@ targeting tool however carefully it is worded.
 
 Superseded by section 8.5.3, which holds the full set with directions and selection criteria.
 
-**Written and drafted as of 22 July 2026** — six claims, in `content/claims/`:
+**Written and drafted as of 22 July 2026**, six claims, in `content/claims/`:
 
 1. Net migration is the number of people who entered the UK. *(restrictionist; net flow read as gross inflow)*
 2. Most immigration is asylum seekers. *(restrictionist; category confusion)*
@@ -796,13 +804,13 @@ this should be stated on the page rather than silently compensated for. It shoul
 ### How content cites figures
 
 Claims and the glossary never hard-code a number that will change. They cite live figures
-by token — `{{theme/metric-id}}` — which the build resolves from the data layer. A figure
+by token, `{{theme/metric-id}}`, which the build resolves from the data layer. A figure
 updated in `data/` is therefore updated everywhere it is cited, and content citing a metric
 that no longer exists fails the build rather than publishing a stale number.
 
 **The token contract.** A token renders the formatted value and nothing else: `48,758`,
-`4.9`, `39`. It does not render the unit. Units behave differently in prose — `%` attaches
-with no space, `£` prefixes, `people` follows and is often better phrased — so the author
+`4.9`, `39`. It does not render the unit. Units behave differently in prose, `%` attaches
+with no space, `£` prefixes, `people` follows and is often better phrased, so the author
 writes them and the validator confirms they did. Getting this wrong is not hypothetical:
 the first draft rendered "was 4.9 billion" where it meant "£4.9 billion", twice.
 

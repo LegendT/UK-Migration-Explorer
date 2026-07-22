@@ -26,7 +26,7 @@ source: ONS
 In the year ending December 2025, an estimated {{migration/total-long-term-immigration}}
 people arrived in the UK for the long term, and {{migration/total-long-term-emigration}}
 people left. The difference between those two figures is
-{{migration/net-migration}} — the net migration estimate.
+{{migration/net-migration}}, the net migration estimate.
 
 So the headline number describes neither group of people. Far more than
 {{migration/net-migration}} people arrived. A different, also large, group left.
@@ -40,7 +40,7 @@ The practical consequence is that net migration can move for reasons that have n
 to do with how many people arrived. Between the year ending December 2023 and the year
 ending December 2024, net migration fell by around 517,000. Immigration over the same
 period fell by around 429,000. The rest of the drop came from emigration rising by
-roughly 87,000 — more people leaving, not fewer arriving.
+roughly 87,000, more people leaving, not fewer arriving.
 
 A fall in net migration is therefore consistent with arrivals falling, arrivals staying
 flat, or in principle arrivals rising, depending on what emigration does at the same

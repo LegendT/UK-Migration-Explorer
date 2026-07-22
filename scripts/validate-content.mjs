@@ -14,12 +14,36 @@ const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
 const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
 const REQUIRED_FRONT_MATTER = ['id', 'claim', 'short_answer', 'direction', 'error_type', 'last_reviewed'];
-const DIRECTIONS = ['restrictionist', 'pro-migration', 'both'];
+// "both" was a third label, described on the style guide and never applied to a claim.
+// A label no claim carries is a promise to the reader that nothing keeps. Add it back in
+// this line, and on the style guide, when a genuinely two-sided misuse needs it.
+const DIRECTIONS = ['restrictionist', 'pro-migration'];
 const REVIEW_MONTHS = 12;
+
+// A review date with no due date never becomes overdue, so the twelve-month rule above has
+// nothing to bite on until it has already been broken.
+function checkReviewDue(file, lastReviewed, reviewDue) {
+  if (!lastReviewed) return;
+  if (!reviewDue) {
+    errors.push(`${file}: has last_reviewed but no review_due, so nothing says when this page falls due`);
+    return;
+  }
+  const due = new Date(`${reviewDue}T00:00:00Z`);
+  if (Number.isNaN(due.getTime())) {
+    errors.push(`${file}: review_due "${reviewDue}" is not a valid date`);
+  } else if (due <= new Date(`${lastReviewed}T00:00:00Z`)) {
+    errors.push(`${file}: review_due ${reviewDue} is not after last_reviewed ${lastReviewed}`);
+  }
+}
 
 // Structural includes the build expands from the data layer, written {{> name }} so they
 // cannot be confused with a metric token. Prose describes; these render the catalogue.
 const PARTIALS = new Set(['sources-catalogue', 'confidence-levels', 'key-caveats']);
+
+// Prose is matched with the front matter removed, so a line number from a scan of it is
+// not a line number in the file. Reporting one that does not open the offending line is
+// worse than reporting none.
+const frontMatterLines = (front) => front.split('\n').length + 2;
 
 // Split {{ ... }} into metric citations and structural partials, so a partial is never
 // looked up as a metric and a typo in either is caught.
@@ -44,7 +68,7 @@ function collectTokens(file, prose) {
 function checkUnclosed(file, prose) {
   if (file.endsWith('.njk')) return;
   for (const stray of prose.match(/\{\{(?![^}\n]*\}\})[^\n]{0,60}/g) ?? []) {
-    errors.push(`${file}: unclosed citation token — ${stray.trim().slice(0, 50)}`);
+    errors.push(`${file}: unclosed citation token, ${stray.trim().slice(0, 50)}`);
   }
 }
 
@@ -88,7 +112,7 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
   }
 
   // Every claim carries a review date, and a claim that has gone unreviewed for a year is
-  // unpublishable — see the corrections policy in the foundation document.
+  // unpublishable, see the corrections policy in the foundation document.
   if (front.last_reviewed) {
     const reviewed = new Date(`${front.last_reviewed}T00:00:00Z`);
     if (Number.isNaN(reviewed.getTime())) {
@@ -96,7 +120,7 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
     } else {
       const age = (Date.now() - reviewed.getTime()) / (1000 * 60 * 60 * 24 * 30.44);
       if (age > REVIEW_MONTHS) {
-        errors.push(`${file}: last reviewed ${age.toFixed(0)} months ago — unpublish or re-review`);
+        errors.push(`${file}: last reviewed ${age.toFixed(0)} months ago, unpublish or re-review`);
       }
     }
   }
@@ -118,9 +142,36 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
     if (!registry.has(ref)) errors.push(`${file}: figures: lists ${ref}, which is not a metric in the data layer`);
   }
 
+  checkReviewDue(file, front.last_reviewed, front.review_due);
+
+  // The corrections policy promises a DATED note on a substantively revised claim. A note
+  // without its date, or a date without its note, does not keep that promise.
+  if (front.correction && !front.corrected_on) errors.push(`${file}: has a correction but no corrected_on date`);
+  if (front.corrected_on) {
+    if (!front.correction) errors.push(`${file}: has corrected_on but no correction text to date`);
+    if (Number.isNaN(new Date(`${front.corrected_on}T00:00:00Z`).getTime())) {
+      errors.push(`${file}: corrected_on "${front.corrected_on}" is not a valid date`);
+    }
+  }
+
   const literals = new Set((front.historical_literals ?? '').split(/[,;]\s*/).filter(Boolean));
-  contentPages.push({ file, prose, literals });
-  claims.push({ file, direction: front.direction, tokens: new Set(tokens) });
+  contentPages.push({ file, prose, literals, lineOffset: frontMatterLines(match[1]) });
+  claims.push({ file, id: front.id, direction: front.direction, mirrorOf: front.mirror_of, tokens: new Set(tokens) });
+}
+
+// A claim that names a mirror must name a claim, and the mirror must point back. Recorded
+// as a direction ("pro-migration") it read like a field nothing could resolve, and nothing
+// did resolve it: the pairing lived only in the prose of both pages.
+const claimIds = new Set(claims.map((c) => c.id));
+for (const claim of claims.filter((c) => c.mirrorOf)) {
+  if (!claimIds.has(claim.mirrorOf)) {
+    errors.push(`${claim.file}: mirror_of "${claim.mirrorOf}" is not the id of a claim on this site`);
+    continue;
+  }
+  const other = claims.find((c) => c.id === claim.mirrorOf);
+  if (other.mirrorOf !== claim.id) {
+    errors.push(`${claim.file}: names ${claim.mirrorOf} as its mirror, but that claim does not name it back`);
+  }
 }
 
 // Representation, not a ratio.
@@ -128,7 +179,7 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
 // The previous rule capped any direction at two-thirds of the set. It caught one real
 // failure and then obstructed the right thing. `direction` records WHOSE CLAIM is corrected,
 // and correcting a restrictionist claim SERVES pro-migration readers. So a cap on
-// restrictionist-labelled claims capped how much the site could serve the other side — and
+// restrictionist-labelled claims capped how much the site could serve the other side, and
 // it blocked "immigrants are a drain on the public finances", the correction a pro-migration
 // reader would most want to see. A rule that prevents a correction measures the wrong thing.
 //
@@ -143,6 +194,113 @@ if (claims.length) {
     if (count < MINIMUM_PER_DIRECTION) {
       errors.push(`representation rule: only ${count} claim(s) correct ${direction} claims; at least ${MINIMUM_PER_DIRECTION} required. A set that only ever corrects one side does not implement the site's stated position.`);
     }
+  }
+}
+
+// --- house style: no em-dashes ------------------------------------------------
+// Matches the sibling projects' rule. The em-dash is banned in authored copy, literal or
+// URL-encoded; the en-dash stays available for numeric ranges. Data files are excluded
+// where they carry a source's own words, but notes and card text are ours, so data/ is
+// scanned too. Anything under node_modules or _site is generated, not authored.
+const STYLE_DIRS = ['content', 'docs', 'scripts', 'lib', 'data', '.github'];
+const STYLE_FILES = ['README.md', 'CHANGELOG.md', 'eleventy.config.js', 'netlify.toml'];
+const repoRoot = fileURLToPath(new URL('../', import.meta.url));
+
+function walkAuthored(dir) {
+  let out = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === 'node_modules' || entry.name.startsWith('.git')) continue;
+    const full = `${dir}/${entry.name}`;
+    out = out.concat(entry.isDirectory() ? walkAuthored(full) : [full]);
+  }
+  return out;
+}
+
+for (const dir of STYLE_DIRS) {
+  let files = [];
+  try { files = walkAuthored(repoRoot + dir); } catch { continue; }
+  for (const file of [...files, ...STYLE_FILES.map((f) => repoRoot + f)]) {
+    let body;
+    try { body = readFileSync(file, 'utf8'); } catch { continue; }
+    const lines = body.split('\n');
+    lines.forEach((line, i) => {
+      // Needles built at runtime: written literally, this file would match itself.
+      const EM = String.fromCharCode(0x2014);
+      const ENCODED = ['%E2', '%80', '%94'].join('');
+      if (line.includes(EM) || line.includes(ENCODED)) {
+        errors.push(`${file.replace(repoRoot, '')}:${i + 1}: em-dash in authored copy. House style bans it; use a comma, colon or full stop.`);
+      }
+    });
+  }
+}
+
+// --- editorial lint, foundation section 5.2 ----------------------------------------
+// The language rules had no enforcement, so the only thing standing between the site and
+// the vocabulary it criticises was remembering. This scans the pages a reader sees, not
+// docs/, because the foundation document quotes the banned terms in the rules table that
+// bans them.
+//
+// Quoted text is exempt, and that exemption is the whole reason this can be automated
+// here. The site quotes its sources verbatim as a matter of policy: the Home Office
+// publishes an "Illegal entry routes" dataset, and the style guide discusses the phrases
+// it avoids by name. Both are inside quotation marks. Unquoted, the same words are the
+// site writing in its own voice.
+//
+// TWO KNOWN GAPS, stated rather than implied. Only the rules that can be matched precisely
+// are here: two of the five in section 5.2 are shape rules, "Immigration is X" and a bare
+// "backlog", and any pattern for them fires on the site's own teaching copy ("there is no
+// such thing as the backlog"). And only page bodies are scanned, not front matter, because
+// a claim's `claim:` field holds the proposition being corrected and may legitimately
+// contain the wording the site avoids. Both stay a matter of review.
+const BANNED_TERMS = [
+  'illegal migrant', 'illegal migrants', 'illegal immigrant', 'illegal immigrants', 'illegals',
+  'flooding', 'swamping', 'swamped', 'flooded',
+  'entered illegally', 'arrived illegally', 'came here illegally',
+];
+
+const termPattern = (term) => new RegExp(`\\b${term.split(' ').join('[\\s-]+')}\\b`, 'gi');
+
+// Character ranges inside double quotes, computed per line so an unclosed quote cannot
+// swallow the rest of the file.
+function quotedRanges(line, offset) {
+  const ranges = [];
+  for (const match of line.matchAll(/"[^"]*"/g)) ranges.push([offset + match.index, offset + match.index + match[0].length]);
+  return ranges;
+}
+
+function scanEditorial(text) {
+  const hits = [];
+  const quoted = [];
+  let offset = 0;
+  for (const line of text.split('\n')) {
+    quoted.push(...quotedRanges(line, offset));
+    offset += line.length + 1;
+  }
+  for (const term of BANNED_TERMS) {
+    for (const match of text.matchAll(termPattern(term))) {
+      const start = match.index;
+      const end = start + match[0].length;
+      if (quoted.some(([from, to]) => start >= from && end <= to)) continue;
+      hits.push({ term, match: match[0].replace(/\s+/g, ' '), line: text.slice(0, start).split('\n').length });
+    }
+  }
+  return hits;
+}
+
+// Controls, run every time. A scanner that silently stopped matching would otherwise report
+// a clean site, which is the exact failure this project has shipped six times.
+for (const term of BANNED_TERMS) {
+  if (!scanEditorial(`the report described ${term} in detail`).length) {
+    errors.push(`editorial lint: the scanner no longer catches "${term}", so its green result means nothing`);
+  }
+  if (scanEditorial(`the dataset is titled "${term}" by its publisher`).length) {
+    errors.push(`editorial lint: the scanner fires inside quotation marks on "${term}", which would flag quoted source titles`);
+  }
+}
+
+function checkEditorial(file, prose, lineOffset) {
+  for (const hit of scanEditorial(prose)) {
+    errors.push(`${file}:${hit.line + lineOffset}: uses "${hit.match}" in the site's own voice. See the language rules in foundation section 5.2; quote it if a source says it.`);
   }
 }
 
@@ -182,14 +340,14 @@ try {
     terms = anchors.length;
     const seen = new Set();
     const literals = new Set((front.match(/^historical_literals:\s*(.*)$/m)?.[1] ?? '').split(/[,;]\s*/).filter(Boolean));
-    contentPages.push({ file: 'glossary.md', prose, literals });
+    contentPages.push({ file: 'glossary.md', prose, literals, lineOffset: frontMatterLines(front) });
     for (const [, name, anchor] of anchors) {
       if (seen.has(anchor)) errors.push(`glossary.md: duplicate anchor #${anchor}`);
       seen.add(anchor);
     }
     for (const heading of prose.match(/^###\s+.+$/gm) ?? []) {
       if (!/\{#[a-z0-9-]+\}$/.test(heading.trim())) {
-        errors.push(`glossary.md: term "${heading.replace(/^###\s+/, '')}" has no {#anchor} — claims cannot link to it`);
+        errors.push(`glossary.md: term "${heading.replace(/^###\s+/, '')}" has no {#anchor}, claims cannot link to it`);
       }
     }
 
@@ -200,7 +358,7 @@ try {
     glossaryAnchors = seen;
 
     // The layout supplies the page's only h1. A "# " heading in this file would render a
-    // second one and break the document outline — a real WCAG 1.3.1 failure that shipped
+    // second one and break the document outline, a real WCAG 1.3.1 failure that shipped
     // once already.
     for (const heading of prose.match(/^#\s+.+$/gm) ?? []) {
       errors.push(`glossary.md: "${heading.replace(/^#\s+/, '')}" is an h1; the layout already provides the page h1. Use ## for a group.`);
@@ -240,10 +398,17 @@ for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f
     if (!new RegExp(`^${field}:`, 'm').test(front)) errors.push(`${file}: missing front matter field ${field}`);
   }
 
-  // In .njk, {{ }} is Nunjucks' own expression syntax; citations there are {% figure %}.
+  // In .njk, {{ }} is Nunjucks' own expression syntax, so citations there take three forms:
+  // {% figure %} in prose, `ref` on a chart bar, and the `metric` filter where a chart
+  // summary needs the value inside a string. All three resolve through the same registry
+  // and all three are held to the same contract.
   const isNunjucks = file.endsWith('.njk');
   const shortcodeRefs = [...prose.matchAll(/\{%\s*figure\s+["']([^"']+)["']\s*%\}/g)].map((m) => m[1].trim());
-  const tokens = isNunjucks ? shortcodeRefs : [...collectTokens(file, prose), ...shortcodeRefs];
+  const chartRefs = isNunjucks ? [
+    ...[...prose.matchAll(/\bref:\s*["']([^"']+)["']/g)].map((m) => m[1].trim()),
+    ...[...prose.matchAll(/["']([^"']+)["']\s*\|\s*metric\b/g)].map((m) => m[1].trim()),
+  ] : [];
+  const tokens = isNunjucks ? [...shortcodeRefs, ...chartRefs] : [...collectTokens(file, prose), ...shortcodeRefs];
   const declared = new Set((front.match(/^\s*-\s+(\S+\/\S+)$/gm) ?? []).map((l) => l.trim().slice(2)));
   for (const token of new Set(tokens)) {
     if (!registry.has(token)) errors.push(`${file}: cites {{${token}}}, which is not a metric in the data layer`);
@@ -253,33 +418,43 @@ for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f
     if (!registry.has(ref)) errors.push(`${file}: figures: lists ${ref}, which is not a metric in the data layer`);
   }
 
+  const value = (key) => front.match(new RegExp(`^${key}:\\s*(.*)$`, 'm'))?.[1].replace(/^["']|["']$/g, '').trim();
+  checkReviewDue(file, value('last_reviewed'), value('review_due'));
+
   const literals = new Set((front.match(/^historical_literals:\s*(.*)$/m)?.[1] ?? '').split(/[,;]\s*/).filter(Boolean));
-  contentPages.push({ file, prose, literals });
+  contentPages.push({ file, prose, literals, lineOffset: frontMatterLines(front) });
   tokens.forEach((t) => glossaryTokens.add(t));
   pages += 1;
 }
 
 // --- token rendering contract ---------------------------------------------------
-// A token renders the FORMATTED VALUE ONLY — "48,758", "4.9", "39". It does not render
+// A token renders the FORMATTED VALUE ONLY, "48,758", "4.9", "39". It does not render
 // the unit, because units are prose: "%" attaches with no space, "£" prefixes, "people"
 // follows. So the author supplies the symbol, and these checks confirm they did. Both
 // currency omissions below were real: "was 4.9 billion" instead of "£4.9 billion".
+// Both citation syntaxes are checked. Scanning {{ }} alone left the four .njk pages, which
+// carry most of the site's money figures, with no unit check at all.
 function checkUnits(file, prose) {
-  for (const match of prose.matchAll(/\{\{([^}]+)\}\}/g)) {
-    if (match[1].trim().startsWith('>')) continue;
-    const metric = registry.get(match[1].trim());
+  const citations = [
+    ...prose.matchAll(/\{\{([^}]+)\}\}/g),
+    ...prose.matchAll(/\{%\s*figure\s+["']([^"']+)["']\s*%\}/g),
+  ];
+  for (const match of citations) {
+    const ref = match[1].trim();
+    if (ref.startsWith('>')) continue;
+    const metric = registry.get(ref);
     if (!metric) continue;
     const before = prose.slice(Math.max(0, match.index - 2), match.index);
     const after = prose.slice(match.index + match[0].length);
 
     if (metric.value_type === 'range') {
-      errors.push(`${file}: {{${match[1].trim()}}} is a range and has no single value — it would render empty. Describe it in prose instead.`);
+      errors.push(`${file}: ${ref} is a range and has no single value, it would render empty. Describe it in prose instead.`);
     }
     if (String(metric.unit).includes('£') && !before.includes('£')) {
-      errors.push(`${file}: {{${match[1].trim()}}} is in ${metric.unit} but has no £ before it`);
+      errors.push(`${file}: ${ref} is in ${metric.unit} but has no £ before it`);
     }
     if (metric.unit === '%' && !after.startsWith('%')) {
-      errors.push(`${file}: {{${match[1].trim()}}} is a percentage but has no % after it`);
+      errors.push(`${file}: ${ref} is a percentage but has no % after it`);
     }
   }
 }
@@ -297,7 +472,7 @@ for (const [ref, metric] of registry) {
       if (/\d,\d/.test(form) || Number(metric.value) >= 100) liveValues.set(form, ref);
     }
     // Rates and money are mostly under 100, where a bare number is too common in prose to
-    // match on — "39" appears in dates, counts and ordinary sentences. Matched WITH their
+    // match on, "39" appears in dates, counts and ordinary sentences. Matched WITH their
     // unit instead, which is unambiguous: "39%" or "£4.9" is a figure, not a coincidence.
     if (metric.unit === '%') unitedValues.set(`${metric.value}%`, ref);
     if (String(metric.unit).includes('£')) unitedValues.set(`£${metric.value}`, ref);
@@ -305,16 +480,21 @@ for (const [ref, metric] of registry) {
 }
 
 function checkLiterals(file, prose, allowed) {
-  const withoutTokens = prose.replace(/\{\{[^}]*\}\}/g, '').replace(/\{%[\s\S]*?%\}/g, '');
-  // Rates and money sit in a range where many unrelated metrics share a value — 21% is the
-  // NHS staff share AND the asylum hotel share — so matching on value alone cannot tell a
+  // Only citations are removed before scanning. Stripping every {% %} tag took the chart
+  // configs out with them, and the chart configs were the one place on the site where live
+  // figures were still typed by hand. A check that exempts the only offender is not a check.
+  const withoutTokens = prose
+    .replace(/\{\{[^}]*\}\}/g, '')
+    .replace(/\{%\s*figure\s+["'][^"']+["']\s*%\}/g, '');
+  // Rates and money sit in a range where many unrelated metrics share a value, 21% is the
+  // NHS staff share AND the asylum hotel share, so matching on value alone cannot tell a
   // stale citation from a coincidence. Reported for review rather than failing the build:
   // an error here would be silenced by stuffing historical_literals, which is worse than
   // no check at all. The comma-grouped check below stays an error; its collision rate is low.
   for (const united of new Set(withoutTokens.match(/£\d+(?:\.\d+)?|\d+(?:\.\d+)?%/g) ?? [])) {
     const ref = unitedValues.get(united);
     if (ref && !allowed.has(united)) {
-      warnings.push(`${file}: ${united} equals the current value of ${ref} — check whether it should be cited`);
+      warnings.push(`${file}: ${united} equals the current value of ${ref}, check whether it should be cited`);
     }
   }
 
@@ -323,7 +503,7 @@ function checkLiterals(file, prose, allowed) {
     if (allowed.has(literal)) continue;
     const ref = liveValues.get(literal);
     if (ref) {
-      errors.push(`${file}: writes ${literal} longhand, which is the current value of ${ref} — cite {{${ref}}} so it cannot go stale, or list it under historical_literals if it is deliberately frozen`);
+      errors.push(`${file}: writes ${literal} longhand, which is the current value of ${ref}, cite {{${ref}}} so it cannot go stale, or list it under historical_literals if it is deliberately frozen`);
     }
   }
 }
@@ -339,17 +519,18 @@ function checkGlossaryLinks(file, prose, anchors) {
   }
 }
 
-for (const { file, prose, literals } of contentPages) {
+for (const { file, prose, literals, lineOffset } of contentPages) {
   checkUnclosed(file, prose);
   checkUnits(file, prose);
   checkLiterals(file, prose, literals);
   checkGlossaryLinks(file, prose, glossaryAnchors);
+  checkEditorial(file, prose, lineOffset);
 }
 
 // Report last, so that every check above has run. Reporting mid-file once silently
 // discarded every glossary error, which passed a broken page as green.
 if (errors.length) {
-  console.error(`Content checks failed — ${errors.length} problem(s):\n`);
+  console.error(`Content checks failed, ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
   process.exit(1);
 }
@@ -360,8 +541,9 @@ console.log(`Content checks passed: ${claims.length} claims, ${terms} glossary t
 if (warnings.length) {
   console.log(`\n${warnings.length} unit-qualified figure(s) match a live metric value and may need citing:`);
   for (const warning of warnings) console.log(`  ${warning}`);
-  console.log('Many are coincidence — several metrics share a value. Review, do not suppress.');
+  console.log('Many are coincidence, several metrics share a value. Review, do not suppress.');
 }
-console.log(`${cited.size} cited figures resolve to a record. Figures typed into chart configs are not citations and are not covered.`);
-console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')} — each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
+console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes a comma-grouped record value longhand.`);
+console.log(`Not covered: whether a sentence describing a figure describes it correctly, and values quoted from the timeseries files, which are read against the series by hand. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
+console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
 console.log('This counts whose claim is corrected. It is not a measure of fairness; the split is disclosed on the claims page.');

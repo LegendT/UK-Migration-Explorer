@@ -9,7 +9,7 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
-### Changed — data contract
+### Changed, data contract
 
 - Every metric now carries `id`, `geography` and `published_date` in addition to the
   previous ten fields. `id` gives templates a stable handle that survives quarterly
@@ -26,12 +26,11 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
   them, so a quarterly update that missed the dashboard would have published two
   different official figures for the same measure.
 
-### Fixed — figures
+### Fixed, figures
 
 - Net fiscal impact of immigration is no longer stored as `value: 1`. It is a range
   spanning zero (roughly minus 1% to plus 1% of GDP, depending on method) and was
-  encoded as a point estimate that any metric card would have rendered as "1% of GDP" —
-  the exact misuse this project exists to prevent. It now uses `value_type: "range"` with
+  encoded as a point estimate that any metric card would have rendered as "1% of GDP", the exact misuse this project exists to prevent. It now uses `value_type: "range"` with
   explicit bounds and a null value, and the validator rejects any attempt to flatten it.
 - The four dashboard supporting denominators (UK population, foreign-born population,
   immigration, emigration) were published with no source, date or confidence level, in
@@ -55,9 +54,9 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 - `package.json` so the check runs as `npm test`.
 - This changelog.
 
-### Fixed — net migration timeseries rebuilt after verification against ONS
+### Fixed, net migration timeseries rebuilt after verification against ONS
 
-The series was flagged `BLOCKED — DO NOT PUBLISH` on 22 July 2026 and has now been replaced.
+The series was flagged `BLOCKED, DO NOT PUBLISH` on 22 July 2026 and has now been replaced.
 What was wrong:
 
 | Year | Held | Current basis | Discontinued basis | Note |
@@ -86,7 +85,7 @@ The comparability break is recorded at June 2021, per ONS's current guidance, no
 as the old file assumed. Confidence levels now follow ONS's own markers: 2025 provisional,
 2024 revised, earlier years unmarked in this vintage.
 
-### Added — three timeseries and eight metrics
+### Added, three timeseries and eight metrics
 
 All verified against primary sources on 22 July 2026, each value carrying a quoted table
 cell or sentence.
@@ -94,25 +93,25 @@ cell or sentence.
 - `asylumApplicationsTimeseries.json`: applications 2010-2025, calendar years, people basis
   throughout (table Asy_00a).
 - `asylumBacklogTimeseries.json`: initial decision backlog 2010-2025, end-December stock, on
-  both the people and cases bases — 64,426 against 48,723 at the end of 2025, the same queue
+  both the people and cases bases, 64,426 against 48,723 at the end of 2025, the same queue
   counted two ways.
 - `migrationFlowsTimeseries.json`: long-term immigration and emigration 2012-2025, the two
   gross flows behind net migration.
 - Returns, previously absent despite being a specified homepage card: enforced (9,723),
   voluntary (29,284), the combined total (39,007, calculated, since the Home Office publishes
-  only a rounded 39,000), asylum-related (11,918), and refused entry at port (17,623 — held
+  only a rounded 39,000), asylum-related (11,918), and refused entry at port (17,623, held
   specifically to stop it being folded into the returns total).
 - Initial decisions by outcome, previously trapped inside a prose note: decisions total
   (128,300), refusals (79,719) and withdrawals (16,901).
 
-### Changed — figures moved to year ending March 2026
+### Changed, figures moved to year ending March 2026
 
 Visa, citizenship and settlement figures were being presented as latest while a newer Home
 Office release existed. Entry clearance 809,407 to 778,625; sponsored study 426,471 to
 409,954; work 261,112 to 252,775; Health and Care main applicants 13,286 to 10,509; family
 66,610 to 62,470; citizenship 235,782 to 236,512; settlement 146,405 to 152,306.
 
-### Investigated — Afghan resettlement total is correct
+### Investigated, Afghan resettlement total is correct
 
 The three scheme figures sum to 38,587 against a stated total of 38,617. Neither is wrong:
 the Home Office records 30 people under the programme with scheme name unknown, and states
@@ -121,7 +120,7 @@ now in the metric's notes. Also recorded there: the Home Office calls the third 
 Afghanistan Response Route on its topic page and the Afghanistan Relocation Route in its own
 table Res_01.
 
-### Added — the first six claim checks
+### Added, the first six claim checks
 
 `content/claims/` now holds six drafted claims, meeting the section 17 launch gate of at
 least five checked against definitions and data.
@@ -137,14 +136,14 @@ a data update can find the claims it affects, that no claim has gone unreviewed 
 than twelve months, and the two-thirds balance rule.
 
 **The balance rule failed on the first run.** The five claims specified for launch ran four
-to one in one direction — 80%, against a two-thirds limit written into the same document
+to one in one direction, 80%, against a two-thirds limit written into the same document
 hours earlier. A sixth claim was added rather than one of the five dropped, since each
 corrects a distinct class of error and cutting one to hit a ratio would game the rule
 rather than satisfy it. The set now runs four to two. Recorded in foundation section 15
 rather than quietly corrected, because the failure is evidence for making the constraint
 mechanical instead of trusting it to review.
 
-### Added — the glossary
+### Added, the glossary
 
 `content/glossary.md`: 23 terms in five groups, covering the eight specified in foundation
 section 8.2 plus the terms needed to read this site's own figures. Cites live figures by
@@ -158,7 +157,7 @@ one and wrong about the system.
 
 `validate-claims.mjs` becomes `validate-content.mjs` and now checks the glossary too: tokens
 resolve, cited figures are declared, every term has a stable anchor so claims can link to it,
-internal links resolve, and every term says what the word does NOT mean — a definition that
+internal links resolve, and every term says what the word does NOT mean, a definition that
 leaves the misreading intact has not done the job.
 
 **A bug the negative tests caught.** The first version of the glossary checks ran after the
@@ -167,7 +166,7 @@ discarded: a broken page passed as green. Found only because each new check was 
 against a deliberately broken copy rather than assumed to work. Reporting now happens last,
 with a comment recording why.
 
-### Fixed — defects in the first draft of the content
+### Fixed, defects in the first draft of the content
 
 Found by auditing the content against the data layer rather than re-reading it.
 
@@ -176,7 +175,7 @@ Found by auditing the content against the data layer rather than re-reading it.
   actually specified, which is why this was possible: a token renders the formatted value
   and nothing else, and the author supplies the unit. Now documented and checked.
 - **Three live values were hard-coded longhand**, silently opting out of the staleness
-  protection the token system exists to provide — including "now stands at 331,000", a
+  protection the token system exists to provide, including "now stands at 331,000", a
   figure that has already been revised twice and will be again.
 - **No claim linked to the glossary.** The validator required every term to carry an anchor
   "so claims can link to it" while no claim linked to anything. All six now link, and the
@@ -191,14 +190,14 @@ file, so the check was never exercised. Re-run correctly, it caught the defect. 
 recording: a negative test that does not fail proves nothing until you confirm it actually
 broke what it claimed to break.
 
-### Added — sources and methodology page
+### Added, sources and methodology page
 
 `content/sources-and-method.md`, meeting the section 17 launch gate. Covers what the site
 is and is not, the source catalogue, the data contract in plain terms, confidence levels,
 the cross-cutting caveats, why reference periods do not line up, the update commitment,
 corrections, what the site does not cover, how it was built, and reuse terms.
 
-Structural blocks — the source catalogue, confidence levels and key caveats — render from
+Structural blocks, the source catalogue, confidence levels and key caveats, render from
 `sources.json` and `meta.json` via `{{> partial }}` syntax rather than being restated in
 prose, so the page cannot drift from the data it describes. The validator knows the set of
 renderable partials and rejects unknown ones.
@@ -208,18 +207,18 @@ commitment** proposes fourteen days from each release but needs the owner's sign
 because publishing a target that is not met is worse than publishing none. The **AI use**
 disclosure states plainly that AI assistance was used in research, drafting and checking,
 and that human review before publication is a commitment about launch rather than a
-description of the research stage — the honest version, not the reassuring one.
+description of the research stage, the honest version, not the reassuring one.
 
 The validator now covers standalone content pages, which were previously unvalidated: only
 claims and the glossary were checked, so this page's tokens went unverified until the loop
 was added. It immediately caught an undeclared figure.
 
-### Fixed — stale source catalogue entry
+### Fixed, stale source catalogue entry
 
 `sources.json` still described Home Office visa and citizenship figures as coming from the
 year ending December 2025 release, after those figures moved to year ending March 2026.
 
-### Changed — every figure now carries a publication date
+### Changed, every figure now carries a publication date
 
 The 33 figures without one are resolved. Nine came from evidence already in the repo: they
 sit on topic pages of the Home Office year ending March 2026 release or the ONS year ending
@@ -252,26 +251,26 @@ necessarily as of today.
 One figure is deliberately left undated. The 2026 year-to-date small boats count comes from
 a daily-updated operational page, where the publication date of a past snapshot cannot be
 recovered. It now carries `published_date_unavailable` explaining why, and the validator
-treats a documented impossibility as settled rather than as outstanding debt — a counter
+treats a documented impossibility as settled rather than as outstanding debt, a counter
 that can never reach zero stops being read.
 
 That figure remains a maintenance liability: it is approximate, it decays weekly, and it
 should probably not ship at all.
 
-### Fixed — moved source URLs
+### Fixed, moved source URLs
 
 Two Skills for Care URLs redirected; both updated to their targets, verified as resolving.
 The Home Office data tables redirect is left alone, since it only strips a fragment
 identifier useful to a reader.
 
-### Added — Eleventy site
+### Added, Eleventy site
 
 Framework chosen: Eleventy 3, matching the hosting already connected on Netlify. Renders the
 overview, the glossary, the claims index, six claim pages and the sources page.
 
 **Content files are not pre-processed as templates.** `markdownTemplateEngine` is `false`,
 because `{{theme/metric-id}}` is this project's citation syntax and Liquid would otherwise
-consume it — silently breaking the guarantee that no figure is hard-coded in prose. Citations
+consume it, silently breaking the guarantee that no figure is hard-coded in prose. Citations
 resolve in a post-render transform instead, and an unresolved token or unknown partial throws
 rather than shipping `{{...}}` to a reader.
 
@@ -282,17 +281,17 @@ Two wrinkles handled, both from markdown running first: it escapes the `>` in a 
 citing a deleted metric fails the deploy rather than reaching a reader. Also sets a strict
 content security policy; the site loads no external resources at all.
 
-### Fixed — glossary rendered six h1 elements
+### Fixed, glossary rendered six h1 elements
 
 The five group headings used a single `#`, which became `<h1>` alongside the layout's page
 title: six h1s and a broken document outline, a WCAG 1.3.1 failure. Groups are now `h2` and
 terms `h3`. The validator was codifying the wrong level, so it was updated too, and it now
-rejects any `#` heading in that file — the layout owns the page's only h1.
+rejects any `#` heading in that file, the layout owns the page's only h1.
 
 Found by checking the built HTML rather than by reading the markdown, where the levels looked
 perfectly reasonable.
 
-### Fixed — defects found by looking at the built pages
+### Fixed, defects found by looking at the built pages
 
 None of these were visible in the source. All were found by rendering the site and looking
 at it, which is the only way this class of defect surfaces.
@@ -301,11 +300,11 @@ at it, which is the only way this class of defect surfaces.
   Markdown does not support `{#id}` natively, so `### Flow and stock {#flow-and-stock}`
   rendered as a heading with that literal text in it and produced no `id` at all. All 54
   links from the claims to definitions went nowhere. `validate-content.mjs` had checked
-  that the markdown declared an anchor on every term — which was true — while the build
+  that the markdown declared an anchor on every term, which was true, while the build
   silently discarded them. **Validating the source is not validating the artefact.**
 - The dashboard caveat was being dumped mid-sentence into the homepage by a stray
   `truncate(0)`, which does not mean "output nothing".
-- Every claim page shared one generic `h1`, "Claim check" — poor for search, browser tabs
+- Every claim page shared one generic `h1`, "Claim check", poor for search, browser tabs
   and heading-by-heading navigation. The claim itself is now the `h1`, placed inside its
   card under the "The claim" label so the framing travels with it and a screenshot of the
   heading can never read as this site asserting the claim.
@@ -313,7 +312,7 @@ at it, which is the only way this class of defect surfaces.
   article is exempt from the page measure so the card can run full width; its prose is not.
 - A CSS `margin-top` was silently overridden by a later `margin` shorthand.
 - The homepage showed the last three claims rather than the first three, so the editorial
-  ordering — which deliberately runs both directions early — was inverted.
+  ordering, which deliberately runs both directions early, was inverted.
 
 `scripts/check-build.mjs` added and wired into `npm run build` and CI. It checks the output
 rather than the input: every internal link and fragment resolves, no template or anchor
@@ -321,7 +320,7 @@ syntax survives into the HTML, and every page keeps its lang, skip link, single 
 unbroken heading order. Verified by removing the anchor fix and confirming it reports all 54
 dead links.
 
-### Added — robots.txt disallowing all crawlers
+### Added, robots.txt disallowing all crawlers
 
 The site went live before three of its own commitments were met: there is no about or
 funding page naming who runs it, the update commitment on the sources page is unsigned, and
@@ -335,18 +334,18 @@ deliberately at launch, not to survive it.
 
 Note that `Disallow: /` prevents crawling rather than indexing. It is the right control for
 "not ready yet". If a URL is ever discovered another way it could still be listed without
-content, and the fix for that is an `X-Robots-Tag: noindex` header — which requires crawling
+content, and the fix for that is an `X-Robots-Tag: noindex` header, which requires crawling
 to be *allowed* so the header can be read. The two mechanisms conflict; use one or the other.
 
-### Fixed — the build did not clean its output directory
+### Fixed, the build did not clean its output directory
 
 Eleventy leaves `_site` in place between builds, so a deleted source file kept its stale
 artefact. This briefly made a negative test pass when it should have failed: `robots.txt`
 was removed from `content/` and the check still found the previous build's copy. The build
 now clears `_site` first. Netlify builds from clean anyway, so this only ever misled local
-verification — which is exactly where it matters most.
+verification, which is exactly where it matters most.
 
-### Added — migration and asylum pages, with charts
+### Added, migration and asylum pages, with charts
 
 Six charts across the two pages, rendered as inline SVG at build time: net migration over
 time, immigration and emigration together, reason for migration, asylum claims over time,
@@ -357,18 +356,18 @@ scripting off and needs no exception to the site's content security policy. Thre
 rules are enforced in `lib/charts.mjs` rather than left to whoever writes the page: the
 y-axis always starts at zero, since a truncated axis exaggerates change and this site exists
 to correct that; every chart carries its figures as a real table; and no series is
-distinguished by colour alone — lines differ in stroke pattern and are labelled directly at
+distinguished by colour alone, lines differ in stroke pattern and are labelled directly at
 their end. The bar chart uses one neutral colour for grants, refusals and withdrawals, since
 section 10 forbids red/green moral coding of outcomes.
 
 The methodology break at June 2021 is drawn on both ONS charts rather than left to a
 footnote.
 
-### Fixed — citations silently rendered as NaN in Nunjucks pages
+### Fixed, citations silently rendered as NaN in Nunjucks pages
 
 `{{theme/metric-id}}` survives in markdown because markdown is not pre-processed as a
 template. Nunjucks pages **are** pre-processed, so the same braces were evaluated as an
-arithmetic expression and produced `NaN` — fifteen times across the two new pages, including
+arithmetic expression and produced `NaN`, fifteen times across the two new pages, including
 inside a table of asylum statistics.
 
 `check-build.mjs` did not catch it. It looks for leftover `{{ }}` in the output, and there
@@ -379,13 +378,13 @@ now fails on `NaN`, `undefined` or `[object Object]` appearing in visible text.
 Nunjucks pages now cite through a `{% figure "theme/id" %}` shortcode, which calls exactly
 the same renderer as the markdown path.
 
-### Fixed — chart lines rendered as filled areas
+### Fixed, chart lines rendered as filled areas
 
-`.series-0 { fill: ... }` overrode `.series { fill: none }` — same specificity, later rule
-wins — so every line chart drew as a solid filled shape. Selectors are now element-qualified,
+`.series-0 { fill: ... }` overrode `.series { fill: none }`, same specificity, later rule
+wins, so every line chart drew as a solid filled shape. Selectors are now element-qualified,
 because a path, its markers and its label each need different fill behaviour.
 
-### Added — what the asylum system costs
+### Added, what the asylum system costs
 
 The MVP costs section from section 7, covering audited spending only. It opens by separating
 the two questions that both get called "the cost of immigration": what the system spends,
@@ -413,17 +412,17 @@ immigration-wide rather than asylum and would compare two different populations;
 person presented as a measure of worth; and the fiscal impact question.
 
 **No claim check was added for the hotels figure**, though it is on the section 8.5.3 list.
-Adding it would have made the published set five restrictionist to two pro-migration — 71%,
-over the two-thirds limit — and the only unused pro-migration claim substantially duplicates
+Adding it would have made the published set five restrictionist to two pro-migration, 71%,
+over the two-thirds limit, and the only unused pro-migration claim substantially duplicates
 one already written. The balance rule is meant to constrain editorial decisions rather than
 be worked around, so the claim waits for a genuine counterpart.
 
-### Fixed — six false statements found by a full-project audit
+### Fixed, six false statements found by a full-project audit
 
 All verified by recomputation before and after.
 
 - `asylum.njk` said "two are on the cases basis and three on the people basis" of a table
-  with **one** cases figure and **four** people figures — wrong about the site's own most
+  with **one** cases figure and **four** people figures, wrong about the site's own most
   important caveat.
 - The flows chart summary said emigration "rose steadily from 2021"; it **fell** from
   680,000 to 642,000 in the final year. The line sloped down while the caption said up, and
@@ -433,31 +432,30 @@ All verified by recomputation before and after.
 - The backlog chart said "fallen by roughly half"; it is 60% on people and 63% on cases.
 - The asylum claims chart said "broadly flat through the 2010s"; claims **doubled**, from
   22,644 to 45,537.
-- A claim check joined a **main-applicant** rate to a **people** count as "the remainder" —
-  the exact error the site exists to correct. Now states both bases explicitly.
+- A claim check joined a **main-applicant** rate to a **people** count as "the remainder", the exact error the site exists to correct. Now states both bases explicitly.
 
 Also: one figure recorded a `retrieved_date` six days before its `published_date`.
 
-### Fixed — two rendering defects
+### Fixed, two rendering defects
 
 - **Series labels were clipped.** "People claiming asylum" rendered as "People claiming a":
   right padding was fixed at 118px while the label needed 148. It is now derived from the
   longest label.
 - **Every chart rendered at two-thirds width.** `figure.chart` was missing from the
-  measure-exemption list. That this was unintended is proved by the CSS itself — the chart's
+  measure-exemption list. That this was unintended is proved by the CSS itself, the chart's
   own children carry measure caps that are redundant if the figure is already capped.
 
-### Changed — the checking apparatus, after an adversarial audit
+### Changed, the checking apparatus, after an adversarial audit
 
 The audit's finding was systemic, not incidental: **every checker verified a property of the
-source or the declaration — labels agree, tokens close, text nodes are clean — rather than
+source or the declaration, labels agree, tokens close, text nodes are clean, rather than
 the property readers depend on, and every green message claimed the latter.**
 
 - **`DO NOT PUBLISH` now fails the build.** It printed a banner and exited 0, so a file
   flagged unfit for publication deployed and the warning scrolled past in a build log. The
   one mechanism built for "well-formed but unfit" was advisory in every automated path.
-- **The content contract now covers `.njk`.** Five reader-facing pages — carrying most of
-  the site's figures — were checked by nothing. Coverage went from 1 page to 7.
+- **The content contract now covers `.njk`.** Five reader-facing pages, carrying most of
+  the site's figures, were checked by nothing. Coverage went from 1 page to 7.
 - **`published_date` is now required on timeseries points.** The single-vintage rule keyed on
   a field it did not require, so removing the dates made vintage-mixing undetectable while
   the run still printed "dated".
@@ -468,22 +466,22 @@ the property readers depend on, and every green message claimed the latter.**
 - **Same-page fragments are checked**, and a chart series with no path data fails.
 - **The robots guard now requires the rule under `User-agent: *`.** A `Disallow` under one
   named bot satisfied it while everything else was allowed.
-- **`check-sources` runs in CI** — it previously ran in no pipeline at all — and now covers
+- **`check-sources` runs in CI**, it previously ran in no pipeline at all, and now covers
   all four timeseries and every chart source URL. It immediately caught a NAO URL invented
   for the costs page rather than taken from the data layer.
-- **CI runs weekly on a schedule.** Time-based rules — the twelve-month claim expiry, link
-  rot — could only fire when someone happened to push.
+- **CI runs weekly on a schedule.** Time-based rules, the twelve-month claim expiry, link
+  rot, could only fire when someone happened to push.
 - **Every success message was rewritten to claim only what it verifies.** "All sourced,
   dated, graded and singly held" was false on three counts.
 
-### Changed — the balance rule is replaced by a representation floor
+### Changed, the balance rule is replaced by a representation floor
 
 The two-thirds cap counted card labels rather than corrective content, and the audit found
 it blocking the right thing. A claim's direction records *whose claim* is corrected, and
 correcting a restrictionist claim **serves** pro-migration readers. So a cap on
 restrictionist-labelled claims capped how much the site could serve that side.
 
-Concretely, it blocked adding "immigrants are a drain on the public finances" — the
+Concretely, it blocked adding "immigrants are a drain on the public finances", the
 correction a pro-migration reader would most want to see. A rule that prevents a correction
 is measuring the wrong thing.
 
@@ -491,12 +489,12 @@ Replaced with a floor: at least two claims correcting each direction, no ceiling
 split (now 5:2) is disclosed on the claims page with the reason, rather than a ratio implied
 to prove balance.
 
-### Added — trust mechanisms that were promised and absent
+### Added, trust mechanisms that were promised and absent
 
 - **An error-reporting route on every page.** The corrections policy asked readers to report
   errors and gave them nowhere to do it. The footer now links to issues and the changelog.
 - **A visible pre-launch notice.** The admission that three commitments are unmet lived only
-  in `robots.txt` — addressed to crawlers, invisible to the humans who can read the site.
+  in `robots.txt`, addressed to crawlers, invisible to the humans who can read the site.
 - **The style guide** (`/style-guide/`), referenced live from the glossary and previously
   non-existent. It separates the wording rules that are statistical precision from those
   that are value judgements, and owns the second kind as choices.

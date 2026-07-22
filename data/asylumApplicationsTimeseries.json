@@ -1,12 +1,12 @@
 {
   "series_name": "UK asylum applications over time (people claiming asylum)",
   "unit": "people",
-  "basis": "PEOPLE — main applicants plus dependants",
+  "basis": "PEOPLE, main applicants plus dependants",
   "geography": "United Kingdom",
   "statistical_status": "Accredited official statistics",
   "lastUpdated": "2026-07-22",
   "vintage": "Year ending March 2026 release (21 May 2026). Single vintage throughout.",
-  "note": "PEOPLE basis throughout: main applicants plus dependants. This is NOT the same as the applications or cases series, which count main applicants only — roughly 76,700 main-applicant applications correspond to these 93,525 people in the year ending March 2026. Never mix the two bases in one chart or comparison; it is this project's single most important caveat. Calendar years, so this series does not join the year-ending-March figures held elsewhere in the data layer. The Home Office revises historical asylum figures, so values may differ from those printed in earlier releases; refresh the whole series each release rather than appending.",
+  "note": "PEOPLE basis throughout: main applicants plus dependants. This is NOT the same as the applications or cases series, which count main applicants only, roughly 76,700 main-applicant applications correspond to these 93,525 people in the year ending March 2026. Never mix the two bases in one chart or comparison; it is this project's single most important caveat. Calendar years, so this series does not join the year-ending-March figures held elsewhere in the data layer. The Home Office revises historical asylum figures, so values may differ from those printed in earlier releases; refresh the whole series each release rather than appending.",
   "data": [
     {
       "date": "2010-12-31",

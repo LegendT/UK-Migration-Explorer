@@ -8,6 +8,7 @@ strapline: >-
   page says which is which, because presenting the second kind as the first would be the
   thing we criticise in others.
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 ---
 
 Migration statistics come wrapped in contested vocabulary. A site that corrects other
@@ -30,7 +31,7 @@ These are defensible, and they are still choices. We would rather say so than im
 everyone reasonable agrees.
 
 **We write "irregular arrival" rather than "illegal migrant" by default.** The phrase we
-avoid is legally imprecise — arriving without prior permission is not in itself what makes a
+avoid is legally imprecise, arriving without prior permission is not in itself what makes a
 person's presence unlawful, and a claim's outcome is decided separately. But it is also true
 that our preferred phrasing is the one favoured by people who are broadly sympathetic to
 migrants, and that some readers will hear the softer term as taking a side. That is a fair
@@ -58,8 +59,10 @@ right to distrust everything else on the page.
 ## The labels on our claim checks
 
 Each claim check is tagged with a direction: **restrictionist** for claims that overstate the
-scale or cost of migration, **pro-migration** for claims that overstate its benefits or
-understate its difficulties, and **both** where a misuse is common on either side.
+scale or cost of migration, and **pro-migration** for claims that overstate its benefits or
+understate its difficulties. Those are the only two labels in use. A misuse common on both
+sides is currently written up under whichever version circulates more, and named as shared
+in the text.
 
 These labels describe *the claim*, not the person making it, and they are ours rather than
 anybody's self-description. "Restrictionist" in particular is not a word most people who
