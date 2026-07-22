@@ -24,7 +24,7 @@ docs/foundation.md   Positioning, editorial principles, IA, data governance, ris
 data/                Governed data layer, one file per theme
 content/claims/      Claim checks, citing live figures by token
 content/glossary.md  Plain-English definitions, 23 terms
-content/migration.njk, asylum.njk  Topic pages with charts
+content/migration.njk, asylum.njk, costs.njk  Topic pages with charts
 lib/charts.mjs       Build-time SVG charts, no JavaScript shipped
 content/sources-and-method.md  Sources, data contract, corrections policy, scope
 scripts/             Data contract and claim validation

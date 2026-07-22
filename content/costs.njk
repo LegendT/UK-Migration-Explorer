@@ -1,0 +1,134 @@
+---
+layout: base.njk
+permalink: /costs/
+title: What the asylum system costs
+strapline: >-
+  Audited spending figures, and what they do and do not include. This page is about what the
+  system spends, not about what migration is worth.
+last_reviewed: 2026-07-22
+eleventyExcludeFromCollections: true
+---
+<p>Two different questions get called "the cost of immigration" and they need separating
+before any figure means anything.</p>
+
+<ul class="panels">
+  <li class="panel">
+    <h2>What the system spends</h2>
+    <p>Audited, published, and reasonably firm. That is this page.</p>
+  </li>
+  <li class="panel">
+    <h2>What migration is worth fiscally</h2>
+    <p>Contested, method-dependent, and lands within about plus or minus 1% of GDP either
+    way. Not this page — see
+    <a href="/common-claims/immigrants-pay-far-more-than-they-cost/">the claim check</a>.</p>
+  </li>
+</ul>
+
+<p>A spending total tells you what a system costs to run. It tells you nothing about the net
+fiscal position of migrants generally, and it is not evidence for or against that question.
+The two get conflated constantly, in both directions.</p>
+
+<h2>The total</h2>
+
+<p>The National Audit Office puts government spending on the asylum system at
+<strong>£{% figure "fiscal/government-spending-on-the-asylum-system" %} billion</strong> in
+financial year 2024-25, covering the Home Office and the Ministry of Justice.</p>
+
+<p>The NAO is explicit that this <strong>does not capture all costs</strong>, particularly
+those falling on local authorities. It is a floor, not a ceiling.</p>
+
+<h3>Where it goes</h3>
+
+<p>These figures are <strong>nested, not parallel</strong>. Hotel spending sits inside
+accommodation spending, which sits inside the total. Setting them side by side as though
+they were separate items would double-count.</p>
+
+<div class="scroll-x">
+<table>
+  <caption>Asylum system spending, financial year 2024-25</caption>
+  <thead><tr><th scope="col">Spending</th><th scope="col" class="amount">Amount</th><th scope="col">Relationship</th></tr></thead>
+  <tbody>
+    <tr>
+      <th scope="row">Total asylum system</th>
+      <td class="amount">£{% figure "fiscal/government-spending-on-the-asylum-system" %} billion</td>
+      <td>Home Office plus Ministry of Justice. Excludes local authority costs</td>
+    </tr>
+    <tr>
+      <th scope="row" class="nested">of which accommodation and support</th>
+      <td class="amount">£{% figure "fiscal/home-office-spending-on-asylum-accommodation-and-support" %} billion</td>
+      <td>The largest single area. Includes hotels, dispersal accommodation, cash support and dispersal grants</td>
+    </tr>
+    <tr>
+      <th scope="row" class="nested nested-2">of which hotels</th>
+      <td class="amount">£{% figure "fiscal/home-office-spending-on-asylum-hotel-accommodation" %} billion</td>
+      <td>Down from about £3 billion the previous year</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Why hotels dominate the bill</h2>
+
+<p>Hotels accounted for about 76% of the annual cost of asylum accommodation contracts while
+housing about 35% of the people in asylum accommodation. The reason is the nightly rate.</p>
+
+{% barChart {
+  id: 'accommodation-cost-per-night',
+  bars: [
+    { name: 'Hotel place', value: 158, note: 'Average cost of a hotel place per person per night, 2024' },
+    { name: 'Dispersal accommodation', value: 20, note: 'Approximate cost per night in non-hotel dispersal accommodation' }
+  ],
+  title: 'Cost of an accommodation place per night, 2024',
+  summary: 'A hotel place cost about £158 per person per night, against roughly £20 for dispersal accommodation — around eight times as much.',
+  unit: '£ per night',
+  source: 'National Audit Office, asylum accommodation contracts',
+  sourceUrl: 'https://www.nao.org.uk/reports/asylum-accommodation-contracts/',
+  note: 'This is the price of a bed under a contract, not a measure of what any person costs or is worth. It is on this page because the gap between the two rates is what makes accommodation type, rather than the number of people, the main driver of the bill.'
+} %}
+
+<h2>On "£8 million a day"</h2>
+
+<p>Daily figures circulate widely and are worth checking rather than repeating, because they
+go out of date faster than anything else on this subject.</p>
+
+<p>Hotel spending of £{% figure "fiscal/home-office-spending-on-asylum-hotel-accommodation" %}
+billion works out at roughly <strong>£5.8 million a day</strong>. The previous year's figure
+of about £3 billion works out at roughly £8.2 million a day.</p>
+
+<p>So a widely repeated "£8 million a day" was approximately right for hotel spending in
+2023-24, and is roughly 40% above the current figure. Whether any particular version of the
+claim is accurate depends on which year it describes, and whether it means hotels or the
+whole system — the whole system at
+£{% figure "fiscal/government-spending-on-the-asylum-system" %} billion is closer to £13
+million a day.</p>
+
+<p>Three numbers, all defensible, all describing different things. Ask which year and which
+category before repeating any of them.</p>
+
+<h2>The contracts are costing far more than planned</h2>
+
+<p>The three asylum accommodation contracts running from 2019 to 2029 are now projected to
+cost <strong>£{% figure "fiscal/asylum-accommodation-contracts-revised-10-year-cost-projecti" %}
+billion</strong> over their lifetime, against an original estimate of about £4.5 billion —
+more than three times as much.</p>
+
+<p>This is a projection across a ten-year contract period, not an annual figure, and it must
+not be compared with the annual figures above.</p>
+
+<h2>What this page leaves out, and why</h2>
+
+<p><strong>Immigration fee income.</strong> The Home Office collects around £3 billion in visa
+and immigration fees and about £2.6 billion from the Immigration Health Surcharge. Those are
+immigration-wide figures, not asylum ones. Setting them against asylum spending to show the
+system "pays for itself" would compare two different populations, and it is the same category
+error this site corrects elsewhere.</p>
+
+<p><strong>Cost per person as a measure of worth.</strong> The nightly accommodation rates
+above are procurement figures — what the government pays for a bed. This site does not
+publish a cost per asylum seeker, because dividing a system's running costs by the number of
+people in it produces a number that looks like a person's value and is not.</p>
+
+<p><strong>The fiscal impact question.</strong> Deferred to a later phase, and it needs a page
+about method rather than a page of figures.</p>
+
+<p><a href="/sources-and-method/">How every figure here is sourced and recorded</a>.</p>
