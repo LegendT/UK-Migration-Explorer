@@ -13,7 +13,7 @@ selection criteria are published rather than assumed.
 ## Status
 
 Research complete, site not yet built. The repository holds the project foundation and a
-governed data layer of 58 metrics plus a 15-point net migration series. No framework has been chosen.
+governed data layer of 66 metrics and four timeseries. No framework has been chosen.
 
 ## Layout
 
@@ -33,7 +33,10 @@ LICENCE              MIT for code, Open Government Licence v3.0 attribution for 
 | `asylum.json` | Applications, decisions, backlog, small boats, appeals, support, resettlement |
 | `population.json` | Foreign-born population, countries of birth, citizenship, settlement |
 | `fiscal.json` | Asylum system costs, fiscal-impact estimates, labour market participation |
-| `netMigrationTimeseries.json` | Long-run annual net migration series, methodology break flagged |
+| `netMigrationTimeseries.json` | Net migration 2012-2025, current ONS basis, plus the discontinued series as history |
+| `asylumApplicationsTimeseries.json` | Asylum applications 2010-2025, people basis throughout |
+| `asylumBacklogTimeseries.json` | Initial decision backlog 2010-2025, on both the people and cases bases |
+| `migrationFlowsTimeseries.json` | Immigration and emigration 2012-2025, the gross flows behind net migration |
 | `dashboard.json` | Homepage cards. Holds references, never values |
 | `sources.json` | Catalogue of primary sources |
 | `meta.json` | Confidence-level definitions, cross-cutting caveats, footer note |
@@ -56,11 +59,18 @@ supporting denominators reference theme metrics by `theme/id`. Previously the sa
 existed in two files, and a quarterly update that missed one would have published two
 different official values for the same measure.
 
+**One vintage per series.** ONS states you cannot append the latest estimates to a series
+from an earlier release, and the Home Office revises historical asylum figures. Every
+timeseries therefore draws from a single publication, and the validator rejects a series
+whose points carry more than one `published_date`. Refresh the whole array each release;
+never append. Mixing vintages is what made the first net migration series unpublishable.
+
 Validate before publishing anything:
 
 ```
 npm test                                  # or: node scripts/validate-data.mjs
 node scripts/validate-data.mjs --verbose  # also lists outstanding published_date gaps
+node scripts/check-sources.mjs            # network check that every source URL resolves
 ```
 
 It checks that every figure carries all thirteen fields; that dates are real calendar dates
@@ -88,27 +98,22 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 
 ## Known gaps
 
-- **40 of the 58 metrics have `published_date: null`.** Not inferred, because inventing a
+- **33 of the 66 metrics have `published_date: null`.** Not inferred, because inventing a
   publication date on a project about statistical integrity is not a defensible shortcut.
   The validator reports the count on every run. Record each one when its source is next
   checked.
-- **The net migration timeseries is blocked and must not be charted.** Verified against
-  ONS on 22 July 2026: the 2016 value matches no ONS-published figure in any vintage, 2017
-  and 2018 likewise, and 2021-2023 are superseded by revisions of up to 120,000. The file
-  silently mixes at least three ONS vintages in one array. Flagged `BLOCKED` in the file,
-  surfaced by the validator, detailed in `CHANGELOG.md`. Needs replacing with two labelled
-  series: ONS's current new-approach series as primary, the discontinued IPS/LTIM figures
-  as history.
-- **Four of the five MVP charts have no usable data.** Asylum applications over time,
-  initial decision backlog over time, and immigration and emigration over time do not
-  exist; net migration exists but is blocked, above.
-- **No returns metric exists**, though the homepage specification calls for the card.
+- **Five Commons Library URLs cannot be checked automatically.** The host returns 403 to
+  every request, including deliberately invalid paths, with or without a browser
+  user-agent, so an automated check cannot tell a live page from a dead one there.
+  `scripts/check-sources.mjs` reports them as uncheckable rather than broken. Verify by hand.
+- **Three source URLs redirect**, which usually means a newer release has superseded the
+  figure: the Home Office data tables anchor and two Skills for Care pages.
 - **`table_reference` is unimplemented.** Home Office table identifiers survive only as
-  prose inside `notes`.
-- **No link checker.** gov.uk statistics URLs are release-specific slugs that churn every
-  quarter, and link rot is invisible until a reader clicks.
+  prose inside `notes`, though the newer metrics name their table in `source_name`.
 - Asylum work-in-progress (total casework backlog) is stale: the last complete figure is
   roughly 224,742 cases as at June 2024. Do not present it as current.
+- The main-applicant asylum applications series was not retrieved; only the people-basis
+  series exists. The two must never be spliced.
 
 ## Provenance
 

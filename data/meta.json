@@ -1,7 +1,7 @@
 {
   "project": "UK Migration Explorer",
   "description": "Structured, fully sourced figures on UK immigration, net migration and asylum, modelled on the UK Public Finances Explorer data contract. Every figure carries metric_name, value, unit, date, period_label, geography, source_name, source_url, published_date, retrieved_date, notes and confidence_level.",
-  "lastReviewed": "2026-06-17",
+  "lastReviewed": "2026-07-22",
   "footerNote": "Figures are official statistics and may be revised. Net migration estimates are provisional and have been revised substantially in recent releases. Foreign-born population figures rely on the 2021/22 Census, as the ONS annual series was discontinued in 2022. Fiscal-impact estimates are contested and method-dependent. Every figure shows its source, reference period and confidence level.",
   "confidenceLevels": {
     "official": "Taken directly from an official published release.",
@@ -11,12 +11,14 @@
   },
   "keyCaveats": [
     "People vs cases: the Home Office headlines 'people' (main applicants plus dependants) for asylum, while 'applications' and 'cases' count main applicants only. About 93,525 people claimed asylum (year ending March 2026), relating to about 76,700 main-applicant applications.",
-    "Reference periods differ: asylum data is to year ending March 2026; net migration, visas and citizenship are to year ending December 2025; small boats are reported on calendar-year, year-ending and provisional year-to-date bases. Do not mix them.",
-    "Net migration methodology break: figures up to 2019 use the International Passenger Survey; from 2021 they use administrative data and are not directly comparable. 2020 is omitted. Recent years are provisional and heavily revised.",
+    "Reference periods differ, though less than they did. Asylum, returns, visas, citizenship and settlement are all now on year ending March 2026. ONS net migration, immigration and emigration remain on year ending December 2025, because ONS publishes on a different cycle. The asylum applications and backlog timeseries are on calendar years and end-December stocks respectively. Do not compare a year-ending-March figure with a year-ending-December one and call the difference a change.",
+    "Net migration methodology: ONS now publishes ONE continuous series on its 'new approach' from 2012 to 2025, INCLUDING 2020. The older framing — International Passenger Survey to 2019, administrative data from 2021, 2020 unpublishable — is out of date; ONS's November 2023 back series supersedes any series previously published for 2012 to 2021, and the old dataset is now titled 'Discontinued after 2019'. The comparability break ONS maintains today is at JUNE 2021, not 2020: comparisons across it should be treated with caution because the methods differ. ONS also states you cannot append the latest estimates to a series from an earlier release — use the full series from the current release. Revisions are large: the 2022 estimate has moved by more than 120,000 across vintages.",
     "No official post-2021 foreign-born total: the ONS country-of-birth population series was discontinued in October 2022. The 16% / 10.7 million Census figures are the most reliable available. A '19% in 2024' figure circulating in secondary sources is not an accredited ONS estimate.",
     "Asylum work-in-progress (total casework backlog) is stale: the only complete figure is about 224,742 cases as at June 2024; the wider breakdown was suspended pending a new caseworking system. The current 'awaiting initial decision' figure (48,758 people) is separate.",
     "Fiscal impact is contested: estimates depend on method and assumptions and are consistently within about plus or minus 1% of GDP across studies. The OBR £341,000 figure is a stylised single-case scenario, not a typical or average outcome.",
-    "ONS Labour Force Survey reliability: employment-rate figures by country of birth have known sample-size and response-rate problems since 2020 and should be treated as provisional."
+    "ONS Labour Force Survey reliability: employment-rate figures by country of birth have known sample-size and response-rate problems since 2020 and should be treated as provisional.",
+    "Returns count EVENTS, not people: one individual returned more than once is counted more than once. Refused entry at port (17,623 in the year ending March 2026) is counted separately from the enforced-plus-voluntary returns total and must not be added to it.",
+    "Gross flows are rounded independently of net migration, so they do not always reconcile exactly. Year ending December 2024: immigration 1,012,000 minus emigration 680,000 gives 332,000 against a published net figure of 331,000. This is rounding to the nearest thousand, not an error, but do not present the subtraction as if it derives the published figure."
   ],
   "dataFiles": {
     "dashboard.json": "Six headline metrics across the four themes, plus supporting population figures.",
@@ -24,8 +26,11 @@
     "migration.json": "Net migration, immigration/emigration, reason breakdowns, visa grants by route, top nationalities.",
     "fiscal.json": "Asylum system costs, fiscal-impact estimates, labour market participation, NHS/care workforce, fee income, MAC findings.",
     "population.json": "Foreign-born population and share, top countries of birth, citizenship and settlement grants, regional distribution.",
-    "netMigrationTimeseries.json": "Long-run annual net migration series (with methodology break flagged) for a timeline chart.",
+    "netMigrationTimeseries.json": "Net migration 2012-2025 on the current ONS basis, single vintage, plus the discontinued IPS/LTIM series 2010-2019 kept separately as history.",
     "sources.json": "Catalogue of primary and authoritative sources.",
-    "meta.json": "This file: confidence definitions, footer note, and cross-cutting caveats."
+    "meta.json": "This file: confidence definitions, footer note, and cross-cutting caveats.",
+    "asylumApplicationsTimeseries.json": "Asylum applications 2010-2025, calendar years, people basis throughout.",
+    "asylumBacklogTimeseries.json": "Initial decision backlog 2010-2025, end-December stock, on both the people and cases bases.",
+    "migrationFlowsTimeseries.json": "Long-term immigration and emigration 2012-2025, the two gross flows behind net migration."
   }
 }

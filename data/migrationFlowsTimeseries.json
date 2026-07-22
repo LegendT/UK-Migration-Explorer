@@ -1,0 +1,302 @@
+{
+  "series_name": "UK long-term immigration and emigration over time",
+  "unit": "people",
+  "geography": "United Kingdom",
+  "statistical_status": "Official statistics in development",
+  "lastUpdated": "2026-07-22",
+  "vintage": "21 May 2026 release. Single vintage throughout.",
+  "note": "The two gross flows behind net migration. Net migration is immigration MINUS emigration, so neither of these is 'the number of people who came to the UK' on its own and their difference is not a headcount of anybody. Showing both is the clearest way to make that visible. ONS 'new approach' administrative-data estimates, one continuous series from 2012 including 2020. COMPARABILITY BREAK AT JUNE 2021: ONS states comparisons across that boundary should be treated with caution because the methods differ. ONS also states you cannot append the latest estimates to a series from previous releases — refresh the whole array each release. ONS marks 2024 revised and 2025 provisional.",
+  "data": [
+    {
+      "date": "2012-12-31",
+      "period_label": "year ending December 2012",
+      "value": 643000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2013-12-31",
+      "period_label": "year ending December 2013",
+      "value": 713000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2014-12-31",
+      "period_label": "year ending December 2014",
+      "value": 778000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2015-12-31",
+      "period_label": "year ending December 2015",
+      "value": 797000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2016-12-31",
+      "period_label": "year ending December 2016",
+      "value": 772000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2017-12-31",
+      "period_label": "year ending December 2017",
+      "value": 752000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2018-12-31",
+      "period_label": "year ending December 2018",
+      "value": 825000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2019-12-31",
+      "period_label": "year ending December 2019",
+      "value": 788000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2020-12-31",
+      "period_label": "year ending December 2020",
+      "value": 662000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2021-12-31",
+      "period_label": "year ending December 2021",
+      "value": 947000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2022-12-31",
+      "period_label": "year ending December 2022",
+      "value": 1398000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2023-12-31",
+      "period_label": "year ending December 2023",
+      "value": 1441000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2024-12-31",
+      "period_label": "year ending December 2024",
+      "value": 1012000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22",
+      "note": "Flagged R (revised) by ONS."
+    },
+    {
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "value": 813000,
+      "confidence_level": "provisional",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22",
+      "note": "Flagged P (provisional) by ONS."
+    }
+  ],
+  "emigration": {
+    "series_name": "UK long-term emigration (outflow) over time",
+    "unit": "people",
+    "note": "Same source, vintage and caveats as the immigration series above.",
+    "data": [
+      {
+        "date": "2012-12-31",
+        "period_label": "year ending December 2012",
+        "value": 448000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2013-12-31",
+        "period_label": "year ending December 2013",
+        "value": 469000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2014-12-31",
+        "period_label": "year ending December 2014",
+        "value": 494000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2015-12-31",
+        "period_label": "year ending December 2015",
+        "value": 494000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2016-12-31",
+        "period_label": "year ending December 2016",
+        "value": 523000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2017-12-31",
+        "period_label": "year ending December 2017",
+        "value": 544000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2018-12-31",
+        "period_label": "year ending December 2018",
+        "value": 549000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2019-12-31",
+        "period_label": "year ending December 2019",
+        "value": 605000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2020-12-31",
+        "period_label": "year ending December 2020",
+        "value": 569000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2021-12-31",
+        "period_label": "year ending December 2021",
+        "value": 480000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2022-12-31",
+        "period_label": "year ending December 2022",
+        "value": 508000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2023-12-31",
+        "period_label": "year ending December 2023",
+        "value": 593000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2024-12-31",
+        "period_label": "year ending December 2024",
+        "value": 680000,
+        "confidence_level": "official",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22",
+        "note": "Flagged R (revised) by ONS."
+      },
+      {
+        "date": "2025-12-31",
+        "period_label": "year ending December 2025",
+        "value": 642000,
+        "confidence_level": "provisional",
+        "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22",
+        "note": "Flagged P (provisional) by ONS."
+      }
+    ]
+  }
+}

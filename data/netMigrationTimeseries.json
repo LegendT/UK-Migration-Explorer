@@ -1,115 +1,260 @@
 {
-  "series_name": "UK net migration (long-term international migration)",
-  "status": "BLOCKED — DO NOT PUBLISH",
-  "status_note": "Verified against ONS on 22 July 2026 and found unfit for publication. The 2016 value of 345,000 matches no ONS-published figure in any vintage checked (the discontinued LTIM series gives 249,000; first publication was 248,000). 2017 and 2018 likewise match nothing published. 2010, 2015 and 2019 mix vintages: they come from a different ONS series than their neighbours. 2021-2023 are superseded — the current ONS vintage gives 467,000, 891,000 and 848,000 against the 488,000, 764,000 and 872,000 held here, and the 2022 figure alone has moved by over 120,000. Only 2011-2014, 2024 and 2025 are confirmed correct. A series that silently mixes three vintages of the same statistic is the exact failure this project exists to correct. Awaiting a verified replacement structured as two explicitly labelled series: the current ONS new-approach series as primary, and the discontinued IPS/LTIM figures as clearly-marked history.",
+  "series_name": "UK net migration (long-term international migration), current ONS basis",
   "unit": "people",
-  "lastUpdated": "2026-06-17",
-  "note": "IMPORTANT: there is a methodology break in this series. Figures up to 2019 come from the old International Passenger Survey (IPS), based on travellers' stated intentions. From 2021 onward, ONS uses administrative and border data, which is not directly comparable. 2020 is omitted (COVID disruption and the transition). The 2021-2023 admin-data figures are themselves estimates and have been revised heavily; the latest two years are provisional. Treat the long run as indicative of shape, not a single consistent measure. Confidence levels reflect this.",
+  "geography": "United Kingdom",
+  "statistical_status": "Official statistics in development",
+  "lastUpdated": "2026-07-22",
+  "vintage": "21 May 2026 release. Single vintage throughout.",
+  "note": "USE THIS SERIES, NOT THE HISTORICAL ONE BELOW. Every point comes from one ONS release (21 May 2026), because ONS states that the full time series associated with a release must be used and that you cannot add the most recent estimates to a time series from previous releases. Refresh the whole array each release; never append. COMPARABILITY BREAK AT JUNE 2021: ONS states that comparisons between estimates before and after June 2021 should be treated with caution because of changes in methodology, and that pre-Census 2021 estimates should not be compared with post-Census 2021 estimates. Mark this break on any chart. The pre-2021 British-national component is Census-adjusted International Passenger Survey data, which is why ONS draws the line where it does. ONS marks 2024 as revised and 2025 as provisional; earlier years carry no marker in this vintage, which means settled in this release, not immutable. The November 2025 method change revised the whole pre-2024 series, and the 2022 estimate has moved by more than 120,000 across vintages.",
+  "attribution": "Source: Office for National Statistics licensed under the Open Government Licence.",
   "data": [
     {
-      "date": "2010-12-31",
-      "value": 252000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based), via Migration Observatory",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
-    },
-    {
-      "date": "2011-12-31",
-      "value": 205000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
-    },
-    {
       "date": "2012-12-31",
-      "value": 177000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2012",
+      "value": 195000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2013-12-31",
-      "value": 209000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2013",
+      "value": 244000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2014-12-31",
-      "value": 313000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2014",
+      "value": 284000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2015-12-31",
-      "value": 329000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2015",
+      "value": 303000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2016-12-31",
-      "value": 345000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2016",
+      "value": 249000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2017-12-31",
-      "value": 275000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2017",
+      "value": 208000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2018-12-31",
-      "value": 275000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2018",
+      "value": 276000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2019-12-31",
-      "value": 271000,
-      "confidence_level": "estimated",
-      "source_name": "ONS LTIM (IPS-based)",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/"
+      "period_label": "year ending December 2019",
+      "value": 184000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2020-12-31",
+      "period_label": "year ending December 2020",
+      "value": 93000,
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2021-12-31",
-      "value": 488000,
+      "period_label": "year ending December 2021",
+      "value": 467000,
       "confidence_level": "official",
-      "source_name": "ONS admin-data LTIM (new methodology series)",
-      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025"
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2022-12-31",
-      "value": 764000,
+      "period_label": "year ending December 2022",
+      "value": 891000,
       "confidence_level": "official",
-      "source_name": "ONS admin-data LTIM (revised)",
-      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025"
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2023-12-31",
-      "value": 872000,
+      "period_label": "year ending December 2023",
+      "value": 848000,
       "confidence_level": "official",
-      "source_name": "ONS admin-data LTIM (revised; peak was 944,000 in the year ending March 2023)",
-      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025"
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
     },
     {
       "date": "2024-12-31",
+      "period_label": "year ending December 2024",
       "value": 331000,
-      "confidence_level": "provisional",
-      "source_name": "ONS, LTIM provisional year ending December 2025 (updated estimate)",
-      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025"
+      "confidence_level": "official",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22",
+      "ons_marker": "revised"
     },
     {
       "date": "2025-12-31",
+      "period_label": "year ending December 2025",
       "value": 171000,
       "confidence_level": "provisional",
-      "source_name": "ONS, LTIM provisional year ending December 2025",
-      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025"
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 — Table 1, using new approach to producing migration estimates",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22",
+      "ons_marker": "provisional"
     }
-  ]
+  ],
+  "historical": {
+    "series_name": "UK net migration, discontinued International Passenger Survey / LTIM basis",
+    "note": "SUPERSEDED. DO NOT CHART ALONGSIDE THE SERIES ABOVE. ONS's November 2023 back-series work supersedes any time series previously published for 2012 to 2021, and this dataset is now titled 'Discontinued after 2019'. Retained for two reasons only: 2010 and 2011 exist on no other basis, and readers will encounter these figures in older coverage and need to know why they differ. Where the two series overlap they differ substantially — 2019 is 184,000 on the current basis against 313,000 here. Even where the net figures coincide the gross flows do not: 2016 is 249,000 on both bases, but from immigration of 772,000 and emigration of 523,000 on the current basis, against 589,000 and 340,000 here. Same answer, different question.",
+    "data": [
+      {
+        "date": "2010-12-31",
+        "period_label": "year ending December 2010",
+        "value": 256000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2011-12-31",
+        "period_label": "year ending December 2011",
+        "value": 205000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2012-12-31",
+        "period_label": "year ending December 2012",
+        "value": 177000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2013-12-31",
+        "period_label": "year ending December 2013",
+        "value": 209000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2014-12-31",
+        "period_label": "year ending December 2014",
+        "value": 313000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2015-12-31",
+        "period_label": "year ending December 2015",
+        "value": 332000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2016-12-31",
+        "period_label": "year ending December 2016",
+        "value": 249000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2017-12-31",
+        "period_label": "year ending December 2017",
+        "value": 285000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2018-12-31",
+        "period_label": "year ending December 2018",
+        "value": 260000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2019-12-31",
+        "period_label": "year ending December 2019",
+        "value": 313000,
+        "confidence_level": "estimated",
+        "source_name": "ONS, Long-term international migration 2.00, citizenship, UK (Discontinued after 2019) — Table 2.00, Balance",
+        "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalmigration200citizenshipuk",
+        "published_date": "2020-11-26",
+        "retrieved_date": "2026-07-22"
+      }
+    ]
+  }
 }

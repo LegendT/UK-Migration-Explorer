@@ -213,7 +213,7 @@ Two of the five rows made errors this project exists to correct, which is instru
 | --- | --- | --- |
 | Net migration | 171,000, year ending December 2025, down from 331,000 | Superseded by `migration/net-migration` |
 | Asylum support | 97,519 individuals at end of March 2026, 9% lower year on year | Superseded by `asylum/people-in-receipt-of-asylum-support` |
-| Returns | 39,000 in year ending March 2026, enforced and voluntary | **No metric exists.** Must be researched before the homepage card in 8.1 can ship |
+| Returns | 39,000 in year ending March 2026, enforced and voluntary | Researched 22 July 2026. Now `asylum/returns-enforced-plus-voluntary` (39,007, the sum of the two published components) |
 | Asylum applications | 82,100 applications relating to 100,600 individuals, 2025 | Superseded; note the calendar-year basis differs from the data layer's year-ending-March |
 | Initial decision backlog | "49,000 applications" at end of 2025 | **Unit error, see above.** Superseded by the people and cases figures in `data/asylum.json` |
 
@@ -292,9 +292,10 @@ with the caveat written. Omitting the number everyone is searching for, on a sit
 purpose is to reduce confusion about it, would be read as avoidance. The card must carry the
 basis in the card, not in a footnote, because the three bases give three different numbers.
 
-**Returns is blocked, not dropped.** It is the standard counterpart to small boats and backlog
-claims and it belongs here, but no returns metric exists in `data/`. Research it or drop the
-card; do not populate it from the superseded anchor in section 6.1.
+**Returns is now available.** Researched 22 July 2026. Two cautions the card must respect:
+returns count EVENTS, not people, so one person returned twice appears twice; and refused
+entry at port (17,623) is counted separately and must not be added to the total. The data
+layer holds the port figure specifically so that error is visible rather than invited.
 - Latest data update panel: what changed in the latest release, with dates.
 - Common claims preview: five short claim-check cards.
 
@@ -491,7 +492,7 @@ should be recorded so they are not silently reinstated:
 - **`table_reference` is still unimplemented.** Home Office table identifiers survive only
   inside `notes` as prose. Section 6 requires table references in metadata. Add the field
   when the next quarterly update touches those figures.
-- **`published_date` is null for 40 of the 58 theme metrics.** These were not inferred, because
+- **`published_date` is null for 33 of the 66 theme metrics.** These were not inferred, because
   inventing a publication date on a project about statistical integrity is not a defensible
   shortcut. The validator reports the outstanding count on every run.
 
@@ -547,17 +548,21 @@ This should be a static-first public explainer with governed data files, not a h
 What exists as of 22 July 2026:
 
 ```
-data/                       73 governed figures, one file per theme
+data/                       66 governed metrics and four timeseries
   migration.json            net migration, flows, reason splits, visa grants
-  asylum.json               claims, decisions, backlog, small boats, appeals, support
+  asylum.json               claims, decisions, backlog, small boats, appeals, support, returns
   population.json           foreign-born population, citizenship, settlement
   fiscal.json               asylum system costs, fiscal impact, labour market
-  netMigrationTimeseries.json
+  netMigrationTimeseries.json      current ONS basis, plus discontinued series as history
+  asylumApplicationsTimeseries.json
+  asylumBacklogTimeseries.json     both the people and cases bases
+  migrationFlowsTimeseries.json    immigration and emigration
   dashboard.json            homepage cards — references only, holds no values
   sources.json              publisher catalogue
   meta.json                 confidence definitions and cross-cutting caveats
 docs/foundation.md          this document
 scripts/validate-data.mjs   data contract enforcement, stdlib only
+scripts/check-sources.mjs   network check that every source URL still resolves
 .github/workflows/          CI: the contract runs on every push
 CHANGELOG.md                data and methodology changes
 LICENCE                     MIT for code, OGL v3 attribution for data
@@ -571,14 +576,16 @@ src/pages/                  index, what-the-words-mean, migration, asylum,
 src/components/             MetricCard, SourceNote, CaveatBox, ClaimCheck, DataTable
 content/claims/             one file per claim, to the section 16.2 template
 content/glossary/           the definitions behind section 8.2
-scripts/check-sources.mjs   HEAD-request link check before publishing
 ```
 
-Two notes on the original proposal. Data stays as JSON rather than the mixed CSV/JSON
-suggested previously — the contract in section 9 is per-figure metadata, which CSV expresses
-badly. And `validate-metadata` was built as `validate-data.mjs`; the source-check script is
-still outstanding, which matters because gov.uk statistics URLs are release-specific slugs
-that churn every quarter, and link rot is invisible until someone clicks.
+Data stays as JSON rather than the mixed CSV/JSON suggested previously — the contract in
+section 9 is per-figure metadata, which CSV expresses badly.
+
+The link checker is built and has already earned its place: it found that five Commons
+Library URLs cannot be verified automatically at all, because the host returns 403 to every
+request including deliberately invalid ones. It reports those as uncheckable rather than
+broken. Calling a live link dead would train the reader to ignore the checker, which is
+worse than having none.
 
 # 12. Accessibility and usability requirements
 
@@ -658,7 +665,7 @@ open invited an indefinite planning loop.
 - ~~Create final name and strapline.~~ Done. UK Migration Explorer (section 3).
 - ~~Define editorial principles and language rules.~~ Done (section 5).
 - ~~Create source catalogue.~~ Done: `data/sources.json`.
-- ~~Create metric inventory.~~ Done: 58 metrics across four theme files, plus a 15-point net migration series.
+- ~~Create metric inventory.~~ Done: 66 metrics across four theme files, plus four timeseries.
 - ~~Create risk register.~~ Done (section 13), with corrections policy.
 - **Outstanding: glossary.** Exists as an eight-row table in section 8.2. Needs to become
   real content before the definitions page can ship.
@@ -685,15 +692,8 @@ person will not sustain past month four, and staleness is fatal for a product wh
 pitch is trust. The unpublished figures are not wasted: they are the reserve that makes the
 published ones defensible.
 
-Blocked on research, not on build:
-
-- **Three of the five MVP charts have no data.** Asylum applications over time, initial
-  decision backlog over time, and immigration and emigration over time do not exist as
-  series. Only net migration does. Initial decisions by outcome exists only inside a prose
-  `notes` string. Commission these before designing pages around them.
-- **The returns card has no metric** (see section 6.1).
-
-Then:
+No longer blocked on research. As of 22 July 2026 all five MVP charts have verified data,
+and the returns card has its metric. The remaining work is build work:
 
 - Build static site skeleton.
 - Implement metric card component driven by the data contract in section 9.

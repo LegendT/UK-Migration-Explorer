@@ -55,43 +55,79 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 - `package.json` so the check runs as `npm test`.
 - This changelog.
 
-### Blocked — net migration timeseries must not be published
+### Fixed — net migration timeseries rebuilt after verification against ONS
 
-Verified against ONS on 22 July 2026. `netMigrationTimeseries.json` is flagged
-`BLOCKED — DO NOT PUBLISH` in the file itself and must not be charted until replaced.
+The series was flagged `BLOCKED — DO NOT PUBLISH` on 22 July 2026 and has now been replaced.
+What was wrong:
 
-| Year | Held | ONS | Note |
-| --- | --- | --- | --- |
-| 2010 | 252,000 | 256,000 | Pre-Census-revision original, superseded |
-| 2011-2014 | — | — | Correct |
-| 2015 | 329,000 | 332,000 | Different ONS series from its neighbours |
-| 2016 | 345,000 | 249,000 | **Matches no ONS-published figure in any vintage checked.** First publication was 248,000 |
-| 2017 | 275,000 | 285,000 | Matches nothing published |
-| 2018 | 275,000 | 260,000 | Matches nothing published |
-| 2019 | 271,000 | 313,000 | Adjusted-series value sitting in an unadjusted series |
-| 2020 | omitted | 93,000 | ONS now publishes this on the current basis |
-| 2021 | 488,000 | 467,000 | Superseded vintage |
-| 2022 | 764,000 | 891,000 | Superseded vintage, moved by over 120,000 |
-| 2023 | 872,000 | 848,000 | Superseded vintage |
-| 2024-2025 | — | — | Correct |
+| Year | Held | Current basis | Discontinued basis | Note |
+| --- | --- | --- | --- | --- |
+| 2016 | 345,000 | 249,000 | 249,000 | Matched no ONS figure in any vintage. First publication was 248,000 |
+| 2017 | 275,000 | 208,000 | 285,000 | Matched neither basis |
+| 2018 | 275,000 | 276,000 | 260,000 | Matched neither basis, though within 1,000 of the current one |
+| 2010 | 252,000 | not published | 256,000 | Pre-Census-revision original, superseded |
+| 2015 | 329,000 | 303,000 | 332,000 | An adjusted-series value sitting among unadjusted ones |
+| 2019 | 271,000 | 184,000 | 313,000 | An adjusted-series value; the two bases differ by 129,000 here |
+| 2020 | omitted | 93,000 | not published | ONS does publish this on the current basis |
+| 2021-2023 | 488/764/872k | 467/891/848k | not published | Superseded; 2022 had moved by over 120,000 |
 
-Two structural findings behind the individual errors:
+Only 2011-2014, 2024 and 2025 were correct as held.
 
-- The series silently mixes at least three ONS vintages within one array — the final
-  revised LTIM figures, the August 2020 adjusted headline series, and superseded
-  admin-data estimates. Charting it would draw a line that no ONS publication supports.
-- The file's framing is out of date. ONS's November 2023 back-series article states that
-  it "supersedes this and any time series previously published for the period 2012 to
-  2021", the old dataset is now titled "(Discontinued after 2019)", and ONS publishes one
-  continuous series that includes 2020. The comparability boundary ONS maintains today is
-  June 2021, not 2020, and ONS states that the full time series from the current release
-  must be used rather than appending new estimates to an older series.
+The underlying fault was structural: one array silently mixed at least three ONS vintages,
+so charting it would have drawn a line no ONS publication supports.
 
-The replacement will be two explicitly labelled series — the current ONS new-approach
-series as primary, the discontinued IPS/LTIM figures as history — with the release vintage
-recorded per point, since the admin-era figures will keep being revised.
+The replacement holds two explicitly separate series. The primary is ONS's current
+new-approach basis, 2012-2025 including 2020, every point from the single 21 May 2026
+release, each value quoted verbatim from Table 1. The secondary is the discontinued
+IPS/LTIM series 2010-2019, labelled superseded and kept only because 2010 and 2011 exist
+on no other basis and readers will meet those figures in older coverage.
+
+The comparability break is recorded at June 2021, per ONS's current guidance, not at 2020
+as the old file assumed. Confidence levels now follow ONS's own markers: 2025 provisional,
+2024 revised, earlier years unmarked in this vintage.
+
+### Added — three timeseries and eight metrics
+
+All verified against primary sources on 22 July 2026, each value carrying a quoted table
+cell or sentence.
+
+- `asylumApplicationsTimeseries.json`: applications 2010-2025, calendar years, people basis
+  throughout (table Asy_00a).
+- `asylumBacklogTimeseries.json`: initial decision backlog 2010-2025, end-December stock, on
+  both the people and cases bases — 64,426 against 48,723 at the end of 2025, the same queue
+  counted two ways.
+- `migrationFlowsTimeseries.json`: long-term immigration and emigration 2012-2025, the two
+  gross flows behind net migration.
+- Returns, previously absent despite being a specified homepage card: enforced (9,723),
+  voluntary (29,284), the combined total (39,007, calculated, since the Home Office publishes
+  only a rounded 39,000), asylum-related (11,918), and refused entry at port (17,623 — held
+  specifically to stop it being folded into the returns total).
+- Initial decisions by outcome, previously trapped inside a prose note: decisions total
+  (128,300), refusals (79,719) and withdrawals (16,901).
+
+### Changed — figures moved to year ending March 2026
+
+Visa, citizenship and settlement figures were being presented as latest while a newer Home
+Office release existed. Entry clearance 809,407 to 778,625; sponsored study 426,471 to
+409,954; work 261,112 to 252,775; Health and Care main applicants 13,286 to 10,509; family
+66,610 to 62,470; citizenship 235,782 to 236,512; settlement 146,405 to 152,306.
+
+### Investigated — Afghan resettlement total is correct
+
+The three scheme figures sum to 38,587 against a stated total of 38,617. Neither is wrong:
+the Home Office records 30 people under the programme with scheme name unknown, and states
+that breakdowns exclude them while totals include them. No value changed; the explanation is
+now in the metric's notes. Also recorded there: the Home Office calls the third route the
+Afghanistan Response Route on its topic page and the Afghanistan Relocation Route in its own
+table Res_01.
 
 ### Outstanding
 
-- 40 figures have `published_date: null`. The validator reports the count on every run.
+- 33 figures have `published_date: null`. The validator reports the count on every run.
   Record each one the next time its source is checked rather than inferring it.
+- Five Commons Library URLs cannot be checked automatically: the host returns 403 to every
+  request, including deliberately invalid paths, with or without a browser user-agent.
+  `scripts/check-sources.mjs` reports them as uncheckable rather than broken, because calling
+  a live link dead trains the reader to ignore the checker. Verify them by hand.
+- Three source URLs redirect, which usually means a newer release has superseded the figure:
+  the Home Office data tables anchor, and two Skills for Care pages.

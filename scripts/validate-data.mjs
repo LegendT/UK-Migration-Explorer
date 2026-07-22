@@ -10,7 +10,17 @@ const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
 const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
-const SPECIAL_FILES = ['dashboard.json', 'netMigrationTimeseries.json', 'sources.json', 'meta.json'];
+const TIMESERIES_FILES = [
+  'netMigrationTimeseries.json',
+  'asylumApplicationsTimeseries.json',
+  'asylumBacklogTimeseries.json',
+  'migrationFlowsTimeseries.json',
+];
+// A series file may carry companion series alongside its primary `data` array: a superseded
+// vintage, the same measure on the other counting basis, or the opposing flow. Each is a
+// separate series with its own note and must never be silently merged with the primary.
+const COMPANION_BLOCKS = ['historical', 'alternate_basis', 'emigration'];
+const SPECIAL_FILES = ['dashboard.json', 'sources.json', 'meta.json', ...TIMESERIES_FILES];
 
 const METRIC_FIELDS = [
   'id', 'metric_name', 'value', 'unit', 'date', 'period_label', 'geography',
@@ -157,15 +167,40 @@ for (const [key, entry] of Object.entries(dashboard.supporting ?? {})) {
 }
 
 // --- timeseries -----------------------------------------------------------------
-const series = read('netMigrationTimeseries.json');
-for (const field of ['series_name', 'unit', 'note', 'lastUpdated']) {
-  if (!series[field]) errors.push(`netMigrationTimeseries.json: missing envelope field ${field}`);
-}
-for (const [i, point] of series.data.entries()) {
-  const where = `netMigrationTimeseries.json[${i}] ${point.date ?? '(undated)'}`;
-  checkFields(where, point, POINT_FIELDS);
-  if (typeof point.value !== 'number') errors.push(`${where}: value must be a number`);
-  counted += 1;
+for (const file of TIMESERIES_FILES) {
+  const series = read(file);
+  for (const field of ['series_name', 'unit', 'note', 'lastUpdated']) {
+    if (!series[field]) errors.push(`${file}: missing envelope field ${field}`);
+  }
+
+  const blocks = [['', series]];
+  for (const name of COMPANION_BLOCKS) {
+    if (series[name]) blocks.push([`${name}.`, series[name]]);
+  }
+
+  for (const [label, block] of blocks) {
+    // A companion series without a note explaining how it differs is an invitation to
+    // chart it against the primary one, which is the error these files exist to prevent.
+    if (label && !block.note) {
+      errors.push(`${file}: ${label.slice(0, -1)} series must carry a note explaining how it differs from the primary series`);
+    }
+    for (const [i, point] of (block.data ?? []).entries()) {
+      const where = `${file} ${label}[${i}] ${point.date ?? '(undated)'}`;
+      checkFields(where, point, POINT_FIELDS);
+      if (typeof point.value !== 'number') errors.push(`${where}: value must be a number`);
+      counted += 1;
+    }
+    if (!label && !(block.data ?? []).length) errors.push(`${file}: primary series has no data`);
+
+    // Single vintage per series is structural, not advisory: ONS states you cannot append
+    // the latest estimates to a series from earlier releases, and the Home Office revises
+    // historical asylum figures. Mixing vintages is what made the first net migration
+    // series unpublishable.
+    const vintages = new Set((block.data ?? []).map((p) => p.published_date));
+    if (vintages.size > 1) {
+      errors.push(`${file}: ${label || 'primary'} series mixes ${vintages.size} vintages (${[...vintages].join(', ')}) — use the full series from a single release`);
+    }
+  }
 }
 
 // --- source catalogue -----------------------------------------------------------
