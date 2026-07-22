@@ -13,7 +13,7 @@ selection criteria are published rather than assumed.
 ## Status
 
 Research complete, site not yet built. The repository holds the project foundation and a
-governed data layer of 73 sourced figures. No framework has been chosen.
+governed data layer of 58 metrics plus a 15-point net migration series. No framework has been chosen.
 
 ## Layout
 
@@ -88,7 +88,7 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 
 ## Known gaps
 
-- **40 of 73 figures have `published_date: null`.** Not inferred, because inventing a
+- **40 of the 58 metrics have `published_date: null`.** Not inferred, because inventing a
   publication date on a project about statistical integrity is not a defensible shortcut.
   The validator reports the count on every run. Record each one when its source is next
   checked.

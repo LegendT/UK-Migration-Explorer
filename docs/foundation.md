@@ -14,7 +14,9 @@ This project should not be built as a generic 'immigration dashboard'. That fram
 
 > The site is neutral on policy preferences, but not neutral on statistical misuse.
 
-The MVP should focus on definitions, distinctions and a small set of well-governed figures. It should be static-first, source-first, and transparent about caveats. Local authority data, cost data and more contested policy analysis can be added later once the core trust model is stable.
+The MVP should focus on definitions, distinctions and a small set of well-governed figures. It should be static-first, source-first, and transparent about caveats. Local authority data and the contested fiscal-impact debate can be added later once the core trust model is stable.
+
+Revised 22 July 2026: what the asylum system *spends* is now in the MVP, because the National Audit Office figures are audited and firm, and because cost is the claim category that actually circulates. What immigration *is worth* fiscally stays deferred, because it is contested and method-dependent. The distinction between spending and impact is what makes the first safe and the second not. See section 7.
 
 The core editorial proposition is simple: migration is not one number, asylum is not the same as immigration, and net migration is not the number of people entering the UK.
 
@@ -27,7 +29,7 @@ The project is strongest when it works as an explanatory layer between official 
 ## 2.1 Product promise
 
 - Every figure is sourced.
-- Every figure has a period covered and publication date.
+- Every figure has a period covered and, where recorded, a publication date. Where the publication date is not yet recorded the figure says so rather than guessing; see section 9.3.
 - Every figure explains what it counts and what it does not count.
 - Every page distinguishes data from interpretation.
 - Every common claim is assessed using definitions, denominators and comparable time periods.
@@ -489,7 +491,7 @@ should be recorded so they are not silently reinstated:
 - **`table_reference` is still unimplemented.** Home Office table identifiers survive only
   inside `notes` as prose. Section 6 requires table references in metadata. Add the field
   when the next quarterly update touches those figures.
-- **`published_date` is null for 40 of 73 figures.** These were not inferred, because
+- **`published_date` is null for 40 of the 58 theme metrics.** These were not inferred, because
   inventing a publication date on a project about statistical integrity is not a defensible
   shortcut. The validator reports the outstanding count on every run.
 
@@ -510,7 +512,7 @@ integrity. Reference, never copy.
 - Charts should explain one idea each.
 - Never make users infer definitions from axis labels alone.
 - Use annotations for major methodology changes, policy changes or data breaks.
-- Avoid maps in the MVP. Add local lookup later with strong context.
+- No maps, in the MVP or later. The phase 4 local picture uses a lookup. A map of asylum accommodation is a targeting tool whatever the intent.
 - Do not use red/green moral coding for categories such as grants and refusals.
 - Give users the table beneath important charts.
 - Always allow users to see the source and period without hovering.
@@ -522,7 +524,7 @@ integrity. Reference, never copy.
 | Stacked bar | Initial decisions by outcome | Avoid too many categories. |
 | Small multiples | Compare routes or regions | Needs careful labelling. |
 | Sankey / flow | Asylum pipeline concept | Do not imply person-level tracking unless true. |
-| Map | Phase 2 local authority lookup | Can become politically inflammatory if used without context. |
+| Map | Not planned. Phase 4 local picture uses a lookup, not a map. | A map of asylum accommodation is a targeting tool. See section 13. |
 
 # 11. Technical architecture
 
@@ -656,7 +658,7 @@ open invited an indefinite planning loop.
 - ~~Create final name and strapline.~~ Done. UK Migration Explorer (section 3).
 - ~~Define editorial principles and language rules.~~ Done (section 5).
 - ~~Create source catalogue.~~ Done: `data/sources.json`.
-- ~~Create metric inventory.~~ Done: 73 figures across four theme files.
+- ~~Create metric inventory.~~ Done: 58 metrics across four theme files, plus a 15-point net migration series.
 - ~~Create risk register.~~ Done (section 13), with corrections policy.
 - **Outstanding: glossary.** Exists as an eight-row table in section 8.2. Needs to become
   real content before the definitions page can ship.
