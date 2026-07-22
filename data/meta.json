@@ -1,0 +1,31 @@
+{
+  "project": "UK Migration & Asylum Explorer (data research)",
+  "description": "Structured, fully sourced figures on UK immigration, net migration and asylum, modelled on the UK Public Finances Explorer data contract. Every figure carries metric_name, value, unit, date, period_label, source_name, source_url, retrieved_date, notes and confidence_level.",
+  "lastReviewed": "2026-06-17",
+  "footerNote": "Figures are official statistics and may be revised. Net migration estimates are provisional and have been revised substantially in recent releases. Foreign-born population figures rely on the 2021/22 Census, as the ONS annual series was discontinued in 2022. Fiscal-impact estimates are contested and method-dependent. Every figure shows its source, reference period and confidence level.",
+  "confidenceLevels": {
+    "official": "Taken directly from an official published release.",
+    "provisional": "Official but flagged by the publisher as subject to revision (e.g. ONS net migration, operational small-boat data).",
+    "estimated": "An estimate, interpolation, scenario, or pre-2021 figure on a non-comparable methodology, not a current published official figure.",
+    "calculated": "Derived by this project from other figures."
+  },
+  "keyCaveats": [
+    "People vs cases: the Home Office headlines 'people' (main applicants plus dependants) for asylum, while 'applications' and 'cases' count main applicants only. About 93,525 people claimed asylum (year ending March 2026), relating to about 76,700 main-applicant applications.",
+    "Reference periods differ: asylum data is to year ending March 2026; net migration, visas and citizenship are to year ending December 2025; small boats are reported on calendar-year, year-ending and provisional year-to-date bases. Do not mix them.",
+    "Net migration methodology break: figures up to 2019 use the International Passenger Survey; from 2021 they use administrative data and are not directly comparable. 2020 is omitted. Recent years are provisional and heavily revised.",
+    "No official post-2021 foreign-born total: the ONS country-of-birth population series was discontinued in October 2022. The 16% / 10.7 million Census figures are the most reliable available. A '19% in 2024' figure circulating in secondary sources is not an accredited ONS estimate.",
+    "Asylum work-in-progress (total casework backlog) is stale: the only complete figure is about 224,742 cases as at June 2024; the wider breakdown was suspended pending a new caseworking system. The current 'awaiting initial decision' figure (48,758 people) is separate.",
+    "Fiscal impact is contested: estimates depend on method and assumptions and are consistently within about plus or minus 1% of GDP across studies. The OBR £341,000 figure is a stylised single-case scenario, not a typical or average outcome.",
+    "ONS Labour Force Survey reliability: employment-rate figures by country of birth have known sample-size and response-rate problems since 2020 and should be treated as provisional."
+  ],
+  "dataFiles": {
+    "dashboard.json": "Six headline metrics across the four themes, plus supporting population figures.",
+    "asylum.json": "Asylum applications, grant rate, backlog, small boats, appeals, support/accommodation, resettlement schemes.",
+    "migration.json": "Net migration, immigration/emigration, reason breakdowns, visa grants by route, top nationalities.",
+    "fiscal.json": "Asylum system costs, fiscal-impact estimates, labour market participation, NHS/care workforce, fee income, MAC findings.",
+    "population.json": "Foreign-born population and share, top countries of birth, citizenship and settlement grants, regional distribution.",
+    "netMigrationTimeseries.json": "Long-run annual net migration series (with methodology break flagged) for a timeline chart.",
+    "sources.json": "Catalogue of primary and authoritative sources.",
+    "meta.json": "This file: confidence definitions, footer note, and cross-cutting caveats."
+  }
+}

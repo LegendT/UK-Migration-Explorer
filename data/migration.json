@@ -1,0 +1,163 @@
+{
+  "theme": "Net migration and visas",
+  "lastUpdated": "2026-06-17",
+  "note": "Net migration figures come from ONS Long-term international migration (year ending December 2025, provisional, published 21 May 2026). Visa-grant figures come from Home Office Immigration system statistics (year ending December 2025). The two sources are not interchangeable: ONS counts people staying 12 months or more; the Home Office counts visas granted, which is always higher. ONS reason splits are for non-EU+ arrivals (inflow), not net migration by reason.",
+  "metrics": [
+    {
+      "metric_name": "Net migration (long-term international migration)",
+      "value": 171000,
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "retrieved_date": "2026-06-17",
+      "notes": "Provisional. Nearly halved from the year ending December 2024; lowest since early 2021.",
+      "confidence_level": "provisional"
+    },
+    {
+      "metric_name": "Net migration (previous year, revised, for trend)",
+      "value": 331000,
+      "unit": "people",
+      "date": "2024-12-31",
+      "period_label": "year ending December 2024 (updated estimate)",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "retrieved_date": "2026-06-17",
+      "notes": "Originally published as 431,000 (May 2025), revised to about 345,000 (November 2025) and to 331,000 here, largely due to higher British emigration estimates.",
+      "confidence_level": "provisional"
+    },
+    {
+      "metric_name": "Total long-term immigration (inflow)",
+      "value": 813000,
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "retrieved_date": "2026-06-17",
+      "notes": "Provisional. Down 20% from the updated year ending December 2024 (1,012,000); down from a peak of 1,469,000 in the year ending March 2023. Non-EU+ accounted for 627,000 (77%).",
+      "confidence_level": "provisional"
+    },
+    {
+      "metric_name": "Total long-term emigration (outflow)",
+      "value": 642000,
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "retrieved_date": "2026-06-17",
+      "notes": "Provisional. Down from the updated year ending December 2024 (680,000).",
+      "confidence_level": "provisional"
+    },
+    {
+      "metric_name": "Study-related immigration (non-EU+ arrivals)",
+      "value": 294000,
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "retrieved_date": "2026-06-17",
+      "notes": "47% of non-EU+ immigration; the largest single reason. Main applicants 277,000; dependants 17,000.",
+      "confidence_level": "provisional"
+    },
+    {
+      "metric_name": "Work-related immigration (non-EU+ arrivals)",
+      "value": 146000,
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "retrieved_date": "2026-06-17",
+      "notes": "23% of non-EU+ immigration; down 47% from 272,000 the previous year. Main applicants 71,000; dependants 74,000. The main driver of the fall in net migration.",
+      "confidence_level": "provisional"
+    },
+    {
+      "metric_name": "Asylum-related immigration (non-EU+ arrivals)",
+      "value": 88000,
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "retrieved_date": "2026-06-17",
+      "notes": "14% of non-EU+ immigration; includes those who claimed asylum after regular arrival and via illegal entry. Family about 7%, humanitarian about 6% of non-EU+ immigration.",
+      "confidence_level": "provisional"
+    },
+    {
+      "metric_name": "Sponsored study visas granted (total)",
+      "value": 426471,
+      "unit": "visas",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "Home Office, Immigration system statistics, year ending December 2025 — Why do people come to the UK? Study",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-december-2025/why-do-people-come-to-the-uk-study",
+      "retrieved_date": "2026-06-17",
+      "notes": "Main applicants 406,824 plus dependants 19,647. Up 3% on the previous year; 35% below the year ending June 2023 peak (652,072). Dependants down 87% from peak after January 2024 restrictions.",
+      "confidence_level": "official"
+    },
+    {
+      "metric_name": "Work visas granted (total route, including dependants)",
+      "value": 261112,
+      "unit": "visas",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "Home Office, Immigration system statistics, year ending December 2025 — How many people come to the UK each year?",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-december-2025/how-many-people-come-to-the-uk-each-year",
+      "retrieved_date": "2026-06-17",
+      "notes": "Main applicants plus dependants. Main applicants alone were 168,471, down 19% on the previous year and 50% below the year ending December 2023 peak.",
+      "confidence_level": "official"
+    },
+    {
+      "metric_name": "Health and Care Worker visas granted (main applicants)",
+      "value": 13286,
+      "unit": "visas",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "Home Office, Immigration system statistics, year ending December 2025 — Why do people come to the UK? Work",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-december-2025/why-do-people-come-to-the-uk-work",
+      "retrieved_date": "2026-06-17",
+      "notes": "Down 51% on the previous year; dependants 35,444 (down 58%). Down from a peak of 145,823 main applicants in the year ending December 2023. The care worker route closed to new overseas recruitment in 2025.",
+      "confidence_level": "official"
+    },
+    {
+      "metric_name": "Family visas granted (total)",
+      "value": 66610,
+      "unit": "visas",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "Home Office, Immigration system statistics, year ending December 2025 — Why do people come to the UK? Family",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-december-2025/why-do-people-come-to-the-uk-family",
+      "retrieved_date": "2026-06-17",
+      "notes": "Down 22% on the previous year. Includes Partner, Child and Refugee Family Reunion (18,869) visas. Excludes work/study dependants and EU Settlement Scheme family permits.",
+      "confidence_level": "official"
+    },
+    {
+      "metric_name": "Total entry clearance visas granted (excluding visitor and transit)",
+      "value": 809407,
+      "unit": "visas",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "source_name": "Home Office, Immigration system statistics, year ending December 2025 — How many people come to the UK each year?",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-december-2025/how-many-people-come-to-the-uk-each-year",
+      "retrieved_date": "2026-06-17",
+      "notes": "Main applicants plus dependants; 15% fewer than the previous year. Breakdown: Study 429,254; Work 261,112; Family 66,610; Other 52,431. Excludes about 2.2 million Visitor and 20,108 Transit visas.",
+      "confidence_level": "official"
+    },
+    {
+      "metric_name": "Largest nationality for immigration — India (share)",
+      "value": 16,
+      "unit": "%",
+      "date": "2025-06-30",
+      "period_label": "year ending June 2025",
+      "source_name": "Migration Observatory (University of Oxford), Long-term international migration flows to and from the UK (citing ONS)",
+      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/",
+      "retrieved_date": "2026-06-17",
+      "notes": "Indian nationals were the largest single nationality for overall immigration (16%), followed by Chinese and Pakistani (about 7% each). For study visas specifically, India (95,231 main applicants, 23%) and China (89,019, 22%) lead.",
+      "confidence_level": "provisional"
+    }
+  ]
+}
