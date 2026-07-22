@@ -2,114 +2,68 @@
   "lastUpdated": "2026-06-17",
   "referencePeriod": "Latest available for each measure (asylum to March 2026; net migration to December 2025)",
   "caveat": "Figures are official statistics from the Home Office (Immigration system statistics), the Office for National Statistics (ONS), the National Audit Office (NAO), and the House of Commons Library, the latest available for each measure. Migration and asylum statistics use different reference periods and are routinely revised; net migration estimates in particular are provisional and have been revised substantially in recent releases. Headline counts often mix 'people' (main applicants plus dependants) with 'applications' or 'cases' (main applicants only), so compare like with like.",
-  "metrics": [
+  "supporting": {
+    "population": {
+      "ref": "population/total-uk-population"
+    },
+    "foreignBorn": {
+      "ref": "population/foreign-born-population-of-the-uk"
+    },
+    "immigration": {
+      "ref": "migration/total-long-term-immigration"
+    },
+    "emigration": {
+      "ref": "migration/total-long-term-emigration"
+    }
+  },
+  "cards": [
     {
       "id": "net-migration",
-      "display": "people",
-      "metric_name": "Net migration (long-term international migration)",
+      "ref": "migration/net-migration",
       "shortLabel": "Net migration",
-      "value": 171000,
-      "unit": "people",
+      "display": "people",
       "explanation": "The difference between the number of people moving to the UK long-term (for 12 months or more) and the number leaving, over the latest year.",
-      "whatThisMeans": "Net migration nearly halved over the year to December 2025, from a revised 331,000 the previous year, mainly because fewer people arrived on work and care visas. It is the lowest level since early 2021. These figures are provisional and ONS revises them as more data arrives.",
-      "date": "2025-12-31",
-      "period_label": "year ending December 2025",
-      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025",
-      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
-      "retrieved_date": "2026-06-17",
-      "notes": "Provisional; official statistics in development. Immigration 813,000 minus emigration 642,000. Peak was about 944,000 in the year ending March 2023.",
-      "confidence_level": "provisional"
+      "whatThisMeans": "Net migration nearly halved over the year to December 2025, from a revised 331,000 the previous year, mainly because fewer people arrived on work and care visas. It is the lowest level since early 2021. These figures are provisional and ONS revises them as more data arrives."
     },
     {
       "id": "asylum-applications",
-      "display": "people",
-      "metric_name": "Asylum applications (people claiming asylum)",
+      "ref": "asylum/asylum-applications",
       "shortLabel": "Asylum claims",
-      "value": 93525,
-      "unit": "people",
+      "display": "people",
       "explanation": "The number of people (main applicants and their dependants) who claimed asylum in the UK over the latest year.",
-      "whatThisMeans": "This counts people, not cases. It relates to 76,714 main-applicant applications, down 9% on the previous 12 months, but the figure remains high by historical standards. The single largest nationality was Pakistan (about 10%).",
-      "date": "2026-03-31",
-      "period_label": "year ending March 2026",
-      "source_name": "Home Office, Immigration system statistics, year ending March 2026 — How many people claim asylum in the UK?",
-      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-claim-asylum-in-the-uk",
-      "retrieved_date": "2026-06-17",
-      "notes": "Counts people (main applicants plus dependants). Peak was 110,051 in the year ending September 2025.",
-      "confidence_level": "official"
+      "whatThisMeans": "This counts people, not cases. It relates to 76,714 main-applicant applications, down 9% on the previous 12 months, but the figure remains high by historical standards. The single largest nationality was Pakistan (about 10%)."
     },
     {
       "id": "small-boats",
-      "display": "people",
-      "metric_name": "Small boat arrivals",
+      "ref": "asylum/small-boat-arrivals-calendar-year-2025",
       "shortLabel": "Small boat arrivals",
-      "value": 41472,
-      "unit": "people",
+      "display": "people",
       "explanation": "The number of people detected arriving in the UK on small boats across the English Channel in the 2025 calendar year.",
-      "whatThisMeans": "This was the second-highest annual total on record (the peak was 45,774 in 2022) and 13% higher than 2024. Around 90% of all detected unauthorised arrivals come by small boat, and almost all go on to claim asylum.",
-      "date": "2025-12-31",
-      "period_label": "calendar year 2025",
-      "source_name": "Home Office, Irregular migration to the UK detailed dataset (illegal entry routes)",
-      "source_url": "https://www.gov.uk/government/statistical-data-sets/immigration-system-statistics-data-tables#illegal-entry-routes",
-      "retrieved_date": "2026-06-17",
-      "notes": "Finalised calendar-year total. For the year ending March 2026 the figure was 39,271. Provisional 2026 year-to-date data (to end May) is around 9,000, about 38% lower than the same period in 2025.",
-      "confidence_level": "official"
+      "whatThisMeans": "This was the second-highest annual total on record (the peak was 45,774 in 2022) and 13% higher than 2024. Around 90% of all detected unauthorised arrivals come by small boat, and almost all go on to claim asylum."
     },
     {
       "id": "foreign-born-share",
-      "display": "percent",
-      "metric_name": "Foreign-born share of the UK population",
+      "ref": "population/foreign-born-share-of-total-uk-population",
       "shortLabel": "Born abroad",
-      "value": 16,
-      "unit": "%",
+      "display": "percent",
       "explanation": "The proportion of UK residents who were born outside the UK, at the time of the 2021/22 Census.",
-      "whatThisMeans": "About 10.7 million people, or roughly one in six residents, were born abroad — up from about 9% in 2004. The foreign-born population has continued to grow since 2021, but there is no reliable official total after that because ONS paused its survey-based series.",
-      "date": "2021-03-21",
-      "period_label": "2021/22 Census",
-      "source_name": "Migration Observatory (University of Oxford), Migrants in the UK: An Overview, based on the 2021/22 Census",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "retrieved_date": "2026-06-17",
-      "notes": "Census 2021 for England, Wales and Northern Ireland; Census 2022 for Scotland. The most reliable available figure; ONS discontinued its annual country-of-birth population series in October 2022.",
-      "confidence_level": "official"
+      "whatThisMeans": "About 10.7 million people, or roughly one in six residents, were born abroad — up from about 9% in 2004. The foreign-born population has continued to grow since 2021, but there is no reliable official total after that because ONS paused its survey-based series."
     },
     {
       "id": "asylum-system-cost",
-      "display": "poundsShort",
-      "metric_name": "Government spending on the asylum system",
+      "ref": "fiscal/government-spending-on-the-asylum-system",
       "shortLabel": "Asylum system cost",
-      "value": 4.9,
-      "unit": "£ billion per year",
+      "display": "poundsShort",
       "explanation": "The National Audit Office's estimate of Home Office and Ministry of Justice spending on asylum in the 2024-25 financial year.",
-      "whatThisMeans": "Most of this was accommodation and support (£3.4 billion), of which hotels were £2.1 billion. The NAO notes this does not capture all costs, particularly those falling on local authorities, so it understates the true system-wide cost.",
-      "date": "2025-12-10",
-      "period_label": "financial year 2024-25",
-      "source_name": "National Audit Office, An analysis of the asylum system",
-      "source_url": "https://www.nao.org.uk/reports/an-analysis-of-the-asylum-system/",
-      "retrieved_date": "2026-06-17",
-      "notes": "Home Office plus Ministry of Justice spending only; excludes hard-to-quantify local authority costs.",
-      "confidence_level": "official"
+      "whatThisMeans": "Most of this was accommodation and support (£3.4 billion), of which hotels were £2.1 billion. The NAO notes this does not capture all costs, particularly those falling on local authorities, so it understates the true system-wide cost."
     },
     {
       "id": "citizenship-grants",
-      "display": "people",
-      "metric_name": "British citizenship grants",
+      "ref": "population/british-citizenship-grants",
       "shortLabel": "Citizenship grants",
-      "value": 235782,
-      "unit": "grants",
+      "display": "people",
       "explanation": "The number of people granted British citizenship over the latest year, through naturalisation or registration.",
-      "whatThisMeans": "Down 13% on the previous year but still the second-highest annual total since the series began in 2005. The top three nationalities (India, Pakistan, Nigeria) accounted for almost a quarter of all grants.",
-      "date": "2025-12-31",
-      "period_label": "year ending December 2025",
-      "source_name": "Home Office, Immigration system statistics, year ending December 2025 — settlement and citizenship",
-      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-december-2025/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
-      "retrieved_date": "2026-06-17",
-      "notes": "166,482 by naturalisation; 69,300 by registration.",
-      "confidence_level": "official"
+      "whatThisMeans": "Down 13% on the previous year but still the second-highest annual total since the series began in 2005. The top three nationalities (India, Pakistan, Nigeria) accounted for almost a quarter of all grants."
     }
-  ],
-  "supporting": {
-    "population": { "value": 69281400, "unit": "people", "notes": "UK mid-2024 population estimate (ONS, released September 2025). Net international migration of 738,700 was the main driver of the 1.1% rise on mid-2023." },
-    "foreignBorn": { "value": 10700000, "unit": "people", "notes": "Foreign-born (non-UK born) population at the 2021/22 Census (Migration Observatory)." },
-    "immigration": { "value": 813000, "unit": "people", "notes": "Total long-term immigration (inflow), year ending December 2025, provisional (ONS)." },
-    "emigration": { "value": 642000, "unit": "people", "notes": "Total long-term emigration (outflow), year ending December 2025, provisional (ONS)." }
-  }
+  ]
 }

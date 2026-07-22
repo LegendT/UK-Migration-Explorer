@@ -1,5 +1,5 @@
 {
-  "note": "Primary and authoritative data sources for the UK migration and asylum project. Each public-facing figure carries its own source, date and confidence level in the theme files.",
+  "note": "Primary and authoritative data sources for UK Migration Explorer. Each public-facing figure carries its own source, publication date, retrieval date and confidence level in the theme files.",
   "sources": [
     {
       "id": "ho-immigration-stats",
@@ -98,6 +98,15 @@
       "url": "https://www.skillsforcare.org.uk/Adult-Social-Care-Workforce-Data/Workforce-intelligence/home.aspx",
       "covers": "Nationality composition of the adult social care workforce in England.",
       "updateFrequency": "Annual",
+      "confidence_level": "official"
+    },
+    {
+      "id": "osr",
+      "name": "Office for Statistics Regulation: guidance on migration and asylum statistics",
+      "publisher": "Office for Statistics Regulation",
+      "url": "https://osr.statisticsauthority.gov.uk/guidance/2026-what-to-look-out-for-migration-and-the-asylum-system-statistics/",
+      "covers": "Guidance on responsible interpretation of migration and asylum statistics: which comparisons are valid, how to handle revisions, and where published figures are commonly misread. Used for methodology and caveat design rather than as a source of figures.",
+      "updateFrequency": "Occasional",
       "confidence_level": "official"
     }
   ]

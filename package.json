@@ -1,0 +1,16 @@
+{
+  "name": "uk-migration-explorer",
+  "version": "0.1.0",
+  "description": "A plain-English guide to what UK migration and asylum statistics do, and do not, show.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/validate-data.mjs",
+    "validate": "node scripts/validate-data.mjs --verbose"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LegendT/UK-Migration-Explorer.git"
+  }
+}

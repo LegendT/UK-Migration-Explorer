@@ -1,92 +1,197 @@
 #!/usr/bin/env node
-// Enforces the data contract: no figure is published without its source metadata.
+// Enforces the data contract: no figure is published without its source metadata,
+// and no figure is published twice where the two copies could drift apart.
 // Run: node scripts/validate-data.mjs
 
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
+const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
+const SPECIAL_FILES = ['dashboard.json', 'netMigrationTimeseries.json', 'sources.json', 'meta.json'];
+
 const METRIC_FIELDS = [
-  'metric_name', 'value', 'unit', 'date', 'period_label',
-  'source_name', 'source_url', 'retrieved_date', 'notes', 'confidence_level',
+  'id', 'metric_name', 'value', 'unit', 'date', 'period_label', 'geography',
+  'source_name', 'source_url', 'published_date', 'retrieved_date', 'notes', 'confidence_level',
 ];
-// Timeseries points inherit unit and period from the series, so carry fewer fields.
+// Timeseries points inherit unit, geography and period basis from the series envelope.
 const POINT_FIELDS = ['date', 'value', 'confidence_level', 'source_name', 'source_url'];
 const SOURCE_FIELDS = ['id', 'name', 'publisher', 'url', 'covers', 'updateFrequency', 'confidence_level'];
-// Dashboard denominators cite their source in prose only. See "Known gaps" in the README.
-const SUPPORTING_FIELDS = ['value', 'unit', 'notes'];
 
-const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+// published_date is contractual but not yet recorded for every figure. Null is an
+// accepted placeholder and is counted below, so the debt stays visible on every run
+// instead of being silently green.
+const NULLABLE = new Set(['published_date']);
+
 const confidenceLevels = Object.keys(read('meta.json').confidenceLevels);
 const errors = [];
+const warnings = [];
 
-function check(where, item, required) {
+// Publishers serve from more than one host. Map the extras onto their catalogue entry
+// rather than matching loosely on domain suffix, which would let any .gov.uk or .ac.uk
+// address through.
+const HOST_ALIASES = {
+  'researchbriefings.files.parliament.uk': 'commonslibrary.parliament.uk',
+  'assets.publishing.service.gov.uk': 'www.gov.uk',
+  'www.legislation.gov.uk': 'www.gov.uk',
+};
+
+const catalogued = new Set(read('sources.json').sources.map((s) => new URL(s.url).hostname));
+const resolveHost = (url) => {
+  const host = new URL(url).hostname;
+  return HOST_ALIASES[host] ?? host;
+};
+
+function isRealDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().startsWith(value);
+}
+
+function checkFields(where, item, required) {
   for (const field of required) {
     const value = item[field];
+    if (value === null && NULLABLE.has(field)) {
+      warnings.push(`${where}: ${field} not yet recorded`);
+      continue;
+    }
+    // Ranges deliberately hold a null value; checkValue enforces their bounds instead.
+    if (field === 'value' && item.value_type === 'range') continue;
     if (value === undefined || value === null || value === '') {
       errors.push(`${where}: missing ${field}`);
     }
   }
-  for (const field of ['date', 'retrieved_date']) {
-    if (item[field] && !ISO_DATE.test(item[field])) {
-      errors.push(`${where}: ${field} "${item[field]}" is not YYYY-MM-DD`);
+  for (const field of ['date', 'published_date', 'retrieved_date']) {
+    if (item[field] && !isRealDate(item[field])) {
+      errors.push(`${where}: ${field} "${item[field]}" is not a real YYYY-MM-DD date`);
     }
   }
-  const url = item.source_url ?? item.url;
-  if (url && !url.startsWith('https://')) {
-    errors.push(`${where}: source URL is not https — ${url}`);
+  if (item.source_url && !item.source_url.startsWith('https://')) {
+    errors.push(`${where}: source_url is not https — ${item.source_url}`);
+  }
+  if (item.source_url && !catalogued.has(resolveHost(item.source_url))) {
+    errors.push(`${where}: cites ${new URL(item.source_url).hostname}, which is not a publisher in sources.json`);
   }
   if (item.confidence_level && !confidenceLevels.includes(item.confidence_level)) {
     errors.push(`${where}: unknown confidence_level "${item.confidence_level}"`);
   }
 }
 
-const themeFiles = ['asylum.json', 'migration.json', 'population.json', 'fiscal.json'];
+function checkValue(where, metric) {
+  // A sign-spanning range must never be flattened to a point a card could render.
+  if (metric.value_type === 'range') {
+    if (typeof metric.range_min !== 'number' || typeof metric.range_max !== 'number') {
+      errors.push(`${where}: value_type "range" requires numeric range_min and range_max`);
+    }
+    if (metric.value !== null) {
+      errors.push(`${where}: value_type "range" must set value to null so no card renders a point estimate`);
+    }
+    return;
+  }
+  if (typeof metric.value !== 'number') {
+    errors.push(`${where}: value must be a number, got ${typeof metric.value}`);
+  }
+}
+
+// The period a figure covers must be consistent with the date it is filed under.
+// Financial and academic years are labelled by their opening year, so allow date-1.
+function checkPeriod(where, metric) {
+  const year = Number(metric.date?.slice(0, 4));
+  if (!year || !metric.period_label) return;
+  if (!metric.period_label.includes(String(year)) && !metric.period_label.includes(String(year - 1))) {
+    errors.push(`${where}: date ${metric.date} does not fall in period "${metric.period_label}"`);
+  }
+}
+
+// --- no data file goes unvalidated ---------------------------------------------
+const present = readdirSync(dataDir).filter((f) => f.endsWith('.json'));
+for (const file of present) {
+  if (!THEME_FILES.includes(file) && !SPECIAL_FILES.includes(file)) {
+    errors.push(`${file}: unrecognised data file — add it to THEME_FILES or SPECIAL_FILES so it is validated`);
+  }
+}
+for (const file of [...THEME_FILES, ...SPECIAL_FILES]) {
+  if (!present.includes(file)) errors.push(`${file}: expected data file is missing`);
+}
+
+// --- theme metrics --------------------------------------------------------------
+const registry = new Map();
 let counted = 0;
 
-for (const file of [...themeFiles, 'dashboard.json']) {
-  const data = read(file);
-  (data.metrics ?? []).forEach((metric, i) => {
-    check(`${file}[${i}] ${metric.metric_name ?? '(unnamed)'}`, metric, METRIC_FIELDS);
-  });
-  for (const [name, item] of Object.entries(data.supporting ?? {})) {
-    check(`${file} supporting.${name}`, item, SUPPORTING_FIELDS);
+for (const file of THEME_FILES) {
+  const theme = file.replace('.json', '');
+  for (const [i, metric] of (read(file).metrics ?? []).entries()) {
+    const where = `${file}[${i}] ${metric.metric_name ?? '(unnamed)'}`;
+    checkFields(where, metric, METRIC_FIELDS);
+    checkValue(where, metric);
+    checkPeriod(where, metric);
+    const ref = `${theme}/${metric.id}`;
+    if (registry.has(ref)) errors.push(`${where}: duplicate id "${metric.id}" within ${file}`);
+    registry.set(ref, metric);
+    counted += 1;
   }
-  counted += (data.metrics ?? []).length;
 }
 
+// --- dashboard holds references, never copies -----------------------------------
+const dashboard = read('dashboard.json');
+if (dashboard.metrics) {
+  errors.push('dashboard.json: has a "metrics" array — cards must reference theme metrics by ref, not copy their values');
+}
+for (const [i, card] of (dashboard.cards ?? []).entries()) {
+  const where = `dashboard.json cards[${i}] ${card.id ?? '(unidentified)'}`;
+  for (const field of ['id', 'ref', 'shortLabel', 'display', 'explanation', 'whatThisMeans']) {
+    if (!card[field]) errors.push(`${where}: missing ${field}`);
+  }
+  if (card.ref && !registry.has(card.ref)) {
+    errors.push(`${where}: ref "${card.ref}" does not resolve to any theme metric`);
+  }
+  if ('value' in card) errors.push(`${where}: cards must not carry their own value`);
+}
+for (const [key, entry] of Object.entries(dashboard.supporting ?? {})) {
+  const where = `dashboard.json supporting.${key}`;
+  if (!entry.ref) errors.push(`${where}: missing ref`);
+  else if (!registry.has(entry.ref)) errors.push(`${where}: ref "${entry.ref}" does not resolve to any theme metric`);
+  if ('value' in entry) errors.push(`${where}: denominators must reference a sourced metric, not carry a bare value`);
+}
+
+// --- timeseries -----------------------------------------------------------------
 const series = read('netMigrationTimeseries.json');
-series.data.forEach((point, i) => {
-  check(`netMigrationTimeseries.json[${i}] ${point.date ?? '(undated)'}`, point, POINT_FIELDS);
-});
-counted += series.data.length;
-
-read('sources.json').sources.forEach((source, i) => {
-  check(`sources.json[${i}] ${source.id ?? '(unidentified)'}`, source, SOURCE_FIELDS);
-});
-
-// Every metric must cite a publisher catalogued in sources.json, so the sources page
-// stays complete. Publishers serve from several hosts (commonslibrary.parliament.uk and
-// researchbriefings.files.parliament.uk are both the Commons Library), so compare the
-// last two labels of the hostname.
-// ponytail: last-two-labels is loose under shared suffixes — any gov.uk or ac.uk host
-// passes. Swap in a public-suffix check if a wrong publisher ever slips through.
-const domain = (url) => new URL(url).hostname.split('.').slice(-2).join('.');
-const catalogued = new Set(read('sources.json').sources.map((s) => domain(s.url)));
-for (const file of [...themeFiles, 'dashboard.json']) {
-  for (const metric of read(file).metrics ?? []) {
-    if (metric.source_url && !catalogued.has(domain(metric.source_url))) {
-      errors.push(`${file}: ${metric.metric_name} cites ${domain(metric.source_url)}, which is not in sources.json`);
-    }
-  }
+for (const field of ['series_name', 'unit', 'note', 'lastUpdated']) {
+  if (!series[field]) errors.push(`netMigrationTimeseries.json: missing envelope field ${field}`);
+}
+for (const [i, point] of series.data.entries()) {
+  const where = `netMigrationTimeseries.json[${i}] ${point.date ?? '(undated)'}`;
+  checkFields(where, point, POINT_FIELDS);
+  if (typeof point.value !== 'number') errors.push(`${where}: value must be a number`);
+  counted += 1;
 }
 
+// --- source catalogue -----------------------------------------------------------
+const sourceIds = new Set();
+for (const [i, source] of read('sources.json').sources.entries()) {
+  const where = `sources.json[${i}] ${source.id ?? '(unidentified)'}`;
+  for (const field of SOURCE_FIELDS) {
+    if (!source[field]) errors.push(`${where}: missing ${field}`);
+  }
+  if (source.url && !source.url.startsWith('https://')) errors.push(`${where}: url is not https`);
+  if (sourceIds.has(source.id)) errors.push(`${where}: duplicate source id`);
+  sourceIds.add(source.id);
+}
+
+// --- report ---------------------------------------------------------------------
 if (errors.length) {
   console.error(`Data contract failed — ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
   process.exit(1);
 }
 
-console.log(`Data contract passed: ${counted} figures, all sourced, dated and graded.`);
+console.log(`Data contract passed: ${counted} figures, all sourced, dated, graded and singly held.`);
+if (warnings.length) {
+  console.log(`\nOutstanding: ${warnings.length} figure(s) without a recorded published_date.`);
+  console.log('Record it next time each source is checked. Run with --verbose to list them.');
+  if (process.argv.includes('--verbose')) {
+    for (const warning of warnings) console.log(`  ${warning}`);
+  }
+}
