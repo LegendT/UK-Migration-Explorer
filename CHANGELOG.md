@@ -191,6 +191,34 @@ file, so the check was never exercised. Re-run correctly, it caught the defect. 
 recording: a negative test that does not fail proves nothing until you confirm it actually
 broke what it claimed to break.
 
+### Added — sources and methodology page
+
+`content/sources-and-method.md`, meeting the section 17 launch gate. Covers what the site
+is and is not, the source catalogue, the data contract in plain terms, confidence levels,
+the cross-cutting caveats, why reference periods do not line up, the update commitment,
+corrections, what the site does not cover, how it was built, and reuse terms.
+
+Structural blocks — the source catalogue, confidence levels and key caveats — render from
+`sources.json` and `meta.json` via `{{> partial }}` syntax rather than being restated in
+prose, so the page cannot drift from the data it describes. The validator knows the set of
+renderable partials and rejects unknown ones.
+
+Two sections are deliberately unresolved and marked as such on the page. The **update
+commitment** proposes fourteen days from each release but needs the owner's sign-off,
+because publishing a target that is not met is worse than publishing none. The **AI use**
+disclosure states plainly that AI assistance was used in research, drafting and checking,
+and that human review before publication is a commitment about launch rather than a
+description of the research stage — the honest version, not the reassuring one.
+
+The validator now covers standalone content pages, which were previously unvalidated: only
+claims and the glossary were checked, so this page's tokens went unverified until the loop
+was added. It immediately caught an undeclared figure.
+
+### Fixed — stale source catalogue entry
+
+`sources.json` still described Home Office visa and citizenship figures as coming from the
+year ending December 2025 release, after those figures moved to year ending March 2026.
+
 ### Outstanding
 
 - 33 figures have `published_date: null`. The validator reports the count on every run.
