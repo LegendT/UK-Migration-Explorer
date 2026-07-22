@@ -131,7 +131,7 @@ so a figure updated in `data/` updates in every claim citing it, and a claim cit
 deleted metric fails the build rather than publishing a stale number. Historical
 illustrations stay as literals, labelled, because they are arguments about the past.
 
-`scripts/validate-claims.mjs` added and wired into `npm test` and CI. It checks front
+`scripts/validate-content.mjs` added and wired into `npm test` and CI. It checks front
 matter, that every token resolves to a real metric, that every cited figure is declared so
 a data update can find the claims it affects, that no claim has gone unreviewed for more
 than twelve months, and the two-thirds balance rule.
@@ -144,6 +144,53 @@ rather than satisfy it. The set now runs four to two. Recorded in foundation sec
 rather than quietly corrected, because the failure is evidence for making the constraint
 mechanical instead of trusting it to review.
 
+### Added — the glossary
+
+`content/glossary.md`: 23 terms in five groups, covering the eight specified in foundation
+section 8.2 plus the terms needed to read this site's own figures. Cites live figures by
+token on the same contract as the claims.
+
+It grew past eight because the original list could not carry the site's caveats. Flow versus
+stock and people versus cases account for most misreadings in this subject. Backlog became a
+table rather than a definition, because the initial decision queue has fallen sharply while
+the appeals queue has risen to a record, and one number for "the backlog" can be right about
+one and wrong about the system.
+
+`validate-claims.mjs` becomes `validate-content.mjs` and now checks the glossary too: tokens
+resolve, cited figures are declared, every term has a stable anchor so claims can link to it,
+internal links resolve, and every term says what the word does NOT mean — a definition that
+leaves the misreading intact has not done the job.
+
+**A bug the negative tests caught.** The first version of the glossary checks ran after the
+error report and `process.exit`, so every glossary error was collected and silently
+discarded: a broken page passed as green. Found only because each new check was tested
+against a deliberately broken copy rather than assumed to work. Reporting now happens last,
+with a comment recording why.
+
+### Fixed — defects in the first draft of the content
+
+Found by auditing the content against the data layer rather than re-reading it.
+
+- **Three currency tokens had no £.** `{{fiscal/government-spending-on-the-asylum-system}}
+  billion` renders as "4.9 billion", not "£4.9 billion". The token contract was never
+  actually specified, which is why this was possible: a token renders the formatted value
+  and nothing else, and the author supplies the unit. Now documented and checked.
+- **Three live values were hard-coded longhand**, silently opting out of the staleness
+  protection the token system exists to provide — including "now stands at 331,000", a
+  figure that has already been revised twice and will be again.
+- **No claim linked to the glossary.** The validator required every term to carry an anchor
+  "so claims can link to it" while no claim linked to anything. All six now link, and the
+  targets are checked.
+
+Three new check classes, each catching a defect that had already occurred: units on tokens,
+range metrics cited as points, and live values written longhand. Plus glossary link
+resolution across files.
+
+One negative test initially reported as passing because the test string did not match the
+file, so the check was never exercised. Re-run correctly, it caught the defect. Worth
+recording: a negative test that does not fail proves nothing until you confirm it actually
+broke what it claimed to break.
+
 ### Outstanding
 
 - 33 figures have `published_date: null`. The validator reports the count on every run.
@@ -155,4 +202,4 @@ mechanical instead of trusting it to review.
 - Three source URLs redirect, which usually means a newer release has superseded the figure:
   the Home Office data tables anchor, and two Skills for Care pages.
 - Eight of the fourteen claims in foundation section 8.5.3 remain undrafted.
-- The glossary behind foundation section 8.2 exists only as an eight-row table.
+

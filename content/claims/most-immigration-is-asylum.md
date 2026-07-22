@@ -46,7 +46,7 @@ interchangeably in this argument:
   December 2025.
 - **Asylum applications**, {{asylum/asylum-applications}}, a Home Office count of people
   claiming asylum in the year ending **March 2026**.
-- **Small boat arrivals**, a count of one route of arrival, which overlaps with both of
+- **[Small boat arrivals](/what-the-words-mean#small-boat-arrivals)**, a count of one route of arrival, which overlaps with both of
   the above without being either.
 
 Those are different measures, from different publishers, over different periods, counting
@@ -64,7 +64,7 @@ is not.
 
 - What share of arrivals came on each route, over which twelve months?
 - Is this figure counting arrivals, applications, or grants?
-- Does it count people, or main applicants only?
+- Does it count [people, or main applicants only](/what-the-words-mean#people-and-cases)?
 
 ## Source notes
 
@@ -78,5 +78,5 @@ arrivals only, and they describe the inflow, not net migration. There is no equi
 reason category would not be valid.
 
 Asylum-related immigration includes people who claimed asylum after arriving through a
-regular route as well as those who arrived irregularly. Route of arrival and asylum claim
+regular route as well as those who arrived irregularly. [Route of arrival](/what-the-words-mean#irregular-arrival) and [asylum claim](/what-the-words-mean#asylum-application)
 are distinct concepts.

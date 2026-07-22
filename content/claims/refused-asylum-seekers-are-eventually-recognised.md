@@ -60,7 +60,7 @@ Both claims take a real and partial effect and inflate it into a total one.
 
 ## What follows from the delay
 
-The appeals backlog stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 31
+The [appeals backlog](/what-the-words-mean#backlog) stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 31
 March 2026, a record high, and the mean age of an asylum appeal at conclusion was 67
 weeks. That means a large number of people whose final outcome is not yet known — and it
 means any figure for "eventual" recognition is provisional in a fairly deep sense, because
@@ -76,8 +76,9 @@ a large tranche of the relevant cases has not concluded.
 ## Source notes
 
 Initial decisions and grant rate: Home Office, immigration system statistics, year ending
-March 2026, published 21 May 2026. The published grant rate is calculated on main
-applicants; the refusal count above is on the people basis, including dependants. The two
+March 2026, published 21 May 2026. The published [grant rate](/what-the-words-mean#grant-rate) is calculated on main
+applicants; the refusal count above is on the [people basis](/what-the-words-mean#people-and-cases),
+including dependants. The two
 bases are not interchangeable, which is why the rate and the count are cited separately
 here rather than divided into one another.
 

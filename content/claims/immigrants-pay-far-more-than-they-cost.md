@@ -28,7 +28,7 @@ method used and the period studied.
 
 The figure most often quoted in support of this claim is the Office for Budget
 Responsibility's estimate that a migrant arriving at 25 on average earnings contributes
-{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} over their
+£{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} over their
 lifetime. That number is real, but it describes one hypothetical individual in a
 stylised scenario. The same OBR analysis finds that a migrant on low earnings has a
 **negative** lifetime fiscal impact, and one on high earnings a considerably larger
@@ -68,9 +68,9 @@ cannot support "a net drain" either.
 
 ## What this is not about
 
-The net fiscal impact of immigration is a different question from what a particular part
-of the system spends. UK government spending on the asylum system was
-{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25.
+The [net fiscal impact](/what-the-words-mean#fiscal-impact) of immigration is a different question from what
+a particular part of the system spends. UK government spending on the [asylum system](/what-the-words-mean#asylum-cost) was
+£{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25.
 That is an audited spending figure, and it is reasonably firm.
 
 The two get conflated constantly, in both directions. A spending total tells you what a
