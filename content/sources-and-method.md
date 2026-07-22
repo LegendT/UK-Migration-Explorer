@@ -36,7 +36,7 @@ update, not a real-time count. There are no live counters on this site, delibera
 
 It is **not** neutral about statistical misuse, though it takes no position on what
 immigration policy should be. Where a claim misuses a definition, a denominator or a
-time period, we say so — and we apply that test in every direction. How claims are chosen
+time period, we say so, and we apply that test in every direction. How claims are chosen
 is set out on the [common claims](/common-claims) page.
 
 ---
@@ -51,7 +51,7 @@ for context and for periods official sources no longer cover.
 **On the Migration Observatory and Skills for Care.** These are not official statistics
 producers, and figures attributed to them are marked as such. They are used where they add
 methodological context, or where they hold the most reliable available figure for something
-the official series no longer covers — the foreign-born population being the main example.
+the official series no longer covers, the foreign-born population being the main example.
 
 **On the Office for Statistics Regulation.** No figure on this site comes from OSR. Its
 guidance informs how we present and caveat the figures that do.
@@ -72,7 +72,7 @@ Three consequences worth stating plainly:
 
 - **A figure exists in one place only.** Nothing on this site copies a value from somewhere
   else on this site. Pages reference the record. This is why you will not find two
-  different figures for the same measure on different pages — a failure common enough on
+  different figures for the same measure on different pages, a failure common enough on
   data sites to be worth designing against.
 - **Prose cites records, it does not restate them.** Where a number appears in a sentence
   on this site, it is inserted from the record when the page is built. Updating a figure
@@ -221,5 +221,4 @@ If you reuse them, keep the source and period attached. A figure stripped of its
 its basis and its source is the raw material for exactly the confusion this site exists to
 reduce.
 
-The site's code and original writing are openly licensed, and the underlying data files —
-including the source of every figure — are public.
+The site's code and original writing are openly licensed, and the underlying data files, including the source of every figure, are public.

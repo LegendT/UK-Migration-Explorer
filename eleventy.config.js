@@ -18,7 +18,7 @@ const sources = read('sources.json').sources;
 
 const escape = (text) => String(text).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
-// A figure renders as its formatted value and nothing else — the unit is prose, written by
+// A figure renders as its formatted value and nothing else, the unit is prose, written by
 // the author. See the token contract in docs/foundation.md section 15. The wrapper carries
 // the metric id so a published figure can always be traced back to its record.
 function renderFigure(ref) {
@@ -76,7 +76,7 @@ export default function (eleventyConfig) {
     data.map((point) => ({ year: Number(point.date.slice(0, 4)), value: point.value })));
   // Markdown content cites figures as {{theme/id}}, which survives because markdown is not
   // pre-processed as a template. Nunjucks pages are pre-processed, so the same braces would
-  // be evaluated as an expression and silently produce NaN — which shipped once. They use
+  // be evaluated as an expression and silently produce NaN, which shipped once. They use
   // this shortcode instead, which goes through exactly the same renderer.
   eleventyConfig.addShortcode('figure', (ref) => renderFigure(ref));
   eleventyConfig.addShortcode('lineChart', (options) => lineChart(options));
@@ -111,7 +111,7 @@ export default function (eleventyConfig) {
   // unresolved throws rather than shipping a literal {{...}} to a reader.
   //
   // Two wrinkles, both from markdown running first. It escapes the ">" in a partial to
-  // "&gt;", and it wraps a partial sitting on its own line in a <p> — which would nest a
+  // "&gt;", and it wraps a partial sitting on its own line in a <p>, which would nest a
   // table inside a paragraph. So block partials are unwrapped before anything else.
   const PARTIAL_TOKEN = String.raw`\{\{\s*(?:>|&gt;)\s*([a-z-]+)\s*\}\}`;
 
@@ -131,8 +131,7 @@ export default function (eleventyConfig) {
   });
 
   // Heading anchors. Markdown does not support {#id} natively, so without this the syntax
-  // renders as visible junk inside the heading and every link to a definition is dead —
-  // which is exactly what shipped until the built page was actually looked at.
+  // renders as visible junk inside the heading and every link to a definition is dead, // which is exactly what shipped until the built page was actually looked at.
   eleventyConfig.addTransform('heading-anchors', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
     return content.replace(

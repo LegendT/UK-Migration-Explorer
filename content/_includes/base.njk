@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if claim %}Claim checked: {{ claim }} — {{ site.name }}{% elif title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+<title>{% if claim %}Claim checked: {{ claim }}, {{ site.name }}{% elif title %}{{ title }}, {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
 <meta name="description" content="{{ short_answer or strapline or site.strapline }}">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
@@ -11,10 +11,10 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <p class="prelaunch" role="note">
-  <strong>This site is not finished.</strong> It has no named owner or funding statement yet,
-  its update commitment is unsigned, and the pre-publication review it promises has not
-  happened. Figures are sourced and checked; the accountability around them is not yet in
-  place. <a href="/sources-and-method/#updates">What is outstanding</a>.
+  <strong>This site is not finished.</strong> Its update commitment is not yet signed off and
+  the pre-publication review it promises has not happened. Figures are sourced and checked.
+  <a href="/about/">Who runs it and who pays</a>,
+  <a href="/sources-and-method/#updates">what is outstanding</a>.
 </p>
 
 <header class="site-header">

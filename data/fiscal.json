@@ -65,7 +65,7 @@
     },
     {
       "id": "asylum-accommodation-contracts-revised-10-year-cost-projecti",
-      "metric_name": "Asylum accommodation contracts — revised 10-year cost projection",
+      "metric_name": "Asylum accommodation contracts, revised 10-year cost projection",
       "value": 15.3,
       "unit": "£ billion",
       "date": "2029-03-31",
@@ -113,7 +113,7 @@
     },
     {
       "id": "employment-rate-eu-born-residents",
-      "metric_name": "Employment rate — EU-born residents",
+      "metric_name": "Employment rate, EU-born residents",
       "value": 80.4,
       "unit": "%",
       "date": "2025-12-31",
@@ -128,7 +128,7 @@
     },
     {
       "id": "employment-rate-uk-born-population",
-      "metric_name": "Employment rate — UK-born population",
+      "metric_name": "Employment rate, UK-born population",
       "value": 74.7,
       "unit": "%",
       "date": "2025-12-31",
@@ -228,7 +228,7 @@
       "source_url": "https://www.gov.uk/government/publications/migration-advisory-committee-annual-report-2025/mac-letter-to-the-home-secretary-on-the-2025-annual-report-and-salary-requirements-report-accessible",
       "published_date": "2025-12-17",
       "retrieved_date": "2026-06-17",
-      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m — illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners.",
+      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m, illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners.",
       "confidence_level": "official"
     }
   ]

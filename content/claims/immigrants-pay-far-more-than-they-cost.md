@@ -3,7 +3,7 @@ id: immigrants-pay-far-more-than-they-cost
 claim: Immigrants pay far more in tax than they cost.
 short_answer: >-
   Not established. Across studies the net fiscal effect sits within roughly plus or minus
-  1% of GDP — small in either direction, and heavily dependent on who is being counted
+  1% of GDP, small in either direction, and heavily dependent on who is being counted
   and how.
 direction: pro-migration
 error_type: contested, method-dependent estimate stated as settled fact
@@ -25,7 +25,7 @@ source: Migration Observatory
 
 There is no agreed figure for the net fiscal impact of immigration, and the honest
 summary of the research is that the effect is small relative to the size of the economy.
-Across academic studies the estimated net impact — whether positive or negative — falls
+Across academic studies the estimated net impact, whether positive or negative, falls
 within roughly **plus or minus 1% of GDP**.
 
 That range spans zero. It is consistent with immigration being a modest net benefit to
@@ -85,7 +85,7 @@ and it is not evidence for or against this claim.
 
 ## Better questions to ask
 
-- Which migrants — arriving at what age, earning what, staying how long?
+- Which migrants, arriving at what age, earning what, staying how long?
 - Is this a snapshot of one year or a projection across a lifetime?
 - Which costs has the study attributed to migrants, and which has it left out?
 - Is the figure quoted an average, or one illustrative case?

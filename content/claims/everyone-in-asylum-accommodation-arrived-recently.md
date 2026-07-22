@@ -23,7 +23,7 @@ source: Home Office
 ## What the data says
 
 As at 31 March 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
-receipt of [asylum support](/what-the-words-mean#asylum-support) — accommodation, subsistence, or both. Of those,
+receipt of [asylum support](/what-the-words-mean#asylum-support), accommodation, subsistence, or both. Of those,
 {{asylum/people-in-asylum-hotel-accommodation}} were in hotels, around 21% of the
 supported population.
 
@@ -67,7 +67,7 @@ question the available figures do not answer.
 
 - Is this the number of people here today, or the number who arrived this year?
 - How long have the people in this figure been waiting?
-- At what stage are they — awaiting an initial decision, appealing, or something else?
+- At what stage are they, awaiting an initial decision, appealing, or something else?
 
 ## Source notes
 

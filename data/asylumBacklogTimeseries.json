@@ -1,12 +1,12 @@
 {
   "series_name": "UK asylum initial decision backlog over time",
   "unit": "people",
-  "basis": "PEOPLE — main applicants plus dependants",
+  "basis": "PEOPLE, main applicants plus dependants",
   "geography": "United Kingdom",
   "statistical_status": "Accredited official statistics",
   "lastUpdated": "2026-07-22",
   "vintage": "Year ending March 2026 release (21 May 2026). Single vintage throughout.",
-  "note": "A STOCK, NOT A FLOW: the number of people waiting at a point in time, not arrivals during the year. Reading it as arrivals is one of the claims this project exists to correct. This is the INITIAL DECISION backlog only. It is not the appeals backlog and not the total casework system, which are separate queues of different sizes — collapsing them into 'the backlog' is a distinct error. Both bases are published below because the two give very different numbers for the same thing: 64,426 people against 48,723 cases at the end of 2025. Chart one, label which, and never mix them.",
+  "note": "A STOCK, NOT A FLOW: the number of people waiting at a point in time, not arrivals during the year. Reading it as arrivals is one of the claims this project exists to correct. This is the INITIAL DECISION backlog only. It is not the appeals backlog and not the total casework system, which are separate queues of different sizes, collapsing them into 'the backlog' is a distinct error. Both bases are published below because the two give very different numbers for the same thing: 64,426 people against 48,723 cases at the end of 2025. Chart one, label which, and never mix them.",
   "data": [
     {
       "date": "2010-12-31",
@@ -173,7 +173,7 @@
   "alternate_basis": {
     "series_name": "UK asylum initial decision backlog over time, cases basis",
     "unit": "cases",
-    "basis": "CASES — main applicants only",
+    "basis": "CASES, main applicants only",
     "note": "CASES basis: main applicants only. The same queue as the series above, counted differently. Present one or the other with its basis stated, never both unlabelled.",
     "data": [
       {

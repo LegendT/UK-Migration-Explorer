@@ -5,7 +5,7 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
-  # Time-based rules — the twelve-month claim expiry, link rot, source staleness — can only
+  # Time-based rules, the twelve-month claim expiry, link rot, source staleness, can only
   # fire if something runs. Without a schedule they fired solely when someone pushed, which
   # left the risk register's top risk unmechanised.
   schedule:

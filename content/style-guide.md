@@ -30,7 +30,7 @@ These are defensible, and they are still choices. We would rather say so than im
 everyone reasonable agrees.
 
 **We write "irregular arrival" rather than "illegal migrant" by default.** The phrase we
-avoid is legally imprecise — arriving without prior permission is not in itself what makes a
+avoid is legally imprecise, arriving without prior permission is not in itself what makes a
 person's presence unlawful, and a claim's outcome is decided separately. But it is also true
 that our preferred phrasing is the one favoured by people who are broadly sympathetic to
 migrants, and that some readers will hear the softer term as taking a side. That is a fair

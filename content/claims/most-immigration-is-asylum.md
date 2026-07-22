@@ -2,8 +2,8 @@
 id: most-immigration-is-asylum
 claim: Most immigration is asylum seekers.
 short_answer: >-
-  No. Asylum accounted for around 14% of non-EU+ arrivals — that is, arrivals from outside
-  the EU, EEA and Switzerland — in the year ending December 2025. Study and work were both
+  No. Asylum accounted for around 14% of non-EU+ arrivals, that is, arrivals from outside
+  the EU, EEA and Switzerland, in the year ending December 2025. Study and work were both
   larger.
 direction: restrictionist
 error_type: category confusion
@@ -26,7 +26,7 @@ source: ONS
 ## What the data says
 
 Total long-term immigration to the UK was {{migration/total-long-term-immigration}} in
-the year ending December 2025. Of that, 627,000 people — around 77% — were non-EU+
+the year ending December 2025. Of that, 627,000 people, around 77%, were non-EU+
 nationals, and ONS publishes a breakdown by reason for that group:
 
 | Reason | People | Share of non-EU+ arrivals |

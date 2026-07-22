@@ -5,7 +5,7 @@
   "statistical_status": "Official statistics in development",
   "lastUpdated": "2026-07-22",
   "vintage": "21 May 2026 release. Single vintage throughout.",
-  "note": "The two gross flows behind net migration. Net migration is immigration MINUS emigration, so neither of these is 'the number of people who came to the UK' on its own and their difference is not a headcount of anybody. Showing both is the clearest way to make that visible. ONS 'new approach' administrative-data estimates, one continuous series from 2012 including 2020. COMPARABILITY BREAK AT JUNE 2021: ONS states comparisons across that boundary should be treated with caution because the methods differ. ONS also states you cannot append the latest estimates to a series from previous releases — refresh the whole array each release. ONS marks 2024 revised and 2025 provisional.",
+  "note": "The two gross flows behind net migration. Net migration is immigration MINUS emigration, so neither of these is 'the number of people who came to the UK' on its own and their difference is not a headcount of anybody. Showing both is the clearest way to make that visible. ONS 'new approach' administrative-data estimates, one continuous series from 2012 including 2020. COMPARABILITY BREAK AT JUNE 2021: ONS states comparisons across that boundary should be treated with caution because the methods differ. ONS also states you cannot append the latest estimates to a series from previous releases, refresh the whole array each release. ONS marks 2024 revised and 2025 provisional.",
   "data": [
     {
       "date": "2012-12-31",

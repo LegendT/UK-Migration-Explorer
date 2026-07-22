@@ -3,7 +3,7 @@ id: refused-asylum-seekers-are-eventually-recognised
 claim: Almost all refused asylum seekers are eventually recognised as refugees.
 short_answer: >-
   No. Appeals do change a substantial share of refusals, and the final grant rate is
-  materially higher than the initial one — but it is not close to all of them.
+  materially higher than the initial one, but it is not close to all of them.
 direction: pro-migration
 error_type: appeal success rate generalised to all refusals
 last_reviewed: 2026-07-22
@@ -28,14 +28,13 @@ In the year ending March 2026, {{asylum/asylum-initial-decision-grant-rate}}% of
 decisions resulted in a grant of protection or other leave. That rate is published on the
 **main-applicant** basis.
 
-On the **people** basis — main applicants plus dependants —
-{{asylum/asylum-initial-decisions-total}} people received an initial decision, of whom
+On the **people** basis, main applicants plus dependants, {{asylum/asylum-initial-decisions-total}} people received an initial decision, of whom
 {{asylum/asylum-refusals}} were refused. The rate and the count are not two views of one
 sum: dividing one by the other mixes the bases, which is the error this site warns about
 most often.
 
 Around {{asylum/asylum-appeal-success-rate}}% of asylum appeals heard at the First-tier
-Tribunal in the quarter January to March 2026 were allowed. Historically, the grant rate measured at final outcome — after appeals are exhausted — runs 17 to 29 percentage points
+Tribunal in the quarter January to March 2026 were allowed. Historically, the grant rate measured at final outcome, after appeals are exhausted, runs 17 to 29 percentage points
 higher than the initial decision rate.
 
 So the direction of the claim is right, and the size of the effect is not trivial. A
@@ -51,7 +50,7 @@ involves two errors compounding.
 
 First, **not every refusal is appealed.** The appeal success rate describes the outcomes
 of appeals that were lodged and heard. It says nothing about refused claimants who did
-not appeal, and they cannot be assumed to have the same profile as those who did — if
+not appeal, and they cannot be assumed to have the same profile as those who did, if
 anything, cases with stronger grounds are more likely to be pursued.
 
 Second, **an appeal allowed is not always protection granted.** Appeals can succeed on
@@ -61,7 +60,7 @@ reconsidered rather than status being conferred outright.
 There is also a period problem worth naming. The 39% initial grant rate covers a full
 year to March 2026. The 40% appeal success rate covers a single quarter. Setting one
 directly against the other, as though they described the same population over the same
-period, is not a valid comparison — and it is the comparison the claim implicitly makes.
+period, is not a valid comparison, and it is the comparison the claim implicitly makes.
 
 ## The mirror claim fails too
 
@@ -74,7 +73,7 @@ Both claims take a real and partial effect and inflate it into a total one.
 
 The [appeals backlog](/what-the-words-mean#backlog) stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 31
 March 2026, a record high, and the mean age of an asylum appeal at conclusion was 67
-weeks. That means a large number of people whose final outcome is not yet known — and it
+weeks. That means a large number of people whose final outcome is not yet known, and it
 means any figure for "eventual" recognition is provisional in a fairly deep sense, because
 a large tranche of the relevant cases has not concluded.
 

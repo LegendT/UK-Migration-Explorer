@@ -1,6 +1,6 @@
 /* UK Migration Explorer
    Mobile first. WCAG 2.2 AA: 4.5:1 text contrast, 44px targets, visible focus.
-   No web fonts, no frameworks — the page should render before anything loads. */
+   No web fonts, no frameworks, the page should render before anything loads. */
 
 :root {
   --ink: #1a1a1a;
@@ -71,7 +71,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 .brand { margin: 0 0 0.5rem; font-size: 1.0625rem; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
 .brand a { color: var(--ink); text-decoration: none; }
-.brand a:hover, .brand a:focus-visible { color: var(--accent); }
+.brand a:hover.brand a:focus-visible { color: var(--accent); }
 
 .site-header nav ul {
   list-style: none;
@@ -136,7 +136,7 @@ code { font-size: 0.9em; background: var(--panel); padding: 0.1em 0.35em; border
   font-size: 0.9375rem;
 }
 
-/* A cited figure. Deliberately not visually distinguished — a number in a sentence
+/* A cited figure. Deliberately not visually distinguished, a number in a sentence
    should read as a number. The attribute makes it traceable to its record. */
 .figure { font-variant-numeric: tabular-nums; }
 
@@ -229,8 +229,8 @@ th.nested-2 { padding-left: 3.25rem; }
 }
 
 /* The claim article is exempt from the page measure so the card can run full width.
-   Its prose is not — 99 characters per line is well past comfortable reading. */
-.claim > p, .claim > h2, .claim > h3, .claim > ul, .claim > ol, .claim > blockquote {
+   Its prose is not, 99 characters per line is well past comfortable reading. */
+.claim > p.claim > h2.claim > h3.claim > ul.claim > ol.claim > blockquote {
   max-width: var(--measure);
 }
 
@@ -331,7 +331,7 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 .bar-label { fill: var(--ink); font-size: 14px; font-weight: 600; }
 .bar-value { fill: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums; }
 
-.chart-note, .chart-source {
+.chart-note.chart-source {
   max-width: var(--measure);
   color: var(--ink-soft);
   font-size: 0.9375rem;
