@@ -92,9 +92,16 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   publication date on a project about statistical integrity is not a defensible shortcut.
   The validator reports the count on every run. Record each one when its source is next
   checked.
-- **Three of the five MVP charts have no data.** Only net migration exists as a series.
-  Asylum applications over time, initial decision backlog over time, and immigration and
-  emigration over time still need to be researched.
+- **The net migration timeseries is blocked and must not be charted.** Verified against
+  ONS on 22 July 2026: the 2016 value matches no ONS-published figure in any vintage, 2017
+  and 2018 likewise, and 2021-2023 are superseded by revisions of up to 120,000. The file
+  silently mixes at least three ONS vintages in one array. Flagged `BLOCKED` in the file,
+  surfaced by the validator, detailed in `CHANGELOG.md`. Needs replacing with two labelled
+  series: ONS's current new-approach series as primary, the discontinued IPS/LTIM figures
+  as history.
+- **Four of the five MVP charts have no usable data.** Asylum applications over time,
+  initial decision backlog over time, and immigration and emigration over time do not
+  exist; net migration exists but is blocked, above.
 - **No returns metric exists**, though the homepage specification calls for the card.
 - **`table_reference` is unimplemented.** Home Office table identifiers survive only as
   prose inside `notes`.

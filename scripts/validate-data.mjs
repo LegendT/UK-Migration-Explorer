@@ -180,6 +180,15 @@ for (const [i, source] of read('sources.json').sources.entries()) {
   sourceIds.add(source.id);
 }
 
+// --- blocked files ---------------------------------------------------------------
+// A file can satisfy every field rule and still be unfit to publish. Surface that
+// loudly rather than letting "contract passed" read as "safe to chart".
+const blocked = [];
+for (const file of [...THEME_FILES, ...SPECIAL_FILES]) {
+  const status = read(file).status;
+  if (typeof status === 'string' && status.startsWith('BLOCKED')) blocked.push(file);
+}
+
 // --- report ---------------------------------------------------------------------
 if (errors.length) {
   console.error(`Data contract failed — ${errors.length} problem(s):\n`);
@@ -188,6 +197,11 @@ if (errors.length) {
 }
 
 console.log(`Data contract passed: ${counted} figures, all sourced, dated, graded and singly held.`);
+if (blocked.length) {
+  console.log(`\nDO NOT PUBLISH — ${blocked.length} file(s) are flagged as unfit for publication:`);
+  for (const file of blocked) console.log(`  ${file}: ${read(file).status_note?.split('.')[0] ?? 'see status_note'}.`);
+  console.log('Passing the contract means the metadata is well-formed, not that the figures are right.');
+}
 if (warnings.length) {
   console.log(`\nOutstanding: ${warnings.length} figure(s) without a recorded published_date.`);
   console.log('Record it next time each source is checked. Run with --verbose to list them.');
