@@ -1,0 +1,12 @@
+# Not ready for search engines yet.
+#
+# The site makes three commitments it has not yet met: there is no about or funding page
+# naming who runs it, the update commitment on the sources page is unsigned, and the
+# human review the sources page promises has not happened. An anonymous corrective site
+# on this subject is assumed to be astroturf by default, so it should not be found by
+# search until those are settled.
+#
+# Remove this file at launch. See docs/foundation.md section 4.2.
+
+User-agent: *
+Disallow: /

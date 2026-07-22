@@ -321,6 +321,31 @@ syntax survives into the HTML, and every page keeps its lang, skip link, single 
 unbroken heading order. Verified by removing the anchor fix and confirming it reports all 54
 dead links.
 
+### Added — robots.txt disallowing all crawlers
+
+The site went live before three of its own commitments were met: there is no about or
+funding page naming who runs it, the update commitment on the sources page is unsigned, and
+the human review that page promises has not happened. An anonymous corrective site on this
+subject is assumed to be astroturf by default, so it should not be findable by search until
+those are settled. The file explains this and says to remove it at launch.
+
+`check-build.mjs` now fails if `robots.txt` is missing or lacks its `Disallow: /` rule, so
+the site cannot quietly become crawlable again. That check is meant to be removed
+deliberately at launch, not to survive it.
+
+Note that `Disallow: /` prevents crawling rather than indexing. It is the right control for
+"not ready yet". If a URL is ever discovered another way it could still be listed without
+content, and the fix for that is an `X-Robots-Tag: noindex` header — which requires crawling
+to be *allowed* so the header can be read. The two mechanisms conflict; use one or the other.
+
+### Fixed — the build did not clean its output directory
+
+Eleventy leaves `_site` in place between builds, so a deleted source file kept its stale
+artefact. This briefly made a negative test pass when it should have failed: `robots.txt`
+was removed from `content/` and the check still found the previous build's copy. The build
+now clears `_site` first. Netlify builds from clean anyway, so this only ever misled local
+verification — which is exactly where it matters most.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.

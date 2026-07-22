@@ -75,6 +75,16 @@ for (const file of pages) {
   }
 }
 
+// robots.txt is deliberately present until launch. If it goes missing the site becomes
+// crawlable again with no other signal, so its absence is treated as a build failure until
+// someone removes this check on purpose.
+const robots = built.find((f) => f.endsWith('robots.txt'));
+if (!robots) {
+  errors.push('robots.txt: missing from the build — the site would become crawlable. Remove this check deliberately at launch.');
+} else if (!/^\s*Disallow:\s*\/\s*$/m.test(readFileSync(robots, 'utf8'))) {
+  errors.push('robots.txt: no "Disallow: /" rule — the site would become crawlable.');
+}
+
 if (errors.length) {
   console.error(`Build checks failed — ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
@@ -82,4 +92,4 @@ if (errors.length) {
 }
 
 const internal = pages.reduce((n, f) => n + (readFileSync(f, 'utf8').match(/href="\/[^"]*"/g) ?? []).length, 0);
-console.log(`Build checks passed: ${pages.length} pages, ${internal} internal links all resolving.`);
+console.log(`Build checks passed: ${pages.length} pages, ${internal} internal links all resolving, robots.txt disallowing all.`);
