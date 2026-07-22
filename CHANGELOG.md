@@ -346,6 +346,45 @@ was removed from `content/` and the check still found the previous build's copy.
 now clears `_site` first. Netlify builds from clean anyway, so this only ever misled local
 verification — which is exactly where it matters most.
 
+### Added — migration and asylum pages, with charts
+
+Six charts across the two pages, rendered as inline SVG at build time: net migration over
+time, immigration and emigration together, reason for migration, asylum claims over time,
+initial decisions by outcome, and the first-decision queue on both counting bases.
+
+No JavaScript and no charting dependency. The chart is in the HTML, so it works with
+scripting off and needs no exception to the site's content security policy. Three editorial
+rules are enforced in `lib/charts.mjs` rather than left to whoever writes the page: the
+y-axis always starts at zero, since a truncated axis exaggerates change and this site exists
+to correct that; every chart carries its figures as a real table; and no series is
+distinguished by colour alone — lines differ in stroke pattern and are labelled directly at
+their end. The bar chart uses one neutral colour for grants, refusals and withdrawals, since
+section 10 forbids red/green moral coding of outcomes.
+
+The methodology break at June 2021 is drawn on both ONS charts rather than left to a
+footnote.
+
+### Fixed — citations silently rendered as NaN in Nunjucks pages
+
+`{{theme/metric-id}}` survives in markdown because markdown is not pre-processed as a
+template. Nunjucks pages **are** pre-processed, so the same braces were evaluated as an
+arithmetic expression and produced `NaN` — fifteen times across the two new pages, including
+inside a table of asylum statistics.
+
+`check-build.mjs` did not catch it. It looks for leftover `{{ }}` in the output, and there
+was none: the engine had consumed the braces and left a number-shaped result behind. Looking
+for unrendered syntax is not enough; the failed *result* has to be looked for too. The check
+now fails on `NaN`, `undefined` or `[object Object]` appearing in visible text.
+
+Nunjucks pages now cite through a `{% figure "theme/id" %}` shortcode, which calls exactly
+the same renderer as the markdown path.
+
+### Fixed — chart lines rendered as filled areas
+
+`.series-0 { fill: ... }` overrode `.series { fill: none }` — same specificity, later rule
+wins — so every line chart drew as a solid filled shape. Selectors are now element-qualified,
+because a path, its markers and its label each need different fill behaviour.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.

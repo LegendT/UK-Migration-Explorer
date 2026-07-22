@@ -1,5 +1,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 
+import { barChart, lineChart } from './lib/charts.mjs';
+
 const read = (file) => JSON.parse(readFileSync(new URL(`./data/${file}`, import.meta.url), 'utf8'));
 
 const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
@@ -62,6 +64,23 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData('meta', () => meta);
   eleventyConfig.addGlobalData('sources', () => sources);
   eleventyConfig.addGlobalData('dashboard', () => read('dashboard.json'));
+  eleventyConfig.addGlobalData('series', () => ({
+    netMigration: read('netMigrationTimeseries.json'),
+    flows: read('migrationFlowsTimeseries.json'),
+    asylumApplications: read('asylumApplicationsTimeseries.json'),
+    asylumBacklog: read('asylumBacklogTimeseries.json'),
+  }));
+
+  // Charts are built from series data, never from figures typed into a template.
+  eleventyConfig.addFilter('points', (data) =>
+    data.map((point) => ({ year: Number(point.date.slice(0, 4)), value: point.value })));
+  // Markdown content cites figures as {{theme/id}}, which survives because markdown is not
+  // pre-processed as a template. Nunjucks pages are pre-processed, so the same braces would
+  // be evaluated as an expression and silently produce NaN — which shipped once. They use
+  // this shortcode instead, which goes through exactly the same renderer.
+  eleventyConfig.addShortcode('figure', (ref) => renderFigure(ref));
+  eleventyConfig.addShortcode('lineChart', (options) => lineChart(options));
+  eleventyConfig.addShortcode('barChart', (options) => barChart(options));
 
   // Resolve a dashboard card or denominator reference to the metric that owns it.
   eleventyConfig.addFilter('metric', (ref) => {

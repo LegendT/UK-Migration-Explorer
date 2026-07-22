@@ -1,0 +1,111 @@
+---
+layout: base.njk
+permalink: /migration/
+title: Migration
+strapline: >-
+  Net migration is a balance between two much larger flows. This page shows both, over time,
+  and explains why the ONS and Home Office figures will never match.
+last_reviewed: 2026-07-22
+eleventyExcludeFromCollections: true
+---
+<p>Long-term international migration counts moves intended to last <strong>12 months or
+more</strong>. It does not count visitors, short courses, or seasonal work under a year. In
+the year ending March 2026 the Home Office granted over 2.2 million visitor visas, and not
+one of them appears in the figures on this page.</p>
+
+<h2>Net migration over time</h2>
+
+<p>Net migration is immigration minus emigration. It is not a count of arrivals, and nobody
+is "a net migrant" — see <a href="/common-claims/net-migration-is-arrivals/">the claim
+check</a>.</p>
+
+{% set nm = series.netMigration %}
+{% lineChart {
+  id: 'net-migration-over-time',
+  series: [{ name: 'Net migration', points: nm.data | points }],
+  title: 'UK net migration, 2012 to 2025',
+  summary: 'Net migration rose sharply from 2021, peaked in 2022 at 891,000, and has fallen in each of the last two years to 171,000.',
+  unit: 'people per year',
+  source: 'ONS, long-term international migration, provisional: year ending December 2025',
+  sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
+  breakAfter: 2020,
+  note: 'ONS advises that estimates before and after June 2021 should be compared with caution, because the methods used to produce them differ. The break is marked on the chart. Every point comes from a single ONS release; figures from different releases must not be mixed, and the 2022 estimate has moved by more than 120,000 across revisions.'
+} %}
+
+<h2>The two flows behind that number</h2>
+
+<p>The same fall can be produced by fewer people arriving, more people leaving, or both. The
+only way to see which is to look at the flows separately.</p>
+
+{% set fl = series.flows %}
+{% lineChart {
+  id: 'flows-over-time',
+  series: [
+    { name: 'Immigration', points: fl.data | points },
+    { name: 'Emigration', points: fl.emigration.data | points, dashed: true }
+  ],
+  title: 'Long-term immigration and emigration, 2012 to 2025',
+  summary: 'Immigration peaked in 2023 at 1,441,000 and has fallen since. Emigration rose steadily from 2021 and remains higher than before the pandemic.',
+  unit: 'people per year',
+  source: 'ONS, long-term international immigration, emigration and net migration flows, provisional',
+  sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional',
+  breakAfter: 2020,
+  note: 'Between 2023 and 2024, net migration fell by around 517,000 while immigration fell by around 429,000. The difference is emigration rising by roughly 87,000 over the same period — more people leaving, not only fewer arriving.'
+} %}
+
+<h2>Why people came</h2>
+
+<p>ONS publishes a breakdown by reason for <strong>non-EU+ arrivals only</strong>, which were
+627,000 of the {% figure "migration/total-long-term-immigration" %} total. There is no equivalent
+breakdown of net migration by reason, and constructing one by subtracting emigration from a
+category would not be valid.</p>
+
+{% barChart {
+  id: 'reason-for-migration',
+  bars: [
+    { name: 'Study', value: 294000, note: 'Main applicants 277,000 plus 17,000 dependants' },
+    { name: 'Work', value: 146000, note: 'Main applicants 71,000 plus 74,000 dependants' },
+    { name: 'Asylum and humanitarian', value: 88000, note: 'Includes claims made after arriving by a regular route' }
+  ],
+  title: 'Reason for long-term immigration, non-EU+ arrivals, year ending December 2025',
+  summary: 'Study was the largest single reason at 294,000, followed by work at 146,000 and asylum and humanitarian routes at 88,000.',
+  unit: 'people',
+  source: 'ONS, long-term international migration, provisional: year ending December 2025',
+  sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
+  note: 'Work-related immigration fell by 47% from 272,000 the previous year, and is the main driver of the fall in net migration.'
+} %}
+
+<h2>Why the ONS and Home Office figures never match</h2>
+
+<p>Two different organisations count two different things, and readers regularly set one
+against the other as though the gap were a discrepancy. It is not.</p>
+
+<div class="scroll-x">
+<table>
+  <caption>The two sources measure different quantities</caption>
+  <thead><tr><th scope="col"></th><th scope="col">ONS migration estimates</th><th scope="col">Home Office visa statistics</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Counts</th><td>People moving for 12 months or more</td><td>Visas granted</td></tr>
+    <tr><th scope="row">Includes British citizens</th><td>Yes, arriving and leaving</td><td>No</td></tr>
+    <tr><th scope="row">A grant that is never used</th><td>Not counted — no move happened</td><td>Counted</td></tr>
+    <tr><th scope="row">Someone already in the UK extending</th><td>Not counted — no move happened</td><td>Counted</td></tr>
+    <tr><th scope="row">Latest period</th><td>Year ending December 2025</td><td>Year ending March 2026</td></tr>
+    <tr><th scope="row">Status</th><td>Official statistics in development, provisional</td><td>Accredited official statistics</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The visa total will always be higher, and it is supposed to be. Neither figure is wrong;
+they answer different questions.</p>
+
+<h2>These estimates get revised</h2>
+
+<p>Net migration for the year ending December 2024 was first published at 431,000, then at
+about 345,000, and now stands at {% figure "migration/net-migration-2" %}. Nobody's movements changed —
+the estimate did, as more travel data became available.</p>
+
+<p>That is the statistics system working rather than failing, but it means any single figure
+quoted from a past release may already be superseded. Each figure on this site carries the
+date its source was published for exactly that reason.</p>
+
+<p><a href="/sources-and-method/">How every figure here is sourced and recorded</a>.</p>

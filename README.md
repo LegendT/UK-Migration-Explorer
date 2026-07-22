@@ -24,6 +24,8 @@ docs/foundation.md   Positioning, editorial principles, IA, data governance, ris
 data/                Governed data layer, one file per theme
 content/claims/      Claim checks, citing live figures by token
 content/glossary.md  Plain-English definitions, 23 terms
+content/migration.njk, asylum.njk  Topic pages with charts
+lib/charts.mjs       Build-time SVG charts, no JavaScript shipped
 content/sources-and-method.md  Sources, data contract, corrections policy, scope
 scripts/             Data contract and claim validation
 CHANGELOG.md         Data and methodology changes
@@ -105,6 +107,10 @@ Content never hard-codes a figure that will change. It cites the data layer by t
 `{{theme/metric-id}}` — so updating a figure in `data/` updates everywhere it is cited, and
 content citing a metric that no longer exists fails the build rather than quietly publishing
 a stale number.
+
+In Nunjucks pages use `{% figure "theme/metric-id" %}` instead: those files *are*
+pre-processed as templates, so the brace syntax would be evaluated as an expression and
+silently produce `NaN`. Both forms call the same renderer.
 
 A token renders the **formatted value only** — `48,758`, `4.9`, `39` — never the unit.
 Units are prose: `%` attaches, `£` prefixes, `people` follows. The author writes them and
