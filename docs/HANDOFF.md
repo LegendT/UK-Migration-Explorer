@@ -1,6 +1,24 @@
 # Handoff, 22 July 2026
 
-State of UK Migration Explorer at the end of this session, and what to do next.
+State of UK Migration Explorer, and what to do next.
+
+## Start here
+
+**37 defects are recorded under OUTSTANDING DEFECTS below. Work them in this order, not in
+numerical order.** The numbering follows the two audits that found them, not their severity.
+
+| Order | Items | Why first |
+| --- | --- | --- |
+| 1 | **14 to 19, and 12** | False statements on live pages. A reader is being told something untrue right now. Item 17 is the worst: the page asking readers to trust the method misdescribes the method. |
+| 2 | **1 to 5** | A bulk regex changed what these sentences mean. Rewrite them; do not find-and-replace. |
+| 3 | **6 to 11, 13** | Degraded prose and two garbled code comments. Not wrong, just worse. |
+| 4 | **20 to 31** | Medium: unsupported promises and basis or period slips. |
+| 5 | **32 to 37** | Low. |
+
+**Done means:** `npm test` and `npm run build` both pass, the affected pages have been opened
+in a browser and read, and item 17 has been resolved one way or the other rather than left.
+
+Two further things block launch and are decisions rather than work. See *What blocks launch*.
 
 ## Where things stand
 
@@ -10,7 +28,7 @@ The site is built, deployed and deliberately blocked from search engines.
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
 - **Open PR:** #9 `audit-fixes`, CI green, **not merged**
 
-15 pages build from a governed data layer of 166 figures. Eleventy 3, no client-side
+16 pages build from a governed data layer of 166 figures. Eleventy 3, no client-side
 JavaScript, charts rendered as inline SVG at build time.
 
 | Page | |
@@ -270,42 +288,52 @@ the sweep to files where the dash cannot be load-bearing.
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
-Read docs/HANDOFF.md first, then CLAUDE.md and docs/foundation.md.
+Read docs/HANDOFF.md, starting with its "Start here" section. It
+gives the work order and what "done" means. Then read CLAUDE.md.
 
-TASK: fix everything under "OUTSTANDING DEFECTS" in the handoff.
-Thirty-seven items from two audits.
+TASK: fix the 37 defects under OUTSTANDING DEFECTS, in the order
+the Start here table gives. Do not work them numerically.
 
-Start with 14 to 19, which are false statements on live pages.
-Item 17 is the most serious in the project: sources-and-method.md
+Item 17 needs a decision, not just an edit. sources-and-method.md
 tells readers "a figure exists in one place only" and "the rules
-are enforced automatically", and neither is true of the charts.
-Either make it true or change the page; do not leave it as is.
+are enforced automatically". Neither is true of the charts, which
+hard-code values. Either move chart values into the data layer so
+the claim becomes true, or change the page to describe what the
+site actually does. I would rather you did the first, but ask me
+if it turns out to be large.
 
-Items 1 to 5 changed meaning when a bulk regex replaced em-dashes
-with commas. Rewrite those sentences with the sentence in view,
-not by find and replace. Item 12 is a live statistical error.
+Items 1 to 5 are sentences whose meaning changed when a bulk regex
+replaced em-dashes with commas. Rewrite each with the sentence in
+view. Do not put dashes back; they are banned.
 
-Items 20 to 37 are medium and low; take them after the above.
-
-Ground rules that matter on this project:
-- No em-dashes, ever. Enforced by validate-content.mjs. Fix the
-  comma splices by rewriting, not by putting dashes back.
+Ground rules this project learned the hard way:
+- No em-dashes, ever. Enforced by validate-content.mjs.
 - Never `git checkout -- .` to undo a test. It reverts everything.
-  Snapshot to /tmp instead. This has cost an hour once already.
+  Snapshot to /tmp instead. This cost an hour once.
 - Look at the built page before claiming anything visual works.
-  Run npm run build, serve _site, open it.
+  npm run build, serve _site, open it in a browser.
 - A green validator is necessary, never sufficient. Six times a
-  checker passed while a real defect shipped.
+  checker passed while a real defect shipped, each time because it
+  verified the source rather than the artefact.
 - Negative-test every check you add, and confirm the break actually
   applied before concluding the check is broken.
+- Do not fix by bulk substitution. That is what caused items 1-13.
 
-When they are done, run npm test and npm run build, look at the
-affected pages in a browser, then merge PR #9.
+Stop and ask me about anything that needs an editorial judgement
+rather than a correction.
+
+When the list is clear: npm test, npm run build, read the affected
+pages in a browser, then merge PR #9.
 ```
 
-## Suggested next steps
+Two things remain that this prompt does not cover, because they are mine to decide rather
+than work to be done: signing off the fourteen-day update commitment, and doing the
+pre-publication review the sources page promises. Until both are settled the site stays
+blocked from search. See *What blocks launch*.
 
-1. Fix the thirty-seven outstanding defects above, then merge PR #9.
+## After the defects
+
+1. Merge PR #9.
 2. Settle the two launch blockers, then remove robots.txt and its guard.
 3. Port the editorial lint from Civil Society Explorer to enforce section 5.2.
 4. Add `.pa11yci.json`; accessibility has been verified manually and by computation, never by
