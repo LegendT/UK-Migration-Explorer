@@ -46,6 +46,15 @@ for (const file of pages) {
     errors.push(`${where}: unrendered template syntax in output — ${stray}`);
   }
 
+  // A template engine that consumes a citation leaves no {{ }} behind to find — it leaves
+  // NaN, which reads as a number and shipped once inside a table of statistics. Checking
+  // for leftover syntax is not enough; the failed result has to be checked for too.
+  const text = html.replace(/<[^>]+>/g, ' ');
+  for (const value of ['NaN', 'undefined', '[object Object]']) {
+    const count = (text.match(new RegExp(`\\b${value.replace(/[[\]]/g, '\\$&')}\\b`, 'g')) ?? []).length;
+    if (count) errors.push(`${where}: "${value}" appears ${count} time(s) in visible text — a citation or filter failed`);
+  }
+
   // Internal links must resolve, both the page and the fragment.
   for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
     const [path, fragment] = href.split('#');

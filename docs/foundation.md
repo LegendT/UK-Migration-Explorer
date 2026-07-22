@@ -713,13 +713,19 @@ person will not sustain past month four, and staleness is fatal for a product wh
 pitch is trust. The unpublished figures are not wasted: they are the reserve that makes the
 published ones defensible.
 
-No longer blocked on research. As of 22 July 2026 all five MVP charts have verified data,
-and the returns card has its metric. The remaining work is build work:
+No longer blocked on research, and the charts are built. As of 22 July 2026 the migration
+and asylum pages carry six charts between them, each with an accessible data table, a text
+summary, its source, and a zero-based axis. The remaining work is build work:
 
 - Build static site skeleton.
 - Implement metric card component driven by the data contract in section 9.
 - Add overview, definitions, migration, asylum, costs, common claims, sources and about pages.
-- Add 4-6 core charts with underlying accessible tables.
+- ~~Add 4-6 core charts with underlying accessible tables.~~ Done: six, rendered as inline
+  SVG at build time. No JavaScript, so they work with scripting off, need no dependency and
+  need no exception to the content security policy. Three rules are enforced in the chart
+  code rather than left to whoever writes the page: the y-axis always starts at zero,
+  every chart carries its figures as a real table, and no series is distinguished by colour
+  alone — lines differ in stroke pattern and are labelled directly.
 - ~~Write the glossary and at least five claims.~~ Done: `content/glossary.md` and six claims.
 - ~~Write the sources and methodology page.~~ Done: `content/sources-and-method.md`.
 - Publish the about and funding page. **Blocked: needs a named owner and a funding statement.**

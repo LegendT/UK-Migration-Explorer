@@ -7,6 +7,8 @@ export default {
   nav: [
     { href: '/', label: 'Overview' },
     { href: '/what-the-words-mean/', label: 'What the words mean' },
+    { href: '/migration/', label: 'Migration' },
+    { href: '/asylum/', label: 'Asylum' },
     { href: '/common-claims/', label: 'Common claims' },
     { href: '/sources-and-method/', label: 'Sources and method' },
   ],
