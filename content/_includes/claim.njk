@@ -1,0 +1,28 @@
+---
+layout: base.njk
+---
+{#- The h1 is the claim itself, so every claim page has a distinctive heading for search,
+    browser tabs and heading-by-heading navigation. It sits INSIDE the card and under its
+    "The claim" label, so the framing travels with it and a bare screenshot of the heading
+    can never read as this site asserting the claim. See foundation section 8.5.4. -#}
+<article class="claim">
+  <div class="claim-card">
+    <p class="claim-label">The claim</p>
+    <h1 class="claim-text">{{ claim }}</h1>
+    <p class="claim-label">The short answer</p>
+    <p class="claim-answer">{{ short_answer }}</p>
+    <p class="claim-meta">
+      <span>{{ site.name }}</span>
+      <span>Reviewed {{ last_reviewed | longDate }}</span>
+    </p>
+  </div>
+
+  <p class="claim-tags">
+    <span class="tag">Misuse: {{ error_type }}</span>
+    <span class="tag">Direction: {% if direction == 'pro-migration' %}pro-migration{% elif direction == 'restrictionist' %}restrictionist{% else %}both{% endif %}</span>
+  </p>
+
+  {{ content | safe }}
+
+  <p class="back"><a href="/common-claims/">All common claims</a></p>
+</article>

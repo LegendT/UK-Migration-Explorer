@@ -264,6 +264,63 @@ Two Skills for Care URLs redirected; both updated to their targets, verified as 
 The Home Office data tables redirect is left alone, since it only strips a fragment
 identifier useful to a reader.
 
+### Added — Eleventy site
+
+Framework chosen: Eleventy 3, matching the hosting already connected on Netlify. Renders the
+overview, the glossary, the claims index, six claim pages and the sources page.
+
+**Content files are not pre-processed as templates.** `markdownTemplateEngine` is `false`,
+because `{{theme/metric-id}}` is this project's citation syntax and Liquid would otherwise
+consume it — silently breaking the guarantee that no figure is hard-coded in prose. Citations
+resolve in a post-render transform instead, and an unresolved token or unknown partial throws
+rather than shipping `{{...}}` to a reader.
+
+Two wrinkles handled, both from markdown running first: it escapes the `>` in a partial to
+`&gt;`, and it wraps a block partial in a `<p>`, which would nest a table inside a paragraph.
+
+`netlify.toml` runs `npm test` before the build, so a figure missing its source or a claim
+citing a deleted metric fails the deploy rather than reaching a reader. Also sets a strict
+content security policy; the site loads no external resources at all.
+
+### Fixed — glossary rendered six h1 elements
+
+The five group headings used a single `#`, which became `<h1>` alongside the layout's page
+title: six h1s and a broken document outline, a WCAG 1.3.1 failure. Groups are now `h2` and
+terms `h3`. The validator was codifying the wrong level, so it was updated too, and it now
+rejects any `#` heading in that file — the layout owns the page's only h1.
+
+Found by checking the built HTML rather than by reading the markdown, where the levels looked
+perfectly reasonable.
+
+### Fixed — defects found by looking at the built pages
+
+None of these were visible in the source. All were found by rendering the site and looking
+at it, which is the only way this class of defect surfaces.
+
+- **Every glossary link on the site was dead, and the anchor syntax was visible as junk.**
+  Markdown does not support `{#id}` natively, so `### Flow and stock {#flow-and-stock}`
+  rendered as a heading with that literal text in it and produced no `id` at all. All 54
+  links from the claims to definitions went nowhere. `validate-content.mjs` had checked
+  that the markdown declared an anchor on every term — which was true — while the build
+  silently discarded them. **Validating the source is not validating the artefact.**
+- The dashboard caveat was being dumped mid-sentence into the homepage by a stray
+  `truncate(0)`, which does not mean "output nothing".
+- Every claim page shared one generic `h1`, "Claim check" — poor for search, browser tabs
+  and heading-by-heading navigation. The claim itself is now the `h1`, placed inside its
+  card under the "The claim" label so the framing travels with it and a screenshot of the
+  heading can never read as this site asserting the claim.
+- Claim prose ran to 99 characters per line, well past comfortable reading. The claim
+  article is exempt from the page measure so the card can run full width; its prose is not.
+- A CSS `margin-top` was silently overridden by a later `margin` shorthand.
+- The homepage showed the last three claims rather than the first three, so the editorial
+  ordering — which deliberately runs both directions early — was inverted.
+
+`scripts/check-build.mjs` added and wired into `npm run build` and CI. It checks the output
+rather than the input: every internal link and fragment resolves, no template or anchor
+syntax survives into the HTML, and every page keeps its lang, skip link, single `h1` and
+unbroken heading order. Verified by removing the anchor fix and confirming it reports all 54
+dead links.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.

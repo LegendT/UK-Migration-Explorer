@@ -13,6 +13,10 @@ figures:
   - asylum/asylum-appeal-success-rate
   - asylum/asylum-refusals
   - asylum/asylum-appeals-backlog
+layout: claim.njk
+permalink: /common-claims/refused-asylum-seekers-are-eventually-recognised/
+order: 6
+suppressPageHeader: true
 ---
 
 ## What the data says

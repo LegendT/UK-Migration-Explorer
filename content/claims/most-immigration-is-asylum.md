@@ -14,6 +14,10 @@ figures:
   - migration/work-related-immigration
   - migration/asylum-related-immigration
   - asylum/asylum-applications
+layout: claim.njk
+permalink: /common-claims/most-immigration-is-asylum/
+order: 2
+suppressPageHeader: true
 ---
 
 ## What the data says
