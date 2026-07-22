@@ -8,7 +8,7 @@
     "test": "node scripts/validate-data.mjs && node scripts/validate-content.mjs",
     "validate": "node scripts/validate-data.mjs --verbose && node scripts/validate-content.mjs",
     "check-sources": "node scripts/check-sources.mjs",
-    "build": "eleventy && node scripts/check-build.mjs",
+    "build": "rm -rf _site && eleventy && node scripts/check-build.mjs",
     "serve": "eleventy --serve",
     "check-build": "node scripts/check-build.mjs"
   },

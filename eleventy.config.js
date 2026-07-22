@@ -56,6 +56,7 @@ export default function (eleventyConfig) {
   eleventyConfig.setFrontMatterParsingOptions({ excerpt: false });
 
   eleventyConfig.addPassthroughCopy({ 'content/assets': 'assets' });
+  eleventyConfig.addPassthroughCopy({ 'content/robots.txt': 'robots.txt' });
 
   eleventyConfig.addGlobalData('metrics', () => Object.fromEntries(registry));
   eleventyConfig.addGlobalData('meta', () => meta);
