@@ -12,5 +12,6 @@ export default {
     { href: '/costs/', label: 'Costs' },
     { href: '/common-claims/', label: 'Common claims' },
     { href: '/sources-and-method/', label: 'Sources and method' },
+    { href: '/style-guide/', label: 'Style guide' },
   ],
 };

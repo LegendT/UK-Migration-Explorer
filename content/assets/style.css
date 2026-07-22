@@ -40,7 +40,8 @@ body {
 
 main { padding-bottom: 4rem; }
 main > * { max-width: var(--measure); }
-main > .scroll-x, main > .cards, main > .claim, main > .panels, main > table { max-width: none; }
+main > .scroll-x, main > .cards, main > .claim, main > .panels, main > table,
+main > .chart { max-width: none; }
 
 /* Links and focus ------------------------------------------------------- */
 
@@ -286,6 +287,16 @@ th.nested-2 { padding-left: 3.25rem; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.prelaunch {
+  margin: 0;
+  padding: 0.85rem 1.25rem;
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 /* Charts ---------------------------------------------------------------- */

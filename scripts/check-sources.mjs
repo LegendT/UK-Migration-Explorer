@@ -9,7 +9,7 @@
 //
 // Run: node scripts/check-sources.mjs
 
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
@@ -29,9 +29,22 @@ const cite = (url, where) => {
 for (const file of THEME_FILES) {
   for (const metric of read(file).metrics ?? []) cite(metric.source_url, `${file}: ${metric.id}`);
 }
-const series = read('netMigrationTimeseries.json');
-for (const [label, block] of [['', series], ['historical ', series.historical ?? {}]]) {
-  for (const point of block.data ?? []) cite(point.source_url, `netMigrationTimeseries.json ${label}${point.date}`);
+// Three timeseries and every chart sourceUrl were previously checked by nothing.
+const TIMESERIES = ['netMigrationTimeseries.json', 'asylumApplicationsTimeseries.json',
+  'asylumBacklogTimeseries.json', 'migrationFlowsTimeseries.json'];
+for (const file of TIMESERIES) {
+  const series = read(file);
+  for (const name of ['', 'historical', 'alternate_basis', 'emigration']) {
+    const block = name ? series[name] : series;
+    for (const point of block?.data ?? []) cite(point.source_url, `${file} ${name}${point.date}`);
+  }
+}
+
+const contentDir = fileURLToPath(new URL('../content/', import.meta.url));
+for (const file of readdirSync(contentDir).filter((f) => f.endsWith('.njk'))) {
+  for (const [, url] of readFileSync(contentDir + file, 'utf8').matchAll(/sourceUrl:\s*'([^']+)'/g)) {
+    cite(url, `${file} chart`);
+  }
 }
 for (const source of read('sources.json').sources) cite(source.url, `sources.json: ${source.id}`);
 

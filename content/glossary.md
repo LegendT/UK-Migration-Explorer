@@ -185,9 +185,10 @@ arrive on a valid visa and later claim asylum.
 
 **A note on wording.** This site uses "irregular arrival" as its default. Our own sources
 do not always: the Home Office publishes a dataset titled "Irregular migration to the UK
-detailed dataset (illegal entry routes)", and ONS reason splits include arrivals "via
+detailed dataset (illegal entry routes)", renamed "Illegal entry routes to the UK detailed
+dataset" from the year ending December 2025 edition, and ONS reason splits include arrivals "via
 illegal entry". Where a source uses different words we quote its title as published rather
-than silently renaming it. Our reasoning for the choice is set out on the style page.
+than silently renaming it. Our reasoning is set out on the [style guide](/style-guide/), which distinguishes our precision rules from our value judgements.
 
 ### Small boat arrivals {#small-boat-arrivals}
 
@@ -311,7 +312,7 @@ who arrived in 1975 is counted. It tells you nothing about current immigration l
 
 **A gap worth knowing about.** ONS discontinued its annual country-of-birth series in
 October 2022, so there is no official figure for the current period. The share has
-certainly risen since 2021, but by how much is not officially measured. See the claim
+almost certainly risen since 2021, but by how much is not officially measured. See the claim
 check.
 
 ### Foreign national, or non-British citizen {#foreign-national}

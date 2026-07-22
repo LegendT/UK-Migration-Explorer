@@ -17,6 +17,8 @@ layout: claim.njk
 permalink: /common-claims/net-migration-is-arrivals/
 order: 1
 suppressPageHeader: true
+period: year ending December 2025
+source: ONS
 ---
 
 ## What the data says
@@ -64,7 +66,6 @@ estimates are provisional and have been revised substantially in recent releases
 [Long-term migration](/what-the-words-mean#long-term-migration) counts moves of 12 months or more. It does not count visits, and it
 is not the same as [visas granted](/what-the-words-mean#visa-grant).
 
-The 2023 and 2024 comparison above uses the current ONS series
-(`migrationFlowsTimeseries.json`), in which both years appear on the same methodological
-basis. Figures are rounded by ONS, so the components do not always sum exactly to the
+The 2023 and 2024 comparison above uses ONS's current series, in which both years
+appear on the same methodological basis. Figures are rounded by ONS, so the components do not always sum exactly to the
 published net figure.

@@ -1,10 +1,15 @@
-name: Validate data contract
+name: Validate
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  # Time-based rules — the twelve-month claim expiry, link rot, source staleness — can only
+  # fire if something runs. Without a schedule they fired solely when someone pushed, which
+  # left the risk register's top risk unmechanised.
+  schedule:
+    - cron: '0 7 * * 1'
 
 jobs:
   validate:
@@ -14,11 +19,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check every figure carries its source metadata
+      - run: npm ci
+      - name: Data contract
         run: node scripts/validate-data.mjs --verbose
-      - name: Check claims resolve to live figures and stay balanced
+      - name: Content contract
         run: node scripts/validate-content.mjs
-      - name: Install
-        run: npm ci
       - name: Build and check the built site
         run: npm run build
+      - name: Source URLs still resolve
+        # Network check. Must not fail a build on a transient outage, but it previously ran
+        # in no pipeline at all.
+        run: node scripts/check-sources.mjs
+        continue-on-error: true
