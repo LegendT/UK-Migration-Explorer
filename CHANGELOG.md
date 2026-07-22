@@ -385,6 +385,39 @@ the same renderer as the markdown path.
 wins — so every line chart drew as a solid filled shape. Selectors are now element-qualified,
 because a path, its markers and its label each need different fill behaviour.
 
+### Added — what the asylum system costs
+
+The MVP costs section from section 7, covering audited spending only. It opens by separating
+the two questions that both get called "the cost of immigration": what the system spends,
+which is audited and reasonably firm, and what migration is worth fiscally, which is
+contested and deferred to a later phase.
+
+**The spending figures are nested, not parallel**, and the page says so before showing them.
+Hotel spending sits inside accommodation spending, which sits inside the total. A bar chart
+would have implied three comparable items and double-counted; the table indents them instead,
+so the relationship is visible before the prose explains it.
+
+The one chart is the £158-a-night hotel place against roughly £20 for dispersal
+accommodation, because that gap is what makes accommodation type rather than the number of
+people the main driver of the bill. Its note states plainly that this is the price of a bed
+under a contract, not a measure of what a person costs or is worth.
+
+**On "£8 million a day".** The page works the arithmetic rather than repeating or dismissing
+the claim: hotel spending of £2.1bn is roughly £5.8m a day, the previous year's £3bn was
+roughly £8.2m, and the whole system at £4.9bn is closer to £13m. So the circulating figure
+was approximately right for hotels in 2023-24 and is now roughly 40% above the current one.
+Three defensible numbers describing different things.
+
+The page also states what it deliberately excludes and why: immigration fee income, which is
+immigration-wide rather than asylum and would compare two different populations; any cost per
+person presented as a measure of worth; and the fiscal impact question.
+
+**No claim check was added for the hotels figure**, though it is on the section 8.5.3 list.
+Adding it would have made the published set five restrictionist to two pro-migration — 71%,
+over the two-thirds limit — and the only unused pro-migration claim substantially duplicates
+one already written. The balance rule is meant to constrain editorial decisions rather than
+be worked around, so the claim waits for a genuine counterpart.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.
