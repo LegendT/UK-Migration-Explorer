@@ -73,7 +73,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026 — How many people are in the UK asylum system?",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Relates to 35,744 cases. Down 55% on March 2025; lowest since September 2019; down 72% from the June 2023 peak of 175,457. A point-in-time stock figure.",
       "confidence_level": "official"
@@ -88,7 +88,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026 — How many people are in the UK asylum system?",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Cases are main applicants only. The 48,758 people awaiting an initial decision relate to these 35,744 cases.",
       "confidence_level": "official"
@@ -103,7 +103,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics (citing Migration Transparency Data ASY_03)",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Total work in progress: cases awaiting an initial decision plus those awaiting appeal or removal. NOT current — the latest full figure is June 2024 (a record high) because the wider breakdown was suspended pending a new caseworking system. Do not confuse with the current 'awaiting initial decision' figure.",
       "confidence_level": "official"
@@ -208,7 +208,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026 — How many people are in the UK asylum system?",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "In receipt of accommodation and/or subsistence support. Down 9% on March 2025; 21% below the September 2023 peak of 123,758. Excludes unaccompanied asylum-seeking children (supported by local authorities).",
       "confidence_level": "official"
@@ -223,7 +223,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026 — How many people are in the UK asylum system?",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "21% of the supported population. Down 35% on March 2025 and 63% below the September 2023 peak of 56,018. A further 75% were in other accommodation and 4% on subsistence-only support.",
       "confidence_level": "official"
@@ -253,7 +253,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026 — safe and legal (humanitarian) routes",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Visas granted, not arrivals (some unused). 14,725 out-of-country grants in the latest year. About 105,900 people (45%) who arrived had left the UK by end March 2026. A further 140,191 in-country extensions (mostly Ukraine Permission Extension scheme) were granted in the latest year.",
       "confidence_level": "official"
@@ -268,7 +268,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026 — safe and legal (humanitarian) routes",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Out-of-country BN(O) visa grants since the route opened on 31 January 2021. 7,214 grants in the latest year; grants have fallen every year since the year ending March 2022 peak of 86,439.",
       "confidence_level": "official"
@@ -283,7 +283,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026 — safe and legal (humanitarian) routes",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Breakdown: ARAP 20,028; ACRS 14,091; Afghanistan Response Route 4,468. In July 2025 the government confirmed the schemes were closing to new applicants; existing applications are still being processed. The three scheme figures sum to 38,587; the remaining 30 people are recorded under the programme with scheme name unknown, so the breakdown does not sum to the total. The Home Office states: 'Breakdowns exclude cases where scheme name is unknown but totals include them. Total resettled therefore may not sum.' Note also that the Home Office is inconsistent with itself on the third route: the topic page calls it the Afghanistan Response Route, its own table Res_01 calls it the Afghanistan Relocation Route.",
       "confidence_level": "official"
