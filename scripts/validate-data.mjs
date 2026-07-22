@@ -64,7 +64,10 @@ function checkFields(where, item, required) {
   for (const field of required) {
     const value = item[field];
     if (value === null && NULLABLE.has(field)) {
-      warnings.push(`${where}: ${field} not yet recorded`);
+      // A documented impossibility is not debt. Some sources — a daily-updated operational
+      // page, say — have no recoverable publication date for a past snapshot, and nagging
+      // about it forever would train everyone to ignore the count.
+      if (!item[`${field}_unavailable`]) warnings.push(`${where}: ${field} not yet recorded`);
       continue;
     }
     // Ranges deliberately hold a null value; checkValue enforces their bounds instead.

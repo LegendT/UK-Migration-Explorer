@@ -86,9 +86,9 @@
       "date": "2024-09-30",
       "period_label": "OBR projection, September 2024",
       "geography": "United Kingdom",
-      "source_name": "Office for Budget Responsibility, Fiscal Risks and Sustainability (September 2024), via Migration Observatory",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/the-fiscal-impact-of-immigration-in-the-uk/",
-      "published_date": null,
+      "source_name": "Office for Budget Responsibility, Fiscal risks and sustainability, September 2024",
+      "source_url": "https://obr.uk/frs/fiscal-risks-and-sustainability-september-2024/",
+      "published_date": "2024-09-12",
       "retrieved_date": "2026-06-17",
       "notes": "A STYLISED SCENARIO, not an observed outcome. Applies to one hypothetical migrant arriving at 25 on average earnings, living to 80. The same OBR analysis finds low-wage migrants have a NEGATIVE lifetime impact and high-wage migrants a larger positive one; the result is highly sensitive to age, earnings and children. Do not present as a typical or average figure.",
       "confidence_level": "estimated"
@@ -103,7 +103,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Observatory, The Fiscal Impact of Immigration in the UK",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/the-fiscal-impact-of-immigration-in-the-uk/",
-      "published_date": null,
+      "published_date": "2026-06-23",
       "retrieved_date": "2026-06-17",
       "notes": "A RANGE, NOT A POINT ESTIMATE. Across academic studies the net fiscal impact of immigration, whether positive or negative, falls within roughly plus or minus 1% of GDP. There is no single correct figure: estimates depend on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Never render this as \"1% of GDP\". Method-dependent and contested. Across multiple studies the net impact (positive or negative) is consistently less than plus or minus 1% of GDP. Dynamic (lifetime) studies tend more positive; static (snapshot) studies more mixed. No single correct figure exists.",
       "confidence_level": "estimated",
@@ -121,7 +121,7 @@
       "geography": "United Kingdom",
       "source_name": "ONS Labour Force Survey, via Migration Observatory labour market briefing",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
-      "published_date": null,
+      "published_date": "2026-05-15",
       "retrieved_date": "2026-06-17",
       "notes": "EU-born employment rate has exceeded UK-born and non-EU since about 2006. ONS Labour Force Survey has known reliability and sample-size limitations in recent years; treat as provisional and cross-check against the primary release.",
       "confidence_level": "provisional"
@@ -136,7 +136,7 @@
       "geography": "United Kingdom",
       "source_name": "ONS Labour Force Survey, via Migration Observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
-      "published_date": null,
+      "published_date": "2026-05-15",
       "retrieved_date": "2026-06-17",
       "notes": "Non-EU-born rate was about 75.1% in the same period. The aggregate comparison masks a gender split: migrant men have higher employment than UK-born men, but migrant women have lower employment than UK-born women.",
       "confidence_level": "provisional"
@@ -151,7 +151,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Observatory, Migrants in the UK labour market: an overview",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
-      "published_date": null,
+      "published_date": "2026-05-15",
       "retrieved_date": "2026-06-17",
       "notes": "About 5.9 million of UK employees were adult migrants (roughly a fifth of the workforce). Definitions of 'migrant' vary (foreign-born vs non-UK nationality) by dataset.",
       "confidence_level": "provisional"
@@ -166,7 +166,7 @@
       "geography": "England",
       "source_name": "House of Commons Library, NHS staff from overseas: statistics (CBP-7783)",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-7783/",
-      "published_date": null,
+      "published_date": "2025-11-26",
       "retrieved_date": "2026-06-17",
       "notes": "About 325,000 of about 1.5 million staff reported a non-British nationality. Higher for doctors (about 36%) and nurses (about 30%). England only; the exact share depends on whether 'unknown' nationalities are included in the denominator.",
       "confidence_level": "official"
@@ -196,7 +196,7 @@
       "geography": "United Kingdom",
       "source_name": "House of Commons Library, UK immigration fees (CBP-9859)",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-9859/",
-      "published_date": null,
+      "published_date": "2026-02-13",
       "retrieved_date": "2026-06-17",
       "notes": "The surcharge rose 66% in February 2024 (standard rate £624 to £1,035 per year), estimated to raise about £1.1bn extra per year. Period basis should be confirmed against the primary briefing.",
       "confidence_level": "official"
@@ -211,7 +211,7 @@
       "geography": "United Kingdom",
       "source_name": "House of Commons Library, UK immigration fees (CBP-9859)",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-9859/",
-      "published_date": null,
+      "published_date": "2026-02-13",
       "retrieved_date": "2026-06-17",
       "notes": "Separate from the Immigration Health Surcharge (about £2.6bn) and the employer Immigration Skills Charge (about £0.6bn), so total immigration-related revenue exceeds about £6bn.",
       "confidence_level": "official"
@@ -226,7 +226,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Advisory Committee, Annual Report 2025 and review of salary requirements",
       "source_url": "https://www.gov.uk/government/publications/migration-advisory-committee-annual-report-2025/mac-letter-to-the-home-secretary-on-the-2025-annual-report-and-salary-requirements-report-accessible",
-      "published_date": null,
+      "published_date": "2025-12-17",
       "retrieved_date": "2026-06-17",
       "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m — illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners.",
       "confidence_level": "official"

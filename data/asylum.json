@@ -26,9 +26,9 @@
       "date": "2026-03-31",
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
-      "source_name": "House of Commons Library, Asylum statistics (SN01403, 29 May 2026)",
+      "source_name": "House of Commons Library, Asylum statistics (SN01403, published 1 June 2026)",
       "source_url": "https://researchbriefings.files.parliament.uk/documents/SN01403/SN01403.pdf",
-      "published_date": null,
+      "published_date": "2026-06-01",
       "retrieved_date": "2026-06-17",
       "notes": "Main-applicant total (excludes dependants); the count of asylum cases requiring Home Office consideration. 76,714 applications relating to 93,525 people, a 9% decrease on the previous 12 months.",
       "confidence_level": "official"
@@ -118,7 +118,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Irregular migration to the UK detailed dataset (illegal entry routes)",
       "source_url": "https://www.gov.uk/government/statistical-data-sets/immigration-system-statistics-data-tables#illegal-entry-routes",
-      "published_date": null,
+      "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Second-highest annual total on record (peak 45,774 in 2022); 13% higher than 2024. Finalised calendar-year total.",
       "confidence_level": "official"
@@ -150,8 +150,9 @@
       "source_url": "https://www.gov.uk/government/publications/migrants-detected-crossing-the-english-channel-in-small-boats",
       "published_date": null,
       "retrieved_date": "2026-06-17",
-      "notes": "Provisional operational figure, approximate (around 9,000), reported as about 38% lower than the same period in 2025. Subject to revision; treat as indicative, not finalised statistics.",
-      "confidence_level": "provisional"
+      "notes": "Provisional operational figure, approximate (around 9,000), reported as about 38% lower than the same period in 2025. Subject to revision; treat as indicative, not finalised statistics. Approximate, and from a daily-updated operational page, so it decays weekly. See published_date_unavailable. Do not publish without re-checking.",
+      "confidence_level": "provisional",
+      "published_date_unavailable": "Daily-updated operational page: the publication date of a past snapshot cannot be recovered. Re-check before publishing; this figure decays weekly."
     },
     {
       "id": "asylum-appeals-lodged",
@@ -163,7 +164,7 @@
       "geography": "United Kingdom",
       "source_name": "HM Courts & Tribunals Service / Ministry of Justice, Tribunals statistics quarterly, January to March 2026",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
-      "published_date": null,
+      "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
       "notes": "A single quarter's inflow, not an annual figure (down from a possible peak of 17,822 the prior quarter).",
       "confidence_level": "official"
@@ -178,7 +179,7 @@
       "geography": "United Kingdom",
       "source_name": "HM Courts & Tribunals Service / Ministry of Justice, Tribunals statistics quarterly, January to March 2026",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
-      "published_date": null,
+      "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
       "notes": "A record high, up from about 50,976 a year earlier. Fewer than 7,000 appeals are decided per quarter, so the backlog keeps rising. The total immigration appeal caseload (all types) now exceeds 150,000.",
       "confidence_level": "official"
@@ -193,7 +194,7 @@
       "geography": "United Kingdom",
       "source_name": "HM Courts & Tribunals Service / Ministry of Justice, Tribunals statistics quarterly, January to March 2026",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
-      "published_date": null,
+      "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
       "notes": "About 40% of asylum appeals allowed. Mean age of an asylum appeal at conclusion: 67 weeks.",
       "confidence_level": "official"

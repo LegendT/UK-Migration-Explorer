@@ -13,7 +13,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Observatory (University of Oxford), Migrants in the UK: An Overview, based on the 2021/22 Census",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "published_date": null,
+      "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "The most reliable available figure. The foreign-born population has continued to rise since 2021, but no reliable post-2021 official total exists.",
       "confidence_level": "official"
@@ -28,7 +28,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Observatory (University of Oxford), Migrants in the UK: An Overview",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "published_date": null,
+      "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "Roughly one in six residents, of a total population of 66.9 million at the time. Up from about 9% in 2004. A frequently cited '19% in June 2024' figure is not a current accredited ONS estimate.",
       "confidence_level": "official"
@@ -43,7 +43,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Observatory (University of Oxford), Migrants in the UK: An Overview",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "published_date": null,
+      "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "Foreign-citizen (non-British nationality) share, up from about 5% in 2004. Differs from the foreign-born group: many migrants naturalise, and some UK-born residents are non-citizens.",
       "confidence_level": "official"
@@ -58,7 +58,7 @@
       "geography": "United Kingdom",
       "source_name": "ONS, Population estimates for the UK: mid-2024 (released 26 September 2025)",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2024",
-      "published_date": null,
+      "published_date": "2025-09-26",
       "retrieved_date": "2026-06-17",
       "notes": "Latest official mid-year estimate (69.3 million). Up 755,300 (1.1%) on mid-2023, with net international migration of 738,700 the main driver. Accredited official statistics.",
       "confidence_level": "official"
@@ -73,7 +73,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Observatory (University of Oxford), Migrants in the UK: An Overview",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "published_date": null,
+      "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "India was the largest single country of birth (9%). The top five — India (9%), Poland (8%), Pakistan (6%), Romania (5%), Ireland (4%) — together accounted for 32% of the foreign-born population.",
       "confidence_level": "official"
@@ -118,7 +118,7 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending December 2025 — settlement and citizenship",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-december-2025/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
-      "published_date": null,
+      "published_date": "2026-02-26",
       "retrieved_date": "2026-06-17",
       "notes": "About 4.4 million settled-status grants have been issued since the scheme launched in 2018. Classified as Official Statistics (not accredited). Includes an estimated 86,670 automated grants.",
       "confidence_level": "official"
@@ -133,7 +133,7 @@
       "geography": "United Kingdom",
       "source_name": "Migration Observatory (University of Oxford), Migrants in the UK: An Overview",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "published_date": null,
+      "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "About 47% of foreign-born residents lived in London and the South East, against 27% of the overall population.",
       "confidence_level": "official"
@@ -148,7 +148,7 @@
       "geography": "London",
       "source_name": "Migration Observatory (University of Oxford), Migrants in the UK: An Overview",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "published_date": null,
+      "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "More than 40% of London residents were born abroad, the highest of any region. National average 16%. Lowest: North East (7%), Wales (7%), Northern Ireland (9%).",
       "confidence_level": "official"
