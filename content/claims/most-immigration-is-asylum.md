@@ -17,7 +17,7 @@ figures:
 layout: claim.njk
 permalink: /common-claims/most-immigration-is-asylum/
 order: 2
-title: Claim check
+suppressPageHeader: true
 ---
 
 ## What the data says

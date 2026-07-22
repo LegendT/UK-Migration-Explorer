@@ -14,7 +14,7 @@ figures:
 layout: claim.njk
 permalink: /common-claims/nineteen-per-cent-born-abroad/
 order: 5
-title: Claim check
+suppressPageHeader: true
 ---
 
 ## What the data says

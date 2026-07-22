@@ -1,12 +1,14 @@
 ---
 layout: base.njk
 ---
-{#- A claim card must survive being screenshotted: the question, the answer, the period and
-    the source sit inside one visual boundary. See foundation section 8.5.4. -#}
+{#- The h1 is the claim itself, so every claim page has a distinctive heading for search,
+    browser tabs and heading-by-heading navigation. It sits INSIDE the card and under its
+    "The claim" label, so the framing travels with it and a bare screenshot of the heading
+    can never read as this site asserting the claim. See foundation section 8.5.4. -#}
 <article class="claim">
   <div class="claim-card">
     <p class="claim-label">The claim</p>
-    <p class="claim-text">{{ claim }}</p>
+    <h1 class="claim-text">{{ claim }}</h1>
     <p class="claim-label">The short answer</p>
     <p class="claim-answer">{{ short_answer }}</p>
     <p class="claim-meta">

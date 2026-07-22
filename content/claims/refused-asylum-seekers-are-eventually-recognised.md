@@ -16,7 +16,7 @@ figures:
 layout: claim.njk
 permalink: /common-claims/refused-asylum-seekers-are-eventually-recognised/
 order: 6
-title: Claim check
+suppressPageHeader: true
 ---
 
 ## What the data says

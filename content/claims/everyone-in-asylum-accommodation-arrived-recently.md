@@ -15,7 +15,7 @@ figures:
 layout: claim.njk
 permalink: /common-claims/everyone-in-asylum-accommodation-arrived-recently/
 order: 4
-title: Claim check
+suppressPageHeader: true
 ---
 
 ## What the data says

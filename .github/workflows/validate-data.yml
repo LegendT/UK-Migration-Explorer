@@ -18,3 +18,7 @@ jobs:
         run: node scripts/validate-data.mjs --verbose
       - name: Check claims resolve to live figures and stay balanced
         run: node scripts/validate-content.mjs
+      - name: Install
+        run: npm ci
+      - name: Build and check the built site
+        run: npm run build

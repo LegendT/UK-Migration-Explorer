@@ -16,7 +16,7 @@ figures:
 layout: claim.njk
 permalink: /common-claims/immigrants-pay-far-more-than-they-cost/
 order: 3
-title: Claim check
+suppressPageHeader: true
 ---
 
 ## What the data says

@@ -110,5 +110,16 @@ export default function (eleventyConfig) {
       .replace(/\{\{([^}]+)\}\}/g, (_, raw) => renderFigure(raw.trim()));
   });
 
+  // Heading anchors. Markdown does not support {#id} natively, so without this the syntax
+  // renders as visible junk inside the heading and every link to a definition is dead —
+  // which is exactly what shipped until the built page was actually looked at.
+  eleventyConfig.addTransform('heading-anchors', function (content) {
+    if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
+    return content.replace(
+      /<h([1-6])>(.*?)\s*\{#([a-z0-9-]+)\}<\/h\1>/g,
+      (_, level, text, id) => `<h${level} id="${id}">${text}</h${level}>`,
+    );
+  });
+
   return { markdownTemplateEngine: false, htmlTemplateEngine: 'njk' };
 }

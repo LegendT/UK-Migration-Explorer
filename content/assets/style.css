@@ -193,10 +193,10 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 /* Claims ---------------------------------------------------------------- */
 
 .claim-card {
+  margin: 2rem 0 1.5rem;
   border: 2px solid var(--rule);
   border-radius: 6px;
   padding: 1.25rem;
-  margin: 1.5rem 0;
   background: var(--panel);
 }
 .claim-label {
@@ -206,7 +206,7 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
   letter-spacing: 0.06em;
   color: var(--ink-soft);
 }
-.claim-text { margin: 0 0 1.25rem; font-size: 1.1875rem; font-weight: 600; }
+.claim-text { margin: 0 0 1.25rem; font-size: 1.25rem; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
 .claim-answer { margin: 0 0 1.25rem; font-size: 1.0625rem; }
 .claim-meta {
   margin: 0;
@@ -217,6 +217,12 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
   gap: 0.5rem 1rem;
   font-size: 0.8125rem;
   color: var(--ink-soft);
+}
+
+/* The claim article is exempt from the page measure so the card can run full width.
+   Its prose is not — 99 characters per line is well past comfortable reading. */
+.claim > p, .claim > h2, .claim > h3, .claim > ul, .claim > ol, .claim > blockquote {
+  max-width: var(--measure);
 }
 
 .claim-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 2rem; }

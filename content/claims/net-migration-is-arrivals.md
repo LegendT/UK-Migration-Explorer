@@ -16,7 +16,7 @@ figures:
 layout: claim.njk
 permalink: /common-claims/net-migration-is-arrivals/
 order: 1
-title: Claim check
+suppressPageHeader: true
 ---
 
 ## What the data says

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
-<meta name="description" content="{{ strapline or site.strapline }}">
+<title>{% if claim %}Claim checked: {{ claim }} — {{ site.name }}{% elif title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ short_answer or strapline or site.strapline }}">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
 </header>
 
 <main id="main" class="wrap">
-  {% if title %}
+  {% if title and not suppressPageHeader %}
   <header class="page-header">
     <h1>{{ title }}</h1>
     {% if strapline %}<p class="strapline">{{ strapline }}</p>{% endif %}

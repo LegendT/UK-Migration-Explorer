@@ -32,8 +32,8 @@ eleventyExcludeFromCollections: true
 <h2>The headline figures</h2>
 
 <p>Each figure below states what it counts and over what period, because without those two
-things a number on this subject is not information.
-{{ dashboard.caveat | truncate(0) }}</p>
+things a number on this subject is not information. Each also shows its source, when that
+source was published, and how much confidence the publisher places in it.</p>
 
 <ul class="cards">
   {%- for card in dashboard.cards %}
@@ -65,7 +65,7 @@ is not valid.</p>
 apply the same test in every direction.</p>
 
 <ul class="claim-list">
-  {%- for claim in collections.claims | reverse | limit(3) %}
+  {%- for claim in collections.claims | limit(3) %}
   <li>
     <article>
       <h2><a href="{{ claim.url }}">{{ claim.data.claim }}</a></h2>
