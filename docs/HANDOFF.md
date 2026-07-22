@@ -113,9 +113,106 @@ En-dashes are fine in numeric ranges. This matches the sibling projects and is e
   copy for prohibited loaded language. **This project has language rules in foundation section
   5.2 and nothing enforces them.** Best available next improvement.
 
+## OUTSTANDING DEFECTS, fix these first
+
+Verified 22 July 2026 by an independent pass over the working tree. Two separate things
+happened in the last session and only one of them went well.
+
+**The good half.** All 21 repairs from the audit were confirmed present in the tree. An
+earlier `git checkout -- .` had reverted them and they were reapplied from memory; the
+reapplication was complete. Tests and build pass, tree is clean.
+
+**The bad half.** A blanket regex removed 292 em-dashes across 45 files. It did not corrupt
+the data layer (all JSON parses, all spread operators intact, no doubled commas), but where
+a dash fell at the end of a line the regex JOINED LINES, and a comma cannot carry the weight
+a dash was carrying. The result is a set of comma splices, some of which change meaning.
+
+### Meaning changed, fix properly
+
+1. `content/costs.njk:88` chart summary: "against roughly £20 for dispersal accommodation,
+   around eight times as much." The dash made "eight times" refer to the hotel rate; the
+   comma now attaches it to the £20, inverting the referent. **Rewrite the sentence.**
+2. `content/costs.njk:118`: "against an original estimate of about £4.5 billion, more than
+   three times as much." Same problem: the multiplier now reads as an appositive on the
+   original estimate.
+3. `content/claims/nineteen-per-cent-born-abroad.md:25`: "from the 2021/22 Census, Census
+   2021 for England, Wales and Northern Ireland, and Census 2022 for Scotland" reads as
+   three censuses rather than one aside defining two.
+4. `data/meta.json:15`: "The older framing, International Passenger Survey to 2019,
+   administrative data from 2021, 2020 unpublishable, is out of date". "from 2021, 2020
+   unpublishable" is genuinely ambiguous. This is a cross-cutting caveat rendered to readers.
+5. `content/glossary.md:200`: "published on several bases at once, calendar year, year
+   ending, and year to date" reads as a four-item list.
+
+### Degraded but not wrong
+
+6. `content/_includes/base.njk:6`: every page title is now "Title, Site name" rather than a
+   separator. Site-wide and user-visible. Use a colon or a pipe.
+7. `lib/charts.mjs:101,152`: every data-table caption runs title and unit together as one
+   comma phrase.
+8. `content/asylum.njk:123` and `content/claims/everyone-in-asylum-accommodation-arrived-recently.md:26`:
+   "at the end of March 2026, accommodation, subsistence, or both" reads as a list
+   continuing from the date.
+9. `content/migration.njk:93-94` and `content/glossary.md:244`: table cells now contain
+   comma splices ("Not counted, no move happened").
+10. `content/claims/most-immigration-is-asylum.md:5-6`: the non-EU+ definition drowns in
+    surrounding commas.
+
+### Code comments corrupted by line-joining
+
+11. `content/_data/site.js:5` and `eleventy.config.js:134` both have a stray `//` mid-comment
+    where two comment lines were joined. Valid JavaScript, but the comment is garbled.
+
+### A statistical error that survived both passes
+
+12. `content/migration.njk`: net migration "has fallen in each of the last two years". The
+    series is 891k, 848k, 331k, 171k, so it has fallen in **three** consecutive years. This
+    was raised as a low-severity finding in the first audit and was not fixed either time.
+
+### One caveat, harmless
+
+13. `lib/charts.mjs:42`: `rightPad` is derived from the longest label but floored at 118, so
+    it can never be narrower than the old fixed value. Correct behaviour, worth knowing.
+
+### The lesson worth keeping
+
+A bulk substitution over prose is not a mechanical operation. The em-dash was doing
+grammatical work, and replacing it with a comma changed what several sentences mean. If a
+rule like this is applied again, replace dash by dash with the sentence in view, or restrict
+the sweep to files where the dash cannot be load-bearing.
+
+## Prompt for a fresh session
+
+```
+Work on UK Migration Explorer at
+/Users/anthonygeorge/Projects/Migration Immigration and Asylum
+
+Read docs/HANDOFF.md first, then CLAUDE.md and docs/foundation.md.
+
+TASK: fix everything under "OUTSTANDING DEFECTS" in the handoff.
+Thirteen items. Items 1 to 5 changed the meaning of a sentence and
+need rewriting with the sentence in view, not a find and replace.
+Item 12 is a live statistical error.
+
+Ground rules that matter on this project:
+- No em-dashes, ever. Enforced by validate-content.mjs. Fix the
+  comma splices by rewriting, not by putting dashes back.
+- Never `git checkout -- .` to undo a test. It reverts everything.
+  Snapshot to /tmp instead. This has cost an hour once already.
+- Look at the built page before claiming anything visual works.
+  Run npm run build, serve _site, open it.
+- A green validator is necessary, never sufficient. Six times a
+  checker passed while a real defect shipped.
+- Negative-test every check you add, and confirm the break actually
+  applied before concluding the check is broken.
+
+When the thirteen are done, run npm test and npm run build, look at
+the affected pages, then merge PR #9.
+```
+
 ## Suggested next steps
 
-1. Merge PR #9.
+1. Fix the thirteen outstanding defects above, then merge PR #9.
 2. Settle the two launch blockers, then remove robots.txt and its guard.
 3. Port the editorial lint from Civil Society Explorer to enforce section 5.2.
 4. Add `.pa11yci.json`; accessibility has been verified manually and by computation, never by
