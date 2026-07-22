@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// Checks claim content against the data layer. Claims cite live figures by token
-// ({{theme/id}}) rather than hard-coded numbers, so a figure can never go stale inside a
-// claim without the source updating too. This script proves every token resolves.
+// Checks page content against the data layer. Claims and the glossary cite live figures by
+// token ({{theme/id}}) rather than hard-coded numbers, so a figure can never go stale inside
+// prose without the source updating too. This script proves every token resolves.
 //
-// Run: node scripts/validate-claims.mjs
+// Run: node scripts/validate-content.mjs
 
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -99,13 +99,79 @@ if (claims.length) {
   }
 }
 
+// --- glossary -------------------------------------------------------------------
+// One page, many terms. A term is only useful if it says what the word does NOT mean, so
+// that is structural here rather than a matter of style.
+const glossaryPath = fileURLToPath(new URL('../content/glossary.md', import.meta.url));
+let terms = 0;
+const glossaryTokens = new Set();
+try {
+  const body = readFileSync(glossaryPath, 'utf8');
+  const match = body.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) {
+    errors.push('glossary.md: missing front matter');
+  } else {
+    const front = match[1];
+    const prose = match[2];
+    for (const field of ['id', 'title', 'last_reviewed']) {
+      if (!new RegExp(`^${field}:`, 'm').test(front)) errors.push(`glossary.md: missing front matter field ${field}`);
+    }
+
+    const tokens = [...prose.matchAll(/\{\{([^}]+)\}\}/g)].map((m) => m[1].trim());
+    for (const token of new Set(tokens)) {
+      glossaryTokens.add(token);
+      if (!registry.has(token)) errors.push(`glossary.md: cites {{${token}}}, which is not a metric in the data layer`);
+    }
+    const declared = new Set((front.match(/^\s*-\s+(\S+\/\S+)$/gm) ?? []).map((l) => l.trim().slice(2)));
+    for (const token of new Set(tokens)) {
+      if (!declared.has(token)) errors.push(`glossary.md: uses {{${token}}} but does not list it under figures:`);
+    }
+    for (const ref of declared) {
+      if (!registry.has(ref)) errors.push(`glossary.md: figures: lists ${ref}, which is not a metric in the data layer`);
+    }
+
+    // Every term needs a stable anchor, because claims link to definitions.
+    const anchors = [...prose.matchAll(/^##\s+(.+?)\s*\{#([a-z0-9-]+)\}\s*$/gm)];
+    terms = anchors.length;
+    const seen = new Set();
+    for (const [, name, anchor] of anchors) {
+      if (seen.has(anchor)) errors.push(`glossary.md: duplicate anchor #${anchor}`);
+      seen.add(anchor);
+    }
+    for (const heading of prose.match(/^##\s+.+$/gm) ?? []) {
+      if (!/\{#[a-z0-9-]+\}$/.test(heading.trim())) {
+        errors.push(`glossary.md: term "${heading.replace(/^##\s+/, '')}" has no {#anchor} — claims cannot link to it`);
+      }
+    }
+
+    // Internal links must resolve, or a definition silently goes nowhere.
+    for (const [, anchor] of prose.matchAll(/\]\(#([a-z0-9-]+)\)/g)) {
+      if (!seen.has(anchor)) errors.push(`glossary.md: links to #${anchor}, which is not a term on the page`);
+    }
+
+    // A definition that does not say what the word is NOT leaves the misreading intact,
+    // which is the entire job of this page.
+    const sections = prose.split(/^##\s+/m).slice(1);
+    for (const section of sections) {
+      const name = section.split('\n')[0].replace(/\s*\{#.*/, '');
+      if (!/common mistake|does not|is not|Why it matters/i.test(section)) {
+        errors.push(`glossary.md: term "${name}" defines the word but never says what it is not`);
+      }
+    }
+  }
+} catch (error) {
+  if (error.code !== 'ENOENT') throw error;
+}
+
+// Report last, so that every check above has run. Reporting mid-file once silently
+// discarded every glossary error, which passed a broken page as green.
 if (errors.length) {
-  console.error(`Claim checks failed — ${errors.length} problem(s):\n`);
+  console.error(`Content checks failed — ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
   process.exit(1);
 }
 
 const byDirection = claims.reduce((acc, c) => ({ ...acc, [c.direction]: (acc[c.direction] ?? 0) + 1 }), {});
-const cited = new Set(claims.flatMap((c) => [...c.tokens]));
-console.log(`Claim checks passed: ${claims.length} claims, ${cited.size} live figures cited, all resolving.`);
-console.log(`Direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}.`);
+const cited = new Set([...claims.flatMap((c) => [...c.tokens]), ...glossaryTokens]);
+console.log(`Content checks passed: ${claims.length} claims and ${terms} glossary terms, ${cited.size} live figures cited, all resolving.`);
+console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}.`);

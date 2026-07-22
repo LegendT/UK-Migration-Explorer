@@ -21,6 +21,7 @@ governed data layer of 66 metrics and four timeseries. No framework has been cho
 docs/foundation.md   Positioning, editorial principles, IA, data governance, risk register, build phases
 data/                Governed data layer, one file per theme
 content/claims/      Claim checks, citing live figures by token
+content/glossary.md  Plain-English definitions, 23 terms
 scripts/             Data contract and claim validation
 CHANGELOG.md         Data and methodology changes
 LICENCE              MIT for code, Open Government Licence v3.0 attribution for data
@@ -71,13 +72,13 @@ Validate before publishing anything:
 ```
 npm test                                  # or: node scripts/validate-data.mjs
 node scripts/validate-data.mjs --verbose  # also lists outstanding published_date gaps
-node scripts/validate-claims.mjs          # claims resolve to live figures and stay balanced
+node scripts/validate-content.mjs         # claims and glossary resolve; claims stay balanced
 node scripts/check-sources.mjs            # network check that every source URL resolves
 ```
 
-## Claims
+## Content
 
-`content/claims/` holds the claim checks. Six are drafted; the full set of fourteen is
+`content/claims/` holds the claim checks and `content/glossary.md` the definitions. Six are drafted; the full set of fourteen is
 specified in `docs/foundation.md` section 8.5.3.
 
 Claims never hard-code a figure that will change. They cite the data layer by token —
@@ -85,7 +86,11 @@ Claims never hard-code a figure that will change. They cite the data layer by to
 and a claim citing a metric that no longer exists fails the build rather than quietly
 publishing a stale number.
 
-Two rules the validator enforces rather than trusting to review:
+Every glossary term must say what the word does **not** mean, not merely what it means. A
+definition that leaves the misreading intact has not done the job, so the validator rejects
+it. Terms carry stable anchors so claims can link to them.
+
+Two further rules the validator enforces rather than trusting to review:
 
 - **No claim goes unreviewed for more than twelve months.** Statistics get revised; a claim
   resting on a superseded figure is worse than no claim.

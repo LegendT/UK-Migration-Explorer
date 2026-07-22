@@ -312,6 +312,30 @@ layer holds the port figure specifically so that error is visible rather than in
 | Irregular arrival | Arrival without prior permission or through an unauthorised route. | Treating route of arrival as the same thing as asylum outcome. |
 | Foreign-born population | People living in the UK who were born outside the UK. | Treating it as current-year immigration. |
 
+**Written 22 July 2026.** The glossary now exists as `content/glossary.md`: 23 terms, in five
+groups. The eight terms above are all included.
+
+It grew beyond eight because the eight were not enough to read the site's own figures. Four
+additions do most of the work, and none is optional:
+
+- **Flow and stock**, and **people, main applicants and cases** — the two distinctions
+  responsible for most misreadings on this subject, and the reason two honest sources appear
+  to contradict each other.
+- **Backlog** had to become a table rather than a definition. There is no such thing as the
+  backlog: the initial decision queue has fallen sharply while the appeals queue has risen to
+  a record, and a single number for "the backlog" can be right about one and wrong about the
+  system.
+- **Provisional, revised and official statistics in development**, because a reader who does
+  not know what those labels mean will read a revision as manipulation.
+
+Selection rule, stated on the page: a term earns a place if it appears in the figures this
+site publishes and if misreading it produces a real error. Terms that sound technical but
+change nothing about how a number should be read are deliberately excluded.
+
+Every entry must say what the word does NOT mean, not merely what it means. A definition
+that leaves the misreading intact has not done this page's job, so
+`scripts/validate-content.mjs` fails any term that omits it.
+
 ## 8.3 Migration page
 
 - Explain ONS long-term international migration and its revision status.
@@ -751,7 +775,7 @@ rule immediately: four of the five ran in one direction, which is 80%.
 This is worth recording rather than quietly correcting, for two reasons. The list was
 drafted by someone who had written the balance rule hours earlier and still did not notice,
 which is a fair measure of how easily this slips. And it was caught by
-`scripts/validate-claims.mjs` rather than by review, which is the argument for making the
+`scripts/validate-content.mjs` rather than by review, which is the argument for making the
 rule mechanical: a constraint that depends on remembering will be forgotten by exactly the
 person most confident they have applied it.
 
@@ -773,7 +797,7 @@ no longer exists fails the build rather than publishing a stale number.
 Historical illustrations are written as literals and labelled as such, because they are
 arguments about the past rather than current values and must not auto-update.
 
-`scripts/validate-claims.mjs` enforces the front matter, checks every token resolves,
+`scripts/validate-content.mjs` enforces the front matter, checks every token resolves,
 requires each cited figure to be declared so a data update can find the claims it affects,
 enforces the balance rule, and refuses any claim unreviewed for more than twelve months
 per the corrections policy in section 13.1.
