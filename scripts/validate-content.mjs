@@ -17,6 +17,28 @@ const REQUIRED_FRONT_MATTER = ['id', 'claim', 'short_answer', 'direction', 'erro
 const DIRECTIONS = ['restrictionist', 'pro-migration', 'both'];
 const REVIEW_MONTHS = 12;
 
+// Structural includes the build expands from the data layer, written {{> name }} so they
+// cannot be confused with a metric token. Prose describes; these render the catalogue.
+const PARTIALS = new Set(['sources-catalogue', 'confidence-levels', 'key-caveats']);
+
+// Split {{ ... }} into metric citations and structural partials, so a partial is never
+// looked up as a metric and a typo in either is caught.
+function collectTokens(file, prose) {
+  const metricTokens = [];
+  for (const match of prose.matchAll(/\{\{([^}]+)\}\}/g)) {
+    const raw = match[1].trim();
+    if (raw.startsWith('>')) {
+      const partial = raw.slice(1).trim();
+      if (!PARTIALS.has(partial)) {
+        errors.push(`${file}: uses partial {{> ${partial} }}, which the build does not know how to render`);
+      }
+      continue;
+    }
+    metricTokens.push(raw);
+  }
+  return metricTokens;
+}
+
 const contentPages = [];
 let glossaryAnchors = new Set();
 const registry = new Map();
@@ -69,7 +91,7 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
     }
   }
 
-  const tokens = [...prose.matchAll(/\{\{([^}]+)\}\}/g)].map((m) => m[1].trim());
+  const tokens = collectTokens(file, prose);
   for (const token of tokens) {
     if (!registry.has(token)) {
       errors.push(`${file}: cites {{${token}}}, which is not a metric in the data layer`);
@@ -121,7 +143,7 @@ try {
       if (!new RegExp(`^${field}:`, 'm').test(front)) errors.push(`glossary.md: missing front matter field ${field}`);
     }
 
-    const tokens = [...prose.matchAll(/\{\{([^}]+)\}\}/g)].map((m) => m[1].trim());
+    const tokens = collectTokens('glossary.md', prose);
     for (const token of new Set(tokens)) {
       glossaryTokens.add(token);
       if (!registry.has(token)) errors.push(`glossary.md: cites {{${token}}}, which is not a metric in the data layer`);
@@ -170,6 +192,40 @@ try {
   if (error.code !== 'ENOENT') throw error;
 }
 
+// --- standalone pages ------------------------------------------------------------
+// Everything in content/ that is not a claim and not the glossary: sources and method,
+// and whatever follows. They get the same citation contract as claims, without the
+// claim-specific front matter.
+const contentDir = fileURLToPath(new URL('../content/', import.meta.url));
+let pages = 0;
+for (const file of readdirSync(contentDir).filter((f) => f.endsWith('.md') && f !== 'glossary.md')) {
+  const body = readFileSync(contentDir + file, 'utf8');
+  const match = body.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+  if (!match) {
+    errors.push(`${file}: missing front matter`);
+    continue;
+  }
+  const [, front, prose] = match;
+  for (const field of ['id', 'title', 'last_reviewed']) {
+    if (!new RegExp(`^${field}:`, 'm').test(front)) errors.push(`${file}: missing front matter field ${field}`);
+  }
+
+  const tokens = collectTokens(file, prose);
+  const declared = new Set((front.match(/^\s*-\s+(\S+\/\S+)$/gm) ?? []).map((l) => l.trim().slice(2)));
+  for (const token of new Set(tokens)) {
+    if (!registry.has(token)) errors.push(`${file}: cites {{${token}}}, which is not a metric in the data layer`);
+    else if (!declared.has(token)) errors.push(`${file}: uses {{${token}}} but does not list it under figures:`);
+  }
+  for (const ref of declared) {
+    if (!registry.has(ref)) errors.push(`${file}: figures: lists ${ref}, which is not a metric in the data layer`);
+  }
+
+  const literals = new Set((front.match(/^historical_literals:\s*(.*)$/m)?.[1] ?? '').split(/[,;]\s*/).filter(Boolean));
+  contentPages.push({ file, prose, literals });
+  tokens.forEach((t) => glossaryTokens.add(t));
+  pages += 1;
+}
+
 // --- token rendering contract ---------------------------------------------------
 // A token renders the FORMATTED VALUE ONLY — "48,758", "4.9", "39". It does not render
 // the unit, because units are prose: "%" attaches with no space, "£" prefixes, "people"
@@ -177,6 +233,7 @@ try {
 // currency omissions below were real: "was 4.9 billion" instead of "£4.9 billion".
 function checkUnits(file, prose) {
   for (const match of prose.matchAll(/\{\{([^}]+)\}\}/g)) {
+    if (match[1].trim().startsWith('>')) continue;
     const metric = registry.get(match[1].trim());
     if (!metric) continue;
     const before = prose.slice(Math.max(0, match.index - 2), match.index);
@@ -246,5 +303,5 @@ if (errors.length) {
 
 const byDirection = claims.reduce((acc, c) => ({ ...acc, [c.direction]: (acc[c.direction] ?? 0) + 1 }), {});
 const cited = new Set([...claims.flatMap((c) => [...c.tokens]), ...glossaryTokens]);
-console.log(`Content checks passed: ${claims.length} claims and ${terms} glossary terms, ${cited.size} live figures cited, all resolving.`);
+console.log(`Content checks passed: ${claims.length} claims, ${terms} glossary terms, ${pages} other page(s); ${cited.size} live figures cited, all resolving.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}.`);

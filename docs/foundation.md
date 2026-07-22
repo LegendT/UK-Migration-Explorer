@@ -595,11 +595,8 @@ LICENCE                     MIT for code, OGL v3 attribution for data
 What the build still needs to add:
 
 ```
-src/pages/                  index, what-the-words-mean, migration, asylum,
-                            costs, common-claims, sources-and-method, about
+src/pages/                  index, migration, asylum, costs, about
 src/components/             MetricCard, SourceNote, CaveatBox, ClaimCheck, DataTable
-content/claims/             one file per claim, to the section 16.2 template
-content/glossary/           the definitions behind section 8.2
 ```
 
 Data stays as JSON rather than the mixed CSV/JSON suggested previously — the contract in
@@ -723,8 +720,11 @@ and the returns card has its metric. The remaining work is build work:
 - Implement metric card component driven by the data contract in section 9.
 - Add overview, definitions, migration, asylum, costs, common claims, sources and about pages.
 - Add 4-6 core charts with underlying accessible tables.
-- Write the glossary and at least five claims to the section 16.2 template.
-- Publish the about and funding page, the corrections policy and the update commitment.
+- ~~Write the glossary and at least five claims.~~ Done: `content/glossary.md` and six claims.
+- ~~Write the sources and methodology page.~~ Done: `content/sources-and-method.md`.
+- Publish the about and funding page. **Blocked: needs a named owner and a funding statement.**
+- Confirm the update commitment. The sources page proposes fourteen days from each release
+  and marks it as needing sign-off; an unmet published target is worse than none.
 - Run accessibility and content review before publishing.
 
 ## Phase 3: Fiscal impact

@@ -22,6 +22,7 @@ docs/foundation.md   Positioning, editorial principles, IA, data governance, ris
 data/                Governed data layer, one file per theme
 content/claims/      Claim checks, citing live figures by token
 content/glossary.md  Plain-English definitions, 23 terms
+content/sources-and-method.md  Sources, data contract, corrections policy, scope
 scripts/             Data contract and claim validation
 CHANGELOG.md         Data and methodology changes
 LICENCE              MIT for code, Open Government Licence v3.0 attribution for data
