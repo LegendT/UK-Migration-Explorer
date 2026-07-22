@@ -81,10 +81,18 @@ node scripts/check-sources.mjs            # network check that every source URL 
 `content/claims/` holds the claim checks and `content/glossary.md` the definitions. Six are drafted; the full set of fourteen is
 specified in `docs/foundation.md` section 8.5.3.
 
-Claims never hard-code a figure that will change. They cite the data layer by token —
-`{{theme/metric-id}}` — so updating a figure in `data/` updates every claim that cites it,
-and a claim citing a metric that no longer exists fails the build rather than quietly
-publishing a stale number.
+Content never hard-codes a figure that will change. It cites the data layer by token —
+`{{theme/metric-id}}` — so updating a figure in `data/` updates everywhere it is cited, and
+content citing a metric that no longer exists fails the build rather than quietly publishing
+a stale number.
+
+A token renders the **formatted value only** — `48,758`, `4.9`, `39` — never the unit.
+Units are prose: `%` attaches, `£` prefixes, `people` follows. The author writes them and
+the validator confirms it, because the first draft rendered "4.9 billion" where it meant
+"£4.9 billion". Range metrics have no single value and cannot be tokenised at all.
+
+Writing a number longhand opts out of this protection, so a literal matching a current
+metric value fails the build unless declared under `historical_literals:`.
 
 Every glossary term must say what the word does **not** mean, not merely what it means. A
 definition that leaves the misreading intact has not done the job, so the validator rejects

@@ -17,6 +17,8 @@ const REQUIRED_FRONT_MATTER = ['id', 'claim', 'short_answer', 'direction', 'erro
 const DIRECTIONS = ['restrictionist', 'pro-migration', 'both'];
 const REVIEW_MONTHS = 12;
 
+const contentPages = [];
+let glossaryAnchors = new Set();
 const registry = new Map();
 for (const file of THEME_FILES) {
   const theme = file.replace('.json', '');
@@ -84,6 +86,8 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
     if (!registry.has(ref)) errors.push(`${file}: figures: lists ${ref}, which is not a metric in the data layer`);
   }
 
+  const literals = new Set((front.historical_literals ?? '').split(/[,;]\s*/).filter(Boolean));
+  contentPages.push({ file, prose, literals });
   claims.push({ file, direction: front.direction, tokens: new Set(tokens) });
 }
 
@@ -134,6 +138,8 @@ try {
     const anchors = [...prose.matchAll(/^##\s+(.+?)\s*\{#([a-z0-9-]+)\}\s*$/gm)];
     terms = anchors.length;
     const seen = new Set();
+    const literals = new Set((front.match(/^historical_literals:\s*(.*)$/m)?.[1] ?? '').split(/[,;]\s*/).filter(Boolean));
+    contentPages.push({ file: 'glossary.md', prose, literals });
     for (const [, name, anchor] of anchors) {
       if (seen.has(anchor)) errors.push(`glossary.md: duplicate anchor #${anchor}`);
       seen.add(anchor);
@@ -148,6 +154,7 @@ try {
     for (const [, anchor] of prose.matchAll(/\]\(#([a-z0-9-]+)\)/g)) {
       if (!seen.has(anchor)) errors.push(`glossary.md: links to #${anchor}, which is not a term on the page`);
     }
+    glossaryAnchors = seen;
 
     // A definition that does not say what the word is NOT leaves the misreading intact,
     // which is the entire job of this page.
@@ -161,6 +168,72 @@ try {
   }
 } catch (error) {
   if (error.code !== 'ENOENT') throw error;
+}
+
+// --- token rendering contract ---------------------------------------------------
+// A token renders the FORMATTED VALUE ONLY — "48,758", "4.9", "39". It does not render
+// the unit, because units are prose: "%" attaches with no space, "£" prefixes, "people"
+// follows. So the author supplies the symbol, and these checks confirm they did. Both
+// currency omissions below were real: "was 4.9 billion" instead of "£4.9 billion".
+function checkUnits(file, prose) {
+  for (const match of prose.matchAll(/\{\{([^}]+)\}\}/g)) {
+    const metric = registry.get(match[1].trim());
+    if (!metric) continue;
+    const before = prose.slice(Math.max(0, match.index - 2), match.index);
+    const after = prose.slice(match.index + match[0].length);
+
+    if (metric.value_type === 'range') {
+      errors.push(`${file}: {{${match[1].trim()}}} is a range and has no single value — it would render empty. Describe it in prose instead.`);
+    }
+    if (String(metric.unit).includes('£') && !before.includes('£')) {
+      errors.push(`${file}: {{${match[1].trim()}}} is in ${metric.unit} but has no £ before it`);
+    }
+    if (metric.unit === '%' && !after.startsWith('%')) {
+      errors.push(`${file}: {{${match[1].trim()}}} is a percentage but has no % after it`);
+    }
+  }
+}
+
+// --- hard-coded live figures ------------------------------------------------------
+// The token system exists to stop a figure going stale inside prose. Writing the number
+// out longhand silently opts out of it, which is how three live values ended up
+// hard-coded in the first draft of this content. Historical illustrations are legitimate
+// and stay literal, but they must be declared so the choice is deliberate.
+const liveValues = new Map();
+for (const [ref, metric] of registry) {
+  if (typeof metric.value === 'number') {
+    for (const form of new Set([metric.value.toLocaleString('en-GB'), String(metric.value)])) {
+      if (/\d,\d/.test(form)) liveValues.set(form, ref);
+    }
+  }
+}
+
+function checkLiterals(file, prose, allowed) {
+  const withoutTokens = prose.replace(/\{\{[^}]+\}\}/g, '');
+  for (const literal of new Set(withoutTokens.match(/\b\d{1,3}(?:,\d{3})+\b/g) ?? [])) {
+    if (allowed.has(literal)) continue;
+    const ref = liveValues.get(literal);
+    if (ref) {
+      errors.push(`${file}: writes ${literal} longhand, which is the current value of ${ref} — cite {{${ref}}} so it cannot go stale, or list it under historical_literals if it is deliberately frozen`);
+    }
+  }
+}
+
+// --- glossary links ----------------------------------------------------------------
+// Claims link to definitions. A link to a term that does not exist is a dead end on the
+// page whose whole purpose is explaining the words.
+function checkGlossaryLinks(file, prose, anchors) {
+  for (const match of prose.matchAll(/\]\(\/what-the-words-mean#([a-z0-9-]+)\)/g)) {
+    if (!anchors.has(match[1])) {
+      errors.push(`${file}: links to glossary term #${match[1]}, which does not exist`);
+    }
+  }
+}
+
+for (const { file, prose, literals } of contentPages) {
+  checkUnits(file, prose);
+  checkLiterals(file, prose, literals);
+  checkGlossaryLinks(file, prose, glossaryAnchors);
 }
 
 // Report last, so that every check above has run. Reporting mid-file once silently

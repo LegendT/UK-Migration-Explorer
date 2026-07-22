@@ -55,8 +55,8 @@ should, but it leaves a genuine gap that no amount of citing will fill.
 
 - When was that measured, and by whom?
 - Is this an official statistic, or someone's projection from one?
-- Does it count people born abroad, or people without British citizenship? They are
-  different groups and different numbers.
+- Does it count [people born abroad](/what-the-words-mean#foreign-born), or [people without British
+  citizenship](/what-the-words-mean#foreign-national)? They are different groups and different numbers.
 
 ## Source notes
 
@@ -72,5 +72,5 @@ may hold British citizenship; a person born in the UK may not. Figures for the t
 not interchangeable, and the non-British citizenship share is lower than the foreign-born
 share.
 
-Foreign-born population is a stock, not a measure of current immigration. It reflects
+Foreign-born population is a [stock](/what-the-words-mean#flow-and-stock), not a measure of current immigration. It reflects
 arrivals over many decades, and people who arrived fifty years ago are counted in it.

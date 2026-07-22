@@ -12,6 +12,7 @@ figures:
   - migration/net-migration
   - migration/total-long-term-immigration
   - migration/total-long-term-emigration
+  - migration/net-migration-2
 ---
 
 ## What the data says
@@ -27,7 +28,7 @@ So the headline number describes neither group of people. Far more than
 ## Why the claim is misleading
 
 It treats a subtraction as a headcount. Nobody is "a net migrant": the figure is the
-gap between two flows, and it tells you nothing on its own about the size of either.
+gap between two [flows](/what-the-words-mean#flow-and-stock), and it tells you nothing on its own about the size of either.
 
 The practical consequence is that net migration can move for reasons that have nothing
 to do with how many people arrived. Between the year ending December 2023 and the year
@@ -41,7 +42,7 @@ time. Reading the net figure as an arrivals figure hides all of that.
 
 One further caution: these are estimates, and they are revised. The year ending December
 2024 figure was first published as 431,000, revised to about 345,000, and now stands at
-331,000, largely because ONS revised its estimate of British emigration upwards. The
+{{migration/net-migration-2}}, largely because ONS revised its estimate of British emigration upwards. The
 number moved by 100,000 without a single person's movement changing.
 
 ## Better questions to ask
@@ -56,8 +57,8 @@ Office for National Statistics, long-term international migration, provisional, 
 ending December 2025, published 21 May 2026. Official statistics in development;
 estimates are provisional and have been revised substantially in recent releases.
 
-Long-term migration counts moves of 12 months or more. It does not count visits, and it
-is not the same as visas granted.
+[Long-term migration](/what-the-words-mean#long-term-migration) counts moves of 12 months or more. It does not count visits, and it
+is not the same as [visas granted](/what-the-words-mean#visa-grant).
 
 The 2023 and 2024 comparison above uses the current ONS series
 (`migrationFlowsTimeseries.json`), in which both years appear on the same methodological

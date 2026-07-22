@@ -22,6 +22,8 @@ figures:
   - population/settlement-grants
   - population/british-citizenship-grants
   - fiscal/government-spending-on-the-asylum-system
+  - migration/net-migration-2
+  - asylum/total-asylum-cases-in-the-casework-system
 ---
 
 A term earns a place here if it appears in the figures this site publishes and if
@@ -102,7 +104,7 @@ migration estimates.
 
 **Why it matters.** These are not decorative labels. Net migration for the year ending
 December 2024 was first published as 431,000, revised to about 345,000, and now stands at
-331,000 — a change of 100,000 without anybody's movement changing. Anyone who quoted the
+{{migration/net-migration-2}} — a change of 100,000 without anybody's movement changing. Anyone who quoted the
 first figure was quoting the best available number, and was also going to be wrong within
 a year.
 
@@ -236,7 +238,7 @@ of very different sizes:
 | --- | --- | --- |
 | Initial decision backlog | {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people (31 March 2026) | Waiting for a first Home Office decision |
 | Appeals backlog | {{asylum/asylum-appeals-backlog}} cases (31 March 2026) | Refused, appealing to the First-tier Tribunal |
-| Total casework work in progress | About 224,742 cases (June 2024) | Everything in the system. **Not current** — the breakdown was suspended |
+| Total casework work in progress | About {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current** — the breakdown was suspended |
 
 **Why it matters.** These measure different things and move independently. The initial
 decision queue has fallen sharply while the appeals queue has risen to a record. Someone
@@ -329,7 +331,7 @@ source is using is often unstated.
 ## Asylum system cost {#asylum-cost}
 
 What the government spends running the asylum system:
-{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25,
+£{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25,
 covering the Home Office and Ministry of Justice.
 
 **Why it matters.** This is audited spending, and it is reasonably firm. The National Audit

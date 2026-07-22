@@ -167,6 +167,30 @@ discarded: a broken page passed as green. Found only because each new check was 
 against a deliberately broken copy rather than assumed to work. Reporting now happens last,
 with a comment recording why.
 
+### Fixed — defects in the first draft of the content
+
+Found by auditing the content against the data layer rather than re-reading it.
+
+- **Three currency tokens had no £.** `{{fiscal/government-spending-on-the-asylum-system}}
+  billion` renders as "4.9 billion", not "£4.9 billion". The token contract was never
+  actually specified, which is why this was possible: a token renders the formatted value
+  and nothing else, and the author supplies the unit. Now documented and checked.
+- **Three live values were hard-coded longhand**, silently opting out of the staleness
+  protection the token system exists to provide — including "now stands at 331,000", a
+  figure that has already been revised twice and will be again.
+- **No claim linked to the glossary.** The validator required every term to carry an anchor
+  "so claims can link to it" while no claim linked to anything. All six now link, and the
+  targets are checked.
+
+Three new check classes, each catching a defect that had already occurred: units on tokens,
+range metrics cited as points, and live values written longhand. Plus glossary link
+resolution across files.
+
+One negative test initially reported as passing because the test string did not match the
+file, so the check was never exercised. Re-run correctly, it caught the defect. Worth
+recording: a negative test that does not fail proves nothing until you confirm it actually
+broke what it claimed to break.
+
 ### Outstanding
 
 - 33 figures have `published_date: null`. The validator reports the count on every run.

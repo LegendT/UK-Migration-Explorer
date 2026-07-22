@@ -17,11 +17,11 @@ figures:
 ## What the data says
 
 As at 31 March 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
-receipt of asylum support — accommodation, subsistence, or both. Of those,
+receipt of [asylum support](/what-the-words-mean#asylum-support) — accommodation, subsistence, or both. Of those,
 {{asylum/people-in-asylum-hotel-accommodation}} were in hotels, around 21% of the
 supported population.
 
-Those are point-in-time figures. They count everyone being supported on that particular
+Those are [point-in-time figures](/what-the-words-mean#flow-and-stock). They count everyone being supported on that particular
 day, regardless of when they arrived or how long they have been waiting.
 
 At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people
@@ -72,5 +72,5 @@ The support figure excludes unaccompanied asylum-seeking children, who are suppo
 local authorities and counted separately.
 
 The initial decision backlog is one queue among several. It is not the appeals backlog,
-and it is not the total asylum casework system. Treating "the backlog" as a single number
+and it is not the total asylum casework system. See [backlog](/what-the-words-mean#backlog). Treating "the backlog" as a single number
 is a separate error, covered by its own claim check.

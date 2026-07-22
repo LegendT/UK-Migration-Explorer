@@ -787,20 +787,40 @@ The lesson generalises: restrictionist claims are easier to find because they ci
 more, so any set assembled by availability will drift one way. Section 8.5.2 already says
 this should be stated on the page rather than silently compensated for. It should be.
 
-### How claims cite figures
+### How content cites figures
 
-Claims never hard-code a number that will change. They cite live figures by token —
-`{{theme/metric-id}}` — which the build resolves from the data layer. A figure updated in
-`data/` is therefore updated in every claim that cites it, and a claim citing a metric that
-no longer exists fails the build rather than publishing a stale number.
+Claims and the glossary never hard-code a number that will change. They cite live figures
+by token — `{{theme/metric-id}}` — which the build resolves from the data layer. A figure
+updated in `data/` is therefore updated everywhere it is cited, and content citing a metric
+that no longer exists fails the build rather than publishing a stale number.
 
-Historical illustrations are written as literals and labelled as such, because they are
-arguments about the past rather than current values and must not auto-update.
+**The token contract.** A token renders the formatted value and nothing else: `48,758`,
+`4.9`, `39`. It does not render the unit. Units behave differently in prose — `%` attaches
+with no space, `£` prefixes, `people` follows and is often better phrased — so the author
+writes them and the validator confirms they did. Getting this wrong is not hypothetical:
+the first draft rendered "was 4.9 billion" where it meant "£4.9 billion", twice.
 
-`scripts/validate-content.mjs` enforces the front matter, checks every token resolves,
-requires each cited figure to be declared so a data update can find the claims it affects,
-enforces the balance rule, and refuses any claim unreviewed for more than twelve months
-per the corrections policy in section 13.1.
+Range metrics have no single value and must never be tokenised. The net fiscal impact of
+immigration is stored as a range spanning zero precisely so that no template can render it
+as a point; a token pointing at it would produce nothing at all, and the validator rejects
+one.
+
+**Historical illustrations stay literal**, because they are arguments about the past rather
+than current values and must not auto-update. But writing a number longhand silently opts
+out of the staleness protection, so if a literal happens to equal a current metric value the
+validator stops the build and asks for either a token or an explicit
+`historical_literals:` declaration. Three live values were hard-coded in the first draft of
+this content and none of the checks then in place noticed.
+
+`scripts/validate-content.mjs` enforces the front matter, checks every token resolves and
+carries its unit symbol, rejects range metrics cited as points, catches live values written
+longhand, requires each cited figure to be declared so a data update can find the content it
+affects, checks that glossary links resolve to real terms, enforces the balance rule, and
+refuses any claim unreviewed for more than twelve months per the corrections policy in
+section 13.1.
+
+Claims link to glossary definitions at `/what-the-words-mean#term`. The link target is
+checked, so a definition cannot silently go nowhere.
 
 # 16. Minimum content templates
 
