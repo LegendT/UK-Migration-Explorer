@@ -121,6 +121,29 @@ now in the metric's notes. Also recorded there: the Home Office calls the third 
 Afghanistan Response Route on its topic page and the Afghanistan Relocation Route in its own
 table Res_01.
 
+### Added — the first six claim checks
+
+`content/claims/` now holds six drafted claims, meeting the section 17 launch gate of at
+least five checked against definitions and data.
+
+Claims cite live figures by token (`{{theme/metric-id}}`) rather than hard-coded numbers,
+so a figure updated in `data/` updates in every claim citing it, and a claim citing a
+deleted metric fails the build rather than publishing a stale number. Historical
+illustrations stay as literals, labelled, because they are arguments about the past.
+
+`scripts/validate-claims.mjs` added and wired into `npm test` and CI. It checks front
+matter, that every token resolves to a real metric, that every cited figure is declared so
+a data update can find the claims it affects, that no claim has gone unreviewed for more
+than twelve months, and the two-thirds balance rule.
+
+**The balance rule failed on the first run.** The five claims specified for launch ran four
+to one in one direction — 80%, against a two-thirds limit written into the same document
+hours earlier. A sixth claim was added rather than one of the five dropped, since each
+corrects a distinct class of error and cutting one to hit a ratio would game the rule
+rather than satisfy it. The set now runs four to two. Recorded in foundation section 15
+rather than quietly corrected, because the failure is evidence for making the constraint
+mechanical instead of trusting it to review.
+
 ### Outstanding
 
 - 33 figures have `published_date: null`. The validator reports the count on every run.
@@ -131,3 +154,5 @@ table Res_01.
   a live link dead trains the reader to ignore the checker. Verify them by hand.
 - Three source URLs redirect, which usually means a newer release has superseded the figure:
   the Home Office data tables anchor, and two Skills for Care pages.
+- Eight of the fourteen claims in foundation section 8.5.3 remain undrafted.
+- The glossary behind foundation section 8.2 exists only as an eight-row table.

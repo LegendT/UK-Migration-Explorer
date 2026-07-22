@@ -20,7 +20,8 @@ governed data layer of 66 metrics and four timeseries. No framework has been cho
 ```
 docs/foundation.md   Positioning, editorial principles, IA, data governance, risk register, build phases
 data/                Governed data layer, one file per theme
-scripts/             Data contract validation
+content/claims/      Claim checks, citing live figures by token
+scripts/             Data contract and claim validation
 CHANGELOG.md         Data and methodology changes
 LICENCE              MIT for code, Open Government Licence v3.0 attribution for data
 ```
@@ -70,8 +71,28 @@ Validate before publishing anything:
 ```
 npm test                                  # or: node scripts/validate-data.mjs
 node scripts/validate-data.mjs --verbose  # also lists outstanding published_date gaps
+node scripts/validate-claims.mjs          # claims resolve to live figures and stay balanced
 node scripts/check-sources.mjs            # network check that every source URL resolves
 ```
+
+## Claims
+
+`content/claims/` holds the claim checks. Six are drafted; the full set of fourteen is
+specified in `docs/foundation.md` section 8.5.3.
+
+Claims never hard-code a figure that will change. They cite the data layer by token —
+`{{theme/metric-id}}` — so updating a figure in `data/` updates every claim that cites it,
+and a claim citing a metric that no longer exists fails the build rather than quietly
+publishing a stale number.
+
+Two rules the validator enforces rather than trusting to review:
+
+- **No claim goes unreviewed for more than twelve months.** Statistics get revised; a claim
+  resting on a superseded figure is worse than no claim.
+- **No more than two-thirds of the published set may run in one direction.** A claim list
+  that only ever corrects one side does not implement "neutral on policy, not neutral on
+  statistical misuse" — it implements something else, and anyone can count. This rule
+  failed on its first run against the originally specified five; see `CHANGELOG.md`.
 
 It checks that every figure carries all thirteen fields; that dates are real calendar dates
 and fall inside the period they claim; that values are numbers; that ranges are not

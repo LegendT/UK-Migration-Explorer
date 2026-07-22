@@ -732,17 +732,51 @@ targeting tool however carefully it is worded.
 # 15. Claims to build first
 
 Superseded by section 8.5.3, which holds the full set with directions and selection criteria.
-Build these five first, because each corrects a distinct class of error and the set runs in
-both directions:
 
-1. Net migration is the number of people who entered the UK. *(net flow read as gross inflow)*
-2. Most immigration is asylum seekers. *(category confusion)*
-3. Immigrants pay far more in tax than they cost. *(contested estimate stated as fact)*
-4. Everyone in asylum accommodation arrived recently. *(stock read as flow)*
-5. 19% of the UK population was born abroad. *(figure with no current official basis)*
+**Written and drafted as of 22 July 2026** — six claims, in `content/claims/`:
 
-Section 17 requires at least five claims checked against definitions and data before launch.
-These are those five.
+1. Net migration is the number of people who entered the UK. *(restrictionist; net flow read as gross inflow)*
+2. Most immigration is asylum seekers. *(restrictionist; category confusion)*
+3. Immigrants pay far more in tax than they cost. *(pro-migration; contested estimate stated as fact)*
+4. Everyone in asylum accommodation arrived recently. *(restrictionist; stock read as flow)*
+5. 19% of the UK population was born abroad. *(restrictionist; figure with no current official basis)*
+6. Almost all refused asylum seekers are eventually recognised as refugees. *(pro-migration; appeal success rate generalised to all refusals)*
+
+### Why the launch five became six
+
+The original list of five was written into this document on 22 July 2026, in the same
+revision that introduced the two-thirds balance rule in section 8.5.2. It then failed that
+rule immediately: four of the five ran in one direction, which is 80%.
+
+This is worth recording rather than quietly correcting, for two reasons. The list was
+drafted by someone who had written the balance rule hours earlier and still did not notice,
+which is a fair measure of how easily this slips. And it was caught by
+`scripts/validate-claims.mjs` rather than by review, which is the argument for making the
+rule mechanical: a constraint that depends on remembering will be forgotten by exactly the
+person most confident they have applied it.
+
+The sixth claim was added rather than one of the five dropped, because each of the five
+corrects a genuinely distinct class of error and cutting one to hit a ratio would be
+gaming the rule instead of satisfying it. The set now runs four to two, which passes.
+
+The lesson generalises: restrictionist claims are easier to find because they circulate
+more, so any set assembled by availability will drift one way. Section 8.5.2 already says
+this should be stated on the page rather than silently compensated for. It should be.
+
+### How claims cite figures
+
+Claims never hard-code a number that will change. They cite live figures by token —
+`{{theme/metric-id}}` — which the build resolves from the data layer. A figure updated in
+`data/` is therefore updated in every claim that cites it, and a claim citing a metric that
+no longer exists fails the build rather than publishing a stale number.
+
+Historical illustrations are written as literals and labelled as such, because they are
+arguments about the past rather than current values and must not auto-update.
+
+`scripts/validate-claims.mjs` enforces the front matter, checks every token resolves,
+requires each cited figure to be declared so a data update can find the claims it affects,
+enforces the balance rule, and refuses any claim unreviewed for more than twelve months
+per the corrections policy in section 13.1.
 
 # 16. Minimum content templates
 

@@ -5,8 +5,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node scripts/validate-data.mjs",
-    "validate": "node scripts/validate-data.mjs --verbose"
+    "test": "node scripts/validate-data.mjs && node scripts/validate-claims.mjs",
+    "validate": "node scripts/validate-data.mjs --verbose && node scripts/validate-claims.mjs",
+    "check-sources": "node scripts/check-sources.mjs"
   },
   "license": "MIT",
   "repository": {

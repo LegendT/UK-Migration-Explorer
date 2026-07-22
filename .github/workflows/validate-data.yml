@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Check every figure carries its source metadata
         run: node scripts/validate-data.mjs --verbose
+      - name: Check claims resolve to live figures and stay balanced
+        run: node scripts/validate-claims.mjs
