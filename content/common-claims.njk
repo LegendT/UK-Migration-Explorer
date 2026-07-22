@@ -1,0 +1,46 @@
+---
+layout: base.njk
+permalink: /common-claims/
+title: Common claims
+strapline: >-
+  Where a claim misuses a definition, a denominator or a time period, we say so — and we
+  apply the same test in every direction.
+eleventyExcludeFromCollections: true
+---
+<p>These are propositions that circulate in public debate, not quotations attributed to
+particular people. A claim qualifies for this page only if it demonstrably circulates, if
+the error in it is statistical rather than political, if our sources can settle it, and if
+we would apply the same test to the opposite claim.</p>
+
+<p>No published set may run more than two-thirds in one direction. That is a hard rule,
+checked automatically before this site builds, not a matter of editorial judgement on the
+day. Restrictionist claims are easier to find because they circulate more, so a set
+assembled by availability alone would drift — which is worth saying out loud rather than
+quietly compensating for.</p>
+
+<ul class="claim-list">
+  {%- for claim in collections.claims %}
+  <li>
+    <article>
+      <h2><a href="{{ claim.url }}">{{ claim.data.claim }}</a></h2>
+      <p>{{ claim.data.short_answer }}</p>
+      <p class="claim-tags">
+        <span class="tag">{{ claim.data.error_type }}</span>
+        <span class="tag">Reviewed {{ claim.data.last_reviewed | longDate }}</span>
+      </p>
+    </article>
+  </li>
+  {%- endfor %}
+</ul>
+
+<h2>What this page does not cover</h2>
+
+<p><strong>Crime and migration.</strong> The statistics are genuinely difficult: nationality
+is recorded inconsistently across the criminal justice system, the right denominator is
+contested because migrant and non-migrant populations differ in age and sex profile, and the
+honest answer to most versions of the question is that the published data cannot settle it.
+We would rather say that than publish a number we cannot stand behind.</p>
+
+<p>Scope silence is indistinguishable from bias, so this exclusion is stated rather than
+left to be noticed. <a href="/sources-and-method/#not-covered">More on what this site does
+not cover</a>.</p>

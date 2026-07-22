@@ -157,7 +157,7 @@ try {
     }
 
     // Every term needs a stable anchor, because claims link to definitions.
-    const anchors = [...prose.matchAll(/^##\s+(.+?)\s*\{#([a-z0-9-]+)\}\s*$/gm)];
+    const anchors = [...prose.matchAll(/^###\s+(.+?)\s*\{#([a-z0-9-]+)\}\s*$/gm)];
     terms = anchors.length;
     const seen = new Set();
     const literals = new Set((front.match(/^historical_literals:\s*(.*)$/m)?.[1] ?? '').split(/[,;]\s*/).filter(Boolean));
@@ -166,9 +166,9 @@ try {
       if (seen.has(anchor)) errors.push(`glossary.md: duplicate anchor #${anchor}`);
       seen.add(anchor);
     }
-    for (const heading of prose.match(/^##\s+.+$/gm) ?? []) {
+    for (const heading of prose.match(/^###\s+.+$/gm) ?? []) {
       if (!/\{#[a-z0-9-]+\}$/.test(heading.trim())) {
-        errors.push(`glossary.md: term "${heading.replace(/^##\s+/, '')}" has no {#anchor} — claims cannot link to it`);
+        errors.push(`glossary.md: term "${heading.replace(/^###\s+/, '')}" has no {#anchor} — claims cannot link to it`);
       }
     }
 
@@ -178,9 +178,16 @@ try {
     }
     glossaryAnchors = seen;
 
+    // The layout supplies the page's only h1. A "# " heading in this file would render a
+    // second one and break the document outline — a real WCAG 1.3.1 failure that shipped
+    // once already.
+    for (const heading of prose.match(/^#\s+.+$/gm) ?? []) {
+      errors.push(`glossary.md: "${heading.replace(/^#\s+/, '')}" is an h1; the layout already provides the page h1. Use ## for a group.`);
+    }
+
     // A definition that does not say what the word is NOT leaves the misreading intact,
     // which is the entire job of this page.
-    const sections = prose.split(/^##\s+/m).slice(1);
+    const sections = prose.split(/^###\s+/m).slice(1);
     for (const section of sections) {
       const name = section.split('\n')[0].replace(/\s*\{#.*/, '');
       if (!/common mistake|does not|is not|Why it matters/i.test(section)) {

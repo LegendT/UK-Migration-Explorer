@@ -1,0 +1,78 @@
+---
+layout: base.njk
+permalink: /
+eleventyExcludeFromCollections: true
+---
+<div class="hero">
+  <h1>UK migration statistics are often discussed as if they are one number. They are not.</h1>
+  <p class="lede">Migration, immigration, net migration and asylum are different things,
+  counted in different ways, over different periods. This site shows what each figure
+  actually measures — and what it does not.</p>
+</div>
+
+{#- The distinctions come before the figures, deliberately. See foundation section 8.1. -#}
+<ul class="panels">
+  <li class="panel">
+    <h2>Migration is not the same as asylum</h2>
+    <p>Asylum is one route among several. Study and work were both larger in the most
+    recent year. <a href="/common-claims/most-immigration-is-asylum/">See the figures</a>.</p>
+  </li>
+  <li class="panel">
+    <h2>Net migration is not arrivals</h2>
+    <p>It is arrivals minus departures — a balance between two much larger numbers.
+    <a href="/common-claims/net-migration-is-arrivals/">See why that matters</a>.</p>
+  </li>
+  <li class="panel">
+    <h2>A visa granted is not a person arriving</h2>
+    <p>Permission is not a journey. Some visas are never used, and some are extensions for
+    people already here. <a href="/what-the-words-mean/#visa-grant">What the words mean</a>.</p>
+  </li>
+</ul>
+
+<h2>The headline figures</h2>
+
+<p>Each figure below states what it counts and over what period, because without those two
+things a number on this subject is not information.
+{{ dashboard.caveat | truncate(0) }}</p>
+
+<ul class="cards">
+  {%- for card in dashboard.cards %}
+  {%- set m = card.ref | metric %}
+  <li class="card">
+    <h3>{{ card.shortLabel }}</h3>
+    {%- set symbolised = m.unit == "%" or m.unit == "£ billion" %}
+    <span class="value">{% if m.unit == "£ billion" %}£{% endif %}{{ m.value | number }}{% if m.unit == "%" %}%{% endif %}{% if m.unit == "£ billion" %} billion{% endif %}</span>
+    <span class="period">{% if not symbolised %}{{ m.unit }} · {% endif %}{{ m.period_label }}</span>
+    <p class="means">{{ card.whatThisMeans }}</p>
+    <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
+    Published {{ m.published_date | longDate }} · <span class="grade">{{ m.confidence_level }}</span></p>
+  </li>
+  {%- endfor %}
+</ul>
+
+<h2>Before you compare these figures</h2>
+
+<p>They do not all cover the same period, and two of them count people while others count
+grants or events. Asylum, returns, visas and citizenship run to March 2026; net migration
+runs to December 2025. Comparing across those windows and calling the difference a change
+is not valid.</p>
+
+<p><a href="/sources-and-method/">How every figure on this site is sourced and recorded</a>.</p>
+
+<h2>Common claims, checked</h2>
+
+<p>Where a claim misuses a definition, a denominator or a time period, we say so — and we
+apply the same test in every direction.</p>
+
+<ul class="claim-list">
+  {%- for claim in collections.claims | reverse | limit(3) %}
+  <li>
+    <article>
+      <h2><a href="{{ claim.url }}">{{ claim.data.claim }}</a></h2>
+      <p>{{ claim.data.short_answer }}</p>
+    </article>
+  </li>
+  {%- endfor %}
+</ul>
+
+<p><a href="/common-claims/">All common claims</a></p>

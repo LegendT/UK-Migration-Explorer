@@ -11,6 +11,8 @@ figures:
   - asylum/asylum-applications
   - asylum/asylum-applications-main-applicants
   - migration/net-migration-2
+layout: base.njk
+permalink: /sources-and-method/
 ---
 
 This page exists so that nothing on this site has to be taken on trust. Every figure is

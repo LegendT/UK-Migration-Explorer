@@ -18,6 +18,8 @@ governed data layer of 66 metrics and four timeseries. No framework has been cho
 ## Layout
 
 ```
+eleventy.config.js   Build: citation resolution, partials, filters
+content/             Eleventy input — pages, layouts, assets
 docs/foundation.md   Positioning, editorial principles, IA, data governance, risk register, build phases
 data/                Governed data layer, one file per theme
 content/claims/      Claim checks, citing live figures by token
@@ -67,6 +69,23 @@ from an earlier release, and the Home Office revises historical asylum figures. 
 timeseries therefore draws from a single publication, and the validator rejects a series
 whose points carry more than one `published_date`. Refresh the whole array each release;
 never append. Mixing vintages is what made the first net migration series unpublishable.
+
+## Build
+
+```
+npm test      # data contract and content checks
+npm run build # Eleventy -> _site
+npm run serve # local dev server
+```
+
+Content files are **not** pre-processed as templates (`markdownTemplateEngine: false`).
+`{{theme/metric-id}}` is this project's own citation syntax and would otherwise be parsed as
+a Liquid expression, silently breaking the guarantee that no figure is hard-coded in prose.
+Citations resolve in a post-render transform, and anything unresolved throws rather than
+shipping `{{...}}` to a reader.
+
+Netlify runs `npm test` before `npm run build`, so a figure missing its source, or a claim
+citing a metric that no longer exists, fails the deploy rather than reaching anyone.
 
 Validate before publishing anything:
 

@@ -13,6 +13,10 @@ figures:
   - migration/total-long-term-immigration
   - migration/total-long-term-emigration
   - migration/net-migration-2
+layout: claim.njk
+permalink: /common-claims/net-migration-is-arrivals/
+order: 1
+title: Claim check
 ---
 
 ## What the data says

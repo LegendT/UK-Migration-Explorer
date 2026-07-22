@@ -11,6 +11,10 @@ review_due: 2027-07-22
 figures:
   - population/foreign-born-share-of-total-uk-population
   - population/foreign-born-population-of-the-uk
+layout: claim.njk
+permalink: /common-claims/nineteen-per-cent-born-abroad/
+order: 5
+title: Claim check
 ---
 
 ## What the data says

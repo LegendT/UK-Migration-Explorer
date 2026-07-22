@@ -24,6 +24,8 @@ figures:
   - fiscal/government-spending-on-the-asylum-system
   - migration/net-migration-2
   - asylum/total-asylum-cases-in-the-casework-system
+layout: base.njk
+permalink: /what-the-words-mean/
 ---
 
 A term earns a place here if it appears in the figures this site publishes and if
@@ -36,12 +38,12 @@ relationships to one another. Reading the first group first will make the rest e
 
 ---
 
-# How the counting works
+## How the counting works
 
 Four ideas that cause more misreadings than any individual statistic. Almost every claim
 this site checks fails on one of them.
 
-## Flow and stock {#flow-and-stock}
+### Flow and stock {#flow-and-stock}
 
 A **flow** counts events over a period: people arriving during a year, claims made in a
 quarter, decisions issued in twelve months.
@@ -59,7 +61,7 @@ but not the first.
 **The common mistake.** Reading a stock as though it were an annual intake. See the claim
 check on asylum accommodation.
 
-## Long-term international migration {#long-term-migration}
+### Long-term international migration {#long-term-migration}
 
 A move to or from the UK intended to last **12 months or more**. This is the basis for
 immigration, emigration and net migration figures.
@@ -73,7 +75,7 @@ which appear in migration figures.
 **The common mistake.** Assuming migration statistics count everyone who crosses the
 border. They count a specific and much smaller group.
 
-## People, main applicants and cases {#people-and-cases}
+### People, main applicants and cases {#people-and-cases}
 
 This site's single most important caveat, and the one most often responsible for two
 sources appearing to contradict each other.
@@ -95,7 +97,7 @@ twenty per cent or more, and the error is invisible unless you check the basis.
 **The common mistake.** Dividing a people-based numerator by a case-based denominator.
 Every figure on this site states its basis for exactly this reason.
 
-## Provisional, revised and official statistics in development {#statistical-status}
+### Provisional, revised and official statistics in development {#statistical-status}
 
 **Provisional** means the publisher expects the figure to change as more data arrives.
 **Revised** means it already has. **Official statistics in development** is an ONS
@@ -113,9 +115,9 @@ treating its revision as evidence of manipulation rather than of how estimates w
 
 ---
 
-# Migration measures
+## Migration measures
 
-## Immigration {#immigration}
+### Immigration {#immigration}
 
 People arriving in the UK for a long-term stay of 12 months or more. Around
 {{migration/total-long-term-immigration}} in the year ending December 2025.
@@ -123,7 +125,7 @@ People arriving in the UK for a long-term stay of 12 months or more. Around
 **The common mistake.** Treating immigration and net migration as the same thing. They
 differ by the entire size of the outflow.
 
-## Emigration {#emigration}
+### Emigration {#emigration}
 
 People leaving the UK for a long-term stay elsewhere. Around
 {{migration/total-long-term-emigration}} in the year ending December 2025. It includes
@@ -133,7 +135,7 @@ British citizens leaving, who are a substantial part of the total.
 rarely appears in coverage, and changes in it move the headline figure just as much as
 changes in arrivals.
 
-## Net migration {#net-migration}
+### Net migration {#net-migration}
 
 Immigration minus emigration. Around {{migration/net-migration}} in the year ending
 December 2025.
@@ -145,7 +147,7 @@ left, or both.
 **The common mistake.** Reading it as the number of people who entered the UK. See the
 claim check.
 
-## Visa grant {#visa-grant}
+### Visa grant {#visa-grant}
 
 Permission to enter or remain in the UK under a particular route.
 
@@ -159,12 +161,12 @@ Office visa total directly with an ONS immigration estimate.
 
 ---
 
-# The asylum system
+## The asylum system
 
 Asylum is one route within the wider migration system, and it has its own vocabulary. The
 sequence below roughly follows a claim through the system.
 
-## Asylum application {#asylum-application}
+### Asylum application {#asylum-application}
 
 A request for protection from someone who says they cannot safely return to their country.
 Making a claim is not unlawful, and the route by which someone arrived does not determine
@@ -173,7 +175,7 @@ whether their claim succeeds.
 **The common mistake.** Treating applications, people and decisions as one unit. They are
 three different counts. See [people, main applicants and cases](#people-and-cases).
 
-## Irregular arrival {#irregular-arrival}
+### Irregular arrival {#irregular-arrival}
 
 Arrival without prior permission, or through an unauthorised route.
 
@@ -187,7 +189,7 @@ detailed dataset (illegal entry routes)", and ONS reason splits include arrivals
 illegal entry". Where a source uses different words we quote its title as published rather
 than silently renaming it. Our reasoning for the choice is set out on the style page.
 
-## Small boat arrivals {#small-boat-arrivals}
+### Small boat arrivals {#small-boat-arrivals}
 
 People detected arriving by small boat across the Channel:
 {{asylum/small-boat-arrivals-year-ending-march-2026}} in the year ending March 2026.
@@ -200,7 +202,7 @@ give three different numbers for what sounds like the same thing.
 **The common mistake.** Using small boat arrivals as a proxy for asylum claims, or
 comparing figures on different bases without saying which is which.
 
-## Initial decision {#initial-decision}
+### Initial decision {#initial-decision}
 
 The Home Office's first decision on a claim: a grant of protection or other leave, or a
 refusal.
@@ -208,7 +210,7 @@ refusal.
 **The common mistake.** Treating it as final. It can be appealed, and a substantial share
 of appeals succeed.
 
-## Grant rate {#grant-rate}
+### Grant rate {#grant-rate}
 
 The share of initial decisions resulting in a grant of protection or other leave:
 {{asylum/asylum-initial-decision-grant-rate}}% in the year ending March 2026.
@@ -220,7 +222,7 @@ withdrawals. The rate measured at final outcome, after appeals, has historically
 **The common mistake.** Recomputing it from people-based figures, which gives a different
 answer, or quoting the initial rate as though it were the final one.
 
-## Refugee {#refugee}
+### Refugee {#refugee}
 
 A person who has been granted protection. Not everyone who applies for asylum is a
 refugee, and not everyone granted leave to remain is granted refugee status specifically.
@@ -229,7 +231,7 @@ refugee, and not everyone granted leave to remain is granted refugee status spec
 decision has been made. It prejudges the outcome in one direction, just as "failed asylum
 seeker" prejudges it in the other.
 
-## Backlog {#backlog}
+### Backlog {#backlog}
 
 There is no such thing as **the** backlog. There are several queues, at different stages,
 of very different sizes:
@@ -248,7 +250,7 @@ queue and wrong about the system.
 **The common mistake.** Collapsing them, or comparing a people-based figure for one queue
 with a case-based figure for another.
 
-## Asylum support and asylum accommodation {#asylum-support}
+### Asylum support and asylum accommodation {#asylum-support}
 
 Accommodation, subsistence payments, or both, provided to people whose claims are being
 considered and who would otherwise be destitute:
@@ -261,7 +263,7 @@ separately. Hotels are one form of accommodation among several, not the whole of
 **The common mistake.** Reading the support figure as an arrivals figure, or treating
 "asylum accommodation" and "asylum hotels" as synonyms.
 
-## Return {#return}
+### Return {#return}
 
 A departure from the UK of someone with no right to remain. **Enforced** returns are
 carried out by the state; **voluntary** returns are not. **Refused entry at port** is
@@ -277,9 +279,9 @@ port refusals into it to produce a larger number.
 
 ---
 
-# Living in the UK
+## Living in the UK
 
-## Settlement, or indefinite leave to remain {#settlement}
+### Settlement, or indefinite leave to remain {#settlement}
 
 Permission to live in the UK without a time limit: {{population/settlement-grants}} grants
 in the year ending March 2026.
@@ -288,7 +290,7 @@ in the year ending March 2026.
 British citizen, cannot hold a British passport on that basis, and does not have the vote
 in general elections.
 
-## British citizenship and naturalisation {#citizenship}
+### British citizenship and naturalisation {#citizenship}
 
 Becoming a British citizen. **Naturalisation** is the main route for adults:
 {{population/british-citizenship-grants}} grants of citizenship in the year ending March
@@ -298,7 +300,7 @@ Becoming a British citizen. **Naturalisation** is the main route for adults:
 person may appear in both statistics in different years. Neither figure is a count of
 arrivals — people granted citizenship in 2026 typically arrived years earlier.
 
-## Foreign-born population {#foreign-born}
+### Foreign-born population {#foreign-born}
 
 People living in the UK who were born outside it:
 {{population/foreign-born-share-of-total-uk-population}}% of the population at the 2021/22
@@ -312,7 +314,7 @@ October 2022, so there is no official figure for the current period. The share h
 certainly risen since 2021, but by how much is not officially measured. See the claim
 check.
 
-## Foreign national, or non-British citizen {#foreign-national}
+### Foreign national, or non-British citizen {#foreign-national}
 
 People living in the UK who do not hold British citizenship:
 {{population/non-british-share-of-uk-population}}% of the population.
@@ -326,9 +328,9 @@ source is using is often unstated.
 
 ---
 
-# Money
+## Money
 
-## Asylum system cost {#asylum-cost}
+### Asylum system cost {#asylum-cost}
 
 What the government spends running the asylum system:
 £{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25,
@@ -342,7 +344,7 @@ full figure.
 cost of one part of one system, and tells you nothing about taxes paid by migrants
 generally.
 
-## Net fiscal impact {#fiscal-impact}
+### Net fiscal impact {#fiscal-impact}
 
 Whether migration adds to or subtracts from the public finances overall, once taxes paid
 and services used are both counted.

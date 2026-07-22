@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ strapline or site.strapline }}">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <p class="brand"><a href="/">{{ site.name }}</a></p>
+    <nav aria-label="Main">
+      <ul>
+        {%- for item in site.nav %}
+        <li><a href="{{ item.href }}"{% if page.url == item.href %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  {% if title %}
+  <header class="page-header">
+    <h1>{{ title }}</h1>
+    {% if strapline %}<p class="strapline">{{ strapline }}</p>{% endif %}
+  </header>
+  {% endif %}
+
+  {{ content | safe }}
+
+  {% if last_reviewed %}
+  <p class="reviewed">Last reviewed {{ last_reviewed | longDate }}.
+  Figures are the latest published at that date, not a live count.</p>
+  {% endif %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{{ site.strapline }}</p>
+    <p>{{ meta.footerNote }}</p>
+    <p>Contains public sector information licensed under the
+      <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>.
+      <a href="https://github.com/LegendT/UK-Migration-Explorer">Source and data on GitHub</a>.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -264,6 +264,34 @@ Two Skills for Care URLs redirected; both updated to their targets, verified as 
 The Home Office data tables redirect is left alone, since it only strips a fragment
 identifier useful to a reader.
 
+### Added — Eleventy site
+
+Framework chosen: Eleventy 3, matching the hosting already connected on Netlify. Renders the
+overview, the glossary, the claims index, six claim pages and the sources page.
+
+**Content files are not pre-processed as templates.** `markdownTemplateEngine` is `false`,
+because `{{theme/metric-id}}` is this project's citation syntax and Liquid would otherwise
+consume it — silently breaking the guarantee that no figure is hard-coded in prose. Citations
+resolve in a post-render transform instead, and an unresolved token or unknown partial throws
+rather than shipping `{{...}}` to a reader.
+
+Two wrinkles handled, both from markdown running first: it escapes the `>` in a partial to
+`&gt;`, and it wraps a block partial in a `<p>`, which would nest a table inside a paragraph.
+
+`netlify.toml` runs `npm test` before the build, so a figure missing its source or a claim
+citing a deleted metric fails the deploy rather than reaching a reader. Also sets a strict
+content security policy; the site loads no external resources at all.
+
+### Fixed — glossary rendered six h1 elements
+
+The five group headings used a single `#`, which became `<h1>` alongside the layout's page
+title: six h1s and a broken document outline, a WCAG 1.3.1 failure. Groups are now `h2` and
+terms `h3`. The validator was codifying the wrong level, so it was updated too, and it now
+rejects any `#` heading in that file — the layout owns the page's only h1.
+
+Found by checking the built HTML rather than by reading the markdown, where the levels looked
+perfectly reasonable.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.

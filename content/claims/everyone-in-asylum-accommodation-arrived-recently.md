@@ -12,6 +12,10 @@ figures:
   - asylum/people-in-receipt-of-asylum-support
   - asylum/people-in-asylum-hotel-accommodation
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
+layout: claim.njk
+permalink: /common-claims/everyone-in-asylum-accommodation-arrived-recently/
+order: 4
+title: Claim check
 ---
 
 ## What the data says

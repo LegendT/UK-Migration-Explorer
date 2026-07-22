@@ -13,6 +13,10 @@ figures:
   - fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp
   - fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant
   - fiscal/government-spending-on-the-asylum-system
+layout: claim.njk
+permalink: /common-claims/immigrants-pay-far-more-than-they-cost/
+order: 3
+title: Claim check
 ---
 
 ## What the data says

@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+{#- A claim card must survive being screenshotted: the question, the answer, the period and
+    the source sit inside one visual boundary. See foundation section 8.5.4. -#}
+<article class="claim">
+  <div class="claim-card">
+    <p class="claim-label">The claim</p>
+    <p class="claim-text">{{ claim }}</p>
+    <p class="claim-label">The short answer</p>
+    <p class="claim-answer">{{ short_answer }}</p>
+    <p class="claim-meta">
+      <span>{{ site.name }}</span>
+      <span>Reviewed {{ last_reviewed | longDate }}</span>
+    </p>
+  </div>
+
+  <p class="claim-tags">
+    <span class="tag">Misuse: {{ error_type }}</span>
+    <span class="tag">Direction: {% if direction == 'pro-migration' %}pro-migration{% elif direction == 'restrictionist' %}restrictionist{% else %}both{% endif %}</span>
+  </p>
+
+  {{ content | safe }}
+
+  <p class="back"><a href="/common-claims/">All common claims</a></p>
+</article>
