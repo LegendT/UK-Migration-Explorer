@@ -1,0 +1,57 @@
+This repository contains two kinds of material, licensed differently.
+
+================================================================================
+1. CODE AND ORIGINAL WRITING — MIT Licence
+================================================================================
+
+Applies to: scripts/, any site source added later, README.md, and the original
+editorial writing in docs/.
+
+Copyright (c) 2026 Anthony George
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+================================================================================
+2. DATA — Open Government Licence v3.0 and third-party terms
+================================================================================
+
+Applies to: the figures in data/.
+
+Most figures in this repository are derived from UK public sector information
+licensed under the Open Government Licence v3.0:
+
+    Contains public sector information licensed under the Open Government
+    Licence v3.0.
+    http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+
+This covers material published by the Office for National Statistics, the Home
+Office, the National Audit Office, the Office for Budget Responsibility, the
+Migration Advisory Committee, HM Courts and Tribunals Service and the House of
+Commons Library (the last under the Open Parliament Licence, whose terms are
+materially equivalent for this use).
+
+Figures sourced from the Migration Observatory (University of Oxford) and
+Skills for Care are not Crown copyright and are reproduced here as short
+factual extracts with attribution. Their own terms apply; check the source
+before redistributing those figures in bulk.
+
+Attribution is recorded per figure: every metric in data/ carries source_name,
+source_url and published_date. If you reuse these files, keep that metadata
+attached. Stripping the source metadata from these figures defeats the purpose
+of the project and breaches the attribution requirement above.

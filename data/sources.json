@@ -1,0 +1,113 @@
+{
+  "note": "Primary and authoritative data sources for UK Migration Explorer. Each public-facing figure carries its own source, publication date, retrieval date and confidence level in the theme files.",
+  "sources": [
+    {
+      "id": "ho-immigration-stats",
+      "name": "Home Office: Immigration system statistics",
+      "publisher": "Home Office",
+      "url": "https://www.gov.uk/government/collections/immigration-statistics-quarterly-release",
+      "covers": "Asylum applications, decisions, backlog and support; visas granted by route (work, study, family); settlement and citizenship; safe and legal routes; small boats and irregular migration.",
+      "updateFrequency": "Quarterly (latest: year ending March 2026 for asylum; year ending December 2025 for visas/citizenship)",
+      "confidence_level": "official"
+    },
+    {
+      "id": "ons-ltim",
+      "name": "ONS: Long-term international migration",
+      "publisher": "Office for National Statistics",
+      "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration",
+      "covers": "Net migration, immigration and emigration estimates, and reason-for-migration breakdowns. The headline net migration measure.",
+      "updateFrequency": "Twice yearly (provisional; official statistics in development)",
+      "confidence_level": "provisional"
+    },
+    {
+      "id": "ons-population",
+      "name": "ONS: Population estimates",
+      "publisher": "Office for National Statistics",
+      "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates",
+      "covers": "UK mid-year population, used as a denominator for shares and per-person context.",
+      "updateFrequency": "Annual",
+      "confidence_level": "official"
+    },
+    {
+      "id": "census",
+      "name": "Census 2021/22",
+      "publisher": "ONS (England, Wales, Northern Ireland) and National Records of Scotland",
+      "url": "https://www.ons.gov.uk/census",
+      "covers": "Foreign-born population, country of birth, nationality, and regional distribution. The most reliable foreign-born stock figures, as the ONS survey-based series was discontinued in October 2022.",
+      "updateFrequency": "Every 10 years (last: 2021 for E&W/NI, 2022 for Scotland)",
+      "confidence_level": "official"
+    },
+    {
+      "id": "migration-observatory",
+      "name": "The Migration Observatory (University of Oxford)",
+      "publisher": "University of Oxford",
+      "url": "https://migrationobservatory.ox.ac.uk/",
+      "covers": "Neutral analysis and briefings on the migrant population, labour market, fiscal impact, and long-run trends, drawing on ONS, Census and Home Office data.",
+      "updateFrequency": "Ongoing",
+      "confidence_level": "official"
+    },
+    {
+      "id": "nao",
+      "name": "National Audit Office",
+      "publisher": "National Audit Office",
+      "url": "https://www.nao.org.uk/",
+      "covers": "Cost and value-for-money of the asylum system and asylum accommodation contracts.",
+      "updateFrequency": "Occasional (latest: An analysis of the asylum system, December 2025)",
+      "confidence_level": "official"
+    },
+    {
+      "id": "obr",
+      "name": "Office for Budget Responsibility",
+      "publisher": "OBR",
+      "url": "https://obr.uk/",
+      "covers": "Fiscal impact of migration in forecasts and the Fiscal Risks and Sustainability report (estimates and scenarios, clearly labelled).",
+      "updateFrequency": "At fiscal events and in periodic reports",
+      "confidence_level": "official"
+    },
+    {
+      "id": "mac",
+      "name": "Migration Advisory Committee",
+      "publisher": "MAC (advises the Home Office)",
+      "url": "https://www.gov.uk/government/organisations/migration-advisory-committee",
+      "covers": "Salary thresholds, shortage occupations, and the economic and fiscal evidence on work migration routes.",
+      "updateFrequency": "Annual report plus commissioned reviews",
+      "confidence_level": "official"
+    },
+    {
+      "id": "hmcts-tribunals",
+      "name": "Tribunals statistics quarterly (HMCTS / Ministry of Justice)",
+      "publisher": "Ministry of Justice",
+      "url": "https://www.gov.uk/government/collections/tribunals-statistics",
+      "covers": "Asylum and immigration appeals: lodged, decided, outstanding, success rates, and waiting times.",
+      "updateFrequency": "Quarterly (latest: January to March 2026)",
+      "confidence_level": "official"
+    },
+    {
+      "id": "commons-library",
+      "name": "House of Commons Library research briefings",
+      "publisher": "UK Parliament",
+      "url": "https://commonslibrary.parliament.uk/",
+      "covers": "Plain-English summaries of asylum statistics, small boat crossings, NHS overseas staff, and immigration fees, drawing on the primary sources above.",
+      "updateFrequency": "Ongoing",
+      "confidence_level": "official"
+    },
+    {
+      "id": "skills-for-care",
+      "name": "Skills for Care: state of the adult social care workforce",
+      "publisher": "Skills for Care",
+      "url": "https://www.skillsforcare.org.uk/Adult-Social-Care-Workforce-Data/Workforce-intelligence/home.aspx",
+      "covers": "Nationality composition of the adult social care workforce in England.",
+      "updateFrequency": "Annual",
+      "confidence_level": "official"
+    },
+    {
+      "id": "osr",
+      "name": "Office for Statistics Regulation: guidance on migration and asylum statistics",
+      "publisher": "Office for Statistics Regulation",
+      "url": "https://osr.statisticsauthority.gov.uk/guidance/2026-what-to-look-out-for-migration-and-the-asylum-system-statistics/",
+      "covers": "Guidance on responsible interpretation of migration and asylum statistics: which comparisons are valid, how to handle revisions, and where published figures are commonly misread. Used for methodology and caveat design rather than as a source of figures.",
+      "updateFrequency": "Occasional",
+      "confidence_level": "official"
+    }
+  ]
+}

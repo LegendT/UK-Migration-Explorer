@@ -1,0 +1,341 @@
+{
+  "series_name": "UK asylum initial decision backlog over time",
+  "unit": "people",
+  "basis": "PEOPLE — main applicants plus dependants",
+  "geography": "United Kingdom",
+  "statistical_status": "Accredited official statistics",
+  "lastUpdated": "2026-07-22",
+  "vintage": "Year ending March 2026 release (21 May 2026). Single vintage throughout.",
+  "note": "A STOCK, NOT A FLOW: the number of people waiting at a point in time, not arrivals during the year. Reading it as arrivals is one of the claims this project exists to correct. This is the INITIAL DECISION backlog only. It is not the appeals backlog and not the total casework system, which are separate queues of different sizes — collapsing them into 'the backlog' is a distinct error. Both bases are published below because the two give very different numbers for the same thing: 64,426 people against 48,723 cases at the end of 2025. Chart one, label which, and never mix them.",
+  "data": [
+    {
+      "date": "2010-12-31",
+      "period_label": "as at 31 December 2010",
+      "value": 7240,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2011-12-31",
+      "period_label": "as at 31 December 2011",
+      "value": 8857,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2012-12-31",
+      "period_label": "as at 31 December 2012",
+      "value": 12816,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2013-12-31",
+      "period_label": "as at 31 December 2013",
+      "value": 18172,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2014-12-31",
+      "period_label": "as at 31 December 2014",
+      "value": 22898,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2015-12-31",
+      "period_label": "as at 31 December 2015",
+      "value": 22147,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2016-12-31",
+      "period_label": "as at 31 December 2016",
+      "value": 27857,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2017-12-31",
+      "period_label": "as at 31 December 2017",
+      "value": 29522,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2018-12-31",
+      "period_label": "as at 31 December 2018",
+      "value": 35855,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2019-12-31",
+      "period_label": "as at 31 December 2019",
+      "value": 51228,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2020-12-31",
+      "period_label": "as at 31 December 2020",
+      "value": 64895,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2021-12-31",
+      "period_label": "as at 31 December 2021",
+      "value": 100564,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2022-12-31",
+      "period_label": "as at 31 December 2022",
+      "value": 160919,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22",
+      "note": "Highest end-of-year value. The quarterly peak was 175,457 in June 2023."
+    },
+    {
+      "date": "2023-12-31",
+      "period_label": "as at 31 December 2023",
+      "value": 128786,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2024-12-31",
+      "period_label": "as at 31 December 2024",
+      "value": 124802,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    },
+    {
+      "date": "2025-12-31",
+      "period_label": "as at 31 December 2025",
+      "value": 64426,
+      "confidence_level": "official",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-22"
+    }
+  ],
+  "alternate_basis": {
+    "series_name": "UK asylum initial decision backlog over time, cases basis",
+    "unit": "cases",
+    "basis": "CASES — main applicants only",
+    "note": "CASES basis: main applicants only. The same queue as the series above, counted differently. Present one or the other with its basis stated, never both unlabelled.",
+    "data": [
+      {
+        "date": "2010-12-31",
+        "period_label": "as at 31 December 2010",
+        "value": 5978,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2011-12-31",
+        "period_label": "as at 31 December 2011",
+        "value": 6800,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2012-12-31",
+        "period_label": "as at 31 December 2012",
+        "value": 9871,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2013-12-31",
+        "period_label": "as at 31 December 2013",
+        "value": 13628,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2014-12-31",
+        "period_label": "as at 31 December 2014",
+        "value": 17067,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2015-12-31",
+        "period_label": "as at 31 December 2015",
+        "value": 18111,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2016-12-31",
+        "period_label": "as at 31 December 2016",
+        "value": 21475,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2017-12-31",
+        "period_label": "as at 31 December 2017",
+        "value": 22234,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2018-12-31",
+        "period_label": "as at 31 December 2018",
+        "value": 27256,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2019-12-31",
+        "period_label": "as at 31 December 2019",
+        "value": 40032,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2020-12-31",
+        "period_label": "as at 31 December 2020",
+        "value": 51321,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2021-12-31",
+        "period_label": "as at 31 December 2021",
+        "value": 81978,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2022-12-31",
+        "period_label": "as at 31 December 2022",
+        "value": 132182,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2023-12-31",
+        "period_label": "as at 31 December 2023",
+        "value": 95252,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2024-12-31",
+        "period_label": "as at 31 December 2024",
+        "value": 90686,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      },
+      {
+        "date": "2025-12-31",
+        "period_label": "as at 31 December 2025",
+        "value": 48723,
+        "confidence_level": "official",
+        "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+        "published_date": "2026-05-21",
+        "retrieved_date": "2026-07-22"
+      }
+    ]
+  }
+}
