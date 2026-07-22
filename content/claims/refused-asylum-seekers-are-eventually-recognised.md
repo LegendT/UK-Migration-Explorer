@@ -12,22 +12,30 @@ figures:
   - asylum/asylum-initial-decision-grant-rate
   - asylum/asylum-appeal-success-rate
   - asylum/asylum-refusals
+  - asylum/asylum-initial-decisions-total
   - asylum/asylum-appeals-backlog
 layout: claim.njk
 permalink: /common-claims/refused-asylum-seekers-are-eventually-recognised/
 order: 6
 suppressPageHeader: true
+period: year ending March 2026
+source: Home Office
 ---
 
 ## What the data says
 
 In the year ending March 2026, {{asylum/asylum-initial-decision-grant-rate}}% of initial
-decisions on asylum claims resulted in a grant of protection or other leave. The
-remainder were refused: {{asylum/asylum-refusals}} people.
+decisions resulted in a grant of protection or other leave. That rate is published on the
+**main-applicant** basis.
+
+On the **people** basis — main applicants plus dependants —
+{{asylum/asylum-initial-decisions-total}} people received an initial decision, of whom
+{{asylum/asylum-refusals}} were refused. The rate and the count are not two views of one
+sum: dividing one by the other mixes the bases, which is the error this site warns about
+most often.
 
 Around {{asylum/asylum-appeal-success-rate}}% of asylum appeals heard at the First-tier
-Tribunal in the quarter January to March 2026 were allowed. Historically, the grant rate
-measured at final outcome — after appeals are exhausted — runs 17 to 29 percentage points
+Tribunal in the quarter January to March 2026 were allowed. Historically, the grant rate measured at final outcome — after appeals are exhausted — runs 17 to 29 percentage points
 higher than the initial decision rate.
 
 So the direction of the claim is right, and the size of the effect is not trivial. A

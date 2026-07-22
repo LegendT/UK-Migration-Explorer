@@ -14,6 +14,8 @@ layout: base.njk
     <p class="claim-meta">
       <span>{{ site.name }}</span>
       <span>Reviewed {{ last_reviewed | longDate }}</span>
+      {% if period %}<span>{{ period }}</span>{% endif %}
+      {% if source %}<span>{{ source }}</span>{% endif %}
     </p>
   </div>
 

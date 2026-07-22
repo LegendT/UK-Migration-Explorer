@@ -16,6 +16,8 @@ layout: claim.njk
 permalink: /common-claims/everyone-in-asylum-accommodation-arrived-recently/
 order: 4
 suppressPageHeader: true
+period: as at 31 March 2026
+source: Home Office
 ---
 
 ## What the data says

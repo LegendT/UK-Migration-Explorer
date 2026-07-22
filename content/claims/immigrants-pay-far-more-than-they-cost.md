@@ -17,6 +17,8 @@ layout: claim.njk
 permalink: /common-claims/immigrants-pay-far-more-than-they-cost/
 order: 3
 suppressPageHeader: true
+period: studies reviewed to October 2024
+source: Migration Observatory
 ---
 
 ## What the data says

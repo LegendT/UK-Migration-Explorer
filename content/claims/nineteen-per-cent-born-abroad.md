@@ -15,6 +15,8 @@ layout: claim.njk
 permalink: /common-claims/nineteen-per-cent-born-abroad/
 order: 5
 suppressPageHeader: true
+period: 2021/22 Census
+source: Migration Observatory (University of Oxford)
 ---
 
 ## What the data says

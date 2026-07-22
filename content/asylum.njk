@@ -7,6 +7,16 @@ strapline: >-
   comes from treating one stage as though it were the whole.
 last_reviewed: 2026-07-22
 eleventyExcludeFromCollections: true
+figures:
+  - asylum/asylum-appeals-backlog
+  - asylum/asylum-applications
+  - asylum/asylum-applications-main-applicants
+  - asylum/asylum-backlog-people-awaiting-an-initial-decision
+  - asylum/asylum-initial-decisions-total
+  - asylum/people-in-asylum-hotel-accommodation
+  - asylum/people-in-receipt-of-asylum-support
+  - asylum/small-boat-arrivals-year-ending-march-2026
+  - asylum/total-asylum-cases-in-the-casework-system
 ---
 <p>A claim is made, a first decision follows, a refusal can be appealed, and throughout that
 time a person may be receiving support. Each stage is counted separately, on its own basis,
@@ -27,8 +37,8 @@ at its own moment. A figure from one stage tells you very little about another.<
 </div>
 
 <p>Those five numbers cannot be added, subtracted or compared with one another. Three are
-stocks and two are flows; two are on the cases basis and three on the people basis; and one
-comes from a different publisher on a different cycle. See
+stocks and two are flows; four are on the people basis and one — the appeals queue — is on
+the cases basis; and that one also comes from a different publisher on a different cycle. See
 <a href="/what-the-words-mean/#flow-and-stock">flow and stock</a> and
 <a href="/what-the-words-mean/#people-and-cases">people and cases</a>.</p>
 
@@ -38,7 +48,7 @@ comes from a different publisher on a different cycle. See
   id: 'asylum-applications-over-time',
   series: [{ name: 'People claiming asylum', points: series.asylumApplications.data | points }],
   title: 'People claiming asylum in the UK, 2010 to 2025',
-  summary: 'Claims were broadly flat through the 2010s, rose steeply from 2021, and peaked in 2024 at 104,764 before easing slightly in 2025.',
+  summary: 'Claims roughly doubled across the 2010s, from 22,644 in 2010 to 45,537 in 2019, then rose steeply from 2021 to a peak of 104,764 in 2024 before easing slightly in 2025.',
   unit: 'people per calendar year',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',
@@ -79,7 +89,7 @@ refusals are overturned"</a> nor "a refusal settles it" survives contact with th
     { name: 'Cases', points: series.asylumBacklog.alternate_basis.data | points, dashed: true }
   ],
   title: 'Waiting for a first asylum decision, end of each year, 2010 to 2025',
-  summary: 'The queue grew steadily through the 2010s, peaked at the end of 2022, and has fallen by roughly half since. The two lines are the same queue counted two ways.',
+  summary: 'The queue grew steadily through the 2010s, peaked at the end of 2022, and has since fallen by 60% on the people basis and 63% on the cases basis. The two lines are the same queue counted two ways.',
   unit: 'waiting at 31 December',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',

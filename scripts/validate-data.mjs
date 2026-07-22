@@ -27,7 +27,7 @@ const METRIC_FIELDS = [
   'source_name', 'source_url', 'published_date', 'retrieved_date', 'notes', 'confidence_level',
 ];
 // Timeseries points inherit unit, geography and period basis from the series envelope.
-const POINT_FIELDS = ['date', 'value', 'confidence_level', 'source_name', 'source_url'];
+const POINT_FIELDS = ['date', 'value', 'confidence_level', 'source_name', 'source_url', 'published_date'];
 const SOURCE_FIELDS = ['id', 'name', 'publisher', 'url', 'covers', 'updateFrequency', 'confidence_level'];
 
 // published_date is contractual but not yet recorded for every figure. Null is an
@@ -234,11 +234,17 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Data contract passed: ${counted} figures, all sourced, dated, graded and singly held.`);
+// States only what the code establishes. It previously claimed "all sourced, dated, graded
+// and singly held": "sourced" was a hostname match, "dated" tolerated missing dates, and
+// "singly held" was true of the data layer but not of the site.
+console.log(`Data contract passed: ${counted} figures — required fields present, dates internally consistent, publishers catalogued, no duplicate values within data/.`);
+console.log('This checks metadata, not whether the figures are right.');
 if (blocked.length) {
-  console.log(`\nDO NOT PUBLISH — ${blocked.length} file(s) are flagged as unfit for publication:`);
-  for (const file of blocked) console.log(`  ${file}: ${read(file).status_note?.split('.')[0] ?? 'see status_note'}.`);
-  console.log('Passing the contract means the metadata is well-formed, not that the figures are right.');
+  console.error(`\nDO NOT PUBLISH — ${blocked.length} file(s) are flagged as unfit for publication:\n`);
+  for (const file of blocked) console.error(`  ${file}: ${read(file).status_note?.split('.')[0] ?? 'see status_note'}.`);
+  console.error('\nThis fails the build deliberately. A flag that only warned would deploy, and');
+  console.error('the banner would scroll past in a log nobody reads.');
+  process.exit(1);
 }
 if (warnings.length) {
   console.log(`\nOutstanding: ${warnings.length} figure(s) without a recorded published_date.`);

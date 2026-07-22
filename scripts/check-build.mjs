@@ -51,8 +51,24 @@ for (const file of pages) {
   // for leftover syntax is not enough; the failed result has to be checked for too.
   const text = html.replace(/<[^>]+>/g, ' ');
   for (const value of ['NaN', 'undefined', '[object Object]']) {
-    const count = (text.match(new RegExp(`\\b${value.replace(/[[\]]/g, '\\$&')}\\b`, 'g')) ?? []).length;
-    if (count) errors.push(`${where}: "${value}" appears ${count} time(s) in visible text — a citation or filter failed`);
+    const pattern = new RegExp(`\\b${value.replace(/[[\]]/g, '\\$&')}\\b`, 'g');
+    const inText = (text.match(pattern) ?? []).length;
+    if (inText) errors.push(`${where}: "${value}" appears ${inText} time(s) in visible text — a citation or filter failed`);
+    // Chart maths fails into ATTRIBUTES, not text: a broken path renders blank while every
+    // text node stays clean. Stripping tags before searching hid exactly that.
+    const inAttrs = (html.match(pattern) ?? []).length - inText;
+    if (inAttrs > 0) errors.push(`${where}: "${value}" appears ${inAttrs} time(s) inside attributes — chart or template maths failed`);
+  }
+
+  for (const [, d] of html.matchAll(/<path class="series[^"]*" d="([^"]*)"/g)) {
+    if (!d || !/^M-?[\d.]+,-?[\d.]+/.test(d)) errors.push(`${where}: a chart series has no usable path data`);
+  }
+
+  // Same-page fragments were skipped entirely, so a dead #anchor passed as "all resolving".
+  for (const [, fragment] of html.matchAll(/href="#([^"]+)"/g)) {
+    if (!(anchors.get(url) ?? new Set()).has(fragment)) {
+      errors.push(`${where}: links to #${fragment}, which is not an anchor on this page`);
+    }
   }
 
   // Internal links must resolve, both the page and the fragment.
@@ -90,8 +106,15 @@ for (const file of pages) {
 const robots = built.find((f) => f.endsWith('robots.txt'));
 if (!robots) {
   errors.push('robots.txt: missing from the build — the site would become crawlable. Remove this check deliberately at launch.');
-} else if (!/^\s*Disallow:\s*\/\s*$/m.test(readFileSync(robots, 'utf8'))) {
-  errors.push('robots.txt: no "Disallow: /" rule — the site would become crawlable.');
+} else {
+  // The rule must apply to the wildcard agent. A Disallow under one named bot satisfied the
+  // previous check while everything else stayed allowed.
+  const groups = readFileSync(robots, 'utf8').split(/\n(?=\s*User-agent:)/i)
+    .map((g) => g.trim()).filter((g) => /^User-agent:/i.test(g));
+  const wildcard = groups.find((g) => /^User-agent:\s*\*/im.test(g));
+  if (!wildcard) errors.push('robots.txt: no "User-agent: *" group — named-bot rules do not cover other crawlers.');
+  else if (!/^\s*Disallow:\s*\/\s*$/m.test(wildcard)) errors.push('robots.txt: the "User-agent: *" group does not Disallow: / — the site would be crawlable.');
+  else if (/^\s*Allow:/im.test(wildcard)) errors.push('robots.txt: the "User-agent: *" group contains an Allow rule, which may re-open paths.');
 }
 
 if (errors.length) {
@@ -101,4 +124,5 @@ if (errors.length) {
 }
 
 const internal = pages.reduce((n, f) => n + (readFileSync(f, 'utf8').match(/href="\/[^"]*"/g) ?? []).length, 0);
-console.log(`Build checks passed: ${pages.length} pages, ${internal} internal links all resolving, robots.txt disallowing all.`);
+console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; robots.txt disallows all crawlers.`);
+console.log('External source URLs are not checked here — run npm run check-sources.');

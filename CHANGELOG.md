@@ -418,6 +418,93 @@ over the two-thirds limit — and the only unused pro-migration claim substantia
 one already written. The balance rule is meant to constrain editorial decisions rather than
 be worked around, so the claim waits for a genuine counterpart.
 
+### Fixed — six false statements found by a full-project audit
+
+All verified by recomputation before and after.
+
+- `asylum.njk` said "two are on the cases basis and three on the people basis" of a table
+  with **one** cases figure and **four** people figures — wrong about the site's own most
+  important caveat.
+- The flows chart summary said emigration "rose steadily from 2021"; it **fell** from
+  680,000 to 642,000 in the final year. The line sloped down while the caption said up, and
+  the same text sits in the SVG `desc`, so screen-reader users were told the opposite.
+- The citizenship card said "Down 13%"; the figure is 12.1%, and the metric's own notes say
+  12%. Card text left behind when the figure moved to year ending March 2026.
+- The backlog chart said "fallen by roughly half"; it is 60% on people and 63% on cases.
+- The asylum claims chart said "broadly flat through the 2010s"; claims **doubled**, from
+  22,644 to 45,537.
+- A claim check joined a **main-applicant** rate to a **people** count as "the remainder" —
+  the exact error the site exists to correct. Now states both bases explicitly.
+
+Also: one figure recorded a `retrieved_date` six days before its `published_date`.
+
+### Fixed — two rendering defects
+
+- **Series labels were clipped.** "People claiming asylum" rendered as "People claiming a":
+  right padding was fixed at 118px while the label needed 148. It is now derived from the
+  longest label.
+- **Every chart rendered at two-thirds width.** `figure.chart` was missing from the
+  measure-exemption list. That this was unintended is proved by the CSS itself — the chart's
+  own children carry measure caps that are redundant if the figure is already capped.
+
+### Changed — the checking apparatus, after an adversarial audit
+
+The audit's finding was systemic, not incidental: **every checker verified a property of the
+source or the declaration — labels agree, tokens close, text nodes are clean — rather than
+the property readers depend on, and every green message claimed the latter.**
+
+- **`DO NOT PUBLISH` now fails the build.** It printed a banner and exited 0, so a file
+  flagged unfit for publication deployed and the warning scrolled past in a build log. The
+  one mechanism built for "well-formed but unfit" was advisory in every automated path.
+- **The content contract now covers `.njk`.** Five reader-facing pages — carrying most of
+  the site's figures — were checked by nothing. Coverage went from 1 page to 7.
+- **`published_date` is now required on timeseries points.** The single-vintage rule keyed on
+  a field it did not require, so removing the dates made vintage-mixing undetectable while
+  the run still printed "dated".
+- **Unclosed tokens are caught.** Every regex required the closing pair, so `{{ref` shipped
+  as visible junk with all checks green.
+- **`NaN` in attributes is caught.** The detector stripped tags before searching, so a chart
+  with broken coordinates rendered blank while every text node stayed clean.
+- **Same-page fragments are checked**, and a chart series with no path data fails.
+- **The robots guard now requires the rule under `User-agent: *`.** A `Disallow` under one
+  named bot satisfied it while everything else was allowed.
+- **`check-sources` runs in CI** — it previously ran in no pipeline at all — and now covers
+  all four timeseries and every chart source URL. It immediately caught a NAO URL invented
+  for the costs page rather than taken from the data layer.
+- **CI runs weekly on a schedule.** Time-based rules — the twelve-month claim expiry, link
+  rot — could only fire when someone happened to push.
+- **Every success message was rewritten to claim only what it verifies.** "All sourced,
+  dated, graded and singly held" was false on three counts.
+
+### Changed — the balance rule is replaced by a representation floor
+
+The two-thirds cap counted card labels rather than corrective content, and the audit found
+it blocking the right thing. A claim's direction records *whose claim* is corrected, and
+correcting a restrictionist claim **serves** pro-migration readers. So a cap on
+restrictionist-labelled claims capped how much the site could serve that side.
+
+Concretely, it blocked adding "immigrants are a drain on the public finances" — the
+correction a pro-migration reader would most want to see. A rule that prevents a correction
+is measuring the wrong thing.
+
+Replaced with a floor: at least two claims correcting each direction, no ceiling. The real
+split (now 5:2) is disclosed on the claims page with the reason, rather than a ratio implied
+to prove balance.
+
+### Added — trust mechanisms that were promised and absent
+
+- **An error-reporting route on every page.** The corrections policy asked readers to report
+  errors and gave them nowhere to do it. The footer now links to issues and the changelog.
+- **A visible pre-launch notice.** The admission that three commitments are unmet lived only
+  in `robots.txt` — addressed to crawlers, invisible to the humans who can read the site.
+- **The style guide** (`/style-guide/`), referenced live from the glossary and previously
+  non-existent. It separates the wording rules that are statistical precision from those
+  that are value judgements, and owns the second kind as choices.
+- **Period and source inside the claim card**, so a screenshot carries them, per section 8.5.4.
+- `last_reviewed` on the two pages that lacked it; "non-EU+" defined at first use; a
+  repository filename removed from reader-facing prose; a causal claim in a chart note
+  attributed to ONS rather than asserted; the glossary's superseded dataset title corrected.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.
