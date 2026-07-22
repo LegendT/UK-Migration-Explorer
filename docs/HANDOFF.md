@@ -174,6 +174,89 @@ a dash was carrying. The result is a set of comma splices, some of which change 
 13. `lib/charts.mjs:42`: `rightPad` is derived from the longest label but floored at 118, so
     it can never be narrower than the old fixed value. Correct behaviour, worth knowing.
 
+### Second audit, 22 July 2026: further defects, NOT yet fixed
+
+A separate precision-and-trust pass over the whole project. These are new, and none of them
+is in the thirteen above. Two were spot-verified by hand; the rest are quoted with file and
+line by the audit and should be confirmed as each is fixed.
+
+**HIGH, false or misleading as published**
+
+14. `content/index.njk:58-61` describes a card set that does not exist. It says "two of them
+    count people"; **three** do (net migration, asylum claims, small boats). It names
+    "returns, visas and citizenship" as running to March 2026; there are **no returns or
+    visas cards**. Three cards fall outside both windows it names: small boats is calendar
+    2025, born abroad is the 2021/22 Census, cost is FY 2024-25. VERIFIED. The paragraph
+    whose entire job is period discipline is the least disciplined on the site.
+15. `content/index.njk:38-39` says each figure shows "how much confidence **the publisher**
+    places in it". VERIFIED false. `confidence_level` is this project's own taxonomy;
+    `data/meta.json` defines `calculated` as "Derived by this project from other figures".
+    The site is attributing its own editorial judgement to ONS and the Home Office.
+16. `content/migration.njk:51`: emigration "remains well above its pre-pandemic level". It is
+    642,000 against 605,000 in 2019, **+6.1%**. It is only "well above" against the 2012-19
+    average, which the sentence does not say, and that comparison crosses the June 2021
+    methodology break the same chart's note says to treat with caution.
+17. `content/sources-and-method.md:73-82` states "A figure exists in one place only. Nothing
+    on this site copies a value from somewhere else on this site... The rules are enforced
+    automatically." All three bar charts hard-code live record values, chart summaries
+    restate them, and `scripts/validate-content.mjs:402` prints the confession that chart
+    figures "are not citations and are not covered". The internal handoff admits this; the
+    published trust page asserts the opposite. `eleventy.config.js:74` carries the same false
+    claim in a comment. **This is the most serious item in either audit: the page that asks
+    readers to trust the method misdescribes the method.**
+18. `content/style-guide.md:50-53` promises "We cite whichever title the edition we used
+    actually carries", and `data/asylum.json` breaks it on the exact dataset used as the
+    worked example: `small-boat-arrivals-calendar-year-2025` has `published_date: 2026-05-21`,
+    after the rename, but keeps the old title in `source_name`.
+19. `content/about.md:43` says there is "no second reader", while `docs/foundation.md:634`
+    still mitigates the top-rated risk (political capture, High/High) with a second reader
+    signing off the claim set, plus the two-thirds rule that has since been removed. Both
+    mitigations for the highest risk are now gone and nothing replaced either.
+
+**MEDIUM**
+
+20. `asylum.njk:51` narrates a monotonic rise over a dip: claims fell 8% in 2023
+    (95,007 to 87,427).
+21. `migration.njk:51` calls 1,441,000 the immigration peak; `data/migration.json` records
+    the peak as 1,469,000 in the year ending March 2023. A series maximum presented as
+    the peak.
+22. `dashboard.json` small-boats card (calendar 2025) carries a statistic belonging to the
+    year-ending-March-2026 record. Mixes bases inside one card.
+23. `dashboard.json` citizenship card asserts "second-highest annual total since 2005" and a
+    top-three-nationalities share that appear nowhere in `data/`.
+24. The new drain claim is thinner than its mirror: no `review_due`; `mirror_of` is a
+    direction rather than a claim id and nothing reads it; it discusses the OBR lifetime
+    figure without citing or declaring it; zero glossary links against the mirror's two.
+25. `sources-and-method.md:143` promises every page shows when its figures were last checked.
+    Pages show frontmatter `last_reviewed`, not the per-figure `retrieved_date`.
+26. `sources-and-method.md:160-161` promises a dated correction note on substantively revised
+    claims. No field, no template branch, no instance.
+27. `refused-asylum...md:67-69` says this site checks the mirror claim "separately". No such
+    claim page exists.
+28. `glossary.md:318-321` states the foreign-national share with no period and no
+    discontinuation caveat, breaking the site's own rule at `style-guide.md:25`.
+29. `costs.njk:125-126` states fee income and the Health Surcharge in the present tense with
+    no period, and the IHS record still carries "Period basis should be confirmed".
+30. Language rules in foundation section 5.2 still have no enforcing linter.
+31. `nineteen-per-cent...md:42-43` endorses "more than one in six" when the measured share is
+    16.0%, below one in six, true only via the unlabelled inference the same page says must
+    be labelled.
+
+**LOW**
+
+32. "About 224,742 cases" and "About 97,519 people": approximation prefixed to unit-exact
+    figures.
+33. `common-claims.njk:16` hard-codes the 5:2 split in prose; nothing ties it to the
+    collection, so the next claim added falsifies it silently.
+34. `review_due` is validated nowhere and is inconsistently present.
+35. `lib/charts.mjs:96,147` interpolates `note` unescaped while title and summary are escaped.
+36. The "both" direction label is defined and never used.
+37. Unit checks run only on `{{ }}` tokens, so `{% figure %}` citations in the four `.njk`
+    pages get no unit check.
+
+**Not covered by this audit:** a full read of `docs/foundation.md` for further
+document-versus-site drift, and a pass over the rendered output rather than the source.
+
 ### The lesson worth keeping
 
 A bulk substitution over prose is not a mechanical operation. The em-dash was doing
@@ -190,9 +273,19 @@ Work on UK Migration Explorer at
 Read docs/HANDOFF.md first, then CLAUDE.md and docs/foundation.md.
 
 TASK: fix everything under "OUTSTANDING DEFECTS" in the handoff.
-Thirteen items. Items 1 to 5 changed the meaning of a sentence and
-need rewriting with the sentence in view, not a find and replace.
-Item 12 is a live statistical error.
+Thirty-seven items from two audits.
+
+Start with 14 to 19, which are false statements on live pages.
+Item 17 is the most serious in the project: sources-and-method.md
+tells readers "a figure exists in one place only" and "the rules
+are enforced automatically", and neither is true of the charts.
+Either make it true or change the page; do not leave it as is.
+
+Items 1 to 5 changed meaning when a bulk regex replaced em-dashes
+with commas. Rewrite those sentences with the sentence in view,
+not by find and replace. Item 12 is a live statistical error.
+
+Items 20 to 37 are medium and low; take them after the above.
 
 Ground rules that matter on this project:
 - No em-dashes, ever. Enforced by validate-content.mjs. Fix the
@@ -206,13 +299,13 @@ Ground rules that matter on this project:
 - Negative-test every check you add, and confirm the break actually
   applied before concluding the check is broken.
 
-When the thirteen are done, run npm test and npm run build, look at
-the affected pages, then merge PR #9.
+When they are done, run npm test and npm run build, look at the
+affected pages in a browser, then merge PR #9.
 ```
 
 ## Suggested next steps
 
-1. Fix the thirteen outstanding defects above, then merge PR #9.
+1. Fix the thirty-seven outstanding defects above, then merge PR #9.
 2. Settle the two launch blockers, then remove robots.txt and its guard.
 3. Port the editorial lint from Civil Society Explorer to enforce section 5.2.
 4. Add `.pa11yci.json`; accessibility has been verified manually and by computation, never by
