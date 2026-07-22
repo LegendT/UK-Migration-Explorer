@@ -631,7 +631,7 @@ other people do to you regardless of your intent.
 | Risk | Likelihood | Impact | Mitigation (verifiable) |
 | --- | --- | --- | --- |
 | **Silent staleness** | **High** | **High** | Publish an update commitment per source; the site displays its own lateness against it. The validator reports figures older than their source's update frequency. Cap the MVP at 15-20 figures so updating is a session, not a project. |
-| Political capture | High | High | Published claim-selection criteria (8.5.2) and the two-thirds balance rule, checked at review. A second reader signs off the claim set before launch and after each revision. |
+| Political capture | High | High | Published claim-selection criteria (8.5.2). A representation floor enforced in CI: at least two claims correcting each direction, so a set that only ever corrects one side fails the build. The real split is generated from the claim set and disclosed on the claims page. The style guide separates the precision rules from the value-based choices. |
 | Misleading comparisons | High | High | The data contract, enforced in CI on every push, not by memory. Period and basis inside every card. |
 | Quote-mining and selective citation | High | Medium | Period, source and date inside the card's visual boundary and inside the share image (8.5.4). Short answers written to survive being quoted alone. |
 | Data revision confusion | High | Medium | Corrections policy with a public log (section 13.1). `published_date`, `retrieved_date` and `confidence_level` on every figure. |
@@ -642,6 +642,14 @@ other people do to you regardless of your intent.
 | Over-reliance on one source | Medium | Medium | Official sources primary, independent explainers as context. `sources.json` records the publisher of every figure. |
 | Maintainer burnout or abandonment | Medium | High | Publish the update commitment and a dated last-reviewed stamp. If the project stops, the site says so rather than quietly rotting. |
 | Legal exposure from attributed claims | Low | High | Claims are stated as circulating propositions, not attributed to named individuals, unless there is a specific reason to attribute and it has been considered. See 13.2. |
+
+**Two mitigations for political capture were withdrawn and this records what replaced them.**
+The two-thirds balance rule was removed because it blocked a correction a pro-migration
+reader would most want to see; the reasoning is in `scripts/validate-content.mjs` beside the
+floor that replaced it. The second reader signing off the claim set does not exist: this is a
+single-maintainer project and the about page says so. Nothing has replaced it, and the
+top-rated risk is therefore mitigated by published criteria, a CI-enforced floor and
+disclosure, all of which a reader can check, and by no independent judgement at all.
 
 ## 13.1 Corrections policy
 

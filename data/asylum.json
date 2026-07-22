@@ -116,11 +116,11 @@
       "date": "2025-12-31",
       "period_label": "calendar year 2025",
       "geography": "United Kingdom",
-      "source_name": "Home Office, Irregular migration to the UK detailed dataset (illegal entry routes)",
+      "source_name": "Home Office, Illegal entry routes to the UK detailed dataset",
       "source_url": "https://www.gov.uk/government/statistical-data-sets/immigration-system-statistics-data-tables#illegal-entry-routes",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
-      "notes": "Second-highest annual total on record (peak 45,774 in 2022); 13% higher than 2024. Finalised calendar-year total.",
+      "notes": "Second-highest annual total on record (peak 45,774 in 2022); 13% higher than 2024. Finalised calendar-year total. The dataset was titled 'Irregular migration to the UK detailed dataset (illegal entry routes)' until the year ending December 2025 edition; the edition used here carries the current title.",
       "confidence_level": "official"
     },
     {
