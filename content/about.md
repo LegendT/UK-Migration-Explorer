@@ -7,6 +7,7 @@ strapline: >-
   On this subject an anonymous corrective site is assumed to be astroturf by default, and
   the assumption is reasonable. So: names, money, and what we are not.
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 ---
 
 ## Who

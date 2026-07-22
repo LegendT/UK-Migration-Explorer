@@ -3,6 +3,7 @@ layout: base.njk
 permalink: /common-claims/
 title: Common claims
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 strapline: >-
   Where a claim misuses a definition, a denominator or a time period, we say so, and we
   apply the same test in every direction.
@@ -13,8 +14,12 @@ particular people. A claim qualifies for this page only if it demonstrably circu
 the error in it is statistical rather than political, if our sources can settle it, and if
 we would apply the same test to the opposite claim.</p>
 
-<p><strong>The current set corrects five restrictionist claims and two pro-migration ones.
-That is not an even split and we are not going to present it as one.</strong> Restrictionist
+{%- set restrictionist = collections.claims | countWhere("direction", "restrictionist") %}
+{%- set proMigration = collections.claims | countWhere("direction", "pro-migration") %}
+<p><strong>The current set corrects {{ restrictionist | inWords }} restrictionist claims and
+{{ proMigration | inWords }} pro-migration ones.{% if restrictionist != proMigration %} That
+is not an even split and we are not going to present it as one.{% endif %}</strong>
+Restrictionist
 misuses circulate more, so a set forced to fifty-fifty would misrepresent the field.</p>
 
 <p>What is enforced automatically, before the site builds, is a floor: at least two claims in

@@ -7,6 +7,7 @@ short_answer: >-
   and how.
 direction: pro-migration
 error_type: contested, method-dependent estimate stated as settled fact
+mirror_of: immigrants-are-a-drain-on-public-finances
 last_reviewed: 2026-07-22
 review_due: 2027-07-22
 figures:

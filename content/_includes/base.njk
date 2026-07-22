@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if claim %}Claim checked: {{ claim }}, {{ site.name }}{% elif title %}{{ title }}, {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+<title>{% if claim %}Claim checked: {{ claim }} | {{ site.name }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
 <meta name="description" content="{{ short_answer or strapline or site.strapline }}">
 <link rel="stylesheet" href="/assets/style.css">
 </head>

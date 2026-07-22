@@ -64,10 +64,11 @@ period, is not a valid comparison, and it is the comparison the claim implicitly
 
 ## The mirror claim fails too
 
-"A refusal means the claim was obviously false" is wrong for the same underlying reason,
-and this site checks it separately. A substantial share of refusals are overturned on
-appeal, which is difficult to reconcile with the idea that refusal settles the question.
-Both claims take a real and partial effect and inflate it into a total one.
+"A refusal means the claim was obviously false" is wrong for the same underlying reason. A
+substantial share of refusals are overturned on appeal, which is difficult to reconcile with
+the idea that refusal settles the question. Both claims take a real and partial effect and
+inflate it into a total one. This site does not yet have a separate check for that mirror
+claim, so it is corrected here rather than on a page of its own.
 
 ## What follows from the delay
 

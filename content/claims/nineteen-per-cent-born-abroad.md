@@ -22,8 +22,10 @@ source: Migration Observatory (University of Oxford)
 ## What the data says
 
 The most recent accredited figure for the foreign-born share of the UK population is
-{{population/foreign-born-share-of-total-uk-population}}%, from the 2021/22 Census, Census 2021 for England, Wales and Northern Ireland, and Census 2022 for Scotland. In
-absolute terms that was {{population/foreign-born-population-of-the-uk}} people.
+{{population/foreign-born-share-of-total-uk-population}}%, from the 2021/22 Census. That is
+one census run on two dates: Census 2021 for England, Wales and Northern Ireland, and Census
+2022 for Scotland. In absolute terms it was
+{{population/foreign-born-population-of-the-uk}} people.
 
 ONS discontinued its annual country-of-birth population series in October 2022. Since
 then there has been no official estimate of the foreign-born total or its share.
@@ -39,9 +41,14 @@ a measurement when nothing is currently being measured.
 This distinction matters, because the tempting correction is also wrong. Replying
 "actually it is 16%" treats a 2021 Census figure as though it described 2026. Net
 migration has been substantial in every year since the Census, so the foreign-born share
-has almost certainly risen. Someone who says "more than one in six UK residents was born
-abroad, and the share has been rising" is making a defensible statement. Someone who
-says "it is 16%" is quoting a five-year-old number as current.
+has almost certainly risen. Someone who says "about one in six UK residents was born
+abroad at the last Census, and the share has been rising since" is making a defensible
+statement, provided the second half is labelled as the inference it is. Someone who says
+"it is 16%" is quoting a five-year-old number as current.
+
+Note that one in six is 16.7%, and the measured share is 16.0%. "More than one in six" is
+not what the Census found; it is only reachable by adding the assumed rise, which is
+exactly the move this page says has to be labelled.
 
 So the accurate position is uncomfortable and worth stating plainly: the share was 16% in
 2021, it has risen since, and nobody can currently tell you by how much on an official

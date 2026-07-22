@@ -23,7 +23,8 @@ source: Home Office
 ## What the data says
 
 As at 31 March 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
-receipt of [asylum support](/what-the-words-mean#asylum-support), accommodation, subsistence, or both. Of those,
+receipt of [asylum support](/what-the-words-mean#asylum-support): accommodation,
+subsistence payments, or both. Of those,
 {{asylum/people-in-asylum-hotel-accommodation}} were in hotels, around 21% of the
 supported population.
 

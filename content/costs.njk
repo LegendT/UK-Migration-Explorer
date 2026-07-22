@@ -6,10 +6,14 @@ strapline: >-
   Audited spending figures, and what they do and do not include. This page is about what the
   system spends, not about what migration is worth.
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 eleventyExcludeFromCollections: true
 figures:
   - fiscal/asylum-accommodation-contracts-revised-10-year-cost-projecti
+  - fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night
+  - fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night
   - fiscal/government-spending-on-the-asylum-system
+  - fiscal/home-office-visa-and-immigration-fee-income
   - fiscal/immigration-health-surcharge-revenue
   - fiscal/home-office-spending-on-asylum-accommodation-and-support
   - fiscal/home-office-spending-on-asylum-hotel-accommodation
@@ -78,14 +82,16 @@ they were separate items would double-count.</p>
 <p>Hotels accounted for about 76% of the annual cost of asylum accommodation contracts while
 housing about 35% of the people in asylum accommodation. The reason is the nightly rate.</p>
 
+{% set hotelRate = "fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night" | metric %}
+{% set dispersalRate = "fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night" | metric %}
 {% barChart {
   id: 'accommodation-cost-per-night',
   bars: [
-    { name: 'Hotel place', value: 158, note: 'Average cost of a hotel place per person per night, 2024' },
-    { name: 'Dispersal accommodation', value: 20, note: 'Approximate cost per night in non-hotel dispersal accommodation' }
+    { name: 'Hotel place', ref: 'fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night', note: 'Average cost of a hotel place per person per night, 2024' },
+    { name: 'Dispersal accommodation', ref: 'fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night', note: 'Approximate cost per night in non-hotel dispersal accommodation' }
   ],
   title: 'Cost of an accommodation place per night, 2024',
-  summary: 'A hotel place cost about £158 per person per night, against roughly £20 for dispersal accommodation, around eight times as much.',
+  summary: 'A hotel place cost about £' ~ (hotelRate.value | number) ~ ' per person per night, roughly eight times the £' ~ (dispersalRate.value | number) ~ ' rate for dispersal accommodation.',
   unit: '£ per night',
   source: 'National Audit Office, The Home Office\'s asylum accommodation contracts',
   sourceUrl: 'https://www.nao.org.uk/wp-content/uploads/2025/05/home-offices-asylum-accommodation-contracts.pdf',
@@ -115,15 +121,21 @@ category before repeating any of them.</p>
 
 <p>The three asylum accommodation contracts running from 2019 to 2029 are now projected to
 cost <strong>£{% figure "fiscal/asylum-accommodation-contracts-revised-10-year-cost-projecti" %}
-billion</strong> over their lifetime, against an original estimate of about £4.5 billion, more than three times as much.</p>
+billion</strong> over their lifetime, more than three times the original estimate of about
+£4.5 billion.</p>
 
 <p>This is a projection across a ten-year contract period, not an annual figure, and it must
 not be compared with the annual figures above.</p>
 
 <h2>What this page leaves out, and why</h2>
 
-<p><strong>Immigration fee income.</strong> The Home Office collects around £3 billion in visa
-and immigration fees and about £{% figure "fiscal/immigration-health-surcharge-revenue" %} billion from the Immigration Health Surcharge. Those are
+<p><strong>Immigration fee income.</strong> In 2024 the Home Office collected around
+£{% figure "fiscal/home-office-visa-and-immigration-fee-income" %} billion in visa and
+immigration fees and about
+£{% figure "fiscal/immigration-health-surcharge-revenue" %} billion from the Immigration
+Health Surcharge. Both come from a House of Commons Library briefing that does not state
+which twelve months it covers, so read them as approximate annual figures rather than as a
+matched pair with the audited spending above. They are also
 immigration-wide figures, not asylum ones. Setting them against asylum spending to show the
 system "pays for itself" would compare two different populations, and it is the same category
 error this site corrects elsewhere.</p>

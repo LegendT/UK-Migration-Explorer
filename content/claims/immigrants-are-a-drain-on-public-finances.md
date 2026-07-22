@@ -6,22 +6,25 @@ short_answer: >-
   large cost, the estimated effect sits within roughly plus or minus 1% of GDP either way.
 direction: restrictionist
 error_type: contested, method-dependent estimate stated as settled fact
-mirror_of: pro-migration
+mirror_of: immigrants-pay-far-more-than-they-cost
 order: 7
 layout: claim.njk
 permalink: /common-claims/immigrants-are-a-drain-on-public-finances/
 suppressPageHeader: true
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 period: studies reviewed to October 2024
 source: Migration Observatory
 figures:
   - fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp
   - fiscal/government-spending-on-the-asylum-system
+  - fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant
 ---
 
 ## What the data says
 
-Across academic studies the estimated net fiscal impact of immigration, whether positive or
+Across academic studies the estimated
+[net fiscal impact](/what-the-words-mean#fiscal-impact) of immigration, whether positive or
 negative, falls within roughly **plus or minus 1% of GDP**. That range spans zero. It is
 consistent with a modest net cost and consistent with a modest net benefit, depending on
 method.
@@ -43,15 +46,18 @@ neutral answer, and changing any one of them moves the result across zero.
 
 The aggregate also conceals differences larger than the average it reports. Fiscal
 contribution depends on age at arrival, earnings, family composition and length of stay.
-The Office for Budget Responsibility's own analysis finds a migrant arriving at 25 on
-average earnings is a substantial net contributor over a lifetime, and one on low earnings
-is not. Both are in the same average.
+The Office for Budget Responsibility's own analysis puts a migrant arriving at 25 on
+average earnings at £{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}}
+over a lifetime, and finds that one on low earnings is a net cost. Both are in the same
+average. That figure is a stylised single case, not a typical outcome, and it is quoted
+here for its spread rather than its size.
 
 ## Where the claim draws its strength
 
 Two real things get folded into it, and separating them is most of the work.
 
-**Asylum spending is real, audited and rising.** The asylum system cost
+**Asylum spending is real, audited and rising.** The
+[asylum system cost](/what-the-words-mean#asylum-cost)
 £{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25, and
 the National Audit Office says that understates it. Someone pointing at that figure is
 pointing at something true.

@@ -6,10 +6,16 @@ strapline: >-
   Net migration is a balance between two much larger flows. This page shows both, over time,
   and explains why the ONS and Home Office figures will never match.
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 eleventyExcludeFromCollections: true
 figures:
+  - migration/asylum-related-immigration
+  - migration/net-migration
   - migration/net-migration-2
+  - migration/study-related-immigration
+  - migration/total-long-term-emigration
   - migration/total-long-term-immigration
+  - migration/work-related-immigration
 ---
 <p>Long-term international migration counts moves intended to last <strong>12 months or
 more</strong>. It does not count visitors, short courses, or seasonal work under a year. In
@@ -23,11 +29,12 @@ is "a net migrant", see <a href="/common-claims/net-migration-is-arrivals/">the 
 check</a>.</p>
 
 {% set nm = series.netMigration %}
+{% set netMigration = "migration/net-migration" | metric %}
 {% lineChart {
   id: 'net-migration-over-time',
   series: [{ name: 'Net migration', points: nm.data | points }],
   title: 'UK net migration, 2012 to 2025',
-  summary: 'Net migration rose sharply from 2021, peaked in 2022 at 891,000, and has fallen in each of the last two years to 171,000.',
+  summary: 'Net migration rose sharply from 2021, peaked in 2022 at 891,000, and has fallen in each of the three years since, to ' ~ (netMigration.value | number) ~ '.',
   unit: 'people per year',
   source: 'ONS, long-term international migration, provisional: year ending December 2025',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
@@ -41,6 +48,7 @@ check</a>.</p>
 only way to see which is to look at the flows separately.</p>
 
 {% set fl = series.flows %}
+{% set emigrationTotal = "migration/total-long-term-emigration" | metric %}
 {% lineChart {
   id: 'flows-over-time',
   series: [
@@ -48,12 +56,12 @@ only way to see which is to look at the flows separately.</p>
     { name: 'Emigration', points: fl.emigration.data | points, dashed: true }
   ],
   title: 'Long-term immigration and emigration, 2012 to 2025',
-  summary: 'Immigration peaked in 2023 at 1,441,000 and has fallen since. Emigration rose from 2021 to a high of 680,000 in 2024, easing to 642,000 in 2025, and remains well above its pre-pandemic level.',
+  summary: 'Immigration was highest in 2023 on this calendar-year series, at 1,441,000, and has fallen since. Emigration rose steadily from 480,000 in 2021 to 680,000 in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.',
   unit: 'people per year',
   source: 'ONS, long-term international immigration, emigration and net migration flows, provisional',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional',
   breakAfter: 2020,
-  note: 'Between 2023 and 2024, net migration fell by around 517,000 while immigration fell by around 429,000. The difference is emigration rising by roughly 87,000 over the same period, more people leaving, not only fewer arriving.'
+  note: 'Between 2023 and 2024, net migration fell by around 517,000 while immigration fell by around 429,000. The difference is emigration rising by roughly 87,000 over the same period, more people leaving, not only fewer arriving. These are calendar years. The highest twelve-month immigration estimate ONS publishes is 1,469,000, in the year ending March 2023, a window a calendar-year series cannot show.'
 } %}
 
 <h2>Why people came</h2>
@@ -63,15 +71,18 @@ only way to see which is to look at the flows separately.</p>
 breakdown of net migration by reason, and constructing one by subtracting emigration from a
 category would not be valid.</p>
 
+{% set study = "migration/study-related-immigration" | metric %}
+{% set work = "migration/work-related-immigration" | metric %}
+{% set asylumRoute = "migration/asylum-related-immigration" | metric %}
 {% barChart {
   id: 'reason-for-migration',
   bars: [
-    { name: 'Study', value: 294000, note: 'Main applicants 277,000 plus 17,000 dependants' },
-    { name: 'Work', value: 146000, note: 'Main applicants 71,000 plus 74,000 dependants' },
-    { name: 'Asylum and humanitarian', value: 88000, note: 'Includes claims made after arriving by a regular route' }
+    { name: 'Study', ref: 'migration/study-related-immigration', note: 'Main applicants 277,000 plus 17,000 dependants' },
+    { name: 'Work', ref: 'migration/work-related-immigration', note: 'Main applicants 71,000 plus 74,000 dependants' },
+    { name: 'Asylum and humanitarian', ref: 'migration/asylum-related-immigration', note: 'Includes claims made after arriving by a regular route' }
   ],
   title: 'Reason for long-term immigration, non-EU+ arrivals, year ending December 2025',
-  summary: 'Study was the largest single reason at 294,000, followed by work at 146,000 and asylum and humanitarian routes at 88,000.',
+  summary: 'Study was the largest single reason at ' ~ (study.value | number) ~ ', followed by work at ' ~ (work.value | number) ~ ' and asylum and humanitarian routes at ' ~ (asylumRoute.value | number) ~ '.',
   unit: 'people',
   source: 'ONS, long-term international migration, provisional: year ending December 2025',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
@@ -90,8 +101,8 @@ against the other as though the gap were a discrepancy. It is not.</p>
   <tbody>
     <tr><th scope="row">Counts</th><td>People moving for 12 months or more</td><td>Visas granted</td></tr>
     <tr><th scope="row">Includes British citizens</th><td>Yes, arriving and leaving</td><td>No</td></tr>
-    <tr><th scope="row">A grant that is never used</th><td>Not counted, no move happened</td><td>Counted</td></tr>
-    <tr><th scope="row">Someone already in the UK extending</th><td>Not counted, no move happened</td><td>Counted</td></tr>
+    <tr><th scope="row">A grant that is never used</th><td>Not counted, because no move happened</td><td>Counted</td></tr>
+    <tr><th scope="row">Someone already in the UK extending</th><td>Not counted, because no move happened</td><td>Counted</td></tr>
     <tr><th scope="row">Latest period</th><td>Year ending December 2025</td><td>Year ending March 2026</td></tr>
     <tr><th scope="row">Status</th><td>Official statistics in development, provisional</td><td>Accredited official statistics</td></tr>
   </tbody>

@@ -2,9 +2,9 @@
 id: most-immigration-is-asylum
 claim: Most immigration is asylum seekers.
 short_answer: >-
-  No. Asylum accounted for around 14% of non-EU+ arrivals, that is, arrivals from outside
-  the EU, EEA and Switzerland, in the year ending December 2025. Study and work were both
-  larger.
+  No. Asylum accounted for around 14% of non-EU+ arrivals in the year ending December 2025.
+  Non-EU+ means arrivals from outside the EU, the EEA and Switzerland. Study and work were
+  both larger.
 direction: restrictionist
 error_type: category confusion
 last_reviewed: 2026-07-22

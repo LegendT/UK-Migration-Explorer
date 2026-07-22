@@ -197,8 +197,8 @@ People detected arriving by small boat across the Channel:
 
 **Why it matters.** This is one route of arrival, not the asylum system. Most people who
 arrive this way do claim asylum, but they are a subset of all claims, and the figure is
-published on several bases at once, calendar year, year ending, and year to date, which
-give three different numbers for what sounds like the same thing.
+published on three bases at once: calendar year, year ending, and year to date. Those give
+three different numbers for what sounds like the same thing.
 
 **The common mistake.** Using small boat arrivals as a proxy for asylum claims, or
 comparing figures on different bases without saying which is which.
@@ -241,7 +241,7 @@ of very different sizes:
 | --- | --- | --- |
 | Initial decision backlog | {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people (31 March 2026) | Waiting for a first Home Office decision |
 | Appeals backlog | {{asylum/asylum-appeals-backlog}} cases (31 March 2026) | Refused, appealing to the First-tier Tribunal |
-| Total casework work in progress | About {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current**, the breakdown was suspended |
+| Total casework work in progress | {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current**: the breakdown was suspended |
 
 **Why it matters.** These measure different things and move independently. The initial
 decision queue has fallen sharply while the appeals queue has risen to a record. Someone
@@ -318,7 +318,9 @@ check.
 ### Foreign national, or non-British citizen {#foreign-national}
 
 People living in the UK who do not hold British citizenship:
-{{population/non-british-share-of-uk-population}}% of the population.
+{{population/non-british-share-of-uk-population}}% of the population at the 2021/22 Census.
+As with [foreign-born](#foreign-born), ONS discontinued the annual series in October 2022,
+so there is no official figure for the current period.
 
 **Why it matters.** This is a different measure from [foreign-born](#foreign-born) and a
 smaller number. Many people born abroad have become British citizens; some people born in

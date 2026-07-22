@@ -4,6 +4,7 @@ permalink: /
 title: Overview
 suppressPageHeader: true
 last_reviewed: 2026-07-22
+review_due: 2027-07-22
 eleventyExcludeFromCollections: true
 ---
 <div class="hero">
@@ -36,7 +37,9 @@ eleventyExcludeFromCollections: true
 
 <p>Each figure below states what it counts and over what period, because without those two
 things a number on this subject is not information. Each also shows its source, when that
-source was published, and how much confidence the publisher places in it.</p>
+source was published, and
+<a href="/sources-and-method/#confidence">this site's own confidence grade</a> for it. The
+grade is our judgement about how far the figure can be relied on, not the publisher's.</p>
 
 <ul class="cards">
   {%- for card in dashboard.cards %}
@@ -55,10 +58,22 @@ source was published, and how much confidence the publisher places in it.</p>
 
 <h2>Before you compare these figures</h2>
 
-<p>They do not all cover the same period, and two of them count people while others count
-grants or events. Asylum, returns, visas and citizenship run to March 2026; net migration
-runs to December 2025. Comparing across those windows and calling the difference a change
-is not valid.</p>
+<p>They do not all cover the same period, and they do not all count the same kind of thing.
+Some count people, one counts grants, one is a share of the population and one is money
+spent. Set out together, the periods are:</p>
+
+{#- Generated from the cards themselves. The previous version of this paragraph described a
+    card set that did not exist: it named routes with no card and miscounted the ones there
+    were. A paragraph whose whole job is period discipline cannot be maintained by hand. -#}
+<ul class="periods">
+  {%- for card in dashboard.cards %}
+  {%- set m = card.ref | metric %}
+  <li><strong>{{ card.shortLabel }}</strong>: {{ m.period_label }}</li>
+  {%- endfor %}
+</ul>
+
+<p>Comparing a figure from one of those windows with a figure from another, and calling the
+difference a change, is not valid.</p>
 
 <p><a href="/sources-and-method/">How every figure on this site is sourced and recorded</a>.</p>
 
