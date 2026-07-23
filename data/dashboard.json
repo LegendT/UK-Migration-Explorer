@@ -34,6 +34,22 @@
       "whatThisMeans": "This counts people, not cases. It relates to 76,714 main-applicant applications, down 9% on the previous 12 months, but the figure remains high by historical standards. The single largest nationality was Pakistan (about 10%)."
     },
     {
+      "id": "awaiting-first-decision",
+      "ref": "asylum/asylum-backlog-people-awaiting-an-initial-decision",
+      "shortLabel": "Awaiting a first decision",
+      "display": "people",
+      "explanation": "The number of people waiting for an initial decision on an asylum claim, counted on a single day rather than over a year.",
+      "whatThisMeans": "A stock, not an intake: it is the queue on one date, and it has fallen sharply from its 2023 peak. It counts people including dependants; the same queue counted as main-applicant cases is about a quarter smaller. This is one of three separate queues, and the appeals queue has been moving the other way, so there is no single number for 'the backlog'."
+    },
+    {
+      "id": "asylum-support",
+      "ref": "asylum/people-in-receipt-of-asylum-support",
+      "shortLabel": "In asylum support",
+      "display": "people",
+      "explanation": "The number of people receiving asylum accommodation, subsistence payments, or both, counted on a single day.",
+      "whatThisMeans": "Also a stock. It includes people at every stage of the system, some waiting since well before this year, so it is not a count of recent arrivals. It excludes unaccompanied asylum-seeking children, who are supported by local authorities and counted separately."
+    },
+    {
       "id": "small-boats",
       "ref": "asylum/small-boat-arrivals-calendar-year-2025",
       "shortLabel": "Small boat arrivals",
