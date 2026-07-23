@@ -596,15 +596,30 @@ should be recorded so they are not silently reinstated:
 
 ### 9.4 One figure, one home
 
-`dashboard.json` holds no values. Its cards and its supporting denominators reference theme
-metrics by `theme/id`, and the validator rejects any card that carries its own value.
+`dashboard.json` holds no values. Every card references a theme metric by `theme/id`, and the
+validator rejects any card that carries its own value.
 
-This is not tidiness. The six dashboard figures were previously verbatim copies of theme
-figures, and four of them carried a different `metric_name` from the figure they duplicated,
-so nothing could reconcile them automatically. The first quarterly update that revised
+This is not tidiness. The dashboard figures were previously verbatim copies of theme figures,
+and four of them carried a different `metric_name` from the figure they duplicated, so
+nothing could reconcile them automatically. The first quarterly update that revised
 `asylum.json` and forgot `dashboard.json` would have published two different official values
 for the same measure, on the same site, on a project whose entire proposition is statistical
 integrity. Reference, never copy.
+
+**The rule reached the card's number and stopped at its prose.** A card's `whatThisMeans`
+paragraph was ordinary JSON text that no check read, and two cards wrote a live figure into
+it longhand. So did seven of the caveats in `meta.json`, which render on the sources page a
+couple of paragraphs below the sentence telling a reader that a current value written longhand
+anywhere in a page stops the build. Corrected 23 July 2026: the prose cites tokens, and
+`validate-content.mjs` now holds every data-file field that reaches a page to the same rule
+as a content page. A file whose job is to hold references had become the only file nobody
+scanned for values.
+
+**Deleted at the same time**, because prose nothing renders is prose that rots unwatched:
+`lastUpdated`, `referencePeriod`, `caveat`, a `supporting` block of four denominators, and
+`display` and `explanation` on every card. All six were required by the validator and
+rendered by no template, and one of the denominators reached no reader by any route.
+`dashboard.json` is now `cards`, and each card is an id, a ref, a label and one paragraph.
 
 # 10. Chart and interaction principles
 
@@ -970,6 +985,13 @@ out of the staleness protection, so a literal that equals a current metric value
 either a token or an explicit `historical_literals:` declaration. Three live values were
 hard-coded in the first draft of this content and none of the checks then in place noticed.
 
+A data file has no front matter, so it declares the same thing in a sibling key,
+`historical_literals`. There is one, in `meta.json`. Its last caveat is a worked
+reconciliation at a single vintage, immigration minus emigration against the published net
+figure, and the whole point of it is that the subtraction does not come out. Citing a live
+record for any part of that would let one revision move a number and leave the arithmetic
+around it wrong, which is the opposite of what a caveat about arithmetic should do.
+
 **That check has two strengths, and the weaker one is deliberate.** A comma-grouped value or
 one of 100 or more is distinctive enough to fail the build. Rates and money are mostly under
 100, where too many unrelated metrics share a value for a match to mean anything, 21% is both
@@ -987,6 +1009,12 @@ the claim that names it back, enforces the representation floor, scans page bodi
 vocabulary section 5.2 avoids and exempts it inside quotation marks, bans the em-dash in
 authored copy, and refuses any claim unreviewed for more than twelve months per the
 corrections policy in section 13.1.
+
+**It holds `data/` to the same rule as `content/`,** for every field that reaches a page: the
+card paragraphs in `dashboard.json`, and the caveats, confidence definitions and footer note
+in `meta.json`, and what each source covers and how often it publishes in `sources.json`.
+Fields no template renders are deliberately not scanned, because a clean scan of prose nobody
+sees would read as coverage of prose everybody sees. See 9.4 for what this caught.
 
 The language scanner runs a control on itself on every build, feeding it a sentence that must
 match and a quoted one that must not. A scanner that silently stopped matching would
@@ -1018,8 +1046,8 @@ Confidence grade     official, provisional, estimated or calculated
 - **Change from previous comparable period is dropped.** No record holds a prior value, so
   the field means sourcing and checking a second figure for every card. It is also the single
   easiest place on this site to publish an invalid comparison, because the prior figure is
-  usually on a different vintage or a revised basis. The card explanations carry the direction
-  of travel in prose, where the basis can be stated.
+  usually on a different vintage or a revised basis. The card's what-this-means paragraph
+  carries the direction of travel in prose, where the basis can be stated.
 - **"What this counts", "what this does not show" and "known caveats" are one paragraph, not
   three.** Same reasoning as merging `definition` and `caveat` into `notes` in section 9.2:
   three fields produced three thin ones. The record's fuller `notes` sit behind the card in
