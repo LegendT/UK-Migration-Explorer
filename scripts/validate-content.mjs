@@ -13,7 +13,12 @@ const claimsDir = fileURLToPath(new URL('../content/claims/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
 const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
-const REQUIRED_FRONT_MATTER = ['id', 'claim', 'short_answer', 'direction', 'error_type', 'last_reviewed'];
+// period and source are here because claim.njk renders them behind `{% if %}`, so a claim
+// that omitted them lost them from the card silently, with nothing on the page to show it.
+// Foundation 8.5.4 requires both inside the card's visual boundary: a card is going to be
+// screenshotted stripped of its context, and a period and a source are what make the
+// screenshot answerable. All seven claims already carry them; this stops the eighth not to.
+const REQUIRED_FRONT_MATTER = ['id', 'claim', 'short_answer', 'direction', 'error_type', 'last_reviewed', 'period', 'source'];
 // "both" was a third label, described on the style guide and never applied to a claim.
 // A label no claim carries is a promise to the reader that nothing keeps. Add it back in
 // this line, and on the style guide, when a genuinely two-sided misuse needs it.
