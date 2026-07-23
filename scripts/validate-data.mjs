@@ -160,21 +160,20 @@ const dashboard = read('dashboard.json');
 if (dashboard.metrics) {
   errors.push('dashboard.json: has a "metrics" array, cards must reference theme metrics by ref, not copy their values');
 }
+// Every field here is rendered. `display` and `explanation` were required and rendered by
+// nothing, as were `lastUpdated`, `referencePeriod`, `caveat` and a `supporting` block of
+// four denominators, one of which reached no reader by any route. Validated prose that no
+// page shows is prose that goes stale unwatched, in the file whose whole job is to hold
+// references rather than content.
 for (const [i, card] of (dashboard.cards ?? []).entries()) {
   const where = `dashboard.json cards[${i}] ${card.id ?? '(unidentified)'}`;
-  for (const field of ['id', 'ref', 'shortLabel', 'display', 'explanation', 'whatThisMeans']) {
+  for (const field of ['id', 'ref', 'shortLabel', 'whatThisMeans']) {
     if (!card[field]) errors.push(`${where}: missing ${field}`);
   }
   if (card.ref && !registry.has(card.ref)) {
     errors.push(`${where}: ref "${card.ref}" does not resolve to any theme metric`);
   }
   if ('value' in card) errors.push(`${where}: cards must not carry their own value`);
-}
-for (const [key, entry] of Object.entries(dashboard.supporting ?? {})) {
-  const where = `dashboard.json supporting.${key}`;
-  if (!entry.ref) errors.push(`${where}: missing ref`);
-  else if (!registry.has(entry.ref)) errors.push(`${where}: ref "${entry.ref}" does not resolve to any theme metric`);
-  if ('value' in entry) errors.push(`${where}: denominators must reference a sourced metric, not carry a bare value`);
 }
 
 // --- timeseries -----------------------------------------------------------------
