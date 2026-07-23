@@ -503,6 +503,145 @@ to prove balance.
   repository filename removed from reader-facing prose; a causal claim in a chart note
   attributed to ONS rather than asserted; the glossary's superseded dataset title corrected.
 
+### Fixed, the foundation document had drifted from the site
+
+A full read of `docs/foundation.md` against the built site, the records in `data/` and what
+the four scripts assert. Around twenty places where the document promised, described or
+assumed something the site does not do. The pattern was the one this project keeps hitting:
+something verified the source or the declaration rather than the property a reader depends
+on, and the text claimed the latter.
+
+- **Three rows of the risk register named things that did not exist.** Silent staleness, the
+  top-rated risk, claimed the site displayed its own lateness and that the validator aged
+  figures against their source's update frequency. Neither existed. Quote-mining promised a
+  share image. Abandonment promised a notice a static site cannot publish. A mitigation
+  naming something unbuilt is worse than an empty cell, because the empty cell does not tell
+  you the risk is handled.
+- **The withdrawn two-thirds balance rule survived in five places**, including an acceptance
+  criterion the published set now fails at five to two. Replaced with the representation
+  floor that is actually enforced.
+- **Four different counts of the data layer, none right**: 66, 73, eighty, and 33 outstanding
+  publication dates. It is 67 metrics plus 100 series points, with one publication date
+  outstanding and documented as unrecoverable.
+- Section 14 still listed the glossary, the claims, the methodology page and the about page
+  as outstanding or blocked. All four had shipped. Section 11 still offered a choice of
+  framework and three charting libraries, and expected a `src/` that will never exist.
+  Sections 6 and 19 were missing five publishers the site cites.
+- The claim table used a "Both" direction the validator cannot accept, and omitted a seventh
+  published claim.
+
+### Added, figures are aged against their source's publication cycle
+
+`scripts/validate-data.mjs` now reports any figure not re-checked within its own source's
+cycle, which the risk register had claimed for some time that it did. `updateFrequency` was
+being read as a required field and compared against nothing.
+
+Building it needed a link from a figure to its catalogue entry, which the contract did not
+have. A hostname cannot supply one: `www.gov.uk` serves the Home Office, the Migration
+Advisory Committee and the tribunals statistics, and several figures cite an
+`assets.publishing.service.gov.uk` hash that names no publisher at all. **`source_id` is
+therefore a new required field on all 67 theme metrics**, derived from `source_name` and
+asserted to resolve against `sources.json`.
+
+The check reports rather than failing. A source publishing a new edition does not make our
+figure wrong, it makes it worth re-checking, and a build that broke on a Tuesday because a
+quarterly release landed would be switched off inside a month. It prints on every run
+including when it finds nothing, and names the 23 figures it cannot age because their sources
+publish irregularly, plus the timeseries points, which carry no `retrieved_date`.
+
+### Changed, the MVP cap counts source releases rather than figures
+
+The cap was 15 to 20 published figures and 36 records reach a reader, so it was either
+breached or wrong. It was counting the wrong thing. Updating thirteen Home Office figures
+from one quarterly release is a single session; publishing four of them instead would save
+almost nothing while making the site worse. What predicts staleness is the number of releases
+to chase.
+
+The routine cycle is now capped at four releases and currently stands at three, covering 22
+of the 36 published figures: Home Office quarterly, ONS twice yearly, and the Ministry of
+Justice tribunals statistics quarterly. The other 14 come from sources that publish
+irregularly. The figure count follows from the cap and is recorded rather than targeted.
+
+### Fixed, live figures hard-coded in prose inside `data/`
+
+Nine current record values were written longhand in the data files, where `checkLiterals`
+never looked: it walked `content/` only. The one file whose entire job is to hold references
+and never values was the only file nobody scanned for values.
+
+Seven of the nine were in `meta.json`'s caveats, which render on `/sources-and-method/` about
+2,200 characters below the sentence telling a reader that a current value written longhand
+anywhere in a page stops the build. Among them the people-versus-cases pair, both backlog
+figures, the OBR illustrative scenario and refused entry at port: the figures those caveats
+exist to protect, frozen in prose.
+
+All nine now cite tokens, which works because `resolve-citations` runs on the built HTML
+after the partials expand. `scripts/validate-content.mjs` now holds every data-file field
+that reaches a page to the same rule as a content page, and deliberately skips the fields no
+template renders, because a clean scan of prose nobody sees would read as coverage of prose
+everybody sees. A data file has no front matter, so a deliberately frozen figure is declared
+in a sibling `historical_literals` key. There is one: the last caveat is a worked
+reconciliation at a single vintage whose whole point is that the subtraction does not come
+out, and citing a live record for any part of it would let one revision leave the arithmetic
+around it wrong.
+
+Three sub-100 values were genuine citations and became tokens. Four are coincidences,
+reviewed and left as warnings, which is what the warn class is for.
+
+### Changed, the home page
+
+- **Two cards added**, people awaiting a first decision and people in asylum support, taking
+  the set to eight. Both are what the asylum argument turns on and both were one click away
+  while the home page showed neither. Both are stocks counted on a single day, so both cards
+  say so in their first sentence.
+- **A "Checked" date on every card.** The card showed when the source published a figure but
+  not when this site last verified it, which is the date a reader needs to judge whether the
+  site is current. It was only ever in the data files.
+- **A figure with no publication date now says so** rather than rendering "Published"
+  followed by nothing. The promise was made in foundation section 2.1 and nothing implemented
+  it. Unexercised today, because the only record without a publication date is cited on no
+  page.
+
+### Removed, the dashboard fields nothing rendered
+
+`lastUpdated`, `referencePeriod`, `caveat`, a `supporting` block of four denominators, and
+`display` and `explanation` on every card. All six were required by the validator and
+rendered by no template, and one of the denominators reached no reader by any route.
+Validated prose that no page shows is prose that rots unwatched. `dashboard.json` is now
+`cards`, and a card is an id, a ref, a label and one paragraph.
+
+### Fixed, link text that named nothing
+
+"The claim check" was the text of a link on the migration, asylum and costs pages, each going
+to a different check, and the glossary said the same words twice more as plain text with no
+link at all. Every page passed the duplicate-name rule, because that rule is scoped to a
+single page and these sat one per page. Read across the site, five words pointed at five
+destinations. The home page panels had a milder version: "See the figures" and "See why that
+matters", beside a third panel whose code comment justified its own wording by claiming the
+two siblings already named what you would find. They did not.
+
+Every link to a claim check now says where it goes when read on its own, which is how anyone
+listing a page's links reads them. "Whether ..." rather than the bare claim, deliberately:
+claim text as link text would read as the site asserting the claim, which is the same reason
+`claim.njk` keeps the claim inside a "The claim" label.
+
+`scripts/check-build.mjs` now refuses a small denylist of phrases that describe no
+destination, checked against the built HTML so it catches markdown, Nunjucks and the layouts
+alike.
+
+### Changed, required front matter on a claim
+
+`period` and `source` join the required fields. `claim.njk` renders both behind a
+conditional, so a claim that omitted them lost them from the card with nothing on the page to
+show it, while foundation section 8.5.4 requires both inside the card's visual boundary. All
+seven claims already carried them; this stops the eighth not to.
+
+### Changed, the about page
+
+"Trading as Legendary Tone" is removed. It carried a commercial implication that sat
+awkwardly beside the funding statement two paragraphs below it, which says the site is
+unfunded with no advertising, sponsorship or commercial relationship. The named person was
+always the load-bearing part and it stays.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.
@@ -512,5 +651,11 @@ to prove balance.
   a live link dead trains the reader to ignore the checker. Verify them by hand.
 - Three source URLs redirect, which usually means a newer release has superseded the figure:
   the Home Office data tables anchor, and two Skills for Care pages.
-- Eight of the fourteen claims in foundation section 8.5.3 remain undrafted.
+- Eight of the fifteen claims in foundation section 8.5.3 remain undrafted. The table gained a
+  fifteenth row when the seventh published claim was found to be missing from it.
+- Ten unit-qualified figures in content and four in `data/` match a live metric value and
+  surface as warnings on every build. All were reviewed and are coincidences: several metrics
+  share a small value. Review them; do not suppress them.
+- The update commitment is unsigned and the pre-publication human review has not happened.
+  Both are launch blockers and both are decisions for the site owner.
 

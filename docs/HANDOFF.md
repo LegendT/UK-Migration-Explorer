@@ -1,141 +1,118 @@
 # Handoff, 23 July 2026
 
 State of UK Migration Explorer, and what to do next. The 37-defect list closed on 22 July.
-The design round and the accessibility round closed on 23 July. What remains before launch
-is one piece of work and two decisions.
+The design round, the accessibility round and the foundation drift read all closed on
+23 July. **Every review the site needs is done.** What remains before launch is two
+decisions, both yours.
 
 ## Start here
 
-**Both review rounds are done and merged.** PR #12 merged as `78e1ec1`. CI is green on
-`main`, and it now includes pa11y as a step that fails the build. The four commits:
-
-| Commit | |
-| --- | --- |
-| `89c039d` | `fix: correct the layout defects the design round found` |
-| `dc458f4` | `feat: measure accessibility instead of asserting it` |
-| `f449a38` | `fix: correct the defects the refinement round found in the two rounds` |
-| `f338375` | `fix: give every control on a page a name that tells it apart` |
+**The drift read is merged.** PR #14 merged as `b05c1fe`, CI green on `main`, including
+pa11y as a step that fails the build. It was the last review, and it turned into more than a
+document correction: it found two live defects in the site and produced three new mechanical
+checks.
 
 **Next, in order.**
 
 | Order | Work | |
 | --- | --- | --- |
-| 1 | **The `docs/foundation.md` drift read** | The document still promises things the site does not do. One is known, others are likely. The last piece of work. |
-| 2 | **The two decisions below**, then remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | Launch. |
+| 1 | **The two decisions below** | Only you can take them. Nothing else is waiting on anything else. |
+| 2 | Remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | Launch. Deliberate, and it comes last. |
+| 3 | `docs/UPDATING-DATA.md`, and the eight undrafted claims | See "After that". Neither is blocked by anything. |
 
-Housekeeping: `design-and-a11y-rounds` and `audit-fixes` are both merged and can be
-deleted, locally and on the remote.
+Housekeeping: five branches are merged and can be deleted, locally and on the remote.
+`audit-fixes`, `handoff-rounds`, `handoff-after-rounds`, `costs-page` and
+`design-and-a11y-rounds`. The last one reports as unmerged because it carries one extra
+commit, `62d9dba`, whose `lib/charts.mjs` change is already on `main` and whose `HANDOFF.md`
+version has been superseded twice. Nothing is lost by deleting it.
 
 ## What blocks launch
 
 Two things, both decisions, both yours.
 
 1. **The update commitment is unsigned.** `content/sources-and-method.md` proposes updating
-   within fourteen days of each source release and flags it as a proposal. An unmet
-   published target damages trust more than none.
+   within fourteen days of each source release and flags it as a proposal. An unmet published
+   target damages trust more than none. This is now a more answerable question than it was:
+   the routine cycle is **three source releases**, not thirty-six figures, and the validator
+   ages every figure against its own source's cycle before you publish.
 2. **The pre-publication human review has not happened.** The sources page commits to it.
-   Publication already has.
+   Publication already has. Every page carries a notice saying so.
 
 The robots guard exists so the site cannot become crawlable by accident. Removing it is
 deliberate, and it comes last.
 
-## What the two rounds established
+## What the drift read established
 
-Kept because it records what was verified, and more importantly what was not.
+`docs/foundation.md` is the record of intent. The site had moved and the document had not, in
+around twenty places. The pattern was the one this project keeps hitting, in prose form:
+something verified the source or the declaration rather than the property a reader depends
+on, and the text claimed the latter.
 
-**Design.** Every text pair in both palettes clears AA, computed rather than judged; the
-weakest is `--accent` on `--accent-soft` at 7.03:1 light and 6.77:1 dark. The dark scheme,
-which nobody had viewed, was sound. The defects were layout, and most had one cause:
-`li + li { margin-top: 0.35rem }`, written for prose lists, was landing on grid and flex
-children, where a margin is added to the gap rather than replacing it. It put the first
-item of every row 5.6px above its neighbours, including the nav, where it meant the
-active-page underline sat higher on the home page than on any other. Charts carried
-gridlines at 225,000 and 675,000, because the axis top was rounded and then quartered. A
-bar near the maximum drew its own value past the end of the scale. Four of the sixteen
-tables, all Markdown-authored, were not in a scrolling box at all.
+**Three risk-register rows named things that did not exist.** Silent staleness, the top-rated
+risk, claimed the site displayed its own lateness and that the validator aged figures against
+their source's update frequency. Neither existed; `updateFrequency` was a required field
+compared against nothing. Quote-mining promised a share image. Abandonment promised a notice
+a static site cannot publish. The column header is its own promise: "Mitigation (verifiable)".
 
-**Accessibility.** pa11y over all 16 pages at WCAG2AA, 0 errors, in CI as a failing step.
-That is the floor. Five things were found by hand that pa11y passed:
+**The withdrawn two-thirds balance rule survived in five places**, including an acceptance
+criterion the published set now fails at five to two.
 
-- **The scrolling regions were not operable by keyboard.** They now carry `tabindex="0"`,
-  `role="region"` and a name taken from the page's own text. Verified with dispatched
-  arrow keys, not from the markup: at 390px a chart region scrolls 0 to 160 of 177px
-  hidden, a table region 0 to 53 of 53.
-- **Every chart announced its summary twice.** `aria-labelledby` pointed at both the title
-  and the description, so the two concatenated into the accessible name while the
-  description was exposed as well.
-- **Three charts on a page gave three controls with the same name.** All called "Show the
-  figures behind this chart", each opening a different table. That is 2.4.6. Each now
-  appends its own chart title in a visually hidden span, so the visible label is unchanged.
-- **Two links on the home page shared their text and went to different places.** "What the
-  words mean", in the nav to the top of the glossary and in a panel to a single term.
-- **A broken ARIA reference was invisible.** An `aria-labelledby` pointing at a missing id
-  produces no name while the page renders and every test passes.
+**Four different counts of the data layer, none right**: 66, 73, eighty, and 33 outstanding
+publication dates. It is 67 metrics plus 100 dated series points, with one publication date
+outstanding and documented as unrecoverable.
 
-Reflow passes at 200% and at 400% (a 320px viewport) on every page, with no sideways page
-scroll. Every non-inline target clears 24px and the chart disclosure control is 888x44.
-Focus is a 3px accent outline at 7.0:1 or better against every background it lands on, in
-both palettes.
+**Correction to the previous handoff.** It said earlier handoffs claimed 167 figures and that
+"nothing in `data/` adds up to that on any reading". It does: 67 metric records plus 100
+series points is exactly 167, and that is what `validate-data.mjs` counts and prints. The
+figure was right and the correction was wrong.
 
-**What the rounds did not settle, stated rather than hidden:**
+## What the drift read changed in the site
 
-- **Chart text does not scale with a reader's font-size preference.** The axis is
-  `font-size: 13px` inside the SVG coordinate system, so it scales with the chart's
-  rendered width and with browser zoom, but not with a browser font setting. At the 32rem
-  floor it renders at 8.8px. The figures are also in a real table, which is ordinary page
-  text and does scale.
-- **At 400% zoom a chart is 265px of a 512px drawing**, so about half is reached by
-  scrolling inside the region. WCAG 1.4.10 allows this for content needing two-dimensional
-  layout, and the region is named and keyboard-scrollable, but the allowance is being used
-  rather than avoided.
-- **A line chart's series labels still sit in the hidden strip below about 700px.** The box
-  shades whichever end has more content. Removing the scroll would mean moving the labels
-  out of the SVG into an HTML legend, which is a change to the chart language rather than a
-  correction.
-- **No real screen reader was run.** Chrome's accessibility tree is the tree assistive
-  technology consumes, and it is what was read, but it is not VoiceOver or NVDA reading a
-  page aloud.
+Two defects, and three new checks.
 
-**Progressive enhancement.** All the JavaScript in this repository is build-time. The built
-site contains no `<script>`, no inline handler, no `javascript:` URL and no `.js` file, on
-any of the 16 pages. With the stylesheet disabled the pages stay usable: source order is
-skip link, notice, header, main, footer; nothing is hidden; nothing scrolls sideways; the
-heading structure carries the page. Every CSS feature used has a defined fallback, and the
-separator in a claim's meta line is a real character carrying `aria-hidden` rather than
-generated content, so it survives a stylesheet that never arrives and is still skipped by a
-screen reader.
+- **A figure with no publication date now says so.** Foundation 2.1 promised it and nothing
+  implemented it; `longDate` returns an empty string for a null, so a card would have
+  rendered "Published" followed by nothing. Currently unexercised, because the only record
+  without a publication date is cited on no page. Safe by accident until now.
+- **Nine live record values were hard-coded in prose inside `data/`**, where the literal
+  check never looked: it walked `content/` only. Seven were in `meta.json`'s caveats, which
+  render on `/sources-and-method/` about 2,200 characters below the sentence promising a
+  reader that a current value written longhand anywhere in a page stops the build. All nine
+  now cite tokens.
+- **`source_id` joins the data contract** on all 67 metrics. Nothing linked a figure to its
+  catalogue entry, and a hostname cannot: `www.gov.uk` serves the Home Office, the MAC and
+  the tribunals statistics, and several figures cite an `assets.publishing.service.gov.uk`
+  hash that names no publisher at all.
+- **Figures are aged against their source's cycle.** Reports rather than fails: a new edition
+  does not make our figure wrong, it makes it worth re-checking, and a build that broke on a
+  Tuesday because a quarterly release landed would be switched off inside a month. Prints on
+  every run including when it finds nothing, and names the 23 figures it cannot age.
+- **Link text that names nothing is refused.** "The claim check" was the text of a link on
+  three pages, each going somewhere different. Every page passed the duplicate-name rule,
+  because that rule is scoped to one page and these sat one per page.
+- **`period` and `source` are required front matter on a claim**, because `claim.njk` renders
+  both behind a conditional and a claim that omitted them lost them silently.
 
-**The tab order, and why it was left alone.** Making the scrolling regions focusable adds a
-tab stop for each, and at desktop widths some of them have nothing to scroll: 5 of 33 stops
-on `/asylum/`, 4 of 29 on `/migration/`. At 390px, where the regions are needed, nearly all
-of them do scroll. Removing the redundant ones needs runtime measurement, so without
-JavaScript the choice is all focusable or none, and all focusable is the right side of an
-asymmetry: a region that scrolls and is not focusable is a 2.1.1 barrier, while one that is
-focusable and does not scroll fails no success criterion. The named regions also earn their
-place as landmarks, five on the asylum page, named for what they hold.
+Also: two cards added to the home page, a "Checked" date on all eight, every claim-check link
+and all three home page panels named for where they go, the dashboard fields nothing rendered
+deleted, and the trading name removed from the about page.
 
 ## Where things stand
 
 - **Live:** https://ukmigrationexplorer.netlify.app (robots.txt disallows all crawlers)
-- **Preview:** https://deploy-preview-12--ukmigrationexplorer.netlify.app
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
-- **Branch:** `main`, current with origin, CI green. `design-and-a11y-rounds` and
-  `audit-fixes` are both merged and can be deleted. Start the next piece of work on a new
+- **Branch:** `main`, current with origin, CI green. Start the next piece of work on a new
   branch; this project works through PRs even solo.
-- **This document** arrived on `main` through PR #13. If you are reading it on a branch and
-  `git log origin/main -1 -- docs/HANDOFF.md` does not show that, it has not merged yet and
-  nothing below has been reviewed by anyone.
 
-16 pages build from a governed data layer of 67 metric records, in four theme files, plus
-four time series. Earlier handoffs said 167 figures; nothing in `data/` adds up to that on
-any reading, so the count above is the one that was checked. Eleventy 3, no client-side
-JavaScript, charts rendered as inline SVG at build time. Every page has now been rendered
-and looked at, at 390, 500 and 1100px, in both colour schemes.
+16 pages build from a governed data layer of **67 metric records** in four theme files, plus
+**four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
+167. **36 of those records reach a reader.** Eleventy 3, no client-side JavaScript, charts
+rendered as inline SVG at build time.
 
 | Page | |
 | --- | --- |
-| `/` | Hero, three distinction panels, six headline cards, generated period list |
-| `/what-the-words-mean/` | 23 glossary terms, anchored |
+| `/` | Hero, three distinction panels, eight headline cards, generated period list, three claim previews |
+| `/what-the-words-mean/` | 23 glossary terms in five groups, anchored |
 | `/migration/` | 3 charts, ONS vs Home Office table |
 | `/asylum/` | 3 charts, stage table, three-queues table |
 | `/costs/` | Audited spending only, nested table, per-night chart |
@@ -149,21 +126,21 @@ and looked at, at 390, 500 and 1100px, in both colour schemes.
 
 **One figure, one home.** Every published figure is a record in `data/` carrying `id`,
 `metric_name`, `value`, `unit`, `date` (period END, never publication date), `period_label`,
-`geography`, `source_name`, `source_url`, `published_date`, `retrieved_date`, `notes` and
-`confidence_level`. Pages cite records; they never restate values.
+`geography`, `source_name`, `source_id`, `source_url`, `published_date`, `retrieved_date`,
+`notes` and `confidence_level`. Pages cite records; they never restate values.
 
 **Citation syntax differs by file type.** Markdown uses `{{theme/metric-id}}`. Nunjucks uses
 `{% figure "theme/metric-id" %}`, because `{{ }}` is Nunjucks' own expression syntax and
 would be evaluated as arithmetic, silently producing `NaN`. That shipped once.
 
-**Charts cite records too.** A bar carries `ref`, not `value`, and the shortcode throws on a
-literal value or an unknown ref. Where a chart summary needs a figure inside a string, it
-reads the record through the `metric` filter:
+**Prose inside `data/` cites the same way.** A token in a data-file string resolves, because
+`resolve-citations` runs on the built HTML after Nunjucks and after the partials expand. The
+card paragraphs in `dashboard.json` and the caveats in `meta.json` are held to the same rule
+as a content page. A data file has no front matter, so a deliberately frozen figure is
+declared in a sibling `historical_literals` key.
 
-```njk
-{% set granted = "asylum/people-granted-protection-or-other-leave-at-initial-decision" | metric %}
-summary: 'Of ' ~ (decisions.value | number) ~ ' people receiving a first decision, ' ~ ...
-```
+**Charts cite records too.** A bar carries `ref`, not `value`, and the shortcode throws on a
+literal value or an unknown ref.
 
 **A token renders the formatted value only.** Units are prose: `%` attaches, `£` prefixes,
 `people` follows. The validator checks the author supplied them, in both syntaxes.
@@ -174,48 +151,55 @@ people count in rather than by dividing the top into four, every chart carries i
 as a real table, and no series is distinguished by colour alone.
 
 **Three Eleventy transforms run on the built HTML, and the order is load-bearing.**
-`resolve-citations` renders the `{{theme/id}}` tokens and block partials, and throws on
-anything unresolved. `heading-anchors` turns `{#id}` syntax into real ids.
-`scrollable-regions` then wraps any unwrapped table and gives every scrolling box a
-`tabindex`, a role and a name taken from its caption or the heading above it. Run the last
-before the second and a heading still carrying its `{#id}` names the region, shipping raw
-syntax inside an `aria-label`, where nothing on the page shows it. `check-build` caught
-exactly that.
+`resolve-citations` renders the tokens and block partials, and throws on anything unresolved.
+`heading-anchors` turns `{#id}` syntax into real ids. `scrollable-regions` then wraps any
+unwrapped table and gives every scrolling box a `tabindex`, a role and a name taken from its
+caption or the heading above it. Run the last before the second and a heading still carrying
+its `{#id}` names the region, shipping raw syntax inside an `aria-label`, where nothing on
+the page shows it. `check-build` caught exactly that.
 
 ## The checking apparatus, and its limits
 
-Five checks, all in CI, all negative-tested:
+Five checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, single-vintage series, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value written longhand |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN` in text or attributes, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, robots rule under `User-agent: *` |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value written longhand in content or in the `data/` prose that reaches a page |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
 
-**Read this before trusting a green run.** Six times in this project a checker passed while
+CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry
+and link rot, only fire if something runs.
+
+**Read this before trusting a green run.** Seven times in this project a checker passed while
 a real defect shipped. Every one had the same shape: the check verified a property of the
 *source or the declaration* rather than the property a reader depends on, and the success
-message claimed the latter. The messages state only what they verify.
+message claimed the latter. The seventh was the literal check walking `content/` and not
+`data/`, which left the one file whose entire job is holding references as the only file
+nobody scanned for values. The messages now state only what they verify.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
-value took it to 0/16. It passed all five of the accessibility defects listed above. The
-step's comment in the workflow names what it does not establish, so a green run cannot be
-read as though it did.
+value took it to 0/16. It passed all five of the accessibility defects found by hand.
 
-Known remaining gaps, published on the sources page under *What the checks do not
-establish*:
+Known remaining gaps, published on the sources page under *What the checks do not establish*:
 
 - **Prose about figures is unprotected.** Nothing verifies that a chart summary describes
   the data it sits beside. Four false summaries were found by reading, not by tooling.
 - **Single years quoted from a series are read by a person.** A chart's data come from a
   series file, but "45,537 in 2019" inside a summary is not a citation.
 - **Sub-100 figures are matched with their unit only** (`39%`, `£4.9`) and reported as
-  warnings rather than failures, because many metrics share a value. Ten warnings currently
-  surface. All ten were reviewed on 22 July and are coincidences. Review them; do not
-  suppress them.
+  warnings rather than failures, because many metrics share a value. Fourteen surface
+  currently, ten in content and four in `data/`. All were reviewed and all are coincidences.
+  Review them; do not suppress them.
+- **23 of the 67 figures cannot be aged**, because the NAO, the Commons Library, the
+  Migration Observatory and the OBR publish irregularly. The validator names them rather
+  than counting them as covered.
+- **The site does not display its own lateness to a reader.** A static build cannot know how
+  late it is at the moment someone reads it. The ageing happens before publication instead,
+  and foundation 13 says so rather than implying otherwise.
 
 ## Working practices that earned their place
 
@@ -229,23 +213,36 @@ establish*:
   genuine viewport at any width; `Emulation.setEmulatedMedia` with `prefers-color-scheme`
   gives the dark palette. Check `document.documentElement.clientWidth` before believing an
   overflow either way.
+- **Start Chrome once and attach to it; do not spawn one per screenshot.** A script that
+  launched a fresh headless Chrome per capture worked twice and then failed for the rest of
+  the session, because each spawn raced the previous instance for its `--user-data-dir`. It
+  looks like the CDP approach is broken when it is only the process management. Start one
+  instance on a known port, connect to `/json/list`, and reuse it.
 - **Read the accessibility tree, not the markup.** Chrome's tree is what assistive
   technology consumes. `Accessibility.getFullAXTree` over CDP showed the duplicated chart
-  announcement and the three identically named controls; the markup for both read as
-  correct.
+  announcement and the three identically named controls; the markup for both read as correct.
+- **Never truncate the thing you are checking for absence.** A finding that three claim cards
+  were missing `period` and `source` was wrong: the check piped each front matter through
+  `head -20` and those fields sit below the cut. Reporting a defect that does not exist costs
+  more trust than missing one, because it makes every other finding worth re-checking.
 - **Count only what can actually take focus.** Elements inside a closed `<details>` are in
   the DOM and are not focusable. Counting selectors rather than focusable elements
-  overstated the tab order cost by 60% in this session.
+  overstated the tab order cost by 60%.
 - **Beware a rule that reaches inside a utility class.** `.prelaunch p` outranks `.wrap`, so
   a shorthand `margin: 0` there silently undid the auto-centring `.wrap` was applied for.
   Set the longhand you mean.
 - **Negative-test every new check**, and confirm the break actually applied before
   concluding anything. Two "failures" in an earlier session were tests that never fired, and
-  one in this session was a search string that did not match.
+  one was a search string that did not match. Every check added on 23 July asserts the break
+  applied before reading the result.
+- **A denylist check needs a review pass, not a sweep.** Four of the sub-100 warnings look
+  exactly like the three that were real citations. Tokenising all seven would have cited the
+  wrong record in four places, which is worse than leaving them.
 - **Never `git checkout -- .` to undo a test.** It reverts everything. This cost an hour.
-  Snapshot to `/tmp` and restore from there.
-- **Do not fix by bulk substitution.** It caused the last round of defects, in prose and in
-  CSS alike.
+  Snapshot to a scratch directory and restore from there, and chain the restore with `;`
+  rather than `&&`, because a failing `grep` in the middle will otherwise skip it.
+- **Do not fix by bulk substitution.** It caused an earlier round of defects, in prose and in
+  CSS alike. Sentence by sentence, in view.
 - **Research subagents must quote a fetched URL and verbatim text per figure.** One returned
   eight values that appeared nowhere in its own evidence table. Anything unverifiable comes
   back marked UNVERIFIED and is left out.
@@ -254,66 +251,60 @@ establish*:
 
 British English. **No em-dashes** anywhere in authored copy; use a comma, colon or full stop.
 En-dashes are fine in numeric ranges. This matches the sibling projects and is enforced by
-`validate-content.mjs`. No emoji.
+`validate-content.mjs`, which scans `content/`, `docs/`, `scripts/`, `lib/`, `data/`,
+`.github/`, and the root markdown files. No emoji.
 
 ## Decisions taken rather than deferred, worth revisiting
 
 Each is cheap to reverse.
 
-From closing the defect list:
-
 1. **The second reader.** The risk register mitigated political capture, the top-rated risk,
    with a two-thirds rule that has been removed and a second reader who does not exist. It
    now records the mitigations that are real and says plainly that nothing replaced either.
    Whether to have a second reader is yours; it is already a launch blocker.
-2. **The correction note was built rather than the promise weakened.** Claims accept
+2. **The MVP cap counts source releases, not figures.** Four releases, currently three. The
+   figure count follows and is recorded rather than targeted. Reverting means picking a
+   figure number again and deciding which sixteen records come off the site.
+3. **No share image.** Building one means rendering an image per claim on a site that ships
+   no images at all. The claim card already carries period, source and date, and a
+   screenshot of it is what people share. `og:title` and `og:description` from existing front
+   matter is a smaller and different job if link previews are ever wanted.
+4. **No abandonment notice.** A static site cannot publish a notice saying it has stopped
+   being published. The twelve-month claim expiry plus the weekly cron is the real mechanism.
+5. **The staleness check reports rather than fails.** A build that broke because a quarterly
+   release landed would be switched off inside a month.
+6. **"Both" was removed as a claim direction.** Two rows of the 8.5.3 table are marked
+   "(shared)" and assigned to the side whose version circulates more, per the style guide.
+   Those two assignments are a starting position, not a finding: both claims are undrafted
+   and either label is one word to change.
+7. **The correction note was built rather than the promise weakened.** Claims accept
    `correction` and `corrected_on`, the layout renders a dated note, and the validator
    refuses one without the other. No claim carries one, and the sources page says so.
-3. **"Both" was removed as a claim direction.** One line in `DIRECTIONS` restores it.
-4. **Per-page figure check dates were not added.** The promise was reworded to what is true.
-   Deriving the oldest `retrieved_date` from each page's declared figures would make the
-   stronger version true, except on the home page, which declares none.
-5. **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
-   belongs to the year-ending-March record rather than the calendar-2025 card. It is still
-   in the record's notes and could be placed on the asylum page.
-
-From the two rounds:
-
-6. **The nav takes its own row under the brand.** It needs 993px in one row against 888px
-   available, so no gap or size tweak fits it and shortening a label like "What the words
-   mean" is an editorial call. DEBT solves the same problem by grouping items under
-   `<details>`, which would change the information architecture. The header is now three
-   lines tall on desktop.
-7. **The claims index and a claim page deliberately carry different fields.** The index has
-   a metadata line, what kind of error and how fresh the check is; the claim page has the
-   tag row, misuse type and political direction. Same component in both places invited the
-   reading that they should match.
-8. **A home page panel link was reworded** from "What the words mean" to "What a visa grant
-   counts", because it collided with the nav link of the same text going somewhere else,
-   and because its two sibling panels name what you will find rather than the page they
-   live on. One line to revert.
-9. **Two Markdown tables and the three-queues table still have no caption.** They are
+8. **Two Markdown tables and the three-queues table still have no caption.** They are
    wrapped and named from the heading above them, which uses text already on the page. A
-   caption is new prose and is yours to write. The three-queues table appears on both the
-   asylum page and the glossary with a caption on one and not the other.
-10. **In `most-immigration-is-asylum`**, two list items open with a bold term and the third
-    opens with a bold link, so the third reads as more important than its siblings. Fixing
-    it means rewriting the sentence.
+   caption is new prose and is yours to write.
+9. **In `most-immigration-is-asylum`**, two list items open with a bold term and the third
+   opens with a bold link, so the third reads as more important than its siblings. Fixing
+   it means rewriting the sentence.
+10. **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
+    belongs to the year-ending-March record rather than the calendar-2025 card. It is still
+    in the record's notes and could be placed on the asylum page.
 
 ## Not covered by any session so far
 
-- **A full read of `docs/foundation.md` for document-versus-site drift.** The risk register
-  row for silent staleness still claims the site displays its own lateness and that the
-  validator reports figures older than their source's update frequency. Neither exists.
-  Others like it are likely. The two corrected on 22 July were found by accident, not by
-  reading the document. This is the next piece of work.
-- **A real screen reader.** See above.
+- **A real screen reader.** Chrome's accessibility tree is the tree assistive technology
+  consumes, and it is what was read, but it is not VoiceOver or NVDA reading a page aloud.
+- **Anyone outside this project has been asked whether they want it.** Foundation section 14
+  keeps "talk to five people" open, and section 4.2's success measures have still not been
+  chosen. Both are process criteria in section 17.
 
 ## After that
 
 1. Settle the two decisions, then remove robots.txt and its guard.
 2. Write `docs/UPDATING-DATA.md`, modelled on DEBT's, so the update commitment has a runbook.
-3. Eight of the fourteen claims in foundation section 8.5.3 remain undrafted.
+   It is now a smaller document than it was: the cycle is three named releases, and the
+   validator tells you which figures are overdue.
+3. Eight of the fifteen claims in foundation section 8.5.3 remain undrafted.
 
 ## Sibling projects
 
@@ -335,63 +326,67 @@ Work on UK Migration Explorer at
 
 Read docs/HANDOFF.md, starting with "Start here". Then read CLAUDE.md.
 
-TASK: the foundation.md drift read. It is the last review the site
-needs before the two launch decisions are mine to make. Two pieces of
-work sit behind those decisions, not behind this: docs/UPDATING-DATA.md
-and eight undrafted claims. See "After that" in the handoff.
+Every review the site needs is done. Two decisions block launch and both are
+mine. This task is neither of them, and it is not blocked by them.
 
-docs/foundation.md is the design document, 955 lines. The site has
-moved and the document has not. Produce a list of every place it
-promises, describes or assumes something the site does not do.
+TASK: draft the outstanding claim checks. Eight of the fifteen in
+docs/foundation.md section 8.5.3 are specified and unwritten:
 
-Start with section 13, the risk register. Every drift found so far is a
-row in it, two of the twelve, and the column header is its own promise:
-"Mitigation (verifiable)".
+  Visa grants equal arrivals
+  Small boat arrivals are the whole asylum system
+  The asylum backlog is one number
+  The average migrant contributes £341,000 over their lifetime
+  Asylum hotels cost £8 million a day
+  A refusal means the original claim was obviously false
+  Local areas all carry the same pressure
+  Falling net migration means the asylum system is shrinking
 
-- Political capture named a two-thirds balance rule that had been
-  removed and a second reader who does not exist. Corrected 22 July,
-  and that correction is the model: it says what replaced them and
-  says plainly that nothing replaced the second reader.
-- Silent staleness still claims the site displays its own lateness and
-  that the validator reports figures older than their source's update
-  frequency. Neither exists. Outstanding.
+Do NOT draft all eight in one pass. Propose an order, tell me which you
+would cut and why, and draft the first two for me to read before going
+further. A claim qualifies only if all four criteria in 8.5.2 hold, and
+"our sources can settle it" is the one that will actually bite: check
+what data/ holds before promising a check, and say so if the honest
+answer is that the question is open.
 
-Do that table first. Then read the rest, because two rows is where the
-habit was noticed, not evidence of where it stops, and a document is
-not drift-free in the parts nobody has checked.
+Two of the eight need a decision from me before they can be written.
+"The asylum backlog is one number" and "Falling net migration means the
+asylum system is shrinking" are misuses common to both sides. There is
+no "both" direction: validate-content.mjs accepts restrictionist and
+pro-migration and nothing else, because a third label no claim carried
+was a promise nothing kept. The 8.5.3 table marks them "(shared)" with
+a suggested side, and that suggestion is a starting position rather
+than a finding. Ask me before you write either.
 
-Cross-check content/sources-and-method.md as you go. It makes similar
-promises to actual readers, so the same claim being wrong there is
-worse than in foundation.md, and a claim already corrected there is
-evidence foundation.md was left behind.
+Model the drafts on content/claims/immigrants-are-a-drain-on-public-finances.md
+and its mirror. Every claim needs id, claim, short_answer, direction,
+error_type, last_reviewed, review_due, period and source in front
+matter; period and source are required because the card renders them
+behind a conditional and a claim without them loses them silently.
+Figures cited in prose must be declared under figures:.
 
-To establish what the site actually does, read the artefact, not the
-intention: the built _site, the records in data/, and what the four
-scripts in scripts/ assert rather than what their names suggest. Six
-times in this project a checker passed while a real defect shipped,
-every time because something verified the source or the declaration
-rather than the property a reader depends on. That is the exact failure
-this task is looking for, in prose form.
+Anything you add must pass, and you should run these rather than assume:
+npm run validate, npm run build, npm run a11y. Every new claim page adds
+a URL to .pa11yci.json.
+
+Watch the representation floor. The published set runs five
+restrictionist to two pro-migration. The floor requires at least two in
+each direction and sets no ceiling, deliberately, because a cap once
+blocked the correction a pro-migration reader would most want to see.
+The claims page states the real split in a sentence generated from the
+set, so it cannot go stale, but read what it will say before you change
+the balance.
 
 Branch first; this project works through PRs even solo.
 
-Report findings before changing anything. For each, quote the sentence,
-say what the site actually does and how you established it, and sort
-into: the document is wrong and should be corrected, the site is wrong
-and should be fixed, or this needs my judgement about which one moves.
-Say which is which. I will tell you what to do.
-
 The handoff's "Working practices that earned their place" applies in
-full. The two that bite hardest here:
+full. The three that bite hardest here:
 
 - No em-dashes, ever. Enforced by validate-content.mjs.
-- Do not fix by bulk substitution. Correcting twenty sentences in one
-  document by sweep is exactly how an earlier round of defects was
-  caused, in prose and in CSS alike. Sentence by sentence, in view.
+- Do not fix by bulk substitution. Sentence by sentence, in view.
+- Never truncate the thing you are checking for absence. A finding in
+  the last session was wrong because a check piped front matter through
+  head -20 and the fields it was looking for sat below the cut.
 
 Stop and ask about anything that needs an editorial judgement rather
-than a correction. The document is the record of intent, so a
-disagreement between it and the site is not automatically the
-document's fault, and "make the site do what the document says" is
-sometimes the right answer.
+than a correction.
 ```
