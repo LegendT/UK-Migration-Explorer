@@ -11,8 +11,8 @@ or if a planning document exists that the backlog does not reference.
 
 ## Start here
 
-1. Read `docs/BACKLOG.md`. It has one blocking item, four scoped pieces of work and a list of
-   gaps carried deliberately.
+1. Read `docs/BACKLOG.md`. Two items block launch, four are scoped and unblocked, and a list
+   of gaps is carried deliberately. It is ordered: take the first unstarted item.
 2. Read the rest of this document, for how the project works and what not to repeat.
 3. Read the scope document for whatever you pick up. Do not re-derive it.
 
@@ -28,10 +28,9 @@ closed the other blocker.
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
 - **Branch:** `main`, current with origin, CI green. Start work on a new branch; this project
   works through PRs even solo.
-- **Housekeeping:** five merged branches still exist locally and on the remote and can be
-  deleted: `audit-fixes`, `handoff-rounds`, `handoff-after-rounds`, `costs-page` and
-  `design-and-a11y-rounds`. The last reports as unmerged because it carries one stray commit
-  whose `lib/charts.mjs` change is already on `main`; nothing is lost.
+Deliberately not recorded here: which branches exist, what CI last did, what is on the remote.
+That is operational state, it is discoverable in seconds, and a previous version of this
+section was wrong within the hour because branches were tidied after it was written.
 
 16 pages build from a governed data layer of **67 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
@@ -247,13 +246,10 @@ human review. docs/PRE-PUBLICATION-REVIEW.md holds the evidence for it.
 Do not attempt it, and do not treat it as done. Everything else in the
 backlog is unblocked.
 
-TASK: take the next unstarted item from docs/BACKLOG.md, unless I have
-told you otherwise in this message. If nothing else is specified, start
-with item 4, part 3: the four figures held twice, as a headline metric
-and as a series point, with nothing reconciling them. It is the smallest
-piece of real work that guards against publishing two different official
-values for the same measure, which is the failure foundation 9.4
-describes and dashboard.json was restructured to prevent.
+TASK: take the first unstarted item under "Scoped, not built" in
+docs/BACKLOG.md, unless I have told you otherwise in this message. That
+list is in recommended order and the order is maintained there, so this
+prompt does not name a task and does not go stale when one is finished.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.
