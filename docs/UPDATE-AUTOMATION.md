@@ -245,19 +245,33 @@ protecting.
 attachments and typo fixes as well as new editions. The notifier says "look at this", never
 "this changed".
 
-## One outstanding question, found while scoping
+## The check, run by hand on 23 July 2026
 
-Not a hypothetical, and it should not wait for the notifier to be built.
+Run against every GOV.UK page the site cites, as a dry run of Phase 1. **Three changes since
+the site last checked, none of which touches a published figure.**
 
-**The Home Office release behind 13 of the site's published figures reports
-`public_updated_at` of 2026-07-16.** The site records `published_date: 2026-05-21` for all of
-them, which is when that edition was first published. Something changed on that page on 16
-July, and nobody knows what.
+| Date | Change | Effect |
+| --- | --- | --- |
+| 2026-07-16 | Updated "What is being done to stop organised immigration crime?" following an ad hoc statistical release | None. The site cites six Home Office pages and that is not one of them. |
+| 2026-06-10 | Correction to sheet `CIT_02`: the **2021** citizenship grant total is now 189,803 | None. The site's citizenship figure is year ending March 2026, and 189,803 appears nowhere in the repository. |
+| 2026-06-01 | Correction to `Vis_01`: "Other work visas and exemptions" for 2025 amended from 147,778 to **26,872** | None, narrowly. The site's only `Vis_01` figure is family visas, a different row, and it is unpublished reserve. |
 
-It may well be nothing: an added attachment, a correction slip, a typo. It may be a revision
-to a figure the site publishes. Checking it is a single visit to the release page and its
-correction notice, and it is exactly the work the notifier is meant to trigger. Do it by hand
-now rather than waiting for the tooling.
+The third missed by one row. A correction of 120,906 landed in a table this site cites.
+
+### Two findings from the run that change the design
+
+**Sub-pages have no change history and inherit the parent's timestamp.** All three asylum
+sub-pages report `public_updated_at: 2026-07-16` with `change_history: []`, purely because a
+different part of the release moved. A notifier watching sub-page timestamps would fire on
+every sub-page every time any part of the release changed, which is noise that would get it
+switched off. **Watch the parent release; read its `details.change_history`.**
+
+**The higher-value target is the data tables page, not the release.** Two of the three changes
+were corrections landing on `/government/statistical-data-sets/immigration-system-statistics-data-tables`,
+which carries sixteen change-history entries with notes naming the exact table and the
+corrected value. Corrections between editions are precisely what a cadence-based check cannot
+infer, and this is where they surface. Watch it as a first-class source, not as one URL among
+many.
 
 **A changed figure can falsify prose that no check reads.** Already a known limit, published
 on the sources page. Automation makes figures change faster without making that limit
