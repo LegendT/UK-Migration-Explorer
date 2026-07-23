@@ -55,7 +55,11 @@ grade is our judgement about how far the figure can be relied on, not the publis
     <span class="period">{% if not symbolised %}{{ m.unit }} · {% endif %}{{ m.period_label }}</span>
     <p class="means">{{ card.whatThisMeans }}</p>
     <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
-    Published {{ m.published_date | longDate }}<br>
+    {#- Foundation 2.1 promises that where a publication date is not recorded the figure says
+        so rather than guessing. There was no branch here, and longDate returns an empty
+        string for a null, so the card would have rendered "Published" followed by nothing,
+        which reads as a date that failed to load rather than one that was never published. -#}
+    {% if m.published_date %}Published {{ m.published_date | longDate }}{% else %}Publication date not recorded{% endif %}<br>
     <span class="grade">{{ m.confidence_level }}</span></p>
   </li>
   {%- endfor %}
