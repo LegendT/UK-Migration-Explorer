@@ -144,8 +144,8 @@ December 2025.
 Nobody is "a net migrant". It can fall because fewer people arrived, because more people
 left, or both.
 
-**The common mistake.** Reading it as the number of people who entered the UK. See the
-claim check.
+**The common mistake.** Reading it as the number of people who entered the UK. See the full
+check on [net migration read as a count of arrivals](/common-claims/net-migration-is-arrivals/).
 
 ### Visa grant {#visa-grant}
 
@@ -358,5 +358,8 @@ on assumptions about who leaves and when, and on which collective spending is at
 to migrants.
 
 **The common mistake.** Quoting one end of the range as the answer. Both "immigrants pay
-far more in than they take out" and "immigrants are a drain" fail this test equally. See
-the claim check.
+far more in than they take out" and "immigrants are a drain" fail this test equally, and
+each is checked on its own page:
+[whether immigrants pay far more than they cost](/common-claims/immigrants-pay-far-more-than-they-cost/)
+and
+[whether immigrants are a drain on the public finances](/common-claims/immigrants-are-a-drain-on-public-finances/).
