@@ -26,9 +26,14 @@ warnings. 54 checkboxes and a sign-off block.
 
 Only the owner can do this. An hour or two of reading.
 
-**Closing it also means:** refreshing `last_reviewed` on the seven pages whose content is
-newer than their review stamp, rewriting the pre-launch banner in
-`content/_includes/base.njk`, and recording the review in `CHANGELOG.md`.
+**Closing it also means:** stamping `last_reviewed` on every page the review covers with the
+date it was done, removing the pre-launch notice from `content/_includes/base.njk` entirely,
+and recording the review in `CHANGELOG.md`.
+
+Note that `last_reviewed` was bumped to 23 July on eight pages because their content changed
+that day. **That is not this review.** The stamp means the page was last edited and read in
+the ordinary sense; the pre-publication review is the separate commitment the banner still
+declares outstanding.
 
 ### 2. Then, and only then: remove the robots rule
 
