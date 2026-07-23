@@ -12,7 +12,7 @@ review_due: 2027-07-22
 
 ## Who
 
-This site is built and maintained by **Anthony George**, trading as Legendary Tone.
+This site is built and maintained by **Anthony George**.
 
 It is the companion to the [UK Public Finances Explorer](https://ukpublicfinances.org),
 which applies the same method to government debt and borrowing: official statistics,
