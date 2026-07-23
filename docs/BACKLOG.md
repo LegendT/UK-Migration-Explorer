@@ -46,6 +46,16 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
+**This list is in recommended order. Take the first unstarted item.** The order lives here
+rather than in the handoff's prompt, so that finishing something does not leave a stale
+instruction somewhere else. Re-order it freely; that is a one-line edit and it is the only
+place the sequence is stated.
+
+The recommendation is item 4's reconciliation first, ahead of everything else here, because it
+is the smallest piece of real work that guards against publishing two different official values
+for the same measure. Note that item 4's scope document numbers that piece **part 3**, and it
+is listed first below; the scope's numbering follows its own argument rather than priority.
+
 ### 3. Release notifier and evidence check
 
 **`docs/UPDATE-AUTOMATION.md`.** Four phases. Phases 1 and 2 are each worth building alone;
