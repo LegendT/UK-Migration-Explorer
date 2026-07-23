@@ -1102,7 +1102,7 @@ Data criteria:
 
 - Every headline figure shows, on the card, its source, its period and basis, its publication date, the date this site last checked it, its confidence grade, and a caveat.
 - `node scripts/validate-data.mjs` passes, and CI enforces it on every push.
-- No figure appears in two places. The dashboard references, it does not copy.
+- The dashboard references, it does not copy, and no card carries its own value. **Not yet the broader claim this criterion once made.** Four figures are held both as a theme metric and as the latest point of a series, with nothing reconciling them: net migration, the revised prior year, and both gross flows. All four agree today, so this is a latent risk rather than a live defect, and it is tracked as item 4 in `docs/BACKLOG.md`.
 - No published figure has `published_date: null`. The validator reports the outstanding count; it must reach zero for the published subset before launch.
 - No more than four source releases are in the routine update cycle, so the update commitment is sustainable. The published figure count follows from that and is recorded, not targeted. Currently three releases and 36 figures.
 

@@ -97,17 +97,33 @@ figures are overdue.
 
 ---
 
+## Unmet acceptance criteria, which are not launch gates
+
+**The distinction matters and is easy to lose.** Foundation section 17 labels only its five
+*Trust criteria* as launch gates, and all five are met. The site itself declares one thing
+outstanding, the review above. But three of section 17's other criteria are not met, and
+calling them "gaps carried deliberately" would be a softer word than the document uses. They
+are unmet acceptance criteria, and launching with them unmet is a decision rather than an
+oversight.
+
+- **"Five target users have been spoken to, and what they said is written down."** Open since
+  June. Section 18 calls it the cheapest possible way to find out the whole thing is unwanted,
+  and puts it at a week. Of everything on this page, it is the one most worth not skipping.
+- **"Success measures are chosen and recorded."** Section 4.2 offers three candidates and says
+  to commit to one in phase 1. None has been chosen, so the project cannot be evaluated and
+  will be sustained or abandoned on feel.
+- **The two comprehension criteria**, that a reader can explain the difference between
+  immigration, emigration and net migration after reading the homepage and glossary, and can
+  see that asylum is one part of a wider system. These are not failed; they are **untested**,
+  and cannot be tested without the first item above.
+
 ## Known gaps, carried deliberately
 
-Not tasks, but they must not be forgotten either, and each is published on the site.
+Genuinely not tasks, and each is published on the site rather than only recorded here.
 
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and is what was read, but it is not VoiceOver or NVDA reading a page
   aloud.
-- **Nobody outside this project has been asked whether they want it.** Foundation 14 keeps
-  "talk to five people" open. It is a process criterion in section 17.
-- **The success measures have not been chosen.** Foundation 4.2 offers three candidates and
-  says they must be committed to in phase 1. Also a section 17 criterion.
 - **`table_reference` is unimplemented.** Home Office table identifiers survive only as prose
   inside `notes`.
 - **Prose about figures is unprotected.** Nothing verifies a chart summary describes the data
