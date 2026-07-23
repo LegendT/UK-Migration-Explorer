@@ -342,6 +342,14 @@ What belongs here is the decision rather than the design:
 - **The named risk is automation bias, not fabrication.** Phase 2 handles fabrication
   mechanically. Do not tighten the update commitment because drafting got faster; review is
   the bottleneck worth protecting.
+- **Citing a series point is scoped separately**, in `docs/SERIES-CITATIONS.md`. Nine values
+  in chart summaries are typed by hand because the citation system covers theme metrics and
+  not series points, so a chart and the sentence describing it can drift apart. Scoping it
+  found something larger: **four figures are held twice**, as a headline metric and as the
+  latest point of a series, with nothing reconciling them. A quarterly update that revised one
+  and not the other would publish two different official values for the same measure. That is
+  the failure foundation 9.4 describes, fixed between the dashboard and the theme files in
+  June and left standing between the series and the theme files.
 - **The check was run by hand on 23 July and the site is clean.** Three changes at the
   Home Office since the site last looked, and none touches a published figure: an organised
   immigration crime section the site does not cite, a correction to 2021 citizenship figures
