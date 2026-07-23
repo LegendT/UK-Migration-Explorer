@@ -106,17 +106,13 @@ generated content, so it survives a stylesheet that never arrives and is still s
 screen reader.
 
 **The tab order, and why it was left alone.** Making the scrolling regions focusable adds a
-tab stop for each. Counting only elements that can actually take focus, which excludes the
-chart data tables because a closed `<details>` renders nothing, it is 5 of 33 stops on
-`/asylum/` doing nothing at 1100px and 2 at 390px, and 4 of 29 on `/migration/`. The
-redundant ones are a desktop phenomenon; at 390px, where the regions are needed, nearly all
-of them scroll. Knowing which overflow needs measurement at runtime, so without JavaScript
-the options are all focusable or none, and all focusable is the right side to be on: a
-region that scrolls and is not focusable is a 2.1.1 barrier, while a region that is
-focusable and does not scroll fails no success criterion. Conditional logic would have to
-re-evaluate on width, zoom, font size, a user stylesheet under 1.4.12 and rotation, and
-being wrong once creates a barrier that does not exist today. The named regions also earn
-their place: five landmarks on the asylum page, named for the charts and tables they hold.
+tab stop for each, and at desktop widths some of them have nothing to scroll: 5 of 33 stops
+on `/asylum/`, 4 of 29 on `/migration/`. At 390px, where the regions are needed, nearly all
+of them do scroll. Removing the redundant ones needs runtime measurement, so without
+JavaScript the choice is all focusable or none, and all focusable is the right side of an
+asymmetry: a region that scrolls and is not focusable is a 2.1.1 barrier, while one that is
+focusable and does not scroll fails no success criterion. The named regions also earn their
+place as landmarks, five on the asylum page, named for what they hold.
 
 ## Where things stand
 
@@ -126,6 +122,9 @@ their place: five landmarks on the asylum page, named for the charts and tables 
 - **Branch:** `main`, current with origin, CI green. `design-and-a11y-rounds` and
   `audit-fixes` are both merged and can be deleted. Start the next piece of work on a new
   branch; this project works through PRs even solo.
+- **This document** arrived on `main` through PR #13. If you are reading it on a branch and
+  `git log origin/main -1 -- docs/HANDOFF.md` does not show that, it has not merged yet and
+  nothing below has been reviewed by anyone.
 
 16 pages build from a governed data layer of 67 metric records, in four theme files, plus
 four time series. Earlier handoffs said 167 figures; nothing in `data/` adds up to that on
@@ -336,49 +335,63 @@ Work on UK Migration Explorer at
 
 Read docs/HANDOFF.md, starting with "Start here". Then read CLAUDE.md.
 
-TASK: the foundation.md drift read. It is the last piece of work
-before launch; everything after it is a decision of mine.
+TASK: the foundation.md drift read. It is the last review the site
+needs before the two launch decisions are mine to make. Two pieces of
+work sit behind those decisions, not behind this: docs/UPDATING-DATA.md
+and eight undrafted claims. See "After that" in the handoff.
 
-docs/foundation.md is the design document. The site has moved and the
-document has not. Read it in full against the built site and produce a
-list of every place the document promises, describes or assumes
-something the site does not do. One is known: the risk register row for
-silent staleness claims the site displays its own lateness and that the
-validator reports figures older than their source's update frequency.
-Neither exists. Two more were found by accident on 22 July, which is
-why the whole document now needs reading rather than sampling.
+docs/foundation.md is the design document, 955 lines. The site has
+moved and the document has not. Produce a list of every place it
+promises, describes or assumes something the site does not do.
 
-Branch first; this project works through PRs even solo. The merged
-branches design-and-a11y-rounds and audit-fixes can be deleted, locally
-and on the remote.
+Start with section 13, the risk register. Every drift found so far is a
+row in it, two of the twelve, and the column header is its own promise:
+"Mitigation (verifiable)".
 
-Report findings before changing anything. For each, quote the sentence
-in foundation.md, say what the site actually does, and sort into: the
-document is wrong and should be corrected, the site is wrong and should
-be fixed, or this needs my judgement about which one moves. Say which
-is which. I will tell you what to do.
+- Political capture named a two-thirds balance rule that had been
+  removed and a second reader who does not exist. Corrected 22 July,
+  and that correction is the model: it says what replaced them and
+  says plainly that nothing replaced the second reader.
+- Silent staleness still claims the site displays its own lateness and
+  that the validator reports figures older than their source's update
+  frequency. Neither exists. Outstanding.
 
-Ground rules this project learned the hard way:
-- A green validator is necessary, never sufficient. Six times a checker
-  passed while a real defect shipped, each time because it verified the
-  source or the declaration rather than the artefact a reader depends
-  on. pa11y passed all five accessibility defects found by hand.
-- Verify the artefact, and measure the thing you are claiming. Looking
-  at a screenshot is not measuring. A banner was reported as aligned on
-  the strength of one and had not moved at all.
-- Negative-test every check you add, and confirm the break actually
-  applied before concluding anything.
-- Headless Chrome clamps --window-size to a 500px layout viewport. Use
-  CDP Emulation.setDeviceMetricsOverride for a real one, and check
-  document.documentElement.clientWidth before believing an overflow.
+Do that table first. Then read the rest, because two rows is where the
+habit was noticed, not evidence of where it stops, and a document is
+not drift-free in the parts nobody has checked.
+
+Cross-check content/sources-and-method.md as you go. It makes similar
+promises to actual readers, so the same claim being wrong there is
+worse than in foundation.md, and a claim already corrected there is
+evidence foundation.md was left behind.
+
+To establish what the site actually does, read the artefact, not the
+intention: the built _site, the records in data/, and what the four
+scripts in scripts/ assert rather than what their names suggest. Six
+times in this project a checker passed while a real defect shipped,
+every time because something verified the source or the declaration
+rather than the property a reader depends on. That is the exact failure
+this task is looking for, in prose form.
+
+Branch first; this project works through PRs even solo.
+
+Report findings before changing anything. For each, quote the sentence,
+say what the site actually does and how you established it, and sort
+into: the document is wrong and should be corrected, the site is wrong
+and should be fixed, or this needs my judgement about which one moves.
+Say which is which. I will tell you what to do.
+
+The handoff's "Working practices that earned their place" applies in
+full. The two that bite hardest here:
+
 - No em-dashes, ever. Enforced by validate-content.mjs.
-- Never `git checkout -- .` to undo a test. It reverts everything.
-  Snapshot to /tmp instead.
-- Do not fix by bulk substitution. That is what caused an earlier round
-  of defects, in prose and in CSS alike.
+- Do not fix by bulk substitution. Correcting twenty sentences in one
+  document by sweep is exactly how an earlier round of defects was
+  caused, in prose and in CSS alike. Sentence by sentence, in view.
 
 Stop and ask about anything that needs an editorial judgement rather
 than a correction. The document is the record of intent, so a
 disagreement between it and the site is not automatically the
-document's fault.
+document's fault, and "make the site do what the document says" is
+sometimes the right answer.
 ```
