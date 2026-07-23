@@ -84,6 +84,62 @@ for (const file of pages) {
     }
   }
 
+  // Every table and every chart sits in a box that scrolls sideways, and a box that
+  // scrolls has to be reachable by keyboard and has to say what it is when focus lands
+  // there. Checking the source would prove only that the transform is registered. This
+  // checks the artefact: that no table reached a reader outside such a box, and that no
+  // box reached one unnamed or unfocusable. Four markdown tables had no box at all.
+  // match.index, not indexOf: two byte-identical tables on one page would have sent every
+  // check back to the first one, and the second could then pass on the first one's wrapper.
+  for (const match of html.matchAll(/<table[\s\S]*?<\/table>/g)) {
+    if (!/<div class="scroll-x"[^>]*>\s*$/.test(html.slice(0, match.index))) {
+      errors.push(`${where}: a table is not inside a .scroll-x region, so it cannot be scrolled below its own width`);
+    }
+  }
+  for (const [, attrs] of html.matchAll(/<div class="scroll-x"([^>]*)>/g)) {
+    if (!/tabindex="0"/.test(attrs)) errors.push(`${where}: a .scroll-x region is not focusable, so it cannot be scrolled from the keyboard`);
+    if (!/role="region"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no role, so focus lands on an anonymous box`);
+    if (!/aria-label="[^"]+"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no accessible name`);
+  }
+
+  // An aria-labelledby pointing at an id that does not exist produces no name at all, and
+  // nothing on the page shows it: the chart still draws, the tests still pass, and a
+  // screen reader announces "image". The reference has to be checked, not just written.
+  for (const [, attribute, list] of html.matchAll(/\s(aria-labelledby|aria-describedby)="([^"]+)"/g)) {
+    for (const id of list.trim().split(/\s+/)) {
+      if (!(anchors.get(url) ?? new Set()).has(id)) {
+        errors.push(`${where}: ${attribute} points at #${id}, which is not an id on this page`);
+      }
+    }
+  }
+
+  // Two controls that do different things must not answer to the same name. Three charts
+  // on a page gave three disclosure controls all called "Show the figures behind this
+  // chart", each opening a different table, so anyone moving between them by keyboard or
+  // listing the page's controls had nothing to tell them apart. pa11y passes this: it can
+  // see that a control has a name, not that the name distinguishes it from its neighbour.
+  // Tags stripped, because the accessible name includes any visually hidden part.
+  const accessibleName = (markup) => markup.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+
+  const summaries = [...html.matchAll(/<summary[^>]*>([\s\S]*?)<\/summary>/g)].map((m) => accessibleName(m[1]));
+  for (const [name, count] of Object.entries(summaries.reduce((n, s) => ({ ...n, [s]: (n[s] ?? 0) + 1 }), {}))) {
+    if (count > 1) errors.push(`${where}: ${count} disclosure controls are all called "${name}", and each opens something different`);
+  }
+
+  // The same rule for links, with the exception the rule actually has: repeating a link is
+  // fine when it goes to the same place. Repeating the text while changing the destination
+  // is what leaves a reader unable to tell two links apart.
+  const destinations = new Map();
+  for (const [, href, label] of html.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
+    const name = accessibleName(label);
+    if (!name) continue;
+    if (!destinations.has(name)) destinations.set(name, new Set());
+    destinations.get(name).add(href);
+  }
+  for (const [name, hrefs] of destinations) {
+    if (hrefs.size > 1) errors.push(`${where}: "${name}" is the text of ${hrefs.size} links that go to different places`);
+  }
+
   // Structural essentials that a layout change could silently drop.
   if (!/<html lang="en-GB">/.test(html)) errors.push(`${where}: missing lang on <html>`);
   if (!/<main id="main"/.test(html)) errors.push(`${where}: missing <main id="main">`);

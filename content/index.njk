@@ -28,8 +28,12 @@ eleventyExcludeFromCollections: true
   </li>
   <li class="panel">
     <h2>A visa granted is not a person arriving</h2>
+    {#- Named for what it goes to, not for the page it lives on. As "What the words mean"
+        it was the second link on this page with that exact text, and the other one, in the
+        nav, goes to the top of the glossary rather than to this term. It also read
+        differently from the two panels beside it, which name what you will find. -#}
     <p>Permission is not a journey. Some visas are never used, and some are extensions for
-    people already here. <a href="/what-the-words-mean/#visa-grant">What the words mean</a>.</p>
+    people already here. <a href="/what-the-words-mean/#visa-grant">What a visa grant counts</a>.</p>
   </li>
 </ul>
 
@@ -51,7 +55,8 @@ grade is our judgement about how far the figure can be relied on, not the publis
     <span class="period">{% if not symbolised %}{{ m.unit }} · {% endif %}{{ m.period_label }}</span>
     <p class="means">{{ card.whatThisMeans }}</p>
     <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
-    Published {{ m.published_date | longDate }} · <span class="grade">{{ m.confidence_level }}</span></p>
+    Published {{ m.published_date | longDate }}<br>
+    <span class="grade">{{ m.confidence_level }}</span></p>
   </li>
   {%- endfor %}
 </ul>

@@ -11,11 +11,15 @@ layout: base.njk
     <h1 class="claim-text">{{ claim }}</h1>
     <p class="claim-label">The short answer</p>
     <p class="claim-answer">{{ short_answer }}</p>
+    {#- The site name was here as a byline. The header, the footer and the browser tab all
+        carry it already, and inside the card it read as one more undifferentiated item in
+        a row that needed fewer, not more. -#}
+    {#- The separator is a character with aria-hidden rather than a CSS ::before, so it is
+        skipped by a screen reader and still present when the stylesheet is not. -#}
     <p class="claim-meta">
-      <span>{{ site.name }}</span>
       <span>Reviewed {{ last_reviewed | longDate }}</span>
-      {% if period %}<span>{{ period }}</span>{% endif %}
-      {% if source %}<span>{{ source }}</span>{% endif %}
+      {% if period %}<span class="sep" aria-hidden="true">·</span><span>{{ period }}</span>{% endif %}
+      {% if source %}<span class="sep" aria-hidden="true">·</span><span>{{ source }}</span>{% endif %}
     </p>
   </div>
 
