@@ -4,8 +4,8 @@ title: What the words mean
 strapline: >-
   Migration statistics use ordinary words in precise ways. Most public disagreements about
   the numbers are really disagreements about which number is being discussed.
-last_reviewed: 2026-07-22
-review_due: 2027-07-22
+last_reviewed: 2026-07-23
+review_due: 2027-07-23
 figures:
   - migration/net-migration
   - migration/total-long-term-immigration

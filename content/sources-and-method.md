@@ -4,8 +4,8 @@ title: Sources and method
 strapline: >-
   Where every figure on this site comes from, how it is recorded, what it does not show,
   and how to tell when this site is out of date.
-last_reviewed: 2026-07-22
-review_due: 2027-07-22
+last_reviewed: 2026-07-23
+review_due: 2027-07-23
 figures:
   - migration/net-migration
   - asylum/asylum-applications
