@@ -2,33 +2,32 @@
 
 State of UK Migration Explorer, and what to do next. The 37-defect list closed on 22 July.
 The design round, the accessibility round and the foundation drift read all closed on
-23 July. **Every review the site needs is done.** What remains before launch is two
-decisions, both yours.
+23 July.
+
+**Every review that was on the list is done.** Two reviews were never on it and are still
+outstanding: a real screen reader, and asking anyone outside this project whether they want
+it. Both are in "Not covered by any session so far", and the second is a process criterion in
+foundation section 17.
 
 ## Start here
 
-**The drift read is merged.** PR #14 merged as `b05c1fe`, CI green on `main`, including
-pa11y as a step that fails the build. It was the last review, and it turned into more than a
-document correction: it found two live defects in the site and produced three new mechanical
-checks.
+**The drift read is merged.** PR #14 merged as `b05c1fe`, and the documentation refresh as
+`6ee9095`. CI is green on `main`, including pa11y as a step that fails the build.
 
-**Next, in order.**
+It was the last review on the list, and it turned into more than a document correction: three
+classes of live defect in the site, and four new mechanical checks. Both are itemised below.
 
-| Order | Work | |
+**What happens next, and what is waiting on what.**
+
+| | Work | Blocked by |
 | --- | --- | --- |
-| 1 | **The two decisions below** | Only you can take them. Nothing else is waiting on anything else. |
-| 2 | Remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | Launch. Deliberate, and it comes last. |
-| 3 | `docs/UPDATING-DATA.md`, and the eight undrafted claims | See "After that". Neither is blocked by anything. |
-
-Housekeeping: five branches are merged and can be deleted, locally and on the remote.
-`audit-fixes`, `handoff-rounds`, `handoff-after-rounds`, `costs-page` and
-`design-and-a11y-rounds`. The last one reports as unmerged because it carries one extra
-commit, `62d9dba`, whose `lib/charts.mjs` change is already on `main` and whose `HANDOFF.md`
-version has been superseded twice. Nothing is lost by deleting it.
+| **Launch path** | The two decisions below | Nothing. Only you can take them. |
+| | Then remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | The decisions. Deliberate, and it comes last. |
+| **Everything else** | `docs/UPDATING-DATA.md`, and the eight undrafted claims | Nothing. Neither waits on the decisions, and either can start today. |
 
 ## What blocks launch
 
-Two things, both decisions, both yours.
+Two things, both decisions, and only you can take them.
 
 1. **The update commitment is unsigned.** `content/sources-and-method.md` proposes updating
    within fourteen days of each source release and flags it as a proposal. An unmet published
@@ -44,9 +43,16 @@ deliberate, and it comes last.
 ## What the drift read established
 
 `docs/foundation.md` is the record of intent. The site had moved and the document had not, in
-around twenty places. The pattern was the one this project keeps hitting, in prose form:
-something verified the source or the declaration rather than the property a reader depends
-on, and the text claimed the latter.
+eighteen places on the first pass: eleven document corrections, six decisions that were the
+owner's rather than the reader's, and one live defect in the site. Applying those turned up
+three more findings, two of them further defects and one a pile of validated prose that no
+page rendered. Each was larger than the thing that led to it. The pattern throughout was the
+one this project keeps hitting, in prose form: something verified the source or the
+declaration rather than the property a reader depends on, and the text claimed the latter.
+
+One reported finding was withdrawn. Three claim cards were said to be missing `period` and
+`source`; they were not, and the check that found them had truncated each front matter above
+the fields it was looking for. See "Working practices".
 
 **Three risk-register rows named things that did not exist.** Silent staleness, the top-rated
 risk, claimed the site displayed its own lateness and that the validator aged figures against
@@ -68,7 +74,8 @@ figure was right and the correction was wrong.
 
 ## What the drift read changed in the site
 
-Two defects, and three new checks.
+Three classes of defect, and four new checks. The checks matter more than the fixes: each one
+closes a hole a reader could have fallen through again.
 
 - **A figure with no publication date now says so.** Foundation 2.1 promised it and nothing
   implemented it; `longDate` returns an empty string for a null, so a card would have
@@ -306,6 +313,14 @@ Each is cheap to reverse.
    validator tells you which figures are overdue.
 3. Eight of the fifteen claims in foundation section 8.5.3 remain undrafted.
 
+## Housekeeping
+
+Five branches are merged and can be deleted, locally and on the remote: `audit-fixes`,
+`handoff-rounds`, `handoff-after-rounds`, `costs-page` and `design-and-a11y-rounds`. The last
+reports as unmerged because it carries one extra commit, `62d9dba`, whose `lib/charts.mjs`
+change is already on `main` and whose `HANDOFF.md` version has been superseded twice. Nothing
+is lost by deleting it.
+
 ## Sibling projects
 
 - `~/Projects/DEBT` is the UK Public Finances Explorer, Eleventy, same data-contract
@@ -324,10 +339,17 @@ Each is cheap to reverse.
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
-Read docs/HANDOFF.md, starting with "Start here". Then read CLAUDE.md.
+Read docs/HANDOFF.md, starting with "Start here".
 
-Every review the site needs is done. Two decisions block launch and both are
-mine. This task is neither of them, and it is not blocked by them.
+This project has no CLAUDE.md of its own. Your global instructions at
+~/.claude/CLAUDE.md load automatically, and the project's own rules are
+in the handoff under "House style" and "Working practices that earned
+their place". An earlier version of this prompt told you to read a
+project CLAUDE.md that has never existed.
+
+Every review that was on the list is done. Two decisions block launch
+and both are mine. This task is neither of them and is not blocked by
+them.
 
 TASK: draft the outstanding claim checks. Eight of the fifteen in
 docs/foundation.md section 8.5.3 are specified and unwritten:
@@ -343,10 +365,17 @@ docs/foundation.md section 8.5.3 are specified and unwritten:
 
 Do NOT draft all eight in one pass. Propose an order, tell me which you
 would cut and why, and draft the first two for me to read before going
-further. A claim qualifies only if all four criteria in 8.5.2 hold, and
-"our sources can settle it" is the one that will actually bite: check
-what data/ holds before promising a check, and say so if the honest
-answer is that the question is open.
+further.
+
+A claim qualifies only if all four criteria in 8.5.2 hold, and "our
+sources can settle it" is the one that will bite. Check what data/ holds
+before promising a check, and say the question is open if that is the
+honest answer. One of the eight is already known to fail it: "Local
+areas all carry the same pressure" needs per-capita local authority
+figures, and data/ holds none. The only geographies in the data layer
+are United Kingdom, London and England, and the local picture is phase 4
+gated on a written harm review. Do not research it hoping otherwise;
+either drop it or tell me what it would take.
 
 Two of the eight need a decision from me before they can be written.
 "The asylum backlog is one number" and "Falling net migration means the
@@ -357,12 +386,24 @@ was a promise nothing kept. The 8.5.3 table marks them "(shared)" with
 a suggested side, and that suggestion is a starting position rather
 than a finding. Ask me before you write either.
 
-Model the drafts on content/claims/immigrants-are-a-drain-on-public-finances.md
-and its mirror. Every claim needs id, claim, short_answer, direction,
-error_type, last_reviewed, review_due, period and source in front
-matter; period and source are required because the card renders them
-behind a conditional and a claim without them loses them silently.
-Figures cited in prose must be declared under figures:.
+Two exemplars, and pick the one that matches the shape:
+net-migration-is-arrivals.md for a definitional claim, which most of
+these are, and immigrants-are-a-drain-on-public-finances.md for one
+where the honest answer is that the evidence does not settle it.
+
+Every claim needs id, claim, short_answer, direction, error_type,
+last_reviewed, review_due, period and source in front matter. period and
+source are required because the card renders them behind a conditional,
+so a claim without them loses them silently. Figures cited in prose must
+be declared under figures:.
+
+Mind mirror_of. Where two claims are the same misuse from opposite
+directions, each names the other and the validator refuses a mirror that
+is not named back; the two fiscal claims already work this way. At least
+two of the eight are candidates: the £341,000 figure sits beside the
+fiscal pair, and "a refusal means the claim was obviously false" is the
+counterpart to "almost all refused asylum seekers are eventually
+recognised", which is already drafted.
 
 Anything you add must pass, and you should run these rather than assume:
 npm run validate, npm run build, npm run a11y. Every new claim page adds
