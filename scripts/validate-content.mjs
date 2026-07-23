@@ -202,6 +202,32 @@ if (claims.length) {
   }
 }
 
+// --- outstanding work has one home ------------------------------------------------
+// A handoff is rewritten every session, and a rewrite is where work quietly falls out: this
+// project has already lost a scope document's contents that way once, by copying them into
+// the handoff and then editing the copy. docs/BACKLOG.md is the durable list, and every
+// planning document has to be referenced from it, so a scope cannot be written and forgotten.
+//
+// foundation.md is the record of intent rather than outstanding work, and HANDOFF.md and
+// BACKLOG.md are the two documents doing the tracking, so all three are exempt.
+const PLANNING_EXEMPT = new Set(['foundation.md', 'HANDOFF.md', 'BACKLOG.md']);
+const docsDir = fileURLToPath(new URL('../docs/', import.meta.url));
+try {
+  const backlog = readFileSync(`${docsDir}BACKLOG.md`, 'utf8');
+  for (const file of readdirSync(docsDir).filter((f) => f.endsWith('.md'))) {
+    if (PLANNING_EXEMPT.has(file)) continue;
+    if (!backlog.includes(file)) {
+      errors.push(`docs/BACKLOG.md: does not reference docs/${file}, so the work it describes can be lost in the next handoff rewrite. Add it, or move it under Completed.`);
+    }
+  }
+  if (!readFileSync(`${docsDir}HANDOFF.md`, 'utf8').includes('BACKLOG.md')) {
+    errors.push('docs/HANDOFF.md: does not point at docs/BACKLOG.md, which is where outstanding work lives.');
+  }
+} catch (error) {
+  if (error.code !== 'ENOENT') throw error;
+  errors.push('docs/BACKLOG.md: missing. It is the durable list of outstanding work.');
+}
+
 // --- house style: no em-dashes ------------------------------------------------
 // Matches the sibling projects' rule. The em-dash is banned in authored copy, literal or
 // URL-encoded; the en-dash stays available for numeric ranges. Data files are excluded

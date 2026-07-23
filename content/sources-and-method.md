@@ -153,18 +153,32 @@ the period on both.
 
 ## How often this is updated {#updates}
 
-> **This section needs the site owner's sign-off before publication.** The commitment below
-> is a proposal, not yet a promise. Publishing a target that is not met is worse than
-> publishing none.
+Most of this site is driven by three releases, and the commitment is to update within
+**one month** of each of them publishing new figures:
 
-The proposed commitment is to update within **fourteen days** of a source publishing new
-figures, for the Home Office quarterly release and the ONS migration release, which between
-them drive most of the site. Other sources follow as their material changes.
+| Release | How often | Figures here |
+| --- | --- | --- |
+| Home Office, immigration system statistics | Quarterly | 13 |
+| ONS, long-term international migration | Twice yearly | 7 |
+| Ministry of Justice, tribunals statistics | Quarterly | 2 |
 
-Every page shows the date it was last reviewed, and every figure carries the date it was
-last checked against its source inside the published data files. If the page date is older
-than the schedule implies, this site is late, and you should treat the figures as
-superseded rather than assume nothing has changed.
+The other fourteen published figures come from the National Audit Office, the House of
+Commons Library, the Migration Observatory and the Office for Budget Responsibility, which
+publish irregularly rather than on a cycle. Those are re-checked when they publish, and no
+schedule is promised for them, because a schedule nobody can predict is not a commitment.
+
+One month rather than something tighter because this is one person working unfunded, and a
+target that is missed is worse than a slower one that is met. The most recent full cycle took
+twenty-seven days.
+
+Every page shows the date it was last reviewed, and every figure on the home page shows the
+date it was last checked against its source. If a figure has not been checked within its
+source's publishing cycle, this site is late, and you should treat the figures as superseded
+rather than assume nothing has changed.
+
+Before anything is published, an automated check ages every figure against its own source's
+cycle and reports the ones that are overdue. That runs weekly whether or not anyone is
+working on the site.
 
 Updating is manual and deliberate. There is no automated pipeline pulling numbers straight
 onto the site, because an automated update that publishes an error is worse than a slow one
