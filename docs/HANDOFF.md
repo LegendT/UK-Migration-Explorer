@@ -342,10 +342,12 @@ What belongs here is the decision rather than the design:
 - **The named risk is automation bias, not fabrication.** Phase 2 handles fabrication
   mechanically. Do not tighten the update commitment because drafting got faster; review is
   the bottleneck worth protecting.
-- **One thing to do by hand now, without waiting for any of it.** The Home Office release
-  behind 13 published figures reports a `public_updated_at` of 2026-07-16 against the
-  2026-05-21 the site records. Something changed on that page and nobody knows what. Details
-  in the scope.
+- **The check was run by hand on 23 July and the site is clean.** Three changes at the
+  Home Office since the site last looked, and none touches a published figure: an organised
+  immigration crime section the site does not cite, a correction to 2021 citizenship figures
+  the site does not publish, and a correction to a visas table where the site's figure is a
+  different row. That last one was a change of 120,906 in a table this site cites, and it
+  missed by one row. Full results and the two design findings it produced are in the scope.
 
 ## Housekeeping
 
