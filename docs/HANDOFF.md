@@ -23,7 +23,11 @@ classes of live defect in the site, and four new mechanical checks. Both are ite
 | --- | --- | --- |
 | **Launch path** | The two decisions below | Nothing. Only you can take them. |
 | | Then remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | The decisions. Deliberate, and it comes last. |
-| **Everything else** | `docs/UPDATING-DATA.md`, and the eight undrafted claims | Nothing. Neither waits on the decisions, and either can start today. |
+| **Everything else** | The release notifier and the evidence check, phases 1 and 2 of `docs/UPDATE-AUTOMATION.md` | Nothing. Both are useful on their own. |
+| | `docs/UPDATING-DATA.md` | The update commitment, which is decision 1. Write the manual runbook before automating any of it. |
+| | The eight undrafted claims | Nothing. Two of them need a direction decision from you first. |
+
+None of the third column waits on launch, and none of it should delay launch.
 
 ## What blocks launch
 
@@ -310,8 +314,53 @@ Each is cheap to reverse.
 1. Settle the two decisions, then remove robots.txt and its guard.
 2. Write `docs/UPDATING-DATA.md`, modelled on DEBT's, so the update commitment has a runbook.
    It is now a smaller document than it was: the cycle is three named releases, and the
-   validator tells you which figures are overdue.
-3. Eight of the fifteen claims in foundation section 8.5.3 remain undrafted.
+   validator tells you which figures are overdue. Do this before automating any of it; you
+   need to be able to do the job by hand before you delegate it.
+3. **Update automation, scoped in `docs/UPDATE-AUTOMATION.md`.** Four phases, none built,
+   none of which should delay launch. Summarised below.
+4. Eight of the fifteen claims in foundation section 8.5.3 remain undrafted.
+
+## Update automation, and what was verified about it
+
+Scoped in full in `docs/UPDATE-AUTOMATION.md` on 23 July. The short version, and the
+expensive part, which is what was checked rather than assumed.
+
+**The line.** An assistant that drafts a pull request is not "an automated pipeline pulling
+numbers straight onto the site". The first keeps the human gate, the second removes it. The
+site's two strongest claims, "No figure appears here because a model asserted it" and the
+register's "never publishes figures", survive every phase below.
+
+**Phase 1, the notifier.** Nothing currently detects that a release has happened; the
+staleness check ages figures against a cadence, which is a guess. Verified working:
+
+- **GOV.UK has a JSON content API** at `https://www.gov.uk/api/content/<path>`, covering the
+  Home Office and the tribunals statistics, which is 15 of the 22 cadenced figures.
+  `sources.json` already stores collection pages rather than release slugs, which is what
+  this needs. **Read `links.documents[].public_updated_at`, not the collection's own field**:
+  for the tribunals collection the latter reads 2019 while its newest document reads
+  2026-06-11, which is the date the site records.
+- **ONS has no usable API.** The legacy `/data` endpoint was decommissioned on 2 February
+  2026, `api.beta.ons.gov.uk` 404s, and the release calendar RSS ignores its query parameter
+  and returns only ten items across all of ONS, which publishes several a day, so a weekly
+  poll would miss a migration release. What works is `<bulletin-path>/latest` and
+  `<bulletin-path>/previousreleases`, lowercase, both 200.
+
+**Phase 2, the evidence check.** Any change to a figure's `value` must carry a quote from a
+fetched source, and the check requires the new value to appear verbatim in that quote. This
+is the one that matters: it would have caught the eight fabricated figures mechanically,
+because a fabricated number cannot appear in a real quotation. 64 of the 67 figures are read
+straight off a release and quote cleanly; only three need an exemption.
+
+**Phase 3, the update prompt**, in the repository so it can be diffed. Forbidden from editing
+prose, from touching a figure outside the source being updated, and from merging.
+
+**Phase 4, telling the reader.** The sources page currently says updating is manual with no
+automated pipeline. Under Phase 3 that becomes misleading and needs rewriting. It is a
+reader-facing trust statement and needs sign-off, like the update commitment.
+
+**The risk is automation bias, not fabrication.** Phase 2 handles fabrication. The danger is
+a tidy evidence table inviting a reviewer to skim. Do not tighten the update commitment
+because drafting got faster; review is the bottleneck worth protecting.
 
 ## Housekeeping
 
@@ -335,6 +384,93 @@ is lost by deleting it.
 
 ## Prompt for a fresh session
 
+The primary task is phases 1 and 2 of the update automation, because both are useful on their
+own and neither waits on anything. An alternative prompt for the undrafted claims follows it.
+
+```
+Work on UK Migration Explorer at
+/Users/anthonygeorge/Projects/Migration Immigration and Asylum
+
+Read docs/HANDOFF.md, starting with "Start here", then
+docs/UPDATE-AUTOMATION.md in full.
+
+This project has no CLAUDE.md of its own. Your global instructions at
+~/.claude/CLAUDE.md load automatically, and the project's own rules are
+in the handoff under "House style" and "Working practices that earned
+their place".
+
+Two decisions block launch and both are mine. This task is neither, and
+it must not delay them.
+
+TASK: build phases 1 and 2 of docs/UPDATE-AUTOMATION.md. Phase 1 is a
+release notifier. Phase 2 is an evidence check on any changed figure.
+Do NOT build phase 3, the update prompt: it is unsafe before phase 2
+exists and has been exercised, and the scope says so.
+
+Build phase 2 FIRST, even though it is numbered second. It stands alone,
+it applies to updates you make by hand, and it is the mechanism that
+makes everything after it safe. The notifier is the easier half and can
+follow.
+
+The scope document already records what was verified on 23 July, with
+the endpoints and one trap. Re-verify before you rely on any of it,
+because these are live external services and it has been a while, but do
+not re-derive it from scratch.
+
+Phase 2, the evidence check. Any change to a figure's value must carry a
+quote from a fetched source, and the check must require the new value to
+appear verbatim in that quote, in both formatted and bare forms, exactly
+as checkLiterals already does. Previous values come from the base
+branch. 64 of the 67 figures are read straight off a release and quote
+cleanly; three need exemptions and the scope names them individually.
+Keep that list explicit and short, because an exemption that can be
+claimed freely is how this check rots.
+
+This check exists because a research subagent on this project once
+returned eight values that appeared nowhere in its own evidence table.
+A fabricated number cannot appear in a real quotation, which is the
+whole idea. Write a negative test that proves it: a changed value whose
+quote does not contain the digits must fail, and confirm the break
+actually applied before believing the result.
+
+Phase 1, the notifier. It reports, it never gates. Put it on the
+existing weekly cron with continue-on-error, like check-sources.mjs. The
+four irregular sources have no cadence to check and must be reported as
+unwatched rather than silently skipped, on the same principle the
+staleness check follows. Query affected figures by source_id.
+
+Anything you add must pass, and run these rather than assume:
+npm run validate, npm run build, npm run a11y.
+
+Neither phase touches a page, so the site should be byte-identical
+afterwards. Check that rather than asserting it.
+
+Branch first; this project works through PRs even solo.
+
+The handoff's "Working practices that earned their place" applies in
+full. The four that bite hardest here:
+
+- No em-dashes, ever. Enforced by validate-content.mjs.
+- Negative-test every new check, and confirm the break applied before
+  concluding anything. Two "failures" in an earlier session were tests
+  that never fired.
+- Never truncate the thing you are checking for absence. A finding in an
+  earlier session was wrong because a check piped front matter through
+  head -20 and the fields sat below the cut.
+- State what a check does NOT establish in its own success message.
+  Seven times a checker here passed while a real defect shipped, every
+  time because it verified the source or the declaration rather than the
+  property a reader depends on.
+
+Stop and ask about anything that needs an editorial judgement rather
+than a correction. Phase 4, rewriting what the sources page says about
+automation, is mine to sign off and is not part of this task.
+```
+
+### Alternative task: the undrafted claims
+
+Use this instead if the automation is not what you want next.
+
 ```
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
@@ -344,12 +480,7 @@ Read docs/HANDOFF.md, starting with "Start here".
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically, and the project's own rules are
 in the handoff under "House style" and "Working practices that earned
-their place". An earlier version of this prompt told you to read a
-project CLAUDE.md that has never existed.
-
-Every review that was on the list is done. Two decisions block launch
-and both are mine. This task is neither of them and is not blocked by
-them.
+their place".
 
 TASK: draft the outstanding claim checks. Eight of the fifteen in
 docs/foundation.md section 8.5.3 are specified and unwritten:
@@ -425,8 +556,8 @@ full. The three that bite hardest here:
 - No em-dashes, ever. Enforced by validate-content.mjs.
 - Do not fix by bulk substitution. Sentence by sentence, in view.
 - Never truncate the thing you are checking for absence. A finding in
-  the last session was wrong because a check piped front matter through
-  head -20 and the fields it was looking for sat below the cut.
+  an earlier session was wrong because a check piped front matter
+  through head -20 and the fields it was looking for sat below the cut.
 
 Stop and ask about anything that needs an editorial judgement rather
 than a correction.
