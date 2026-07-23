@@ -241,10 +241,15 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-One thing blocks launch and it is mine, not yours: the pre-publication
-human review. docs/PRE-PUBLICATION-REVIEW.md holds the evidence for it.
-Do not attempt it, and do not treat it as done. Everything else in the
-backlog is unblocked.
+Two items block launch and both are mine, not yours: the pre-publication
+human review, and then removing the robots rule.
+docs/PRE-PUBLICATION-REVIEW.md holds the evidence for the first. Do not
+attempt either, and do not treat either as done.
+
+Two more things in the backlog are also mine: talking to five target
+users, and choosing the success measures. They sit under "Unmet
+acceptance criteria" and they are not a session's work. Everything under
+"Scoped, not built" is yours and is unblocked.
 
 TASK: take the first unstarted item under "Scoped, not built" in
 docs/BACKLOG.md, unless I have told you otherwise in this message. That
