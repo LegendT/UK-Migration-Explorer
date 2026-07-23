@@ -17,13 +17,16 @@ timeseries, on Eleventy 3, with charts rendered as inline SVG at build time and 
 client-side JavaScript anywhere. The site is deployed behind a `robots.txt` that disallows
 all crawlers, and every page carries a notice saying it is unfinished.
 
-Two things block launch, both decisions for the site owner rather than tasks:
+One thing blocks launch:
 
-1. **The update commitment is unsigned.** `content/sources-and-method.md` proposes updating
-   within fourteen days of each source release and flags it as a proposal. An unmet published
-   target damages trust more than none.
-2. **The pre-publication human review has not happened.** The sources page commits to it.
-   Publication already has.
+- **The pre-publication human review has not happened.** The sources page commits to it and
+  publication already has. The evidence for it is assembled in
+  `docs/PRE-PUBLICATION-REVIEW.md`: 14 chart sentences, 21 unprotected numbers and 7 claims,
+  each set beside what the data actually says.
+
+The update commitment was signed on 23 July 2026: **one month** from each of the three
+cadenced releases, named on the sources page. Sources that publish irregularly carry no
+promised schedule.
 
 Removing `content/robots.txt` and its guard in `scripts/check-build.mjs` is the last step,
 and it is deliberate.

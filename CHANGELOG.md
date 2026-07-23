@@ -642,6 +642,26 @@ awkwardly beside the funding statement two paragraphs below it, which says the s
 unfunded with no advertising, sponsorship or commercial relationship. The named person was
 always the load-bearing part and it stays.
 
+### Changed, the update commitment is signed
+
+**One month** from each of the three releases that drive the site, replacing an unsigned
+proposal of fourteen days from two of them. The sign-off fence is removed from the sources
+page and the pre-launch banner no longer says the commitment is outstanding.
+
+Three changes of substance rather than one. The window moved from fourteen days to one month,
+because the most recent full cycle took twenty-seven days and this is one person working
+unfunded: a target that is missed damages trust more than a slower one that is met. The
+Ministry of Justice tribunals release was added, having been absent from the proposal while
+driving the appeals queue, the appeal success rate and a claim check. And the fourteen figures
+from irregular publishers are now described as carrying no promised schedule, rather than
+being covered by a vague "other sources follow as their material changes", because a schedule
+nobody can predict is not a commitment.
+
+The page also now says that an automated check ages every figure against its own source's
+cycle before anything is published, and that it runs weekly whether or not anyone is working
+on the site. That check was built the same day and is what makes the commitment enforceable
+rather than remembered.
+
 ### Outstanding
 
 - One figure has no publication date, documented and exempted; see above.
@@ -656,6 +676,9 @@ always the load-bearing part and it stays.
 - Ten unit-qualified figures in content and four in `data/` match a live metric value and
   surface as warnings on every build. All were reviewed and are coincidences: several metrics
   share a small value. Review them; do not suppress them.
-- The update commitment is unsigned and the pre-publication human review has not happened.
-  Both are launch blockers and both are decisions for the site owner.
+- The pre-publication human review has not happened. It is the last launch blocker. Its
+  evidence is assembled in `docs/PRE-PUBLICATION-REVIEW.md`.
+- Three pieces of scoped, unbuilt work, tracked in `docs/BACKLOG.md`: the release notifier and
+  evidence check, citing a series point and reconciling the four figures held twice, and the
+  eight undrafted claims.
 

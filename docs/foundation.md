@@ -879,8 +879,12 @@ build work:
   at WCAG2AA in CI as a failing step, plus five defects found by hand that pa11y passed. What
   it does not establish is recorded in `docs/HANDOFF.md`, and no real screen reader has been
   run.
-- Confirm the update commitment. The sources page proposes fourteen days from each release
-  and marks it as needing sign-off; an unmet published target is worse than none.
+- ~~Confirm the update commitment.~~ Signed 23 July 2026: **one month** from each of the three
+  cadenced releases, named on the sources page with the figure count each drives. Sources that
+  publish irregularly are re-checked when they do and carry no promised schedule, because a
+  schedule nobody can predict is not a commitment. One month rather than something tighter
+  because the most recent full cycle took twenty-seven days and this is one person working
+  unfunded; a target that is missed is worse than a slower one that is met.
 - **Run the pre-publication human review.** The sources page commits to it and publication
   has already happened, behind a robots rule. This is a launch blocker, not a task.
 

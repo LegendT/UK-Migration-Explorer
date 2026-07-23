@@ -1,8 +1,8 @@
 # Not ready for search engines yet.
 #
-# Two commitments remain unmet: the update commitment on the sources page is unsigned, and
-# the pre-publication human review it promises has not happened. Ownership and funding are
-# now stated at /about/.
+# One commitment remains unmet: the pre-publication human review the sources page promises
+# has not happened. Ownership and funding are stated at /about/, and the update commitment
+# was signed on 23 July 2026 at one month per cadenced release.
 #
 # Remove this file at launch. See docs/foundation.md section 4.2.
 
