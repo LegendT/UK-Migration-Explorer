@@ -60,6 +60,10 @@ grade is our judgement about how far the figure can be relied on, not the publis
         string for a null, so the card would have rendered "Published" followed by nothing,
         which reads as a date that failed to load rather than one that was never published. -#}
     {% if m.published_date %}Published {{ m.published_date | longDate }}{% else %}Publication date not recorded{% endif %}<br>
+    {#- The date we last checked the figure against its source, which is a different thing
+        from when the source published it. A reader judging whether this site is up to date
+        needs the second, and it was only ever in the data files. Foundation 17. -#}
+    Checked {{ m.retrieved_date | longDate }}<br>
     <span class="grade">{{ m.confidence_level }}</span></p>
   </li>
   {%- endfor %}
