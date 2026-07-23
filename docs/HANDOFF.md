@@ -1,13 +1,12 @@
-# Handoff, 22 July 2026
+# Handoff, 23 July 2026
 
-State of UK Migration Explorer, and what to do next. This replaces the version written
-earlier the same day, when 37 defects were outstanding.
+State of UK Migration Explorer, and what to do next. The 37-defect list was closed and
+merged on 22 July. What remains before launch is two review rounds and two decisions.
 
 ## Start here
 
-**The 37 defects are fixed.** `npm test` and `npm run build` pass, the tree is clean, and
-the affected pages were built and read in a browser. Four commits are on `audit-fixes` and
-pushed:
+**The 37 defects are fixed and on `main`.** PR #10 merged as `b749008`. `npm test` and
+`npm run build` pass on the merge commit. The five commits that closed the list:
 
 | Commit | |
 | --- | --- |
@@ -15,52 +14,130 @@ pushed:
 | `5ed34cf` | `fix: correct false and degraded copy across the pages` |
 | `b0759b8` | `fix: correct data notes and the risk register` |
 | `5b3975d` | `feat: check what the sources page claims is checked` |
+| `3377e7d` | `docs: rewrite the handoff for a closed defect list` |
 
-They are ordered so each step builds: the chart mechanism lands before the pages that use
-it, and the tightened validator lands last, once nothing violates it.
+**Next, in order. The first two are rounds of review, not lists of known defects.**
 
-**Next, in order:**
-
-1. **Open a pull request from `audit-fixes` to `main`.** PR #9 is **merged**, not open, and
-   the earlier handoff was wrong about that. Nothing is open now, and the branch is nine
-   commits ahead of `main`: the four above plus five from the previous session that never
-   reached `main`, including the em-dash sweep and the handoff documents.
-2. Settle the two launch blockers below, then delete `content/robots.txt` and remove the
-   guard in `scripts/check-build.mjs` that requires it.
-3. The improvements listed under *After the defects*.
+| Order | Work | Why in this order |
+| --- | --- | --- |
+| 1 | **The design and UX round** | Contrast, repetition, alignment and proximity, across all 16 pages. Nine have never been opened in a browser. Do this before accessibility, because moving things changes what needs retesting. |
+| 2 | **The accessibility round** | Verified by tooling, not by assertion. Nothing has ever run pa11y or axe against this site. |
+| 3 | **The `docs/foundation.md` drift read** | The document still promises things the site does not do. One is known, others are likely. |
+| 4 | **The two decisions**, then remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | Launch. |
 
 ## What blocks launch
 
-Two things, both decisions rather than work, both unchanged:
+Four things. Two are decisions, two are work.
 
 1. **The update commitment is unsigned.** `content/sources-and-method.md` proposes updating
    within fourteen days of each source release and flags it as a proposal. An unmet
-   published target damages trust more than none.
+   published target damages trust more than none. **Decision.**
 2. **The pre-publication human review has not happened.** The sources page commits to it.
-   Publication already has.
+   Publication already has. **Decision.**
+3. **The design and UX round has not happened.** See below. **Work.**
+4. **The accessibility round has not happened.** See below. **Work.**
 
-The guard exists so the site cannot become crawlable by accident. Removing it is deliberate.
+The robots guard exists so the site cannot become crawlable by accident. Removing it is
+deliberate, and it comes last.
+
+## Round 1: design and UX
+
+**Contrast, repetition, alignment, proximity.** The site was built to a data contract and
+checked for truthfulness. Its layout has never been reviewed as layout.
+
+**This round cannot be done from the source.** Build, serve `_site`, and look at each page
+at the widths readers use. A rendered page is the only evidence; a CSS file is not.
+
+Nine of the 16 pages have never been opened in a browser: the glossary, the style guide,
+about, and six of the seven claim pages. Only the drain claim was seen, and only because a
+CSS fix touched it.
+
+Where to start looking, from what was noticed while doing other work:
+
+- **Contrast.** The palette is in `content/assets/style.css`. Only two ratios are stated in
+  comments, both for `--accent` on `--paper`. Unchecked: `--ink-soft` on `--panel`, which is
+  every card's supporting text and every table caption; the chart text, where `.axis` is
+  13px, `.break-label` 11px and `.bar-value` 14px; and the whole dark palette under
+  `prefers-color-scheme: dark`, which no one has ever viewed. Compute the ratios rather than
+  judging them by eye.
+- **Repetition.** Three chart pages each end a chart with a note, a data table and a source
+  line, and the claim pages repeat a card, a tag row and a set of section headings. Check
+  they are one pattern rather than three near-variants. The panels on the home page and the
+  costs page are the same component doing two jobs.
+- **Alignment.** The costs table nests two levels with `.nested` and `.nested-2` padding,
+  the amount column is right-aligned by class, and the bar chart puts right-aligned labels
+  against left-aligned values. The home page cards mix a large figure, a period line and a
+  source block, none of which share a baseline.
+- **Proximity.** The chart note currently sits between the chart and the data table that
+  explains it. Card meta lines run source, date and grade together. The prelaunch banner sits
+  above the header rather than with the content it qualifies.
+
+**A warning that cost time.** Headless Chrome on this machine clamps the layout viewport to
+500px, so a screenshot taken at `--window-size=390` is a 390px crop of a 500px layout, and
+the overflow it appears to show is not real. Check
+`document.documentElement.clientWidth` before believing a narrow rendering. Render at 500px
+and at 1100px, and use a real phone or device emulation for anything narrower.
+
+## Round 2: accessibility
+
+**Verified by tooling, then by hand.** WCAG 2.2 AA is the standard. Accessibility here has
+been designed for and reasoned about, and never once measured.
+
+Port the sibling project's setup, which adds no permanent dependency. `~/Projects/DEBT`
+carries `.pa11yci.json` and these scripts:
+
+```json
+"a11y": "npx --yes pa11y --standard WCAG2AA http://localhost:8080",
+"a11y:all": "npm run build && npx --yes start-server-and-test a11y:serve http://127.0.0.1:8081 a11y:ci",
+"a11y:serve": "npx --yes http-server _site -p 8081 -s -c-1",
+"a11y:ci": "npx --yes pa11y-ci"
+```
+
+Its `.pa11yci.json` sets `standard: WCAG2AA`, a 30s timeout, a 1s wait and
+`--no-sandbox`, then lists every URL. Copy the shape and list all 16 of this site's pages.
+
+What tooling will not catch, and this site specifically needs checked by hand:
+
+- **The `.scroll-x` regions.** Every table and every chart sits in a horizontally scrolling
+  container. A scrollable region must be reachable and operable by keyboard, which usually
+  means `tabindex="0"` and an accessible name. This is a probable real failure and it repeats
+  across the site.
+- **The charts.** Each is `role="img"` with `aria-labelledby` pointing at a title and a
+  description, and each carries its figures in a `<details>` table. Check what a screen
+  reader actually announces, and that the `<details>` summary is a sensible control.
+- **Zoom to 200% and 400%**, which is where the 32rem minimum width on `.chart-svg` will be
+  felt.
+- **Focus visibility** against both palettes, and 44px targets, which the chart `<details>`
+  summary was written to meet.
+- **The dark palette**, which no one has viewed at all.
+
+Once it runs, add it to CI beside the four existing scripts. An accessibility check that
+lives only in someone's shell is the same category of promise as the ones this project has
+spent two sessions correcting.
 
 ## Where things stand
 
 - **Live:** https://ukmigrationexplorer.netlify.app (robots.txt disallows all crawlers)
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
-- **Branch:** `audit-fixes`, pushed, no open PR
+- **Branch:** `main`, current with origin. `audit-fixes` is merged and can be deleted.
+  Start the next round on a new branch; this project works through PRs even solo.
 
 16 pages build from a governed data layer of 167 figures. Eleventy 3, no client-side
-JavaScript, charts rendered as inline SVG at build time.
+JavaScript, charts rendered as inline SVG at build time. The last column is whether anyone
+has looked at the built page.
 
-| Page | |
-| --- | --- |
-| `/` | Hero, three distinction panels, six headline cards, generated period list |
-| `/what-the-words-mean/` | 23 glossary terms, anchored |
-| `/migration/` | 3 charts, ONS vs Home Office table |
-| `/asylum/` | 3 charts, stage table, three-queues table |
-| `/costs/` | Audited spending only, nested table, per-night chart |
-| `/common-claims/` | Index plus 7 claim checks, split generated from the collection |
-| `/sources-and-method/` | Catalogue, contract, limits, caveats, corrections, scope |
-| `/style-guide/` | Precision rules vs value judgements |
-| `/about/` | Owner, funding, what the site is not |
+| Page | | Seen |
+| --- | --- | --- |
+| `/` | Hero, three distinction panels, six headline cards, generated period list | yes |
+| `/what-the-words-mean/` | 23 glossary terms, anchored | **no** |
+| `/migration/` | 3 charts, ONS vs Home Office table | yes |
+| `/asylum/` | 3 charts, stage table, three-queues table | yes |
+| `/costs/` | Audited spending only, nested table, per-night chart | yes |
+| `/common-claims/` | Index plus 7 claim checks, split generated from the collection | yes |
+| `/sources-and-method/` | Catalogue, contract, limits, caveats, corrections, scope | yes |
+| `/style-guide/` | Precision rules vs value judgements | **no** |
+| `/about/` | Owner, funding, what the site is not | **no** |
+| 7 claim pages | One layout, seven documents | **1 of 7** |
 
 ## How the project works
 
@@ -73,7 +150,7 @@ JavaScript, charts rendered as inline SVG at build time.
 `{% figure "theme/metric-id" %}`, because `{{ }}` is Nunjucks' own expression syntax and
 would be evaluated as arithmetic, silently producing `NaN`. That shipped once.
 
-**Charts cite records too, as of this session.** A bar carries `ref`, not `value`, and the
+**Charts cite records too, since 22 July.** A bar carries `ref`, not `value`, and the
 shortcode throws on a literal value or an unknown ref. Where a chart summary needs a figure
 inside a string, it reads the record through the `metric` filter:
 
@@ -105,7 +182,7 @@ a real defect shipped. Every one had the same shape: the check verified a proper
 *source or the declaration* rather than the property a reader depends on, and the success
 message claimed the latter. The messages state only what they verify.
 
-What changed this session:
+What changed while the defect list was closed:
 
 - **Chart configs are no longer exempt.** `checkLiterals` stripped every `{% %}` tag before
   scanning, which took the chart configs with them, and the chart configs were the one place
@@ -126,7 +203,7 @@ Known remaining gaps, stated rather than hidden, and published on the sources pa
 - **Sub-100 figures are matched with their unit only** (`39%`, `£4.9`) and reported as
   warnings rather than failures, because many metrics share a value. Ten warnings currently
   surface, one more than before because chart configs are now scanned. All ten were reviewed
-  this session and are coincidences. Review them; do not suppress them.
+  on 22 July and are coincidences. Review them; do not suppress them.
 
 ## Working practices that earned their place
 
@@ -148,7 +225,7 @@ British English. **No em-dashes** anywhere in authored copy; use a comma, colon 
 En-dashes are fine in numeric ranges. This matches the sibling projects and is enforced by
 `validate-content.mjs`. No emoji.
 
-## Decisions taken this session, worth revisiting
+## Decisions taken closing the defect list, worth revisiting
 
 Five judgement calls were made rather than deferred. Each is cheap to reverse.
 
@@ -185,33 +262,31 @@ All three are fixed. The lesson is the same one the audit drew about prose, and 
 to any comma-separated list: a bulk substitution is not a mechanical operation. If a rule
 like this is applied again, replace dash by dash with the line in view.
 
-## Not covered
+## Not covered by any session so far
 
-- **A full read of `docs/foundation.md` for further document-versus-site drift.** The risk
-  register row for silent staleness still claims the site displays its own lateness and that
-  the validator reports figures older than their source's update frequency. Neither exists.
-  Others like it are likely.
-- **A pass over every rendered page.** Home, migration, asylum, costs, common claims, sources
-  and method, and one claim page were read in a browser this session. The style guide, about,
-  glossary and the other six claim pages were not.
+- **Design and UX as design and UX.** Round 1 above. Nothing has ever been reviewed for
+  contrast, repetition, alignment or proximity, and nine pages have not been looked at.
+- **Accessibility measured rather than reasoned about.** Round 2 above.
+- **A full read of `docs/foundation.md` for document-versus-site drift.** The risk register
+  row for silent staleness still claims the site displays its own lateness and that the
+  validator reports figures older than their source's update frequency. Neither exists.
+  Others like it are likely. The two corrected on 22 July were found by accident, not by
+  reading the document.
 
-## After the defects
+## After the rounds
 
-1. Open the PR and merge it.
-2. Settle the two launch blockers, then remove robots.txt and its guard.
-3. Add `.pa11yci.json`; accessibility has been verified manually and by computation, never by
-   tooling.
-4. Write `docs/UPDATING-DATA.md`, modelled on DEBT's, so the update commitment has a runbook.
-5. Read `docs/foundation.md` end to end against the site and correct the drift.
-6. Eight of the fourteen claims in foundation section 8.5.3 remain undrafted.
+1. Settle the two decisions, then remove robots.txt and its guard.
+2. Write `docs/UPDATING-DATA.md`, modelled on DEBT's, so the update commitment has a runbook.
+3. Eight of the fourteen claims in foundation section 8.5.3 remain undrafted.
+4. Delete the merged `audit-fixes` branch, locally and on the remote.
 
 ## Sibling projects
 
 - `~/Projects/DEBT` is the UK Public Finances Explorer, Eleventy, same data-contract
   philosophy. Its `.pa11yci.json` and `docs/UPDATING-DATA.md` are worth porting.
-- `~/Projects/UK Civil Society Explorer` has the `editorial-lint.test.js` this session's
-  language lint was modelled on. Its quoted-source problem is the same, and its positive and
-  precision controls are worth keeping in mind if the term list grows.
+- `~/Projects/UK Civil Society Explorer` has the `editorial-lint.test.js` that this
+  project's language lint was modelled on. Its quoted-source problem is the same, and its
+  positive and precision controls are worth keeping in mind if the term list grows.
 
 ## Prompt for a fresh session
 
@@ -219,24 +294,42 @@ like this is applied again, replace dash by dash with the line in view.
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
-Read docs/HANDOFF.md, then CLAUDE.md.
+Read docs/HANDOFF.md, starting with "Start here". It gives the work
+order. Then read CLAUDE.md.
 
-The 37-defect list is closed. The work now is:
-1. Open a PR from audit-fixes to main. PR #9 is already merged
-   and nothing is open; the branch is nine commits ahead.
-2. Read docs/foundation.md end to end against the live site and
-   list every place the document promises something the site does
-   not do. The risk register's silent-staleness row is one.
-   Correct the document, or build the thing, and say which.
-3. Port .pa11yci.json from ~/Projects/DEBT and run it.
+TASK: the two rounds that block launch, in this order. Branch first;
+this project works through PRs even solo.
+
+ROUND 1, design and UX: contrast, repetition, alignment, proximity.
+There is no defect list for this. You produce it. Build the site,
+serve _site, and look at all 16 pages at 500px and at 1100px. Nine
+have never been opened in a browser: the glossary, the style guide,
+about, and six of the seven claim pages. The handoff section "Round 1"
+lists where to start looking and the palette values nobody has
+checked, including the entire dark scheme.
+
+Report findings before changing anything. Sort them into what is
+broken, what is inconsistent, and what is a matter of taste, and say
+which is which. I will tell you what to fix.
+
+ROUND 2, accessibility: WCAG 2.2 AA, measured. Port the pa11y setup
+from ~/Projects/DEBT, which needs no permanent dependency, run it
+against all 16 pages, and fix what it finds. Then the things it
+cannot see: the .scroll-x containers wrapping every table and chart
+almost certainly fail keyboard operability, the charts need checking
+with a screen reader, and 200% and 400% zoom will strain the 32rem
+minimum width on the chart SVG. Add it to CI when it passes.
 
 Ground rules this project learned the hard way:
+- Design has no green checkmark. Verify by rendering the real page
+  and looking at it, never by reading the CSS.
+- Headless Chrome here clamps the layout viewport to 500px, so a
+  screenshot at --window-size=390 is a crop of a 500px layout, not a
+  mobile rendering. Check document.documentElement.clientWidth
+  before believing an overflow. This cost half an hour.
 - No em-dashes, ever. Enforced by validate-content.mjs.
 - Never `git checkout -- .` to undo a test. It reverts everything.
   Snapshot to /tmp instead.
-- Look at the built page. npm run build, serve _site, open it.
-  Headless Chrome here clamps the viewport to 500px, so a 390px
-  screenshot is a crop, not a mobile rendering.
 - A green validator is necessary, never sufficient. Six times a
   checker passed while a real defect shipped, each time because it
   verified the source rather than the artefact.
