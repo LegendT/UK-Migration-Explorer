@@ -107,24 +107,39 @@ carries the page. Every CSS feature used has a defined fallback, and the separat
 claim's meta line is a real character carrying `aria-hidden` rather than generated content,
 so it survives a stylesheet that never arrives and is still skipped by a screen reader.
 
-**One cost of Round 2, stated so it is a decision rather than a side effect.** Making the
-scrolling regions keyboard-operable added a tab stop for every one of them, including the
-ones that have nothing hidden at the reader's width:
+**The tab order, examined properly.** Round 2 made the scrolling regions focusable, which
+adds a tab stop for each. Counting only elements that can actually receive focus, which
+excludes the chart data tables because a closed `<details>` renders nothing:
 
-| Width | Regions across the six pages that have them | How many actually scroll |
-| --- | --- | --- |
-| 390px | 22 | 9 |
-| 500px | 22 | 8 |
-| 1100px | 22 | 0 |
+| Page | Focusable regions | Of those, doing nothing at 1100px | at 390px |
+| --- | --- | --- | --- |
+| `/asylum/` | 5 of 33 stops | 5 | 2 |
+| `/migration/` | 4 of 29 stops | 4 | 1 |
+| `/costs/` | 2 of 23 stops | 2 | 0 |
+| `/sources-and-method/` | 2 of 33 stops | 2 | 1 |
 
-On the asylum page at a desktop width that is 8 of 36 tab stops which do nothing. Knowing
-which regions overflow needs measurement at runtime, so the no-JavaScript options are to
-make all of them focusable or none. All of them is what DEBT does and what is here.
-Roughly six lines of client-side JavaScript would remove the tabindex from regions that do
-not overflow, and it is the textbook shape for progressive enhancement, because the
-baseline without it is the working version and the script only removes noise. It would
-still end "no JavaScript shipped", which is a property this project has stated three times
-in public. **That is yours to decide, not a defect to fix.**
+So it is two to five redundant stops per page, at desktop widths only; at 390px, where the
+regions are needed, nearly all of them do scroll. Knowing which ones overflow needs
+measurement at runtime, so without JavaScript the options are all focusable or none.
+
+**All focusable is the right side to be on, and it should stay.** The failure modes are not
+symmetric: a region that scrolls and is not focusable is a 2.1.1 failure, a real barrier; a
+region that is focusable and does not scroll is an inefficiency that fails no success
+criterion. Conditional logic would have to re-evaluate on viewport width, browser zoom,
+font size, a user stylesheet under 1.4.12 and rotation, and being wrong at any moment
+creates a barrier that does not exist today. The named regions also earn their place: they
+give a screen reader user five landmarks on the asylum page to jump between, named for the
+charts and tables they hold.
+
+**What was actually wrong with the asylum tab order** was not the count. Three charts gave
+three disclosure controls all called "Show the figures behind this chart", each opening a
+different table, so anyone moving between them by keyboard, or listing the page's controls,
+had nothing to tell them apart. That is 2.4.6, and pa11y passes it: it can see that a
+control has a name, not that the name distinguishes it. Each control now appends its own
+chart title out of sight, so the visible label is unchanged. `check-build.mjs` fails on any
+two controls that share a name, and on any two links that share their text while going to
+different places, which found a second one: the home page had "What the words mean" twice,
+in the nav going to the top of the glossary and in a panel going to a single term.
 
 **Two matters of editorial judgement were left open, deliberately:**
 
