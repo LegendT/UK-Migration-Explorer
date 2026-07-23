@@ -36,8 +36,14 @@ points: nm.data | points          already exists
 ```
 
 `at(year)` takes a series `data` array and returns the value at that year, throwing on a year
-the series does not contain, exactly as the `metric` filter throws on an unknown ref. Roughly
-five lines in `eleventy.config.js`, plus nine substitutions in two files.
+the series does not contain, exactly as the `metric` filter throws on an unknown ref. One
+filter in `eleventy.config.js`, plus nine substitutions in two files.
+
+**Tested, not assumed.** The filter was added, the `891,000` literal in `migration.njk`
+replaced with `(nm.data | at(2022) | number)`, the site rebuilt, and the page checked: it
+renders `peaked in 2022 at 891,000`, identical to the literal it replaced. Then reverted. The
+mechanism works inside a `~` concatenated summary string, which was the one thing that could
+have sunk this approach.
 
 **No Markdown syntax.** `{{theme/id}}` stays for theme metrics only. Add series support to
 Markdown when a Markdown page actually needs it, and not before.
@@ -82,6 +88,12 @@ These are the same measure for the same period. The home page card reads the met
 migration chart reads the series. **A quarterly update that revised one and not the other
 would publish two different official values for the same measure, on the same site.**
 
+**All four agree today, and that was checked rather than assumed.** The four were originally
+found by matching equal values, which by construction can only find pairs that already agree,
+so a separate pass compared every metric against every series point sharing its year and unit.
+Nothing has drifted. This is a latent risk, not a live defect, and the distinction matters:
+there is nothing to fix today, only something to guard.
+
 That is word for word the failure foundation 9.4 describes, which `dashboard.json` was
 restructured in June to prevent. It was fixed between the dashboard and the theme files and
 left standing between the series and the theme files, because nothing connects the two.
@@ -90,21 +102,30 @@ left standing between the series and the theme files, because nothing connects t
 compare any series point against any metric, and cannot, because nothing declares that
 `netMigration` and `migration/net-migration` are the same measure.
 
-**The fix is a declaration and a check.** Add `headline_metric` to the series envelope:
+**The fix is a declaration and a check, and the declaration goes on the metric.**
+
+An earlier draft of this scope put `headline_metric` on the series envelope and required the
+**latest** point to match. That covers three of the four. `net-migration-2` pairs with
+`netMigration@2024`, which is the second-to-last point, because it is the revised prior-year
+estimate the site publishes precisely to show that revisions happen. A rule keyed on "the
+latest point" would have left the one figure whose whole purpose is being a revision
+unguarded.
+
+So the metric declares its own duplicate, which handles every case uniformly:
 
 ```json
-{ "series_name": "...", "unit": "...", "headline_metric": "migration/net-migration", ... }
+{ "id": "net-migration-2", "value": 331000, "series_ref": "netMigration@2024", ... }
 ```
 
-Then require the latest point of the primary block to equal that metric's value, and require
-the metric's `date` to fall in the same year. Four series files gain one field each; the check
-is about ten lines. A companion block, `historical` or `alternate_basis` or `emigration`, gets
-its own optional `headline_metric` where one exists, which is how `flows.emigration` pairs
-with `total-long-term-emigration`.
+Four metrics gain one field. The check requires the referenced point to exist and its value to
+equal the metric's. It is short, and it sits beside the `source_id` check in
+`validate-data.mjs`, which is the other field a metric carries to name something outside
+itself.
 
-Where a series has no headline metric, say so with `headline_metric: null` rather than
-omitting the field, so the absence is a decision rather than an oversight, exactly as
-`published_date_unavailable` does for a missing publication date.
+**Plus a warning for undeclared overlaps**, so a new one gets noticed rather than waiting for
+someone to run the analysis by hand. Any metric whose value and year match a series point
+without a `series_ref` declaring it is reported for review. That is exactly the query that
+found these four, so it costs almost nothing and it means the next duplicate announces itself.
 
 ## What none of this fixes
 
