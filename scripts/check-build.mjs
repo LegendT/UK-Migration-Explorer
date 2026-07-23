@@ -140,6 +140,23 @@ for (const file of pages) {
     if (hrefs.size > 1) errors.push(`${where}: "${name}" is the text of ${hrefs.size} links that go to different places`);
   }
 
+  // Link text that names nothing. "the claim check" was the text of a link on three separate
+  // pages, each going to a different check, and it was about to become two more in the
+  // glossary. The rule above cannot catch it: that one is scoped to a single page and these
+  // sat one per page, so every page passed while the site as a whole gave the same phrase to
+  // five destinations. 2.4.4 is judged in context and this arguably scrapes it; the standard
+  // here is that a link should say where it goes when read on its own, which is how anyone
+  // listing a page's links reads it.
+  const OPAQUE_LINK_TEXT = new Set([
+    'the claim check', 'claim check', 'click here', 'here', 'this page', 'link', 'this link',
+    'read more', 'more', 'learn more', 'see more', 'details', 'continue', 'read this',
+  ]);
+  for (const [name] of destinations) {
+    if (OPAQUE_LINK_TEXT.has(name.toLowerCase().replace(/[.,:;]+$/, '').trim())) {
+      errors.push(`${where}: a link is called "${name}", which says nothing about where it goes. Name the destination instead.`);
+    }
+  }
+
   // Structural essentials that a layout change could silently drop.
   if (!/<html lang="en-GB">/.test(html)) errors.push(`${where}: missing lang on <html>`);
   if (!/<main id="main"/.test(html)) errors.push(`${where}: missing <main id="main">`);
