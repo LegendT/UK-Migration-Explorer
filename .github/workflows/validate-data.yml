@@ -26,6 +26,15 @@ jobs:
         run: node scripts/validate-content.mjs
       - name: Build and check the built site
         run: npm run build
+      - name: Accessibility, WCAG 2.2 AA on all 16 pages
+        # pa11y over every URL the site serves. It fails the build, unlike the source check
+        # below: an accessibility regression is a defect in the artefact, not a transient
+        # outage. It is not the whole of the standard. Keyboard operation of the scrolling
+        # regions, what the charts announce, focus against both palettes and reflow at 400%
+        # were measured by hand and are recorded in docs/HANDOFF.md; nothing here proves
+        # them, and a green run must not be read as though it did.
+        run: npm run a11y
+
       - name: Source URLs still resolve
         # Network check. Must not fail a build on a transient outage, but it previously ran
         # in no pipeline at all.

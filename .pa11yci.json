@@ -1,0 +1,28 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 30000,
+    "wait": 1000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+    }
+  },
+  "urls": [
+    "http://127.0.0.1:8081/",
+    "http://127.0.0.1:8081/what-the-words-mean/",
+    "http://127.0.0.1:8081/migration/",
+    "http://127.0.0.1:8081/asylum/",
+    "http://127.0.0.1:8081/costs/",
+    "http://127.0.0.1:8081/common-claims/",
+    "http://127.0.0.1:8081/sources-and-method/",
+    "http://127.0.0.1:8081/style-guide/",
+    "http://127.0.0.1:8081/about/",
+    "http://127.0.0.1:8081/common-claims/net-migration-is-arrivals/",
+    "http://127.0.0.1:8081/common-claims/most-immigration-is-asylum/",
+    "http://127.0.0.1:8081/common-claims/immigrants-pay-far-more-than-they-cost/",
+    "http://127.0.0.1:8081/common-claims/immigrants-are-a-drain-on-public-finances/",
+    "http://127.0.0.1:8081/common-claims/nineteen-per-cent-born-abroad/",
+    "http://127.0.0.1:8081/common-claims/everyone-in-asylum-accommodation-arrived-recently/",
+    "http://127.0.0.1:8081/common-claims/refused-asylum-seekers-are-eventually-recognised/"
+  ]
+}

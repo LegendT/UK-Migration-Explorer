@@ -20,25 +20,90 @@ merged on 22 July. What remains before launch is two review rounds and two decis
 
 | Order | Work | Why in this order |
 | --- | --- | --- |
-| 1 | **The design and UX round** | Contrast, repetition, alignment and proximity, across all 16 pages. Nine have never been opened in a browser. Do this before accessibility, because moving things changes what needs retesting. |
-| 2 | **The accessibility round** | Verified by tooling, not by assertion. Nothing has ever run pa11y or axe against this site. |
-| 3 | **The `docs/foundation.md` drift read** | The document still promises things the site does not do. One is known, others are likely. |
-| 4 | **The two decisions**, then remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | Launch. |
+| ~~1~~ | ~~The design and UX round~~ | **Done, 23 July.** See "Rounds 1 and 2 are done" below. |
+| ~~2~~ | ~~The accessibility round~~ | **Done, 23 July.** pa11y is in CI and fails the build. |
+| 1 | **The `docs/foundation.md` drift read** | The document still promises things the site does not do. One is known, others are likely. |
+| 2 | **The two decisions**, then remove `content/robots.txt` and its guard in `scripts/check-build.mjs` | Launch. |
 
 ## What blocks launch
 
-Four things. Two are decisions, two are work.
+Two things now, both decisions. The two pieces of work are done.
 
 1. **The update commitment is unsigned.** `content/sources-and-method.md` proposes updating
    within fourteen days of each source release and flags it as a proposal. An unmet
    published target damages trust more than none. **Decision.**
 2. **The pre-publication human review has not happened.** The sources page commits to it.
    Publication already has. **Decision.**
-3. **The design and UX round has not happened.** See below. **Work.**
-4. **The accessibility round has not happened.** See below. **Work.**
+
+~~3. The design and UX round.~~ Done, 23 July, commit `89c039d`.
+~~4. The accessibility round.~~ Done, 23 July.
 
 The robots guard exists so the site cannot become crawlable by accident. Removing it is
 deliberate, and it comes last.
+
+## Rounds 1 and 2 are done. What they found, and what they did not settle
+
+Both rounds ran on 23 July. The sections below are kept as written, because they say what
+was looked for; this section says what was found.
+
+**Round 1.** Every text pair in both palettes clears AA, computed rather than judged:
+the weakest is `--accent` on `--accent-soft` at 7.03:1 light and 6.77:1 dark. The dark
+scheme, which nobody had viewed, was sound. The defects were layout, and most of them had
+one cause: `li + li { margin-top: 0.35rem }`, written for prose lists, was landing on grid
+and flex children, where a margin adds to the gap instead of replacing it. It put the
+first item of every row 5.6px above its neighbours, including the nav, where the
+active-page underline sat higher on the home page than on any other. Charts had gridlines
+at 225,000 and 675,000 because the axis top was rounded and then quartered. A bar near the
+maximum drew its own value past the end of the scale. Four of the sixteen tables, all
+Markdown-authored, were not in a scrolling box at all. See commit `89c039d`.
+
+**Round 2.** pa11y over all 16 pages, 0 errors, and it is in CI as a failing step. That is
+the floor, not the finding. Three things were found by hand that pa11y passed:
+
+- **The scrolling regions were not operable by keyboard.** They now carry `tabindex="0"`,
+  `role="region"` and a name taken from the page's own text. Verified with dispatched
+  arrow keys, not by reading the markup: at 390px a chart region scrolls 0 to 160 of
+  177px hidden, a table region 0 to 53 of 53.
+- **Every chart announced its summary twice.** `aria-labelledby` pointed at both the title
+  and the description, so the two concatenated into the accessible name while the
+  description stayed on as well. Read out of Chrome's accessibility tree, which is the
+  tree assistive technology consumes. The markup looked correct.
+- **A broken ARIA reference was invisible.** `check-build.mjs` now fails when
+  `aria-labelledby` or `aria-describedby` points at an id that is not on the page.
+
+Reflow passes at 200% and at 400% (a 320px viewport), on every page, with no sideways page
+scroll. Every non-inline target clears 24px and the chart disclosure control is 888x44.
+Focus is a 3px accent outline at 7.0:1 or better against every background it lands on, in
+both palettes.
+
+**What Round 2 did not settle, stated rather than hidden:**
+
+- **Chart text does not scale with a reader's font-size preference.** The axis is
+  `font-size: 13px` inside the SVG coordinate system, so it scales with the chart's
+  rendered width and with browser zoom, but not with a browser font setting. At the 32rem
+  floor it renders at 8.8px. The figures are also in a real table, which is ordinary page
+  text and does scale.
+- **At 400% zoom a chart is 265px of a 512px drawing**, so roughly half is reached by
+  scrolling inside the region. WCAG 1.4.10 allows this for content needing
+  two-dimensional layout, and the region is now named and keyboard-scrollable, but the
+  allowance is being used rather than avoided.
+- **A line chart's series labels still sit in the hidden strip below about 700px.** The
+  box now shades the end that has more content, and the labels are what the "never
+  distinguished by colour alone" rule depends on. Removing the scroll entirely would mean
+  moving the labels out of the SVG into an HTML legend. That is a change to the chart
+  language, not a correction, so it was left.
+- **No real screen reader was run.** Chrome's accessibility tree is what AT consumes, but
+  it is not VoiceOver or NVDA reading a page aloud.
+
+**Two matters of editorial judgement were left open, deliberately:**
+
+1. **The four Markdown tables still have no caption.** They are now wrapped and named from
+   the heading above them, which uses text already on the page. A caption is new prose and
+   is yours to write. The same applies to the three-queues table, which appears on both the
+   asylum page and the glossary with a caption on one and not the other.
+2. **In `most-immigration-is-asylum`**, two list items open with a bold term and the third
+   opens with a bold link, so the third reads as more important than its siblings. Fixing
+   it means rewriting the sentence.
 
 ## Round 1: design and UX
 
@@ -174,8 +239,9 @@ Four scripts, all in CI, all negative-tested:
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, single-vintage series, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value written longhand |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN` in text or attributes, robots rule under `User-agent: *` |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN` in text or attributes, every table inside a focusable named scrolling region, every ARIA reference resolves, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
+| `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build. Negative-tested: an isolated missing `lang` took it to 15/16 and named the rule; a failing contrast value took it to 0/16 |
 
 **Read this before trusting a green run.** Six times in this project a checker passed while
 a real defect shipped. Every one had the same shape: the check verified a property of the

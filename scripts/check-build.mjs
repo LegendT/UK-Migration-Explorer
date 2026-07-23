@@ -101,6 +101,17 @@ for (const file of pages) {
     if (!/aria-label="[^"]+"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no accessible name`);
   }
 
+  // An aria-labelledby pointing at an id that does not exist produces no name at all, and
+  // nothing on the page shows it: the chart still draws, the tests still pass, and a
+  // screen reader announces "image". The reference has to be checked, not just written.
+  for (const [, attribute, list] of html.matchAll(/\s(aria-labelledby|aria-describedby)="([^"]+)"/g)) {
+    for (const id of list.trim().split(/\s+/)) {
+      if (!(anchors.get(url) ?? new Set()).has(id)) {
+        errors.push(`${where}: ${attribute} points at #${id}, which is not an id on this page`);
+      }
+    }
+  }
+
   // Structural essentials that a layout change could silently drop.
   if (!/<html lang="en-GB">/.test(html)) errors.push(`${where}: missing lang on <html>`);
   if (!/<main id="main"/.test(html)) errors.push(`${where}: missing <main id="main">`);
