@@ -11,8 +11,10 @@ layout: base.njk
     <h1 class="claim-text">{{ claim }}</h1>
     <p class="claim-label">The short answer</p>
     <p class="claim-answer">{{ short_answer }}</p>
+    {#- The site name was here as a byline. The header, the footer and the browser tab all
+        carry it already, and inside the card it read as one more undifferentiated item in
+        a row that needed fewer, not more. -#}
     <p class="claim-meta">
-      <span>{{ site.name }}</span>
       <span>Reviewed {{ last_reviewed | longDate }}</span>
       {% if period %}<span>{{ period }}</span>{% endif %}
       {% if source %}<span>{{ source }}</span>{% endif %}

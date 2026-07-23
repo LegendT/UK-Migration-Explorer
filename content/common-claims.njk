@@ -38,10 +38,14 @@ pointed checks on this site both run against the pro-migration side.</p>
     <article>
       <h2><a href="{{ claim.url }}">{{ claim.data.claim }}</a></h2>
       <p>{{ claim.data.short_answer }}</p>
-      <p class="claim-tags">
-        <span class="tag">{{ claim.data.error_type }}</span>
-        <span class="tag">Reviewed {{ claim.data.last_reviewed | longDate }}</span>
-      </p>
+      {#- Deliberately not the tag row the claim page carries. There the pills are the
+          site's own classification of a claim, misuse type and political direction, and
+          they are part of the argument. Here the line is card metadata: what kind of
+          error, and how fresh the check is, the two things that help a reader choose
+          which claim to open. Same component in both places invited the reading that
+          they should carry the same fields. -#}
+      <p class="claim-list-meta">Misuse: {{ claim.data.error_type }} ·
+        Reviewed {{ claim.data.last_reviewed | longDate }}</p>
     </article>
   </li>
   {%- endfor %}

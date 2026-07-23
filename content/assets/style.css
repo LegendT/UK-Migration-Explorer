@@ -2,12 +2,17 @@
    Mobile first. WCAG 2.2 AA: 4.5:1 text contrast, 44px targets, visible focus.
    No web fonts, no frameworks, the page should render before anything loads. */
 
+/* Two rule weights, because they do two jobs. A row separator inside a table sits behind
+   content that is already structured semantically and should stay quiet. An edge that is
+   the only thing telling a card apart from the page is a graphical object a reader depends
+   on, and at 1.5:1 the dark-scheme cards had all but no edge at all. */
 :root {
   --ink: #1a1a1a;
   --ink-soft: #4a4a48;
   --paper: #fdfdfc;
   --panel: #f4f3f0;
-  --rule: #d5d2cc;
+  --rule: #d5d2cc;            /* 1.5:1, quiet separators inside a component */
+  --rule-strong: #8a8781;     /* 3.5:1 on --paper, 3.2:1 on --panel */
   --accent: #14508c;          /* 7.4:1 on --paper */
   --accent-soft: #e8eef5;
   --measure: 38rem;
@@ -20,6 +25,7 @@
     --paper: #16171a;
     --panel: #1f2126;
     --rule: #3a3d44;
+    --rule-strong: #6b6e77;   /* 3.5:1 on --paper, 3.2:1 on --panel */
     --accent: #8fbcec;        /* 7.9:1 on --paper */
     --accent-soft: #22303f;
   }
@@ -41,7 +47,7 @@ body {
 main { padding-bottom: 4rem; }
 main > * { max-width: var(--measure); }
 main > .scroll-x, main > .cards, main > .claim, main > .panels, main > table,
-main > .chart { max-width: none; }
+main > .chart, main > .claim-list { max-width: none; }
 
 /* Links and focus ------------------------------------------------------- */
 
@@ -111,7 +117,16 @@ h2 { font-size: 1.375rem; margin: 2.5rem 0 0.75rem; }
 h3 { font-size: 1.125rem; margin: 2rem 0 0.5rem; }
 
 p, li { text-wrap: pretty; }
+
+/* Prose lists space their own items. Layout lists are grids or flex rows that space
+   themselves with `gap`, and there a list-item margin is added to the gap rather than
+   replacing it: it pushed the first item of each row out of line with the rest, so the
+   active nav underline sat 6px higher on the home page than on every other page. */
 li + li { margin-top: 0.35rem; }
+.cards > li + li,
+.panels > li + li,
+.claim-list > li + li,
+.site-header nav li + li { margin-top: 0; }
 
 .page-header { padding: 2rem 0 0.5rem; }
 .strapline { font-size: 1.1875rem; color: var(--ink-soft); margin: 0; }
@@ -143,13 +158,30 @@ code { font-size: 0.9em; background: var(--panel); padding: 0.1em 0.35em; border
 
 /* Tables ---------------------------------------------------------------- */
 
-.scroll-x { overflow-x: auto; margin: 1.5rem 0; }
+/* A chart is 32rem wide at its narrowest, so below about 700px it scrolls sideways, and
+   what sits in the hidden strip is the series labels. Overlay scrollbars show nothing at
+   rest on a phone, so the two shading pairs below are the affordance: the outer gradients
+   are painted in the page colour and scroll WITH the content (background-attachment:
+   local), so they retreat as you reach each end, while the inner shadows are fixed to the
+   box. A shadow visible means there is more content that way. */
+.scroll-x {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  background:
+    linear-gradient(to right, var(--paper) 40%, transparent) left center / 2.5rem 100% no-repeat local,
+    linear-gradient(to left, var(--paper) 40%, transparent) right center / 2.5rem 100% no-repeat local,
+    linear-gradient(to right, var(--rule-strong), transparent) left center / 0.75rem 100% no-repeat scroll,
+    linear-gradient(to left, var(--rule-strong), transparent) right center / 0.75rem 100% no-repeat scroll;
+}
 
 table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; }
-caption { text-align: left; color: var(--ink-soft); padding-bottom: 0.5rem; }
+/* The caption labels the first column, so it starts where that column's text starts.
+   Cells carry 0.75rem of left padding and the caption carried none, which left every
+   caption on the site 12px adrift of the column beneath it. */
+caption { text-align: left; color: var(--ink-soft); padding: 0 0.75rem 0.5rem; }
 th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--rule); }
 th { font-weight: 600; }
-thead th { border-bottom: 2px solid var(--rule); }
+thead th { border-bottom: 2px solid var(--rule-strong); }
 tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 
 .sources th[scope="row"] { min-width: 14rem; }
@@ -159,8 +191,10 @@ tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 /* A figure and its unit are one thing; never break "£4.9 billion" across two lines. */
 .amount { white-space: nowrap; }
 
+/* One indent step per level, so the second level reads as one more step in rather than a
+   larger jump than the first. */
 th.nested { padding-left: 1.75rem; font-weight: 400; }
-th.nested-2 { padding-left: 3.25rem; }
+th.nested-2 { padding-left: 2.75rem; }
 .publisher { display: block; font-weight: 400; color: var(--ink-soft); font-size: 0.875rem; }
 
 .definitions { margin: 1.5rem 0; }
@@ -178,7 +212,7 @@ th.nested-2 { padding-left: 3.25rem; }
 .panels { display: grid; gap: 1rem; margin: 2rem 0; padding: 0; list-style: none; }
 .panel {
   background: var(--panel);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
   border-radius: 6px;
   padding: 1.25rem;
 }
@@ -187,8 +221,14 @@ th.nested-2 { padding-left: 3.25rem; }
 
 .cards { display: grid; gap: 1rem; margin: 1.5rem 0; padding: 0; list-style: none; }
 
+/* The grid already makes the cards equal height. The column layout puts that height to
+   use: the provenance block is pushed to the foot of every card, so the source, the
+   publication date and the grade sit on one line across a row instead of ending wherever
+   the explanation above them happened to stop. */
 .card {
-  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule-strong);
   border-radius: 6px;
   padding: 1.25rem;
   background: var(--paper);
@@ -196,15 +236,33 @@ th.nested-2 { padding-left: 3.25rem; }
 .card h3 { margin: 0 0 0.25rem; font-size: 1rem; }
 .card .value { display: block; font-size: 2rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .card .period { display: block; color: var(--ink-soft); font-size: 0.875rem; margin-top: 0.25rem; }
-.card .means { margin: 0.75rem 0 0; font-size: 0.9375rem; }
+/* The auto bottom margin is what does the pushing: everything after the explanation goes
+   to the foot of the card, and the source below keeps its own top margin as a minimum for
+   the tallest card in the row, where there is no free space left to distribute. */
+.card .means { margin: 0.75rem 0 auto; font-size: 0.9375rem; }
 .card .source { margin: 0.75rem 0 0; font-size: 0.8125rem; color: var(--ink-soft); }
-.card .grade { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
+/* The grade is this site's own judgement, not part of the publisher's citation. Run in
+   with the publication date it read as one more clause of it, and when the source line
+   wrapped it could break onto a line of its own. A badge is a separate object, so it can
+   sit beside the date without joining it. Capitalised, not uppercased, so it matches the
+   word the sources page defines. */
+.card .grade {
+  display: inline-block;
+  margin-top: 0.35rem;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
 
 /* Claims ---------------------------------------------------------------- */
 
 .claim-card {
   margin: 2rem 0 1.5rem;
-  border: 2px solid var(--rule);
+  border: 2px solid var(--rule-strong);
   border-radius: 6px;
   padding: 1.25rem;
   background: var(--panel);
@@ -228,15 +286,27 @@ th.nested-2 { padding-left: 3.25rem; }
   font-size: 0.8125rem;
   color: var(--ink-soft);
 }
+/* Separated, not merely spaced. A review date, a period and a publisher set side by side
+   with nothing between them read as one run-on phrase: "2021/22 Census Migration
+   Observatory". The separator is decorative, so it is hidden from assistive technology,
+   which gets the items as the distinct elements they already are. */
+.claim-meta span + span::before {
+  content: "·";
+  content: "·" / "";   /* the alt-text form, so a screen reader reads the items, not the dots */
+  margin-right: 1rem;
+}
 
 /* The claim article is exempt from the page measure so the card can run full width.
-   Its prose is not, 99 characters per line is well past comfortable reading. */
+   Its prose is not, 99 characters per line is well past comfortable reading. The short
+   answer is prose too: it is a child of the card rather than of the article, so it never
+   matched this rule and was running at exactly the 99 characters named above. */
 .claim > p,
 .claim > h2,
 .claim > h3,
 .claim > ul,
 .claim > ol,
-.claim > blockquote {
+.claim > blockquote,
+.claim-answer {
   max-width: var(--measure);
 }
 
@@ -244,21 +314,33 @@ th.nested-2 { padding-left: 3.25rem; }
 .tag {
   font-size: 0.8125rem;
   color: var(--ink-soft);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
   border-radius: 999px;
   padding: 0.2rem 0.7rem;
 }
 
+/* Card metadata, not a tag row. See the note in common-claims.njk. The selector is
+   doubled up because `.claim-list p` above would otherwise win on specificity. */
+.claim-list .claim-list-meta {
+  margin: 0.75rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+}
+
 .claim-list { list-style: none; margin: 1.5rem 0; padding: 0; display: grid; gap: 1rem; }
-.claim-list a { text-decoration: none; }
 .claim-list article {
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
   border-radius: 6px;
   padding: 1.25rem;
 }
 .claim-list h2 { margin: 0 0 0.5rem; font-size: 1.0625rem; }
-.claim-list h2 a { display: block; min-height: 44px; }
-.claim-list p { margin: 0; color: var(--ink-soft); font-size: 0.9375rem; }
+/* The 44px target is a box taller than one line of text. Centring the text in it keeps the
+   space above and below equal, instead of hanging 22px of empty link box between a
+   one-line heading and the answer it belongs to while a two-line heading has none. */
+.claim-list h2 a { display: flex; align-items: center; min-height: 44px; }
+/* The card runs the full width, like every other card grid on the site. Its prose does
+   not: the answer is a sentence, and it keeps the reading measure. */
+.claim-list p { margin: 0; max-width: var(--measure); color: var(--ink-soft); font-size: 0.9375rem; }
 
 .back { margin-top: 3rem; }
 
@@ -279,12 +361,9 @@ th.nested-2 { padding-left: 3.25rem; }
   h1 { font-size: 2.375rem; }
   .hero h1 { font-size: 2.25rem; }
   h2 { font-size: 1.5rem; }
-  .panels { grid-template-columns: repeat(3, 1fr); }
+  .panels { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
   .cards { grid-template-columns: repeat(2, 1fr); }
-  .site-header .wrap { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; }
-  .brand { margin-bottom: 0; flex: 0 0 auto; }
-  .site-header nav { flex: 1 1 auto; }
-  .site-header nav ul { justify-content: flex-end; gap: 0 1rem; }
+  .site-header nav ul { gap: 0 1.25rem; }
 }
 
 @media (min-width: 60em) {
@@ -295,11 +374,14 @@ th.nested-2 { padding-left: 3.25rem; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
+/* The band is full width; its text is not. It qualifies the page, so it starts where the
+   page starts. With its own padding it began 79px left of every other line on the site at
+   any viewport wide enough to centre the wrap. */
+.prelaunch p { margin: 0; max-width: none; }
 .prelaunch {
-  margin: 0;
-  padding: 0.85rem 1.25rem;
+  padding: 0.85rem 0;
   background: var(--accent-soft);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule-strong);
   color: var(--ink);
   font-size: 0.9375rem;
   line-height: 1.5;
@@ -347,7 +429,12 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 .bar { fill: var(--accent); }
 .bar-label { fill: var(--ink); font-size: 14px; font-weight: 600; }
 .bar-value { fill: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums; }
+/* Set inside its own bar, so it reads against the fill rather than the page. */
+.bar-value.inside { fill: var(--paper); font-weight: 600; }
 
+/* One supporting size for everything under a chart: note, the control that opens the
+   figures, and the source line. Three sizes there plus the summary above made four steps
+   of hierarchy inside a single component, which is more than the component has levels. */
 .chart-note,
 .chart-source {
   max-width: var(--measure);
@@ -355,7 +442,6 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
   font-size: 0.9375rem;
   margin: 0.75rem 0 0;
 }
-.chart-source { font-size: 0.875rem; }
 
 .chart-data { margin-top: 1rem; }
 .chart-data summary {

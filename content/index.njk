@@ -51,7 +51,8 @@ grade is our judgement about how far the figure can be relied on, not the publis
     <span class="period">{% if not symbolised %}{{ m.unit }} · {% endif %}{{ m.period_label }}</span>
     <p class="means">{{ card.whatThisMeans }}</p>
     <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
-    Published {{ m.published_date | longDate }} · <span class="grade">{{ m.confidence_level }}</span></p>
+    Published {{ m.published_date | longDate }}<br>
+    <span class="grade">{{ m.confidence_level }}</span></p>
   </li>
   {%- endfor %}
 </ul>

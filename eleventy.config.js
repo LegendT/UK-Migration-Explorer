@@ -168,5 +168,41 @@ export default function (eleventyConfig) {
     );
   });
 
+  // Every table and every chart sits in a horizontally scrolling box. A box that scrolls
+  // has to be reachable and operable by keyboard, which means it must be focusable and
+  // must say what it is when focus lands on it. Doing that here rather than at each of the
+  // nine places that write a .scroll-x means a table added later cannot arrive without it,
+  // and it reaches the markdown tables, which had no wrapper at all: four of the sixteen
+  // tables on the site could not scroll and so could not be read below about 420px.
+  //
+  // The name is taken from text already on the page, never invented: the table's own
+  // caption where there is one, otherwise the heading the region sits under. It must run
+  // AFTER heading-anchors, or a heading still carrying its {#anchor} syntax names the
+  // region and ships the raw syntax inside an aria-label, where nothing on the page shows
+  // it. check-build caught exactly that.
+  const stripTags = (html) => html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+
+  eleventyConfig.addTransform('scrollable-regions', function (content) {
+    if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
+
+    // Wrap any table that is not already in one. A wrapper always sits immediately before
+    // its table, so testing exactly that is both simpler and safer than counting divs.
+    let html = content.replace(/<table[\s\S]*?<\/table>/g, (table, offset, whole) =>
+      /<div class="scroll-x"[^>]*>\s*$/.test(whole.slice(0, offset))
+        ? table
+        : `<div class="scroll-x">${table}</div>`);
+
+    // Name and expose each region.
+    html = html.replace(/<div class="scroll-x">([\s\S]*?)<\/div>/g, (whole, inner, offset) => {
+      const caption = inner.match(/<caption[^>]*>([\s\S]*?)<\/caption>/);
+      const heading = [...html.slice(0, offset).matchAll(/<h([23])[^>]*>([\s\S]*?)<\/h\1>/g)].pop();
+      const name = stripTags(caption?.[1] ?? heading?.[2] ?? '');
+      if (!name) throw new Error(`A scrollable region in ${this.page.inputPath} has no caption and no heading above it to name it`);
+      return `<div class="scroll-x" tabindex="0" role="region" aria-label="${escape(name)}">${inner}</div>`;
+    });
+
+    return html;
+  });
+
   return { markdownTemplateEngine: false, htmlTemplateEngine: 'njk' };
 }

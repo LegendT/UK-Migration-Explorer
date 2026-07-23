@@ -84,6 +84,23 @@ for (const file of pages) {
     }
   }
 
+  // Every table and every chart sits in a box that scrolls sideways, and a box that
+  // scrolls has to be reachable by keyboard and has to say what it is when focus lands
+  // there. Checking the source would prove only that the transform is registered. This
+  // checks the artefact: that no table reached a reader outside such a box, and that no
+  // box reached one unnamed or unfocusable. Four markdown tables had no box at all.
+  for (const [, table] of html.matchAll(/(<table[\s\S]*?<\/table>)/g)) {
+    const before = html.slice(0, html.indexOf(table));
+    if (!/<div class="scroll-x"[^>]*>\s*$/.test(before)) {
+      errors.push(`${where}: a table is not inside a .scroll-x region, so it cannot be scrolled below its own width`);
+    }
+  }
+  for (const [, attrs] of html.matchAll(/<div class="scroll-x"([^>]*)>/g)) {
+    if (!/tabindex="0"/.test(attrs)) errors.push(`${where}: a .scroll-x region is not focusable, so it cannot be scrolled from the keyboard`);
+    if (!/role="region"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no role, so focus lands on an anonymous box`);
+    if (!/aria-label="[^"]+"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no accessible name`);
+  }
+
   // Structural essentials that a layout change could silently drop.
   if (!/<html lang="en-GB">/.test(html)) errors.push(`${where}: missing lang on <html>`);
   if (!/<main id="main"/.test(html)) errors.push(`${where}: missing <main id="main">`);
