@@ -19,19 +19,23 @@ eleventyExcludeFromCollections: true
   <li class="panel">
     <h2>Migration is not the same as asylum</h2>
     <p>Asylum is one route among several. Study and work were both larger in the most
-    recent year. <a href="/common-claims/most-immigration-is-asylum/">See the figures</a>.</p>
+    recent year. <a href="/common-claims/most-immigration-is-asylum/">What share of
+    immigration is asylum</a>.</p>
   </li>
   <li class="panel">
     <h2>Net migration is not arrivals</h2>
     <p>It is arrivals minus departures, a balance between two much larger numbers.
-    <a href="/common-claims/net-migration-is-arrivals/">See why that matters</a>.</p>
+    <a href="/common-claims/net-migration-is-arrivals/">Why net migration is not a count of
+    arrivals</a>.</p>
   </li>
   <li class="panel">
     <h2>A visa granted is not a person arriving</h2>
-    {#- Named for what it goes to, not for the page it lives on. As "What the words mean"
-        it was the second link on this page with that exact text, and the other one, in the
-        nav, goes to the top of the glossary rather than to this term. It also read
-        differently from the two panels beside it, which name what you will find. -#}
+    {#- All three panel links name what you will find, not the page they live on. This one
+        went first: as "What the words mean" it was the second link on this page with that
+        exact text, and the other one, in the nav, goes to the top of the glossary rather
+        than to this term. The comment here used to claim its two siblings already worked
+        that way. They did not, they said "See the figures" and "See why that matters",
+        which name nothing when read on their own. They do now. -#}
     <p>Permission is not a journey. Some visas are never used, and some are extensions for
     people already here. <a href="/what-the-words-mean/#visa-grant">What a visa grant counts</a>.</p>
   </li>
@@ -55,7 +59,15 @@ grade is our judgement about how far the figure can be relied on, not the publis
     <span class="period">{% if not symbolised %}{{ m.unit }} · {% endif %}{{ m.period_label }}</span>
     <p class="means">{{ card.whatThisMeans }}</p>
     <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
-    Published {{ m.published_date | longDate }}<br>
+    {#- Foundation 2.1 promises that where a publication date is not recorded the figure says
+        so rather than guessing. There was no branch here, and longDate returns an empty
+        string for a null, so the card would have rendered "Published" followed by nothing,
+        which reads as a date that failed to load rather than one that was never published. -#}
+    {% if m.published_date %}Published {{ m.published_date | longDate }}{% else %}Publication date not recorded{% endif %}<br>
+    {#- The date we last checked the figure against its source, which is a different thing
+        from when the source published it. A reader judging whether this site is up to date
+        needs the second, and it was only ever in the data files. Foundation 17. -#}
+    Checked {{ m.retrieved_date | longDate }}<br>
     <span class="grade">{{ m.confidence_level }}</span></p>
   </li>
   {%- endfor %}

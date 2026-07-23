@@ -71,9 +71,11 @@ Recommended strapline: A plain-English guide to what UK migration and asylum sta
 | Students and researchers | Find a starting point for credible data sources. | Provide methodology notes and source catalogue. |
 
 None of these audiences has been asked. The table describes who the project would like to
-serve, inferred from the subject matter. Phase 1 now includes talking to five real people
-before the build, because the cheapest possible outcome of this project is discovering early
-that nobody wants it.
+serve, inferred from the subject matter. Talking to five real people was added to phase 1 on
+the reasoning that the cheapest possible outcome of this project is discovering early that
+nobody wants it. The build ran ahead of it and is now finished, so the saving that argument
+promised is gone; what is left is finding out before launch whether anyone wants what has
+been built, which is still worth a week. It remains outstanding, see section 14.
 
 ## 4.1 Why this exists when the Migration Observatory already does
 
@@ -191,8 +193,20 @@ The project should use official statistics as the primary source and selected in
 | House of Commons Library | Readable summaries and political-neutral briefing context | Good for explaining issues to non-specialists. |
 | Migration Observatory | Independent explainers, methodology context and interpretive caution | Useful context, but source original figures where possible. |
 | Office for Statistics Regulation | Guidance on responsible interpretation | Important for methodology and caveat design. |
-| ONS population estimates | Local authority denominators | Needed for per-capita local comparisons. |
-| NAO / PAC / Home Office annual reports | Cost and system-performance phase | Add later; costs are complex and politically sensitive. |
+| ONS population estimates | Denominators for population shares | Currently the UK total. Local authority denominators are still needed for phase 4. |
+| National Audit Office | Asylum system cost and accommodation contracts | **In the MVP as of 22 July 2026**, see section 7. Audited and firm, which is what makes the costs page safe. |
+| Census 2021/22 | Foreign-born population, country of birth, regional distribution | The most reliable stock figures, since the ONS survey-based series was discontinued in October 2022. |
+| Office for Budget Responsibility | Fiscal impact of migration in forecasts and scenarios | Scenarios are clearly labelled as such at source, and must stay labelled here. The £341,000 figure comes from one. |
+| Migration Advisory Committee | Economic and fiscal evidence on work routes | Salary thresholds, shortage occupations, commissioned reviews. |
+| HMCTS / Ministry of Justice tribunals statistics | Asylum and immigration appeals | The appeals queue has a different publisher and a different cycle from the initial-decision queue, which is why the two must never be added. |
+| Skills for Care | Nationality composition of the adult social care workforce | England only. Not an official statistics producer, and marked as such on the sources page. |
+
+The first eight rows were the June 2026 list. Five publishers the site now cites were absent
+from it altogether, most of them arriving with the costs and labour-market material, and the
+National Audit Office was listed as deferred while its figures were being built into the MVP.
+`data/sources.json` is the catalogue of record: twelve entries across eleven publishers, and
+`scripts/validate-data.mjs` rejects any figure whose source host is not one of them. Update
+this table from that file, not from memory.
 
 ## 6.1 Anchor facts: superseded, kept as a record
 
@@ -230,6 +244,7 @@ The first public version should be shallow and clear. Avoid creating a sprawling
 | Common claims | Correct common misunderstandings using source-led explanations. | Yes |
 | What the asylum system costs | The audited spending figures only. Not the contested fiscal-impact debate. | Yes |
 | Sources and method | Show source list, update process, caveats and known limitations. | Yes |
+| Style guide | Separate the wording rules that are precision from the ones that are choices. | Yes |
 | About and funding | Who runs this, who pays for it, how corrections work. | Yes |
 | Fiscal impact | The contested question: does immigration pay for itself? | Phase 3 |
 | Local picture | Local authority lookup for asylum support and related measures. | Phase 4 |
@@ -262,13 +277,18 @@ Overview
 What the words mean
 Migration
 Asylum
-What the asylum system costs
+Costs
 Common claims
 Sources and method
-About and funding
+Style guide
+About
 Fiscal impact [phase 3]
 Local picture [phase 4]
 ```
+
+The built navigation is in `content/_data/site.js` and carries the shortened labels above.
+The style guide is a nav item rather than a footer link because section 5.2 makes publishing
+it a condition of the language rules, not an appendix to them.
 
 # 8. MVP pages
 
@@ -281,23 +301,42 @@ the generic-dashboard reading. So the page must lead with the distinction betwee
 not with a grid of numbers. The hero statement does the work; the cards follow it.
 
 - Hero statement: UK migration statistics are often discussed as if they are one number. They are not.
-- Key figure cards: net migration, immigration, emigration, asylum applications, people awaiting initial asylum decision, people in asylum support, small boat arrivals, returns.
-- Three explainer panels: migration is not the same as asylum; net migration is not arrivals; visa grants are not always arrivals.
+- Three explainer panels: migration is not the same as asylum; net migration is not arrivals; visa grants are not always arrivals. These come before the cards on the page, because "Explorer" invites the grid-of-numbers reading section 3 warns about.
+- Eight key figure cards, in `data/dashboard.json`, holding references and never values: net migration, asylum claims, people awaiting a first decision, people in asylum support, small boat arrivals, foreign-born share of the population, asylum system cost, citizenship grants.
+- A generated list of the period each card covers, built from the cards themselves.
+- Common claims preview: the first three claim checks.
 
-Two changes to the card set from the June 2026 draft:
+Changes to the card set, and what was decided against:
 
-**Small boat arrivals is added.** It is the figure most visitors will arrive looking for, and
-the data layer already holds it on three bases (calendar year, year ending, and year to date)
-with the caveat written. Omitting the number everyone is searching for, on a site whose
-purpose is to reduce confusion about it, would be read as avoidance. The card must carry the
-basis in the card, not in a footnote, because the three bases give three different numbers.
+**Small boat arrivals is in.** It is the figure most visitors will arrive looking for, and
+the data layer holds it on three bases (calendar year, year ending, and year to date) with
+the caveat written. Omitting the number everyone is searching for, on a site whose purpose is
+to reduce confusion about it, would be read as avoidance. The card carries the basis in the
+card, not in a footnote, because the three bases give three different numbers.
 
-**Returns is now available.** Researched 22 July 2026. Two cautions the card must respect:
-returns count EVENTS, not people, so one person returned twice appears twice; and refused
-entry at port (17,623) is counted separately and must not be added to the total. The data
-layer holds the port figure specifically so that error is visible rather than invited.
-- Latest data update panel: what changed in the latest release, with dates.
-- Common claims preview: five short claim-check cards.
+**People awaiting a first decision and people in asylum support were added 23 July 2026.**
+Both are what the asylum argument actually turns on, and both were a click away on the asylum
+page while the home page showed neither. Both are stocks counted on one day, so both cards
+say so: a stock read as a flow is the error behind two of the claim checks.
+
+**Returns has no card, and the June 2026 draft's list is not the set that shipped.** That list
+named immigration, emigration, people awaiting a decision, people in asylum support and
+returns; the first two are on the migration page as a chart, the middle two are now cards, and
+returns is not. The set that ships spans the range of things this site publishes rather than
+the asylum pipeline alone: a flow, two stocks, a route, a population share, money and a grant
+count. Returns can be added, and if it is, two cautions apply: returns count EVENTS, not
+people, so one person returned twice appears twice; and refused entry at port is counted
+separately and must not be added to the total. The data layer holds the port figure
+specifically so that error is visible rather than invited.
+
+**No latest-data-update panel.** The June 2026 draft wanted one, listing what changed in the
+latest release with dates. It was never built and is not being built: every page already
+carries the date it was last reviewed, every card carries its own published and checked
+dates, and the changelog is linked from the footer of every page. A fourth place to say the
+same thing is a fourth place for it to go stale.
+
+**Three claim previews, not five.** The layout was designed around three and the full set is
+one link away.
 
 ## 8.2 What the words mean
 
@@ -351,7 +390,7 @@ that leaves the misreading intact has not done this page's job, so
 - Chart: asylum applications over time.
 - Chart: initial decisions, split by grant, refusal and withdrawal.
 - Chart: initial decision backlog over time.
-- Card: people in asylum support.
+- Figure: people in asylum support, with the stock reading spelled out. It is a paragraph on this page and a card on the home page.
 - Explainer: initial decision backlog and appeals backlog are not the same thing.
 - Explainer: small boat arrivals and asylum claims overlap but are not identical categories.
 
@@ -399,10 +438,20 @@ Publish these criteria on the page. A claim qualifies only if all four hold:
 4. **We would apply the same test to the opposite claim.** Write the mirror-image claim
    before publishing. If checking it would embarrass us, that tells us something.
 
-**Balance rule.** No published set of claims may run more than two-thirds in one direction.
-This is a hard constraint on the page, checked at review, not an aspiration. If we cannot
-find qualifying claims in the other direction, that is evidence our sourcing is too narrow,
-not evidence the other side never misuses statistics.
+**Representation floor.** At least two published claims must correct each direction. This is
+enforced in `scripts/validate-content.mjs` before the site builds, not checked at review, so
+a set that only ever corrects one side cannot ship. If we cannot find qualifying claims in
+the other direction, that is evidence our sourcing is too narrow, not evidence the other side
+never misuses statistics.
+
+There is deliberately no ceiling. This replaced a two-thirds cap on 22 July 2026, after the
+cap blocked "immigrants are a drain on the public finances", which is the correction a
+pro-migration reader would most want to see. `direction` records whose claim is corrected,
+and correcting a restrictionist claim serves pro-migration readers, so a cap on
+restrictionist-labelled claims capped how much the site could serve the other side. A rule
+that prevents a correction is measuring the wrong thing. The full reasoning is in the
+script beside the floor. The real split is generated from the claim set and disclosed on the
+claims page instead.
 
 **What we do not cover, and why.** Crime and migration is absent from this list and from the
 data layer. The statistics are genuinely difficult, nationality is inconsistently recorded,
@@ -418,32 +467,51 @@ from bias.
 | Most immigration is asylum seekers. | Restrictionist | No. Asylum is one part of a wider migration system. | Confuses asylum with all immigration. |
 | Visa grants equal arrivals. | Restrictionist | Not necessarily. | Permission is not the same as a confirmed arrival. |
 | Small boat arrivals are the whole asylum system. | Restrictionist | No. The categories overlap but differ. | Confuses route of arrival with claim status. |
-| The asylum backlog is one number. | Both | No. There are different queues at different stages. | Collapses initial decisions, appeals and support caseload. |
+| The asylum backlog is one number. | Restrictionist (shared) | No. There are different queues at different stages. | Collapses initial decisions, appeals and support caseload. |
 | Everyone in asylum accommodation is newly arrived. | Restrictionist | No. Support caseloads are stocks, not arrival flows. | Confuses stock and flow. |
 | Immigrants pay far more in tax than they cost. | Pro-migration | Not established. Estimates sit within about plus or minus 1% of GDP either way. | States a contested, method-dependent estimate as settled fact. |
+| Immigrants are a drain on the public finances. | Restrictionist | Not established. The same research that fails to show a large benefit fails to show a large cost. | States a contested, method-dependent estimate as settled fact. The mirror of the row above. |
 | The average migrant contributes £341,000 over their lifetime. | Pro-migration | No. That is a stylised scenario for one illustrative case, not an average. | Presents an illustrative model output as a typical outcome. |
 | Asylum hotels cost £8 million a day. | Restrictionist | Check the figure and the year before repeating it. | Uses a figure from a peak period as if it were current; conflates hotel cost with total system cost. |
 | 19% of the UK population was born abroad. | Restrictionist | Not an accredited estimate. The ONS series was discontinued in 2022. | Cites a number with no current official basis. |
 | A refusal means the original claim was obviously false. | Restrictionist | Not necessarily. | Ignores appeals, evidence thresholds and changed circumstances. |
 | Almost all refused asylum seekers are eventually recognised as refugees. | Pro-migration | No. Appeal success raises the final grant rate substantially, but not to that. | Generalises the appeal success rate to all refusals. |
 | Local areas all carry the same pressure. | Restrictionist | No. Distribution varies and needs per-capita context. | Uses raw numbers without denominators. |
-| Falling net migration means the asylum system is shrinking. | Both | No. They are different systems measured differently. | Reads one series as a proxy for another. |
+| Falling net migration means the asylum system is shrinking. | Pro-migration (shared) | No. They are different systems measured differently. | Reads one series as a proxy for another. |
 
-Nine of fourteen run in one direction. That is inside the two-thirds rule, but only just, and
-it should be tested again before launch: the restrictionist claims are easier for us to find
-because they are more numerous in circulation, which is itself a finding worth stating on the
-page rather than quietly compensating for.
+**There is no "both" direction.** `scripts/validate-content.mjs` accepts `restrictionist` and
+`pro-migration` and nothing else, because a third label that no claim ever carried was a
+promise to the reader that nothing kept. The style guide states the rule the two rows marked
+"(shared)" above follow: a misuse common on both sides is written up under whichever version
+circulates more, and named as shared in the text. The marker is for this table only and is
+not a value the front matter can hold. Drafting either of those two claims means picking one
+of the two labels; the assignments above are a starting position, not a finding.
+
+Eleven of the fifteen correct a restrictionist claim. The representation floor sets no
+ceiling on that, and this table is the candidate list rather than the published set, which
+runs five to two. Restrictionist claims are easier for us to find because they are more
+numerous in circulation, which is itself a finding worth stating on the page rather than
+quietly compensating for. The claims page states it.
 
 ### 8.5.4 Claim cards will be screenshotted
 
 Every claim card will be shared stripped of its context, by both sides. Design for that:
 
 - The period, the source and the date must be inside the card's visual boundary, not beside
-  it, so a screenshot carries them.
-- The same applies to the generated share image. If the card says "No", the share image must
-  say what the question was.
+  it, so a screenshot carries them. All three are required front matter as of 23 July 2026,
+  so a claim cannot ship without them: `claim.njk` renders period and source behind a
+  conditional, and a claim that omitted them lost them from the card with nothing on the page
+  to show it.
 - Never write a short answer that reverses meaning when quoted alone. "Not necessarily" is
   safe. "No" followed by a qualifying paragraph is not.
+
+**There is no generated share image, and there will not be one.** The June 2026 draft
+required the period and source inside one. Building it means rendering an image per claim at
+build time, which is a dependency, a build step and an asset on a site that ships no
+client-side JavaScript, one stylesheet and no images at all. The thing people actually share
+is a screenshot of the card, which already carries all three. If link previews are wanted
+later, `og:title` and `og:description` from front matter that already exists is a smaller job
+and a different one.
 
 # 9. Data governance model
 
@@ -485,12 +553,14 @@ and the script ever disagree, the script wins and this section is the bug.
 | period_label | Yes | Human-readable period. Must contain the year in `date`, or the year before it for financial years. |
 | geography | Yes | United Kingdom, England, London. |
 | source_name | Yes | Publishing body and publication title, combined. |
+| source_id | Yes | The `id` of the entry in `sources.json` this figure came from. Added 23 July 2026, because a hostname cannot supply it: `www.gov.uk` serves the Home Office, the Migration Advisory Committee and the tribunals statistics, and several figures cite an `assets.publishing.service.gov.uk` hash that names no publisher at all. This is what lets the validator age a figure against its own source's cadence. |
 | source_url | Yes | HTTPS link, to a publisher listed in `sources.json`. |
 | published_date | Yes | Publication date of the underlying statistics. May be `null` where not yet recorded; the validator counts and reports these. |
 | retrieved_date | Yes | Date the figure was checked for this project. |
 | notes | Yes | What the figure counts, what it does not show, and likely misreadings. |
 | confidence_level | Yes | official, provisional, estimated or calculated. Defined in `data/meta.json`. |
 | value_type | Where applicable | `range` for figures that span a sign or a plausible interval. Requires `range_min` and `range_max` and forbids a point `value`. |
+| published_date_unavailable | Where applicable | Prose saying why a `null` `published_date` can never be filled in, for example a daily-updated operational page whose past snapshots carry no publication date. Suppresses the outstanding warning. A documented impossibility is not debt, and nagging about it forever would train everyone to ignore the count. |
 
 ### 9.2 Deliberate departures from the original schema
 
@@ -516,21 +586,40 @@ should be recorded so they are not silently reinstated:
 - **`table_reference` is still unimplemented.** Home Office table identifiers survive only
   inside `notes` as prose. Section 6 requires table references in metadata. Add the field
   when the next quarterly update touches those figures.
-- **`published_date` is null for 33 of the 66 theme metrics.** These were not inferred, because
-  inventing a publication date on a project about statistical integrity is not a defensible
-  shortcut. The validator reports the outstanding count on every run.
+- **`published_date` is now recorded for 66 of the 67 theme metrics**, closing what was 33
+  outstanding in the June 2026 draft. Nothing was inferred to close it, because inventing a
+  publication date on a project about statistical integrity is not a defensible shortcut. The
+  one remaining null is a daily-updated operational page whose past snapshot has no
+  recoverable publication date; it carries `published_date_unavailable` saying so, and it is
+  cited on no page. The validator counts and reports any that are outstanding, and currently
+  reports none.
 
 ### 9.4 One figure, one home
 
-`dashboard.json` holds no values. Its cards and its supporting denominators reference theme
-metrics by `theme/id`, and the validator rejects any card that carries its own value.
+`dashboard.json` holds no values. Every card references a theme metric by `theme/id`, and the
+validator rejects any card that carries its own value.
 
-This is not tidiness. The six dashboard figures were previously verbatim copies of theme
-figures, and four of them carried a different `metric_name` from the figure they duplicated,
-so nothing could reconcile them automatically. The first quarterly update that revised
+This is not tidiness. The dashboard figures were previously verbatim copies of theme figures,
+and four of them carried a different `metric_name` from the figure they duplicated, so
+nothing could reconcile them automatically. The first quarterly update that revised
 `asylum.json` and forgot `dashboard.json` would have published two different official values
 for the same measure, on the same site, on a project whose entire proposition is statistical
 integrity. Reference, never copy.
+
+**The rule reached the card's number and stopped at its prose.** A card's `whatThisMeans`
+paragraph was ordinary JSON text that no check read, and two cards wrote a live figure into
+it longhand. So did seven of the caveats in `meta.json`, which render on the sources page a
+couple of paragraphs below the sentence telling a reader that a current value written longhand
+anywhere in a page stops the build. Corrected 23 July 2026: the prose cites tokens, and
+`validate-content.mjs` now holds every data-file field that reaches a page to the same rule
+as a content page. A file whose job is to hold references had become the only file nobody
+scanned for values.
+
+**Deleted at the same time**, because prose nothing renders is prose that rots unwatched:
+`lastUpdated`, `referencePeriod`, `caveat`, a `supporting` block of four denominators, and
+`display` and `explanation` on every card. All six were required by the validator and
+rendered by no template, and one of the denominators reached no reader by any route.
+`dashboard.json` is now `cards`, and each card is an id, a ref, a label and one paragraph.
 
 # 10. Chart and interaction principles
 
@@ -545,10 +634,10 @@ integrity. Reference, never copy.
 
 | Chart | MVP use | Caution |
 | --- | --- | --- |
-| Line chart | Net migration, applications, backlog over time | Mark revisions and breaks. |
-| Stacked bar | Initial decisions by outcome | Avoid too many categories. |
-| Small multiples | Compare routes or regions | Needs careful labelling. |
-| Sankey / flow | Asylum pipeline concept | Do not imply person-level tracking unless true. |
+| Line chart | **Built, four of them.** Net migration, the two flows, applications, backlog over time | Mark revisions and breaks. The method break is drawn on the chart, not footnoted. |
+| Bar chart | **Built, three of them.** Reason for immigration, initial decisions by outcome, cost per accommodation place | Plain bars, not stacked. Withdrawals sit outside the decisions total, so stacking them would assert an arithmetic that is not true. |
+| Small multiples | Not used. | Reconsider if routes or regions ever need comparing side by side. |
+| Sankey / flow | Not used. The asylum pipeline is a table with a stage, a figure and what it counts. | The table was the safer form: a flow diagram implies people moving between stages, and these figures are stocks and flows measured at different moments. |
 | Map | Not planned. Phase 4 local picture uses a lookup, not a map. | A map of asylum accommodation is a targeting tool. See section 13. |
 
 # 11. Technical architecture
@@ -557,11 +646,11 @@ This should be a static-first public explainer with governed data files, not a h
 
 | Layer | Recommendation |
 | --- | --- |
-| Framework | Eleventy or Astro. Choose the one that best matches the existing public finances project. |
-| Content | Markdown pages with front matter. |
-| Data | CSV/JSON files committed to the repository. |
-| Charts | Observable Plot, Chart.js or a lightweight D3 wrapper. |
-| Updates | Manual data update at first; optional scheduled source-check later. |
+| Framework | **Eleventy 3.** Chosen to match the public finances project, so one set of habits covers both. |
+| Content | Markdown and Nunjucks pages with front matter. Markdown where the page is prose, Nunjucks where it carries charts, because a chart cites records through a shortcode. The two use different citation syntax; see section 15. |
+| Data | JSON files committed to the repository. Not CSV: the contract in section 9 is per-figure metadata, which CSV expresses badly. |
+| Charts | **None of these.** Inline SVG generated at build time by `lib/charts.mjs`. The site ships no client-side JavaScript at all, so charts work with scripting off, add no dependency and need no content security policy exception. |
+| Updates | Manual data update, deliberately. The scheduled source check is built: CI runs the link checker weekly on a cron, because the time-based rules fire only if something runs. |
 | Hosting | Netlify, Cloudflare Pages or GitHub Pages. |
 | Accessibility | WCAG 2.2 AA target; semantic HTML; data tables for chart data. |
 | Versioning | Changelog for data updates and methodology changes. |
@@ -569,10 +658,10 @@ This should be a static-first public explainer with governed data files, not a h
 
 ## 11.1 Repository structure
 
-What exists as of 22 July 2026:
+What exists as of 23 July 2026:
 
 ```
-data/                       66 governed metrics and four timeseries
+data/                       67 governed metrics and four timeseries
   migration.json            net migration, flows, reason splits, visa grants
   asylum.json               claims, decisions, backlog, small boats, appeals, support, returns
   population.json           foreign-born population, citizenship, settlement
@@ -584,23 +673,34 @@ data/                       66 governed metrics and four timeseries
   dashboard.json            homepage cards, references only, holds no values
   sources.json              publisher catalogue
   meta.json                 confidence definitions and cross-cutting caveats
+content/                    the site's pages, 16 of them
+  index.njk asylum.njk migration.njk costs.njk common-claims.njk
+  glossary.md sources-and-method.md style-guide.md about.md
+  claims/                   seven claim pages, one per claim
+  _includes/base.njk        the only layout, plus claim.njk for claim pages
+  _data/site.js             name, strapline, navigation
+  assets/style.css          one stylesheet
+  robots.txt                disallows all crawlers until launch
+lib/charts.mjs              inline SVG charts, built at build time
+eleventy.config.js          citation shortcodes, filters and the three HTML transforms
 docs/foundation.md          this document
+docs/HANDOFF.md             state of play between sessions
 scripts/validate-data.mjs   data contract enforcement, stdlib only
+scripts/validate-content.mjs page content against the data layer, and house style
+scripts/check-build.mjs     the BUILT html, not the source that produced it
 scripts/check-sources.mjs   network check that every source URL still resolves
-.github/workflows/          CI: the contract runs on every push
+.pa11yci.json               pa11y over all 16 URLs at WCAG2AA
+.github/workflows/          CI: everything above runs on every push, plus a weekly cron
 CHANGELOG.md                data and methodology changes
 LICENCE                     MIT for code, OGL v3 attribution for data
 ```
 
-What the build still needs to add:
-
-```
-src/pages/                  index, migration, asylum, costs, about
-src/components/             MetricCard, SourceNote, CaveatBox, ClaimCheck, DataTable
-```
-
-Data stays as JSON rather than the mixed CSV/JSON suggested previously, the contract in
-section 9 is per-figure metadata, which CSV expresses badly.
+**There is no `src/`.** An earlier version of this section expected `src/pages/` and
+`src/components/`, listing MetricCard, SourceNote, CaveatBox, ClaimCheck and DataTable. The
+build went a different way and the components exist as three kinds of thing instead: Nunjucks
+partials in `_includes/`, shortcodes and filters registered in `eleventy.config.js`, and
+structural blocks rendered from the data layer by the `PARTIALS` map there. The nearest thing
+to a MetricCard is the loop over `dashboard.cards` in `index.njk`.
 
 The link checker is built and has already earned its place: it found that five Commons
 Library URLs cannot be verified automatically at all, because the host returns 403 to every
@@ -630,18 +730,28 @@ other people do to you regardless of your intent.
 
 | Risk | Likelihood | Impact | Mitigation (verifiable) |
 | --- | --- | --- | --- |
-| **Silent staleness** | **High** | **High** | Publish an update commitment per source; the site displays its own lateness against it. The validator reports figures older than their source's update frequency. Cap the MVP at 15-20 figures so updating is a session, not a project. |
+| **Silent staleness** | **High** | **High** | `validate-data.mjs` ages every figure against its own source's publication cycle and reports any not re-checked within it, naming the sources it cannot check because they publish irregularly. A weekly CI cron makes that fire without anyone pushing. The update cycle is capped at four source releases, not at a figure count (section 14). Every page carries the date it was last reviewed. **The site does not display its own lateness**, and nothing detects that a release has actually happened. |
 | Political capture | High | High | Published claim-selection criteria (8.5.2). A representation floor enforced in CI: at least two claims correcting each direction, so a set that only ever corrects one side fails the build. The real split is generated from the claim set and disclosed on the claims page. The style guide separates the precision rules from the value-based choices. |
 | Misleading comparisons | High | High | The data contract, enforced in CI on every push, not by memory. Period and basis inside every card. |
-| Quote-mining and selective citation | High | Medium | Period, source and date inside the card's visual boundary and inside the share image (8.5.4). Short answers written to survive being quoted alone. |
+| Quote-mining and selective citation | High | Medium | Period, source and date inside the card's visual boundary (8.5.4), all three required front matter so a claim cannot ship without them. Short answers written to survive being quoted alone. No share image, and 8.5.4 records why. |
 | Data revision confusion | High | Medium | Corrections policy with a public log (section 13.1). `published_date`, `retrieved_date` and `confidence_level` on every figure. |
 | Scope creep | High | High | Launch with the MVP set in section 7 only. Costs limited to audited spending; fiscal impact deferred. |
 | Local targeting | **High** | High | Local picture moved to phase 4 and gated on a written harm review. No maps. Per-capita denominators mandatory. Reclassified from medium: this is the year of asylum hotel protests. |
-| Cost framing becomes dehumanising | Medium | High | System cost only, never cost per person. The MVP costs section covers what the system spends, not what people are worth. |
+| Cost framing becomes dehumanising | Medium | High | No cost per asylum seeker, ever. What the site does publish is system spending and the contracted price of an accommodation place per night, which is a procurement figure, labelled as one on the chart, on the costs page and in the style guide. The line is between what a bed costs to buy and what a person is worth, not between per-person arithmetic and none. |
 | Automated updates publish errors | Medium | High | Manual review before publication; CI validates structure but never publishes figures. |
 | Over-reliance on one source | Medium | Medium | Official sources primary, independent explainers as context. `sources.json` records the publisher of every figure. |
-| Maintainer burnout or abandonment | Medium | High | Publish the update commitment and a dated last-reviewed stamp. If the project stops, the site says so rather than quietly rotting. |
+| Maintainer burnout or abandonment | Medium | High | A dated last-reviewed stamp on every page, and the update commitment once it is signed off. The twelve-month claim expiry fails the build, and the weekly cron makes it fire with nobody pushing. **A static site cannot announce its own abandonment**: if the project stops, nothing new is published, and that includes the notice. What a reader has instead is the review date on every page and each source's cadence in the catalogue. |
 | Legal exposure from attributed claims | Low | High | Claims are stated as circulating propositions, not attributed to named individuals, unless there is a specific reason to attribute and it has been considered. See 13.2. |
+
+**Three mitigations in this table were promises rather than descriptions, and 23 July 2026
+replaced them with what is true.** Silent staleness claimed the site displayed its own
+lateness and that the validator aged figures against their source's update frequency; neither
+existed, and `updateFrequency` was a field nothing compared against anything. The check now
+exists, which is why `source_id` was added to the contract in section 9.1: without it a
+figure cannot be matched to its own catalogue entry. The lateness display was not built and
+the row says so. Quote-mining promised a share image that does not exist, and abandonment
+promised a notice a static site cannot publish. A mitigation that names something unbuilt is
+worse than an empty cell, because the empty cell does not tell you the risk is handled.
 
 **Two mitigations for political capture were withdrawn and this records what replaced them.**
 The two-thirds balance rule was removed because it blocked a correction a pro-migration
@@ -694,16 +804,19 @@ open invited an indefinite planning loop.
 - ~~Create final name and strapline.~~ Done. UK Migration Explorer (section 3).
 - ~~Define editorial principles and language rules.~~ Done (section 5).
 - ~~Create source catalogue.~~ Done: `data/sources.json`.
-- ~~Create metric inventory.~~ Done: 66 metrics across four theme files, plus four timeseries.
+- ~~Create metric inventory.~~ Done: 67 metrics across four theme files, plus four timeseries.
 - ~~Create risk register.~~ Done (section 13), with corrections policy.
-- **Outstanding: glossary.** Exists as an eight-row table in section 8.2. Needs to become
-  real content before the definitions page can ship.
-- **Outstanding: draft the claims.** The set and the selection criteria exist (section 8.5).
-  Not one claim has been written to the template in section 16.2.
-- **Outstanding: homepage wireframe.** Nothing exists.
-- **Outstanding: methodology page outline.** Nothing exists, and section 17 makes it a
-  launch gate.
-- **Added, and genuinely missing from the original phase: talk to five people.** A local
+- ~~Glossary.~~ Done: `content/glossary.md`, 23 terms in five groups. See section 8.2 for why
+  it grew past the eight in the original table.
+- ~~Draft the claims.~~ Partly done: seven are written to the template in section 16.2, and
+  eight of the candidates in section 8.5.3 remain undrafted. See section 15.
+- ~~Homepage wireframe.~~ Superseded. The homepage was built directly and has since been
+  through a design round; a wireframe for a page that exists would be drawn from the page.
+- ~~Methodology page outline.~~ Done, and built: `content/sources-and-method.md`.
+- **Outstanding: choose the success measures.** Section 4.2 offers three candidates and says
+  they must be chosen and committed to in this phase. None has been. Section 17 makes it a
+  process criterion, and it is the only one with nothing pointing at it.
+- **Outstanding, and genuinely missing from the original phase: talk to five people.** A local
   journalist, a councillor, a teacher, and two people who are simply interested. Ask whether
   they would use this and what they would look for. This project has been designed for named
   audiences (section 4) none of whom has been asked. It is the cheapest possible way to find
@@ -715,31 +828,61 @@ open invited an indefinite planning loop.
 Give this phase a calendar deadline and a figure cap. Five phases with no dates is not a plan
 one person can be held to.
 
-**Cap the MVP at 15-20 published figures.** The data layer holds 73. Publishing all of them
-creates a maintenance obligation across five publishers on four different cadences that one
-person will not sustain past month four, and staleness is fatal for a product whose entire
-pitch is trust. The unpublished figures are not wasted: they are the reserve that makes the
-published ones defensible.
+**Cap the update cycle at four source releases.** The June 2026 draft capped published
+figures at 15-20 instead, and that counted the wrong thing. Updating thirteen Home Office
+figures from one quarterly release is a single session: you chase the release once, re-read
+its tables once, and re-check everything that came from it. Publishing four of those thirteen
+instead would save almost nothing, while making the site worse. What actually predicts
+staleness is the number of releases you have to chase.
 
-No longer blocked on research, and the charts are built. As of 22 July 2026 the migration
-and asylum pages carry six charts between them, each with an accessible data table, a text
-summary, its source, and a zero-based axis. The remaining work is build work:
+The routine cycle is currently **three releases**, covering 22 of the 36 published figures:
 
-- Build static site skeleton.
-- Implement metric card component driven by the data contract in section 9.
-- Add overview, definitions, migration, asylum, costs, common claims, sources and about pages.
-- ~~Add 4-6 core charts with underlying accessible tables.~~ Done: six, rendered as inline
+| Release | Cadence | Published figures |
+| --- | --- | --- |
+| Home Office, immigration system statistics | Quarterly | 13 |
+| ONS, long-term international migration | Twice yearly | 7 |
+| HMCTS / Ministry of Justice, tribunals statistics | Quarterly | 2 |
+
+The other 14 come from the National Audit Office, the Commons Library, the Migration
+Observatory and the OBR, which publish irregularly and are re-checked when they do rather
+than on a schedule. `scripts/validate-data.mjs` ages every figure against its own source's
+cycle and names those four as the ones it cannot age.
+
+The figure count follows from the cap rather than being the cap, and it is recorded rather
+than targeted: 36 records reach a reader, out of 67 in the data layer. The unpublished
+figures are not wasted; they are the reserve that makes the published ones defensible.
+
+No longer blocked on research, and the build is done. As of 23 July 2026 the site is 16
+pages, with seven charts across the migration, asylum and costs pages, each carrying an
+accessible data table, a text summary, its source, and a zero-based axis. What is left is not
+build work:
+
+- ~~Build static site skeleton.~~ Done: Eleventy 3, `content/` in and `_site/` out.
+- ~~Implement metric card component driven by the data contract in section 9.~~ Done: the
+  loop over `dashboard.cards` in `index.njk`, which reads every value through the `metric`
+  filter and can carry none of its own.
+- ~~Add overview, definitions, migration, asylum, costs, common claims, sources and about
+  pages.~~ Done, plus the style guide, which section 5.2 requires.
+- ~~Add 4-6 core charts with underlying accessible tables.~~ Done: seven, rendered as inline
   SVG at build time. No JavaScript, so they work with scripting off, need no dependency and
-  need no exception to the content security policy. Three rules are enforced in the chart
+  need no exception to the content security policy. Four rules are enforced in the chart
   code rather than left to whoever writes the page: the y-axis always starts at zero,
-  every chart carries its figures as a real table, and no series is distinguished by colour
-  alone, lines differ in stroke pattern and are labelled directly.
-- ~~Write the glossary and at least five claims.~~ Done: `content/glossary.md` and six claims.
+  every chart carries its figures as a real table, no series is distinguished by colour
+  alone, lines differ in stroke pattern and are labelled directly, and gridlines fall on an
+  interval a reader counts in rather than on the axis top divided by four.
+- ~~Write the glossary and at least five claims.~~ Done: `content/glossary.md` and seven
+  claims.
 - ~~Write the sources and methodology page.~~ Done: `content/sources-and-method.md`.
-- Publish the about and funding page. **Blocked: needs a named owner and a funding statement.**
+- ~~Publish the about and funding page.~~ Done: `/about/` names the maintainer and states
+  that the project is unfunded. The block is cleared.
+- ~~Run the accessibility review before publishing.~~ Done 23 July: pa11y over all 16 pages
+  at WCAG2AA in CI as a failing step, plus five defects found by hand that pa11y passed. What
+  it does not establish is recorded in `docs/HANDOFF.md`, and no real screen reader has been
+  run.
 - Confirm the update commitment. The sources page proposes fourteen days from each release
   and marks it as needing sign-off; an unmet published target is worse than none.
-- Run accessibility and content review before publishing.
+- **Run the pre-publication human review.** The sources page commits to it and publication
+  has already happened, behind a robots rule. This is a launch blocker, not a task.
 
 ## Phase 3: Fiscal impact
 
@@ -771,7 +914,7 @@ targeting tool however carefully it is worded.
 
 Superseded by section 8.5.3, which holds the full set with directions and selection criteria.
 
-**Written and drafted as of 22 July 2026**, six claims, in `content/claims/`:
+**Written and drafted as of 22 July 2026**, seven claims, in `content/claims/`:
 
 1. Net migration is the number of people who entered the UK. *(restrictionist; net flow read as gross inflow)*
 2. Most immigration is asylum seekers. *(restrictionist; category confusion)*
@@ -779,12 +922,16 @@ Superseded by section 8.5.3, which holds the full set with directions and select
 4. Everyone in asylum accommodation arrived recently. *(restrictionist; stock read as flow)*
 5. 19% of the UK population was born abroad. *(restrictionist; figure with no current official basis)*
 6. Almost all refused asylum seekers are eventually recognised as refugees. *(pro-migration; appeal success rate generalised to all refusals)*
+7. Immigrants are a drain on the public finances. *(restrictionist; contested estimate stated as fact, the mirror of 3)*
 
-### Why the launch five became six
+Claims 3 and 7 name each other in `mirror_of`, and the validator refuses a mirror that is not
+named back. That pairing previously lived only in the prose of both pages.
+
+### Why the launch five became seven
 
 The original list of five was written into this document on 22 July 2026, in the same
-revision that introduced the two-thirds balance rule in section 8.5.2. It then failed that
-rule immediately: four of the five ran in one direction, which is 80%.
+revision that introduced the two-thirds balance rule section 8.5.2 then carried. It failed
+that rule immediately: four of the five ran in one direction, which is 80%.
 
 This is worth recording rather than quietly correcting, for two reasons. The list was
 drafted by someone who had written the balance rule hours earlier and still did not notice,
@@ -795,11 +942,24 @@ person most confident they have applied it.
 
 The sixth claim was added rather than one of the five dropped, because each of the five
 corrects a genuinely distinct class of error and cutting one to hit a ratio would be
-gaming the rule instead of satisfying it. The set now runs four to two, which passes.
+gaming the rule instead of satisfying it. The set then ran four to two.
 
-The lesson generalises: restrictionist claims are easier to find because they circulate
-more, so any set assembled by availability will drift one way. Section 8.5.2 already says
-this should be stated on the page rather than silently compensated for. It should be.
+**The rule itself did not survive the day.** Adding "immigrants are a drain on the public
+finances", the seventh claim and the correction a pro-migration reader would most want to
+see, would have breached the same two-thirds cap, because `direction` records whose claim is
+corrected and that claim is a restrictionist one. The cap was removed and a representation
+floor put in its place; the reasoning is in section 8.5.2 and in the script. The published
+set now runs five to two, which clears the floor and would have failed the cap.
+
+Both halves of that episode point the same way. The constraint caught what review missed,
+which is the argument for making constraints mechanical. Then the constraint blocked a
+correction, which is the argument for checking that a mechanical rule measures the thing you
+meant. Neither lesson cancels the other.
+
+The wider point generalises: restrictionist claims are easier to find because they circulate
+more, so any set assembled by availability will drift one way. Section 8.5.2 says this should
+be stated on the page rather than silently compensated for. It now is, on
+`/common-claims/`, in a paragraph generated from the claim set rather than typed.
 
 ### How content cites figures
 
@@ -821,17 +981,44 @@ one.
 
 **Historical illustrations stay literal**, because they are arguments about the past rather
 than current values and must not auto-update. But writing a number longhand silently opts
-out of the staleness protection, so if a literal happens to equal a current metric value the
-validator stops the build and asks for either a token or an explicit
-`historical_literals:` declaration. Three live values were hard-coded in the first draft of
-this content and none of the checks then in place noticed.
+out of the staleness protection, so a literal that equals a current metric value has to be
+either a token or an explicit `historical_literals:` declaration. Three live values were
+hard-coded in the first draft of this content and none of the checks then in place noticed.
+
+A data file has no front matter, so it declares the same thing in a sibling key,
+`historical_literals`. There is one, in `meta.json`. Its last caveat is a worked
+reconciliation at a single vintage, immigration minus emigration against the published net
+figure, and the whole point of it is that the subtraction does not come out. Citing a live
+record for any part of that would let one revision move a number and leave the arithmetic
+around it wrong, which is the opposite of what a caveat about arithmetic should do.
+
+**That check has two strengths, and the weaker one is deliberate.** A comma-grouped value or
+one of 100 or more is distinctive enough to fail the build. Rates and money are mostly under
+100, where too many unrelated metrics share a value for a match to mean anything, 21% is both
+the NHS staff share and the asylum hotel share, so those are matched with their unit and
+**reported as warnings rather than refused**. Ten warnings surface today and all ten were
+reviewed on 22 July as coincidences. An error there would be silenced by stuffing
+`historical_literals:`, which is worse than no check at all. Review them; do not suppress
+them.
 
 `scripts/validate-content.mjs` enforces the front matter, checks every token resolves and
 carries its unit symbol, rejects range metrics cited as points, catches live values written
 longhand, requires each cited figure to be declared so a data update can find the content it
-affects, checks that glossary links resolve to real terms, enforces the balance rule, and
-refuses any claim unreviewed for more than twelve months per the corrections policy in
-section 13.1.
+affects, checks that glossary links resolve to real terms, pairs every mirrored claim with
+the claim that names it back, enforces the representation floor, scans page bodies for the
+vocabulary section 5.2 avoids and exempts it inside quotation marks, bans the em-dash in
+authored copy, and refuses any claim unreviewed for more than twelve months per the
+corrections policy in section 13.1.
+
+**It holds `data/` to the same rule as `content/`,** for every field that reaches a page: the
+card paragraphs in `dashboard.json`, and the caveats, confidence definitions and footer note
+in `meta.json`, and what each source covers and how often it publishes in `sources.json`.
+Fields no template renders are deliberately not scanned, because a clean scan of prose nobody
+sees would read as coverage of prose everybody sees. See 9.4 for what this caught.
+
+The language scanner runs a control on itself on every build, feeding it a sentence that must
+match and a quoted one that must not. A scanner that silently stopped matching would
+otherwise report a clean site, which is the exact failure this project has shipped six times.
 
 Claims link to glossary definitions at `/what-the-words-mean#term`. The link target is
 checked, so a definition cannot silently go nowhere.
@@ -840,18 +1027,31 @@ checked, so a definition cannot silently go nowhere.
 
 ## 16.1 Metric card template
 
+What the home page card actually renders, in order. This was a specification that no card
+matched; it is now a record of what ships.
+
 ```
-Metric name
-Value
-Period covered
-Change from previous comparable period
-Source
-Published date
-Retrieved date
-What this counts
-What this does not show
-Known caveats
+Metric name          card's own shortLabel
+Value                from the record, formatted, with the unit as prose
+Unit and period      the basis and the period_label, on one line
+What this means      one paragraph: what it counts, what it does not show, the caveat
+Source               linked to the publication
+Published date       or "Publication date not recorded", never blank
+Checked date         when this site last verified the figure against its source
+Confidence grade     official, provisional, estimated or calculated
 ```
+
+**Two deliberate departures**, recorded here so they are not silently reinstated:
+
+- **Change from previous comparable period is dropped.** No record holds a prior value, so
+  the field means sourcing and checking a second figure for every card. It is also the single
+  easiest place on this site to publish an invalid comparison, because the prior figure is
+  usually on a different vintage or a revised basis. The card's what-this-means paragraph
+  carries the direction of travel in prose, where the basis can be stated.
+- **"What this counts", "what this does not show" and "known caveats" are one paragraph, not
+  three.** Same reasoning as merging `definition` and `caveat` into `notes` in section 9.2:
+  three fields produced three thin ones. The record's fuller `notes` sit behind the card in
+  the data files.
 
 ## 16.2 Common claim template
 
@@ -867,18 +1067,25 @@ Last reviewed
 
 ## 16.3 Source note template
 
+The catalogue entry in `data/sources.json`, which is what the sources page renders:
+
 ```
-Source title
-Publishing body
-Publication date
-Dataset/table used
-Geography
-Period covered
-Statistical status
-Known limitations
-URL
-Last checked
+id                   referenced by every figure's source_id
+name                 publication title
+publisher            publishing body
+url                  the collection or landing page, not a release-specific slug
+covers               what this site takes from it, in a sentence
+updateFrequency      the publication cycle, which the staleness check ages figures against
+confidence_level     this site's grade for the source
 ```
+
+The catalogue is per SOURCE. Publication date, dataset or table used, geography, period
+covered and last-checked date are per FIGURE and live on the record, not here, because one
+source supplies figures with different periods and different table references. The one
+genuinely missing field is `table_reference` on the figure, recorded in section 9.3.
+
+The sources page renders three of these columns, name with publisher, `covers` and
+`updateFrequency`. `id` and `confidence_level` are structural, and `url` is the link.
 
 # 17. MVP acceptance criteria
 
@@ -889,27 +1096,27 @@ Comprehension criteria:
 
 Data criteria:
 
-- Every headline figure has source, period, publication date, retrieved date and caveat.
+- Every headline figure shows, on the card, its source, its period and basis, its publication date, the date this site last checked it, its confidence grade, and a caveat.
 - `node scripts/validate-data.mjs` passes, and CI enforces it on every push.
 - No figure appears in two places. The dashboard references, it does not copy.
 - No published figure has `published_date: null`. The validator reports the outstanding count; it must reach zero for the published subset before launch.
-- No more than 20 figures are published, so the update commitment is sustainable.
+- No more than four source releases are in the routine update cycle, so the update commitment is sustainable. The published figure count follows from that and is recorded, not targeted. Currently three releases and 36 figures.
 
 Editorial criteria:
 
 - No chart relies on colour alone or lacks a text/table equivalent.
 - No page uses inflammatory or imprecise migration language as the default vocabulary.
 - The style guide is published as a page, distinguishing the precision rules from the values-based ones.
-- At least five common claims checked against definitions and data, and the published set runs no more than two-thirds in one direction.
+- At least five common claims checked against definitions and data, and at least two correcting each direction, enforced before the build rather than checked at review. The real split is generated from the set and disclosed on the claims page.
 - The claim-selection criteria are published on the claims page.
-- Every claim card carries a "last reviewed" date, and the period and source sit inside the card's visual boundary and its share image.
+- Every claim card carries a "last reviewed" date, and the period and source sit inside the card's visual boundary. All three are required front matter, so a claim cannot ship without them.
 
 Trust criteria, all new and all launch gates:
 
 - The site has a sources and methodology page.
 - The site has an about page naming who runs it and who funds it, including "unfunded" if that is the answer.
 - The site has a published corrections policy and a public changelog.
-- The site publishes its update commitment per source and displays its own lateness against it.
+- The site publishes its update commitment, and every page carries the date it was last reviewed so a reader can judge it against that. The site does not display its own lateness; a static build cannot know how late it is at the moment someone reads it, and the validator does the ageing instead, before publication.
 - The site states what it does not cover, and why.
 
 Process criteria:
@@ -927,7 +1134,7 @@ The first build should answer five questions well: What is net migration? How is
 Three things this document did not originally say, which the 22 July 2026 review concluded matter more than anything on the build list:
 
 1. **The claim list must correct both directions, or the neutrality claim is false.** This is the difference between a clarity project and a well-sourced partisan one, and it is decided by editorial discipline, not by data quality.
-2. **Silent staleness is the most likely way this fails.** Not political capture, not legal risk. Eighty figures, five publishers, four cadences, one person, no deadline. Publish fewer figures and commit to a cadence in public.
+2. **Silent staleness is the most likely way this fails.** Not political capture, not legal risk. Sixty-seven figures and four series, eleven publishers, eight cadences, one person, no deadline. Publish fewer figures and commit to a cadence in public. Neither has happened: 36 records reach a reader and the commitment is still a proposal.
 3. **Nobody has been asked whether they want this.** Five conversations cost a week and could save the entire build.
 
 > The product should be boring in the best possible way: sourced, dated, caveated and hard to misuse.
@@ -953,3 +1160,20 @@ Three things this document did not originally say, which the 22 July 2026 review
 9. Migration Observatory. Asylum accommodation in the UK. https://migrationobservatory.ox.ac.uk/resources/briefings/asylum-accommodation-in-the-uk/
 
 10. Office for Statistics Regulation. What to look out for: migration and the asylum system statistics. https://osr.statisticsauthority.gov.uk/guidance/2026-what-to-look-out-for-migration-and-the-asylum-system-statistics/
+
+Added 23 July 2026. These publishers were cited by live figures while this list still showed
+only the ten above. `data/sources.json` is the catalogue of record; this is a reading list.
+
+11. National Audit Office. https://www.nao.org.uk/ Asylum system cost and accommodation contracts. The costs page is built on these.
+
+12. Office for Budget Responsibility. https://obr.uk/ Fiscal impact of migration in forecasts and scenarios, including the £341,000 illustrative case.
+
+13. Migration Advisory Committee. https://www.gov.uk/government/organisations/migration-advisory-committee Economic and fiscal evidence on work routes.
+
+14. HM Courts & Tribunals Service / Ministry of Justice. Tribunals statistics quarterly. https://www.gov.uk/government/collections/tribunals-statistics The appeals queue, on a different publisher and cycle from the initial-decision queue.
+
+15. Census 2021/22. https://www.ons.gov.uk/census Foreign-born population and country of birth, since the ONS survey-based series was discontinued in October 2022.
+
+16. ONS. Population estimates. https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates Denominators for population shares.
+
+17. Skills for Care. State of the adult social care workforce. https://www.skillsforcare.org.uk/Adult-Social-Care-Workforce-Data/workforceintelligence/home.aspx Nationality composition of the England social care workforce. Not an official statistics producer, and marked as such on the sources page.

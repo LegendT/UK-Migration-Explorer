@@ -13,7 +13,12 @@ const claimsDir = fileURLToPath(new URL('../content/claims/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
 const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
-const REQUIRED_FRONT_MATTER = ['id', 'claim', 'short_answer', 'direction', 'error_type', 'last_reviewed'];
+// period and source are here because claim.njk renders them behind `{% if %}`, so a claim
+// that omitted them lost them from the card silently, with nothing on the page to show it.
+// Foundation 8.5.4 requires both inside the card's visual boundary: a card is going to be
+// screenshotted stripped of its context, and a period and a source are what make the
+// screenshot answerable. All seven claims already carry them; this stops the eighth not to.
+const REQUIRED_FRONT_MATTER = ['id', 'claim', 'short_answer', 'direction', 'error_type', 'last_reviewed', 'period', 'source'];
 // "both" was a third label, described on the style guide and never applied to a claim.
 // A label no claim carries is a promise to the reader that nothing keeps. Add it back in
 // this line, and on the style guide, when a genuinely two-sided misuse needs it.
@@ -527,6 +532,49 @@ for (const { file, prose, literals, lineOffset } of contentPages) {
   checkEditorial(file, prose, lineOffset);
 }
 
+// --- prose that lives in data/ and reaches a page ----------------------------------
+// Everything above walks content/. Nothing walked data/, so the one file whose entire job is
+// to hold references and never values was the only file never scanned for values, and the
+// caveats in meta.json render on the sources page directly below a sentence promising a
+// reader that a current value written longhand cannot ship. Seven of them were current
+// values.
+//
+// Citation tokens work here because resolve-citations runs on the built HTML, after
+// Nunjucks and after the partials are expanded, so a {{theme/id}} in a data string is
+// resolved exactly as one in a markdown page is. Verified in the output, both routes.
+//
+// Only fields a template actually renders are listed. Scanning prose no page shows would
+// invite the reverse error: reading a clean scan of dead data as coverage of live copy.
+const DATA_PROSE = [
+  ['dashboard.json', (d) => d.cards.map((c) => [`cards ${c.id}.whatThisMeans`, c.whatThisMeans])],
+  ['meta.json', (d) => [
+    ...d.keyCaveats.map((c, i) => [`keyCaveats[${i}]`, c]),
+    ...Object.entries(d.confidenceLevels).map(([k, v]) => [`confidenceLevels.${k}`, v]),
+    ['footerNote', d.footerNote],
+  ]],
+  ['sources.json', (d) => d.sources.flatMap((s) => [
+    [`${s.id}.covers`, s.covers],
+    [`${s.id}.updateFrequency`, s.updateFrequency],
+  ])],
+];
+
+let dataFields = 0;
+for (const [file, extract] of DATA_PROSE) {
+  const data = read(file);
+  // A data file has no front matter, so a deliberately frozen figure is declared in a
+  // sibling key. meta.json's last caveat is a worked reconciliation at one vintage whose
+  // point is that the subtraction does not come out; citing a live record for any part of
+  // it would let a revision move one number and leave the arithmetic around it wrong.
+  const allowed = new Set(data.historical_literals ?? []);
+  for (const [where, prose] of extract(data)) {
+    if (!prose) continue;
+    checkUnclosed(`${file} ${where}`, prose);
+    checkUnits(`${file} ${where}`, prose);
+    checkLiterals(`${file} ${where}`, prose, allowed);
+    dataFields += 1;
+  }
+}
+
 // Report last, so that every check above has run. Reporting mid-file once silently
 // discarded every glossary error, which passed a broken page as green.
 if (errors.length) {
@@ -544,6 +592,7 @@ if (warnings.length) {
   console.log('Many are coincidence, several metrics share a value. Review, do not suppress.');
 }
 console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes a comma-grouped record value longhand.`);
+console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly, and values quoted from the timeseries files, which are read against the series by hand. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
 console.log('This counts whose claim is corrected. It is not a measure of fairness; the split is disclosed on the claims page.');

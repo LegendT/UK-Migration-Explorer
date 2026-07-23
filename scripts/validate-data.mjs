@@ -24,7 +24,8 @@ const SPECIAL_FILES = ['dashboard.json', 'sources.json', 'meta.json', ...TIMESER
 
 const METRIC_FIELDS = [
   'id', 'metric_name', 'value', 'unit', 'date', 'period_label', 'geography',
-  'source_name', 'source_url', 'published_date', 'retrieved_date', 'notes', 'confidence_level',
+  'source_name', 'source_id', 'source_url', 'published_date', 'retrieved_date', 'notes',
+  'confidence_level',
 ];
 // Timeseries points inherit unit, geography and period basis from the series envelope.
 const POINT_FIELDS = ['date', 'value', 'confidence_level', 'source_name', 'source_url', 'published_date'];
@@ -48,6 +49,7 @@ const HOST_ALIASES = {
   'www.legislation.gov.uk': 'www.gov.uk',
 };
 
+const sourceById = new Map(read('sources.json').sources.map((s) => [s.id, s]));
 const catalogued = new Set(read('sources.json').sources.map((s) => new URL(s.url).hostname));
 const resolveHost = (url) => {
   const host = new URL(url).hostname;
@@ -89,6 +91,12 @@ function checkFields(where, item, required) {
   }
   if (item.confidence_level && !confidenceLevels.includes(item.confidence_level)) {
     errors.push(`${where}: unknown confidence_level "${item.confidence_level}"`);
+  }
+  // The link between a figure and its catalogue entry. A hostname match cannot supply it:
+  // www.gov.uk serves the Home Office, the MAC and the tribunals statistics, and several
+  // figures cite an assets.publishing.service.gov.uk hash that names no publisher at all.
+  if (item.source_id && !sourceById.has(item.source_id)) {
+    errors.push(`${where}: source_id "${item.source_id}" is not an id in sources.json`);
   }
 }
 
@@ -152,21 +160,20 @@ const dashboard = read('dashboard.json');
 if (dashboard.metrics) {
   errors.push('dashboard.json: has a "metrics" array, cards must reference theme metrics by ref, not copy their values');
 }
+// Every field here is rendered. `display` and `explanation` were required and rendered by
+// nothing, as were `lastUpdated`, `referencePeriod`, `caveat` and a `supporting` block of
+// four denominators, one of which reached no reader by any route. Validated prose that no
+// page shows is prose that goes stale unwatched, in the file whose whole job is to hold
+// references rather than content.
 for (const [i, card] of (dashboard.cards ?? []).entries()) {
   const where = `dashboard.json cards[${i}] ${card.id ?? '(unidentified)'}`;
-  for (const field of ['id', 'ref', 'shortLabel', 'display', 'explanation', 'whatThisMeans']) {
+  for (const field of ['id', 'ref', 'shortLabel', 'whatThisMeans']) {
     if (!card[field]) errors.push(`${where}: missing ${field}`);
   }
   if (card.ref && !registry.has(card.ref)) {
     errors.push(`${where}: ref "${card.ref}" does not resolve to any theme metric`);
   }
   if ('value' in card) errors.push(`${where}: cards must not carry their own value`);
-}
-for (const [key, entry] of Object.entries(dashboard.supporting ?? {})) {
-  const where = `dashboard.json supporting.${key}`;
-  if (!entry.ref) errors.push(`${where}: missing ref`);
-  else if (!registry.has(entry.ref)) errors.push(`${where}: ref "${entry.ref}" does not resolve to any theme metric`);
-  if ('value' in entry) errors.push(`${where}: denominators must reference a sourced metric, not carry a bare value`);
 }
 
 // --- timeseries -----------------------------------------------------------------
@@ -218,6 +225,45 @@ for (const [i, source] of read('sources.json').sources.entries()) {
   sourceIds.add(source.id);
 }
 
+// --- staleness against each source's publication cadence -------------------------
+// Silent staleness is the top-rated risk in the register, and its mitigation claimed this
+// check existed. It did not: `updateFrequency` was read as a required field and compared
+// against nothing.
+//
+// This REPORTS, it does not fail. A source publishing a new edition does not make our figure
+// wrong, it makes it worth re-checking, and a build that broke on a Tuesday because a
+// quarterly release landed would be switched off inside a month.
+//
+// The head of updateFrequency is matched exactly rather than fuzzily, so a cadence nobody
+// has taught this map lands in the uncheckable list below instead of being quietly assumed.
+const CADENCE_DAYS = {
+  quarterly: 92,
+  'twice yearly': 183,
+  annual: 366,
+  'annual report plus commissioned reviews': 366,
+  'every 10 years': 3653,
+};
+const cadenceOf = (frequency) => {
+  const head = String(frequency).split(' (')[0].trim().toLowerCase();
+  return CADENCE_DAYS[head] ? { name: head, days: CADENCE_DAYS[head] } : null;
+};
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const overdue = [];
+const noFixedCadence = new Map();
+
+for (const [ref, metric] of registry) {
+  const source = sourceById.get(metric.source_id);
+  if (!source || !metric.retrieved_date) continue;
+  const cadence = cadenceOf(source.updateFrequency);
+  if (!cadence) {
+    noFixedCadence.set(source.id, (noFixedCadence.get(source.id) ?? 0) + 1);
+    continue;
+  }
+  const age = Math.floor((Date.now() - new Date(`${metric.retrieved_date}T00:00:00Z`).getTime()) / DAY_MS);
+  if (age > cadence.days) overdue.push({ ref, age, cadence: cadence.name, source: source.name });
+}
+
 // --- blocked files ---------------------------------------------------------------
 // A file can satisfy every field rule and still be unfit to publish. Surface that
 // loudly rather than letting "contract passed" read as "safe to chart".
@@ -237,7 +283,7 @@ if (errors.length) {
 // States only what the code establishes. It previously claimed "all sourced, dated, graded
 // and singly held": "sourced" was a hostname match, "dated" tolerated missing dates, and
 // "singly held" was true of the data layer but not of the site.
-console.log(`Data contract passed: ${counted} figures, required fields present, dates internally consistent, publishers catalogued, no duplicate values within data/.`);
+console.log(`Data contract passed: ${counted} figures, required fields present, dates internally consistent, publishers catalogued, every figure linked to its catalogue entry, no duplicate values within data/.`);
 console.log('This checks metadata, not whether the figures are right.');
 if (blocked.length) {
   console.error(`\nDO NOT PUBLISH, ${blocked.length} file(s) are flagged as unfit for publication:\n`);
@@ -252,4 +298,22 @@ if (warnings.length) {
   if (process.argv.includes('--verbose')) {
     for (const warning of warnings) console.log(`  ${warning}`);
   }
+}
+
+// Staleness. Reported every run, including when it finds nothing, because a check that only
+// speaks up when it fires cannot be told apart from one that has stopped working.
+const checkable = registry.size - [...noFixedCadence.values()].reduce((n, c) => n + c, 0);
+if (overdue.length) {
+  console.log(`\n${overdue.length} figure(s) not re-checked within their source's publication cycle:`);
+  for (const item of overdue.sort((a, b) => b.age - a.age)) {
+    console.log(`  ${item.ref}: last checked ${item.age} days ago, ${item.source} publishes ${item.cadence}`);
+  }
+  console.log('A newer edition has probably been published. Re-check the figure against it.');
+} else {
+  console.log(`\nStaleness: ${checkable} figure(s) checked against their source's cycle, none overdue.`);
+}
+if (noFixedCadence.size) {
+  const names = [...noFixedCadence.entries()].map(([id, n]) => `${id} (${n})`).join(', ');
+  console.log(`Not covered: ${registry.size - checkable} figure(s) from sources with no fixed cadence, ${names}.`);
+  console.log('Also not covered: the timeseries files, whose points carry no retrieved_date to age.');
 }
