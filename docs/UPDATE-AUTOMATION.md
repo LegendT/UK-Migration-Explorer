@@ -37,8 +37,10 @@ must not be built before Phase 2.
 
 ## Phase 1: the release notifier
 
-Detect that a source has published a newer release than the one the site cites. Roughly the
-size of `check-sources.mjs`. Worth building on its own, whether or not anything later is.
+Detect that a source has published a newer release than the one the site cites. The same
+shape as `check-sources.mjs`, a network check that reports and never gates, though with two
+detection strategies rather than one loop over a list. Worth building on its own, whether or
+not anything later is.
 
 ### Detection, per source type
 
@@ -115,15 +117,41 @@ Any change to a figure's `value` must be accompanied by an evidence entry:
 }
 ```
 
+**A quote is not always a sentence.** Much of this data lives in ODS tables rather than prose,
+and several records already name one in `source_name`: `Asy_00a`, `Vis_01`, `Ret_01`. Where
+the figure comes from a spreadsheet cell, the quote is the row and column labels with the
+value, for example `"Asylum applications, main applicants, year ending June 2026: 97,120"`.
+The check is unaffected, since it only asks that the value appear in the text, but the
+contract has to permit this or an implementer will either invent sentences that are not in the
+source or conclude the field cannot be filled.
+
 ### The check
 
-For every metric whose `value` differs from the same metric on the base branch, require an
-evidence entry, and require **the new value to appear verbatim in `quote`**, tried in both
-formatted and bare forms, exactly as `checkLiterals` already does with
-`toLocaleString('en-GB')` and `String(value)`. If the quote does not contain the digits, fail.
+For every metric whose `value` differs from the same metric on the base branch, **or which
+does not exist on the base branch at all**, require an evidence entry, and require **the new
+value to appear verbatim in `quote`**, tried in both formatted and bare forms, exactly as
+`checkLiterals` already does with `toLocaleString('en-GB')` and `String(value)`. If the quote
+does not contain the digits, fail.
 
-Previous values come from the base branch: `git show origin/main:data/asylum.json`. On a PR
-that is the natural comparison; run it in CI where the base is known.
+**New metrics matter more than changed ones**, and an earlier draft of this scope missed
+them. The eight fabricated figures were new research, not an update to existing records. A
+rule that only watches changed values would not have caught the thing this check exists for.
+
+**Two implementation traps, both of which would cost an hour.**
+
+The previous values come from the base branch, and **CI cannot currently see it**.
+`.github/workflows` uses `actions/checkout@v4` with no `fetch-depth`, which is a depth-1
+shallow clone, and on a `pull_request` event `origin/main` is not fetched at all, so
+`git show origin/main:data/asylum.json` fails. Either set `fetch-depth: 0` on the checkout
+step, or add an explicit `git fetch --depth=1 origin main` before the check runs. Prefer the
+explicit fetch: a full clone slows every job for the benefit of one.
+
+The evidence files go in **`data/evidence/`**, one per release, named for the source and the
+release, and they are **committed and kept**. They are the audit trail the corrections policy
+implies, and they are what makes a figure's history reconstructible a year later. A
+subdirectory rather than a loose file, because `validate-data.mjs` errors on any unrecognised
+`.json` directly inside `data/`, deliberately, so that no data file goes unvalidated. A
+directory is filtered out of that scan and is therefore safe.
 
 **This is the check that would have caught the eight fabricated figures**, with no reviewer
 involved, because a fabricated value cannot appear in a quote taken from a real page.
@@ -165,7 +193,11 @@ pull request with the evidence table in the body beside the diff.
   the period-consistency check reads.
 - Never touch a figure whose `source_id` is not the one being updated.
 - Never edit prose. A changed figure may make a chart summary wrong, and nothing checks that.
-  Flag the pages that cite the figure and leave the sentences alone.
+  Leave the sentences alone and list the pages that cite the figure, which is a query rather
+  than a judgement: every page and claim declares its dependencies under `figures:` in front
+  matter, precisely so a data update can find the content it affects.
+- Fail rather than guess if the release has changed shape. A renamed table, a discontinued
+  series or a changed basis is an editorial decision, not an update.
 - Never merge.
 
 ## Phase 4: tell the reader
@@ -211,9 +243,21 @@ protecting.
 
 **Detection is not revision detection.** GOV.UK bumps `public_updated_at` for added
 attachments and typo fixes as well as new editions. The notifier says "look at this", never
-"this changed". Live example found while scoping: the Home Office release the site cites
-records `public_updated_at` of 2026-07-16, against the 2026-05-21 the site has recorded. That
-may be nothing. Nobody currently knows, which is the point.
+"this changed".
+
+## One outstanding question, found while scoping
+
+Not a hypothetical, and it should not wait for the notifier to be built.
+
+**The Home Office release behind 13 of the site's published figures reports
+`public_updated_at` of 2026-07-16.** The site records `published_date: 2026-05-21` for all of
+them, which is when that edition was first published. Something changed on that page on 16
+July, and nobody knows what.
+
+It may well be nothing: an added attachment, a correction slip, a typo. It may be a revision
+to a figure the site publishes. Checking it is a single visit to the release page and its
+correction notice, and it is exactly the work the notifier is meant to trigger. Do it by hand
+now rather than waiting for the tooling.
 
 **A changed figure can falsify prose that no check reads.** Already a known limit, published
 on the sources page. Automation makes figures change faster without making that limit
