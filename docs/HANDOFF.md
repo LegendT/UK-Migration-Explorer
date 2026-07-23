@@ -320,47 +320,32 @@ Each is cheap to reverse.
    none of which should delay launch. Summarised below.
 4. Eight of the fifteen claims in foundation section 8.5.3 remain undrafted.
 
-## Update automation, and what was verified about it
+## Update automation
 
-Scoped in full in `docs/UPDATE-AUTOMATION.md` on 23 July. The short version, and the
-expensive part, which is what was checked rather than assumed.
+**Scoped in full in `docs/UPDATE-AUTOMATION.md`, 23 July. Nothing is built.** Read that file
+before doing any of it; the verified endpoints, the two implementation traps and the exact
+shape of the evidence contract are there and are deliberately not repeated here. An earlier
+version of this section copied about forty lines of it, which is the same mistake as
+`dashboard.json` copying theme values, on the same day this document was written.
 
-**The line.** An assistant that drafts a pull request is not "an automated pipeline pulling
-numbers straight onto the site". The first keeps the human gate, the second removes it. The
-site's two strongest claims, "No figure appears here because a model asserted it" and the
-register's "never publishes figures", survive every phase below.
+What belongs here is the decision rather than the design:
 
-**Phase 1, the notifier.** Nothing currently detects that a release has happened; the
-staleness check ages figures against a cadence, which is a guess. Verified working:
-
-- **GOV.UK has a JSON content API** at `https://www.gov.uk/api/content/<path>`, covering the
-  Home Office and the tribunals statistics, which is 15 of the 22 cadenced figures.
-  `sources.json` already stores collection pages rather than release slugs, which is what
-  this needs. **Read `links.documents[].public_updated_at`, not the collection's own field**:
-  for the tribunals collection the latter reads 2019 while its newest document reads
-  2026-06-11, which is the date the site records.
-- **ONS has no usable API.** The legacy `/data` endpoint was decommissioned on 2 February
-  2026, `api.beta.ons.gov.uk` 404s, and the release calendar RSS ignores its query parameter
-  and returns only ten items across all of ONS, which publishes several a day, so a weekly
-  poll would miss a migration release. What works is `<bulletin-path>/latest` and
-  `<bulletin-path>/previousreleases`, lowercase, both 200.
-
-**Phase 2, the evidence check.** Any change to a figure's `value` must carry a quote from a
-fetched source, and the check requires the new value to appear verbatim in that quote. This
-is the one that matters: it would have caught the eight fabricated figures mechanically,
-because a fabricated number cannot appear in a real quotation. 64 of the 67 figures are read
-straight off a release and quote cleanly; only three need an exemption.
-
-**Phase 3, the update prompt**, in the repository so it can be diffed. Forbidden from editing
-prose, from touching a figure outside the source being updated, and from merging.
-
-**Phase 4, telling the reader.** The sources page currently says updating is manual with no
-automated pipeline. Under Phase 3 that becomes misleading and needs rewriting. It is a
-reader-facing trust statement and needs sign-off, like the update commitment.
-
-**The risk is automation bias, not fabrication.** Phase 2 handles fabrication. The danger is
-a tidy evidence table inviting a reviewer to skim. Do not tighten the update commitment
-because drafting got faster; review is the bottleneck worth protecting.
+- **Four phases.** A release notifier, an evidence check, an update prompt, and a rewrite of
+  what the sources page says about automation. Phases 1 and 2 are each worth building alone.
+  Phase 3 is unsafe before Phase 2 exists. Phase 4 needs owner sign-off, like the update
+  commitment.
+- **The line the whole design rests on.** An assistant that drafts a pull request is not "an
+  automated pipeline pulling numbers straight onto the site". The site's two strongest
+  claims, "No figure appears here because a model asserted it" and the register's "never
+  publishes figures", survive every phase.
+- **None of it should delay launch**, which waits on two decisions this changes neither of.
+- **The named risk is automation bias, not fabrication.** Phase 2 handles fabrication
+  mechanically. Do not tighten the update commitment because drafting got faster; review is
+  the bottleneck worth protecting.
+- **One thing to do by hand now, without waiting for any of it.** The Home Office release
+  behind 13 published figures reports a `public_updated_at` of 2026-07-16 against the
+  2026-05-21 the site records. Something changed on that page and nobody knows what. Details
+  in the scope.
 
 ## Housekeeping
 
@@ -412,19 +397,25 @@ it applies to updates you make by hand, and it is the mechanism that
 makes everything after it safe. The notifier is the easier half and can
 follow.
 
-The scope document already records what was verified on 23 July, with
-the endpoints and one trap. Re-verify before you rely on any of it,
-because these are live external services and it has been a while, but do
-not re-derive it from scratch.
+The scope records what was verified on 23 July 2026: the endpoints, and
+three traps that will each cost you an hour. Two are in the check itself,
+one is in the GOV.UK response shape. Read them before writing anything.
 
-Phase 2, the evidence check. Any change to a figure's value must carry a
-quote from a fetched source, and the check must require the new value to
-appear verbatim in that quote, in both formatted and bare forms, exactly
-as checkLiterals already does. Previous values come from the base
-branch. 64 of the 67 figures are read straight off a release and quote
-cleanly; three need exemptions and the scope names them individually.
-Keep that list explicit and short, because an exemption that can be
-claimed freely is how this check rots.
+Re-verify the endpoints rather than trusting them, since they are live
+external services and this scope has a date on it, but do not re-derive
+them from scratch.
+
+Phase 2, the evidence check. Any figure whose value changed, OR which is
+new, must carry a quote from a fetched source, and the check must
+require the value to appear verbatim in that quote. New figures are not
+an afterthought: the eight fabricated values were new research rather
+than updates, so a rule watching only changes would miss the case the
+check exists for.
+
+64 of the 67 figures are read straight off a release and quote cleanly;
+three need exemptions and the scope names them individually. Keep that
+list explicit and short, because an exemption that can be claimed freely
+is how this check rots.
 
 This check exists because a research subagent on this project once
 returned eight values that appeared nowhere in its own evidence table.
