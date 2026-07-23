@@ -95,6 +95,37 @@ both palettes.
 - **No real screen reader was run.** Chrome's accessibility tree is what AT consumes, but
   it is not VoiceOver or NVDA reading a page aloud.
 
+**Progressive enhancement, checked because the rounds added code.** All of it is
+build-time. The built site contains no `<script>`, no inline handler, no `javascript:` URL
+and no `.js` file, on any of the 16 pages; the 1,482 lines of JavaScript in the repository
+are Eleventy config, the chart generator and the validators, and none of it reaches a
+browser. The no-JavaScript property the README and foundation 12 claim is intact.
+
+With the stylesheet disabled the pages stay usable: source order is skip link, notice,
+header, main, footer; no element is hidden; nothing scrolls sideways; the heading structure
+carries the page. Every CSS feature used has a defined fallback, and the separator in a
+claim's meta line is a real character carrying `aria-hidden` rather than generated content,
+so it survives a stylesheet that never arrives and is still skipped by a screen reader.
+
+**One cost of Round 2, stated so it is a decision rather than a side effect.** Making the
+scrolling regions keyboard-operable added a tab stop for every one of them, including the
+ones that have nothing hidden at the reader's width:
+
+| Width | Regions across the six pages that have them | How many actually scroll |
+| --- | --- | --- |
+| 390px | 22 | 9 |
+| 500px | 22 | 8 |
+| 1100px | 22 | 0 |
+
+On the asylum page at a desktop width that is 8 of 36 tab stops which do nothing. Knowing
+which regions overflow needs measurement at runtime, so the no-JavaScript options are to
+make all of them focusable or none. All of them is what DEBT does and what is here.
+Roughly six lines of client-side JavaScript would remove the tabindex from regions that do
+not overflow, and it is the textbook shape for progressive enhancement, because the
+baseline without it is the working version and the script only removes noise. It would
+still end "no JavaScript shipped", which is a property this project has stated three times
+in public. **That is yours to decide, not a defect to fix.**
+
 **Two matters of editorial judgement were left open, deliberately:**
 
 1. **The four Markdown tables still have no caption.** They are now wrapped and named from

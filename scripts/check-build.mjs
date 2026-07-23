@@ -89,9 +89,10 @@ for (const file of pages) {
   // there. Checking the source would prove only that the transform is registered. This
   // checks the artefact: that no table reached a reader outside such a box, and that no
   // box reached one unnamed or unfocusable. Four markdown tables had no box at all.
-  for (const [, table] of html.matchAll(/(<table[\s\S]*?<\/table>)/g)) {
-    const before = html.slice(0, html.indexOf(table));
-    if (!/<div class="scroll-x"[^>]*>\s*$/.test(before)) {
+  // match.index, not indexOf: two byte-identical tables on one page would have sent every
+  // check back to the first one, and the second could then pass on the first one's wrapper.
+  for (const match of html.matchAll(/<table[\s\S]*?<\/table>/g)) {
+    if (!/<div class="scroll-x"[^>]*>\s*$/.test(html.slice(0, match.index))) {
       errors.push(`${where}: a table is not inside a .scroll-x region, so it cannot be scrolled below its own width`);
     }
   }

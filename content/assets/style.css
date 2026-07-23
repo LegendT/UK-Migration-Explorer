@@ -288,13 +288,12 @@ th.nested-2 { padding-left: 2.75rem; }
 }
 /* Separated, not merely spaced. A review date, a period and a publisher set side by side
    with nothing between them read as one run-on phrase: "2021/22 Census Migration
-   Observatory". The separator is decorative, so it is hidden from assistive technology,
-   which gets the items as the distinct elements they already are. */
-.claim-meta span + span::before {
-  content: "·";
-  content: "·" / "";   /* the alt-text form, so a screen reader reads the items, not the dots */
-  margin-right: 1rem;
-}
+   Observatory". The separator is a real character in the markup carrying aria-hidden,
+   not a CSS ::before: it is the same mechanism the claims index uses, and unlike generated
+   content it survives a stylesheet that does not arrive, which is the one condition under
+   which a reader needs the separation most. It needs no rule of its own: it inherits the
+   meta line's colour. Setting it to --rule-strong, which is a 3:1 colour for borders and
+   not for text, put it at 3.2:1 and pa11y refused the page. */
 
 /* The claim article is exempt from the page measure so the card can run full width.
    Its prose is not, 99 characters per line is well past comfortable reading. The short
@@ -377,7 +376,11 @@ th.nested-2 { padding-left: 2.75rem; }
 /* The band is full width; its text is not. It qualifies the page, so it starts where the
    page starts. With its own padding it began 79px left of every other line on the site at
    any viewport wide enough to centre the wrap. */
-.prelaunch p { margin: 0; max-width: none; }
+/* margin-block, not margin. `.prelaunch p` outranks `.wrap` on specificity, so both a
+   `max-width: none` and a shorthand `margin: 0` here silently undid the two declarations
+   that do the centring, and the banner text stayed exactly where it had been. Only the
+   block margins belong to this rule; the inline auto belongs to .wrap. */
+.prelaunch p { margin-block: 0; }
 .prelaunch {
   padding: 0.85rem 0;
   background: var(--accent-soft);

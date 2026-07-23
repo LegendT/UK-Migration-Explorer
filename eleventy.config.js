@@ -192,8 +192,17 @@ export default function (eleventyConfig) {
         ? table
         : `<div class="scroll-x">${table}</div>`);
 
-    // Name and expose each region.
+    // Name and expose each region. The inner match runs to the FIRST closing div, which is
+    // correct only while a region holds nothing but a table or a chart. Assert that rather
+    // than assume it: a div dropped inside one would close the match early and rewrite the
+    // page's nesting, which produces no error anywhere and no visible symptom.
     html = html.replace(/<div class="scroll-x">([\s\S]*?)<\/div>/g, (whole, inner, offset) => {
+      // Both ends, not just the opening one: a div dropped in AFTER the table would end the
+      // match at that div's closing tag, and the captured inner would still begin with
+      // <table and pass an opening-only check while the page's nesting was rewritten.
+      if (!/^\s*<(table|svg)[\s>]/.test(inner) || !/<\/(table|svg)>\s*$/.test(inner)) {
+        throw new Error(`A .scroll-x region in ${this.page.inputPath} holds something other than one table or one chart. This transform matches to the first closing tag and cannot nest.`);
+      }
       const caption = inner.match(/<caption[^>]*>([\s\S]*?)<\/caption>/);
       const heading = [...html.slice(0, offset).matchAll(/<h([23])[^>]*>([\s\S]*?)<\/h\1>/g)].pop();
       const name = stripTags(caption?.[1] ?? heading?.[2] ?? '');
