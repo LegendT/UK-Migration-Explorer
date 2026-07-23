@@ -1,84 +1,51 @@
 {
-  "lastUpdated": "2026-06-17",
-  "referencePeriod": "Latest available for each measure (asylum to March 2026; net migration to December 2025)",
-  "caveat": "Figures are official statistics from the Home Office (Immigration system statistics), the Office for National Statistics (ONS), the National Audit Office (NAO), and the House of Commons Library, the latest available for each measure. Migration and asylum statistics use different reference periods and are routinely revised; net migration estimates in particular are provisional and have been revised substantially in recent releases. Headline counts often mix 'people' (main applicants plus dependants) with 'applications' or 'cases' (main applicants only), so compare like with like.",
-  "supporting": {
-    "population": {
-      "ref": "population/total-uk-population"
-    },
-    "foreignBorn": {
-      "ref": "population/foreign-born-population-of-the-uk"
-    },
-    "immigration": {
-      "ref": "migration/total-long-term-immigration"
-    },
-    "emigration": {
-      "ref": "migration/total-long-term-emigration"
-    }
-  },
   "cards": [
     {
       "id": "net-migration",
       "ref": "migration/net-migration",
       "shortLabel": "Net migration",
-      "display": "people",
-      "explanation": "The difference between the number of people moving to the UK long-term (for 12 months or more) and the number leaving, over the latest year.",
-      "whatThisMeans": "Net migration nearly halved over the year to December 2025, from a revised 331,000 the previous year, mainly because fewer people arrived on work and care visas. It is the lowest level since early 2021. These figures are provisional and ONS revises them as more data arrives."
+      "whatThisMeans": "Net migration nearly halved over the year to December 2025, from a revised {{migration/net-migration-2}} the previous year, mainly because fewer people arrived on work and care visas. It is the lowest level since early 2021. These figures are provisional and ONS revises them as more data arrives."
     },
     {
       "id": "asylum-applications",
       "ref": "asylum/asylum-applications",
       "shortLabel": "Asylum claims",
-      "display": "people",
-      "explanation": "The number of people (main applicants and their dependants) who claimed asylum in the UK over the latest year.",
-      "whatThisMeans": "This counts people, not cases. It relates to 76,714 main-applicant applications, down 9% on the previous 12 months, but the figure remains high by historical standards. The single largest nationality was Pakistan (about 10%)."
+      "whatThisMeans": "This counts people, not cases. It relates to {{asylum/asylum-applications-main-applicants}} main-applicant applications, down 9% on the previous 12 months, but the figure remains high by historical standards. The single largest nationality was Pakistan (about 10%)."
     },
     {
       "id": "awaiting-first-decision",
       "ref": "asylum/asylum-backlog-people-awaiting-an-initial-decision",
       "shortLabel": "Awaiting a first decision",
-      "display": "people",
-      "explanation": "The number of people waiting for an initial decision on an asylum claim, counted on a single day rather than over a year.",
       "whatThisMeans": "A stock, not an intake: it is the queue on one date, and it has fallen sharply from its 2023 peak. It counts people including dependants; the same queue counted as main-applicant cases is about a quarter smaller. This is one of three separate queues, and the appeals queue has been moving the other way, so there is no single number for 'the backlog'."
     },
     {
       "id": "asylum-support",
       "ref": "asylum/people-in-receipt-of-asylum-support",
       "shortLabel": "In asylum support",
-      "display": "people",
-      "explanation": "The number of people receiving asylum accommodation, subsistence payments, or both, counted on a single day.",
       "whatThisMeans": "Also a stock. It includes people at every stage of the system, some waiting since well before this year, so it is not a count of recent arrivals. It excludes unaccompanied asylum-seeking children, who are supported by local authorities and counted separately."
     },
     {
       "id": "small-boats",
       "ref": "asylum/small-boat-arrivals-calendar-year-2025",
       "shortLabel": "Small boat arrivals",
-      "display": "people",
-      "explanation": "The number of people detected arriving in the UK on small boats across the English Channel in the 2025 calendar year.",
       "whatThisMeans": "This was the second-highest annual total on record (the peak was 45,774 in 2022) and 13% higher than 2024. It is a calendar-year count, so it does not line up with the year-ending-March figures elsewhere on this site, which give a different number for the same route."
     },
     {
       "id": "foreign-born-share",
       "ref": "population/foreign-born-share-of-total-uk-population",
       "shortLabel": "Born abroad",
-      "display": "percent",
-      "explanation": "The proportion of UK residents who were born outside the UK, at the time of the 2021/22 Census.",
       "whatThisMeans": "About 10.7 million people, or roughly one in six residents, were born abroad, up from about 9% in 2004. The foreign-born population has continued to grow since 2021, but there is no reliable official total after that because ONS paused its survey-based series."
     },
     {
       "id": "asylum-system-cost",
       "ref": "fiscal/government-spending-on-the-asylum-system",
       "shortLabel": "Asylum system cost",
-      "display": "poundsShort",
-      "explanation": "The National Audit Office's estimate of Home Office and Ministry of Justice spending on asylum in the 2024-25 financial year.",
-      "whatThisMeans": "Most of this was accommodation and support (£3.4 billion), of which hotels were £2.1 billion. The NAO notes this does not capture all costs, particularly those falling on local authorities, so it understates the true system-wide cost."
+      "whatThisMeans": "Most of this was accommodation and support (£{{fiscal/home-office-spending-on-asylum-accommodation-and-support}} billion), of which hotels were £{{fiscal/home-office-spending-on-asylum-hotel-accommodation}} billion. The NAO notes this does not capture all costs, particularly those falling on local authorities, so it understates the true system-wide cost."
     },
     {
       "id": "citizenship-grants",
       "ref": "population/british-citizenship-grants",
       "shortLabel": "Citizenship grants",
-      "display": "people",
-      "explanation": "The number of people granted British citizenship over the latest year, through naturalisation or registration.",
       "whatThisMeans": "Down 12% on the previous year, from 269,178. Naturalisation accounted for 165,429 of the grants and registration for 71,083. Applications rose 18% over the same period, so grants and demand are moving in opposite directions."
     }
   ]
