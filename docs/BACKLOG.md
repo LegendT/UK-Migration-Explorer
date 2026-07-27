@@ -37,7 +37,7 @@ through the citation tokens. Every
 changed or new figure needs a fetched source and a verbatim quote before it is written, per the
 project's no-AI-claims-without-source rule.
 
-**1a. "19% born abroad" (Part 2.6): the data has moved. [you + me, data].** ONS now publishes a
+**1a. DONE (PR #33, 27 July 2026). "19% born abroad" (Part 2.6): the data has moved. [you + me, data].** ONS now publishes a
 foreign-born estimate through a rolled-forward census method: 13,115,000 non-UK-born in June 2024,
 which against the mid-2024 population of 69,281,400 is 18.9%. It is a provisional official
 statistic in development, not an accredited figure, and there is no 2025 or 2026 estimate yet, but
