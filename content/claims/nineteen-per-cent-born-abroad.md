@@ -8,6 +8,12 @@ short_answer: >-
   development, ONS publishes no percentage, and there is no 2026 count.
 direction: restrictionist
 error_type: provisional estimate treated as an exact, current, official figure
+correction: >-
+  This page previously said no official foreign-born figure existed after the
+  2021/22 Census. In May 2026 ONS published a provisional rolled-forward mid-2024
+  estimate, so the check is now about precision and recency, not whether any
+  figure exists.
+corrected_on: 2026-07-27
 last_reviewed: 2026-07-27
 review_due: 2027-07-27
 figures:
@@ -27,9 +33,9 @@ source: Office for National Statistics
 ## What the data says
 
 The most recent estimate of the foreign-born share is ONS's provisional figure for mid-2024:
-{{population/foreign-born-population-mid-2024}} people born outside the UK, or about
-{{population/foreign-born-share-mid-2024}}% of the population. So about one in five, and "roughly
-19%" is a fair description of it.
+{{population/foreign-born-population-mid-2024}} people born outside the UK, or
+{{population/foreign-born-share-mid-2024}}% of the population, nearly one in five. So "roughly 19%"
+is a fair description of the number itself.
 
 Two things about that figure matter as much as its size. It is an **official statistic in
 development** and provisional, which means ONS expects to revise it. And ONS publishes no
@@ -46,8 +52,9 @@ deaths data it needs are not yet available.
 
 ## Why the claim needs care, even though the number is about right
 
-The problem with a flat "19%" is no longer that it is too high or invented. It is that it is
-presented as a precise, current, official measurement when it is none of those three.
+The "19%" figure circulates widely, usually stated flatly as a settled current fact. The problem
+with it is no longer that it is too high or invented. It is that it is presented as a precise,
+current, official measurement when it is none of those three.
 
 - It is **not precise**: a provisional statistic in development carries real uncertainty, and the
   percentage is a calculation ONS does not itself publish.
@@ -63,8 +70,8 @@ authority the figure does not have.
 
 ONS discontinued its annual country-of-birth population series in October 2022, because it relied
 on the Labour Force Survey, which has had known sample-size and response-rate problems since 2020.
-For a time there was no later official estimate at all, which is what the earlier version of this
-page said. ONS has since introduced a rolled-forward method, taking the 2021/22 Census as a
+For a time there was no later official estimate at all. ONS has since introduced a rolled-forward
+method, taking the 2021/22 Census as a
 baseline and updating it with deaths and migration, and used it to produce the mid-2024 estimate
 published in May 2026.
 
