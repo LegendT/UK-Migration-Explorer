@@ -1,4 +1,4 @@
-# Handoff, 23 July 2026
+# Handoff, 27 July 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -11,16 +11,23 @@ or if a planning document exists that the backlog does not reference.
 
 ## Start here
 
-1. Read `docs/BACKLOG.md`. Two items block launch, four are scoped and unblocked, and a list
-   of gaps is carried deliberately. It is ordered: take the first unstarted item.
+1. Read `docs/BACKLOG.md`. The launch blocker is item 1: the pre-publication review, now
+   conducted, whose findings became a list of corrections 1a to 1i. 1a, 1b and 1c are done;
+   take the first unstarted one. Then the scoped-but-unblocked items, then a list of gaps
+   carried deliberately.
 2. Read the rest of this document, for how the project works and what not to repeat.
-3. Read the scope document for whatever you pick up. Do not re-derive it.
+3. Read the scope, or `verification.txt`, for whatever you pick up. Do not re-derive it.
 
-**One thing blocks launch, and it is the owner's to do**: the pre-publication human review.
-Everything else is unblocked and none of it should delay launch.
+**The pre-publication review was conducted on 27 July 2026.** Its findings are in
+`verification.txt` at the repository root, and its outcome is a corrections list, not an
+approval: several claim pages were "do not publish as written". Those corrections are backlog
+item 1, each tagged for the owner or for whoever picks it up. The blocker stays open until they
+land and the pages pass, and the closing steps, stamping `last_reviewed`, dropping the pre-launch
+banner and recording the review as passed, wait until then. Then, last, remove the robots rule.
+That is launch.
 
 The update commitment was signed on 23 July 2026 at one month per cadenced release, which
-closed the other blocker.
+closed the other original blocker.
 
 ## Where things stand
 
@@ -32,9 +39,9 @@ Deliberately not recorded here: which branches exist, what CI last did, what is 
 That is operational state, it is discoverable in seconds, and a previous version of this
 section was wrong within the hour because branches were tidied after it was written.
 
-16 pages build from a governed data layer of **67 metric records** in four theme files, plus
+16 pages build from a governed data layer of **69 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
-167. **36 of those records reach a reader.** Eleventy 3, no client-side JavaScript, charts
+169. **A subset of those records reach a reader.** Eleventy 3, no client-side JavaScript, charts
 rendered as inline SVG at build time.
 
 | Page | |
@@ -159,6 +166,14 @@ establish*, and listed in `docs/BACKLOG.md`.
   tokens that already cited them, one release from contradicting themselves. Re-derive the
   per-item property; do not trust a summary of it, least of all one that says everything is
   fine.
+- **A verification subagent scoped to one figure catches the ones next to it.** Every changed
+  or new figure in the review corrections was checked by a subagent required to quote a fetched
+  source per value. Three times that pass overturned something the human review had asserted: a
+  second ONS 2024 foreign-born figure of about 10.6 million on a different population base, which
+  would not reconcile; the OBR migrant contribution and its "age 80" endpoint, which OBR does not
+  print or state; and the NAO report the costs chart cited, which does not carry the per-night
+  unit costs at all. Confirming the figure you asked about is not the whole job, and you do not
+  merge over what the check reveals beside it.
 - **Count only what can actually take focus.** Elements inside a closed `<details>` are in the
   DOM and are not focusable. Counting selectors rather than focusable elements overstated the
   tab order cost by 60%.
@@ -248,31 +263,39 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-Two items block launch and both are mine, not yours: the pre-publication
-human review, and then removing the robots rule.
-docs/PRE-PUBLICATION-REVIEW.md holds the evidence for the first. Do not
-attempt either, and do not treat either as done.
+The pre-publication review has been done. Its findings became the
+corrections under backlog item 1, numbered 1a to 1i; 1a, 1b and 1c are
+done. Each is tagged [me] or [you]. [me] is a factual or mechanical
+correction you make against a cited source; [you] is an editorial or
+sourcing call that is mine. Do the [me] parts; for a [you] part, propose
+and ask. verification.txt at the repo root is the review itself.
 
-Two more things in the backlog are also mine: talking to five target
-users, and choosing the success measures. They sit under "Unmet
-acceptance criteria" and they are not a session's work. Everything under
-"Scoped, not built" is yours and is unblocked.
+Still mine, not yours, and not a session's work: talking to five target
+users and choosing the success measures, both under "Unmet acceptance
+criteria". And removing the robots rule, which comes last and is launch.
+Do not treat any of those as done.
 
-TASK: take the first unstarted item under "Scoped, not built" in
-docs/BACKLOG.md, unless I have told you otherwise in this message. That
-list is in recommended order and the order is maintained there, so this
-prompt does not name a task and does not go stale when one is finished.
+TASK: take the first unstarted correction under backlog item 1, unless I
+have told you otherwise in this message. They are in recommended order,
+maintained there, so this prompt names no task and does not go stale as
+items finish.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.
 
-When you finish an item, move it to Completed in docs/BACKLOG.md with a
+When you finish an item, mark it done in docs/BACKLOG.md with its PR and a
 date. Do not delete it. validate-content.mjs fails the build if a
 planning document in docs/ is not referenced from the backlog, or if the
 handoff stops pointing at it, so the list cannot quietly lose things.
 
 Rules that bite on every item here:
 
+- Every changed or new figure needs a fetched source and a verbatim quote
+  before it is written. A verification subagent made to quote its sources
+  overturned the human review three times: a foreign-born figure on the
+  wrong population base, an OBR number and endpoint age OBR never states,
+  and a costs source that did not carry the figures at all. Confirming the
+  figure you asked about is not the whole job.
 - Anything you add must pass, and run these rather than assume:
   npm run validate, npm run build, npm run a11y.
 - Negative-test every new check, and confirm the break actually applied
