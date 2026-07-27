@@ -105,14 +105,14 @@
       "value": 341000,
       "unit": "£ (net present value, lifetime)",
       "date": "2024-09-30",
-      "period_label": "OBR projection, September 2024",
+      "period_label": "OBR projection, September 2024 (chart corrected November 2024)",
       "geography": "United Kingdom",
       "source_name": "Office for Budget Responsibility, Fiscal risks and sustainability, September 2024",
       "source_id": "obr",
       "source_url": "https://obr.uk/frs/fiscal-risks-and-sustainability-september-2024/",
       "published_date": "2024-09-12",
       "retrieved_date": "2026-06-17",
-      "notes": "A STYLISED SCENARIO, not an observed outcome. Applies to one hypothetical migrant arriving at 25 on average earnings, with no dependants, living to 80. The same OBR analysis finds low-wage migrants have a NEGATIVE lifetime impact and high-wage migrants a larger positive one; the result is highly sensitive to age, earnings and children. Do not present as a typical or average figure.",
+      "notes": "A STYLISED ILLUSTRATION read from OBR's Chart 4.13 (corrected 14 November 2024), not a figure OBR prints. It shows the cumulative net fiscal contribution of a representative migrant arriving at 25 on the UK average wage, modelled as an individual with no dependants; OBR compares a UK resident on the same basis and makes no assumption that migrants are childless (real-world dependants average about 0.3 per main applicant). OBR states no single value and singles out no endpoint age; the chart runs to age 100. The same analysis finds a low-wage migrant a net cost and a high-wage one a larger positive; the result is highly sensitive to age, earnings and children. Do not present as a typical or average figure.",
       "confidence_level": "estimated"
     },
     {

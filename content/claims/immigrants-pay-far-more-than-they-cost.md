@@ -40,14 +40,14 @@ with an uncertainty band. And none covers the whole post-Brexit immigration syst
 honest summary is that the effect is small relative to the economy, and that no single figure
 supports a confident claim in either direction.
 
-One figure sometimes quoted in support of this claim is the Office for Budget Responsibility's
-illustration that an average-wage migrant arriving at 25, with no dependants and remaining
-until age 80, contributes about
-£{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} over a lifetime. That
-number is real, but it describes one hypothetical individual in a stylised scenario. The same
-OBR analysis finds a migrant on low earnings has a **negative** lifetime impact, and one on
-high earnings a considerably larger positive one. It shows how sensitive the answer is to
-circumstances; it is not an average.
+One figure sometimes quoted in support of this claim comes from an Office for Budget
+Responsibility chart, corrected in November 2024: a representative migrant arriving at 25 on the
+average wage, modelled as a lone individual with no dependants, is a lifetime net contributor.
+The roughly £{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} figure read
+from that chart is an illustration, not a number OBR itself prints, and it describes one
+hypothetical individual. The same OBR analysis finds a migrant on low earnings has a
+**negative** lifetime impact, and one on high earnings a considerably larger positive one. It
+shows how sensitive the answer is to circumstances; it is not an average.
 
 ## Why the claim is misleading
 

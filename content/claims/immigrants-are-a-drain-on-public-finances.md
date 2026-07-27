@@ -60,11 +60,12 @@ neutral answer, and changing these assumptions can materially affect the result 
 comparisons, its sign.
 
 The aggregate also conceals substantial differences behind a single average. Fiscal
-contribution depends on age at arrival, earnings, family composition and length of stay. In
-one Office for Budget Responsibility illustration, an average-wage migrant arriving at 25,
-with no dependants and remaining until age 80, has a lifetime net contribution of about
-£{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}}, while one on low
-earnings is a net cost. Both sit inside the same average. It is a stylised single case,
+contribution depends on age at arrival, earnings, family composition and length of stay. The
+Office for Budget Responsibility's illustrative chart, corrected in November 2024, shows a
+representative migrant arriving at 25 on the average wage, modelled as a lone individual with
+no dependants, as a clear lifetime net contributor, while a low earner is a net cost. The
+figure of about £{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} that is
+sometimes read from that chart is not one OBR itself states; it is a stylised single case,
 quoted here for its spread rather than its size.
 
 ## Where the claim draws its strength
