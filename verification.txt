@@ -1,0 +1,410 @@
+Section 1: People claiming asylum in the UK, 2010 to 2025
+
+One thing worth flagging, not an error but a definitional wrinkle. When the year-ending-December-2024 statistics were first published (Feb 2025), the Home Office headline "people claiming asylum" figure for 2024 was 108,138. The 104,764 you're using reflects a later, revised vintage (which is what the Migration Observatory and the May 2026 Commons Library briefing now use), so it's the more current number — just be aware some sources still cite 108,138 for 2024. If your whole series is drawn from one consistent vintage (it appears to be), you're fine; just don't mix it with the 108,138 figure in the same chart.
+
+The label "People claiming asylum" is the correct term for this series (it includes dependants), so that's accurate as written.
+
+
+Section 2: Initial decisions by outcome, year ending March 2026
+
+Problems
+A withdrawal is not an initial decision.
+The 128,300 initial decisions comprise grants and refusals. Withdrawals are non-substantive outcomes outside that total. Therefore, “Initial decisions by outcome” is misleading when the chart includes withdrawals.
+
+“16,901 claims were withdrawn” has the wrong unit.
+The figure counts people, including dependants—not distinct claims or main-applicant cases. The Home Office’s wording is: 16,901 people had their asylum claims withdrawn.
+
+The chart is not a complete presentation of all outcomes.
+The detailed table also records 5,931 administrative outcomes during the period. The three displayed categories therefore must not be presented as an exhaustive breakdown of “initial outcomes.” Detailed Home Office dataset, Asy_D02.
+
+Recommended wording
+Title
+Initial decisions and withdrawals, year ending March 2026
+
+Summary
+Of 128,300 people receiving an initial decision, 48,581 were granted protection or other leave and 79,719 were refused. Separately, 16,901 people had their asylum claims withdrawn.
+
+Note
+The existing note is accurate. A slightly clearer version would be:
+The published grant rate of 39% is calculated from main-applicant cases. On the people basis shown here, 48,581 ÷ 128,300 gives 37.9%; this is a different measure and illustrates why the basis must be checked before dividing one figure by another.
+
+The Home Office marks data from 2025 Q1 onward as provisional. No document edits have been made.
+
+Section 3: Waiting for a first asylum decision, end of each year, 2010 to 2025
+
+Problem
+The people count did not grow steadily throughout the 2010s:
+End-2014: 22,898
+End-2015: 22,147
+Change: 3.28% fall
+The cases line did increase every year during the 2010s, but the people line did not. “Grew overall” or “grew substantially” would be accurate.
+“Peaked at the end of 2022” should also be qualified as the highest year-end point shown, because the actual quarterly peak occurred in June 2023.
+Recommended summary
+The queue grew substantially through the 2010s and, among the year-end points shown, peaked at the end of 2022. By the end of 2025 it had fallen by 60% on the people basis and 63% on the cases basis. The two lines show the same stock of unresolved asylum claims counted in different ways.
+
+Recommended note
+The people line includes main applicants and dependants; the cases line counts main applicants, representing the number of cases requiring consideration. Comparing one basis with the other is a common source of error. The within-year people peak was higher than the year-end chart shows: 175,457 people were awaiting an initial decision at the end of June 2023.
+
+The 2025 figure is provisional under the Home Office table notes. No document edits have been made.
+
+Section 4:  Cost of an accommodation place per night, 2024
+
+Problems
+The 2024 date is unsupported.
+The £158 hotel rate expressly relates to the three months ending June 2023. Calling both rates “2024” makes them look like contemporaneous 2024 observations.
+
+The source attribution is wrong.
+The chart cites the 2025 NAO report, but that report does not contain the £158 and £20 unit costs. It supports the broader cost argument, not these particular figures.
+
+Both figures are approximate.
+The source says “approximately £158” and “around £20.” They should not be stored or presented as exact 2024 rates without qualification.
+
+“Price of a bed” is too narrow.
+These are average accommodation costs under Home Office arrangements, potentially including associated services—not simply the price of a physical bed.
+
+“Accommodation type, rather than the number of people, [is] the main driver” is too absolute.
+Both volume and accommodation mix determine total cost. The NAO does provide strong evidence that type matters: hotels housed around 35% of people but accounted for 76% of contract spending in the first seven months of 2024–25. NAO accommodation-contract report.
+
+Recommended title
+Estimated accommodation cost per person per night, figures cited in April 2024
+
+Recommended summary
+A Home Office business case cited an average hotel cost of about £158 per person per night, based on the three months to June 2023—roughly eight times its estimate of about £20 for dispersal accommodation.
+
+Recommended note
+These are approximate accommodation costs under Home Office arrangements, not payments to asylum seekers or a measure of what any person costs or is worth. The large difference in unit costs means that the mix of hotel and dispersal accommodation has a major effect on total spending, alongside the number of people housed.
+
+The source should be changed from the NAO report to the ICIBI inspection, paragraph 5.14. Later Home Office estimates also differ—£144.98 for hotels and £23.25 for dispersal accommodation as of June 2025—confirming that the rates fluctuate over time. https://publications.parliament.uk/pa/cm5901/cmselect/cmhaff/580/report.html
+
+Section 5: UK net migration, 2012 to 2025
+
+Qualifications
+The peak needs a calendar-year qualifier.
+The highest point among the December-ending observations is 891,000 in 2022. However, the full quarterly series peaks at 944,000 in the year ending March 2023. Calling 891,000 the unqualified peak would therefore be misleading.
+
+The methods warning is correct.
+ONS note 17 says comparisons before and after June 2021 should be treated cautiously because of methodological changes. ONS also specifically says British-national estimates on opposite sides of that break should not be compared directly.
+
+The single-release warning is correct and important.
+ONS explicitly instructs users not to combine recent estimates with time-series values from previous releases.
+
+“More than 120,000” is true but considerably understates the revision.
+The first year-ending-December-2022 edition estimated net migration at 606,000. The current estimate is 891,000, a revision of 285,000, or 47%. Archived December 2022 workbook.
+
+The 2025 estimate is provisional.
+ONS gives a simulation-based uncertainty interval of 145,000 to 197,000, while cautioning that this does not capture every source of uncertainty. ONS December 2025 bulletin.
+
+Recommended summary
+On this December-ending calendar-year series, net migration rose sharply after 2020, reached 891,000 in 2022, and fell in each of the following three years, to a provisional 171,000 in 2025.
+
+Recommended note
+ONS advises that comparisons before and after June 2021 should be treated cautiously because the methodology changed. The break is marked on the chart. Every point comes from the same ONS release; estimates from different releases must not be combined. The estimate for 2022 has been revised from 606,000 when first published to 891,000 in the current series. The full quarterly series—not limited to December-ending observations—peaked at 944,000 in the year ending March 2023.
+
+
+Section 6: Long-term immigration and emigration, 2012 to 2025
+
+Rounding clarification
+The displayed immigration and emigration changes imply a net-migration fall of approximately 516,000:
+£-429,000 - 87,000 = -516,000
+
+The published net-migration series falls by 517,000. This is not an error: ONS calculates net migration from unrounded estimates and then rounds each published figure independently.
+Recommended summary
+The existing summary is accurate. For slightly greater precision:
+Immigration was highest in 2023 on this December-ending calendar-year series, at 1,441,000, and fell in both subsequent years. Emigration increased each year from 480,000 in 2021 to 680,000 in 2024, before easing to a provisional 642,000 in 2025.
+
+Recommended note
+Between 2023 and 2024, calendar-year net migration fell by around 517,000. Immigration fell by around 429,000 while emigration rose by roughly 87,000: more people leaving contributed to the fall, alongside fewer people arriving. The components may not reconcile exactly after rounding because ONS calculates from unrounded estimates. The highest rolling 12-month immigration estimate was 1,469,000 in the year ending March 2023.
+
+
+Section 7: Reason for long-term immigration, non-EU+ arrivals, year ending December 2025
+
+Problem
+The summary calls the 88,000 figure:
+“asylum and humanitarian routes”
+
+That is incorrect. ONS reports these as separate categories:
+Asylum: 88,000
+Humanitarian: 35,000
+Combined: approximately 123,000
+The existing 88,000 bar is therefore an asylum-only figure.
+Work-related claim
+The note is correct. ONS reports that work-related immigration fell from 272,000 to 146,000 and describes the fall as 47%, based on unrounded estimates. The visible rounded figures imply 46.3%, but ONS performs its percentage calculation before rounding. ONS identifies this as the main reason for the continued fall in net migration. ONS December 2025 bulletin.
+Recommended summary
+Among non-EU+ long-term arrivals, study-related immigration was the largest single category at 294,000, followed by work-related immigration at 146,000 and asylum-related immigration at 88,000.
+
+Recommended note
+Work-related immigration fell by 47% from 272,000 in the previous year, based on ONS’s unrounded estimates. ONS identifies this as the main reason for the continued fall in net migration. Humanitarian immigration is a separate category and was estimated at 35,000.
+
+If the intention is to combine asylum and humanitarian routes, the third bar must instead be approximately 123,000 and labelled as a constructed combined category.
+
+Part 2:
+
+Part 2.1 — “Everyone in asylum accommodation arrived recently”
+Verdict: revise before publication. The stock-versus-flow correction is sound, but the current answer makes claims the published data cannot establish.
+What the figures prove
+At 31 March 2026:
+97,519 people received asylum support.
+20,885 were in hotels.
+72,768 were in other asylum accommodation.
+3,866 received subsistence only.
+Therefore, 93,653 people were recorded in asylum accommodation, not 97,519. The larger figure includes people receiving no accommodation. These are point-in-time totals, not counts of people arriving during a period. Home Office asylum-system statistics
+The Home Office also confirms that supported people occupy different procedural stages: some await initial decisions, others appeals, and 4,745 were receiving Section 4 support following refusal or inadmissibility. That supports the article’s general point that the population is not simply a cohort of new arrivals.
+What the figures do not prove
+The published accommodation totals do not provide residents’ arrival dates or lengths of stay. Consequently:
+They cannot substantiate “everyone arrived recently.”
+But they also do not, by themselves, prove the categorical answer “No.”
+“Recently” is undefined, making the claim impossible to test precisely.
+The statistically defensible conclusion is “the figures do not show that,” rather than an unqualified “No.”
+Required corrections
+Replace the short answer with:
+The published figures do not show that. Accommodation totals are snapshots of the number of people being accommodated on a particular date, not counts of recent arrivals, and they do not report when those people arrived.
+
+Also revise these statements:
+“Someone who claimed asylum in 2023 and is still waiting appears in the second” → “could appear in the second if receiving asylum support.”
+“Anyone still waiting from the peak period … would be counted” → “could be counted if they remain eligible for asylum support.”
+Waiting for a decision does not automatically mean receiving support. Eligibility depends principally on need and destitution; official guidance says applicants may be eligible, followed by an individual assessment. Home Office eligibility guidance
+Selection checklist
+Claim demonstrably circulates: Not yet passed. The review provides no attributable example of this exact claim; one should be added.
+Statistical rather than political disagreement: Pass.
+Sources settle the question and limitations are disclosed: Partial. They establish the stock/flow error but not residents’ arrival dates.
+Mirror-claim test: Pass in principle if the conclusion becomes “not shown by these data.”
+Short answer survives quotation alone: Fail as written; pass with the replacement above.
+Overall: retain the topic, but change the verdict, correct the support/accommodation denominator, qualify the eligibility statements, and provide evidence that the claim circulates.
+
+Part 2.2 — “Immigrants are a drain on the public finances”
+Verdict: substantial revision required. The conclusion that this sweeping claim is not established is defensible, but the page currently mischaracterises the supporting research.
+Central statistical problem
+The Migration Observatory says that pre-Brexit static studies produced fiscal effects smaller than 1% of GDP in magnitude. It does not present “plus or minus 1%” as an uncertainty interval around one estimate.
+The page therefore should not say:
+“That range spans zero.”
+
+The studies cover different periods, populations and definitions. Combining their results into a range and treating that range as evidence that one common estimate crosses zero is not statistically valid.
+Furthermore, the source expressly says that no fiscal analysis covers the entire post-Brexit immigration system. The article’s “Across academic studies” wording is consequently too broad. Migration Observatory fiscal-impact briefing
+Recommended short answer
+Not established as a general claim. Pre-Brexit studies of the migrant population found fiscal effects smaller than 1% of GDP in magnitude, but their results vary with the period, migrant group, comparison and method. No equivalent analysis covers the whole post-Brexit immigration system.
+
+This also fixes the comma splice in the existing answer.
+Other corrections
+Replace “Across academic studies” with “Across the pre-Brexit static studies summarised by the Migration Observatory.”
+Delete “That range spans zero” and the claim that the evidence is necessarily consistent with both signs.
+Replace “changing any one of them moves the result across zero” with “changing these assumptions can materially affect the result and, in some comparisons, its sign.”
+Define what “drain” means: an absolute negative fiscal balance, or a less favourable balance than the UK-born population. These are different tests, especially when the whole country is running a deficit.
+Change the period metadata from “studies reviewed to October 2024.” The cited briefing was published in June 2026, while its complete-population estimates concern pre-Brexit periods.
+OBR illustration
+The £341,000 figure is broadly verified against the OBR’s corrected chart, but the description omits essential conditions. It represents an illustrative average-wage migrant worker arriving aged 25 and living to 80, with no dependants—not an average observed migrant outcome.
+Recommended wording:
+“In one OBR illustration, an average-wage migrant worker arriving aged 25, with no dependants and remaining until age 80, has a cumulative net fiscal contribution of about £341,000.”
+
+The OBR stresses that earnings, age, dependants and length of stay can change the result substantially. OBR fiscal-risks report and corrected chart
+Asylum expenditure
+The £4.9 billion figure is correct for estimated Home Office and Ministry of Justice asylum expenditure in 2024–25. It excludes some expenditure, particularly local-authority costs.
+However, remove “and rising.” The cited evidence establishes the level but does not establish that every relevant measure of asylum spending was rising; direct asylum-support expenditure actually fell from approximately £4.7 billion to £4 billion. Also describe £4.9 billion as an NAO estimate based on actual costs, rather than simply “audited.” https://www.nao.org.uk/press-releases/four-critical-requirements-needed-for-a-fair-efficient-asylum-system/
+
+Selection checklist
+Claim circulates: Pass. The belief is documented repeatedly in research and public debate.
+Error is statistical: Pass, once “drain” and the comparison baseline are defined.
+Sources settle it and limitations are stated: Fail as written. There is no whole-system post-Brexit estimate.
+Mirror-claim test: Partial. The page applies the same framework to the positive claim, but both pages inherit the same invalid “range spans zero” reasoning.
+Short answer survives quotation: Fail as written; pass with the replacement above.
+Overall: keep the claim, but rebuild the central explanation around scope, definitions and evidence gaps—not around a supposed ±1% interval crossing zero.
+
+
+Part 2.3 — “Immigrants pay far more in tax than they cost”
+Verdict: substantial revision required. The general conclusion—this cannot be asserted for immigrants collectively—is defensible, but the supporting argument repeats the previous section’s statistical error.
+Central problem
+“Plus or minus 1% of GDP” is not a confidence interval for one common estimate. It describes the magnitude of results from different pre-Brexit static studies, covering different populations, periods and methods.
+Therefore delete:
+“That range spans zero.”
+
+The existence of positive and negative estimates for different groups or definitions does not demonstrate that one estimate for “immigrants” has an uncertainty range crossing zero. The Migration Observatory also states that no analysis covers the entire post-Brexit immigration system. Migration Observatory briefing
+Recommended short answer
+Not established as a general claim. Pre-Brexit studies found fiscal effects smaller than 1% of GDP in magnitude, but the results differ substantially by migrant group, period, comparison and method. There is no equivalent estimate covering the whole post-Brexit immigration system.
+
+OBR figure
+The £341,000 figure is credible, but inadequately described. It is not an estimate for an average immigrant. It is an illustrative result for:
+A migrant worker
+Arriving aged 25
+Earning the UK average wage
+Having no dependants
+Remaining until age 80
+The corrected OBR chart shows sharply different results for low- and high-wage workers. OBR report and corrected chart
+Recommended wording:
+“In one OBR illustration, an average-wage migrant worker arriving aged 25, with no dependants and remaining until age 80, has a cumulative net fiscal contribution of about £341,000.”
+
+Also change “the figure most often quoted” to “one figure sometimes quoted” unless evidence of its relative frequency is supplied.
+Additional wording corrections
+“Across academic studies” → “Across the pre-Brexit static studies summarised by the Migration Observatory.”
+“Dynamic studies … give systematically different answers” → “Dynamic studies can produce different answers and require additional assumptions about future earnings, policies and length of stay.”
+Return migration assumptions are not simply “assumptions rather than observations.” Historical departure data exist, but future behaviour must be projected.
+“Differences that are larger than the average” is unquantified. Use “substantial differences concealed by an aggregate figure.”
+Replace the outdated “studies reviewed to October 2024” metadata with the June 2026 briefing date and clearly state that its complete-population studies concern pre-Brexit periods.
+Asylum expenditure
+The £4.9 billion total is correctly reported for estimated Home Office and Ministry of Justice asylum expenditure in 2024–25. But it is an NAO estimate based on actual expenditure, not a complete “audited spending figure”; it excludes some costs, particularly those incurred by local authorities. National Audit Office
+Selection checklist
+Claim circulates: Partial pass. Claims that migrants pay more than they cost clearly circulate, including in political debate. An attributable example of the stronger universal wording “far more” should be supplied or that intensifier removed.
+Error is statistical: Pass, once the population, period and definition of “cost” are made explicit.
+Sources settle it and limitations are stated: Fail as written. The principal evidence is historical and does not cover the whole current immigration system.
+Mirror-claim test: Partial. The treatment is symmetrical, but both pages currently share the same invalid range interpretation.
+Short answer survives quotation: Fail as written; pass with the replacement above.
+Overall: retain the page, but replace the range-crossing argument with a scope-and-definition argument, and fully qualify the OBR illustration.
+
+Part 2.4 — “Most immigration is asylum seekers”
+Verdict: conclusion correct, but revise before publication. The figures decisively refute the claim, although the page contains two category errors and an unsupported historical assertion.
+Figures verified
+For the year ending December 2025, ONS provisionally estimated:
+Total long-term immigration: 813,000
+Non-EU+ immigration: 627,000
+Study-related non-EU+ immigration: 294,000 — 47%
+Work-related non-EU+ immigration: 146,000 — 23%
+Non-EU+ asylum applicants: 88,000 — 14%
+Study was 3.34 times the asylum figure, so “more than three times” is correct. ONS long-term migration release
+Required corrections
+The table row:
+“Asylum and humanitarian — 88,000 — 14%”
+
+is wrong. ONS reports these separately:
+Asylum applicants: 14%
+Humanitarian routes: 6%
+The row should therefore be labelled simply “Asylum applicants.” Combining the categories while retaining only the asylum value understates the combined figure.
+The short answer’s definition is also wrong:
+“Non-EU+ means arrivals from outside the EU, the EEA and Switzerland.”
+
+Non-EU+ is a nationality grouping, not an arrival category, and British nationals are reported separately. ONS defines EU+ as the EU plus Iceland, Liechtenstein, Norway and Switzerland; non-EU+ covers other non-British nationalities.
+Recommended short answer
+No. ONS estimates that 813,000 people immigrated to the UK long-term in the year ending December 2025. Among the 627,000 non-EU+ nationals—the group for which ONS publishes a reason breakdown—88,000, or 14%, were asylum applicants. Study and work were both larger.
+
+This is more self-contained and explains the denominator without an inaccurate definition.
+Other findings
+The Home Office figure of 93,525 people claiming asylum in the year ending March 2026 is correct. It should not be compared directly with the 88,000 ONS figure because:
+The periods differ.
+An asylum application is not necessarily a new arrival.
+ONS counts only people becoming long-term migrants and excludes those already long-term resident before claiming.
+Home Office asylum statistics
+The small-boats explanation is sound: small-boat arrivals are an arrival-route count and are neither equivalent to asylum applications nor long-term asylum immigration.
+Unsupported or overstated wording
+The statement that asylum was “a small fraction of immigration a decade ago” needs a comparable source. The cited ONS reason series shown in this release begins in 2019, and methodological changes complicate longer comparisons. Either provide a properly harmonised historical series or replace this with a dated comparison supported by ONS.
+Also refine the net-migration limitation:
+“ONS does not publish a headline net-migration-by-reason measure. Subtracting current departures classified by their original reason for coming from current arrivals would compare different cohorts and should not be interpreted as the net effect of that year’s routes.”
+
+Selection checklist
+Claim circulates: Pass. Survey evidence shows asylum is commonly overestimated; one study found people estimated an average 33% share, while 22% thought asylum constituted more than half. British Future research
+Error is statistical: Pass. It is principally category and denominator confusion.
+Sources settle it and limitations are stated: Partial pass. The conclusion is settled, but the table and non-EU+ definition must be corrected.
+Mirror-claim test: Pass. The page explicitly rejects treating asylum as trivial as well as treating it as predominant.
+Short answer survives quotation: Fail as written because of the faulty definition; pass with the replacement above.
+Overall: retain the claim and conclusion, correct the table category and nationality definition, and remove or source the decade-long historical assertion.
+
+Part 2.5 — “Net migration is the number of people who entered the UK”
+Verdict: pass with minor revisions. The definition, figures and worked example are correct. This is the strongest Part 2 section reviewed so far.
+Figures verified
+For the year ending December 2025:
+Long-term immigration: 813,000
+Long-term emigration: 642,000
+Net migration: 171,000
+The arithmetic is correct:
+813,000 − 642,000 = 171,000
+
+ONS defines net migration as long-term immigration minus long-term emigration. “Long-term” means changing one’s usual country of residence for at least 12 months. ONS December 2025 release
+Historical example verified
+Using the latest consistently revised series:
+Year ending December	Immigration	Emigration	Net migration
+2023	1,441,000	593,000	848,000
+2024	1,012,000	680,000	331,000
+Change	−429,000	+87,000	−517,000
+
+The article’s explanation is therefore exactly right: the 517,000 fall comprised 429,000 fewer arrivals and 87,000 more departures. Small discrepancies can occur because ONS rounds its published components.
+Revision history verified
+The year-ending December 2024 net figure was:
+Originally 431,000 in May 2025
+Revised to 345,000 in November 2025
+Revised again to 331,000 in May 2026
+The principal November revision followed new methods that increased estimated British emigration. ONS revisions analysis
+Recommended wording changes
+Strengthen the short answer slightly:
+No. Long-term net migration is the number immigrating minus the number emigrating. It is the balance between two much larger estimated flows, not a count of arrivals.
+
+Replace:
+“The number moved by 100,000 without a single person’s movement changing.”
+
+with:
+“The estimate fell by 100,000 because ONS incorporated new data and methods, not because the underlying 2024 period changed.”
+
+The existing sentence is rhetorically understandable, but updated information can change which movements are identified or classified; saying no person’s movement changed is unnecessarily absolute.
+“Net migration can move for reasons that have nothing to do with how many people arrived” would also be slightly clearer as:
+“Net migration can change even when the number arriving does not, because emigration can change independently.”
+
+Selection checklist
+Claim circulates: Pass. A parliamentary committee itself once described a net figure as the number who “entered the UK,” providing a direct attributable example of the confusion. Home Affairs Committee example
+Error is statistical: Pass. It is a straightforward net-versus-gross error.
+Sources settle it and limitations are stated: Pass. The definition and all figures are directly settled by ONS; provisional status and revisions are disclosed.
+Mirror-claim test: Pass. The same reasoning would reject treating net migration as a count of departures.
+Short answer survives quotation: Pass, although adding “long-term” and “estimated” improves precision.
+Overall: approved subject to two minor rhetorical changes; no numerical corrections are required.
+
+
+Part 2.6 — “19% of the UK population was born abroad”
+Verdict: do not publish as written. The short answer has been overtaken by new ONS data, and the headline figure is now broadly supportable when dated correctly.
+ONS provisionally estimates that 13,115,000 UK residents were non-UK-born in June 2024. The accredited mid-2024 UK population estimate is 69,281,400:
+13,115,000 ÷ 69,281,400 = 18.93%
+
+So approximately 19% is a reasonable mid-2024 estimate. However:
+ONS does not directly publish the resulting 19%; it is a calculated percentage.
+The 13.115 million numerator is an official statistic in development, not an accredited statistic, and may be revised.
+It is not a current 2026 measurement. ONS has not produced a June 2025 estimate because the necessary deaths data were unavailable.
+The former Annual Population Survey series was discontinued in 2022, but it is now wrong to say that no later official estimate exists. ONS subsequently introduced a rolled-forward census-based method.
+Sources: ONS non-UK-born population estimates, ONS mid-2024 population estimate.
+Recommended replacement
+Approximately 19% in mid-2024. ONS provisionally estimated that 13.115 million UK residents were born outside the UK in June 2024. Compared with the mid-2024 UK population estimate of 69.2814 million, that is 18.9%. The percentage is calculated from ONS figures, and the foreign-born estimate is an official statistic in development that may be revised; it is not a current 2026 census count.
+
+Additional corrections
+Replace the historical 10.7 million/16% value with the mid-2024 estimate, while retaining it as useful 2021/22 census context.
+Replace “one census run on two dates” with “combined census results from the UK’s three statistical jurisdictions, conducted in 2021 and 2022.”
+Remove the inference that the share “has risen since”: the new ONS series now directly estimates increases from 2022 to 2024.
+Retain the distinction between foreign-born and foreign-national residents.
+The corresponding values and explanatory notes in population.json, meta.json, and the dashboard also appear to require updating.
+Selection-criteria result: fails in its present form. An undated claim of “19%” is imprecise, but it is no longer sufficiently false to debunk. The section should either be reframed as a claim that this is an exact/current/accredited figure, or converted into an explanatory fact-check about the provisional mid-2024 estimate.
+
+
+Part 2.7 — “Almost all refused asylum seekers are eventually recognised as refugees”
+Verdict: the central rebuttal is correct, but do not publish the page as written. It contains one invalid comparison and does not demonstrate that the quoted claim actually circulates.
+What is verified
+The initial grant rate was 39% for main applicants in the year ending March 2026.
+128,300 people received initial decisions: 48,581 grants and 79,719 refusals. These people-based counts cannot be used to recalculate the main-applicant grant rate.
+For claims made from 2007 to 2020, the latest recorded grant rate was 17–29 percentage points above the initial rate, averaging 22 points. This includes changes following appeals and reconsiderations, not appeals alone. Home Office asylum outcomes
+In January–March 2026, 40% of asylum/protection appeals determined at a hearing or on the papers were allowed. The mean clearance time was 67 weeks. Ministry of Justice tribunal statistics
+The First-tier Tribunal asylum/protection open caseload was 87,450 cases on 31 March 2026, a record. The latest-quarter tribunal figures are provisional.
+Required corrections
+Delete:
+“But a final grant rate 17 to 29 points above an initial rate of 39% is not ‘almost all’.”
+
+This applies a historical cohort uplift to the current 39% rate—the exact comparison that the source note correctly says must not be made.
+Replace “final grant rate” with “latest recorded grant rate.” The Home Office does not describe these outcomes as necessarily final or say that every appeal has been exhausted.
+
+Replace “appeals heard” with:
+
+“asylum/protection appeals determined at a hearing or on the papers”
+
+The 40% excludes appeals withdrawn, struck out, invalid or out of time.
+Do not describe the full 17–29-point increase as refusals “overturned on appeal.” It includes reconsiderations and other outcome changes.
+
+Make clear that protection or other leave is broader than being “recognised as a refugee.” Likewise, an allowed appeal does not automatically confer refugee status; it may require the Home Office to revise or reconsider its decision. GOV.UK appeal guidance
+
+Remove or source:
+
+“if anything, cases with stronger grounds are more likely to be pursued.”
+
+That selection-effect assertion is plausible but unsupported on the page.
+Change the front-matter source from solely “Home Office” to “Home Office; Ministry of Justice/HMCTS”, and disclose the mixed reference periods and provisional tribunal data.
+Recommended short answer
+No. Official data show that later decisions, appeals and reconsiderations raise the grant rate substantially, but they do not support the claim that almost all initial refusals eventually become refugee recognition. Separately, 40% of asylum/protection appeals determined in January–March 2026 were allowed. That percentage covers determined appeals, not every initial refusal, and an allowed appeal does not necessarily confer refugee status.
+
+Selection criteria
+Circulation: Not demonstrated. I found related claims about “many”, “most” or “three-quarters of all applicants” eventually receiving protection, but not this specific “almost all refused applicants” formulation. A publishable example is needed to avoid constructing a straw man.
+Statistical error: Pass, provided a genuine example is supplied.
+Sources settle it: Partial pass after the corrections above.
+Mirror treatment: Pass in principle; the page appropriately rejects “a refusal proves the claim was false.”
+Short answer: Broadly correct, but should use the revised wording above.
+
+
+
+

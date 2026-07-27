@@ -8,32 +8,94 @@ quietly falls out. An item leaves this list when it is done, and it leaves by be
 `scripts/validate-content.mjs` fails the build if a planning document in `docs/` is not
 referenced here, so a scope can no longer be written and forgotten.
 
-Last updated 23 July 2026.
+Last updated 27 July 2026.
 
 ---
 
 ## Blocking launch
 
-### 1. The pre-publication human review
+### 1. The pre-publication review: conducted 27 July 2026, corrections outstanding
 
-**The last launch blocker.** `content/sources-and-method.md` commits to it and publication has
-already happened, behind a robots rule. Every page carries a notice saying so.
+The review was done on 27 July 2026. It worked through the evidence template in
+**`docs/PRE-PUBLICATION-REVIEW.md`**, and its findings are recorded in `verification.txt` at the
+repository root, kept out of `docs/` because it uses em-dashes and pound signs the style scan
+would reject.
 
-The evidence is assembled in **`docs/PRE-PUBLICATION-REVIEW.md`**: 14 chart sentences beside
-the series they describe, 21 unprotected numbers marked with where they live in the data
-layer, 7 claims against the four criteria in foundation 8.5.2, and the 14 unit-qualified
-warnings. 54 checkboxes and a sign-off block.
+**Its outcome is a corrections list, not an approval.** Three claim pages carry "do not publish
+as written" or "substantial revision required," and all seven data sections need changes. The
+blocker stays open until the corrections land and the pages pass. Do not stamp `last_reviewed`,
+remove the pre-launch banner from `content/_includes/base.njk`, or record the review as passed
+in `CHANGELOG.md` until then. The review happening is not the review passing.
 
-Only the owner can do this. An hour or two of reading.
+The corrections, in recommended order. **[you]** marks an editorial or sourcing call only the
+owner makes; **[me]** marks a mechanical or factual change that can be made against a cited
+source; a data-file change is flagged because it ripples through the citation tokens. Every
+changed or new figure needs a fetched source and a verbatim quote before it is written, per the
+project's no-AI-claims-without-source rule.
 
-**Closing it also means:** stamping `last_reviewed` on every page the review covers with the
-date it was done, removing the pre-launch notice from `content/_includes/base.njk` entirely,
-and recording the review in `CHANGELOG.md`.
+**1a. "19% born abroad" (Part 2.6): the data has moved. [you + me, data].** ONS now publishes a
+current foreign-born estimate, 13,115,000 non-UK-born in June 2024, which against the mid-2024
+population of 69,281,400 is 18.9%, using a rolled-forward census method. The claim's premise,
+that no official figure has existed since ONS discontinued the series in 2022, is therefore
+false, and the reviewer says it fails in its present form and is no longer sufficiently false to
+debunk. Decide whether to reframe it as an explainer on the provisional mid-2024 estimate or
+drop it: **[you]**. Then update `population.json`, `meta.json` and `dashboard.json` with the new
+figures: **[me]**. This supersedes the 16% tokenised in PR #30, which becomes 2021/22 census
+context rather than the headline. A circulation example is also needed, see 1g.
 
-Note that `last_reviewed` was bumped to 23 July on eight pages because their content changed
-that day. **That is not this review.** The stamp means the page was last edited and read in
-the ordinary sense; the pre-publication review is the separate commitment the banner still
-declares outstanding.
+**1b. The "range spans zero" reasoning (Parts 2.2, 2.3): statistically invalid. [me, rebuild
+you].** The plus or minus 1% of GDP figure is the magnitude of separate pre-Brexit studies, not
+an uncertainty interval around one estimate, so "that range spans zero" must be deleted from both
+pages. Also remove "and rising" from the £4.9 billion asylum figure, since direct support
+spending actually fell from about £4.7 to £4 billion; relabel that figure an NAO estimate rather
+than "audited"; and give the OBR's £341,000 figure its full conditions, an average-wage worker
+arriving at 25 with no dependants and staying to 80. Rebuilding each short answer around scope
+and definitions is **[you]**.
+
+**1c. Costs page (Section 4): mis-dated and mis-sourced. [me, data + fetch].** The £158 hotel and
+£20 dispersal rates are the three months to June 2023, not 2024, and come from the ICIBI
+inspection at paragraph 5.14, not the 2025 NAO report the chart cites. Both are approximate.
+Re-date, re-source, mark approximate, and add the June 2025 comparison, £144.98 and £23.25. Fetch
+and quote the ICIBI and June 2025 figures first.
+
+**1d. Category, basis and denominator errors. [me].**
+
+- Asylum page (Section 2): withdrawals are not initial decisions, so retitle to "Initial
+  decisions and withdrawals"; 16,901 counts people, not claims; and the chart omits 5,931
+  administrative outcomes, so it is not an exhaustive breakdown.
+- Section 7 and Part 2.4: 88,000 is asylum only; humanitarian, 35,000 or 6%, is a separate
+  category, so relabel the table row "Asylum applicants." Fix the non-EU+ definition too: it is a
+  nationality grouping, not an arrival category.
+- Part 2.1: 93,653 people were in asylum accommodation, not 97,519, which is total support.
+  Soften the verdict from "No" to "the figures do not show that," and qualify the eligibility
+  statements, since waiting for a decision does not automatically mean receiving support.
+
+**1e. Qualifiers and precision (Sections 3, 5, 6). [me].** Peaks need "among the year-end points
+shown": the true peaks are 944,000 net migration in the year ending March 2023 and 175,457 people
+awaiting a decision in June 2023. The net-migration revision is 285,000, or 47%, from 606,000 to
+891,000 for 2022, not "more than 120,000." Section 6 is a minor rounding note.
+
+**1f. Voice rewrites. [you].** Every "recommended short answer" and "recommended summary" in
+`verification.txt` is the reviewer's wording. Adopting each verbatim or rewording it in the
+site's voice is the owner's call, page by page.
+
+**1g. Circulation examples (Parts 2.1, 2.6, 2.7). [you].** Each fails the "claim demonstrably
+circulates" criterion for want of an attributable example. Supply one per claim or drop that
+claim. 2.4 already has one, British Future; 2.5 has one, the Home Affairs Committee.
+
+**1h. "Refused asylum" (Part 2.7). [me + you].** Delete the sentence tokenised in PR #28, "a final
+grant rate 17 to 29 points above an initial rate of 39% is not almost all," because it applies a
+historical uplift to the current rate, the exact invalid comparison the page warns against.
+Change the front-matter source to "Home Office; Ministry of Justice/HMCTS", "final grant rate" to
+"latest recorded grant rate," and "appeals heard" to "appeals determined at a hearing or on the
+papers." The short-answer rewrite and the circulation example are **[you]**.
+
+**1i. "Net migration is arrivals" (Part 2.5): passes with two minor rhetorical tweaks. [you].**
+The strongest section reviewed. Only the "moved by 100,000 without a single person moving" line
+and one clarity edit.
+
+Section 1 of the review, people claiming asylum, needs no edit, only a vintage caution: do not mix
+the 104,764 figure in use with the older 108,138 that some sources still cite for 2024.
 
 ### 2. Then, and only then: remove the robots rule
 
