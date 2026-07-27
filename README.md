@@ -159,10 +159,9 @@ Known limits, published on the sources page under *What the checks do not establ
 - **Single years quoted from a series are read by a person.** A chart's data come from a
   series file, but "45,537 in 2019" inside a summary is not a citation.
 - **Sub-100 figures are matched with their unit only** (`21%`, `£3`) and reported as
-  warnings rather than failures, because many metrics share a value. Twelve surface
-  currently. Eleven are coincidental matches against unrelated metrics; one, the
-  born-abroad 16%, is a same-subject figure left as an editorial call on tokenising it
-  versus declaring it a historical literal. Review them; do not suppress them.
+  warnings rather than failures, because many metrics share a value. Eleven surface
+  currently, each a coincidental match against an unrelated metric. Review them; do not
+  suppress them.
 
 ## Content
 

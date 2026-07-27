@@ -39,18 +39,18 @@ The problem with "19%" is not that the number is too high. It is that it is pres
 a measurement when nothing is currently being measured.
 
 This distinction matters, because the tempting correction is also wrong. Replying
-"actually it is 16%" treats a 2021 Census figure as though it described 2026. Net
+"actually it is {{population/foreign-born-share-of-total-uk-population}}%" treats a 2021 Census figure as though it described 2026. Net
 migration has been substantial in every year since the Census, so the foreign-born share
 has almost certainly risen. Someone who says "about one in six UK residents was born
 abroad at the last Census, and the share has been rising since" is making a defensible
 statement, provided the second half is labelled as the inference it is. Someone who says
-"it is 16%" is quoting a five-year-old number as current.
+"it is {{population/foreign-born-share-of-total-uk-population}}%" is quoting a five-year-old number as current.
 
 Note that one in six is 16.7%, and the measured share is 16.0%. "More than one in six" is
 not what the Census found; it is only reachable by adding the assumed rise, which is
 exactly the move this page says has to be labelled.
 
-So the accurate position is uncomfortable and worth stating plainly: the share was 16% in
+So the accurate position is uncomfortable and worth stating plainly: the share was {{population/foreign-born-share-of-total-uk-population}}% in
 2021, it has risen since, and nobody can currently tell you by how much on an official
 basis. A specific figure for 2026, whether 19% or any other, is an inference, and it
 should be labelled as one.
@@ -73,7 +73,7 @@ should, but it leaves a genuine gap that no amount of citing will fill.
 ## Source notes
 
 Census 2021 (England, Wales, Northern Ireland) and Census 2022 (Scotland), via the
-Migration Observatory, University of Oxford. The Census share of 16% was calculated
+Migration Observatory, University of Oxford. The Census share of {{population/foreign-born-share-of-total-uk-population}}% was calculated
 against a population of 66.9 million at the time of the count.
 
 ONS discontinued its annual population estimates by country of birth and nationality in
