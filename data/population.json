@@ -1,7 +1,7 @@
 {
   "theme": "Population and integration",
-  "lastUpdated": "2026-06-17",
-  "note": "Foreign-born population figures come from the 2021/22 Census (Census 2021 for England, Wales and Northern Ireland; Census 2022 for Scotland). ONS discontinued its annual country-of-birth population series in October 2022, so there is no reliable official foreign-born total after mid-2021. A frequently cited '19% in 2024' appears in some secondary sources but is not a current accredited ONS estimate. Citizenship and settlement figures come from Home Office Immigration system statistics (year ending December 2025).",
+  "lastUpdated": "2026-07-27",
+  "note": "Foreign-born population figures come in two vintages. The accredited baseline is the 2021/22 Census (Census 2021 for England, Wales and Northern Ireland; Census 2022 for Scotland). In May 2026 ONS published a rolled-forward mid-2024 estimate of the non-UK-born population (13,115,000, about 18.9% of the population), an official statistic in development and provisional; ONS produced no June 2025 estimate because 2025 deaths data are not yet available, and it publishes no percentage. Citizenship and settlement figures come from Home Office Immigration system statistics (year ending December 2025).",
   "metrics": [
     {
       "id": "foreign-born-population-of-the-uk",
@@ -16,7 +16,7 @@
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
-      "notes": "The most reliable available figure. The foreign-born population has continued to rise since 2021, but no reliable post-2021 official total exists.",
+      "notes": "The accredited 2021/22 Census figure. The foreign-born population has continued to rise since 2021; ONS's provisional rolled-forward estimate for mid-2024 is held separately as foreign-born-population-mid-2024.",
       "confidence_level": "official"
     },
     {
@@ -32,8 +32,40 @@
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
-      "notes": "Roughly one in six residents, of a total population of 66.9 million at the time. Up from about 9% in 2004. A frequently cited '19% in June 2024' figure is not a current accredited ONS estimate.",
+      "notes": "Roughly one in six residents, of a total population of 66.9 million at the time. Up from about 9% in 2004. This is the accredited 2021/22 Census figure; for the later provisional estimate see foreign-born-share-mid-2024.",
       "confidence_level": "official"
+    },
+    {
+      "id": "foreign-born-population-mid-2024",
+      "metric_name": "Foreign-born (non-UK born) population of the UK, mid-2024 (provisional)",
+      "value": 13115000,
+      "unit": "people",
+      "date": "2024-06-30",
+      "period_label": "Mid-2024 (30 June 2024)",
+      "geography": "United Kingdom",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025 (Table 3)",
+      "source_id": "ons-ltim",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-27",
+      "notes": "ONS rolled-forward estimate from a Census 2021 (England, Wales, Northern Ireland) and Census 2022 (Scotland) baseline. An official statistic in development and provisional, subject to revision. ONS gives no June 2025 estimate because 2025 deaths of people born outside the UK are not yet available. Of the total, 3,871,000 were EU+ born and 9,244,000 non-EU+ born. Do not confuse with the lower APS-based ad hoc estimate of about 10.6 million, which uses a different population base and does not reconcile with the mid-2024 UK total.",
+      "confidence_level": "provisional"
+    },
+    {
+      "id": "foreign-born-share-mid-2024",
+      "metric_name": "Foreign-born share of total UK population, mid-2024 (calculated, provisional)",
+      "value": 18.9,
+      "unit": "%",
+      "date": "2024-06-30",
+      "period_label": "Mid-2024 (30 June 2024)",
+      "geography": "United Kingdom",
+      "source_name": "Calculated from ONS Long-term international migration (provisional, year ending December 2025) and the ONS mid-2024 UK population estimate",
+      "source_id": "ons-ltim",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-27",
+      "notes": "Calculated by this project: 13,115,000 non-UK-born (ONS LTIM provisional, mid-2024) divided by the accredited mid-2024 UK population of 69,281,400 (ONS mid-year estimate, published 26 September 2025) is 18.93%, shown here as 18.9%. ONS does not publish this share directly. The numerator is an official statistic in development and provisional, so treat the share as approximate; it is often rounded to about 19%.",
+      "confidence_level": "calculated"
     },
     {
       "id": "non-british-share-of-uk-population",
