@@ -2,8 +2,8 @@
 id: everyone-in-asylum-accommodation-arrived-recently
 claim: Everyone in asylum accommodation arrived recently.
 short_answer: >-
-  No. The support figure counts everyone being supported on a single day, however long
-  they have been in the system. It is a stock, not a flow.
+  The figures do not show that. The accommodation total counts everyone being accommodated
+  on a single day. It is a stock, not a flow, and it does not record when anyone arrived.
 direction: restrictionist
 error_type: stock read as flow
 last_reviewed: 2026-07-22
@@ -35,8 +35,10 @@ Those are [point-in-time figures](/what-the-words-mean#flow-and-stock). They cou
 day, regardless of when they arrived or how long they have been waiting.
 
 At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people
-were still waiting for an initial decision on their claim. People awaiting a decision are
-generally supported throughout that wait, and support can continue through an appeal.
+were still waiting for an initial decision on their claim. Waiting for a decision is not
+the same as receiving support. Someone waiting may be eligible for it, but support has to
+be applied for and a caseworker assesses each application, on whether the person is
+homeless or without money for food. It can continue through an appeal.
 
 ## Why the claim is misleading
 
@@ -48,16 +50,16 @@ The confusion is easy to fall into because the two figures happen to be of simil
 magnitude. Around 100,000 people claimed asylum during 2025; around 97,500 were being
 supported on one day in March 2026. Those look like the same quantity and are not. One is
 a flow measured over twelve months; the other is a stock measured at an instant. Someone
-who claimed asylum in 2023 and is still waiting appears in the second and not the first.
-Someone who claimed and was granted status quickly may appear in the first and not the
-second.
+who claimed asylum in 2023 and is still waiting could appear in the second and not the
+first, if they are receiving support. Someone who claimed and was granted status quickly
+may appear in the first and not the second.
 
 The history of the initial decision queue shows how people accumulate. The number waiting
 for an initial decision rose from around 51,000 at the end of 2019 to a peak of 175,457
 in June 2023, and has since fallen to
 {{asylum/asylum-backlog-people-awaiting-an-initial-decision}}. Anyone still waiting from
-the peak period has been in the system for years, and would be counted in today's support
-figure.
+the peak period has been in the system for years, and could be counted in today's support
+figure if they remain eligible for support.
 
 ## What we cannot tell you
 
@@ -79,7 +81,14 @@ Home Office, immigration system statistics, year ending March 2026, published 21
 2026. Support and accommodation figures are point-in-time counts as at 31 March 2026.
 
 The support figure excludes unaccompanied asylum-seeking children, who are supported by
-local authorities and counted separately.
+local authorities and counted separately. It is not the accommodation figure: it also
+counts people receiving subsistence payments and no accommodation.
+
+Eligibility is not automatic. The Home Office's [asylum support application
+guidance](https://www.gov.uk/government/publications/application-for-asylum-support-form-asf1/asylum-support-application-help-and-guidance)
+says a person who has claimed asylum and is waiting for a decision "may be eligible" for
+section 95 support, and that a caseworker assesses each application against the available
+evidence.
 
 The initial decision backlog is one queue among several. It is not the appeals backlog,
 and it is not the total asylum casework system. See [backlog](/what-the-words-mean#backlog). Treating "the backlog" as a single number
