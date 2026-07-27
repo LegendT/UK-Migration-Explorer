@@ -21,8 +21,9 @@ The review was done on 27 July 2026. It worked through the evidence template in
 repository root, kept out of `docs/` because it uses em-dashes and pound signs the style scan
 would reject.
 
-**Its outcome is a corrections list, not an approval.** Three claim pages carry "do not publish
-as written" or "substantial revision required," and all seven data sections need changes. The
+**Its outcome is a corrections list, not an approval.** Four claim pages carry "do not publish
+as written" or "substantial revision required" (2.2, 2.3, 2.6, 2.7), and six of the seven data
+sections need changes; Section 1 needs only a vintage caution. The
 blocker stays open until the corrections land and the pages pass. Do not stamp `last_reviewed`,
 remove the pre-launch banner from `content/_includes/base.njk`, or record the review as passed
 in `CHANGELOG.md` until then. The review happening is not the review passing.
@@ -38,10 +39,14 @@ current foreign-born estimate, 13,115,000 non-UK-born in June 2024, which agains
 population of 69,281,400 is 18.9%, using a rolled-forward census method. The claim's premise,
 that no official figure has existed since ONS discontinued the series in 2022, is therefore
 false, and the reviewer says it fails in its present form and is no longer sufficiently false to
-debunk. Decide whether to reframe it as an explainer on the provisional mid-2024 estimate or
-drop it: **[you]**. Then update `population.json`, `meta.json` and `dashboard.json` with the new
-figures: **[me]**. This supersedes the 16% tokenised in PR #30, which becomes 2021/22 census
-context rather than the headline. A circulation example is also needed, see 1g.
+debunk. The reviewer's two options are to reframe it as debunking the stronger claim that the
+figure is exact, current or accredited, or to convert it into an explanatory fact-check on the
+provisional mid-2024 estimate; dropping the page is a third option that is the owner's alone:
+**[you]**. Then update `population.json`, `meta.json` and `dashboard.json` with the new figures,
+replace "one census run on two dates" with the three-jurisdictions wording, and remove the
+now-superseded "has risen since" inference: **[me]**. This supersedes the 16% tokenised in
+PR #30, which becomes 2021/22 census context rather than the headline. (2.6 fails selection not
+for want of a circulation example but because it is no longer sufficiently false to debunk.)
 
 **1b. The "range spans zero" reasoning (Parts 2.2, 2.3): statistically invalid. [me, rebuild
 you].** The plus or minus 1% of GDP figure is the magnitude of separate pre-Brexit studies, not
@@ -50,49 +55,68 @@ pages. Also remove "and rising" from the £4.9 billion asylum figure, since dire
 spending actually fell from about £4.7 to £4 billion; relabel that figure an NAO estimate rather
 than "audited"; and give the OBR's £341,000 figure its full conditions, an average-wage worker
 arriving at 25 with no dependants and staying to 80. Rebuilding each short answer around scope
-and definitions is **[you]**.
+and definitions is **[you]**. Two mechanical fixes ride alongside: re-date the stale "studies
+reviewed to October 2024" metadata to the June 2026 briefing on both pages, and apply the
+reviewer's specific replacements ("Across academic studies" becomes "Across the pre-Brexit static
+studies summarised by the Migration Observatory", and similar) **[me]**.
 
-**1c. Costs page (Section 4): mis-dated and mis-sourced. [me, data + fetch].** The £158 hotel and
-£20 dispersal rates are the three months to June 2023, not 2024, and come from the ICIBI
-inspection at paragraph 5.14, not the 2025 NAO report the chart cites. Both are approximate.
-Re-date, re-source, mark approximate, and add the June 2025 comparison, £144.98 and £23.25. Fetch
-and quote the ICIBI and June 2025 figures first.
+**1c. Costs page (Section 4): mis-dated and mis-sourced. [me, data + fetch].** The £158 hotel rate
+is based on the three months to June 2023, not 2024; the £20 dispersal figure is approximate
+("around £20"). Both were cited in a Home Office business case in April 2024 and come from the
+ICIBI inspection at paragraph 5.14, not the 2025 NAO report the chart attributes. Re-date (title:
+figures cited in April 2024), re-source, mark both approximate, and add the June 2025 comparison,
+£144.98 and £23.25. Two framing corrections too: "price of a bed" is too narrow (these are
+accommodation costs under Home Office arrangements), and "accommodation type is the main driver"
+is too absolute (volume and mix both matter; the NAO evidence is that hotels housed about 35% of
+people but 76% of contract spending). Fetch and quote the ICIBI and June 2025 figures first.
 
-**1d. Category, basis and denominator errors. [me].**
+**1d. Category, basis and denominator errors. [mostly me].**
 
 - Asylum page (Section 2): withdrawals are not initial decisions, so retitle to "Initial
   decisions and withdrawals"; 16,901 counts people, not claims; and the chart omits 5,931
-  administrative outcomes, so it is not an exhaustive breakdown.
+  administrative outcomes, so it is not an exhaustive breakdown. **[me]**
 - Section 7 and Part 2.4: 88,000 is asylum only; humanitarian, 35,000 or 6%, is a separate
   category, so relabel the table row "Asylum applicants." Fix the non-EU+ definition too: it is a
-  nationality grouping, not an arrival category.
-- Part 2.1: 93,653 people were in asylum accommodation, not 97,519, which is total support.
-  Soften the verdict from "No" to "the figures do not show that," and qualify the eligibility
-  statements, since waiting for a decision does not automatically mean receiving support.
+  nationality grouping, not an arrival category. Also remove or source the assertion that asylum
+  was "a small fraction of immigration a decade ago" (the ONS reason series shown begins in 2019),
+  and refine the net-migration-by-reason limitation the reviewer quotes. **[me]**
+- Part 2.1: 93,653 people were in asylum accommodation, not 97,519, which is total support
+  **[me]**. Softening the verdict from "No" to "the figures do not show that" is a short-answer
+  rewrite, and the eligibility qualifiers touch wording (waiting for a decision does not
+  automatically mean receiving support), so both are **[you]**.
 
-**1e. Qualifiers and precision (Sections 3, 5, 6). [me].** Peaks need "among the year-end points
-shown": the true peaks are 944,000 net migration in the year ending March 2023 and 175,457 people
-awaiting a decision in June 2023. The net-migration revision is 285,000, or 47%, from 606,000 to
-891,000 for 2022, not "more than 120,000." Section 6 is a minor rounding note.
+**1e. Qualifiers and precision (Sections 3, 5, 6). [me].** Section 3: the people queue did not grow
+steadily (end-2014 22,898 to end-2015 22,147, a 3.28% fall), so "grew substantially," not "grew
+steadily." Peaks need "among the year-end points shown": the true peaks are 944,000 net migration
+in the year ending March 2023 and 175,457 people awaiting a decision in June 2023. The
+net-migration revision is 285,000, or 47%, from 606,000 to 891,000 for 2022, which the current
+"more than 120,000" understates rather than contradicts. Section 6 is a minor rounding note.
 
 **1f. Voice rewrites. [you].** Every "recommended short answer" and "recommended summary" in
 `verification.txt` is the reviewer's wording. Adopting each verbatim or rewording it in the
 site's voice is the owner's call, page by page.
 
-**1g. Circulation examples (Parts 2.1, 2.6, 2.7). [you].** Each fails the "claim demonstrably
-circulates" criterion for want of an attributable example. Supply one per claim or drop that
-claim. 2.4 already has one, British Future; 2.5 has one, the Home Affairs Committee.
+**1g. Circulation examples (Parts 2.1, 2.3, 2.7). [you].** Each fails the "claim demonstrably
+circulates" criterion for want of an attributable example: 2.1 and 2.7 need one supplied or the
+claim dropped; 2.3 needs an example of the stronger "far more" wording or that intensifier
+removed. 2.4 already has one, British Future; 2.5 has one, the Home Affairs Committee. (2.6 is not
+here: it fails selection for a different reason, covered in 1a.)
 
 **1h. "Refused asylum" (Part 2.7). [me + you].** Delete the sentence tokenised in PR #28, "a final
 grant rate 17 to 29 points above an initial rate of 39% is not almost all," because it applies a
-historical uplift to the current rate, the exact invalid comparison the page warns against.
-Change the front-matter source to "Home Office; Ministry of Justice/HMCTS", "final grant rate" to
-"latest recorded grant rate," and "appeals heard" to "appeals determined at a hearing or on the
-papers." The short-answer rewrite and the circulation example are **[you]**.
+historical uplift to the current rate, the comparison the Home Office source note says must not be
+made. Further **[me]** edits: change the front-matter source to "Home Office; Ministry of
+Justice/HMCTS" and disclose the mixed periods and provisional tribunal data; "final grant rate" to
+"latest recorded grant rate"; "appeals heard" to "appeals determined at a hearing or on the
+papers"; stop calling the 17 to 29 point rise refusals "overturned on appeal" (it includes
+reconsiderations and other outcome changes); and make clear that protection or other leave is
+broader than refugee recognition and that an allowed appeal does not automatically confer status.
+Remove or source "cases with stronger grounds are more likely to be pursued." The short-answer
+rewrite and the circulation example are **[you]**.
 
 **1i. "Net migration is arrivals" (Part 2.5): passes with two minor rhetorical tweaks. [you].**
-The strongest section reviewed. Only the "moved by 100,000 without a single person moving" line
-and one clarity edit.
+The reviewer's strongest Part 2 section so far. Only the "moved by 100,000 without a single person
+moving" line and one clarity edit.
 
 Section 1 of the review, people claiming asylum, needs no edit, only a vintage caution: do not mix
 the 104,764 figure in use with the older 108,138 that some sources still cite for 2024.
