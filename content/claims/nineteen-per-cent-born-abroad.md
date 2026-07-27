@@ -2,87 +2,105 @@
 id: nineteen-per-cent-born-abroad
 claim: 19% of the UK population was born abroad.
 short_answer: >-
-  There is no current official figure. ONS discontinued the series in 2022. The last
-  accredited estimate was 16% at the 2021 Census, and the share has risen since.
+  Roughly right now, but not as an exact, current, official figure. ONS's
+  provisional mid-2024 estimate puts the foreign-born population at about 13.1
+  million, or 18.9% of the population, but that is an official statistic in
+  development, ONS publishes no percentage, and there is no 2026 count.
 direction: restrictionist
-error_type: figure presented as official when no official figure exists
-last_reviewed: 2026-07-22
-review_due: 2027-07-22
+error_type: provisional estimate treated as an exact, current, official figure
+correction: >-
+  This page previously said no official foreign-born figure existed after the
+  2021/22 Census. In May 2026 ONS published a provisional rolled-forward mid-2024
+  estimate, so the check is now about precision and recency, not whether any
+  figure exists.
+corrected_on: 2026-07-27
+last_reviewed: 2026-07-27
+review_due: 2027-07-27
 figures:
+  - population/foreign-born-share-mid-2024
+  - population/foreign-born-population-mid-2024
+  - population/total-uk-population
   - population/foreign-born-share-of-total-uk-population
   - population/foreign-born-population-of-the-uk
 layout: claim.njk
 permalink: /common-claims/nineteen-per-cent-born-abroad/
 order: 5
 suppressPageHeader: true
-period: 2021/22 Census
-source: Migration Observatory (University of Oxford)
+period: Mid-2024 (provisional ONS estimate)
+source: Office for National Statistics
 ---
 
 ## What the data says
 
-The most recent accredited figure for the foreign-born share of the UK population is
-{{population/foreign-born-share-of-total-uk-population}}%, from the 2021/22 Census. That is
-one census run on two dates: Census 2021 for England, Wales and Northern Ireland, and Census
-2022 for Scotland. In absolute terms it was
-{{population/foreign-born-population-of-the-uk}} people.
+The most recent estimate of the foreign-born share is ONS's provisional figure for mid-2024:
+{{population/foreign-born-population-mid-2024}} people born outside the UK, or
+{{population/foreign-born-share-mid-2024}}% of the population, nearly one in five. So "roughly 19%"
+is a fair description of the number itself.
 
-ONS discontinued its annual country-of-birth population series in October 2022. Since
-then there has been no official estimate of the foreign-born total or its share.
+Two things about that figure matter as much as its size. It is an **official statistic in
+development** and provisional, which means ONS expects to revise it. And ONS publishes no
+percentage at all: the {{population/foreign-born-share-mid-2024}}% is calculated by dividing the
+{{population/foreign-born-population-mid-2024}} estimate by the accredited mid-2024 UK population
+of 69.28 million. The percentage is ours, not ONS's.
 
-The 19% figure circulates widely and appears in some secondary sources. It is not an
-accredited ONS estimate.
+The last **accredited** figure is older: {{population/foreign-born-share-of-total-uk-population}}%
+at the 2021/22 Census, or {{population/foreign-born-population-of-the-uk}} people. The mid-2024
+estimate rolls that census baseline forward with deaths and migration.
 
-## Why the claim is misleading, and why the obvious correction is too
+There is no figure for 2025 or 2026. ONS has not produced a June 2025 estimate because the 2025
+deaths data it needs are not yet available.
 
-The problem with "19%" is not that the number is too high. It is that it is presented as
-a measurement when nothing is currently being measured.
+## Why the claim needs care, even though the number is about right
 
-This distinction matters, because the tempting correction is also wrong. Replying
-"actually it is {{population/foreign-born-share-of-total-uk-population}}%" treats a 2021 Census figure as though it described 2026. Net
-migration has been substantial in every year since the Census, so the foreign-born share
-has almost certainly risen. Someone who says "about one in six UK residents was born
-abroad at the last Census, and the share has been rising since" is making a defensible
-statement, provided the second half is labelled as the inference it is. Someone who says
-"it is {{population/foreign-born-share-of-total-uk-population}}%" is quoting a five-year-old number as current.
+The "19%" figure circulates widely, usually stated flatly as a settled current fact. The problem
+with it is no longer that it is too high or invented. It is that it is presented as a precise,
+current, official measurement when it is none of those three.
 
-Note that one in six is 16.7%, and the measured share is 16.0%. "More than one in six" is
-not what the Census found; it is only reachable by adding the assumed rise, which is
-exactly the move this page says has to be labelled.
+- It is **not precise**: a provisional statistic in development carries real uncertainty, and the
+  percentage is a calculation ONS does not itself publish.
+- It is **not current**: it describes mid-2024, not 2026, and the share has probably moved since.
+- It is **not accredited**: the accredited figure remains the
+  {{population/foreign-born-share-of-total-uk-population}}% from the 2021/22 Census.
 
-So the accurate position is uncomfortable and worth stating plainly: the share was {{population/foreign-born-share-of-total-uk-population}}% in
-2021, it has risen since, and nobody can currently tell you by how much on an official
-basis. A specific figure for 2026, whether 19% or any other, is an inference, and it
-should be labelled as one.
+So "about 19% in mid-2024, on a provisional ONS estimate" is a defensible statement. "19% of the
+UK population is foreign-born," offered as a settled official fact, claims a precision and an
+authority the figure does not have.
 
-## Why the figure was discontinued
+## Why there was a gap, and how ONS filled it
 
-This is not a case of a statistic being suppressed. ONS's population estimates by country
-of birth relied on the Labour Force Survey, which has had known sample-size and
-response-rate problems since 2020. Rather than continue publishing an estimate it could
-no longer stand behind, ONS withdrew it. That is the statistics system working as it
-should, but it leaves a genuine gap that no amount of citing will fill.
+ONS discontinued its annual country-of-birth population series in October 2022, because it relied
+on the Labour Force Survey, which has had known sample-size and response-rate problems since 2020.
+For a time there was no later official estimate at all. ONS has since introduced a rolled-forward
+method, taking the 2021/22 Census as a
+baseline and updating it with deaths and migration, and used it to produce the mid-2024 estimate
+published in May 2026.
+
+One caution. A separate ONS ad hoc release, based on the Annual Population Survey, gives a much
+lower foreign-born total of about 10.6 million against a different population base. It does not
+reconcile with the mid-2024 population estimate and should not be used for this figure.
 
 ## Better questions to ask
 
-- When was that measured, and by whom?
-- Is this an official statistic, or someone's projection from one?
-- Does it count [people born abroad](/what-the-words-mean#foreign-born), or [people without British
-  citizenship](/what-the-words-mean#foreign-national)? They are different groups and different numbers.
+- Is this an accredited statistic, or an official statistic still in development?
+- What date does it describe? The latest estimate is for mid-2024, not now.
+- Does ONS publish the percentage, or is it calculated from two separate figures?
+- Does it count [people born abroad](/what-the-words-mean#foreign-born), or [people without
+  British citizenship](/what-the-words-mean#foreign-national)? They are different groups and
+  different numbers.
 
 ## Source notes
 
-Census 2021 (England, Wales, Northern Ireland) and Census 2022 (Scotland), via the
-Migration Observatory, University of Oxford. The Census share of {{population/foreign-born-share-of-total-uk-population}}% was calculated
-against a population of 66.9 million at the time of the count.
+ONS, Long-term international migration (provisional), year ending December 2025, published 21 May
+2026, which carries the mid-2024 non-UK-born estimate. The share is calculated by this project:
+{{population/foreign-born-population-mid-2024}} divided by the accredited mid-2024 UK population of
+{{population/total-uk-population}} (ONS mid-year population estimate) is
+{{population/foreign-born-share-mid-2024}}%. ONS publishes no such percentage.
 
-ONS discontinued its annual population estimates by country of birth and nationality in
-October 2022.
+The 2021/22 Census baseline (Census 2021 for England, Wales and Northern Ireland; Census 2022 for
+Scotland) gives the accredited {{population/foreign-born-share-of-total-uk-population}}% and
+{{population/foreign-born-population-of-the-uk}} figures.
 
-Note that foreign-born and foreign-citizen are distinct measures. A person born abroad
-may hold British citizenship; a person born in the UK may not. Figures for the two are
-not interchangeable, and the non-British citizenship share is lower than the foreign-born
-share.
-
-Foreign-born population is a [stock](/what-the-words-mean#flow-and-stock), not a measure of current immigration. It reflects
-arrivals over many decades, and people who arrived fifty years ago are counted in it.
+Foreign-born and foreign-citizen are distinct measures. A person born abroad may hold British
+citizenship; a person born in the UK may not. Figures for the two are not interchangeable, and the
+non-British citizenship share is lower than the foreign-born share. Foreign-born population is a
+[stock](/what-the-words-mean#flow-and-stock), not a measure of current immigration.
