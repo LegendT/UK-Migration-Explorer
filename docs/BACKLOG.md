@@ -64,7 +64,7 @@ reviewed to October 2024" metadata to the June 2026 briefing on both pages, and 
 reviewer's specific replacements ("Across academic studies" becomes "Across the pre-Brexit static
 studies summarised by the Migration Observatory", and similar) **[me]**.
 
-**1c. Costs page (Section 4): mis-dated and mis-sourced. [me, data + fetch].** The £158 hotel rate
+**1c. DONE (PR #35, 27 July 2026). Costs page (Section 4): mis-dated and mis-sourced. [me, data + fetch].** The £158 hotel rate
 is based on the three months to June 2023, not 2024; the £20 dispersal figure is approximate
 ("around £20"). Both were cited in a Home Office business case in April 2024 and come from the
 ICIBI inspection at paragraph 5.14, not the 2025 NAO report the chart attributes. Re-date (title:
