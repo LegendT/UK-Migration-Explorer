@@ -52,7 +52,7 @@ now-superseded "has risen since" inference: **[me]**. This supersedes the 16% to
 PR #30, which becomes 2021/22 census context rather than the headline. (2.6 fails selection not
 for want of a circulation example but because it is no longer sufficiently false to debunk.)
 
-**1b. The "range spans zero" reasoning (Parts 2.2, 2.3): statistically invalid. [me, rebuild
+**1b. DONE (PR #34, 27 July 2026). The "range spans zero" reasoning (Parts 2.2, 2.3): statistically invalid. [me, rebuild
 you].** The plus or minus 1% of GDP figure is the magnitude of separate pre-Brexit studies, not
 an uncertainty interval around one estimate, so "that range spans zero" must be deleted from both
 pages. Also remove "and rising" from the £4.9 billion asylum figure, since direct support

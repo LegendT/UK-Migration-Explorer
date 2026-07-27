@@ -80,24 +80,30 @@ they were separate items would double-count.</p>
 
 <h2>Why hotels dominate the bill</h2>
 
-<p>Hotels accounted for about 76% of the annual cost of asylum accommodation contracts while
-housing about 35% of the people in asylum accommodation. The reason is the nightly rate.</p>
+<p>Hotels housed about 35% of the people in asylum accommodation but accounted for about 76% of
+the cost of the accommodation contracts, £1.3 billion of an estimated £1.7 billion in the first
+seven months of 2024-25 (National Audit Office, HC 874). The reason is the gap in the nightly
+rate, shown below.</p>
 
 {% set hotelRate = "fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night" | metric %}
 {% set dispersalRate = "fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night" | metric %}
 {% barChart {
   id: 'accommodation-cost-per-night',
   bars: [
-    { name: 'Hotel place', ref: 'fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night', note: 'Average cost of a hotel place per person per night, 2024' },
-    { name: 'Dispersal accommodation', ref: 'fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night', note: 'Approximate cost per night in non-hotel dispersal accommodation' }
+    { name: 'Hotel place', ref: 'fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night', note: 'Average cost of a hotel place per person per night, three months to June 2023' },
+    { name: 'Dispersal accommodation', ref: 'fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night', note: 'Approximate cost per night in non-hotel dispersal accommodation, three months to June 2023' }
   ],
-  title: 'Cost of an accommodation place per night, 2024',
+  title: 'Cost of an accommodation place per night, three months to June 2023',
   summary: 'A hotel place cost about £' ~ (hotelRate.value | number) ~ ' per person per night, roughly eight times the £' ~ (dispersalRate.value | number) ~ ' rate for dispersal accommodation.',
   unit: '£ per night',
-  source: 'National Audit Office, The Home Office\'s asylum accommodation contracts',
-  sourceUrl: 'https://www.nao.org.uk/wp-content/uploads/2025/05/home-offices-asylum-accommodation-contracts.pdf',
-  note: 'This is the price of a bed under a contract, not a measure of what any person costs or is worth. It is on this page because the gap between the two rates is what makes accommodation type, rather than the number of people, the main driver of the bill.'
+  source: 'Home Office April 2024 business case, quoted in ICIBI, An inspection of contingency asylum accommodation (November 2023 to June 2024), paragraph 5.14',
+  sourceUrl: 'https://www.gov.uk/government/publications/an-inspection-of-contingency-asylum-accommodation-november-2023-june-2024',
+  note: 'These are accommodation costs under Home Office arrangements, not a measure of what any person costs or is worth. They are on this page because the gap between the two rates is a major reason hotels dominate the bill, though the number of people housed and the accommodation mix matter too.'
 } %}
+
+<p>These rates are approximate and change over time. A later Home Office estimate put a hotel
+place at £144.98 and a dispersal place at £23.25 per person per night as of June 2025 (House of
+Commons Home Affairs Committee, HC 580), so the gap has narrowed but not closed.</p>
 
 <h2>On "£8 million a day"</h2>
 

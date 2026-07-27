@@ -56,6 +56,15 @@
       "confidence_level": "official"
     },
     {
+      "id": "icibi",
+      "name": "Independent Chief Inspector of Borders and Immigration",
+      "publisher": "ICIBI (independent statutory inspector; reports laid before Parliament)",
+      "url": "https://www.gov.uk/government/organisations/independent-chief-inspector-of-borders-and-immigration",
+      "covers": "Inspections of Home Office immigration and asylum operations, including contingency asylum accommodation; relays Home Office operational and cost data.",
+      "updateFrequency": "Periodic inspection reports (irregular)",
+      "confidence_level": "official"
+    },
+    {
       "id": "obr",
       "name": "Office for Budget Responsibility",
       "publisher": "OBR",
