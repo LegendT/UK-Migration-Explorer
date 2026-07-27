@@ -2,8 +2,8 @@
 id: refused-asylum-seekers-are-eventually-recognised
 claim: Almost all refused asylum seekers are eventually recognised as refugees.
 short_answer: >-
-  No. Appeals do change a substantial share of refusals, and the final grant rate is
-  materially higher than the initial one, but it is not close to all of them.
+  No. Later decisions do change a substantial share of refusals, and the latest recorded
+  grant rate is materially higher than the initial one, but it is not close to all of them.
 direction: pro-migration
 error_type: appeal success rate generalised to all refusals
 last_reviewed: 2026-07-22
@@ -19,7 +19,7 @@ permalink: /common-claims/refused-asylum-seekers-are-eventually-recognised/
 order: 6
 suppressPageHeader: true
 period: year ending March 2026
-source: Home Office
+source: Home Office; Ministry of Justice/HMCTS
 ---
 
 ## What the data says
@@ -33,29 +33,48 @@ On the **people** basis, main applicants plus dependants, {{asylum/asylum-initia
 sum: dividing one by the other mixes the bases, which is the error this site warns about
 most often.
 
-Around {{asylum/asylum-appeal-success-rate}}% of asylum appeals heard at the First-tier
-Tribunal in the quarter January to March 2026 were allowed. Historically, the grant rate measured at final outcome, after appeals are exhausted, runs 17 to 29 percentage points
-higher than the initial decision rate.
+Around {{asylum/asylum-appeal-success-rate}}% of asylum and protection appeals determined
+at a hearing or on the papers at the First-tier Tribunal in the quarter January to March
+2026 were allowed. That is a share of the appeals determined, and only about half of the
+asylum and protection appeals disposed of in that quarter were determined at all: 35% were
+withdrawn, 6% struck out and 6% invalid or out of time.
+
+Separately, for claims made between 2010 and 2020, the Home Office's cohort analysis shows
+the latest recorded grant rate running 17 to 29 percentage points above the initial rate
+for the same cohort. That gap is not appeals alone. It also takes in reconsiderations, and
+claims reinstated after a withdrawal or an administrative outcome.
 
 So the direction of the claim is right, and the size of the effect is not trivial. A
 refusal at initial decision is genuinely not the end of the matter, and a substantial
-minority of refusals are overturned.
+minority of claims end differently from how they started.
 
-But a final grant rate 17 to 29 points above an initial rate of {{asylum/asylum-initial-decision-grant-rate}}% is not "almost all".
+Taken on its own terms, though, the cohort measure does not say "almost all". The share of
+each cohort that had ended in a grant by its latest recorded outcome ran from 50% to 75%
+for claims made between 2010 and 2019, and reached 80% for 2020, the highest of any year.
+So between a fifth and a half of each cohort had not ended in a grant. What the
+measure cannot do is arithmetic on the current
+{{asylum/asylum-initial-decision-grant-rate}}% rate: the Home Office says the two relate to
+different cohorts of initial decisions.
 
 ## Why the claim is misleading
 
 It takes the appeal success rate and applies it to the whole refused population, which
-involves two errors compounding.
+involves three errors compounding.
 
 First, **not every refusal is appealed.** The appeal success rate describes the outcomes
-of appeals that were lodged and heard. It says nothing about refused claimants who did
-not appeal, and they cannot be assumed to have the same profile as those who did, if
-anything, cases with stronger grounds are more likely to be pursued.
+of appeals that were lodged and then determined. It says nothing about refused claimants
+who did not appeal, and they cannot be assumed to have the same profile as those who did.
 
-Second, **an appeal allowed is not always protection granted.** Appeals can succeed on
-procedural or human rights grounds, and an allowed appeal may result in the case being
-reconsidered rather than status being conferred outright.
+Second, **an appeal allowed is not itself a grant of status.** Appeals can succeed on
+procedural or human rights grounds, and the tribunal does not issue the leave. The Home
+Office may first seek permission to appeal to the Upper Tribunal; where it does not, its
+own caseworking team implements whatever form and duration of leave follows, and there is
+no general target for how long that takes.
+
+Third, **protection or other leave is broader than being recognised as a refugee.** That
+category counts refugee permission alongside humanitarian protection, discretionary leave
+and other grants. A rise in grants of protection or other leave is therefore not the same
+as a rise in refugee recognition, which is what this claim asserts.
 
 There is also a period problem worth naming. The {{asylum/asylum-initial-decision-grant-rate}}% initial grant rate covers a full
 year to March 2026. The {{asylum/asylum-appeal-success-rate}}% appeal success rate covers a single quarter. Setting one
@@ -65,8 +84,8 @@ period, is not a valid comparison, and it is the comparison the claim implicitly
 ## The mirror claim fails too
 
 "A refusal means the claim was obviously false" is wrong for the same underlying reason. A
-substantial share of refusals are overturned on appeal, which is difficult to reconcile with
-the idea that refusal settles the question. Both claims take a real and partial effect and
+substantial share of refused claims later end differently, which is difficult to reconcile
+with the idea that a refusal settles the question. Both claims take a real and partial effect and
 inflate it into a total one. This site does not yet have a separate check for that mirror
 claim, so it is corrected here rather than on a page of its own.
 
@@ -95,9 +114,19 @@ bases are not interchangeable, which is why the rate and the count are cited sep
 here rather than divided into one another.
 
 Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics,
-January to March 2026. A different publisher on a different cycle from the Home Office
-figures, and a single quarter rather than a year.
+January to March 2026, table FIA_3. A different publisher on a different cycle from the
+Home Office figures, and a single quarter rather than a year. The latest quarter is
+provisional and liable to revision; the three quarters before it in the same table have
+already been revised once.
 
-The 17 to 29 percentage point gap between initial and final grant rates is a historical
-range, not a current measurement, and it should not be applied to the latest year to
-produce a specific final rate.
+**This page mixes three reference periods,** and they cannot be set against one another: a
+year to March 2026 for the initial decisions, a quarter to March 2026 for the appeals, and
+cohorts of claims made between 2010 and 2020 for the later grant rates.
+
+The 17 to 29 percentage point gap is a cohort measurement covering claims made between
+2010 and 2020, not a current one, and it must not be applied to the latest year to produce
+a final rate. The Home Office says the initial rate in its cohort table "will not match the
+grant rate in the 'initial decisions' dataset as they relate to a different cohort of
+initial decisions", and that more recent cohorts are not comparable because more of their
+cases are still progressing. Its own label for the later figure is the latest recorded
+outcome, not the final one.
