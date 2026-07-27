@@ -22,24 +22,28 @@ repository root, kept out of `docs/` because it uses em-dashes and pound signs t
 would reject.
 
 **Its outcome is a corrections list, not an approval.** Four claim pages carry "do not publish
-as written" or "substantial revision required" (2.2, 2.3, 2.6, 2.7), and six of the seven data
-sections need changes; Section 1 needs only a vintage caution. The
-blocker stays open until the corrections land and the pages pass. Do not stamp `last_reviewed`,
+as written" or "substantial revision required" (2.2, 2.3, 2.6, 2.7). Five of the seven data
+sections carry required corrections (2, 3, 4, 5, 7); Section 6 offers only an optional precision
+tweak, and Section 1 only a vintage caution. The blocker stays open until the corrections land
+and the pages pass. Do not stamp `last_reviewed`,
 remove the pre-launch banner from `content/_includes/base.njk`, or record the review as passed
 in `CHANGELOG.md` until then. The review happening is not the review passing.
 
-The corrections, in recommended order. **[you]** marks an editorial or sourcing call only the
-owner makes; **[me]** marks a mechanical or factual change that can be made against a cited
-source; a data-file change is flagged because it ripples through the citation tokens. Every
+The corrections below, 1a first. Most are per topic or page, but 1f (voice) and 1g (circulation)
+cut across the others, so a page such as 2.7 also has rows there rather than only in 1h. **[you]**
+marks an editorial or sourcing call only the owner makes; **[me]** marks a mechanical or factual
+change that can be made against a cited source; a data-file change is flagged because it ripples
+through the citation tokens. Every
 changed or new figure needs a fetched source and a verbatim quote before it is written, per the
 project's no-AI-claims-without-source rule.
 
 **1a. "19% born abroad" (Part 2.6): the data has moved. [you + me, data].** ONS now publishes a
-current foreign-born estimate, 13,115,000 non-UK-born in June 2024, which against the mid-2024
-population of 69,281,400 is 18.9%, using a rolled-forward census method. The claim's premise,
-that no official figure has existed since ONS discontinued the series in 2022, is therefore
-false, and the reviewer says it fails in its present form and is no longer sufficiently false to
-debunk. The reviewer's two options are to reframe it as debunking the stronger claim that the
+foreign-born estimate through a rolled-forward census method: 13,115,000 non-UK-born in June 2024,
+which against the mid-2024 population of 69,281,400 is 18.9%. It is a provisional official
+statistic in development, not an accredited figure, and there is no 2025 or 2026 estimate yet, but
+it means the claim's premise, that no official figure has existed since ONS discontinued the
+series in 2022, is now false, and the reviewer says the claim fails in its present form and is no
+longer sufficiently false to debunk. The reviewer's two options are to reframe it as debunking the stronger claim that the
 figure is exact, current or accredited, or to convert it into an explanatory fact-check on the
 provisional mid-2024 estimate; dropping the page is a third option that is the owner's alone:
 **[you]**. Then update `population.json`, `meta.json` and `dashboard.json` with the new figures,
@@ -90,7 +94,8 @@ steadily (end-2014 22,898 to end-2015 22,147, a 3.28% fall), so "grew substantia
 steadily." Peaks need "among the year-end points shown": the true peaks are 944,000 net migration
 in the year ending March 2023 and 175,457 people awaiting a decision in June 2023. The
 net-migration revision is 285,000, or 47%, from 606,000 to 891,000 for 2022, which the current
-"more than 120,000" understates rather than contradicts. Section 6 is a minor rounding note.
+"more than 120,000" understates rather than contradicts. Section 6 needs only an optional
+precision tweak, not a correction; the reviewer notes its rounding gap is "not an error."
 
 **1f. Voice rewrites. [you].** Every "recommended short answer" and "recommended summary" in
 `verification.txt` is the reviewer's wording. Adopting each verbatim or rewording it in the
