@@ -41,7 +41,7 @@ So the direction of the claim is right, and the size of the effect is not trivia
 refusal at initial decision is genuinely not the end of the matter, and a substantial
 minority of refusals are overturned.
 
-But a final grant rate 17 to 29 points above an initial rate of 39% is not "almost all".
+But a final grant rate 17 to 29 points above an initial rate of {{asylum/asylum-initial-decision-grant-rate}}% is not "almost all".
 
 ## Why the claim is misleading
 
@@ -57,8 +57,8 @@ Second, **an appeal allowed is not always protection granted.** Appeals can succ
 procedural or human rights grounds, and an allowed appeal may result in the case being
 reconsidered rather than status being conferred outright.
 
-There is also a period problem worth naming. The 39% initial grant rate covers a full
-year to March 2026. The 40% appeal success rate covers a single quarter. Setting one
+There is also a period problem worth naming. The {{asylum/asylum-initial-decision-grant-rate}}% initial grant rate covers a full
+year to March 2026. The {{asylum/asylum-appeal-success-rate}}% appeal success rate covers a single quarter. Setting one
 directly against the other, as though they described the same population over the same
 period, is not a valid comparison, and it is the comparison the claim implicitly makes.
 
