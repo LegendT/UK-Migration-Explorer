@@ -55,8 +55,8 @@ compare figures that are not comparable. Three different numbers get used
 interchangeably in this argument:
 
 - **Asylum-related immigration**, {{migration/asylum-related-immigration}}, an ONS
-  estimate of people who became long-term migrants and are counted as asylum applicants,
-  in the year ending December 2025. Humanitarian routes are not in it.
+  estimate of the non-EU+ long-term arrivals it counts as asylum applicants in the year
+  ending December 2025. Humanitarian routes are a separate category and are not in it.
 - **Asylum applications**, {{asylum/asylum-applications}}, a Home Office count of people
   claiming asylum in the year ending **March 2026**.
 - **[Small boat arrivals](/what-the-words-mean#small-boat-arrivals)**, a count of one route of arrival, which overlaps with both of
@@ -68,9 +68,9 @@ not analysis.
 
 ## What the claim gets right
 
-The share is not trivial. One in seven non-EU+ arrivals is a substantial part of the
-picture, and someone saying asylum matters is right. Someone saying it is most of
-immigration is not.
+The share is not trivial. Asylum applicants were about one in seven non-EU+ arrivals, so
+treating asylum as a rounding error is as wrong as treating it as the whole. The claim
+misjudges the size, not the subject.
 
 Whether that share has grown over a decade is not something the figures here settle. ONS
 warns that estimates either side of June 2021 are not directly comparable, because the

@@ -481,7 +481,7 @@
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-07-27",
-      "notes": "PEOPLE basis: main applicants plus dependants, all applicant types. Summed from the Asy_D02 pivot over 2025 Q2 to 2026 Q1: 3,858 + 855 + 844 + 374. The Home Office describes these as voided and suspended cases, deceased applicants and other administrative outcomes, and says the category includes a small number of cases previously counted as withdrawals. Like withdrawals, they are NOT part of the 128,300 people receiving initial decisions and are excluded from the grant rate. The same four quarters of that pivot give 79,719 refusals, 16,901 withdrawals and 48,581 grants, which is how this figure's basis and period were confirmed.",
+      "notes": "PEOPLE basis: main applicants plus dependants, all applicant types. Summed from the Asy_D02 pivot over 2025 Q2 to 2026 Q1: 3,858 + 855 + 844 + 374. The pivot splits the same four quarters into void 4,896, suspended 642, other 387 and deceased 6, so voided cases are the great majority. The Home Office table notes say the category 'includes a small number of cases that were previously categorised as a withdrawal, as well as other administrative outcomes including voided and suspended cases'. Like withdrawals, these are NOT part of the 128,300 people receiving initial decisions and are excluded from the grant rate. The same four quarters of that pivot give 79,719 refusals, 16,901 withdrawals and 48,581 grants, and a grand total of 151,132, which is how this figure's basis and period were confirmed.",
       "confidence_level": "official"
     }
   ]

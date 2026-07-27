@@ -25,20 +25,19 @@ source: Home Office
 
 As at 31 March 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
 receipt of [asylum support](/what-the-words-mean#asylum-support): accommodation,
-subsistence payments, or both. That total is not the accommodation figure.
-{{asylum/people-in-asylum-accommodation}} people were being accommodated, in hotels or in
-other accommodation, and the remainder received subsistence payments and no
-accommodation at all. Of the supported population,
-{{asylum/people-in-asylum-hotel-accommodation}} were in hotels, around 21%.
+subsistence payments, or both. Being supported and being accommodated are not the same
+count. {{asylum/people-in-asylum-accommodation}} people were in accommodation, hotel or
+other, and the rest received subsistence payments only. Hotels held
+{{asylum/people-in-asylum-hotel-accommodation}} people, around 21% of everyone supported.
 
-Those are [point-in-time figures](/what-the-words-mean#flow-and-stock). They count everyone being supported on that particular
+All three are [point-in-time figures](/what-the-words-mean#flow-and-stock). They count people being supported on that particular
 day, regardless of when they arrived or how long they have been waiting.
 
 At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people
 were still waiting for an initial decision on their claim. Waiting for a decision is not
-the same as receiving support. Someone waiting may be eligible for it, but support has to
-be applied for and a caseworker assesses each application, on whether the person is
-homeless or without money for food. It can continue through an appeal.
+the same as receiving support. Support has to be applied for, and a caseworker decides
+each application on whether the person is homeless or has no money for food. Support can
+continue through an appeal, and it is not automatic at any point.
 
 ## Why the claim is misleading
 
