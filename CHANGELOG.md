@@ -44,6 +44,25 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 - Unit normalised: asylum system cost was `£ billion per year` on the dashboard and
   `£ billion` in the theme file.
 
+### Fixed, live figures restated in prose now cite the record
+
+Reviewing the sub-100 unit-qualified warnings figure by figure, rather than trusting the
+stored note that called all fourteen coincidences, found three live values written
+longhand beside the tokens that already cited them on the same page. Each would have
+drifted from its own token on the next release. They now cite the record throughout
+(#28, #30).
+
+- `refused-asylum-seekers-are-eventually-recognised`: the initial grant rate (39%) and the
+  appeal success rate (40%), current Home Office and Ministry of Justice figures, were
+  restated longhand in the discussion below the tokens citing them.
+- `nineteen-per-cent-born-abroad`: four references to the 2021 Census foreign-born share
+  (16%). Two 16% figures stay longhand by design: the "16.0%" comparison against "one in
+  six is 16.7%" needs a decimal a token cannot render, and the front-matter short answer
+  flows into a meta description the citation transform is not verified to reach.
+
+The warning count fell from fourteen to eleven, and each remaining one is a coincidental
+value match against an unrelated metric. The README count was corrected to match (#29, #30).
+
 ### Added
 
 - `LICENCE`: MIT for code and original writing; Open Government Licence v3.0 attribution
