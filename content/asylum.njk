@@ -9,6 +9,7 @@ last_reviewed: 2026-07-23
 review_due: 2027-07-23
 eleventyExcludeFromCollections: true
 figures:
+  - asylum/asylum-administrative-outcomes
   - asylum/asylum-appeal-success-rate
   - asylum/asylum-appeals-backlog
   - asylum/asylum-applications
@@ -35,7 +36,7 @@ at its own moment. A figure from one stage tells you very little about another.<
   <tbody>
     <tr><th scope="row">Claims made</th><td>{% figure "asylum/asylum-applications" %} people</td><td>A flow over the year ending March 2026. Relates to {% figure "asylum/asylum-applications-main-applicants" %} main-applicant applications</td></tr>
     <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people</td><td>A stock at 31 March 2026, not an annual intake</td></tr>
-    <tr><th scope="row">Decisions issued</th><td>{% figure "asylum/asylum-initial-decisions-total" %} people</td><td>Grants plus refusals over the year. Excludes withdrawals</td></tr>
+    <tr><th scope="row">Decisions issued</th><td>{% figure "asylum/asylum-initial-decisions-total" %} people</td><td>Grants plus refusals over the year. Excludes withdrawals and administrative outcomes</td></tr>
     <tr><th scope="row">Appealing a refusal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases</td><td>A different queue, from a different publisher, at a record high</td></tr>
     <tr><th scope="row">Receiving support</th><td>{% figure "asylum/people-in-receipt-of-asylum-support" %} people</td><td>A stock at 31 March 2026, including people at every stage above</td></tr>
   </tbody>
@@ -63,13 +64,15 @@ the cases basis; and that one also comes from a different publisher on a differe
 
 <h2>What happens to a claim</h2>
 
-<p>Outcomes are counted on the people basis here. Withdrawals sit outside the decisions
-total rather than inside it, which is why grants and refusals sum to the whole.</p>
+<p>Outcomes are counted on the people basis here. Withdrawals and administrative outcomes
+sit outside the decisions total rather than inside it, which is why grants and refusals sum
+to the whole.</p>
 
 {% set decisions = "asylum/asylum-initial-decisions-total" | metric %}
 {% set granted = "asylum/people-granted-protection-or-other-leave-at-initial-decision" | metric %}
 {% set refused = "asylum/asylum-refusals" | metric %}
 {% set withdrawn = "asylum/asylum-withdrawals" | metric %}
+{% set administrative = "asylum/asylum-administrative-outcomes" | metric %}
 {% set grantRate = "asylum/asylum-initial-decision-grant-rate" | metric %}
 {% set appealRate = "asylum/asylum-appeal-success-rate" | metric %}
 {% barChart {
@@ -79,12 +82,12 @@ total rather than inside it, which is why grants and refusals sum to the whole.<
     { name: 'Granted protection or leave', ref: 'asylum/people-granted-protection-or-other-leave-at-initial-decision', note: 'Up 5% on the previous year' },
     { name: 'Withdrawn', ref: 'asylum/asylum-withdrawals', note: 'Not part of the decisions total, and excluded from the grant rate' }
   ],
-  title: 'Initial decisions by outcome, year ending March 2026',
-  summary: 'Of ' ~ (decisions.value | number) ~ ' people receiving a first decision, ' ~ (granted.value | number) ~ ' were granted protection or other leave and ' ~ (refused.value | number) ~ ' were refused. A further ' ~ (withdrawn.value | number) ~ ' claims were withdrawn.',
+  title: 'Initial decisions and withdrawals, year ending March 2026',
+  summary: 'Of ' ~ (decisions.value | number) ~ ' people receiving an initial decision, ' ~ (granted.value | number) ~ ' were granted protection or other leave and ' ~ (refused.value | number) ~ ' were refused. Separately, ' ~ (withdrawn.value | number) ~ ' people had their asylum claims withdrawn.',
   unit: 'people',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',
-  note: 'The published grant rate of ' ~ grantRate.value ~ '% is calculated on main applicants. Recomputing it from these people-based figures gives 37.9%, which is a different measure, a worked example of why the basis has to be checked before dividing one figure by another.'
+  note: 'These three bars are not every outcome. A further ' ~ (administrative.value | number) ~ ' people had an administrative outcome over the same period, mostly voided or suspended cases, and the chart does not show them. The published grant rate of ' ~ grantRate.value ~ '% is calculated on main applicants. Recomputing it from these people-based figures gives 37.9%, which is a different measure, a worked example of why the basis has to be checked before dividing one figure by another.'
 } %}
 
 <p>A refusal at first decision is not the end. The grant rate measured at final outcome,

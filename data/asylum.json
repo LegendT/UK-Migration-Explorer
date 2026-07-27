@@ -245,6 +245,22 @@
       "confidence_level": "official"
     },
     {
+      "id": "people-in-asylum-accommodation",
+      "metric_name": "People in asylum accommodation (hotel and other)",
+      "value": 93653,
+      "unit": "people",
+      "date": "2026-03-31",
+      "period_label": "as at 31 March 2026",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, How many people are in the UK asylum system?",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-27",
+      "notes": "CALCULATED by this project as the sum of two published components: 20,885 in hotel accommodation plus 72,768 in other accommodation, including initial, contingency and dispersal. The Home Office publishes those two and the 97,519 support total, but not this sum. It is the accommodation figure, and is NOT the support total: 3,866 people received subsistence support only and are in the 97,519 but not here. Excludes unaccompanied asylum-seeking children.",
+      "confidence_level": "calculated"
+    },
+    {
       "id": "largest-nationality-claiming-asylum-pakistan",
       "metric_name": "Largest nationality claiming asylum, Pakistan (share)",
       "value": 10,
@@ -450,6 +466,22 @@
       "published_date": "2026-05-21",
       "retrieved_date": "2026-07-22",
       "notes": "PEOPLE basis: main applicants plus dependants. Down 6% on the year ending March 2025 (17,956). Withdrawals are NOT part of the 128,300 people receiving initial decisions, and are excluded from the grant rate.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "asylum-administrative-outcomes",
+      "metric_name": "Asylum claims with an administrative outcome (people)",
+      "value": 5931,
+      "unit": "people",
+      "date": "2026-03-31",
+      "period_label": "year ending March 2026",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum claims and initial decisions detailed datasets, table Asy_D02",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-27",
+      "notes": "PEOPLE basis: main applicants plus dependants, all applicant types. Summed from the Asy_D02 pivot over 2025 Q2 to 2026 Q1: 3,858 + 855 + 844 + 374. The Home Office describes these as voided and suspended cases, deceased applicants and other administrative outcomes, and says the category includes a small number of cases previously counted as withdrawals. Like withdrawals, they are NOT part of the 128,300 people receiving initial decisions and are excluded from the grant rate. The same four quarters of that pivot give 79,719 refusals, 16,901 withdrawals and 48,581 grants, which is how this figure's basis and period were confirmed.",
       "confidence_level": "official"
     }
   ]

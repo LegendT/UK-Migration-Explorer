@@ -2,9 +2,10 @@
 id: most-immigration-is-asylum
 claim: Most immigration is asylum seekers.
 short_answer: >-
-  No. Asylum accounted for around 14% of non-EU+ arrivals in the year ending December 2025.
-  Non-EU+ means arrivals from outside the EU, the EEA and Switzerland. Study and work were
-  both larger.
+  No. Asylum applicants were around 14% of non-EU+ arrivals in the year ending December
+  2025. Non-EU+ is a nationality grouping rather than a route: people who are not British
+  and not nationals of the EU, Norway, Iceland, Liechtenstein or Switzerland. Study and
+  work were both larger.
 direction: restrictionist
 error_type: category confusion
 last_reviewed: 2026-07-22
@@ -33,13 +34,18 @@ nationals, and ONS publishes a breakdown by reason for that group:
 | --- | --- | --- |
 | Study | {{migration/study-related-immigration}} | 47% |
 | Work | {{migration/work-related-immigration}} | 23% |
-| Asylum and humanitarian | {{migration/asylum-related-immigration}} | 14% |
+| Asylum applicants | {{migration/asylum-related-immigration}} | 14% |
 
-Study alone was more than three times the size of the asylum-related figure.
+Study alone was more than three times the size of the asylum figure.
+
+Those are ONS reason categories, and they are not the whole of the non-EU+ total.
+Humanitarian routes are counted separately, at about 6%, and family at about 7%. The 14%
+above is asylum applicants only, so treating it as "asylum and humanitarian" would
+understate the combined category while misstating the asylum one.
 
 ## Why the claim is misleading
 
-It treats one route into the country as though it were the whole of immigration. Asylum
+It treats one reason for coming as though it were the whole of immigration. Asylum
 is a real and significant part of the picture, but it is not the largest part, and the
 system that produces asylum statistics is separate from the one that produces visa and
 migration estimates.
@@ -49,8 +55,8 @@ compare figures that are not comparable. Three different numbers get used
 interchangeably in this argument:
 
 - **Asylum-related immigration**, {{migration/asylum-related-immigration}}, an ONS
-  estimate of people arriving for asylum or humanitarian reasons in the year ending
-  December 2025.
+  estimate of people who became long-term migrants and are counted as asylum applicants,
+  in the year ending December 2025. Humanitarian routes are not in it.
 - **Asylum applications**, {{asylum/asylum-applications}}, a Home Office count of people
   claiming asylum in the year ending **March 2026**.
 - **[Small boat arrivals](/what-the-words-mean#small-boat-arrivals)**, a count of one route of arrival, which overlaps with both of
@@ -62,10 +68,14 @@ not analysis.
 
 ## What the claim gets right
 
-The share is not trivial, and it has grown. Asylum and humanitarian arrivals were a small
-fraction of immigration a decade ago. Someone saying "asylum is a bigger part of the
-picture than it used to be" is on firm ground. Someone saying it is most of immigration
-is not.
+The share is not trivial. One in seven non-EU+ arrivals is a substantial part of the
+picture, and someone saying asylum matters is right. Someone saying it is most of
+immigration is not.
+
+Whether that share has grown over a decade is not something the figures here settle. ONS
+warns that estimates either side of June 2021 are not directly comparable, because the
+method used to produce them changed, and this site holds no harmonised series reaching
+back further.
 
 ## Better questions to ask
 
@@ -80,9 +90,10 @@ ending December 2025, published 21 May 2026. Home Office, immigration system sta
 year ending March 2026, published 21 May 2026.
 
 **Important limitation on the reason breakdown.** ONS publishes reason splits for non-EU+
-arrivals only, and they describe the inflow, not net migration. There is no equivalent
-"net migration by reason" figure, and constructing one by subtracting emigration from a
-reason category would not be valid.
+arrivals only, and they describe the inflow, not net migration. There is no headline
+net-migration-by-reason measure. Subtracting this year's departures, classified by the
+reason they originally came, from this year's arrivals would set two different cohorts
+against each other, and the result would not be the net effect of this year's routes.
 
 Asylum-related immigration includes people who claimed asylum after arriving through a
 regular route as well as those who arrived irregularly. [Route of arrival](/what-the-words-mean#irregular-arrival) and [asylum claim](/what-the-words-mean#asylum-application)

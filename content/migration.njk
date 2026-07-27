@@ -68,9 +68,10 @@ only way to see which is to look at the flows separately.</p>
 <h2>Why people came</h2>
 
 <p>ONS publishes a breakdown by reason for <strong>non-EU+ arrivals only</strong>, which were
-627,000 of the {% figure "migration/total-long-term-immigration" %} total. There is no equivalent
-breakdown of net migration by reason, and constructing one by subtracting emigration from a
-category would not be valid.</p>
+627,000 of the {% figure "migration/total-long-term-immigration" %} total. Non-EU+ is a
+nationality grouping, not a route. There is no headline breakdown of net migration by reason:
+subtracting this year's departures, classified by the reason they originally came, from this
+year's arrivals would set two different cohorts against each other.</p>
 
 {% set study = "migration/study-related-immigration" | metric %}
 {% set work = "migration/work-related-immigration" | metric %}
@@ -80,14 +81,14 @@ category would not be valid.</p>
   bars: [
     { name: 'Study', ref: 'migration/study-related-immigration', note: 'Main applicants 277,000 plus 17,000 dependants' },
     { name: 'Work', ref: 'migration/work-related-immigration', note: 'Main applicants 71,000 plus 74,000 dependants' },
-    { name: 'Asylum and humanitarian', ref: 'migration/asylum-related-immigration', note: 'Includes claims made after arriving by a regular route' }
+    { name: 'Asylum', ref: 'migration/asylum-related-immigration', note: 'Asylum applicants only. Includes claims made after arriving by a regular route' }
   ],
   title: 'Reason for long-term immigration, non-EU+ arrivals, year ending December 2025',
-  summary: 'Study was the largest single reason at ' ~ (study.value | number) ~ ', followed by work at ' ~ (work.value | number) ~ ' and asylum and humanitarian routes at ' ~ (asylumRoute.value | number) ~ '.',
+  summary: 'Study was the largest single reason at ' ~ (study.value | number) ~ ', followed by work at ' ~ (work.value | number) ~ ' and asylum at ' ~ (asylumRoute.value | number) ~ '.',
   unit: 'people',
   source: 'ONS, long-term international migration, provisional: year ending December 2025',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
-  note: 'Work-related immigration fell by 47% from 272,000 the previous year, and ONS identifies it as the largest single contributor to the fall in net migration.'
+  note: 'These are ONS reason categories, not routes, and the three shown are not the whole. Humanitarian is a separate category, about 6% of non-EU+ arrivals, and family is about 7%; neither is inside the asylum bar. Work-related immigration fell by 47% from 272,000 the previous year, and ONS identifies it as the largest single contributor to the fall in net migration.'
 } %}
 
 <h2>Why the ONS and Home Office figures never match</h2>

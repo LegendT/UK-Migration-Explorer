@@ -10,6 +10,7 @@ last_reviewed: 2026-07-22
 review_due: 2027-07-22
 figures:
   - asylum/people-in-receipt-of-asylum-support
+  - asylum/people-in-asylum-accommodation
   - asylum/people-in-asylum-hotel-accommodation
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
 layout: claim.njk
@@ -24,9 +25,11 @@ source: Home Office
 
 As at 31 March 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
 receipt of [asylum support](/what-the-words-mean#asylum-support): accommodation,
-subsistence payments, or both. Of those,
-{{asylum/people-in-asylum-hotel-accommodation}} were in hotels, around 21% of the
-supported population.
+subsistence payments, or both. That total is not the accommodation figure.
+{{asylum/people-in-asylum-accommodation}} people were being accommodated, in hotels or in
+other accommodation, and the remainder received subsistence payments and no
+accommodation at all. Of the supported population,
+{{asylum/people-in-asylum-hotel-accommodation}} were in hotels, around 21%.
 
 Those are [point-in-time figures](/what-the-words-mean#flow-and-stock). They count everyone being supported on that particular
 day, regardless of when they arrived or how long they have been waiting.
