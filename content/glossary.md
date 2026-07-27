@@ -310,10 +310,10 @@ Census.
 **Why it matters.** This is a [stock](#flow-and-stock) accumulated over decades. Someone
 who arrived in 1975 is counted. It tells you nothing about current immigration levels.
 
-**A gap worth knowing about.** ONS discontinued its annual country-of-birth series in
-October 2022, so there is no official figure for the current period. The share has
-almost certainly risen since 2021, but by how much is not officially measured. See the claim
-check.
+**A gap now partly filled.** ONS discontinued its annual survey-based country-of-birth series
+in October 2022. It has since published a provisional rolled-forward estimate for mid-2024, an
+official statistic in development rather than an accredited count, so a later figure now exists.
+See the claim check for the number and its caveats.
 
 ### Foreign national, or non-British citizen {#foreign-national}
 
