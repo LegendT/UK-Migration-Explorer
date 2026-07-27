@@ -152,6 +152,13 @@ establish*, and listed in `docs/BACKLOG.md`.
   until that query was run.
 - **A denylist needs a review pass, not a sweep.** Four of seven sub-100 matches were
   coincidences. Tokenising all of them would have cited the wrong record four times.
+- **A stored "all reviewed" note is a declaration, not a check, and it ages.** The README
+  recorded the fourteen sub-100 warnings as reviewed and all coincidences. Checking each
+  again in context found three that were not: the refused-asylum grant and appeal rates and
+  the born-abroad Census share were live metric values restated longhand beside the very
+  tokens that already cited them, one release from contradicting themselves. Re-derive the
+  per-item property; do not trust a summary of it, least of all one that says everything is
+  fine.
 - **Count only what can actually take focus.** Elements inside a closed `<details>` are in the
   DOM and are not focusable. Counting selectors rather than focusable elements overstated the
   tab order cost by 60%.
