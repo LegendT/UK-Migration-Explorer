@@ -44,30 +44,46 @@ shape as `check-sources.mjs`, a network check that reports and never gates, thou
 detection strategies rather than one loop over a list. Worth building on its own, whether or
 not anything later is.
 
-### Detection, per source type
+### Detection: compare editions, not dates
 
-**GOV.UK sources: a JSON content API, verified working 23 July 2026.** Covers
-`ho-immigration-stats` (13 published figures) and `hmcts-tribunals` (2), which is 15 of the
-22 figures on a fixed cadence. `sources.json` already stores collection landing pages rather
-than release-specific slugs, which is exactly what this needs.
+Both routes answer one question. **Which edition is published, and is it one the site cites?**
+A release is identified by the slug in its URL, and the records' own `source_url`s already
+carry that slug, so this is set membership rather than a race between two clocks. It replaces
+the per-source date comparison this section carried until 28 July, which was never built and
+would have alerted wrongly the first time it ran; the evidence is under *What the endpoints
+said on 28 July* below.
+
+**Compare every cited edition, not the newest one.** A source-level answer hides a single
+figure left an edition behind, and there is one. Same section.
+
+**Derive the watch target from the URLs the records cite**, not from `sources.json`. The
+catalogue holds a collection page for the Home Office and the tribunals, but a topic landing
+page for ONS, whose bulletin path appears only on the records. Reading the records covers
+both, and covers whatever is added next without another special case.
+
+**GOV.UK sources: a JSON content API**, verified working 23 July 2026 and again on 28 July.
+Covers `ho-immigration-stats` (33 records) and `hmcts-tribunals` (3).
 
 ```
 https://www.gov.uk/api/content/government/collections/immigration-statistics-quarterly-release
 https://www.gov.uk/api/content/government/collections/tribunals-statistics
 ```
 
-Take `links.documents[]`, each carrying `title`, `base_path` and `public_updated_at`, and
-compare the newest against the newest `published_date` among the figures citing that
-`source_id`.
+Take `links.documents[]`, each carrying `title`, `base_path` and `public_updated_at`. The
+newest `base_path` names the current edition, `immigration-system-statistics-year-ending-march-2026`
+and `tribunals-statistics-quarterly-january-to-march-2026` on 28 July, in the same form the
+records cite. `public_updated_at` still has a job, but it is the second question, not the
+first: read `details.change_history` on the release to find out what moved.
 
-**A trap worth recording.** Do NOT use the collection's own top-level `public_updated_at`.
-For the Home Office collection it happens to read 2026-05-21, which matches. For the
-tribunals collection it reads **2019-04-05**, while its newest document reads 2026-06-11,
-which is the date the site actually records. The collection field describes the curated page,
+**A trap worth recording.** Do NOT use the collection's own top-level `public_updated_at`. For
+the tribunals collection it reads **2019-04-05** while its newest document reads 2026-06-11.
+For the Home Office collection it read 2026-05-21 on 23 July, which matched, and by 28 July
+its newest document had moved to 2026-07-16 while the collection field had not. The
+coincidence that made this look safe lasted five days. The field describes the curated page,
 not the statistics. Read the documents array.
 
-**ONS: no usable API, but two working HTML routes**, verified the same day. Covers
-`ons-ltim` (7 figures).
+**ONS: no usable API, but two working HTML routes**, verified the same day and again on
+28 July. Covers `ons-ltim` (9 records).
 
 The legacy `/data` JSON endpoint returns "This legacy endpoint was decommissioned on
 02/02/2026". `api.beta.ons.gov.uk/v1/releases` returns 404. The release calendar RSS at
@@ -82,9 +98,11 @@ What does work, both returning 200:
 <bulletin-path>/previousreleases   every edition, newest first
 ```
 
-Note the lowercase in `previousreleases`; the camel-cased variant 404s. Fetch `/latest`,
-extract the edition slug, and compare it with the slug already in our `source_url`, which for
-the current figures ends `yearendingdecember2025`.
+Note the lowercase in `previousreleases`; the camel-cased variant 404s. Fetch `/latest` and
+read `<link rel="canonical">`, which names the edition and nothing else. **Do not match the
+page for an edition-shaped URL:** `/latest` also links to `yearendingjune2025`, a previous
+edition, so a page-wide match picks a wrong slug as readily as the right one. The canonical
+link read `yearendingdecember2025` on 28 July, which is the edition the records cite.
 
 ### Output and placement
 
@@ -93,10 +111,50 @@ which figures depend on it. Query the affected figures by `source_id`, which exi
 exactly this reason.
 
 Runs on the weekly cron that already exists, and **must not fail the build**. Use
-`continue-on-error`, as `check-sources.mjs` does. It is a notifier, not a gate. The four
-irregular sources (NAO, Commons Library, Migration Observatory, OBR, 14 figures between them)
-have no cadence to check against and should be reported as unwatched rather than silently
-skipped, on the same principle the staleness check already follows.
+`continue-on-error`, as `check-sources.mjs` does. It is a notifier, not a gate. Of the 71
+metric records, 48 come from a source with a fixed cadence and 45 of those are covered by
+the two routes above. The rest should be reported as unwatched rather than silently skipped,
+on the same principle the staleness check already follows: 23 figures from five irregular
+sources, and three more from `ons-population`, `skills-for-care` and `mac`, which have a
+cadence but no detection route here.
+
+**Report on every run, including when nothing is new**, and separate "checked, current" from
+"could not check". A notifier that speaks only when it fires cannot be told apart from one
+that has stopped working, which is the reasoning the staleness check already carries and the
+reason this project counts seven checks that passed while a defect shipped.
+
+**One issue per release, not one per week.** The cron is weekly and the condition persists
+until someone acts, so the same alert would open fifty-two times and be muted. Give the issue
+a deterministic title carrying the edition slug and skip when an open one already exists. The
+workflow declares no `issues: write` permission today, and will need it.
+
+**Stateless.** The data layer already records which edition the site cites, so nothing here
+needs a "last seen" file to go stale on its own.
+
+### What the endpoints said on 28 July 2026
+
+Five days after they were first verified, re-fetched before building anything. All four
+routes still return 200. Three things changed the design and one concern was dropped.
+
+- **The date comparison would alert today, and be wrong.** Newest document `public_updated_at`
+  2026-07-16 against the newest `published_date` among Home Office figures, 2026-05-21. No
+  new edition was published: the 16 July bump is the organised immigration crime ad hoc
+  update that the by-hand run below had already found touches nothing the site cites. A
+  notifier whose first alert is a false one does not get a second. Comparing edition slugs
+  gives the right answer with no threshold to tune.
+- **A per-source comparison cannot see a figure left behind.**
+  `population/eu-settlement-scheme-settled-status-grants` cites the December 2025 edition
+  while every other Home Office figure cites March 2026, and the source-level answer is
+  "current", because a different figure is on the newest edition. The staleness check cannot
+  see it either: it ages `retrieved_date`, 17 June, which is well inside the quarterly window.
+  Recorded in `docs/BACKLOG.md` under *Found, not yet fixed*.
+- **The ONS edition must come from the canonical link**, for the reason given above.
+- **Dropped: the data-tables page needs no `sources.json` entry.** A record already cites
+  `/government/statistical-data-sets/immigration-system-statistics-data-tables` under
+  `ho-immigration-stats`, so watching it adds no publisher. That matters because the source
+  catalogue renders on `/sources-and-method/`, and adding a row to it would have made a
+  detection detail into an editorial change. Its `change_history` carried 16 entries naming
+  exact tables, which is the corrections channel the by-hand run identified.
 
 ## Phase 2: the evidence contract, and the check that enforces it
 
@@ -207,7 +265,7 @@ involved, because a fabricated value cannot appear in a quote taken from a real 
 
 ### Exemptions, and why they are small
 
-**64 of the 71 figures are read straight off a release** (46 `official`, 18 `provisional`) and
+**64 of the 71 records are read straight off a release** (46 `official`, 18 `provisional`) and
 should quote cleanly. Seven need something else. The counts are corrected from the three of 67
 this section was scoped with, for the reason in the block above.
 
