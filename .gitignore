@@ -4,3 +4,4 @@ _site/
 dist/
 .env
 .vscode/
+release-check.txt

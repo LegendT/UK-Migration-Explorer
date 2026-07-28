@@ -133,6 +133,7 @@ npm run serve     # local dev server
 npm run a11y      # build, serve, and run pa11y over all 16 URLs
 npm run check-sources   # network check that every source URL still resolves
 npm run check-evidence  # every changed or new figure carries a quote (needs origin/main)
+npm run check-releases  # network check for a newer edition than the site cites
 ```
 
 Content files are **not** pre-processed as templates (`markdownTemplateEngine: false`).
@@ -154,7 +155,7 @@ citing a metric that no longer exists, fails the deploy rather than reaching any
 
 ## The checking apparatus, and its limits
 
-Six checks, all in CI, all negative-tested.
+Seven checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
@@ -163,6 +164,7 @@ Six checks, all in CI, all negative-tested.
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. Gates the build |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
+| `check-releases.mjs` | Whether any watched source has published a newer edition than the one each record cites, compared by the month and year in the URL rather than by timestamp. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
 
 **Read this before trusting a green run.** Seven times in this project a checker passed while

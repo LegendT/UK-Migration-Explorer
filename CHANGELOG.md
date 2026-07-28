@@ -9,6 +9,30 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The release notifier, 28 July 2026
+
+**No published figure changed.** `scripts/check-releases.mjs` asks each watched source which
+edition it has published, and compares that with the edition every record cites. Until now
+nothing detected that a release had happened: the staleness check ages a figure against its
+source's cadence, which is a guess, and silent staleness is the top risk in the register.
+
+- **It compares editions, not dates.** A release is identified by the month and year in its
+  URL, which the records already store. The date comparison the scope carried would have
+  alerted the first time it ran and been wrong, because a Home Office page was edited on
+  16 July without anything being published.
+- **It compares every cited edition, not the source's newest.** A per-source answer reads as
+  "current" while one figure sits a release behind, which is what happened to the EU
+  Settlement Scheme figure corrected above. Replaying that case is one of the negative tests.
+- **A route that matches no document fails loudly.** Both series have been renamed once
+  already, `immigration-statistics-` to `immigration-system-statistics-` and
+  `tribunal-statistics-` to `tribunals-statistics-`, and an empty match would otherwise read
+  as "no newer release".
+- **Sources with no route are named, not skipped**, with the cadence the catalogue records
+  beside each, because a source nobody watches is not a source that is up to date.
+- **Not established, and said on every run:** that a release which kept its slug has changed
+  anything. Corrections between editions land on the data-tables page, whose change history
+  names the exact table, and nothing reads that yet.
+
 ### EU Settlement Scheme settled status grants, 28 July 2026
 
 **370,535 for the year ending March 2026**, replacing 354,647 for the year ending December
