@@ -303,12 +303,16 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review has been done and all of its corrections,
-1a to 1i under backlog item 1, have landed. verification.txt at the repo
-root is the review itself. Work is tagged [me] or [you]: [me] is a
-factual or mechanical correction you make against a cited source; [you]
-is an editorial or sourcing call that is mine. Do the [me] parts; for a
-[you] part, propose and ask.
+The pre-publication review is done and all nine of its corrections, 1a
+to 1i under backlog item 1, have landed in PR #38. verification.txt at
+the repo root is the review itself.
+
+Work is tagged [me] or [you]: [me] is a factual or mechanical change you
+make against a cited source; [you] is an editorial or sourcing call that
+is mine. Do the [me] parts; for a [you] part, propose and ask. On a list
+that mixes both, do all the [me] work first and bring me the [you]
+decisions in one batch, because the mechanical work usually determines
+what the editorial question even is.
 
 Still mine, not yours, and not a session's work: the three closing steps
 that are what is left of item 1, including the last_reviewed decision;
@@ -332,11 +336,20 @@ handoff stops pointing at it, so the list cannot quietly lose things.
 Rules that bite on every item here:
 
 - Every changed or new figure needs a fetched source and a verbatim quote
-  before it is written. A verification subagent made to quote its sources
-  overturned the human review three times: a foreign-born figure on the
-  wrong population base, an OBR number and endpoint age OBR never states,
-  and a costs source that did not carry the figures at all. Confirming the
-  figure you asked about is not the whole job.
+  before it is written. Go to the publisher's data tables, not its HTML
+  bulletin: the bulletin aggregates, and twice a site figure has looked
+  wrong against one and been right. .ods and .xlsx are zip archives, so
+  download and parse them rather than giving up when a fetch cannot read
+  them.
+- Confirming the figure you asked about is not the whole job. Five times
+  a check here has overturned something asserted right beside it.
+- Check what this project has already published, or already enforces,
+  before acting on outside advice or offering me an option. A review
+  recommended something the style guide had promised readers the site
+  would never do, and an option I was offered turned out to be one the
+  validator forbids.
+- A defect reported on one page usually has siblings. Grep the reasoning,
+  not just the sentence.
 - Anything you add must pass, and run these rather than assume:
   npm run validate, npm run build, npm run a11y.
 - Negative-test every new check, and confirm the break actually applied
@@ -353,7 +366,8 @@ Rules that bite on every item here:
 - Scoping is not progress. Four scope documents were written in one
   session while the site did not change. Build the smallest real thing.
 
-Branch first; this project works through PRs even solo.
+Branch first; this project works through PRs even solo. Check main has
+not moved before you rewrite the handoff or the backlog.
 
 Stop and ask about anything that needs an editorial judgement rather
 than a correction.
