@@ -44,9 +44,9 @@ Deliberately not recorded here: which branches exist, what CI last did, what is 
 That is operational state, it is discoverable in seconds, and a previous version of this
 section was wrong within the hour because branches were tidied after it was written.
 
-16 pages build from a governed data layer of **69 metric records** in four theme files, plus
+16 pages build from a governed data layer of **71 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
-169. **A subset of those records reach a reader.** Eleventy 3, no client-side JavaScript, charts
+171. **A subset of those records reach a reader.** Eleventy 3, no client-side JavaScript, charts
 rendered as inline SVG at build time.
 
 | Page | |

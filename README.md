@@ -12,17 +12,24 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. 16 pages from a governed data layer of 67 metrics and four
-timeseries, on Eleventy 3, with charts rendered as inline SVG at build time and no
-client-side JavaScript anywhere. The site is deployed behind a `robots.txt` that disallows
-all crawlers, and every page carries a notice saying it is unfinished.
+Built and not yet launched. 16 pages from a governed data layer of **71 metric records** and
+four timeseries carrying 100 dated points, on Eleventy 3, with charts rendered as inline SVG
+at build time and no client-side JavaScript anywhere. `validate-data.mjs` counts both and
+reports 171. A subset of those records reaches a reader. The site is deployed behind a
+`robots.txt` that disallows all crawlers, and every page carries a notice saying it is
+unfinished.
 
-One thing blocks launch:
+**The pre-publication review has been conducted, and its corrections have landed.** It ran
+on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its
+outcome was a corrections list rather than an approval: four claim pages carried "do not
+publish as written" or "substantial revision required". Those became corrections 1a to 1i,
+all of which were completed by 28 July 2026.
 
-- **The pre-publication human review has not happened.** The sources page commits to it and
-  publication already has. The evidence for it is assembled in
-  `docs/PRE-PUBLICATION-REVIEW.md`: 14 chart sentences, 21 unprotected numbers and 7 claims,
-  each set beside what the data actually says.
+**The corrections landing is not the review passing.** Someone still has to decide the pages
+now pass, and then settle `last_reviewed`, drop the pre-launch banner from
+`content/_includes/base.njk`, and record the review as passed in `CHANGELOG.md`. Those three
+steps and the outstanding work behind them are tracked in `docs/BACKLOG.md`, which is the
+durable list; this file does not restate it.
 
 The update commitment was signed on 23 July 2026: **one month** from each of the three
 cadenced releases, named on the sources page. Sources that publish irregularly carry no
@@ -54,7 +61,11 @@ lib/charts.mjs          Build-time SVG charts, four rules enforced in code
 data/                   Governed data layer, one file per theme, plus four timeseries
 scripts/                Four checks, all in CI, all negative-tested
 docs/foundation.md      Positioning, editorial principles, IA, data governance, risk register
-docs/HANDOFF.md         State of play between sessions
+docs/BACKLOG.md         The durable list of outstanding work; every other doc points here
+docs/HANDOFF.md         How the project works, and what earlier sessions cost
+docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026 worked through
+docs/SERIES-CITATIONS.md        Scope: citing a series point, and the figures held twice
+docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check, four phases
 .pa11yci.json           pa11y over all 16 URLs at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes
@@ -74,7 +85,7 @@ LICENCE                 MIT for code, Open Government Licence v3.0 attribution f
 | `asylumBacklogTimeseries.json` | Initial decision backlog 2010-2025, on both the people and cases bases |
 | `migrationFlowsTimeseries.json` | Immigration and emigration 2012-2025, the gross flows behind net migration |
 | `dashboard.json` | Home page cards. References only; it holds no values and no unrendered prose |
-| `sources.json` | Catalogue of publishers, twelve entries across eleven publishers |
+| `sources.json` | Catalogue of publishers, thirteen entries across twelve publishers |
 | `meta.json` | Confidence-level definitions, cross-cutting caveats, footer note |
 
 ## Data contract
@@ -138,7 +149,7 @@ Five checks, all in CI, all negative-tested.
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value written longhand in content **or in the data-file prose that reaches a page** |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value written longhand in content **or in the data-file prose that reaches a page**, and outstanding work tracked in `docs/BACKLOG.md` |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
@@ -159,9 +170,11 @@ Known limits, published on the sources page under *What the checks do not establ
 - **Single years quoted from a series are read by a person.** A chart's data come from a
   series file, but "45,537 in 2019" inside a summary is not a citation.
 - **Sub-100 figures are matched with their unit only** (`21%`, `£3`) and reported as
-  warnings rather than failures, because many metrics share a value. Eleven surface
+  warnings rather than failures, because many metrics share a value. Ten surface
   currently, each a coincidental match against an unrelated metric. Review them; do not
-  suppress them.
+  suppress them, and re-derive them per item rather than trusting a stored note that they
+  were all checked: three that a note called coincidences were live values restated
+  longhand.
 
 ## Content
 
@@ -232,15 +245,17 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   against their source's cycle before publication, and every page carries the date it was
   last reviewed, but a static build cannot know how late it is at the moment someone reads
   it. Foundation section 13 says so rather than implying otherwise.
-- **23 of the 67 figures cannot be aged**, because their sources publish irregularly: the
-  NAO, the Commons Library, the Migration Observatory and the OBR. The validator names them
-  on every run rather than counting them as covered.
-- **Five Commons Library URLs cannot be checked automatically.** The host returns 403 to
-  every request, including deliberately invalid paths, with or without a browser
-  user-agent, so an automated check cannot tell a live page from a dead one there.
-  `scripts/check-sources.mjs` reports them as uncheckable rather than broken. Verify by hand.
-- **Three source URLs redirect**, which usually means a newer release has superseded the
-  figure: the Home Office data tables anchor and two Skills for Care pages.
+- **23 of the 71 metric records cannot be aged**, because their sources publish irregularly:
+  the Migration Observatory (11), the Commons Library (5), the NAO (4), the ICIBI (2) and the
+  OBR (1). The validator names them on every run rather than counting them as covered. The
+  timeseries points cannot be aged either, because they carry no `retrieved_date`.
+- **Five source URLs cannot be checked automatically**, four Commons Library pages and one
+  parliamentary research PDF. The host returns 403 to every request, including deliberately
+  invalid paths, with or without a browser user-agent, so an automated check cannot tell a
+  live page from a dead one there. `scripts/check-sources.mjs` reports them as uncheckable
+  rather than broken. Verify by hand. 44 of 49 resolve.
+- **One source URL redirects**, which usually means a newer release has superseded the
+  figure: the Home Office data tables anchor.
 - **`table_reference` is unimplemented.** Home Office table identifiers survive only as
   prose inside `notes`, though the newer metrics name their table in `source_name`.
 - **Asylum work-in-progress (total casework backlog) is stale.** The last complete figure is

@@ -479,6 +479,27 @@ from bias.
 | Local areas all carry the same pressure. | Restrictionist | No. Distribution varies and needs per-capita context. | Uses raw numbers without denominators. |
 | Falling net migration means the asylum system is shrinking. | Pro-migration (shared) | No. They are different systems measured differently. | Reads one series as a proxy for another. |
 
+**The pre-publication review of 27 July 2026 overtook four rows of this table.** They are
+left as written, because this is the specification as it stood and a silent rewrite would
+lose the fact that the criteria in 8.5.2 are what forced the changes. What shipped differs
+as follows, and `verification.txt` at the repository root carries the reasoning:
+
+- *Immigrants pay far more in tax than they cost.* The intensifier is dropped. No
+  attributable example of the stronger wording could be supplied without breaking this
+  project's rule against attributing claims to named people, so the published claim is
+  "Immigrants pay more in tax than they cost."
+- *Everyone in asylum accommodation is newly arrived.* The verdict is softened from "No" to
+  "the figures do not show that". Accommodation totals settle the stock-and-flow error but
+  carry no arrival dates, so they cannot test the claim in either direction.
+- *19% of the UK population was born abroad.* "The ONS series was discontinued in 2022" is
+  no longer true. ONS now publishes a rolled-forward census-based estimate, so the claim is
+  broadly supportable when dated, and the page was rebuilt around precision rather than
+  falsity.
+- *Almost all refused asylum seekers are eventually recognised as refugees.* "Appeal success
+  raises the final grant rate" is wrong twice over: the Home Office's own label is the latest
+  recorded outcome rather than the final one, and the rise covers reconsiderations and
+  reinstated claims, not appeals alone.
+
 **There is no "both" direction.** `scripts/validate-content.mjs` accepts `restrictionist` and
 `pro-migration` and nothing else, because a third label that no claim ever carried was a
 promise to the reader that nothing kept. The style guide states the rule the two rows marked
@@ -918,15 +939,20 @@ targeting tool however carefully it is worded.
 
 Superseded by section 8.5.3, which holds the full set with directions and selection criteria.
 
-**Written and drafted as of 22 July 2026**, seven claims, in `content/claims/`:
+**Written and drafted as of 28 July 2026**, seven claims, in `content/claims/`, as corrected
+by the pre-publication review:
 
 1. Net migration is the number of people who entered the UK. *(restrictionist; net flow read as gross inflow)*
 2. Most immigration is asylum seekers. *(restrictionist; category confusion)*
-3. Immigrants pay far more in tax than they cost. *(pro-migration; contested estimate stated as fact)*
+3. Immigrants pay more in tax than they cost. *(pro-migration; contested estimate stated as fact)*
 4. Everyone in asylum accommodation arrived recently. *(restrictionist; stock read as flow)*
-5. 19% of the UK population was born abroad. *(restrictionist; figure with no current official basis)*
+5. 19% of the UK population was born abroad. *(restrictionist; imprecise rather than false, since ONS resumed publishing an estimate)*
 6. Almost all refused asylum seekers are eventually recognised as refugees. *(pro-migration; appeal success rate generalised to all refusals)*
 7. Immigrants are a drain on the public finances. *(restrictionist; contested estimate stated as fact, the mirror of 3)*
+
+Claims 4 and 6 carry a published note recording that no attributable example of the claim in
+those exact words was found. That is a gap in their selection against the 8.5.2 criteria,
+and it is disclosed on the page rather than left unsaid.
 
 Claims 3 and 7 name each other in `mirror_of`, and the validator refuses a mirror that is not
 named back. That pairing previously lived only in the prose of both pages.

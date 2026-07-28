@@ -9,6 +9,86 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Pre-publication review corrections, 27 to 28 July 2026
+
+The review was conducted on 27 July 2026 and its findings became corrections 1a to 1i, all
+of which have now landed. **This does not record the review as passed**; that decision, and
+the closing steps behind it, are tracked in `docs/BACKLOG.md`. The review itself is in
+`verification.txt` at the repository root.
+
+**Added, figures**
+
+- `asylum/asylum-administrative-outcomes`, 5,931 people for the year ending March 2026.
+  Summed from the Home Office Asy_D02 pivot over 2025 Q2 to 2026 Q1, because the figure
+  appears on no HTML bulletin. The same four quarters reproduce the published 79,719
+  refusals, 16,901 withdrawals and 48,581 grants, and a grand total of 151,132, which is how
+  the basis and period were confirmed rather than assumed.
+- `asylum/people-in-asylum-accommodation`, 93,653 as at 31 March 2026, `confidence_level:
+  calculated`. The Home Office publishes the two components and the support total, but not
+  this sum.
+
+**Fixed, category and basis errors**
+
+- The initial-decisions chart included withdrawals under the title "Initial decisions by
+  outcome". A withdrawal is not an initial decision, so it is retitled "Initial decisions and
+  withdrawals". Its summary described 16,901 as claims; the figure counts people, including
+  dependants. The three bars were also presented as an exhaustive breakdown and are not.
+- Asylum-related immigration, 88,000, was labelled "asylum and humanitarian" on the
+  migration chart and the claim table. ONS reports those as separate categories, so the
+  label understated the combined figure and misstated the asylum one. Now "asylum
+  applicants", with humanitarian named separately at about 6%.
+- The non-EU+ definition described an arrival category. It is a nationality grouping, and
+  the previous wording named the EEA rather than ONS's EU plus Norway, Iceland,
+  Liechtenstein and Switzerland.
+- The claim about asylum accommodation answered with the 97,519 support total. That figure
+  includes 3,866 people receiving subsistence only and no accommodation. The same conflation
+  existed on the asylum page and was fixed there too.
+
+**Fixed, invalid comparisons**
+
+- A sentence applying the historical cohort uplift to the current 39% grant rate is deleted.
+  Home Office note 48 on that table states its initial rate "will not match the grant rate in
+  the 'initial decisions' dataset as they relate to a different cohort of initial decisions".
+  The same reasoning existed in three places, including the notes on the grant-rate record,
+  where it would have instructed the next editor to reintroduce it. It is replaced with a
+  refutation valid on the same table: between a fifth and a half of each 2010 to 2020 cohort
+  ended without a grant.
+- "The 2022 estimate has moved by more than 120,000 across revisions" understated the case.
+  It has moved by 285,000, from 606,000 when first published on 25 May 2023 to 891,000, 47%
+  higher.
+- The net migration peak of 891,000 was unqualified. It is the highest point on the
+  calendar-year series shown; the full rolling series peaks at 944,000 in the year ending
+  March 2023.
+- "The queue grew steadily through the 2010s" was false on the people basis, which fell from
+  22,898 at the end of 2014 to 22,147 at the end of 2015.
+
+**Changed, terminology and disclosure**
+
+- "Final grant rate" is now "latest recorded grant rate", which is the Home Office's own
+  label. "Appeals heard" is now "appeals determined at a hearing or on the papers", and the
+  denominator is disclosed: of 7,799 asylum and protection appeals disposed of in the
+  quarter, 52% were determined, 35% withdrawn, 6% struck out and 6% invalid or out of time.
+- The refused-asylum claim's front-matter source is now "Home Office; Ministry of
+  Justice/HMCTS", and the page discloses its three mixed reference periods and the
+  provisional latest quarter.
+- "Immigrants pay far more in tax than they cost" drops the intensifier. No attributable
+  example of the stronger wording could be supplied without breaking the published rule
+  against attributing claims to named people.
+- Two claim pages now disclose that no published example of the claim in those exact words
+  was found.
+
+**Not changed, and deliberately**
+
+- The review's 35,000 for humanitarian immigration is not written anywhere. The ONS bulletin
+  gives only the 6% share, so the share is what the pages carry.
+- The review's word "destitution" is not used. The two Home Office pages fetched put the
+  test as being homeless or without money for food.
+- Two figures that looked wrong against the Ministry of Justice bulletin were left alone
+  after the primary tables showed they were right. The bulletin prints 39% allowed and 61
+  weeks for the whole immigration chamber; tables FIA_3 and T_3 give 40% and 67 weeks for
+  asylum and protection.
+- `last_reviewed` is unstamped on every page, per `docs/BACKLOG.md`.
+
 ### Changed, data contract
 
 - Every metric now carries `id`, `geography` and `published_date` in addition to the
