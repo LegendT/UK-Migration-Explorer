@@ -1,7 +1,9 @@
 # Update automation, scoped
 
 What can be automated about keeping this site current, what must not be, and in what order to
-build it. Nothing here is built. Scoped 23 July 2026.
+build it. Scoped 23 July 2026. **Phase 2, the evidence check, was built on 28 July 2026, PR #43.
+Phases 1, 3 and 4 are not built.** Phase 2 below is now the reasoning behind what exists; the
+rest is still a scope.
 
 The problem it solves is named in the risk register: silent staleness is the most likely way
 this project fails. The staleness check added on 23 July ages every figure against its
@@ -98,8 +100,55 @@ skipped, on the same principle the staleness check already follows.
 
 ## Phase 2: the evidence contract, and the check that enforces it
 
+**Built 28 July 2026, PR #43**, as `scripts/check-evidence.mjs`, `data/evidence/` and a CI step
+that gates. What follows is what the scope said; the block below is what building it changed.
+
 The safety mechanism. Build it before Phase 3, and it is worth having even if Phase 3 is
 never built, because it applies equally to a human update.
+
+### Five things the scope had wrong or did not say, found by building it
+
+- **The exemption list had doubled while this sat unbuilt, and naming figures by ref would
+  have broken two of them.** The scope names one calculated figure,
+  `asylum/returns-enforced-plus-voluntary`. There are now three, because the review
+  corrections created two in the week between: `asylum/people-in-asylum-accommodation` in
+  PR #38 and `population/foreign-born-share-mid-2024` in PR #33. A hard-coded ref list would
+  have left both under the direct rule, required to quote a value that appears in no source
+  and could not be made to pass honestly. The exemption is keyed on `confidence_level`, so a
+  figure the site already grades as derived is exempt by that grading and by nothing else.
+- **The scope's range rule contradicts its derived rule, on the only metric either applies
+  to.** The one range, `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp`, is also
+  `estimated`. Resolved by making the two orthogonal: `value_type` decides *which* values need
+  evidence, so a range needs both bounds, and `confidence_level` decides *how*, quoted
+  directly or through components with the arithmetic stated. Today's range takes the derived
+  path, so its inputs are quoted and its bounds are not. A range that is not derived would
+  need both bounds in the quote, and that path exists and is tested even though nothing uses
+  it yet.
+- **It fails when it cannot see the base branch, which the scope does not say.** A comparison
+  against nothing finds no changed figure and would report that as a clean run, which is the
+  shape of all seven checks here that passed while a real defect shipped. The message names
+  the fetch to run. The same reasoning covers the other way of comparing nothing: on every
+  push to main after a merge, the base and `HEAD` are the same commit, and the report says so
+  rather than announcing that no figure changed.
+- **Entries are matched, never validated wholesale.** The evidence files are kept, so an entry
+  naming a metric since renamed or dropped is history rather than a defect. A check that
+  failed on one would push someone into deleting the audit trail to get a green run.
+- **Series points are not covered, and the check says so on every run.** The contract is
+  metrics. The four series files are replaced wholesale from a single release under the
+  single-vintage rule, and their 100 points carry no evidence. The report counts the changed
+  files rather than leaving the gap to be inferred.
+
+Both CI traps were real and are handled as the scope preferred: `actions/checkout@v4` still
+carries no `fetch-depth`, and the step runs an explicit fetch rather than deepening every job.
+**A third the scope does not name:** the command it implies, `git fetch --depth=1 origin main`,
+updates `refs/remotes/origin/main` only opportunistically, when the remote's configured refspec
+happens to cover it, and checkout configures a narrow one on a `pull_request` event. The
+refspec is written out in full so the remote-tracking ref exists either way. Getting this wrong
+fails loudly rather than silently, but it fails on every pull request.
+The subdirectory claim holds, and was checked rather than
+assumed: a `.json` inside `data/evidence/` does not trip `validate-data.mjs`, whose scan
+filters on files ending `.json` and never sees a directory, and Eleventy reads its global data
+from `content/_data`, so nothing there reaches the build.
 
 ### The contract
 
@@ -158,15 +207,16 @@ involved, because a fabricated value cannot appear in a quote taken from a real 
 
 ### Exemptions, and why they are small
 
-**64 of the 67 figures are read straight off a release** (47 `official`, 17 `provisional`) and
-should quote cleanly. Only three need anything else:
+**64 of the 71 figures are read straight off a release** (46 `official`, 18 `provisional`) and
+should quote cleanly. Seven need something else. The counts are corrected from the three of 67
+this section was scoped with, for the reason in the block above.
 
-- **One `calculated` figure**, `asylum/returns-enforced-plus-voluntary`, which is the sum of
-  two published components. Require both components to be evidenced instead, and require the
-  arithmetic to be stated.
-- **Two `estimated` figures**, which are interpolations or scenarios. Require a quote for
+- **Three `calculated` figures**, each a sum or a share of published components. Require every
+  component to be evidenced instead, and require the arithmetic to be stated.
+- **Four `estimated` figures**, which are interpolations or scenarios. Require a quote for
   whatever they are derived from and a sentence naming the derivation.
-- **One range metric**, which has no single value. Evidence `range_min` and `range_max`.
+- **One of those four is also the only range metric**, which has no single value. A range
+  evidences `range_min` and `range_max` rather than a value.
 
 Keep the exemption list explicit and small. An exemption that can be claimed freely is how
 this check would rot.
@@ -224,7 +274,7 @@ the update commitment does.
 | Phase | Worth building alone? | Depends on |
 | --- | --- | --- |
 | 1, notifier | Yes. Closes "nothing detects a release happened". | Nothing |
-| 2, evidence check | Yes. Applies to human updates too. | Nothing |
+| 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
 | 3, prompt | No. Unsafe without 2. | 1 and 2 |
 | 4, disclosure | Not applicable | 3, and owner sign-off |
 

@@ -22,6 +22,25 @@ jobs:
       - run: npm ci
       - name: Data contract
         run: node scripts/validate-data.mjs --verbose
+      - name: Evidence for every changed or new figure
+        # Reads the branch a pull request would merge into, to see which values moved, so it
+        # needs one commit of it. actions/checkout takes a depth-1 clone and on a
+        # pull_request event does not fetch origin/main at all, so git show origin/main:...
+        # fails outright. An explicit fetch rather than fetch-depth: 0, which would slow
+        # every job for the benefit of one step.
+        #
+        # This one gates. Unlike the source check below it is not a network probe that can
+        # fail transiently: it compares two files in this repository, and what it catches is
+        # a figure nobody has seen in a source.
+        #
+        # The refspec is written out rather than left as "origin main". A bare fetch updates
+        # refs/remotes/origin/main only opportunistically, when the remote's configured
+        # refspec happens to cover it, and checkout configures a narrow one on a
+        # pull_request event. Written out, the remote-tracking ref is created either way.
+        run: |
+          git fetch --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+          node scripts/check-evidence.mjs
+
       - name: Content contract
         run: node scripts/validate-content.mjs
       - name: Build and check the built site
