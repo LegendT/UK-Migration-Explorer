@@ -148,7 +148,7 @@ comes last. That is launch.
 None of this blocks launch. Each has a scope document; read it before starting.
 
 **This list is in recommended order. Take the first unfinished item, which is item 3, whose
-phase 1 is next.** The
+phase 3 is next.** The
 order lives here rather than in the handoff's prompt, so that finishing something does not
 leave a stale instruction somewhere else. Re-order it freely; this is the only place the
 sequence is stated.
@@ -157,7 +157,7 @@ If you reorder, or complete something, **move the sections and renumber** rather
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item.
 
-### 3. Release notifier and evidence check: phase 2 built, three phases left
+### 3. Release notifier and evidence check: phases 1 and 2 built, two phases left
 
 **`docs/UPDATE-AUTOMATION.md`.** Four phases. Phases 1 and 2 are each worth building alone;
 phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
@@ -169,13 +169,17 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   rather than restated here. **Not covered: the four series files**, whose 100 points are
   replaced wholesale on release and carry no evidence at all. The check reports that on every
   run rather than leaving it to be inferred.
-- **Phase 1, the notifier, is next.** Nothing detects that a release has happened. The
-  endpoints were re-verified on 28 July 2026 and the comparison rule rewritten: compare
-  edition slugs, not dates, because the date rule fires a false positive today and the
-  per-source form cannot see a single figure left behind. The traps, the coverage
-  arithmetic and what each endpoint returned are in the scope.
-- Phase 3, the update prompt, which phase 2 has now made safe to build. Phase 4, rewriting
-  what the sources page says about automation, which needs the owner's sign-off.
+- **Phase 1, the notifier. DONE (PR #46, 28 July 2026).** `check-releases.mjs` compares the
+  edition each record cites, by the month and year in its URL, against the newest edition the
+  publisher lists, and opens one deduplicated issue from `main` or the weekly cron. It reports
+  and never gates. **What it does not do, and says so on every run:** notice that a release
+  which kept its slug has changed something. Corrections between editions land on the
+  data-tables page, whose change history names the exact table, and nothing reads it. That is
+  the next thing worth building here, and it is what the by-hand run in the scope found. **Not
+  yet exercised:** the issue itself, since no release is pending; its parts are tested, the
+  whole path is not.
+- **Phase 3, the update prompt, is next**, and phase 2 has made it safe to build. Phase 4,
+  rewriting what the sources page says about automation, needs the owner's sign-off.
 
 ### 4. The eight undrafted claims
 

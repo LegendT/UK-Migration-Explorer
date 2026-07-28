@@ -1,9 +1,9 @@
 # Update automation, scoped
 
 What can be automated about keeping this site current, what must not be, and in what order to
-build it. Scoped 23 July 2026. **Phase 2, the evidence check, was built on 28 July 2026, PR #43.
-Phases 1, 3 and 4 are not built.** Phase 2 below is now the reasoning behind what exists; the
-rest is still a scope.
+build it. Scoped 23 July 2026. **Phase 2, the evidence check, was built on 28 July 2026, PR #43,
+and phase 1, the notifier, the same day, PR #46. Phases 3 and 4 are not built.** Phases 1 and 2
+below are now the reasoning behind what exists; the rest is still a scope.
 
 The problem it solves is named in the risk register: silent staleness is the most likely way
 this project fails. The staleness check added on 23 July ages every figure against its
@@ -39,10 +39,43 @@ must not be built before Phase 2.
 
 ## Phase 1: the release notifier
 
+**Built 28 July 2026, PR #46**, as `scripts/check-releases.mjs` and two CI steps. What follows
+is the design it was built to; *What building it found* records what it added.
+
 Detect that a source has published a newer release than the one the site cites. The same
 shape as `check-sources.mjs`, a network check that reports and never gates, though with two
 detection strategies rather than one loop over a list. Worth building on its own, whether or
 not anything later is.
+
+### What building it found
+
+- **The edition slug itself has been renamed, twice, and a prefix filter fails silently when
+  it happens.** The Home Office collection holds 112 documents, of which 14 match
+  `immigration-system-statistics-year-ending-`; the rest include the pre-2022
+  `immigration-statistics-year-ending-` series. The tribunals collection holds the older
+  singular `tribunal-statistics-quarterly-`. The filter is necessary, because an unfiltered
+  maximum would let an ad hoc release with a month in its slug pose as the newest edition. So
+  a run that matches **no** document reports a failure naming the rename, rather than the
+  "no newer release" an empty list would otherwise mean. Negative-tested by renaming the
+  prefix.
+- **One normaliser covers all four URL shapes**, because each ends in a month and a year:
+  a release page, the two-month tribunals form, an ONS bulletin edition and a data-table
+  filename. Take the last month in the string and the two-month form works with no special
+  case. The segment is extracted before it is parsed, because reading a whole asset path would
+  let a hex media id supply a month and a year.
+- **Two records can never be compared**, and are reported rather than counted as current. Both
+  small-boats figures cite evergreen pages, the data-tables set and a rolling publication,
+  which name no edition.
+- **`tee` swallows the exit code.** The CI step pipes the report to a file so the issue step
+  can read it, and a step without `shell: bash` runs under `bash -e` with no `pipefail`, so
+  the step would have passed every week while printing a failure. Confirmed both ways.
+- **Issues are opened from `main` and the cron only.** A pull request must not open issues
+  about the state of the world: it did not cause it, and every open PR would race for the same
+  one. Declaring `permissions:` at all drops every unlisted permission to none, so `contents:
+  read` is listed beside `issues: write`.
+- **Not yet exercised: the issue itself.** No release is pending, so the path from a non-zero
+  exit to an open issue has been tested only in its parts, the title extraction and the
+  deduplication query. It will first run for real when a release lands.
 
 ### Detection: compare editions, not dates
 
@@ -331,7 +364,7 @@ the update commitment does.
 
 | Phase | Worth building alone? | Depends on |
 | --- | --- | --- |
-| 1, notifier | Yes. Closes "nothing detects a release happened". | Nothing |
+| 1, notifier | **Built, 28 July 2026, PR #46.** Closes "nothing detects a release happened". | Nothing |
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
 | 3, prompt | No. Unsafe without 2. | 1 and 2 |
 | 4, disclosure | Not applicable | 3, and owner sign-off |

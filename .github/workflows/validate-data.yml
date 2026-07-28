@@ -14,6 +14,11 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    # Declared because the release notifier opens an issue. Naming any permission drops every
+    # other one to none, so contents is listed too: checkout needs it.
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -59,3 +64,36 @@ jobs:
         # in no pipeline at all.
         run: node scripts/check-sources.mjs
         continue-on-error: true
+
+      - name: Newer releases than the site cites
+        id: releases
+        # Reports, never gates: a newer edition does not make a published figure wrong, it
+        # makes it worth re-checking. It exits 1 so the step below can see that, which is
+        # exactly what continue-on-error preserves.
+        #
+        # shell: bash for the pipefail it sets. Without it the exit code would be tee's, and
+        # this step would pass every week while saying otherwise on screen.
+        continue-on-error: true
+        shell: bash
+        run: node scripts/check-releases.mjs | tee release-check.txt
+
+      - name: Open an issue when a release is newer
+        # Only from main and the weekly cron. A pull request must not open issues about the
+        # state of the world: it did not cause it, and every open PR would race for the same
+        # one. The condition it reports persists until a person acts on it, so the title is
+        # deterministic and an existing open issue is reused rather than duplicated.
+        if: steps.releases.outcome == 'failure' && (github.event_name == 'schedule' || github.ref == 'refs/heads/main')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          title=$(sed -n 's/^ISSUE-TITLE: //p' release-check.txt)
+          if [ -z "$title" ]; then
+            echo "The release check failed without naming a title, which it should never do."
+            exit 1
+          fi
+          if gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -Fxq "$title"; then
+            echo "Already open, not duplicating: $title"
+          else
+            gh issue create --title "$title" --body-file release-check.txt
+          fi
