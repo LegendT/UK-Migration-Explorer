@@ -147,8 +147,8 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This list is in recommended order. Take the first unfinished item, which is item 3, whose
-phase 3 is next.** The
+**This list is in recommended order. Take the first unfinished item, which is item 3, where the
+next step is the owner's: whether the proposed corrections watch comes before phase 3.** The
 order lives here rather than in the handoff's prompt, so that finishing something does not
 leave a stale instruction somewhere else. Re-order it freely; this is the only place the
 sequence is stated.
@@ -178,8 +178,20 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   the next thing worth building here, and it is what the by-hand run in the scope found. **Not
   yet exercised:** the issue itself, since no release is pending; its parts are tested, the
   whole path is not.
-- **Phase 3, the update prompt, is next**, and phase 2 has made it safe to build. Phase 4,
-  rewriting what the sources page says about automation, needs the owner's sign-off.
+- **Phase 1b, the corrections watch, proposed 28 July 2026, and it may belong before phase 3.
+  The order is [you].** Nothing detects a correction *inside* an edition, which is the one
+  channel through which a wrong number can sit on the site indefinitely: the slug does not
+  change, so the notifier cannot see it, and a cadence cannot infer it. The route is already
+  fetched, and matching the data-tables change history against the six tables the records name
+  produces one hit in sixteen, the `Vis_01` correction the by-hand run recorded as missing a
+  published figure by a single row.
+- **Phase 3, the update prompt.** Seven things to settle before writing it, listed in the
+  scope. **Two are blockers, and both are the same hole:** the series files appear nowhere in
+  the procedure, so as scoped it cannot do an ONS update at all, because the four metrics that
+  declare a `series_ref` are all `ons-ltim` and moving them without the series fails
+  `validate-data.mjs`. The `source_id` query it is built on cannot find the series either;
+  they carry no `source_id`.
+- Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
 ### 4. The eight undrafted claims
 

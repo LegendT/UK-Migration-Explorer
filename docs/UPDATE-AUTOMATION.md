@@ -189,6 +189,31 @@ routes still return 200. Three things changed the design and one concern was dro
   detection detail into an editorial change. Its `change_history` carried 16 entries naming
   exact tables, which is the corrections channel the by-hand run identified.
 
+## Phase 1b: the corrections watch, proposed 28 July 2026
+
+**Not in the original scope, and it may belong before Phase 3. That ordering is the owner's.**
+
+Phase 1 detects a new edition. It cannot detect a correction *inside* an edition, and says so
+on every run, because the edition slug does not change when a table is amended. The cadence
+check cannot infer one either. A correction is the one channel through which a wrong number can
+sit on this site indefinitely, so closing it buys something a faster quarterly update does not.
+
+The route is already fetched. The data-tables page carries a `details.change_history` of 16
+entries whose notes name the exact table and the corrected value, for example: *"Updated table
+'Vis_01' in 'Entry clearance visas summary tables, year ending March 2026' to amend the 'Other
+work visas and exemptions' figure"*. The records already name their tables, six of them:
+`Asy_00a`, `Asy_04`, `Asy_D02`, `Res_01`, `Ret_01`, `Vis_01`.
+
+**Matching one list against the other produces exactly one hit in sixteen, and it is the right
+one:** the 1 June `Vis_01` correction, which the by-hand run below found and recorded as
+missing a published figure by a single row. One precise hit rather than sixteen notifications
+is the difference between a watch someone reads and one they mute.
+
+**It has a dependency the backlog already tracks.** `table_reference` is unimplemented, so a
+table identifier survives only as prose inside `source_name` and `notes`, and matching them
+means a pattern over prose. That works, and it is the weaker version. Implementing
+`table_reference` on the records would make the match exact and is the better first step.
+
 ## Phase 2: the evidence contract, and the check that enforces it
 
 **Built 28 July 2026, PR #43**, as `scripts/check-evidence.mjs`, `data/evidence/` and a CI step
@@ -314,10 +339,53 @@ this check would rot.
 
 ## Phase 3: the update prompt
 
-Only after Phase 2 exists and has been exercised.
+Only after Phase 2 exists and has been exercised. **Both are now true**: the evidence check
+was built on 28 July 2026 and exercised the same day on a real figure, PR #45.
+
+### Seven things to settle before writing it, found on 28 July
+
+The first two are blockers, and both come from the same hole: **the series files are not in
+this procedure anywhere.**
+
+- **As scoped, it cannot do an ONS update at all.** Four metrics declare a `series_ref`, and
+  `validate-data.mjs` refuses a metric whose value disagrees with the series point it names.
+  All four are `ons-ltim`: `net-migration`, `net-migration-2`, `total-long-term-immigration`
+  and `total-long-term-emigration`. An update that moves those four records and not the series
+  produces a pull request that cannot pass CI. Nothing below mentions a series file.
+- **And the query it is built on cannot find them.** The series files carry no `source_id`, so
+  "list the affected figures by `source_id`" reaches 71 records and none of the 100 series
+  points. Both watched sources move series on release: two files are ONS, two are Home Office,
+  and the single-vintage rule means each is replaced whole rather than appended to. Decide
+  whether this procedure refuses series work outright and hands it to a person, or grows a
+  second half; refusing is defensible, silently omitting is not.
+- **The field list is half of what a real update touches.** It names `value`, `period_label`,
+  `date` and `retrieved_date`. PR #45 also changed `source_name`, `source_url`,
+  `published_date` and `notes`. Four of eight leaves a record citing the superseded edition's
+  URL beside the new edition's value.
+- **"Locate each figure in the named table" would have returned `UNVERIFIED` for a figure that
+  was perfectly verifiable.** The EUSS value appears in no table: it is the bulletin's own
+  total, and the tables give 270,235 settled conclusions plus a 100,300 automated estimate.
+  The step is reconcile, not look up. And `table_reference` is then omitted rather than
+  guessed, because naming a table that does not hold the value is the defect correction 1c
+  existed to fix.
+- **"Never edit prose" has to say which prose.** Page prose, plainly. But the record's own
+  `notes` said "an estimated 86,670 automated grants" beside a figure now built on 100,300,
+  and "4.4 million" where the release says 4.5 million. Leaving those would have shipped two
+  false statements inside the data layer. Notes are re-read against the release every time;
+  pages are never touched.
+- **Where it runs is unpinned, and that is the line this document is built on.** It is run by a
+  person with an assistant, on their machine. Not by CI: opening a pull request from CI needs
+  `contents: write`, which is a far larger grant than the `issues: write` the notifier uses,
+  and it moves the human gate rather than keeping it.
+- **A prompt is never part of the checking apparatus.** The line below overclaims. What makes
+  this safe is that three checks already refuse its worst outputs: `check-evidence.mjs` refuses
+  an unquoted value, `check-releases.mjs` refuses to call a record current when it cites a
+  superseded edition, and `validate-content.mjs` refuses a value written longhand in prose.
+  Version the prompt because a procedure worth following is worth diffing, not because it
+  checks anything.
 
 **Lives in the repository** at `docs/prompts/update-from-release.md`, versioned and
-reviewable. A prompt you cannot diff is not part of the checking apparatus.
+reviewable.
 
 **Input:** a `source_id` and a release URL, from the notifier's issue.
 
@@ -366,7 +434,8 @@ the update commitment does.
 | --- | --- | --- |
 | 1, notifier | **Built, 28 July 2026, PR #46.** Closes "nothing detects a release happened". | Nothing |
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
-| 3, prompt | No. Unsafe without 2. | 1 and 2 |
+| 1b, corrections watch | Yes, and it closes a channel nothing else watches. **Proposed; whether it comes before 3 is the owner's call.** | Nothing, though `table_reference` would sharpen it |
+| 3, prompt | No. Unsafe without 2, and seven things to settle first. | 1 and 2 |
 | 4, disclosure | Not applicable | 3, and owner sign-off |
 
 **None of it should delay launch.** Launch waits on two decisions, and this changes neither.
