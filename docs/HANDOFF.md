@@ -223,6 +223,17 @@ establish*, and listed in `docs/BACKLOG.md`.
 - **A validator rule can close an option without anyone noticing.** Dropping claim 2.7 looked
   available and is not: pro-migration claims sit exactly on the enforced floor of two. Check the
   constraint before offering a choice, not after it is made.
+- **On a mixed list, do every [me] part first and batch the [you] decisions.** Corrections 1d to
+  1i interleave mechanical and editorial work. Asking per item would have meant five
+  interruptions, and several of the editorial calls turned out to depend on findings from the
+  mechanical work: 2.7's short answer could only be written once the cohort correction had
+  established what was still true. Do the sourced work, let it inform the questions, then ask
+  once. The exception is a decision that would make the mechanical work wasted if it went the
+  other way; ask that one early.
+- **Check `main` has not moved before rewriting this file or the backlog.** A PR was merged
+  mid-session here, so a branch cut an hour earlier carried a superseded handoff, and editing it
+  would have reverted the owner's own merged work. The edit tool caught it by reporting the file
+  had changed on disk. Rebase before writing the durable documents, not after.
 
 ## House style
 
