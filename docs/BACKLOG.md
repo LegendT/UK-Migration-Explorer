@@ -86,7 +86,7 @@ accommodation costs under Home Office arrangements), and "accommodation type is 
 is too absolute (volume and mix both matter; the NAO evidence is that hotels housed about 35% of
 people but 76% of contract spending). Fetch and quote the ICIBI and June 2025 figures first.
 
-**1d. DONE (28 July 2026). Category, basis and denominator errors. [mostly me].** Chart retitled
+**1d. DONE (PR #38, 28 July 2026). Category, basis and denominator errors. [mostly me].** Chart retitled
 "Initial decisions and withdrawals"; 16,901 now reads as people; the three bars are no longer
 presented as exhaustive, with the 5,931 administrative outcomes named and held as a record. The
 88,000 bar and table row are asylum applicants only, with humanitarian named as separate at about
@@ -98,19 +98,19 @@ the verdict softened to "the figures do not show that", and all three eligibilit
 qualified rather than the two the review named. The review's 35,000 for humanitarian was **not**
 written: the ONS bulletin gives only the 6% share.
 
-**1e. DONE (28 July 2026). Qualifiers and precision (Sections 3, 5, 6). [me].** "Grew steadily"
+**1e. DONE (PR #38, 28 July 2026). Qualifiers and precision (Sections 3, 5, 6). [me].** "Grew steadily"
 is now "grew substantially", with the 2014 to 2015 fall stated in the note so a later editor can
 see why the word changed. The net migration peak is qualified to the calendar-year series, with
 944,000 in the year ending March 2023 given in the note. The 2022 revision is now 285,000, from
 606,000 to 891,000, 47% higher, replacing "more than 120,000". Section 6 was left alone as the
 reviewer advised, after checking that its "rose steadily" was not the same mistake twice. It is not.
 
-**1f. DONE (28 July 2026). Voice rewrites. [you].** Settled as a rule rather than page by page:
+**1f. DONE (PR #38, 28 July 2026). Voice rewrites. [you].** Settled as a rule rather than page by page:
 take the reviewer's substance, write it in the site's voice. The reviewer's recommended short
 answers run longer than any on the site and use vocabulary it does not use elsewhere, and 1a, 1b
 and 2.1 had already been done that way.
 
-**1g. DONE (28 July 2026). Circulation examples (Parts 2.1, 2.3, 2.7). [you].** Resolved without
+**1g. DONE (PR #38, 28 July 2026). Circulation examples (Parts 2.1, 2.3, 2.7). [you].** Resolved without
 changing the site's policy, which was the point that nearly got missed: the style guide says
 plainly that this site does not attribute claims to named people and accepts the "nobody actually
 says that" cost. The review's finding IS that rebuttal. 2.3 therefore drops the "far more"
@@ -120,7 +120,7 @@ page instead, after six search angles found nothing quotable. **Dropping 2.7 is 
 pro-migration claims sit exactly on the floor of two that `validate-content.mjs` enforces, so
 removing it fails the build unless another pro-migration claim is added first.
 
-**1h. DONE (28 July 2026). "Refused asylum" (Part 2.7). [me + you].** The invalid comparison is
+**1h. DONE (PR #38, 28 July 2026). "Refused asylum" (Part 2.7). [me + you].** The invalid comparison is
 deleted, and it existed in three places, not the one the review names: the claim page, the asylum
 page, and the notes on the grant-rate record itself. Deleting it alone would have left the section
 conceding the claim, so it is replaced with a refutation valid on the same table: between a fifth
@@ -129,7 +129,7 @@ including the front-matter source, the mixed periods, the provisional tribunal d
 failure named, that protection or other leave is broader than refugee recognition. **[you] part
 taken:** the short answer, in the site's voice per 1f.
 
-**1i. DONE (28 July 2026). "Net migration is arrivals" (Part 2.5). [you].** Both tweaks applied.
+**1i. DONE (PR #38, 28 July 2026). "Net migration is arrivals" (Part 2.5). [you].** Both tweaks applied.
 The "without a single person's movement changing" line claimed more than a revision can support,
 because new data can change which movements are identified.
 
