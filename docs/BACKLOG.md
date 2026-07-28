@@ -228,19 +228,11 @@ Genuinely not tasks, and each is published on the site rather than only recorded
 Kept so that a future session can see what was decided and when, rather than reopening it.
 
 - **Citing a series point, and the four figures held twice**, 28 July 2026. PR #41. All three
-  parts of **`docs/SERIES-CITATIONS.md`**, which is kept as the reasoning rather than as work.
-  The four metrics that are also series points now declare `series_ref` and cannot drift from
-  it; an `at(year)` filter cites a series point inside a chart summary; and a series value
-  written longhand fails the build. Three things worth knowing, none of them in the scope:
-  - **The scope's count of nine longhand values was twelve.** It counted chart summaries and
-    not chart notes, which are the same prose about the same series. The check found the other
-    three on its first run, which is why the check exists rather than a reading.
-  - **A fourth match was a coincidence**, `285,000` in the `migration.njk` note, which is
-    the size of the 2022 revision and happens to equal the 2017 point of the discontinued
-    series. Declared, with the reason, in the page's front matter.
-  - **`historical_literals` never worked from a content page.** It was split on commas, so
-    every comma-grouped value it was meant to exempt was shredded into two junk exemptions.
-    Semicolons only now. No page had used it, so nothing was silently exempted in the past.
+  parts of **`docs/SERIES-CITATIONS.md`**, which is marked built and kept as the reasoning.
+  The four metrics that are also series points declare `series_ref` and cannot drift from it;
+  an `at(year)` filter cites a series point inside a chart summary; a series value written
+  longhand fails the build. Three things the scope had wrong, and one hole found and closed
+  after it, are recorded in that document rather than restated here.
 - **The update commitment**, signed 23 July 2026. One month from each of the three cadenced
   releases; irregular publishers carry no promised schedule.
 - **The foundation drift read**, 23 July 2026. PR #14.

@@ -27,8 +27,8 @@ checks that they agree, and four false summaries have been found here before, by
 Every literal in these summaries and notes is now a citation resolved from the series file at
 build time, and `validate-content.mjs` fails the build on a series value written longhand. The
 second checkbox, the direction words, is a reading task forever: a citation fixes the value and
-not the sentence around it. This section is left as it stood on 23 July, because it is the
-record of a review that was carried out, not a template to be tidied.
+not the sentence around it. Nothing below this paragraph has been touched, because what follows
+is the record of a review that was carried out, not a template to be tidied.
 
 
 ### 1. People claiming asylum in the UK, 2010 to 2025

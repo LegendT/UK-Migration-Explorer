@@ -459,6 +459,19 @@ for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f
     if (!registry.has(ref)) errors.push(`${file}: figures: lists ${ref}, which is not a metric in the data layer`);
   }
 
+  // `at` returns the raw number, so a citation missing `| number` renders "45537" where the
+  // page means "45,537", and nothing downstream notices: the source carries no literal for
+  // the scan below to catch, the value is not NaN, and the page builds. Confirmed by removing
+  // one and watching an unformatted figure reach the built HTML through both gates. This is
+  // to a series citation what the unit check is to a {{ }} one.
+  if (isNunjucks) {
+    for (const match of prose.matchAll(/\|\s*at\(\s*\d+\s*\)\s*(\|\s*[a-z]+)?/gi)) {
+      if ((match[1] ?? '').replace(/\s+/g, '') !== '|number') {
+        errors.push(`${file}: "${match[0].trim()}" does not pass through | number, so it would render an unformatted figure`);
+      }
+    }
+  }
+
   const value = (key) => front.match(new RegExp(`^${key}:\\s*(.*)$`, 'm'))?.[1].replace(/^["']|["']$/g, '').trim();
   checkReviewDue(file, value('last_reviewed'), value('review_due'));
 
@@ -532,7 +545,13 @@ const points = seriesPoints();
 const seriesValues = new Map();
 for (const [ref, point] of points) {
   for (const form of new Set([point.value.toLocaleString('en-GB'), String(point.value)])) {
-    seriesValues.set(form, [...(seriesValues.get(form) ?? []), ref]);
+    // The same threshold the metric scan uses, and for the same reason. Every point in the
+    // four series today is in the thousands, so this excludes nothing; a series of small
+    // values added later would otherwise fail builds on coincidence, at error level, which
+    // is precisely the case the metric scan drops to a warning.
+    if (/\d,\d/.test(form) || point.value >= 100) {
+      seriesValues.set(form, [...(seriesValues.get(form) ?? []), ref]);
+    }
   }
 }
 const citeSeries = (ref) => {
@@ -582,8 +601,7 @@ function checkLiterals(file, prose, allowed) {
     // has no syntax for citing a series point at all, is told what it can actually do. And a
     // value that merely COINCIDES with a point in an unrelated series has to be declared
     // rather than cited: one of the four matches this found on its first run was exactly
-    // that, and citing it would have named the wrong record, which is what a denylist sweep
-    // produces every time.
+    // that, and citing it would have named the wrong record.
     if (matched) {
       const remedy = file.endsWith('.njk')
         ? `cite it with ${matched.map(citeSeries).join(' or ')}`

@@ -33,6 +33,16 @@ all 16 pages, so every one renders exactly what it replaced.
 - **Fixed: `historical_literals` never worked from a content page.** It was split on commas,
   so a comma-grouped value became two junk exemptions and the real one was never exempted. No
   content page had ever used it, so nothing had been silently exempted. Semicolons only.
+- **Fixed: a citation missing `| number` shipped an unformatted figure.** `at` returns the raw
+  value, so `45537` reached the built page with `validate` and `build` both green. Found by
+  critique after the work was otherwise finished, and confirmed by watching it happen. Every
+  `at()` must now pass through `| number`.
+
+**Changed, what the site says about itself.** `/sources-and-method/` listed three things the
+checks do not establish. The second, that values quoted from a long-run series are not
+individually cited, is no longer true and is removed. The first now carries the limit that
+replaces it: a citation fixes the value and not the sentence, so a summary quoting the right
+number against the wrong year still builds.
 
 ### Pre-publication review corrections, 27 to 28 July 2026
 

@@ -99,9 +99,9 @@ right. Two limits, stated because a check trusted for more than it does is worse
 check at all:
 
 - **A description of a figure is not checked against the figure.** A chart summary saying a
-  series rose when it fell would build cleanly, and so would one that cites the 2018 point
-  while naming 2019. Four false summaries were found on this site, by reading, not by
-  tooling.
+  series rose when it fell would build cleanly, and so would one that quotes the right
+  number against the wrong year. Four false summaries were found on this site, by reading,
+  not by tooling.
 - **Values under 100 are reported for review rather than refused.** Too many measures share
   a small value for a match to mean much, so those are flagged on every build and looked
   at, not blocked.

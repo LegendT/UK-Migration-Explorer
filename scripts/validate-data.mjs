@@ -332,10 +332,9 @@ if (warnings.length) {
 
 // Figures held twice. Reported on the same reasoning as staleness below.
 const declaredTwice = [...registry.values()].filter((m) => m.series_ref).length;
-console.log(`\nFigures held twice: ${declaredTwice} metric(s) declare a series_ref, and each agrees with the series point it names.`);
-console.log('This does NOT establish that every duplicate is declared. The overlap scan matches on');
-console.log('equal values, so it can only find a pair that still agrees. A pair that drifted apart');
-console.log('before anyone declared it is invisible to this check and to that scan alike.');
+console.log(`\nFigures held twice: ${declaredTwice} metric(s) declare a series_ref, and each agrees with the point it names.`);
+console.log('Not established: that every duplicate is declared. The overlap scan matches on equal');
+console.log('values, so a pair that drifted apart before anyone declared it is invisible to both.');
 if (undeclared.length) {
   console.log(`\n${undeclared.length} undeclared overlap(s) to review:`);
   for (const item of undeclared) console.log(`  ${item}`);

@@ -82,8 +82,12 @@ Nunjucks string built with `~` concatenation, so a shortcode cannot go inside on
 series does not hold. A series value written longhand fails the build. Twelve were typed by
 hand and are now cited, and the four figures held both as a metric and as a series point
 declare `series_ref` so a release cannot revise one and leave the other. `lib/series.mjs` is
-the single home for the series names, because a second copy of that map would be the same
-duplicated-fact bug in a different hat. Reasoning in `docs/SERIES-CITATIONS.md`.
+the single home for the series names, so a template's `series.flows` and a record's
+`flows@2025` cannot come to mean different things. Reasoning in `docs/SERIES-CITATIONS.md`.
+
+**A citation renders the raw value, so `at()` must pass through `| number`.** Without it the
+page ships `45537`, and no check saw it: there is no literal in the source to catch, the value
+is not `NaN`, and the build is green. That is now enforced.
 
 **Charts cite records too.** A bar carries `ref`, not `value`, and the shortcode throws on a
 literal value or an unknown ref.

@@ -21,6 +21,13 @@ behind what was built, not as outstanding work.
   and no content page had ever used one, so it had never been exercised. Semicolons only now,
   in one helper.
 
+**And one hole in part 1, found by critique after it was built.** `at` returns the raw number,
+so a citation missing `| number` renders `45537` where the page means `45,537`. Nothing caught
+it: the source carries no literal for part 2 to find, the value is not `NaN`, and the page
+builds. It was confirmed by removing one and watching an unformatted figure reach the built
+HTML through both gates. `validate-content.mjs` now requires `| number` after every `at()`,
+which is to a series citation what the unit check is to a `{{ }}` one.
+
 Three pieces of work, in increasing size. The third was found while scoping the first two and
 is the most valuable of them.
 
