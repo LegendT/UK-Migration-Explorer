@@ -11,25 +11,21 @@ or if a planning document exists that the backlog does not reference.
 
 ## Start here
 
-1. Read `docs/BACKLOG.md`. The launch blocker is item 1: the pre-publication review, whose
-   findings became corrections 1a to 1i. **All nine have landed.** What remains of item 1 is
-   three closing steps that are the owner's, not a session's. Then the scoped-but-unblocked
-   items, then a list of gaps carried deliberately.
+1. Read `docs/BACKLOG.md`. It is ordered; take the first unstarted item.
 2. Read the rest of this document, for how the project works and what not to repeat.
-3. Read the scope, or `verification.txt`, for whatever you pick up. Do not re-derive it.
+3. Read the scope document for whatever you pick up, and do not re-derive it.
+   `verification.txt` at the repository root is the pre-publication review itself. It is the
+   record of a finished piece of work, not a scope for an unstarted one.
 
-**The pre-publication review was conducted on 27 July 2026, and its corrections all landed by
-28 July 2026.** The review itself is in `verification.txt` at the repository root. Its outcome
-was a corrections list rather than an approval, and several claim pages had been "do not publish
-as written".
+**The pre-publication review was conducted on 27 July 2026, and its nine corrections, 1a to 1i,
+all landed by 28 July.** That is the whole of what this document records about it. What remains
+of it, why the corrections landing is not the review passing, and what is gated behind that, are
+in the backlog.
 
-**The corrections landing is not the review passing.** Someone still has to decide the pages now
-pass, and then do the three things the backlog gates: settle `last_reviewed`, drop the pre-launch
-banner from `content/_includes/base.njk`, and record the review as passed in `CHANGELOG.md`. The
-`last_reviewed` one is not cosmetic. The practice diverged while the corrections were landing, so
-three claim pages currently show a review date after their corrections and four show one before,
-and the claims index puts that in front of readers. Then, last, remove the robots rule. That is
-launch.
+That split is deliberate and this document keeps breaking it. An earlier version restated the
+review's closing steps here at length, which is precisely the duplication the paragraph at the
+top forbids: two copies of an instruction drift, and the copy a session happens to read wins.
+When you are tempted to record outstanding work here, put it in the backlog and link to it.
 
 The update commitment was signed on 23 July 2026 at one month per cadenced release, which
 closed the other original blocker.
@@ -40,6 +36,7 @@ closed the other original blocker.
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
 - **Branch:** `main`, current with origin, CI green. Start work on a new branch; this project
   works through PRs even solo.
+
 Deliberately not recorded here: which branches exist, what CI last did, what is on the remote.
 That is operational state, it is discoverable in seconds, and a previous version of this
 section was wrong within the hour because branches were tidied after it was written.
@@ -133,72 +130,10 @@ establish*, and listed in `docs/BACKLOG.md`.
 
 ## Working practices that earned their place
 
-- **Look at the built page, and measure the thing you are claiming.** Run `npm run build`,
-  serve `_site`, and look. Looking is not enough on its own: the pre-launch banner was reported
-  as aligned on the strength of a screenshot and had not moved at all. If the claim is "these
-  two edges line up", read the two numbers.
-- **Render with a real layout viewport.** Headless Chrome's `--window-size` clamps the layout
-  viewport to 500px, so a screenshot at `--window-size=390` is a crop of a 500px layout.
-  Driving Chrome over CDP and setting `Emulation.setDeviceMetricsOverride` gives a genuine
-  viewport at any width; `Emulation.setEmulatedMedia` with `prefers-color-scheme` gives the dark
-  palette. Check `document.documentElement.clientWidth` before believing an overflow either way.
-- **Start Chrome once and attach to it; do not spawn one per screenshot.** A script that
-  launched a fresh headless Chrome per capture worked twice and then failed for the rest of the
-  session, because each spawn raced the previous instance for its `--user-data-dir`. It looks
-  like the CDP approach is broken when it is only the process management. Start one instance on
-  a known port, connect to `/json/list`, and reuse it.
-- **Read the accessibility tree, not the markup.** Chrome's tree is what assistive technology
-  consumes. `Accessibility.getFullAXTree` over CDP showed the duplicated chart announcement and
-  the three identically named controls; the markup for both read as correct.
-- **Test the mechanism before recommending it.** A scope recommended a Nunjucks filter for
-  citing series points without checking that a filter works inside a concatenated summary
-  string, which was the one thing that could have sunk the approach. It does, but that was
-  established afterwards.
-- **Never truncate the thing you are checking for absence.** A finding that three claim cards
-  were missing `period` and `source` was wrong: the check piped each front matter through
-  `head -20` and those fields sit below the cut. Reporting a defect that does not exist costs
-  more than missing one, because it makes every other finding worth re-checking.
-- **Find things the way that can show you are wrong.** Four figures held twice were found by
-  matching equal values, which by construction can only find pairs that already agree. Whether
-  anything had already drifted needed a different query, and "they all agree" was not evidence
-  until that query was run.
-- **A denylist needs a review pass, not a sweep.** Four of seven sub-100 matches were
-  coincidences. Tokenising all of them would have cited the wrong record four times.
-- **A stored "all reviewed" note is a declaration, not a check, and it ages.** The README
-  recorded the fourteen sub-100 warnings as reviewed and all coincidences. Checking each
-  again in context found three that were not: the refused-asylum grant and appeal rates and
-  the born-abroad Census share were live metric values restated longhand beside the very
-  tokens that already cited them, one release from contradicting themselves. Re-derive the
-  per-item property; do not trust a summary of it, least of all one that says everything is
-  fine.
-- **A verification subagent scoped to one figure catches the ones next to it.** Every changed
-  or new figure in the review corrections was checked by a subagent required to quote a fetched
-  source per value. Three times that pass overturned something the human review had asserted: a
-  second ONS 2024 foreign-born figure of about 10.6 million on a different population base, which
-  would not reconcile; the OBR migrant contribution and its "age 80" endpoint, which OBR does not
-  print or state; and the NAO report the costs chart cited, which does not carry the per-night
-  unit costs at all. Confirming the figure you asked about is not the whole job, and you do not
-  merge over what the check reveals beside it.
-- **Count only what can actually take focus.** Elements inside a closed `<details>` are in the
-  DOM and are not focusable. Counting selectors rather than focusable elements overstated the
-  tab order cost by 60%.
-- **Beware a rule that reaches inside a utility class.** `.prelaunch p` outranks `.wrap`, so a
-  shorthand `margin: 0` there silently undid the auto-centring `.wrap` was applied for. Set the
-  longhand you mean.
-- **Negative-test every new check**, and confirm the break actually applied before concluding
-  anything. Two "failures" in an earlier session were tests that never fired, and one was a
-  search string that did not match.
-- **Never `git checkout -- .` to undo a test.** It reverts everything. This cost an hour.
-  Snapshot to a scratch directory and restore from there, and chain the restore with `;` rather
-  than `&&`, because a failing `grep` in the middle will otherwise skip it.
-- **Do not fix by bulk substitution.** It caused an earlier round of defects, in prose and in
-  CSS alike. Sentence by sentence, in view.
-- **Research subagents must quote a fetched URL and verbatim text per figure.** One returned
-  eight values that appeared nowhere in its own evidence table. Anything unverifiable comes back
-  marked UNVERIFIED and is left out.
-- **Scoping is not progress.** Four scope documents were written in one session while the site
-  did not change. Each was defensible; together they were a way of feeling productive without
-  shipping. Prefer building the smallest real thing.
+Grouped, because there are two dozen and a flat list gets read as far as the fifth item.
+
+### Verifying a figure
+
 - **Open the primary table, not the summary page.** Three figures in the review corrections did
   not exist on any HTML bulletin: the 5,931 administrative outcomes, the cohort grant rates, and
   the asylum-specific appeal figures. Worse, two site figures looked *wrong* against the bulletin
@@ -206,23 +141,111 @@ establish*, and listed in `docs/BACKLOG.md`.
   tables FIA_3 and T_3 give 40% and 67 weeks for asylum and protection. Believing the bulletin
   would have introduced two errors while "correcting" them. The `.ods` and `.xlsx` files are zip
   archives; unzip and parse the sheet XML directly.
+
 - **Reconcile a derived figure against published ones before writing it.** The 5,931 was summed
   from a pivot over four quarters. The same four quarters reproduce the published 79,719 refusals,
   16,901 withdrawals and 48,581 grants, and the grand total 151,132 equals the decisions total plus
   both excluded categories. That is what establishes the basis and period, not the figure alone.
+
+- **Confirming the figure you asked about is not the whole job.** Every changed or new figure
+  in the review corrections was checked against a fetched source, quoting it per value. Five
+  times that pass overturned something the review had asserted right beside the figure in
+  question: a second ONS 2024 foreign-born figure of about 10.6 million on a different
+  population base, which would not reconcile; the OBR migrant contribution and its "age 80"
+  endpoint, which OBR does not print or state; the NAO report the costs chart cited, which does
+  not carry the per-night unit costs at all; a humanitarian immigration figure of 35,000 that
+  the ONS bulletin does not give, only the 6% share; and the word "destitution", which neither
+  Home Office page uses. Do not merge over what the check reveals beside its target.
+
+- **Research subagents must quote a fetched URL and verbatim text per figure.** One returned
+  eight values that appeared nowhere in its own evidence table. Anything unverifiable comes back
+  marked UNVERIFIED and is left out.
+
+- **A stored "all reviewed" note is a declaration, not a check, and it ages.** The README
+  recorded the fourteen sub-100 warnings as reviewed and all coincidences. Checking each
+  again in context found three that were not: the refused-asylum grant and appeal rates and
+  the born-abroad Census share were live metric values restated longhand beside the very
+  tokens that already cited them, one release from contradicting themselves. Re-derive the
+  per-item property; do not trust a summary of it, least of all one that says everything is
+  fine.
+
+### Building a check, and trusting it
+
+- **Negative-test every new check**, and confirm the break actually applied before concluding
+  anything. Two "failures" in an earlier session were tests that never fired, and one was a
+  search string that did not match.
+
+- **Find things the way that can show you are wrong.** Four figures held twice were found by
+  matching equal values, which by construction can only find pairs that already agree. Whether
+  anything had already drifted needed a different query, and "they all agree" was not evidence
+  until that query was run.
+
+- **Never truncate the thing you are checking for absence.** A finding that three claim cards
+  were missing `period` and `source` was wrong: the check piped each front matter through
+  `head -20` and those fields sit below the cut. Reporting a defect that does not exist costs
+  more than missing one, because it makes every other finding worth re-checking.
+
+- **A denylist needs a review pass, not a sweep.** Four of seven sub-100 matches were
+  coincidences. Tokenising all of them would have cited the wrong record four times.
+
+### Looking at the built page
+
+- **Look at the built page, and measure the thing you are claiming.** Run `npm run build`,
+  serve `_site`, and look. Looking is not enough on its own: the pre-launch banner was reported
+  as aligned on the strength of a screenshot and had not moved at all. If the claim is "these
+  two edges line up", read the two numbers.
+
+- **Render with a real layout viewport.** Headless Chrome's `--window-size` clamps the layout
+  viewport to 500px, so a screenshot at `--window-size=390` is a crop of a 500px layout.
+  Driving Chrome over CDP and setting `Emulation.setDeviceMetricsOverride` gives a genuine
+  viewport at any width; `Emulation.setEmulatedMedia` with `prefers-color-scheme` gives the dark
+  palette. Check `document.documentElement.clientWidth` before believing an overflow either way.
+
+- **Start Chrome once and attach to it; do not spawn one per screenshot.** A script that
+  launched a fresh headless Chrome per capture worked twice and then failed for the rest of the
+  session, because each spawn raced the previous instance for its `--user-data-dir`. It looks
+  like the CDP approach is broken when it is only the process management. Start one instance on
+  a known port, connect to `/json/list`, and reuse it.
+
+- **Read the accessibility tree, not the markup.** Chrome's tree is what assistive technology
+  consumes. `Accessibility.getFullAXTree` over CDP showed the duplicated chart announcement and
+  the three identically named controls; the markup for both read as correct.
+
+- **Count only what can actually take focus.** Elements inside a closed `<details>` are in the
+  DOM and are not focusable. Counting selectors rather than focusable elements overstated the
+  tab order cost by 60%.
+
+### Changing something without breaking something else
+
+- **Do not fix by bulk substitution.** It caused an earlier round of defects, in prose and in
+  CSS alike. Sentence by sentence, in view.
+
+- **A defect named on one page usually has siblings.** The invalid cohort comparison was in three
+  places, only one of which the review names, and one of those was a record's `notes`, where it
+  would have instructed the next editor to reintroduce it. The support-versus-accommodation
+  conflation was in two. Grep the reasoning, not just the sentence.
+
+- **Beware a rule that reaches inside a utility class.** `.prelaunch p` outranks `.wrap`, so a
+  shorthand `margin: 0` there silently undid the auto-centring `.wrap` was applied for. Set the
+  longhand you mean.
+
+- **Never `git checkout -- .` to undo a test.** It reverts everything. This cost an hour.
+  Snapshot to a scratch directory and restore from there, and chain the restore with `;` rather
+  than `&&`, because a failing `grep` in the middle will otherwise skip it.
+
+### Working with this project's own documents and rules
+
 - **Read the site's own published policy before adopting a reviewer's recommendation.** The
   review asked for attributable circulation examples. The style guide says, on a live page, that
   this site does not attribute claims to named people and accepts the "nobody actually says that"
   rebuttal as the cost. The review's finding *is* that rebuttal. A good example had already been
   found and would have contradicted two published pages. An external reviewer does not know what
   the site has promised its readers.
-- **A defect named on one page usually has siblings.** The invalid cohort comparison was in three
-  places, only one of which the review names, and one of those was a record's `notes`, where it
-  would have instructed the next editor to reintroduce it. The support-versus-accommodation
-  conflation was in two. Grep the reasoning, not just the sentence.
+
 - **A validator rule can close an option without anyone noticing.** Dropping claim 2.7 looked
   available and is not: pro-migration claims sit exactly on the enforced floor of two. Check the
   constraint before offering a choice, not after it is made.
+
 - **On a mixed list, do every [me] part first and batch the [you] decisions.** Corrections 1d to
   1i interleave mechanical and editorial work. Asking per item would have meant five
   interruptions, and several of the editorial calls turned out to depend on findings from the
@@ -230,10 +253,22 @@ establish*, and listed in `docs/BACKLOG.md`.
   established what was still true. Do the sourced work, let it inform the questions, then ask
   once. The exception is a decision that would make the mechanical work wasted if it went the
   other way; ask that one early.
+
 - **Check `main` has not moved before rewriting this file or the backlog.** A PR was merged
   mid-session here, so a branch cut an hour earlier carried a superseded handoff, and editing it
   would have reverted the owner's own merged work. The edit tool caught it by reporting the file
   had changed on disk. Rebase before writing the durable documents, not after.
+
+### Deciding what to build
+
+- **Test the mechanism before recommending it.** A scope recommended a Nunjucks filter for
+  citing series points without checking that a filter works inside a concatenated summary
+  string, which was the one thing that could have sunk the approach. It does, but that was
+  established afterwards.
+
+- **Scoping is not progress.** Four scope documents were written in one session while the site
+  did not change. Each was defensible; together they were a way of feeling productive without
+  shipping. Prefer building the smallest real thing.
 
 ## House style
 
@@ -291,6 +326,11 @@ Each is cheap to reverse.
 
 Deliberately not tied to one task, so it does not go stale as items are completed.
 
+**It is a compression of this document, not a second source of truth.** Where the two
+disagree, this document is right and the prompt needs correcting. They have already drifted
+once: the prompt said a check had overturned the review five times while the body still said
+three.
+
 ```
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
@@ -303,12 +343,16 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review has been done and all of its corrections,
-1a to 1i under backlog item 1, have landed. verification.txt at the repo
-root is the review itself. Work is tagged [me] or [you]: [me] is a
-factual or mechanical correction you make against a cited source; [you]
-is an editorial or sourcing call that is mine. Do the [me] parts; for a
-[you] part, propose and ask.
+The pre-publication review is done and all nine of its corrections, 1a
+to 1i under backlog item 1, have landed in PR #38. verification.txt at
+the repo root is the review itself.
+
+Work is tagged [me] or [you]: [me] is a factual or mechanical change you
+make against a cited source; [you] is an editorial or sourcing call that
+is mine. Do the [me] parts; for a [you] part, propose and ask. On a list
+that mixes both, do all the [me] work first and bring me the [you]
+decisions in one batch, because the mechanical work usually determines
+what the editorial question even is.
 
 Still mine, not yours, and not a session's work: the three closing steps
 that are what is left of item 1, including the last_reviewed decision;
@@ -329,14 +373,24 @@ date. Do not delete it. validate-content.mjs fails the build if a
 planning document in docs/ is not referenced from the backlog, or if the
 handoff stops pointing at it, so the list cannot quietly lose things.
 
-Rules that bite on every item here:
+Rules this project has paid for. The first two bite whenever a figure
+changes; the rest bite on everything.
 
 - Every changed or new figure needs a fetched source and a verbatim quote
-  before it is written. A verification subagent made to quote its sources
-  overturned the human review three times: a foreign-born figure on the
-  wrong population base, an OBR number and endpoint age OBR never states,
-  and a costs source that did not carry the figures at all. Confirming the
-  figure you asked about is not the whole job.
+  before it is written. Go to the publisher's data tables, not its HTML
+  bulletin: the bulletin aggregates, and twice a site figure has looked
+  wrong against one and been right. .ods and .xlsx are zip archives, so
+  download and parse them rather than giving up when a fetch cannot read
+  them.
+- Confirming the figure you asked about is not the whole job. Five times
+  a check here has overturned something asserted right beside it.
+- Check what this project has already published, or already enforces,
+  before acting on outside advice or offering me an option. A review
+  recommended something the style guide had promised readers the site
+  would never do, and an option I was offered turned out to be one the
+  validator forbids.
+- A defect reported on one page usually has siblings. Grep the reasoning,
+  not just the sentence.
 - Anything you add must pass, and run these rather than assume:
   npm run validate, npm run build, npm run a11y.
 - Negative-test every new check, and confirm the break actually applied
@@ -353,7 +407,8 @@ Rules that bite on every item here:
 - Scoping is not progress. Four scope documents were written in one
   session while the site did not change. Build the smallest real thing.
 
-Branch first; this project works through PRs even solo.
+Branch first; this project works through PRs even solo. Check main has
+not moved before you rewrite the handoff or the backlog.
 
 Stop and ask about anything that needs an editorial judgement rather
 than a correction.

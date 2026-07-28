@@ -147,17 +147,30 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This list is in recommended order. Take the first unstarted item.** The order lives here
-rather than in the handoff's prompt, so that finishing something does not leave a stale
-instruction somewhere else. Re-order it freely; that is a one-line edit and it is the only
-place the sequence is stated.
+**This list is in recommended order. Take the first unstarted item, which is item 3.** The
+order lives here rather than in the handoff's prompt, so that finishing something does not
+leave a stale instruction somewhere else. Re-order it freely; this is the only place the
+sequence is stated.
 
-The recommendation is item 4's reconciliation first, ahead of everything else here, because it
-is the smallest piece of real work that guards against publishing two different official values
-for the same measure. Note that item 4's scope document numbers that piece **part 3**, and it
-is listed first below; the scope's numbering follows its own argument rather than priority.
+Items 3 and 4 were swapped on 28 July 2026, because the list previously said "take the first
+unstarted item" and then said in the next paragraph that the other one should come first. A
+fresh session following the instruction would have taken the wrong one. If you reorder again,
+move the sections rather than adding a sentence explaining that the order is not the order.
 
-### 3. Release notifier and evidence check
+### 3. Citing a series point, and the four figures held twice
+
+**`docs/SERIES-CITATIONS.md`.** Three parts, and the third is ordered first. This is the
+smallest piece of real work that guards against publishing two different official values for
+the same measure, which is why it leads. Note that the scope document numbers the reconciliation
+**part 3**; its numbering follows its own argument rather than priority.
+
+- **Four figures are held twice**, as a headline metric and as a series point, with nothing
+  reconciling them. A quarterly update revising one and not the other would publish two
+  different official values for the same measure. All four agree today; the risk is latent.
+- An `at(year)` filter so chart summaries cite series points rather than typing them. Tested.
+- A check refusing a series value written longhand.
+
+### 4. Release notifier and evidence check
 
 **`docs/UPDATE-AUTOMATION.md`.** Four phases. Phases 1 and 2 are each worth building alone;
 phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
@@ -168,16 +181,6 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
 - **Phase 1, the notifier.** Nothing detects that a release has happened. Verified endpoints
   and three traps are in the scope.
 - Phase 3, the update prompt. Phase 4, rewriting what the sources page says about automation.
-
-### 4. Citing a series point, and the four figures held twice
-
-**`docs/SERIES-CITATIONS.md`.** Three parts, and the third is ordered first.
-
-- **Four figures are held twice**, as a headline metric and as a series point, with nothing
-  reconciling them. A quarterly update revising one and not the other would publish two
-  different official values for the same measure. All four agree today; the risk is latent.
-- An `at(year)` filter so chart summaries cite series points rather than typing them. Tested.
-- A check refusing a series value written longhand.
 
 ### 5. The eight undrafted claims
 
@@ -228,7 +231,7 @@ Genuinely not tasks, and each is published on the site rather than only recorded
 - **`table_reference` is unimplemented.** Home Office table identifiers survive only as prose
   inside `notes`.
 - **Prose about figures is unprotected.** Nothing verifies a chart summary describes the data
-  beside it. Item 4 would shrink this; it cannot remove it, because a token protects a value
+  beside it. Item 3 would shrink this; it cannot remove it, because a token protects a value
   and not a claim about a value.
 
 ---
