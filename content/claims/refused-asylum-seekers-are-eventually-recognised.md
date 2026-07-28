@@ -2,8 +2,10 @@
 id: refused-asylum-seekers-are-eventually-recognised
 claim: Almost all refused asylum seekers are eventually recognised as refugees.
 short_answer: >-
-  No. Later decisions do change a substantial share of refusals, and the latest recorded
-  grant rate is materially higher than the initial one, but it is not close to all of them.
+  No. Later decisions, appeals and reconsiderations do raise the grant rate substantially,
+  but not to almost all: for claims made between 2010 and 2020, between a fifth and a half
+  of each cohort ended without a grant. An allowed appeal is also not the same as refugee
+  recognition.
 direction: pro-migration
 error_type: appeal success rate generalised to all refusals
 last_reviewed: 2026-07-22
