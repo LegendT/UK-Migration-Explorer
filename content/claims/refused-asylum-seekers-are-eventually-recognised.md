@@ -132,3 +132,10 @@ grant rate in the 'initial decisions' dataset as they relate to a different coho
 initial decisions", and that more recent cohorts are not comparable because more of their
 cases are still progressing. Its own label for the later figure is the latest recorded
 outcome, not the final one.
+
+**On selection.** This site checks propositions that circulate rather than quotations
+attributed to particular people, as the [style guide](/style-guide/) sets out. For this
+claim we have not located a published example in these exact words. The versions we have
+found are weaker, putting it as "many" or "most" rather than "almost all". Correcting the
+strongest form of a claim when only weaker ones circulate risks answering something nobody
+says, and this page is published with that objection on the record rather than settled.

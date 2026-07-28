@@ -358,8 +358,8 @@ on assumptions about who leaves and when, and on which collective spending is at
 to migrants.
 
 **The common mistake.** Quoting one end of the range as the answer. Both "immigrants pay
-far more in than they take out" and "immigrants are a drain" fail this test equally, and
+more in than they take out" and "immigrants are a drain" fail this test equally, and
 each is checked on its own page:
-[whether immigrants pay far more than they cost](/common-claims/immigrants-pay-far-more-than-they-cost/)
+[whether immigrants pay more than they cost](/common-claims/immigrants-pay-far-more-than-they-cost/)
 and
 [whether immigrants are a drain on the public finances](/common-claims/immigrants-are-a-drain-on-public-finances/).

@@ -92,3 +92,10 @@ evidence.
 The initial decision backlog is one queue among several. It is not the appeals backlog,
 and it is not the total asylum casework system. See [backlog](/what-the-words-mean#backlog). Treating "the backlog" as a single number
 is a separate error, covered by its own claim check.
+
+**On selection.** This site checks propositions that circulate rather than quotations
+attributed to particular people, as the [style guide](/style-guide/) sets out. For this
+claim we have not located a published example in these exact words. That is a gap in how it
+was selected rather than a point in its favour, and it is recorded here instead of being
+left unsaid. It is checked because reading a stock as a flow is a common and consequential
+error, and because the correction holds whether or not anyone has put the claim this baldly.
