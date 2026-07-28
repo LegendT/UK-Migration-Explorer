@@ -196,25 +196,6 @@ figures are overdue.
 
 ---
 
-## Found, not yet fixed
-
-Neither a scope nor a decision: a defect found while doing something else, recorded here
-because the alternative is that it lives in a merged pull request body and is lost.
-
-- **`population/eu-settlement-scheme-settled-status-grants` is a release behind**, found on
-  28 July 2026 while re-verifying the phase 1 endpoints. It holds 354,647 for the year ending
-  December 2025, from the December 2025 release, while every other Home Office figure on the
-  site cites the year ending March 2026. The March 2026 release carries the same measure:
-  "Of these, 71% (370,535) were settled status grants under the EUSS". **Nothing here can see
-  this.** The staleness check ages `retrieved_date`, 17 June, which is well inside the
-  quarterly window, and the notifier as originally scoped compares editions per source, where
-  the answer is "current" because other figures are on the newer one. **[you] first:** the
-  same page says the settled status total "includes an estimate of automated EUSS settled
-  status grants of 103,820, of which 100,300 are included in the YE March 2026 figure", so the
-  two editions may not be counting the same thing, and that is a comparability call rather
-  than an update. **[me] after it:** take the value from the .ods table rather than the
-  bulletin, and write the evidence entry the build now requires.
-
 ## Small editorial decisions waiting on the owner
 
 Neither blocks anything. They are here because a decision recorded only in a merged pull
@@ -275,6 +256,17 @@ Genuinely not tasks, and each is published on the site rather than only recorded
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **`eu-settlement-scheme-settled-status-grants` brought onto the current release**, 28 July
+  2026. PR #45. Found and fixed the same day, while re-verifying the phase 1 endpoints: it
+  held 354,647 for the year ending December 2025 while every other Home Office figure cited
+  the year ending March 2026. Neither existing check could see it, which is why the notifier's
+  comparison is now per cited edition rather than per source. The comparability question the
+  finding raised is settled by arithmetic: both editions are `EUSS_QTR` settled conclusions
+  plus the automated-grants estimate, 270,235 plus 100,300 against 267,977 plus 86,670. The
+  note beside the figure was stale too, at 4.4 million grants since 2018 where the release now
+  says 4.5 million. No page cites this record, so nothing a reader sees changed, proved by
+  diffing the built site. First real use of the evidence contract.
 
 - **Citing a series point, and the four figures held twice**, 28 July 2026. PR #41. All three
   parts of **`docs/SERIES-CITATIONS.md`**, which is marked built and kept as the reasoning.
