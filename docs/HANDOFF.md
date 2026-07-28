@@ -343,9 +343,10 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review is done and all nine of its corrections, 1a
-to 1i under backlog item 1, have landed in PR #38. verification.txt at
-the repo root is the review itself.
+The pre-publication review is done. All nine of its corrections, 1a to
+1i under backlog item 1, landed in PR #38, and PR #39 reordered the
+backlog and rewrote the handoff around them. verification.txt at the
+repo root is the review itself.
 
 Work is tagged [me] or [you]: [me] is a factual or mechanical change you
 make against a cited source; [you] is an editorial or sourcing call that
