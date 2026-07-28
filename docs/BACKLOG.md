@@ -189,8 +189,8 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   scope. **Two are blockers, and both are the same hole:** the series files appear nowhere in
   the procedure, so as scoped it cannot do an ONS update at all, because the four metrics that
   declare a `series_ref` are all `ons-ltim` and moving them without the series fails
-  `validate-data.mjs`. The `source_id` query it is built on cannot find the series either;
-  they carry no `source_id`.
+  `validate-data.mjs`. The `source_id` query it is built on could not find the series either,
+  until this PR gave them one.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
 ### 4. The eight undrafted claims

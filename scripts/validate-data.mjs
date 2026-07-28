@@ -172,8 +172,14 @@ for (const [i, card] of (dashboard.cards ?? []).entries()) {
 // --- timeseries -----------------------------------------------------------------
 for (const file of TIMESERIES_FILES) {
   const series = read(file);
-  for (const field of ['series_name', 'unit', 'note', 'lastUpdated']) {
+  // source_id joins a series to the catalogue the way every metric already is. Without it the
+  // series were the half of the data layer no release check could attribute to a publisher:
+  // check-releases.mjs queries by source_id, and 100 points sat outside every such query.
+  for (const field of ['series_name', 'unit', 'note', 'lastUpdated', 'source_id']) {
     if (!series[field]) errors.push(`${file}: missing envelope field ${field}`);
+  }
+  if (series.source_id && !sourceById.has(series.source_id)) {
+    errors.push(`${file}: source_id "${series.source_id}" is not an id in sources.json`);
   }
 
   const blocks = [['', series]];

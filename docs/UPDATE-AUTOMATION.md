@@ -76,6 +76,14 @@ not anything later is.
 - **Not yet exercised: the issue itself.** No release is pending, so the path from a non-zero
   exit to an open issue has been tested only in its parts, the title extraction and the
   deduplication query. It will first run for real when a release lands.
+- **It ignored the series files, and that was found by critiquing Phase 3 for the same
+  fault, PR #47.** It watched 71 records and none of the 100 series points, which are replaced
+  wholesale on release. Two of the four series have no metric declaring a `series_ref`, so a
+  file left on a superseded edition would have been invisible to every check here. The series
+  now declare a `source_id`, `validate-data.mjs` requires it, and the notifier reads them.
+  **The primary series only:** a companion block is deliberately a different vintage, and
+  `netMigration.historical` is the discontinued series at its 2020 vintage, so reading
+  companions would report that file behind for ever.
 
 ### Detection: compare editions, not dates
 
@@ -201,8 +209,14 @@ sit on this site indefinitely, so closing it buys something a faster quarterly u
 The route is already fetched. The data-tables page carries a `details.change_history` of 16
 entries whose notes name the exact table and the corrected value, for example: *"Updated table
 'Vis_01' in 'Entry clearance visas summary tables, year ending March 2026' to amend the 'Other
-work visas and exemptions' figure"*. The records already name their tables, six of them:
-`Asy_00a`, `Asy_04`, `Asy_D02`, `Res_01`, `Ret_01`, `Vis_01`.
+work visas and exemptions' figure"*. The data layer already names its tables, twelve of them:
+`ASY_03`, `Asy_00a`, `Asy_04`, `Asy_D02`, `EUSS_QTR`, `FIA_3`, `IER_02a`, `IER_D03`, `Res_01`,
+`Ret_01`, `T_3`, `Vis_01`.
+
+**Match case-insensitively.** `ASY_03` and `Asy_04` are the same publisher's naming written two
+ways in this repository, so a case-sensitive match would miss one of them. The first count of
+this list was six, because the pattern that produced it required a capital followed by two
+lower-case letters and silently dropped `EUSS_QTR`, `FIA_3` and four others.
 
 **Matching one list against the other produces exactly one hit in sixteen, and it is the right
 one:** the 1 June `Vis_01` correction, which the by-hand run below found and recorded as
@@ -352,12 +366,14 @@ this procedure anywhere.**
   All four are `ons-ltim`: `net-migration`, `net-migration-2`, `total-long-term-immigration`
   and `total-long-term-emigration`. An update that moves those four records and not the series
   produces a pull request that cannot pass CI. Nothing below mentions a series file.
-- **And the query it is built on cannot find them.** The series files carry no `source_id`, so
-  "list the affected figures by `source_id`" reaches 71 records and none of the 100 series
-  points. Both watched sources move series on release: two files are ONS, two are Home Office,
-  and the single-vintage rule means each is replaced whole rather than appended to. Decide
-  whether this procedure refuses series work outright and hands it to a person, or grows a
-  second half; refusing is defensible, silently omitting is not.
+- **The query it is built on could not find them either, and now can.** The series files
+  carried no `source_id`, so "list the affected figures by `source_id`" reached 71 records and
+  none of the 100 series points. They carry one as of PR #47 and `validate-data.mjs` requires
+  it, which also let the notifier start watching them. Both watched sources move series on
+  release: two files are ONS, two are Home Office, and the single-vintage rule means each is
+  replaced whole rather than appended to. What remains is the decision above: this procedure
+  refuses series work and hands it to a person, or grows a second half. Refusing is defensible,
+  silently omitting is not.
 - **The field list is half of what a real update touches.** It names `value`, `period_label`,
   `date` and `retrieved_date`. PR #45 also changed `source_name`, `source_url`,
   `published_date` and `notes`. Four of eight leaves a record citing the superseded edition's

@@ -1,5 +1,6 @@
 {
   "series_name": "UK long-term immigration and emigration over time",
+  "source_id": "ons-ltim",
   "unit": "people",
   "geography": "United Kingdom",
   "statistical_status": "Official statistics in development",
