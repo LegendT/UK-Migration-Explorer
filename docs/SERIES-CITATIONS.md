@@ -1,6 +1,25 @@
 # Citing a series point, scoped
 
-Nothing here is built. Scoped 23 July 2026.
+Scoped 23 July 2026. **All three parts built 28 July 2026, PR #41.** Kept as the reasoning
+behind what was built, not as outstanding work.
+
+**Three things the scope got wrong, all found by the check rather than by reading it again.**
+
+- **Nine longhand values was an undercount. There are twelve**, across eleven distinct values,
+  `891,000` appearing twice. The scope counted chart *summaries* and did not look at chart
+  *notes*, which are the same kind of prose about the same series: two more in `asylum.njk`,
+  one more in `migration.njk`. Part 2 named all three, and one false positive, on its first
+  run.
+- **The fourth was a coincidence.** `285,000` in the `migration.njk` note is the size
+  of the 2022 revision, and it happens to equal the 2017 point in the discontinued net
+  migration series. Citing it would have put an unrelated figure in that sentence, which is
+  what a denylist sweep produces every time. It is declared, with the reason, in the page's
+  front matter.
+- **The escape hatch the error message points at did not work.** `historical_literals` in
+  front matter was split on `/[,;]\s*/`, so `285,000` became `285` and `000`: the exemption
+  silently did nothing and created two junk exemptions. Three copies of that split existed
+  and no content page had ever used one, so it had never been exercised. Semicolons only now,
+  in one helper.
 
 Three pieces of work, in increasing size. The third was found while scoping the first two and
 is the most valuable of them.

@@ -152,25 +152,11 @@ order lives here rather than in the handoff's prompt, so that finishing somethin
 leave a stale instruction somewhere else. Re-order it freely; this is the only place the
 sequence is stated.
 
-Items 3 and 4 were swapped on 28 July 2026, because the list previously said "take the first
-unstarted item" and then said in the next paragraph that the other one should come first. A
-fresh session following the instruction would have taken the wrong one. If you reorder again,
-move the sections rather than adding a sentence explaining that the order is not the order.
+If you reorder, or complete something, **move the sections and renumber** rather than adding a
+sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
+and a fresh session following the instruction would have taken the wrong item.
 
-### 3. Citing a series point, and the four figures held twice
-
-**`docs/SERIES-CITATIONS.md`.** Three parts, and the third is ordered first. This is the
-smallest piece of real work that guards against publishing two different official values for
-the same measure, which is why it leads. Note that the scope document numbers the reconciliation
-**part 3**; its numbering follows its own argument rather than priority.
-
-- **Four figures are held twice**, as a headline metric and as a series point, with nothing
-  reconciling them. A quarterly update revising one and not the other would publish two
-  different official values for the same measure. All four agree today; the risk is latent.
-- An `at(year)` filter so chart summaries cite series points rather than typing them. Tested.
-- A check refusing a series value written longhand.
-
-### 4. Release notifier and evidence check
+### 3. Release notifier and evidence check
 
 **`docs/UPDATE-AUTOMATION.md`.** Four phases. Phases 1 and 2 are each worth building alone;
 phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
@@ -182,7 +168,7 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   and three traps are in the scope.
 - Phase 3, the update prompt. Phase 4, rewriting what the sources page says about automation.
 
-### 5. The eight undrafted claims
+### 4. The eight undrafted claims
 
 Foundation section 8.5.3 specifies fifteen; seven are written. One of the eight,
 "Local areas all carry the same pressure", **cannot be written**: it needs per-capita local
@@ -192,7 +178,7 @@ Two need a direction decision from the owner before drafting, because there is n
 label: "The asylum backlog is one number" and "Falling net migration means the asylum system
 is shrinking".
 
-### 6. `docs/UPDATING-DATA.md`
+### 5. `docs/UPDATING-DATA.md`
 
 The manual runbook for the update commitment, modelled on DEBT's. Write this **before**
 automating any of it: you should be able to do the job by hand before delegating it. Smaller
@@ -231,8 +217,9 @@ Genuinely not tasks, and each is published on the site rather than only recorded
 - **`table_reference` is unimplemented.** Home Office table identifiers survive only as prose
   inside `notes`.
 - **Prose about figures is unprotected.** Nothing verifies a chart summary describes the data
-  beside it. Item 3 would shrink this; it cannot remove it, because a token protects a value
-  and not a claim about a value.
+  beside it. The series citations shrank this and could not remove it, because a citation
+  protects a value and not a claim about a value: `at(2018)` under a sentence naming 2019
+  builds cleanly.
 
 ---
 
@@ -240,6 +227,20 @@ Genuinely not tasks, and each is published on the site rather than only recorded
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
 
+- **Citing a series point, and the four figures held twice**, 28 July 2026. PR #41. All three
+  parts of **`docs/SERIES-CITATIONS.md`**, which is kept as the reasoning rather than as work.
+  The four metrics that are also series points now declare `series_ref` and cannot drift from
+  it; an `at(year)` filter cites a series point inside a chart summary; and a series value
+  written longhand fails the build. Three things worth knowing, none of them in the scope:
+  - **The scope's count of nine longhand values was twelve.** It counted chart summaries and
+    not chart notes, which are the same prose about the same series. The check found the other
+    three on its first run, which is why the check exists rather than a reading.
+  - **A fourth match was a coincidence**, `285,000` in the `migration.njk` note, which is
+    the size of the 2022 revision and happens to equal the 2017 point of the discontinued
+    series. Declared, with the reason, in the page's front matter.
+  - **`historical_literals` never worked from a content page.** It was split on commas, so
+    every comma-grouped value it was meant to exempt was shredded into two junk exemptions.
+    Semicolons only now. No page had used it, so nothing was silently exempted in the past.
 - **The update commitment**, signed 23 July 2026. One month from each of the three cadenced
   releases; irregular publishers carry no promised schedule.
 - **The foundation drift read**, 23 July 2026. PR #14.
