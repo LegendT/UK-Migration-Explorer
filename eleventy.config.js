@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 
 import { barChart, lineChart } from './lib/charts.mjs';
+import { readSeries } from './lib/series.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`./data/${file}`, import.meta.url), 'utf8'));
 
@@ -64,17 +65,32 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData('meta', () => meta);
   eleventyConfig.addGlobalData('sources', () => sources);
   eleventyConfig.addGlobalData('dashboard', () => read('dashboard.json'));
-  eleventyConfig.addGlobalData('series', () => ({
-    netMigration: read('netMigrationTimeseries.json'),
-    flows: read('migrationFlowsTimeseries.json'),
-    asylumApplications: read('asylumApplicationsTimeseries.json'),
-    asylumBacklog: read('asylumBacklogTimeseries.json'),
-  }));
+  // The names come from lib/series.mjs, which is also where a metric's `series_ref` is
+  // resolved. `series.flows` in a template and "flows@2025" in a data record therefore
+  // cannot come to mean different things.
+  eleventyConfig.addGlobalData('series', () => readSeries());
 
   // Line charts are built from series files. Bar charts cite records: a bar names a metric
   // and the value comes from that record, so a data update reaches the chart.
   eleventyConfig.addFilter('points', (data) =>
     data.map((point) => ({ year: Number(point.date.slice(0, 4)), value: point.value })));
+
+  // A chart summary that names a single year of its own series cited that year by typing the
+  // number, because no mechanism existed. The chart and the sentence describing it could
+  // therefore drift apart in silence, and the series files are refreshed wholesale on every
+  // release under the single-vintage rule, so they do move.
+  //
+  // A filter rather than a shortcode, because a summary is a Nunjucks string built with `~`
+  // concatenation and a shortcode cannot be used inside one. It throws on a year the series
+  // does not hold, exactly as the `metric` filter throws on an unknown ref: a summary quietly
+  // rendering an empty string is the failure this is here to prevent.
+  eleventyConfig.addFilter('at', (data, year) => {
+    const point = data.find((p) => Number(p.date.slice(0, 4)) === Number(year));
+    if (!point) {
+      throw new Error(`No point for ${year} in this series. It holds ${data[0]?.date.slice(0, 4)} to ${data[data.length - 1]?.date.slice(0, 4)}.`);
+    }
+    return point.value;
+  });
   // Markdown content cites figures as {{theme/id}}, which survives because markdown is not
   // pre-processed as a template. Nunjucks pages are pre-processed, so the same braces would
   // be evaluated as an expression and silently produce NaN, which shipped once. They use
