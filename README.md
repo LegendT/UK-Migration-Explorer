@@ -58,13 +58,14 @@ content/                Eleventy input
   assets/style.css        One stylesheet
   robots.txt              Disallows all crawlers until launch
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code
+lib/series.mjs          The four timeseries and the names everything else calls them by
 data/                   Governed data layer, one file per theme, plus four timeseries
 scripts/                Four checks, all in CI, all negative-tested
 docs/foundation.md      Positioning, editorial principles, IA, data governance, risk register
 docs/BACKLOG.md         The durable list of outstanding work; every other doc points here
 docs/HANDOFF.md         How the project works, and what earlier sessions cost
 docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026 worked through
-docs/SERIES-CITATIONS.md        Scope: citing a series point, and the figures held twice
+docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
 docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check, four phases
 .pa11yci.json           pa11y over all 16 URLs at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
@@ -107,6 +108,14 @@ as a point estimate.
 **One figure, one home.** `dashboard.json` holds no values. Every card references a theme
 metric by `theme/id`. Previously the same figure existed in two files, and a quarterly update
 that missed one would have published two different official values for the same measure.
+
+That was fixed between the dashboard and the theme files and left standing between the theme
+files and the timeseries, because nothing connected the two. Four figures are published both
+ways, as a headline metric and as a point in a series. Each now declares `series_ref`, naming
+its own duplicate, and `validate-data.mjs` refuses a mismatch. The declaration sits on the
+metric rather than the series because `net-migration-2` pairs with the second-to-last point:
+it is the revised prior-year estimate the site publishes precisely to show that revisions
+happen, so a rule keyed on "the latest point" would have left it unguarded.
 
 **One vintage per series.** ONS states you cannot append the latest estimates to a series
 from an earlier release, and the Home Office revises historical asylum figures. Every

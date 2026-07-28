@@ -187,6 +187,27 @@ figures are overdue.
 
 ---
 
+## Small editorial decisions waiting on the owner
+
+Neither blocks anything. They are here because a decision recorded only in a merged pull
+request body is a decision that gets lost, and this file is the one place that cannot happen.
+Both came out of PR #41 on 28 July 2026.
+
+- **The revision sentence in `migration.njk`.** It reads "has moved by 285,000 across
+  revisions, from 606,000 when first published in May 2023 to [the 2022 estimate] in the
+  current series, 47% higher." The estimate is now cited, so it will update itself. The
+  `285,000` and the `47%` beside it will not, and nothing will fail the build when they go
+  wrong. The alternative was `meta.json`'s precedent of freezing a worked sum whole, which
+  was not taken because `historical_literals` is page-scoped and declaring the estimate would
+  also have un-protected the citation in the summary above it.
+- **Whether `/sources-and-method/` should publish a third limit.** The bullet saying series
+  values are not individually cited has gone, because they now are. Nothing replaced it, and
+  a candidate exists: a figure declared under `historical_literals` is exempted on trust and
+  nothing re-checks that the exemption is still deserved. Adding a limit to a live page is an
+  editorial call.
+
+---
+
 ## Unmet acceptance criteria, which are not launch gates
 
 **The distinction matters and is easy to lose.** Foundation section 17 labels only its five

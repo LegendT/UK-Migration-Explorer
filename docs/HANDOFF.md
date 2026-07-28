@@ -85,9 +85,8 @@ declare `series_ref` so a release cannot revise one and leave the other. `lib/se
 the single home for the series names, so a template's `series.flows` and a record's
 `flows@2025` cannot come to mean different things. Reasoning in `docs/SERIES-CITATIONS.md`.
 
-**A citation renders the raw value, so `at()` must pass through `| number`.** Without it the
-page ships `45537`, and no check saw it: there is no literal in the source to catch, the value
-is not `NaN`, and the build is green. That is now enforced.
+**A citation renders the raw value, so `at()` must pass through `| number`.** Enforced, after
+an unformatted figure reached the built page through both gates. Why, below.
 
 **Charts cite records too.** A bar carries `ref`, not `value`, and the shortcode throws on a
 literal value or an unknown ref.
@@ -181,9 +180,16 @@ Grouped, because there are two dozen and a flat list gets read as far as the fif
 ### Building a check, and trusting it
 
 - **Negative-test every new check**, and confirm the break actually applied before concluding
-  anything. Two "failures" in an earlier session were tests that never fired, and one was a
-  search string that did not match. A third joined them on 28 July: a `perl` edit whose
-  pattern missed, so the check "passed" against a file nobody had broken.
+  anything. Three "failures" here were tests that never fired: two in an earlier session, and
+  a `perl` edit on 28 July whose pattern missed, so a check "passed" against a file nobody had
+  broken. A fourth was a search string that did not match. The cheap guard is to grep for the
+  broken text and print the count before running anything.
+
+- **Negative-test a new mechanism too, not only a new check.** `at()` returns the raw number,
+  so a citation missing `| number` shipped `45537` to the built page with `npm run validate`
+  and `npm run build` both green. Nothing could have caught it: there is no literal in the
+  source for the longhand scan, and an unformatted integer is not `NaN`. It was found by
+  deliberately removing one, and it was found after the work was otherwise finished.
 
 - **Test the remedy the message recommends, not only the check.** The literal check told
   authors to declare a frozen figure under `historical_literals`, and that escape hatch was
@@ -362,7 +368,9 @@ This project has no CLAUDE.md of its own. Your global instructions at
 The pre-publication review is done. All nine of its corrections, 1a to
 1i under backlog item 1, landed in PR #38, and PR #39 reordered the
 backlog and rewrote the handoff around them. verification.txt at the
-repo root is the review itself.
+repo root is the review itself. Every other completed item names its own
+PR in the backlog's Completed section, so this prompt does not carry a
+list that would need updating each time.
 
 Work is tagged [me] or [you]: [me] is a factual or mechanical change you
 make against a cited source; [you] is an editorial or sourcing call that
@@ -375,7 +383,9 @@ Still mine, not yours, and not a session's work: the three closing steps
 that are what is left of item 1, including the last_reviewed decision;
 talking to five target users and choosing the success measures, both
 under "Unmet acceptance criteria"; and removing the robots rule, which
-comes last and is launch. Do not treat any of those as done.
+comes last and is launch. Do not treat any of those as done. The backlog
+also carries a short list of small editorial decisions waiting on me;
+those are mine to answer, not yours to take.
 
 TASK: take the first unstarted item in docs/BACKLOG.md, unless I have
 told you otherwise in this message. It is in recommended order,
@@ -410,13 +420,18 @@ changes; the rest bite on everything.
   not just the sentence.
 - Anything you add must pass, and run these rather than assume:
   npm run validate, npm run build, npm run a11y.
-- Negative-test every new check, and confirm the break actually applied
-  before believing the result. Two "failures" in an earlier session were
-  tests that never fired.
+- Negative-test every new check. Confirm the break applied by grepping for
+  the broken text and printing the count, before believing the result:
+  three "failures" here were tests that never fired. Negative-test a new
+  MECHANISM too, not only a new check. The at() filter shipped an
+  unformatted 45537 to the built page through validate and build alike
+  until one was deliberately broken.
 - State what a check does NOT establish in its own success message.
   Seven times a checker here passed while a real defect shipped, every
   time because it verified the source or the declaration rather than the
-  property a reader depends on.
+  property a reader depends on. The same goes for the remedy a message
+  recommends: the escape hatch one of them pointed at could not express
+  a single value it existed to exempt, and nobody had ever tried it.
 - No em-dashes, ever. Enforced by validate-content.mjs.
 - Do not fix by bulk substitution. Sentence by sentence, in view.
 - Never truncate the thing you are checking for absence, and prefer the
