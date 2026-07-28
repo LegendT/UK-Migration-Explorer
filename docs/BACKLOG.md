@@ -169,8 +169,11 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   rather than restated here. **Not covered: the four series files**, whose 100 points are
   replaced wholesale on release and carry no evidence at all. The check reports that on every
   run rather than leaving it to be inferred.
-- **Phase 1, the notifier, is next.** Nothing detects that a release has happened. Verified
-  endpoints and three traps are in the scope.
+- **Phase 1, the notifier, is next.** Nothing detects that a release has happened. The
+  endpoints were re-verified on 28 July 2026 and the comparison rule rewritten: compare
+  edition slugs, not dates, because the date rule fires a false positive today and the
+  per-source form cannot see a single figure left behind. The traps, the coverage
+  arithmetic and what each endpoint returned are in the scope.
 - Phase 3, the update prompt, which phase 2 has now made safe to build. Phase 4, rewriting
   what the sources page says about automation, which needs the owner's sign-off.
 
@@ -192,6 +195,25 @@ than it once was, because the cycle is three named releases and the validator re
 figures are overdue.
 
 ---
+
+## Found, not yet fixed
+
+Neither a scope nor a decision: a defect found while doing something else, recorded here
+because the alternative is that it lives in a merged pull request body and is lost.
+
+- **`population/eu-settlement-scheme-settled-status-grants` is a release behind**, found on
+  28 July 2026 while re-verifying the phase 1 endpoints. It holds 354,647 for the year ending
+  December 2025, from the December 2025 release, while every other Home Office figure on the
+  site cites the year ending March 2026. The March 2026 release carries the same measure:
+  "Of these, 71% (370,535) were settled status grants under the EUSS". **Nothing here can see
+  this.** The staleness check ages `retrieved_date`, 17 June, which is well inside the
+  quarterly window, and the notifier as originally scoped compares editions per source, where
+  the answer is "current" because other figures are on the newer one. **[you] first:** the
+  same page says the settled status total "includes an estimate of automated EUSS settled
+  status grants of 103,820, of which 100,300 are included in the YE March 2026 figure", so the
+  two editions may not be counting the same thing, and that is a comparability call rather
+  than an update. **[me] after it:** take the value from the .ods table rather than the
+  bulletin, and write the evidence entry the build now requires.
 
 ## Small editorial decisions waiting on the owner
 
