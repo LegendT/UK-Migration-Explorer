@@ -1,4 +1,4 @@
-# Handoff, 27 July 2026
+# Handoff, 28 July 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -11,20 +11,25 @@ or if a planning document exists that the backlog does not reference.
 
 ## Start here
 
-1. Read `docs/BACKLOG.md`. The launch blocker is item 1: the pre-publication review, now
-   conducted, whose findings became a list of corrections 1a to 1i. 1a, 1b and 1c are done;
-   take the first unstarted one. Then the scoped-but-unblocked items, then a list of gaps
-   carried deliberately.
+1. Read `docs/BACKLOG.md`. The launch blocker is item 1: the pre-publication review, whose
+   findings became corrections 1a to 1i. **All nine have landed.** What remains of item 1 is
+   three closing steps that are the owner's, not a session's. Then the scoped-but-unblocked
+   items, then a list of gaps carried deliberately.
 2. Read the rest of this document, for how the project works and what not to repeat.
 3. Read the scope, or `verification.txt`, for whatever you pick up. Do not re-derive it.
 
-**The pre-publication review was conducted on 27 July 2026.** Its findings are in
-`verification.txt` at the repository root, and its outcome is a corrections list, not an
-approval: several claim pages were "do not publish as written". Those corrections are backlog
-item 1, each tagged for the owner or for whoever picks it up. The blocker stays open until they
-land and the pages pass, and the closing steps, stamping `last_reviewed`, dropping the pre-launch
-banner and recording the review as passed, wait until then. Then, last, remove the robots rule.
-That is launch.
+**The pre-publication review was conducted on 27 July 2026, and its corrections all landed by
+28 July 2026.** The review itself is in `verification.txt` at the repository root. Its outcome
+was a corrections list rather than an approval, and several claim pages had been "do not publish
+as written".
+
+**The corrections landing is not the review passing.** Someone still has to decide the pages now
+pass, and then do the three things the backlog gates: settle `last_reviewed`, drop the pre-launch
+banner from `content/_includes/base.njk`, and record the review as passed in `CHANGELOG.md`. The
+`last_reviewed` one is not cosmetic. The practice diverged while the corrections were landing, so
+three claim pages currently show a review date after their corrections and four show one before,
+and the claims index puts that in front of readers. Then, last, remove the robots rule. That is
+launch.
 
 The update commitment was signed on 23 July 2026 at one month per cadenced release, which
 closed the other original blocker.
@@ -194,6 +199,30 @@ establish*, and listed in `docs/BACKLOG.md`.
 - **Scoping is not progress.** Four scope documents were written in one session while the site
   did not change. Each was defensible; together they were a way of feeling productive without
   shipping. Prefer building the smallest real thing.
+- **Open the primary table, not the summary page.** Three figures in the review corrections did
+  not exist on any HTML bulletin: the 5,931 administrative outcomes, the cohort grant rates, and
+  the asylum-specific appeal figures. Worse, two site figures looked *wrong* against the bulletin
+  and were right: it prints 39% allowed and 61 weeks for the whole immigration chamber, while
+  tables FIA_3 and T_3 give 40% and 67 weeks for asylum and protection. Believing the bulletin
+  would have introduced two errors while "correcting" them. The `.ods` and `.xlsx` files are zip
+  archives; unzip and parse the sheet XML directly.
+- **Reconcile a derived figure against published ones before writing it.** The 5,931 was summed
+  from a pivot over four quarters. The same four quarters reproduce the published 79,719 refusals,
+  16,901 withdrawals and 48,581 grants, and the grand total 151,132 equals the decisions total plus
+  both excluded categories. That is what establishes the basis and period, not the figure alone.
+- **Read the site's own published policy before adopting a reviewer's recommendation.** The
+  review asked for attributable circulation examples. The style guide says, on a live page, that
+  this site does not attribute claims to named people and accepts the "nobody actually says that"
+  rebuttal as the cost. The review's finding *is* that rebuttal. A good example had already been
+  found and would have contradicted two published pages. An external reviewer does not know what
+  the site has promised its readers.
+- **A defect named on one page usually has siblings.** The invalid cohort comparison was in three
+  places, only one of which the review names, and one of those was a record's `notes`, where it
+  would have instructed the next editor to reintroduce it. The support-versus-accommodation
+  conflation was in two. Grep the reasoning, not just the sentence.
+- **A validator rule can close an option without anyone noticing.** Dropping claim 2.7 looked
+  available and is not: pro-migration claims sit exactly on the enforced floor of two. Check the
+  constraint before offering a choice, not after it is made.
 
 ## House style
 
@@ -263,20 +292,21 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review has been done. Its findings became the
-corrections under backlog item 1, numbered 1a to 1i; 1a, 1b and 1c are
-done. Each is tagged [me] or [you]. [me] is a factual or mechanical
-correction you make against a cited source; [you] is an editorial or
-sourcing call that is mine. Do the [me] parts; for a [you] part, propose
-and ask. verification.txt at the repo root is the review itself.
+The pre-publication review has been done and all of its corrections,
+1a to 1i under backlog item 1, have landed. verification.txt at the repo
+root is the review itself. Work is tagged [me] or [you]: [me] is a
+factual or mechanical correction you make against a cited source; [you]
+is an editorial or sourcing call that is mine. Do the [me] parts; for a
+[you] part, propose and ask.
 
-Still mine, not yours, and not a session's work: talking to five target
-users and choosing the success measures, both under "Unmet acceptance
-criteria". And removing the robots rule, which comes last and is launch.
-Do not treat any of those as done.
+Still mine, not yours, and not a session's work: the three closing steps
+that are what is left of item 1, including the last_reviewed decision;
+talking to five target users and choosing the success measures, both
+under "Unmet acceptance criteria"; and removing the robots rule, which
+comes last and is launch. Do not treat any of those as done.
 
-TASK: take the first unstarted correction under backlog item 1, unless I
-have told you otherwise in this message. They are in recommended order,
+TASK: take the first unstarted item in docs/BACKLOG.md, unless I have
+told you otherwise in this message. It is in recommended order,
 maintained there, so this prompt names no task and does not go stale as
 items finish.
 
