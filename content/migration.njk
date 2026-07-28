@@ -8,6 +8,11 @@ strapline: >-
 last_reviewed: 2026-07-23
 review_due: 2027-07-23
 eleventyExcludeFromCollections: true
+# 285,000 is the SIZE of the 2022 revision, 891,000 minus 606,000. It happens to equal the
+# 2017 point in the discontinued net migration series, which is why the series scan flags it.
+# Do not cite that point: it is a different measure in a different year and citing it would
+# put an unrelated figure in this sentence.
+historical_literals: 285,000
 figures:
   - migration/asylum-related-immigration
   - migration/net-migration
@@ -35,12 +40,12 @@ arrivals</a>.</p>
   id: 'net-migration-over-time',
   series: [{ name: 'Net migration', points: nm.data | points }],
   title: 'UK net migration, 2012 to 2025',
-  summary: 'Net migration rose sharply from 2021 and reached 891,000 in 2022, the highest point on this calendar-year series. It has fallen in each of the three years since, to ' ~ (netMigration.value | number) ~ '.',
+  summary: 'Net migration rose sharply from 2021 and reached ' ~ (nm.data | at(2022) | number) ~ ' in 2022, the highest point on this calendar-year series. It has fallen in each of the three years since, to ' ~ (netMigration.value | number) ~ '.',
   unit: 'people per year',
   source: 'ONS, long-term international migration, provisional: year ending December 2025',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
   breakAfter: 2020,
-  note: 'ONS advises that estimates before and after June 2021 should be compared with caution, because the methods used to produce them differ. The break is marked on the chart. Every point comes from a single ONS release, and figures from different releases must not be mixed. The 2022 estimate has moved by 285,000 across revisions, from 606,000 when first published in May 2023 to 891,000 in the current series, 47% higher. The highest twelve-month net migration estimate ONS publishes is 944,000, in the year ending March 2023, a window a calendar-year series cannot show.'
+  note: 'ONS advises that estimates before and after June 2021 should be compared with caution, because the methods used to produce them differ. The break is marked on the chart. Every point comes from a single ONS release, and figures from different releases must not be mixed. The 2022 estimate has moved by 285,000 across revisions, from 606,000 when first published in May 2023 to ' ~ (nm.data | at(2022) | number) ~ ' in the current series, 47% higher. The highest twelve-month net migration estimate ONS publishes is 944,000, in the year ending March 2023, a window a calendar-year series cannot show.'
 } %}
 
 <h2>The two flows behind that number</h2>
@@ -57,7 +62,7 @@ only way to see which is to look at the flows separately.</p>
     { name: 'Emigration', points: fl.emigration.data | points, dashed: true }
   ],
   title: 'Long-term immigration and emigration, 2012 to 2025',
-  summary: 'Immigration was highest in 2023 on this calendar-year series, at 1,441,000, and has fallen since. Emigration rose steadily from 480,000 in 2021 to 680,000 in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.',
+  summary: 'Immigration was highest in 2023 on this calendar-year series, at ' ~ (fl.data | at(2023) | number) ~ ', and has fallen since. Emigration rose steadily from ' ~ (fl.emigration.data | at(2021) | number) ~ ' in 2021 to ' ~ (fl.emigration.data | at(2024) | number) ~ ' in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.',
   unit: 'people per year',
   source: 'ONS, long-term international immigration, emigration and net migration flows, provisional',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional',

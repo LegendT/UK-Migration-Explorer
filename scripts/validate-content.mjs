@@ -8,6 +8,8 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { seriesPoints } from '../lib/series.mjs';
+
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const claimsDir = fileURLToPath(new URL('../content/claims/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
@@ -49,6 +51,14 @@ const PARTIALS = new Set(['sources-catalogue', 'confidence-levels', 'key-caveats
 // not a line number in the file. Reporting one that does not open the offending line is
 // worse than reporting none.
 const frontMatterLines = (front) => front.split('\n').length + 2;
+
+// Semicolons only. This split accepted commas too, which cannot work: every literal the
+// error-level check fires on is comma-grouped, so "285,000" was shredded into "285" and
+// "000". The exemption then silently did nothing AND created two junk exemptions for
+// unrelated values. Three copies of that split existed and no content page had ever used
+// one, so the escape hatch the error message points at had never been exercised.
+const parseLiterals = (raw) =>
+  new Set(String(raw ?? '').split(';').map((literal) => literal.trim()).filter(Boolean));
 
 // Split {{ ... }} into metric citations and structural partials, so a partial is never
 // looked up as a metric and a typo in either is caught.
@@ -159,7 +169,7 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
     }
   }
 
-  const literals = new Set((front.historical_literals ?? '').split(/[,;]\s*/).filter(Boolean));
+  const literals = parseLiterals(front.historical_literals);
   contentPages.push({ file, prose, literals, lineOffset: frontMatterLines(match[1]) });
   claims.push({ file, id: front.id, direction: front.direction, mirrorOf: front.mirror_of, tokens: new Set(tokens) });
 }
@@ -370,7 +380,7 @@ try {
     const anchors = [...prose.matchAll(/^###\s+(.+?)\s*\{#([a-z0-9-]+)\}\s*$/gm)];
     terms = anchors.length;
     const seen = new Set();
-    const literals = new Set((front.match(/^historical_literals:\s*(.*)$/m)?.[1] ?? '').split(/[,;]\s*/).filter(Boolean));
+    const literals = parseLiterals(front.match(/^historical_literals:\s*(.*)$/m)?.[1]);
     contentPages.push({ file: 'glossary.md', prose, literals, lineOffset: frontMatterLines(front) });
     for (const [, name, anchor] of anchors) {
       if (seen.has(anchor)) errors.push(`glossary.md: duplicate anchor #${anchor}`);
@@ -452,7 +462,7 @@ for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f
   const value = (key) => front.match(new RegExp(`^${key}:\\s*(.*)$`, 'm'))?.[1].replace(/^["']|["']$/g, '').trim();
   checkReviewDue(file, value('last_reviewed'), value('review_due'));
 
-  const literals = new Set((front.match(/^historical_literals:\s*(.*)$/m)?.[1] ?? '').split(/[,;]\s*/).filter(Boolean));
+  const literals = parseLiterals(front.match(/^historical_literals:\s*(.*)$/m)?.[1]);
   contentPages.push({ file, prose, literals, lineOffset: frontMatterLines(front) });
   tokens.forEach((t) => glossaryTokens.add(t));
   pages += 1;
@@ -510,6 +520,26 @@ for (const [ref, metric] of registry) {
   }
 }
 
+// The series files are the other half of the data layer, and nothing scanned them. A chart
+// draws its own points from the file, but a summary naming a single year in that series
+// typed the number, because until the `at` filter existed there was no way to cite one. The
+// series are refreshed wholesale on every release under the single-vintage rule, so they do
+// move, and the sentence describing the chart could drift from the chart in silence.
+//
+// Three values sit at more than one point, 249,000, 313,000 and 494,000, so the message names
+// every candidate rather than guessing which one the author meant.
+const points = seriesPoints();
+const seriesValues = new Map();
+for (const [ref, point] of points) {
+  for (const form of new Set([point.value.toLocaleString('en-GB'), String(point.value)])) {
+    seriesValues.set(form, [...(seriesValues.get(form) ?? []), ref]);
+  }
+}
+const citeSeries = (ref) => {
+  const [block, year] = ref.split('@');
+  return `(series.${block}.data | at(${year}) | number)`;
+};
+
 function checkLiterals(file, prose, allowed) {
   // Only citations are removed before scanning. Stripping every {% %} tag took the chart
   // configs out with them, and the chart configs were the one place on the site where live
@@ -529,12 +559,36 @@ function checkLiterals(file, prose, allowed) {
     }
   }
 
+  // Where the exemption is written differs by file, and telling an author to use a separator
+  // their file has no concept of is how a remedy stops being a remedy. A data file has no
+  // front matter and declares frozen figures in a sibling array.
+  const declareIn = file.includes('.json')
+    ? 'the sibling historical_literals array'
+    : 'historical_literals in the front matter, semicolon separated';
+
   const candidates = withoutTokens.match(/\b\d{1,3}(?:,\d{3})+\b|\b\d+(?:\.\d+)?\b/g) ?? [];
   for (const literal of new Set(candidates)) {
     if (allowed.has(literal)) continue;
     const ref = liveValues.get(literal);
     if (ref) {
-      errors.push(`${file}: writes ${literal} longhand, which is the current value of ${ref}, cite {{${ref}}} so it cannot go stale, or list it under historical_literals if it is deliberately frozen`);
+      errors.push(`${file}: writes ${literal} longhand, which is the current value of ${ref}, cite {{${ref}}} so it cannot go stale, or list it under ${declareIn} if it is deliberately frozen`);
+      // Four figures are held as a metric AND as a series point. The metric message is the
+      // more useful of the two, and reporting the same literal twice would read as two
+      // defects. validate-data.mjs is what keeps those two copies in step.
+      continue;
+    }
+    const matched = seriesValues.get(literal);
+    // Two remedies. The `at` filter only works in a chart config, so a markdown page, which
+    // has no syntax for citing a series point at all, is told what it can actually do. And a
+    // value that merely COINCIDES with a point in an unrelated series has to be declared
+    // rather than cited: one of the four matches this found on its first run was exactly
+    // that, and citing it would have named the wrong record, which is what a denylist sweep
+    // produces every time.
+    if (matched) {
+      const remedy = file.endsWith('.njk')
+        ? `cite it with ${matched.map(citeSeries).join(' or ')}`
+        : 'nothing here cites a series point, so reword it';
+      errors.push(`${file}: writes ${literal} longhand, which is the value at ${matched.join(' and ')}. If it is that figure, ${remedy}. If it is a coincidence or deliberately frozen, list it under ${declareIn}.`);
     }
   }
 }
@@ -617,8 +671,8 @@ if (warnings.length) {
   for (const warning of warnings) console.log(`  ${warning}`);
   console.log('Many are coincidence, several metrics share a value. Review, do not suppress.');
 }
-console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes a comma-grouped record value longhand.`);
+console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes a comma-grouped value longhand, whether it belongs to a record or to one of the ${points.size} points in the series files.`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
-console.log(`Not covered: whether a sentence describing a figure describes it correctly, and values quoted from the timeseries files, which are read against the series by hand. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
+console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
 console.log('This counts whose claim is corrected. It is not a measure of fairness; the split is disclosed on the claims page.');

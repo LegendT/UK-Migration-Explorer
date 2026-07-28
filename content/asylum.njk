@@ -51,12 +51,12 @@ the cases basis; and that one also comes from a different publisher on a differe
 <a href="/what-the-words-mean/#people-and-cases">people and cases</a>.</p>
 
 <h2>Claims over time</h2>
-
+{% set aa = series.asylumApplications %}
 {% lineChart {
   id: 'asylum-applications-over-time',
-  series: [{ name: 'People claiming asylum', points: series.asylumApplications.data | points }],
+  series: [{ name: 'People claiming asylum', points: aa.data | points }],
   title: 'People claiming asylum in the UK, 2010 to 2025',
-  summary: 'Claims roughly doubled across the 2010s, from 22,644 in 2010 to 45,537 in 2019. They rose steeply to 95,007 in 2022, fell 8% in 2023, and reached a high of 104,764 in 2024 before easing to 100,625 in 2025.',
+  summary: 'Claims roughly doubled across the 2010s, from ' ~ (aa.data | at(2010) | number) ~ ' in 2010 to ' ~ (aa.data | at(2019) | number) ~ ' in 2019. They rose steeply to ' ~ (aa.data | at(2022) | number) ~ ' in 2022, fell 8% in 2023, and reached a high of ' ~ (aa.data | at(2024) | number) ~ ' in 2024 before easing to ' ~ (aa.data | at(2025) | number) ~ ' in 2025.',
   unit: 'people per calendar year',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',
@@ -100,19 +100,19 @@ the rate above, and cannot be added to it. Neither
 refusals are overturned"</a> nor "a refusal settles it" survives contact with that.</p>
 
 <h2>The queue for a first decision</h2>
-
+{% set ab = series.asylumBacklog %}
 {% lineChart {
   id: 'asylum-backlog-over-time',
   series: [
-    { name: 'People', points: series.asylumBacklog.data | points },
-    { name: 'Cases', points: series.asylumBacklog.alternate_basis.data | points, dashed: true }
+    { name: 'People', points: ab.data | points },
+    { name: 'Cases', points: ab.alternate_basis.data | points, dashed: true }
   ],
   title: 'Waiting for a first asylum decision, end of each year, 2010 to 2025',
   summary: 'The queue grew substantially through the 2010s, and among the year-end points shown it peaked at the end of 2022. It has since fallen by 60% on the people basis and 63% on the cases basis. The two lines are the same queue counted two ways.',
   unit: 'waiting at 31 December',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',
-  note: 'Both lines describe the same people. The upper counts people including dependants; the lower counts main-applicant cases. Quoting one and comparing it with the other is the most common error made with this figure. Growth through the 2010s was substantial but not uniform: the people line fell between the end of 2014 and the end of 2015, from 22,898 to 22,147, while the cases line rose in every year of the decade. The within-year peak was higher than either line shows: 175,457 people in June 2023.'
+  note: 'Both lines describe the same people. The upper counts people including dependants; the lower counts main-applicant cases. Quoting one and comparing it with the other is the most common error made with this figure. Growth through the 2010s was substantial but not uniform: the people line fell between the end of 2014 and the end of 2015, from ' ~ (ab.data | at(2014) | number) ~ ' to ' ~ (ab.data | at(2015) | number) ~ ', while the cases line rose in every year of the decade. The within-year peak was higher than either line shows: 175,457 people in June 2023.'
 } %}
 
 <h2>There is no such thing as the backlog</h2>
