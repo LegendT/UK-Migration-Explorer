@@ -43,7 +43,7 @@ and no analysis covers the whole **post-Brexit** immigration system.
 This is why the opposite claim fails on the same evidence. A body of small, mixed,
 method-dependent studies cannot establish a confident benefit for
 [one side](/common-claims/immigrants-pay-far-more-than-they-cost/) and a confident cost for
-the other. If it is too mixed to show "far more in than out", it is too mixed to show a
+the other. If it is too mixed to show "more in than out", it is too mixed to show a
 drain.
 
 ## Why the claim is misleading
@@ -89,7 +89,7 @@ misuse.
 
 ## The mirror claim fails too
 
-"Immigrants pay far more in tax than they cost" is wrong for exactly the same reason, and
+"Immigrants pay more in tax than they cost" is wrong for exactly the same reason, and
 this site checks it
 [separately and at greater length](/common-claims/immigrants-pay-far-more-than-they-cost/).
 Both take a small, mixed body of evidence and publish the end they prefer.

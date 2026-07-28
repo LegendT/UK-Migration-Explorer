@@ -48,7 +48,7 @@
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-granted-asylum-in-the-uk",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
-      "notes": "Proportion of initial decisions (main applicants) resulting in a grant of protection or other leave; excludes withdrawals and administrative outcomes. Down from 49% a year earlier; peak was 77% (year ending September 2022). The grant rate at final outcome, after appeals, is historically 17 to 29 percentage points higher, so this understates eventual protection rates.",
+      "notes": "Proportion of initial decisions (main applicants) resulting in a grant of protection or other leave; excludes withdrawals and administrative outcomes. Down from 49% a year earlier; peak was 77% (year ending September 2022). Do not add a cohort uplift to this rate. Home Office cohort table Asy_04 shows the latest recorded grant rate running 17 to 29 percentage points above the initial rate for claims made between 2010 and 2020, but its note 48 says that table's initial rate 'will not match the grant rate in the initial decisions dataset as they relate to a different cohort of initial decisions'. The uplift also covers reconsiderations and reinstated claims, not appeals alone, and the Home Office calls the later figure the latest recorded outcome rather than the final one.",
       "confidence_level": "official"
     },
     {
@@ -209,7 +209,7 @@
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
-      "notes": "About 40% of asylum appeals allowed. Mean age of an asylum appeal at conclusion: 67 weeks.",
+      "notes": "Asylum/Protection/Revocation of Protection appeals only, MoJ table FIA_3: 4,088 determined at a hearing or on the papers in the quarter, 40% allowed. NOT a share of all disposals. Of 7,799 asylum and protection appeals disposed of, 52% were determined, 35% withdrawn, 6% struck out and 6% invalid or out of time. The chamber-wide figure across all case types is 39%, so do not mix the two. Mean time to clearance for asylum and protection, MoJ table T_3: 67 weeks; the 61 weeks in the bulletin is the chamber-wide figure. The latest quarter is provisional and the three before it have been revised.",
       "confidence_level": "official"
     },
     {
@@ -243,6 +243,22 @@
       "retrieved_date": "2026-06-17",
       "notes": "21% of the supported population. Down 35% on March 2025 and 63% below the September 2023 peak of 56,018. A further 75% were in other accommodation and 4% on subsistence-only support.",
       "confidence_level": "official"
+    },
+    {
+      "id": "people-in-asylum-accommodation",
+      "metric_name": "People in asylum accommodation (hotel and other)",
+      "value": 93653,
+      "unit": "people",
+      "date": "2026-03-31",
+      "period_label": "as at 31 March 2026",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, How many people are in the UK asylum system?",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-27",
+      "notes": "CALCULATED by this project as the sum of two published components: 20,885 in hotel accommodation plus 72,768 in other accommodation, including initial, contingency and dispersal. The Home Office publishes those two and the 97,519 support total, but not this sum. It is the accommodation figure, and is NOT the support total: 3,866 people received subsistence support only and are in the 97,519 but not here. Excludes unaccompanied asylum-seeking children.",
+      "confidence_level": "calculated"
     },
     {
       "id": "largest-nationality-claiming-asylum-pakistan",
@@ -450,6 +466,22 @@
       "published_date": "2026-05-21",
       "retrieved_date": "2026-07-22",
       "notes": "PEOPLE basis: main applicants plus dependants. Down 6% on the year ending March 2025 (17,956). Withdrawals are NOT part of the 128,300 people receiving initial decisions, and are excluded from the grant rate.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "asylum-administrative-outcomes",
+      "metric_name": "Asylum claims with an administrative outcome (people)",
+      "value": 5931,
+      "unit": "people",
+      "date": "2026-03-31",
+      "period_label": "year ending March 2026",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum claims and initial decisions detailed datasets, table Asy_D02",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-27",
+      "notes": "PEOPLE basis: main applicants plus dependants, all applicant types. Summed from the Asy_D02 pivot over 2025 Q2 to 2026 Q1: 3,858 + 855 + 844 + 374. The pivot splits the same four quarters into void 4,896, suspended 642, other 387 and deceased 6, so voided cases are the great majority. The Home Office table notes say the category 'includes a small number of cases that were previously categorised as a withdrawal, as well as other administrative outcomes including voided and suspended cases'. Like withdrawals, these are NOT part of the 128,300 people receiving initial decisions and are excluded from the grant rate. The same four quarters of that pivot give 79,719 refusals, 16,901 withdrawals and 48,581 grants, and a grand total of 151,132, which is how this figure's basis and period were confirmed.",
       "confidence_level": "official"
     }
   ]

@@ -112,7 +112,7 @@
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
-      "notes": "14% of non-EU+ immigration; includes those who claimed asylum after regular arrival and via illegal entry. Family about 7%, humanitarian about 6% of non-EU+ immigration.",
+      "notes": "ASYLUM APPLICANTS ONLY, 14% of non-EU+ immigration. Humanitarian is a separate ONS category, about 6%, and is NOT in this figure; family is about 7%. Labelling this bar or row 'asylum and humanitarian' understates the combined category and misstates this one. Includes those who claimed asylum after regular arrival and via illegal entry.",
       "confidence_level": "provisional"
     },
     {

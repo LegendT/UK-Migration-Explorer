@@ -36,8 +36,8 @@ So the headline number describes neither group of people. Far more than
 It treats a subtraction as a headcount. Nobody is "a net migrant": the figure is the
 gap between two [flows](/what-the-words-mean#flow-and-stock), and it tells you nothing on its own about the size of either.
 
-The practical consequence is that net migration can move for reasons that have nothing
-to do with how many people arrived. Between the year ending December 2023 and the year
+The practical consequence is that net migration can change even when the number arriving
+does not, because emigration moves independently. Between the year ending December 2023 and the year
 ending December 2024, net migration fell by around 517,000. Immigration over the same
 period fell by around 429,000. The rest of the drop came from emigration rising by
 roughly 87,000, more people leaving, not fewer arriving.
@@ -49,7 +49,8 @@ time. Reading the net figure as an arrivals figure hides all of that.
 One further caution: these are estimates, and they are revised. The year ending December
 2024 figure was first published as 431,000, revised to about 345,000, and now stands at
 {{migration/net-migration-2}}, largely because ONS revised its estimate of British emigration upwards. The
-number moved by 100,000 without a single person's movement changing.
+estimate fell by 100,000 because ONS brought in new data and methods, not because the 2024
+period itself changed.
 
 ## Better questions to ask
 

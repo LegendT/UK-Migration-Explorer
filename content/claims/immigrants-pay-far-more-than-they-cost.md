@@ -1,6 +1,6 @@
 ---
 id: immigrants-pay-far-more-than-they-cost
-claim: Immigrants pay far more in tax than they cost.
+claim: Immigrants pay more in tax than they cost.
 short_answer: >-
   Not established as a general claim. Pre-Brexit studies found fiscal effects smaller than
   1% of GDP in magnitude, but the results differ substantially by migrant group, period,
@@ -76,7 +76,7 @@ covering everyone who has ever migrated to the UK conceals more than it reports.
 
 "Immigrants are a drain on the public finances" is wrong for exactly the same reason, and this
 site treats it no differently. Both take a small, mixed body of evidence and report one end of
-it as the answer. If the evidence cannot support "far more in than out", it cannot support "a
+it as the answer. If the evidence cannot support "more in than out", it cannot support "a
 net drain" either.
 
 ## What this is not about
