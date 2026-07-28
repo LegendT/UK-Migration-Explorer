@@ -9,6 +9,32 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The evidence check, 28 July 2026
+
+**No published figure changed.** `scripts/check-evidence.mjs` compares the data layer against
+`origin/main` and requires any metric whose value moved, and any metric that is new, to be
+declared in `data/evidence/` with a quote from a fetched source containing that value. CI fails
+without one. It is the mechanical half of what the sources page promises a reader, that no
+figure appears here because a model asserted it: a fabricated value cannot appear in a quote
+taken from a real page. Eight fabricated figures reached this repository once and a reviewer
+caught them. Nothing else would have.
+
+- **A derived figure appears in no source**, which is what makes it derived, so it quotes its
+  inputs and states the arithmetic instead. The exemption is keyed on `confidence_level`
+  rather than a list of refs: the derived figures went from one to three in the week between
+  this being scoped and being built, and a hard-coded list would have required two of them to
+  quote a value nobody publishes.
+- **The evidence files are committed and kept**, as the audit trail. Entries are matched, never
+  validated wholesale, so an entry naming a figure since renamed stays as history rather than
+  failing a build until someone deletes the trail to get a green run.
+- **It fails rather than skipping when it cannot see the base branch.** A comparison against
+  nothing finds no changed figure and would report that as a clean run. On a push to main,
+  where the base and `HEAD` are the same commit, it says that rather than announcing that no
+  figure changed.
+- **Not covered: the four series files.** Their 100 points are replaced wholesale on release
+  under the single-vintage rule and carry no evidence at all. The check counts the changed
+  files and says so on every run.
+
 ### Citing a series point, 28 July 2026
 
 **No published figure changed.** Twelve numbers that had been typed by hand into chart

@@ -106,12 +106,13 @@ page shows it. `check-build` caught exactly that.
 
 ## The checking apparatus, and its limits
 
-Five checks, all in CI, all negative-tested.
+Six checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, outstanding work tracked in the backlog |
+| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
@@ -173,7 +174,8 @@ is already here to adding a neighbour beside it.
 
 - **Research subagents must quote a fetched URL and verbatim text per figure.** One returned
   eight values that appeared nowhere in its own evidence table. Anything unverifiable comes back
-  marked UNVERIFIED and is left out.
+  marked UNVERIFIED and is left out. For anything that reaches a record this is now mechanical:
+  `check-evidence.mjs` fails the build unless the quote is in `data/evidence/`.
 
 - **A stored "all reviewed" note is a declaration, not a check, and it ages.** The README
   recorded the fourteen sub-100 warnings as reviewed and all coincidences. Checking each
@@ -414,11 +416,12 @@ Rules this project has paid for. The first two bite whenever a figure
 changes; the rest bite on everything.
 
 - Every changed or new figure needs a fetched source and a verbatim quote
-  before it is written. Go to the publisher's data tables, not its HTML
-  bulletin: the bulletin aggregates, and twice a site figure has looked
-  wrong against one and been right. .ods and .xlsx are zip archives, so
-  download and parse them rather than giving up when a fetch cannot read
-  them.
+  before it is written. The quote goes in data/evidence/ and CI fails
+  without it; the shape is in data/evidence/README.md. Go to the
+  publisher's data tables, not its HTML bulletin: the bulletin aggregates,
+  and twice a site figure has looked wrong against one and been right.
+  .ods and .xlsx are zip archives, so download and parse them rather than
+  giving up when a fetch cannot read them.
 - Confirming the figure you asked about is not the whole job. Five times
   a check here has overturned something asserted right beside it.
 - Check what this project has already published, or already enforces,
@@ -429,7 +432,8 @@ changes; the rest bite on everything.
 - A defect reported on one page usually has siblings. Grep the reasoning,
   not just the sentence.
 - Anything you add must pass, and run these rather than assume:
-  npm run validate, npm run build, npm run a11y.
+  npm run validate, npm run build, npm run a11y, and npm run check-evidence
+  if a figure changed.
 - Negative-test every new check. Confirm the break applied by grepping for
   the broken text and printing the count, before believing the result:
   three "failures" here were tests that never fired. Negative-test the

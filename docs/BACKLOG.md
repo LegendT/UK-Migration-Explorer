@@ -147,7 +147,8 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This list is in recommended order. Take the first unstarted item, which is item 3.** The
+**This list is in recommended order. Take the first unfinished item, which is item 3, whose
+phase 1 is next.** The
 order lives here rather than in the handoff's prompt, so that finishing something does not
 leave a stale instruction somewhere else. Re-order it freely; this is the only place the
 sequence is stated.
@@ -156,17 +157,22 @@ If you reorder, or complete something, **move the sections and renumber** rather
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item.
 
-### 3. Release notifier and evidence check
+### 3. Release notifier and evidence check: phase 2 built, three phases left
 
 **`docs/UPDATE-AUTOMATION.md`.** Four phases. Phases 1 and 2 are each worth building alone;
 phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
 
-- **Phase 2, the evidence check, first despite its number.** Any figure whose value changed, or
-  which is new, must carry a quote from a fetched source containing that value. It applies to
-  updates made by hand and is what makes everything after it safe.
-- **Phase 1, the notifier.** Nothing detects that a release has happened. Verified endpoints
-  and three traps are in the scope.
-- Phase 3, the update prompt. Phase 4, rewriting what the sources page says about automation.
+- **Phase 2, the evidence check. DONE (PR #43, 28 July 2026).** A figure whose value changed,
+  or which is new, must be declared in `data/evidence/` with a quote from a fetched source
+  containing that value, and CI fails without one. It applies to updates made by hand, which
+  is why it went first. Five things the scope had wrong or did not say are recorded in it
+  rather than restated here. **Not covered: the four series files**, whose 100 points are
+  replaced wholesale on release and carry no evidence at all. The check reports that on every
+  run rather than leaving it to be inferred.
+- **Phase 1, the notifier, is next.** Nothing detects that a release has happened. Verified
+  endpoints and three traps are in the scope.
+- Phase 3, the update prompt, which phase 2 has now made safe to build. Phase 4, rewriting
+  what the sources page says about automation, which needs the owner's sign-off.
 
 ### 4. The eight undrafted claims
 

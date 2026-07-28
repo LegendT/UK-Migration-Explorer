@@ -132,6 +132,7 @@ npm run build     # Eleventy -> _site, then the built-site checks
 npm run serve     # local dev server
 npm run a11y      # build, serve, and run pa11y over all 16 URLs
 npm run check-sources   # network check that every source URL still resolves
+npm run check-evidence  # every changed or new figure carries a quote (needs origin/main)
 ```
 
 Content files are **not** pre-processed as templates (`markdownTemplateEngine: false`).
@@ -153,12 +154,13 @@ citing a metric that no longer exists, fails the deploy rather than reaching any
 
 ## The checking apparatus, and its limits
 
-Five checks, all in CI, all negative-tested.
+Six checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, and outstanding work tracked in `docs/BACKLOG.md` |
+| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. Gates the build |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
