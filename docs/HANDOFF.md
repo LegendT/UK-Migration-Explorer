@@ -34,8 +34,7 @@ closed the other original blocker.
 
 - **Live:** https://ukmigrationexplorer.netlify.app (robots.txt disallows all crawlers)
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
-- **Branch:** `main`, current with origin, CI green. Start work on a new branch; this project
-  works through PRs even solo.
+- **Working branch:** cut a new one from `main`. This project works through PRs even solo.
 
 Deliberately not recorded here: which branches exist, what CI last did, what is on the remote.
 That is operational state, it is discoverable in seconds, and a previous version of this
@@ -78,15 +77,13 @@ a sibling `historical_literals` key.
 
 **Series points are cited too, with a filter rather than a token.** A chart summary is a
 Nunjucks string built with `~` concatenation, so a shortcode cannot go inside one:
-`(series.netMigration.data | at(2022) | number)` is the citation, and it throws on a year the
-series does not hold. A series value written longhand fails the build. Twelve were typed by
-hand and are now cited, and the four figures held both as a metric and as a series point
-declare `series_ref` so a release cannot revise one and leave the other. `lib/series.mjs` is
-the single home for the series names, so a template's `series.flows` and a record's
-`flows@2025` cannot come to mean different things. Reasoning in `docs/SERIES-CITATIONS.md`.
-
-**A citation renders the raw value, so `at()` must pass through `| number`.** Enforced, after
-an unformatted figure reached the built page through both gates. Why, below.
+`(series.netMigration.data | at(2022) | number)` is the citation. It throws on a year the
+series does not hold, and the `| number` is not optional, because `at` returns the raw value
+and a page that omits it ships `45537`. A series value written longhand fails the build. The
+four figures held both as a metric and as a series point declare `series_ref`, so a release
+cannot revise one and leave the other, and `lib/series.mjs` is the single home for the series
+names, so a template's `series.flows` and a record's `flows@2025` cannot come to mean
+different things. Reasoning in `docs/SERIES-CITATIONS.md`.
 
 **Charts cite records too.** A bar carries `ref`, not `value`, and the shortcode throws on a
 literal value or an unknown ref.
@@ -129,6 +126,13 @@ claimed the latter. The seventh was the literal check walking `content/` and not
 left the one file whose entire job is holding references as the only file nobody scanned for
 values. The messages now state only what they verify.
 
+**The count is seven, and two more of that shape have been caught since without being added
+to it**, because both were found before they merged: the `at()` filter shipping an unformatted
+figure, and the `historical_literals` escape hatch that could not express what it exempted.
+They are under *Building a check, and trusting it*. Seven is the number that shipped, and it
+is left alone deliberately: inflating the one figure this document uses to argue for
+scepticism would make it worth less.
+
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
 value took it to 0/16. It passed all five of the accessibility defects found by hand.
@@ -138,7 +142,9 @@ establish*, and listed in `docs/BACKLOG.md`.
 
 ## Working practices that earned their place
 
-Grouped, because there are two dozen and a flat list gets read as far as the fifth item.
+Grouped, because there are more than two dozen and a flat list gets read as far as the fifth
+item. That applies inside a group as well as across them, so prefer sharpening a bullet that
+is already here to adding a neighbour beside it.
 
 ### Verifying a figure
 
@@ -185,17 +191,15 @@ Grouped, because there are two dozen and a flat list gets read as far as the fif
   broken. A fourth was a search string that did not match. The cheap guard is to grep for the
   broken text and print the count before running anything.
 
-- **Negative-test a new mechanism too, not only a new check.** `at()` returns the raw number,
-  so a citation missing `| number` shipped `45537` to the built page with `npm run validate`
-  and `npm run build` both green. Nothing could have caught it: there is no literal in the
-  source for the longhand scan, and an unformatted integer is not `NaN`. It was found by
-  deliberately removing one, and it was found after the work was otherwise finished.
-
-- **Test the remedy the message recommends, not only the check.** The literal check told
-  authors to declare a frozen figure under `historical_literals`, and that escape hatch was
-  split on commas, so every comma-grouped value it existed to exempt was shredded into two
-  junk exemptions. It had three copies and no content page had ever used one, so a check
-  everybody trusted pointed at a way out that did not exist.
+- **Negative-test the mechanism and the remedy, not only the check.** Both failed here in one
+  session, and neither was a check. `at()` returns the raw number, so a citation missing
+  `| number` shipped `45537` to the built page with `npm run validate` and `npm run build`
+  both green: no literal in the source for the longhand scan to find, and an unformatted
+  integer is not `NaN`. Separately, the literal check told authors to declare a frozen figure
+  under `historical_literals`, and that escape hatch was split on commas, so every
+  comma-grouped value it existed to exempt was shredded into two junk exemptions. Three copies
+  of it, and no content page had ever used one. A check is only as good as the thing it points
+  at and the thing it sits beside.
 
 - **Find things the way that can show you are wrong.** Four figures held twice were found by
   matching equal values, which by construction can only find pairs that already agree. Whether
@@ -216,6 +220,12 @@ Grouped, because there are two dozen and a flat list gets read as far as the fif
   serve `_site`, and look. Looking is not enough on its own: the pre-launch banner was reported
   as aligned on the strength of a screenshot and had not moved at all. If the claim is "these
   two edges line up", read the two numbers.
+
+- **If a change should not alter the output, prove it by diff.** Copy `_site` to a scratch
+  directory before the change and `diff -r` after. That is what established twelve series
+  substitutions rendered exactly what they replaced, and it is a stronger claim than reading
+  them. It also localises the changes you did mean: when one page differed, it was the one
+  whose published prose the work had made false.
 
 - **Render with a real layout viewport.** Headless Chrome's `--window-size` clamps the layout
   viewport to 500px, so a screenshot at `--window-size=390` is a crop of a 500px layout.
@@ -422,16 +432,18 @@ changes; the rest bite on everything.
   npm run validate, npm run build, npm run a11y.
 - Negative-test every new check. Confirm the break applied by grepping for
   the broken text and printing the count, before believing the result:
-  three "failures" here were tests that never fired. Negative-test a new
-  MECHANISM too, not only a new check. The at() filter shipped an
-  unformatted 45537 to the built page through validate and build alike
-  until one was deliberately broken.
+  three "failures" here were tests that never fired. Negative-test the
+  MECHANISM and the REMEDY too, not only the check. The at() filter
+  shipped an unformatted 45537 to the built page through validate and
+  build alike, and the escape hatch one message recommended could not
+  express a single value it existed to exempt.
 - State what a check does NOT establish in its own success message.
   Seven times a checker here passed while a real defect shipped, every
   time because it verified the source or the declaration rather than the
-  property a reader depends on. The same goes for the remedy a message
-  recommends: the escape hatch one of them pointed at could not express
-  a single value it existed to exempt, and nobody had ever tried it.
+  property a reader depends on.
+- If a change should not alter the output, prove it by diff. Copy _site
+  to a scratch directory before, diff -r after. That is a stronger claim
+  than reading the change, and it localises the changes you did mean.
 - No em-dashes, ever. Enforced by validate-content.mjs.
 - Do not fix by bulk substitution. Sentence by sentence, in view.
 - Never truncate the thing you are checking for absence, and prefer the
