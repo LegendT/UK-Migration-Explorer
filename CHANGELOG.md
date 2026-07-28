@@ -9,6 +9,30 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### EU Settlement Scheme settled status grants, 28 July 2026
+
+**370,535 for the year ending March 2026**, replacing 354,647 for the year ending December
+2025. The figure was a release behind: every other Home Office figure on the site had moved to
+the March 2026 edition and this one had not. Found while re-verifying the release notifier's
+endpoints, and neither existing check could see it, because the staleness check ages
+`retrieved_date` and 17 June is well inside a quarterly window.
+
+Source: Home Office, Immigration system statistics, year ending March 2026, settlement and
+citizenship. "Of these, 71% (370,535) were settled status grants under the EUSS". Evidence in
+`data/evidence/ho-immigration-stats-year-ending-march-2026.json`, the first entry written
+under the contract added below.
+
+- **The two editions count the same thing**, which the release does not state and the
+  arithmetic does. Both are `EUSS_QTR` settled conclusions plus the automated-grants estimate:
+  270,235 plus 100,300 for the year ending March 2026, and 267,977 plus 86,670 for the year
+  ending December 2025. Recorded in the record's notes, because the published figure appears
+  in the bulletin narrative and in no summary table.
+- **The note beside the figure was stale too**, saying 4.4 million grants since 2018 where the
+  release now says 4.5 million. Nothing checks prose about a figure, which is a published
+  limit of this site.
+- **No page cites this record**, so no reader saw the old value and nothing a reader sees
+  changed. Proved by diffing the built site, not by reading the change.
+
 ### The evidence check, 28 July 2026
 
 **No published figure changed.** `scripts/check-evidence.mjs` compares the data layer against

@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "population/eu-settlement-scheme-settled-status-grants",
+      "previous_value": 354647,
+      "value": 370535,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
+      "fetched_at": "2026-07-28",
+      "quote": "Of these, 71% (370,535) were settled status grants under the EUSS, 29% (152,306) were settlement grants under other immigration routes, and fewer than 1% were immediate settlement (family) grants."
+    }
+  ]
+}
