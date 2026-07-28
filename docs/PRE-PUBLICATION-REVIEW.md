@@ -23,6 +23,13 @@ Nothing below is a finding. It is unverified prose placed next to its data.
 The chart is drawn from the series file; the sentence describing it is typed by hand. Nothing
 checks that they agree, and four false summaries have been found here before, by reading.
 
+**As of 28 July 2026 the first checkbox below is mechanical and a future review can skip it.**
+Every literal in these summaries and notes is now a citation resolved from the series file at
+build time, and `validate-content.mjs` fails the build on a series value written longhand. The
+second checkbox, the direction words, is a reading task forever: a citation fixes the value and
+not the sentence around it. Nothing below this paragraph has been touched, because what follows
+is the record of a review that was carried out, not a template to be tidied.
+
 
 ### 1. People claiming asylum in the UK, 2010 to 2025
 

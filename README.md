@@ -148,8 +148,8 @@ Five checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value written longhand in content **or in the data-file prose that reaches a page**, and outstanding work tracked in `docs/BACKLOG.md` |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, and outstanding work tracked in `docs/BACKLOG.md` |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
@@ -166,9 +166,9 @@ value took it to 0/16. It passed all five of the accessibility defects found by 
 Known limits, published on the sources page under *What the checks do not establish*:
 
 - **Prose about figures is unprotected.** Nothing verifies that a chart summary describes the
-  data it sits beside. Four false summaries were found by reading, not by tooling.
-- **Single years quoted from a series are read by a person.** A chart's data come from a
-  series file, but "45,537 in 2019" inside a summary is not a citation.
+  data it sits beside. Four false summaries were found by reading, not by tooling. Citing a
+  series point fixes the value and not the sentence: `at(2018)` under a sentence naming 2019
+  builds cleanly.
 - **Sub-100 figures are matched with their unit only** (`21%`, `£3`) and reported as
   warnings rather than failures, because many metrics share a value. Ten surface
   currently, each a coincidental match against an unrelated metric. Review them; do not
@@ -198,11 +198,19 @@ the validator confirms it, because the first draft rendered "4.9 billion" where 
 "£4.9 billion". Range metrics have no single value and cannot be tokenised at all.
 
 Writing a number longhand opts out of this protection, so a literal matching a current metric
-value fails the build unless declared under `historical_literals`. This applies to the prose
+value fails the build unless declared under `historical_literals`, which is **semicolon
+separated**, because every value this fires on is comma grouped. This applies to the prose
 in `data/` that reaches a page as well as to content files: the card paragraphs in
 `dashboard.json`, and the caveats, confidence definitions and footer note in `meta.json`.
 Data files have no front matter, so they declare frozen figures in a sibling
 `historical_literals` key.
+
+**A series point is cited the same way, with a filter rather than a token.** A chart summary
+is a Nunjucks string built with `~` concatenation, so a shortcode cannot be used inside one:
+`(series.netMigration.data | at(2022) | number)` is the citation, and it throws on a year the
+series does not hold. A series value written longhand fails the build on the same terms as a
+record value. Where a metric and a series point are the same measure, the metric declares
+`series_ref` and `validate-data.mjs` refuses to let the two drift apart.
 
 Every glossary term must say what the word does **not** mean, not merely what it means. A
 definition that leaves the misreading intact has not done the job, so the validator rejects

@@ -76,9 +76,18 @@ card paragraphs in `dashboard.json` and the caveats in `meta.json` are held to t
 a content page. A data file has no front matter, so a deliberately frozen figure is declared in
 a sibling `historical_literals` key.
 
-**Series points are the exception, and it is a known gap.** Chart data comes from the four
-series files, but a value from a series typed into a chart summary is not a citation and
-nothing checks it. Nine such values exist. Scoped in `docs/SERIES-CITATIONS.md`.
+**Series points are cited too, with a filter rather than a token.** A chart summary is a
+Nunjucks string built with `~` concatenation, so a shortcode cannot go inside one:
+`(series.netMigration.data | at(2022) | number)` is the citation, and it throws on a year the
+series does not hold. A series value written longhand fails the build. Twelve were typed by
+hand and are now cited, and the four figures held both as a metric and as a series point
+declare `series_ref` so a release cannot revise one and leave the other. `lib/series.mjs` is
+the single home for the series names, so a template's `series.flows` and a record's
+`flows@2025` cannot come to mean different things. Reasoning in `docs/SERIES-CITATIONS.md`.
+
+**A citation renders the raw value, so `at()` must pass through `| number`.** Without it the
+page ships `45537`, and no check saw it: there is no literal in the source to catch, the value
+is not `NaN`, and the build is green. That is now enforced.
 
 **Charts cite records too.** A bar carries `ref`, not `value`, and the shortcode throws on a
 literal value or an unknown ref.
@@ -105,8 +114,8 @@ Five checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value written longhand in content or in the `data/` prose that reaches a page, outstanding work tracked in the backlog |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, outstanding work tracked in the backlog |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
@@ -173,7 +182,14 @@ Grouped, because there are two dozen and a flat list gets read as far as the fif
 
 - **Negative-test every new check**, and confirm the break actually applied before concluding
   anything. Two "failures" in an earlier session were tests that never fired, and one was a
-  search string that did not match.
+  search string that did not match. A third joined them on 28 July: a `perl` edit whose
+  pattern missed, so the check "passed" against a file nobody had broken.
+
+- **Test the remedy the message recommends, not only the check.** The literal check told
+  authors to declare a frozen figure under `historical_literals`, and that escape hatch was
+  split on commas, so every comma-grouped value it existed to exempt was shredded into two
+  junk exemptions. It had three copies and no content page had ever used one, so a check
+  everybody trusted pointed at a way out that did not exist.
 
 - **Find things the way that can show you are wrong.** Four figures held twice were found by
   matching equal values, which by construction can only find pairs that already agree. Whether

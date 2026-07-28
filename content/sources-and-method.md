@@ -95,15 +95,13 @@ this site derived rather than read off a release. The grades mean:
 ### What the checks do not establish {#limits}
 
 They are about where a number comes from, not about whether the sentence around it is
-right. Three limits, stated because a check trusted for more than it does is worse than no
+right. Two limits, stated because a check trusted for more than it does is worse than no
 check at all:
 
 - **A description of a figure is not checked against the figure.** A chart summary saying a
-  series rose when it fell would build cleanly. Four such summaries were found on this
-  site, by reading, not by tooling.
-- **Values quoted from a long-run series are not individually cited.** A chart's own data
-  come from a series file, but where a summary names a single year in that series, that
-  number is read against the file by a person.
+  series rose when it fell would build cleanly, and so would one that quotes the right
+  number against the wrong year. Four false summaries were found on this site, by reading,
+  not by tooling.
 - **Values under 100 are reported for review rather than refused.** Too many measures share
   a small value for a match to mean much, so those are flagged on every build and looked
   at, not blocked.

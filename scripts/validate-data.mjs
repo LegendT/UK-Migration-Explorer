@@ -6,20 +6,13 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { COMPANION_BLOCKS, SERIES_FILES, seriesPoints } from '../lib/series.mjs';
+
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
 const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
-const TIMESERIES_FILES = [
-  'netMigrationTimeseries.json',
-  'asylumApplicationsTimeseries.json',
-  'asylumBacklogTimeseries.json',
-  'migrationFlowsTimeseries.json',
-];
-// A series file may carry companion series alongside its primary `data` array: a superseded
-// vintage, the same measure on the other counting basis, or the opposing flow. Each is a
-// separate series with its own note and must never be silently merged with the primary.
-const COMPANION_BLOCKS = ['historical', 'alternate_basis', 'emigration'];
+const TIMESERIES_FILES = Object.values(SERIES_FILES);
 const SPECIAL_FILES = ['dashboard.json', 'sources.json', 'meta.json', ...TIMESERIES_FILES];
 
 const METRIC_FIELDS = [
@@ -213,6 +206,43 @@ for (const file of TIMESERIES_FILES) {
   }
 }
 
+// --- a figure held twice must be declared, and the two copies must agree ----------
+// Four figures are published both as a headline metric and as a point in a series. The home
+// page card reads the metric; the migration chart reads the series. A release that revised
+// one and not the other would publish two different official values for the same measure on
+// the same site, which is the failure foundation 9.4 describes and dashboard.json was
+// restructured to prevent. It was fixed between the dashboard and the theme files and left
+// standing between the series and the theme files, because nothing connected the two.
+//
+// The declaration goes on the metric, not the series, because one of the four pairs with the
+// second-to-last point: net-migration-2 is the revised prior-year estimate the site publishes
+// precisely to show that revisions happen. A rule keyed on "the latest point" would have left
+// the one figure whose whole purpose is being a revision unguarded.
+const points = seriesPoints();
+
+for (const [ref, metric] of registry) {
+  if (!metric.series_ref) continue;
+  const point = points.get(metric.series_ref);
+  if (!point) {
+    errors.push(`${ref}: series_ref "${metric.series_ref}" names no point in any series`);
+  } else if (point.value !== metric.value) {
+    errors.push(`${ref}: value ${metric.value} does not match series point ${metric.series_ref}, which is ${point.value}. The same measure for the same period would publish two different values, the card from the metric and the chart from the series.`);
+  }
+}
+
+// An undeclared overlap is reported so the next duplicate announces itself rather than
+// waiting for someone to run the analysis by hand. This is the query that found the four:
+// same value, same year, same unit.
+const undeclared = [];
+for (const [ref, metric] of registry) {
+  for (const [pointRef, point] of points) {
+    if (pointRef === metric.series_ref) continue;
+    if (point.value === metric.value && point.year === metric.date?.slice(0, 4) && point.unit === metric.unit) {
+      undeclared.push(`${ref} (${metric.value} ${metric.unit}, ${point.year}) is also published as ${pointRef}`);
+    }
+  }
+}
+
 // --- source catalogue -----------------------------------------------------------
 const sourceIds = new Set();
 for (const [i, source] of read('sources.json').sources.entries()) {
@@ -283,7 +313,7 @@ if (errors.length) {
 // States only what the code establishes. It previously claimed "all sourced, dated, graded
 // and singly held": "sourced" was a hostname match, "dated" tolerated missing dates, and
 // "singly held" was true of the data layer but not of the site.
-console.log(`Data contract passed: ${counted} figures, required fields present, dates internally consistent, publishers catalogued, every figure linked to its catalogue entry, no duplicate values within data/.`);
+console.log(`Data contract passed: ${counted} figures, required fields present, dates internally consistent, publishers catalogued, every figure linked to its catalogue entry, no card holding its own copy of a value.`);
 console.log('This checks metadata, not whether the figures are right.');
 if (blocked.length) {
   console.error(`\nDO NOT PUBLISH, ${blocked.length} file(s) are flagged as unfit for publication:\n`);
@@ -298,6 +328,18 @@ if (warnings.length) {
   if (process.argv.includes('--verbose')) {
     for (const warning of warnings) console.log(`  ${warning}`);
   }
+}
+
+// Figures held twice. Reported on the same reasoning as staleness below.
+const declaredTwice = [...registry.values()].filter((m) => m.series_ref).length;
+console.log(`\nFigures held twice: ${declaredTwice} metric(s) declare a series_ref, and each agrees with the point it names.`);
+console.log('Not established: that every duplicate is declared. The overlap scan matches on equal');
+console.log('values, so a pair that drifted apart before anyone declared it is invisible to both.');
+if (undeclared.length) {
+  console.log(`\n${undeclared.length} undeclared overlap(s) to review:`);
+  for (const item of undeclared) console.log(`  ${item}`);
+  console.log('If it is the same measure, add series_ref to the metric so the two cannot drift apart.');
+  console.log('If two different measures happen to share a value, leave it.');
 }
 
 // Staleness. Reported every run, including when it finds nothing, because a check that only

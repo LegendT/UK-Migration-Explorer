@@ -9,6 +9,41 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Citing a series point, 28 July 2026
+
+**No published figure changed.** Twelve numbers that had been typed by hand into chart
+summaries and notes are now resolved from the series files at build time. That was checked by
+diffing the built site against the same build before the substitutions: byte-identical across
+all 16 pages, so every one renders exactly what it replaced.
+
+- **Four figures were held twice**, as a headline metric and as a point in a series, with
+  nothing reconciling them: `migration/net-migration`, `net-migration-2`,
+  `total-long-term-immigration` and `total-long-term-emigration`. All four agreed, and a
+  release revising one and not the other would have published two different official values
+  for the same measure. Each metric now declares a `series_ref` and `validate-data.mjs`
+  refuses the mismatch. An undeclared overlap is reported for review on every run.
+- **An `at(year)` filter** cites a series point inside a chart summary, where a shortcode
+  cannot go. It throws on a year the series does not hold.
+- **A series value written longhand now fails the build**, on the same terms as a record
+  value. Three of the twelve were in chart notes rather than summaries and had never been
+  counted; the scope had looked at summaries only. A fourth match, `285,000` in the
+  `migration.njk` note, is the size of the 2022 revision and only coincides with the 2017
+  point of the discontinued series. It is declared rather than cited, because citing it would
+  have put an unrelated figure in that sentence.
+- **Fixed: `historical_literals` never worked from a content page.** It was split on commas,
+  so a comma-grouped value became two junk exemptions and the real one was never exempted. No
+  content page had ever used it, so nothing had been silently exempted. Semicolons only.
+- **Fixed: a citation missing `| number` shipped an unformatted figure.** `at` returns the raw
+  value, so `45537` reached the built page with `validate` and `build` both green. Found by
+  critique after the work was otherwise finished, and confirmed by watching it happen. Every
+  `at()` must now pass through `| number`.
+
+**Changed, what the site says about itself.** `/sources-and-method/` listed three things the
+checks do not establish. The second, that values quoted from a long-run series are not
+individually cited, is no longer true and is removed. The first now carries the limit that
+replaces it: a citation fixes the value and not the sentence, so a summary quoting the right
+number against the wrong year still builds.
+
 ### Pre-publication review corrections, 27 to 28 July 2026
 
 The review was conducted on 27 July 2026 and its findings became corrections 1a to 1i, all
