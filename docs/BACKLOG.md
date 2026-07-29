@@ -182,9 +182,12 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   The order is [you].** Nothing detects a correction *inside* an edition, which is the one
   channel through which a wrong number can sit on the site indefinitely: the slug does not
   change, so the notifier cannot see it, and a cadence cannot infer it. The route is already
-  fetched, and matching the data-tables change history against the six tables the records name
+  fetched, and matching the data-tables change history against the tables the records name
   produces one hit in sixteen, the `Vis_01` correction the by-hand run recorded as missing a
-  published figure by a single row.
+  published figure by a single row. The scope holds the table count and the matching rule; it
+  said six here and twelve there for a day, which is what restating a number in two files does.
+  **The evidence check now refuses an unexplained move inside an edition**, which is this hole
+  from the other side and strengthens the case for building 1b early.
 - **Phase 3, the update prompt.** Seven things to settle before writing it, listed in the
   scope. **Two are blockers, and both are the same hole:** the series files appear nowhere in
   the procedure, so as scoped it cannot do an ONS update at all, because the four metrics that

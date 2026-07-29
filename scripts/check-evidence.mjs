@@ -279,6 +279,17 @@ for (const file of Object.values(SERIES_FILES)) {
     before = null;
   }
 
+  // A block under a key nothing lists is invisible here and to validate-data.mjs, which walks
+  // the same list: 100 points could ship with no evidence and no field validation at all.
+  // Registering a companion in lib/series.mjs is what makes it visible to both, so say that.
+  const known = new Set(COMPANION_BLOCKS);
+  for (const [key, value] of Object.entries(now)) {
+    if (key === 'data' || known.has(key)) continue;
+    if (value && typeof value === 'object' && Array.isArray(value.data)) {
+      errors.push(`data/${file}: holds a block under "${key}" with ${value.data.length} point(s), and lib/series.mjs does not list it as a companion, so neither this check nor validate-data.mjs can see it. Add it to COMPANION_BLOCKS, or move the data somewhere that is watched.`);
+    }
+  }
+
   for (const [name, block] of blocksOf(now)) {
     const was = before && (name === 'primary' ? before : before[name]);
     const vintage = vintageOf(block);
@@ -318,9 +329,24 @@ for (const file of Object.values(SERIES_FILES)) {
     } else if (claimed !== vintageOf(was)) {
       errors.push(`${where}: previous_vintage ${JSON.stringify(claimed)} is not what ${at} holds on ${base}, which is ${JSON.stringify(vintageOf(was))}.`);
     }
-    // The count catches an array pasted short, which quoting its two ends cannot.
+
+    // A block whose contents moved while its vintage did not is either a correction inside an
+    // edition or an entry that predates the change. Matching on vintage cannot tell those
+    // apart, so without this an entry written for the previous state of the same edition covers
+    // a value it never saw, and the run reports it as declared. A fabricated middle point passed
+    // that way. It also fires for a block whose points carry no published_date, where the
+    // vintage is null on both sides and every later edit would match the first entry for ever.
+    //
+    // A correction inside an edition is the one channel through which a wrong number can sit on
+    // this site indefinitely: the slug does not change and no cadence implies it.
+    if (was && vintageOf(was) === vintage && !String(entry.correction ?? '').trim()) {
+      errors.push(`${where}: ${at} moved while its vintage stayed ${JSON.stringify(vintage)}, so this entry cannot be evidence for the change. An entry matched on vintage also matches every earlier state of the same edition. If the publisher corrected the array inside its edition, re-read both ends and say what changed in a "correction" field. If it did not, an array moved without a release and that is the thing to explain.`);
+    }
+
+    // The count catches an array pasted short, which quoting its two ends cannot. Stringified
+    // because "declares 14 point(s), but holds 14" is what a string 14 produces otherwise.
     if (entry.points !== points) {
-      errors.push(`${where}: declares ${entry.points} point(s), but ${at} holds ${points}. A series is replaced whole, so a mismatch means the array is not the one that was read.`);
+      errors.push(`${where}: declares ${JSON.stringify(entry.points)} point(s), but ${at} holds ${points}. A series is replaced whole, so a mismatch means the array is not the one that was read.`);
     }
     if (!isRealDate(entry.fetched_at)) {
       errors.push(`${where}: fetched_at "${entry.fetched_at}" is not a real YYYY-MM-DD date.`);
@@ -364,13 +390,17 @@ if (derived) {
   console.log(`Also not established: the arithmetic of ${derived} derived figure(s) in this diff. Each input is quoted; the sum or share is not recomputed.`);
 }
 if (seriesMoved) {
-  console.log(`\n${seriesMoved} series block(s) moved, each declared with its release, its vintage, its point count and both ends quoted.`);
+  console.log(`\n${seriesMoved} series block(s) moved, each declared with its vintage, its point count and`);
+  console.log('both ends quoted, and a correction note where the array moved without a new release.');
   console.log('Not established: the points between those ends. A series is evidenced as one array from');
   console.log('one release, which is how it is published and how it is replaced, so a wrong value in the');
   console.log('middle of a correctly sourced array passes this.');
-  console.log('Nor that a block still exists. Only blocks present now are compared, so a companion series');
-  console.log('deleted from a file is not a moved series and nothing here asks about it.');
 }
+// Printed whether or not a series moved. A pull request that only DELETES a companion moves
+// nothing, so it produces no series output at all, and the run where this limit matters most
+// would otherwise be the one that never mentions it.
+console.log('\nNot established about series: that a block still exists. Only blocks present now are');
+console.log('compared, so deleting a companion series is not a moved series and nothing here asks.');
 // Last, and set apart, because it is the one line that can make everything above vacuous.
 if (sameCommit) {
   console.log(`\nOnly uncommitted changes were compared: ${base} and HEAD are the same commit. On a push`);

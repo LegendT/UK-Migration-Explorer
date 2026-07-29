@@ -124,6 +124,7 @@ nobody could perform, and a check nobody can satisfy is a check that gets delete
 | `source_url` | the release or table the array was read from, https |
 | `fetched_at` | the day it was read, `YYYY-MM-DD` |
 | `quote` | text carrying **both ends** of the array, the first point and the last |
+| `correction` | required **only** when the array moved and the vintage did not, see below |
 
 **Both ends, and the count.** A quote carrying only the newest point would pass while the rest
 of the array came from anywhere, and a count catches an array pasted short, which quoting its
@@ -134,3 +135,23 @@ where a series moved.
 A companion block is a separate series with its own release and its own entry. `historical` in
 `netMigrationTimeseries.json` is a superseded vintage that is deliberately frozen: it does not
 move, so it needs no entry until it does.
+
+**A block registered nowhere is watched by nothing.** Companions are listed in
+`lib/series.mjs`, and both this check and `validate-data.mjs` walk that list. A block under any
+other key is invisible to both, so the check refuses one rather than skipping it.
+
+### When the array moves and the vintage does not
+
+An entry is matched on its file, its block and its vintage. That means an entry also matches
+every *earlier* state of the same edition, so on its own it cannot distinguish a correction the
+publisher made inside an edition from an entry written before the change and never revisited. A
+fabricated middle point passed that way once.
+
+So when a block's contents move while its `vintage` stays the same, `correction` is required and
+must say what changed. Both ends have to be re-read too, because the quote is checked against
+them either way. The same guard covers a block whose points carry no `published_date`: the
+vintage is `null` on both sides, and without it the first entry would exempt that block for ever.
+
+This is not a rare case dressed up as a common one. A correction inside an edition is the one
+channel through which a wrong number can sit on the site indefinitely, because the URL does not
+change and no publication cadence implies it.

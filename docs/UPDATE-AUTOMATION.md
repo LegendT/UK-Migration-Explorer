@@ -267,11 +267,15 @@ never built, because it applies equally to a human update.
   check counted the changed series files on every run rather than leaving the gap to be
   inferred. That was the largest hole left in it: 100 published points could move with nothing
   asking where they came from. Closing it needed a different unit of evidence rather than a
-  bigger version of the same one. A series is replaced whole from one release under the
-  single-vintage rule, so the entry is per array and per release, carrying the vintage it moved
-  to, the point count, and a quote holding both ends of the array. Requiring a quote per point
-  would have been theatre nobody could perform. What it still does not establish, and says on
-  every run where a series moved, is the points between those ends.
+  bigger version of the same one, and what that unit is, why, and what it still does not
+  establish are in `data/evidence/README.md`, which is where the contract lives and where the
+  check's own error messages send an author. Not restated here.
+- **One thing found while closing it belongs in this scope rather than there.** Matching an
+  entry on its vintage cannot distinguish a correction the publisher made inside an edition from
+  an entry written before the change, so a fabricated middle point passed. That is the same hole
+  phase 1b exists to watch, arriving from the other direction, and it is the argument for
+  ordering 1b early: the evidence check can now refuse an unexplained within-edition move, but
+  only once someone has noticed the edition changed at all.
 
 Both CI traps were real and are handled as the scope preferred: `actions/checkout@v4` still
 carries no `fetch-depth`, and the step runs an explicit fetch rather than deepening every job.
