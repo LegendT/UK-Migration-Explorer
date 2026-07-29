@@ -263,10 +263,15 @@ never built, because it applies equally to a human update.
 - **Entries are matched, never validated wholesale.** The evidence files are kept, so an entry
   naming a metric since renamed or dropped is history rather than a defect. A check that
   failed on one would push someone into deleting the audit trail to get a green run.
-- **Series points are not covered, and the check says so on every run.** The contract is
-  metrics. The four series files are replaced wholesale from a single release under the
-  single-vintage rule, and their 100 points carry no evidence. The report counts the changed
-  files rather than leaving the gap to be inferred.
+- **Series were not covered at first, and now are.** The contract began at metrics, and the
+  check counted the changed series files on every run rather than leaving the gap to be
+  inferred. That was the largest hole left in it: 100 published points could move with nothing
+  asking where they came from. Closing it needed a different unit of evidence rather than a
+  bigger version of the same one. A series is replaced whole from one release under the
+  single-vintage rule, so the entry is per array and per release, carrying the vintage it moved
+  to, the point count, and a quote holding both ends of the array. Requiring a quote per point
+  would have been theatre nobody could perform. What it still does not establish, and says on
+  every run where a series moved, is the points between those ends.
 
 Both CI traps were real and are handled as the scope preferred: `actions/checkout@v4` still
 carries no `fetch-depth`, and the step runs an explicit fetch rather than deepening every job.

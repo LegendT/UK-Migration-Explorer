@@ -7,7 +7,11 @@ run is the one thing that would make this directory worthless.
 
 `scripts/check-evidence.mjs` reads them. Any metric whose value changed against the base
 branch, and any metric that is new, must be declared here, and the value must appear in the
-quote. A fabricated figure cannot appear in a quote taken from a real page.
+quote. A fabricated figure cannot appear in a quote taken from a real page. **Any series block
+that moved must be declared too**, in a `series` array rather than a `figures` one.
+
+A file may hold either array or both, because a release moves records and series together and
+one file covers one release.
 
 Entries are matched, never validated wholesale. An entry for a figure that has since been
 renamed or dropped stays as history and fails nothing.
@@ -84,3 +88,49 @@ Quote its inputs instead, and say what was done to them.
 
 The arithmetic is stated and read by a person; nothing recomputes it. The check establishes
 that every input was quoted, not that the sum is right.
+
+## Series
+
+A series is not a hundred independent figures. ONS states you cannot append the latest
+estimates to a series taken from an earlier release, so each array is replaced whole from one
+publication and the single-vintage rule enforces that. The evidence is therefore **per array
+and per release**, not per point. Requiring a quote for each of 100 points would be theatre
+nobody could perform, and a check nobody can satisfy is a check that gets deleted.
+
+```json
+{
+  "series": [
+    {
+      "file": "netMigrationTimeseries.json",
+      "block": "primary",
+      "previous_vintage": "2026-05-21",
+      "vintage": "2026-11-26",
+      "points": 14,
+      "source_url": "https://www.ons.gov.uk/.../longterminternationalmigrationprovisional/...",
+      "fetched_at": "2026-11-27",
+      "quote": "Year ending December 2012: 195,000 ... year ending December 2025: 171,000"
+    }
+  ]
+}
+```
+
+| Field | |
+| --- | --- |
+| `file` | the timeseries file name, as `lib/series.mjs` maps it |
+| `block` | `primary`, or a companion: `historical`, `alternate_basis`, `emigration` |
+| `previous_vintage` | the block's `published_date` on the base branch, `null` if the block is new |
+| `vintage` | its `published_date` now, which is what makes it a different release |
+| `points` | how many points the array holds |
+| `source_url` | the release or table the array was read from, https |
+| `fetched_at` | the day it was read, `YYYY-MM-DD` |
+| `quote` | text carrying **both ends** of the array, the first point and the last |
+
+**Both ends, and the count.** A quote carrying only the newest point would pass while the rest
+of the array came from anywhere, and a count catches an array pasted short, which quoting its
+two ends cannot. Between them they establish that the author looked at the whole column they
+took. They establish nothing about the points in the middle, and the check says so on every run
+where a series moved.
+
+A companion block is a separate series with its own release and its own entry. `historical` in
+`netMigrationTimeseries.json` is a superseded vintage that is deliberately frozen: it does not
+move, so it needs no entry until it does.

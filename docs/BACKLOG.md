@@ -166,9 +166,12 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   or which is new, must be declared in `data/evidence/` with a quote from a fetched source
   containing that value, and CI fails without one. It applies to updates made by hand, which
   is why it went first. Five things the scope had wrong or did not say are recorded in it
-  rather than restated here. **Not covered: the four series files**, whose 100 points are
-  replaced wholesale on release and carry no evidence at all. The check reports that on every
-  run rather than leaving it to be inferred.
+  rather than restated here. **The series are now covered too**, which was the largest hole
+  left in the contract: 100 published points could move with nothing asking where they came
+  from. A series is replaced whole from one release, so its evidence is per array and per
+  release, carrying the vintage, the point count and a quote holding both ends. What it still
+  does not establish, and says so on every run where a series moved, is the points between
+  those ends.
 - **Phase 1, the notifier. DONE (PR #46, 28 July 2026).** `check-releases.mjs` compares the
   edition each record cites, by the month and year in its URL, against the newest edition the
   publisher lists, and opens one deduplicated issue from `main` or the weekly cron. It reports
