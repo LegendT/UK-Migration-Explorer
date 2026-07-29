@@ -287,10 +287,27 @@ for (const file of Object.values(SERIES_FILES)) {
     seriesMoved += 1;
 
     const at = `${file} ${name}`;
-    const matched = seriesEntries.find(({ entry }) =>
-      entry.file === file && (entry.block ?? 'primary') === name && entry.vintage === vintage);
+
+    // An empty block would be evidenced by a quote carrying nothing: `ends` is empty, so the
+    // quote check never runs, and the run would still report both ends as quoted.
+    // validate-data.mjs rejects an empty PRIMARY series and does not look at companions, so
+    // this is the only thing standing between a companion emptied by a bad paste and a pass.
+    if (points === 0) {
+      errors.push(`${at}: holds no points, so there are no ends to quote and any evidence for it would be vacuous. A series is replaced whole; an empty array is a failed paste, not a release.`);
+      continue;
+    }
+
+    // Filtered then matched, rather than matched in one pass, so an entry naming this block at
+    // some other vintage can be named in the message. That is what a series moving again after
+    // its evidence was written looks like, and the metric path says so for the same reason.
+    const named = seriesEntries.filter(({ entry }) =>
+      entry.file === file && (entry.block ?? 'primary') === name);
+    const matched = named.find(({ entry }) => entry.vintage === vintage);
     if (!matched) {
-      errors.push(`${at}: ${was ? 'moved' : 'is new'}, and no evidence entry declares it. Add to the "series" array of a file in data/evidence/:\n      { "file": "${file}", "block": "${name}", "previous_vintage": ${JSON.stringify(vintageOf(was))}, "vintage": ${JSON.stringify(vintage)}, "points": ${points}, "source_url": "https://...", "fetched_at": "YYYY-MM-DD", "quote": "..." }\n      ${SHAPE}`);
+      const stale = named.length
+        ? ` ${named.length} entr${named.length === 1 ? 'y names' : 'ies name'} this block at a different vintage, which is what a series moving again after its evidence was written looks like.`
+        : '';
+      errors.push(`${at}: ${was ? 'moved' : 'is new'}, and no evidence entry declares it.${stale} Add to the "series" array of a file in data/evidence/:\n      { "file": "${file}", "block": "${name}", "previous_vintage": ${JSON.stringify(vintageOf(was))}, "vintage": ${JSON.stringify(vintage)}, "points": ${points}, "source_url": "https://...", "fetched_at": "YYYY-MM-DD", "quote": "..." }\n      ${SHAPE}`);
       continue;
     }
 
@@ -351,6 +368,8 @@ if (seriesMoved) {
   console.log('Not established: the points between those ends. A series is evidenced as one array from');
   console.log('one release, which is how it is published and how it is replaced, so a wrong value in the');
   console.log('middle of a correctly sourced array passes this.');
+  console.log('Nor that a block still exists. Only blocks present now are compared, so a companion series');
+  console.log('deleted from a file is not a moved series and nothing here asks about it.');
 }
 // Last, and set apart, because it is the one line that can make everything above vacuous.
 if (sameCommit) {
