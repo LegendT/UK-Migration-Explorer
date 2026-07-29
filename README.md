@@ -60,13 +60,14 @@ content/                Eleventy input
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code
 lib/series.mjs          The four timeseries and the names everything else calls them by
 data/                   Governed data layer, one file per theme, plus four timeseries
-scripts/                Four checks, all in CI, all negative-tested
+data/evidence/          One file per release: the quote behind every figure that moved
+scripts/                Six scripts, seven checks, all in CI, all negative-tested
 docs/foundation.md      Positioning, editorial principles, IA, data governance, risk register
 docs/BACKLOG.md         The durable list of outstanding work; every other doc points here
 docs/HANDOFF.md         How the project works, and what earlier sessions cost
 docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026 worked through
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
-docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check, four phases
+docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; phases 1 and 2 built
 .pa11yci.json           pa11y over all 16 URLs at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes
@@ -161,7 +162,7 @@ Seven checks, all in CI, all negative-tested.
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, and outstanding work tracked in `docs/BACKLOG.md` |
-| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. Gates the build |
+| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. Gates the build |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |

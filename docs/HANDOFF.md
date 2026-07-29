@@ -112,7 +112,7 @@ Seven checks, all in CI, all negative-tested.
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, outstanding work tracked in the backlog |
-| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
+| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document fails loudly, because the publisher has renamed these series twice |
@@ -128,12 +128,14 @@ claimed the latter. The seventh was the literal check walking `content/` and not
 left the one file whose entire job is holding references as the only file nobody scanned for
 values. The messages now state only what they verify.
 
-**The count is seven, and two more of that shape have been caught since without being added
-to it**, because both were found before they merged: the `at()` filter shipping an unformatted
-figure, and the `historical_literals` escape hatch that could not express what it exempted.
-They are under *Building a check, and trusting it*. Seven is the number that shipped, and it
-is left alone deliberately: inflating the one figure this document uses to argue for
-scepticism would make it worth less.
+**The count is seven, and three more of that shape have been caught since without being added
+to it**, because all three were found before they merged: the `at()` filter shipping an
+unformatted figure, the `historical_literals` escape hatch that could not express what it
+exempted, and a series evidence entry matched on a vintage, which also matched every earlier
+state of the same edition and would have matched for ever where the vintage was null. They are
+under *Building a check, and trusting it*. Seven is the number that shipped, and it is left
+alone deliberately: inflating the one figure this document uses to argue for scepticism would
+make it worth less.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
@@ -216,6 +218,21 @@ is already here to adding a neighbour beside it.
 
 - **A denylist needs a review pass, not a sweep.** Four of seven sub-100 matches were
   coincidences. Tokenising all of them would have cited the wrong record four times.
+
+- **When a check matches a declaration to a record, ask what the key does when it does not
+  change.** Series evidence was matched on the release vintage, which meant one entry also
+  matched every earlier state of the same edition: a fabricated middle point passed while the
+  run reported it as declared. Where the vintage was null, and it is a nullable field, null
+  matched null and the first entry would have exempted that block for ever. The skeleton the
+  error message printed supplied that null itself, so the remedy created the hole. Ask of any
+  matching key: what happens when it is unchanged, and what happens when it is absent. Both
+  answers have to be "the check still asks for something".
+
+- **A second model reading the same code found what a self-critique had not.** Two rounds of
+  critique on the series evidence check found real defects and missed the one above, which a
+  fresh reviewer reproduced in a scratch clone within one pass. Worth doing on anything whose
+  whole purpose is refusing bad input, because self-critique is weakest exactly where the
+  author's model of the design is the thing at fault.
 
 ### Looking at the built page
 
