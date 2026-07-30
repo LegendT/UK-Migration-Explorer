@@ -169,11 +169,12 @@ Most of this site is driven by three releases, and the commitment is to update w
 
 | Release | How often | Figures here |
 | --- | --- | --- |
-| Home Office, immigration system statistics | Quarterly | 19 |
-| ONS, long-term international migration | Twice yearly | 10 |
-| Ministry of Justice, tribunals statistics | Quarterly | 2 |
+| Home Office, immigration system statistics | Quarterly | {count:ho-immigration-stats} |
+| ONS, long-term international migration | Twice yearly | {count:ons-ltim} |
+| Ministry of Justice, tribunals statistics | Quarterly | {count:hmcts-tribunals} |
 
-The other fifteen published figures come from six publishers that release irregularly
+The other {count-in-words:other-figures} published figures come from
+{count-in-words:other-publishers} publishers that release irregularly
 rather than on a cycle: the National Audit Office, the House of Commons Library, the
 Migration Observatory, the Office for Budget Responsibility, the Independent Chief Inspector
 of Borders and Immigration, and ONS population estimates. Those are re-checked when they publish, and no

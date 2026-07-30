@@ -67,9 +67,10 @@ that `main` starts at a parentless commit is checkable in one command and does n
 175. **46 of the 75 reach a reader**, and the other 29 are unpublished reserve. Reaching a reader
 means **rendering**: a token, a chart bar's `ref`, a `| metric` summary, a dashboard card or a
 caveat in `data/`. A `figures:` front-matter entry is NOT a route, because nothing renders that
-list, and counting it was the error that made the sources page's Home Office row wrong. The
-split is the definition that page's figure counts rest on, so it is derived, not remembered:
-union those five routes over `_site` and `data/`, then group by `source_id`. Eleventy 3, no client-side JavaScript,
+list, and counting it was the error that made the sources page's Home Office row wrong. **The
+definition is code, not a paragraph:** `lib/published.mjs` holds those five routes, the sources
+page renders from it, and `npm run build` prints the split, so do not hand-roll a query for it
+and do not trust the two numbers in this sentence over the run. Eleventy 3, no client-side JavaScript,
 charts rendered as inline SVG at build time. What is on each of the 16 pages is in `README.md`
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
@@ -112,9 +113,14 @@ author: the y-axis always starts at zero, the gridline interval is chosen from t
 people count in rather than by dividing the top into four, every chart carries its figures as a
 real table, and no series is distinguished by colour alone.
 
-**Four Eleventy transforms run on the built HTML, and the order is load-bearing.**
+**Five Eleventy transforms run on the built HTML, and the order is load-bearing.**
 `resolve-citations` renders the tokens and block partials, and throws on anything unresolved.
-`heading-anchors` turns `{#id}` syntax into real ids. `table-captions` lifts a `{caption}`
+`published-counts` replaces `{count:source-id}` and `{count-in-words:...}` on
+`/sources-and-method/` with the derived number of records that reach a reader from each
+publisher, because markdown templating is off site-wide and a markdown page cannot call a
+filter the way `common-claims.njk` calls `countWhere` for its direction split. That is the
+marker-and-transform idiom the two below already use, and it is what stopped those counts
+being typed. `heading-anchors` turns `{#id}` syntax into real ids. `table-captions` lifts a `{caption}`
 paragraph into the `<caption>` of the table below it, and throws when a marker matches no table,
 because markdown has no caption syntax and a stray marker would ship as visible text.
 `scrollable-regions` then wraps any
@@ -132,7 +138,7 @@ Seven checks, all in CI, all negative-tested.
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, under a ratchet whose count may not grow |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
@@ -219,12 +225,32 @@ is already here to adding a neighbour beside it.
 ### Building a check, and trusting it
 
 - **Negative-test every new check**, and confirm the break actually applied before concluding
-  anything. Five "failures" here were tests that never fired: two in an earlier session, a
+  anything. Six "failures" here were tests that never fired: two in an earlier session, a
   `perl` edit on 28 July whose pattern missed so a check "passed" against a file nobody had
   broken, a search string that did not match, and on 30 July a `perl` escape that left the file
   untouched while the run it "proved" exited zero. The cheap guard is to grep for the broken
   text and print the count before running anything, and it is what caught the fifth in the same
   minute it was made.
+
+  **The sixth is the one that guard would have missed**, and it is worth the extra sentence. The
+  edit applied, the grep confirmed it, and the test still proved nothing: it spaced one of two
+  citations of the same record, so the record was still counted through the other page and the
+  undercount the test existed to trigger never happened. Confirm the CONDITION, not only the
+  edit. A probe that leaves a second path to the same answer tests the second path.
+
+- **A scan of text is not a scan of what renders, and a comment is where the two part.** The
+  published-figure scan matched a chart bar left inside a Nunjucks comment during a rework,
+  counting a figure the render strips. Worse in the other syntax: a citation inside an HTML
+  comment is rendered by `resolve-citations` INTO the comment, so the check at the far end found
+  the ref in the built HTML and confirmed a figure no reader can see, and both ends agreed about
+  something that was not there. Strip comments at every end that compares, or the agreement
+  between them means nothing.
+
+- **A check that compares two sets has to compare them both ways.** The same scan was verified
+  against the built output in one direction only, which can find an overcount and never an
+  undercount, and the undercount was the reachable one: the scan's pattern was stricter than the
+  renderer's, so a citation written `{{ theme/id }}` with spaces would reach a reader and be
+  counted for nobody. Match what the RENDERER accepts, not what the source happens to say today.
 
 - **A suppression is the most dangerous code in a check, and it needs a test of its own.** The
   scale-word scan's duplicate guard was three lines, written so one figure could not be reported
@@ -297,7 +323,7 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model has found the most serious defect in every piece of work it has read here, five times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
+- **A second model has found the most serious defect in every piece of work it has read here, six times, and every time it was in the part the author was surest of.** The sixth changed the argument slightly and is recorded rather than rounded up: the author had found that defect independently an hour earlier, the first time that has happened, and the reading still returned four more beside it, two of them serious. The count is of pieces read, not of defects only a second model could have reached. On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
 
 - **A second model reading the same code found what a self-critique had not. Twice, before that.** Two
   rounds of critique on the series evidence check found real defects and missed the one above,

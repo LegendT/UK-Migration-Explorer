@@ -453,19 +453,60 @@ was never pinned to a mechanism. It is now: a token in the built HTML, a chart b
 `| metric` summary, a dashboard card, or a caveat in `data/`. A `figures:` front-matter entry is
 **not** a route, because nothing renders that list.
 
-**The work is to make it derived rather than declared.** Five hand-maintained numbers still sit
-on `/sources-and-method/` with nothing reading them, which is the exact shape of the defect this
-item exists to record, and re-checking them by hand is what already failed once. Either compute
-them at build time, or have `check-build.mjs` recompute and compare against what the page
-prints. **[me]**, and the smaller of the two is worth preferring.
+**The work was to make it derived rather than declared. DONE (PR #68, 30 July 2026), and it
+took the first of the two routes rather than the second.** `lib/published.mjs` is the one home
+for the definition of reaching a reader, and the five numbers on `/sources-and-method/` now
+render from it through a `published-counts` transform. **Adding a record no longer touches that
+page at all.**
 
-**The case got stronger on 30 July, twice in three days.** Minting one record in PR #67 moved
-the Home Office row from 18 to 19 and the site total from 45 to 46, and nothing would have
-said so: the row was edited by hand, from a throwaway script written to derive it, and thrown
-away again. **Adding a record is now a five-file change**, the record, the evidence, the two
-pages citing it, and this page's count, and only the first four fail anything when missed. That
-is the argument for building it, and the derivation to reuse is in the handoff under *Where
-things stand*: union the five routes over `_site` and `data/`, then group by `source_id`.
+The scope preferred a comparison in `check-build.mjs` as the smaller change. It was not: both
+routes need the same union, because the built HTML alone gives 40 of the 46, the other six
+reaching a reader through a chart bar or a dashboard card, which render a value with no ref
+beside it. Given the same derivation either way, generating beats comparing, and the precedent
+was already in the repo: `common-claims.njk` computes its own direction split with `countWhere`
+for exactly this reason, on the page whose subject is other people's numbers.
+
+**What made this look impossible and was not.** Markdown templating is off site-wide, so
+`{{theme/id}}` is a citation rather than an expression and a markdown page cannot call a
+filter. The marker-and-transform idiom `{caption}` and `{#anchor}` already use is what it has
+instead, and `{count:ho-immigration-stats}` is that idiom.
+
+**What two readings of it found, and this is the part worth carrying forward.** None of it
+shipped, and with two of the probes applied the branch printed "47 of 75" and passed every
+check green, which is this item's own defect reintroduced by the fix for it.
+- **The scan was stricter than the renderer it modelled.** `resolve-citations` accepts
+  `{{ theme/id }}` with spaces; the scan did not. That figure would reach a reader and be
+  counted for nobody, and the check at the far end ran **one way only**, so it could find an
+  overcount and never an undercount. It now compares both ways, which is free today and is the
+  direction that was reachable.
+- **A comment is where a scan of text stops being a scan of what renders.** A chart bar left
+  inside a Nunjucks comment during a rework was counted; a citation inside an HTML comment was
+  counted AND confirmed by the far end, because `resolve-citations` renders it into the
+  comment. Both ends now strip comments.
+- A `{% figure %}` in a markdown page was counted, where that syntax ships as visible junk
+  rather than rendering. `check-build.mjs` now catches a stray `{% %}` and a mistyped
+  `{Count:...}` as unrendered syntax.
+
+**Three things worth knowing before touching it.**
+- **The source scan is a proxy for rendering, and `check-build.mjs` closes it at the far end**,
+  confirming that every record the counts claim through a token really appears in the output.
+  Six cannot be confirmed that way and the run says so on every build: a chart bar and a
+  dashboard card leave no ref behind. Closing that would mean changing what a reader gets in
+  order to make a check easier.
+- **Only the three cadenced publishers can be named by a marker.** A key is otherwise refused,
+  because a typo landing on a real publisher renders a plausible wrong number beside a row
+  naming a different one. That is not hypothetical: the negative test for this branch did it by
+  accident, and the first version of the transform accepted it.
+- **"fifteen" became "15"**, which is the site's own `inWords` rule, words to ten and numerals
+  above.
+
+**What is still hand-maintained on that page**, and it is smaller than it was: the sentence
+naming the six irregular publishers lists them in prose. The count beside it is derived, so a
+seventh publisher would move the number and leave the list naming six. Deriving the list means
+either changing the wording to `sources.json`'s names, which read as catalogue entries rather
+than prose, or adding a display name to six records, which is the same hand-maintenance moved.
+**[you]** if it is worth the wording. The release table's cadence column and "the most recent
+full cycle took twenty-seven days" are untouched and still nobody's to verify.
 
 ### 7. The robots.txt prose says the review has not happened
 

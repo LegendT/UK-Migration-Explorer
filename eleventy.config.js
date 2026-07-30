@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 
 import { barChart, lineChart } from './lib/charts.mjs';
+import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
 import { readSeries } from './lib/series.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`./data/${file}`, import.meta.url), 'utf8'));
@@ -176,6 +177,39 @@ export default function (eleventyConfig) {
   // Heading anchors. Markdown does not support {#id} natively, so without this the syntax
   // renders as visible junk inside the heading and every link to a definition is dead,
   // which is exactly what shipped until the built page was actually looked at.
+  // The published-figure counts on /sources-and-method/ are derived here rather than typed.
+  // That page is markdown, and markdownTemplateEngine is false site-wide so that {{theme/id}}
+  // is a citation rather than an expression, which means a markdown page cannot call a filter
+  // the way common-claims.njk calls countWhere for its direction split. The marker-and-
+  // transform idiom {caption} and {#anchor} already use is what it has instead.
+  //
+  // Numerals in a table cell, words in prose, which is why there are two markers: a column of
+  // 19 and 10 with "two" in the third row would be worse than what it replaced.
+  eleventyConfig.addTransform('published-counts', function (content) {
+    if (!(this.page.outputPath ?? '').endsWith('.html') || !content.includes('{count')) return content;
+    const counts = publishedCounts();
+    const html = content.replace(/\{count(-in-words)?:([a-z-]+)\}/g, (_, spelled, key) => {
+      // Only the three cadenced publishers can be named directly, because the table that names
+      // them is the update commitment and every other publisher is inside "the other N". The
+      // narrow list is the guard: keyed on any source_id, a typo landing on a real publisher
+      // renders a plausible wrong number beside a row naming a different one, and nothing on
+      // the page or in any check would disagree. That is not hypothetical, it is what the
+      // negative test for this branch did by accident.
+      const value = key === 'other-figures' ? counts.otherFigures
+        : key === 'other-publishers' ? counts.otherPublishers
+        : CADENCED_SOURCES.includes(key) ? counts.bySource.get(key)
+        : undefined;
+      if (value === undefined) {
+        throw new Error(`${this.page.inputPath}: {count:${key}} is not a key this page can ask for. Use one of ${CADENCED_SOURCES.join(', ')}, which are the releases the update commitment covers, or other-figures or other-publishers. A publisher outside that list is inside "the other N" and has no row of its own.`);
+      }
+      return spelled ? (SMALL_NUMBERS[value] ?? String(value)) : String(value);
+    });
+    if (/\{count(-in-words)?:/.test(html)) {
+      throw new Error(`${this.page.inputPath}: a {count:...} marker did not resolve and would ship as visible text.`);
+    }
+    return html;
+  });
+
   eleventyConfig.addTransform('heading-anchors', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
     return content.replace(

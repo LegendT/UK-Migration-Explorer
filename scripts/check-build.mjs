@@ -12,6 +12,8 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { publishedCounts } from '../lib/published.mjs';
+
 const siteDir = fileURLToPath(new URL('../_site/', import.meta.url));
 
 function walk(dir) {
@@ -41,8 +43,17 @@ for (const file of pages) {
   const html = readFileSync(file, 'utf8');
   const url = `/${where.replace(/index\.html$/, '')}`;
 
-  // Template or citation syntax that reached the output.
-  for (const stray of html.match(/\{\{[^}]*\}\}|\{#[a-z0-9-]+\}/g) ?? []) {
+  // Template or citation syntax that reached the output. {caption} and {count:} are this
+  // project's own marker syntaxes, resolved by transforms rather than by an engine, and each
+  // transform throws on a marker it cannot resolve. They are here too because a transform only
+  // sees the files it runs on: a marker in a page that skipped it would ship as visible text,
+  // and the transform that could have complained never ran.
+  // The count marker is matched loosely, `{count` and anything to the next brace, because the
+  // transform can only resolve what it recognises: "{count :key}" or "{Count:key}" is a typo the
+  // transform passes over in silence and a reader meets as visible text. A `{% %}` tag is here
+  // for the same reason, in the other direction: it is a citation that works in Nunjucks and
+  // ships as junk from a markdown page, where the engine is deliberately off.
+  for (const stray of html.match(/\{\{[^}]*\}\}|\{#[a-z0-9-]+\}|\{caption\}|\{ *[Cc]ount[^}]*\}|\{%[^%]*%\}/g) ?? []) {
     errors.push(`${where}: unrendered template syntax in output, ${stray}`);
   }
 
@@ -173,6 +184,55 @@ for (const file of pages) {
   }
 }
 
+// --- the published-figure counts, checked at the end they are claimed about ------------
+// The counts on /sources-and-method/ are derived by lib/published.mjs, which reads the SOURCE:
+// a transform runs while the site is still being written and cannot see the whole of it. So
+// three of its five routes are a proxy for rendering rather than rendering itself, and a token
+// in a page that never builds would be counted for a reader who never sees it.
+//
+// This is the end where that can be checked, and it is compared BOTH ways. Every data-metric in
+// the output comes from renderFigure, which only the token routes reach, so the two sets must be
+// EQUAL rather than one contained in the other. A one-way check finds only an overcount, and the
+// undercount is the easier mistake: the scan's pattern has to match everything the RENDERER
+// accepts, and resolve-citations takes "{{ theme/id }}" with spaces. A citation written that way
+// would reach a reader and be counted for nobody, leaving the page's numbers quietly low. Both
+// models that read this branch found that in the same place, which is why the direction that
+// cannot be reached today is checked anyway.
+//
+// Comments are stripped first, for the reason lib/published.mjs strips them: resolve-citations
+// renders a figure sitting inside an HTML comment, so the ref reaches this file and would
+// "confirm" a figure no reader can see. Both ends have to be blind to the same text or the
+// agreement between them means nothing.
+//
+// What it does NOT establish, and this is the half that cannot be closed here: a chart bar's
+// ref and a dashboard card's ref render their values as plain text with nothing beside them
+// naming the record, so six of the counted figures leave no trace to match. Confirming those
+// would mean emitting a ref into the chart markup, which is a change to what a reader gets in
+// order to make a check easier, and that trade has not been made.
+const inOutput = new Set();
+for (const file of pages) {
+  const visible = readFileSync(file, 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+  for (const [, ref] of visible.matchAll(/data-metric="([^"]+)"/g)) inOutput.add(ref);
+}
+// A throw here would take every error collected above with it, unreported, on a standalone
+// check-build run. The counts are one more finding, not a reason to lose the others.
+let counts;
+try {
+  counts = publishedCounts();
+} catch (error) {
+  errors.push(`published counts: ${error.message}`);
+}
+if (counts) {
+  const missing = [...counts.tokenRefs].filter((ref) => !inOutput.has(ref));
+  const uncounted = [...inOutput].filter((ref) => !counts.tokenRefs.has(ref));
+  if (missing.length) {
+    errors.push(`published counts: ${missing.join(', ')} is counted as reaching a reader, from a token in the source, but renders on no page a reader sees. The counts on /sources-and-method/ are overstated by ${missing.length}.`);
+  }
+  if (uncounted.length) {
+    errors.push(`published counts: ${uncounted.join(', ')} renders on a page and lib/published.mjs does not count it, so the counts on /sources-and-method/ are understated by ${uncounted.length}. The citation is probably written in a form the scan's pattern does not match but the renderer accepts.`);
+  }
+}
+
 // robots.txt is deliberately present until launch. If it goes missing the site becomes
 // crawlable again with no other signal, so its absence is treated as a build failure until
 // someone removes this check on purpose.
@@ -198,4 +258,6 @@ if (errors.length) {
 
 const internal = pages.reduce((n, f) => n + (readFileSync(f, 'utf8').match(/href="\/[^"]*"/g) ?? []).length, 0);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; robots.txt disallows all crawlers.`);
+console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
+console.log(`Of those, ${counts.tokenRefs.size} match the refs in the built HTML exactly, in both directions, outside comments. Not established: that the other ${counts.published - counts.tokenRefs.size}, reaching a reader through a chart bar or a dashboard card, render at all, because those routes put a value on the page with no ref beside it to match.`);
 console.log('External source URLs are not checked here, run npm run check-sources.');
