@@ -1,4 +1,4 @@
-# Handoff, 28 July 2026
+# Handoff, 30 July 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -11,7 +11,9 @@ or if a planning document exists that the backlog does not reference.
 
 ## Start here
 
-1. Read `docs/BACKLOG.md`. It is ordered; take the first unstarted item.
+1. Read `docs/BACKLOG.md`. It is ordered; take the first **unfinished** item, which is not
+   always an unstarted one: an item can have phases built and still be the first. Which item
+   that is, and how far it has got, is the backlog's to say and not this document's.
 2. Read the rest of this document, for how the project works and what not to repeat.
 3. Read the scope document for whatever you pick up, and do not re-derive it.
    `verification.txt` at the repository root is the pre-publication review itself. It is the
@@ -112,10 +114,10 @@ Seven checks, all in CI, all negative-tested.
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, outstanding work tracked in the backlog |
-| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
+| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
-| `check-releases.mjs` | Whether a watched source has published a newer edition than the one each record cites, per cited edition rather than per source, compared on the month and year in the URL. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document fails loudly, because the publisher has renamed these series twice |
+| `check-releases.mjs` | Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document fails loudly, because the publisher has renamed these series twice |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
 
 CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry and
@@ -128,12 +130,14 @@ claimed the latter. The seventh was the literal check walking `content/` and not
 left the one file whose entire job is holding references as the only file nobody scanned for
 values. The messages now state only what they verify.
 
-**The count is seven, and two more of that shape have been caught since without being added
-to it**, because both were found before they merged: the `at()` filter shipping an unformatted
-figure, and the `historical_literals` escape hatch that could not express what it exempted.
-They are under *Building a check, and trusting it*. Seven is the number that shipped, and it
-is left alone deliberately: inflating the one figure this document uses to argue for
-scepticism would make it worth less.
+**The count is seven, and three more of that shape have been caught since without being added
+to it**, because all three were found before they merged: the `at()` filter shipping an
+unformatted figure, the `historical_literals` escape hatch that could not express what it
+exempted, and a series evidence entry matched on a vintage, which also matched every earlier
+state of the same edition and would have matched for ever where the vintage was null. They are
+under *Building a check, and trusting it*. Seven is the number that shipped, and it is left
+alone deliberately: inflating the one figure this document uses to argue for scepticism would
+make it worth less.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
@@ -194,15 +198,17 @@ is already here to adding a neighbour beside it.
   broken. A fourth was a search string that did not match. The cheap guard is to grep for the
   broken text and print the count before running anything.
 
-- **Negative-test the mechanism and the remedy, not only the check.** Both failed here in one
-  session, and neither was a check. `at()` returns the raw number, so a citation missing
+- **Negative-test the mechanism and the remedy, not only the check.** Three have failed here
+  across two sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
   `| number` shipped `45537` to the built page with `npm run validate` and `npm run build`
   both green: no literal in the source for the longhand scan to find, and an unformatted
   integer is not `NaN`. Separately, the literal check told authors to declare a frozen figure
   under `historical_literals`, and that escape hatch was split on commas, so every
   comma-grouped value it existed to exempt was shredded into two junk exemptions. Three copies
-  of it, and no content page had ever used one. A check is only as good as the thing it points
-  at and the thing it sits beside.
+  of it, and no content page had ever used one. Third, the series evidence check printed a
+  fillable skeleton carrying `"vintage": null`, and null was the one value that would have made
+  that block's exemption permanent, so the remedy handed the author the hole. A check is only as
+  good as the thing it points at and the thing it sits beside.
 
 - **Find things the way that can show you are wrong.** Four figures held twice were found by
   matching equal values, which by construction can only find pairs that already agree. Whether
@@ -216,6 +222,21 @@ is already here to adding a neighbour beside it.
 
 - **A denylist needs a review pass, not a sweep.** Four of seven sub-100 matches were
   coincidences. Tokenising all of them would have cited the wrong record four times.
+
+- **When a check matches a declaration to a record, ask what the key does when it does not
+  change.** Series evidence was matched on the release vintage, which meant one entry also
+  matched every earlier state of the same edition: a fabricated middle point passed while the
+  run reported it as declared. Where the vintage was null, and it is a nullable field, null
+  matched null and the first entry would have exempted that block for ever. The skeleton the
+  error message printed supplied that null itself, which is why it also appears two bullets up.
+  Ask of any matching key: what happens when it is unchanged, and what happens when it is
+  absent. Both answers have to be "the check still asks for something".
+
+- **A second model reading the same code found what a self-critique had not.** Two rounds of
+  critique on the series evidence check found real defects and missed the one above, which a
+  fresh reviewer reproduced in a scratch clone within one pass. Worth doing on anything whose
+  whole purpose is refusing bad input, because self-critique is weakest exactly where the
+  author's model of the design is the thing at fault.
 
 ### Looking at the built page
 
@@ -362,9 +383,24 @@ Each is cheap to reverse.
 Deliberately not tied to one task, so it does not go stale as items are completed.
 
 **It is a compression of this document, not a second source of truth.** Where the two
-disagree, this document is right and the prompt needs correcting. They have already drifted
-once: the prompt said a check had overturned the review five times while the body still said
-three.
+disagree, this document is right and the prompt needs correcting.
+
+They have drifted twice, and the prompt was the stale copy both times: it said a check had
+overturned the review five times while the body still said three, and it said to take the
+first *unstarted* backlog item after the backlog had moved to *unfinished*, which would have
+sent a session to the wrong work. Saying "keep them in sync" did not prevent either, so here
+is what is actually copied and has to move in both places:
+
+| Copied into the prompt | Kept here |
+| --- | --- |
+| overturns of something asserted beside the figure asked about | *Verifying a figure* |
+| checks that passed while a real defect shipped | *The checking apparatus* |
+| negative tests that never fired | *Building a check* |
+| scope documents written in one session | *Deciding what to build* |
+| which backlog item to take, and on what wording | `docs/BACKLOG.md`, not here |
+
+The last row is the one that bit. The prompt and this document should both use the backlog's
+word rather than inventing a third.
 
 ```
 Work on UK Migration Explorer at
@@ -400,10 +436,11 @@ comes last and is launch. Do not treat any of those as done. The backlog
 also carries a short list of small editorial decisions waiting on me;
 those are mine to answer, not yours to take.
 
-TASK: take the first unstarted item in docs/BACKLOG.md, unless I have
-told you otherwise in this message. It is in recommended order,
-maintained there, so this prompt names no task and does not go stale as
-items finish.
+TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
+told you otherwise in this message. Unfinished, not unstarted: an item
+can have phases built and still be the first one. It is in recommended
+order, maintained there, so this prompt names no task and does not go
+stale as items finish.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.
@@ -440,8 +477,12 @@ changes; the rest bite on everything.
   three "failures" here were tests that never fired. Negative-test the
   MECHANISM and the REMEDY too, not only the check. The at() filter
   shipped an unformatted 45537 to the built page through validate and
-  build alike, and the escape hatch one message recommended could not
-  express a single value it existed to exempt.
+  build alike; an escape hatch one message recommended could not express
+  a single value it existed to exempt; and a skeleton another message
+  printed supplied the null that would have made an exemption permanent.
+  Where a check matches a declaration against a record, ask what its key
+  does when it does not change and when it is absent. Both answers have
+  to leave the check still asking for something.
 - State what a check does NOT establish in its own success message.
   Seven times a checker here passed while a real defect shipped, every
   time because it verified the source or the declaration rather than the

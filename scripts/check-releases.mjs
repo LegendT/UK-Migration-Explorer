@@ -20,6 +20,8 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { SERIES_FILES } from '../lib/series.mjs';
+
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
@@ -141,6 +143,26 @@ for (const file of THEME_FILES) {
   }
 }
 
+// The series files are the other half of the data layer, and the first draft of this check
+// ignored them exactly as phase 3's procedure does: 100 points, replaced wholesale on release,
+// watched by nothing. Two of the four have no metric declaring a `series_ref` either, so a file
+// left on a superseded edition would have been invisible to every check in this repository.
+//
+// The PRIMARY series only. A companion block is deliberately a different vintage:
+// netMigration.historical is the discontinued series at its 2020 vintage, and reading it would
+// report that file behind for ever.
+const unattributed = [];
+for (const file of Object.values(SERIES_FILES)) {
+  const series = read(file);
+  const urls = [...new Set((series.data ?? []).map((point) => point.source_url).filter(Boolean))];
+  if (!series.source_id || !urls.length) {
+    unattributed.push(`${file}: ${series.source_id ? 'its primary series carries no source_url' : 'no source_id on the envelope'}`);
+    continue;
+  }
+  if (!cited.has(series.source_id)) cited.set(series.source_id, []);
+  for (const url of urls) cited.get(series.source_id).push({ ref: `${file} (series)`, url });
+}
+
 const sources = new Map(read('sources.json').sources.map((s) => [s.id, s]));
 
 // --- ask each route what the current edition is -------------------------------------------
@@ -196,15 +218,15 @@ for (const report of reports) {
   if (report.newest.error) {
     unchecked.push(report);
     console.log(`${report.id}: COULD NOT CHECK. ${report.newest.error}`);
-    console.log(`  ${report.records} record(s) cite ${name}, and none of them was compared with anything.\n`);
+    console.log(`  ${report.records} citation(s) point at ${name}, and none of them was compared with anything.\n`);
     continue;
   }
   // Nothing cited an edition, so nothing was compared. Printing "current" here would be the
   // shape of every check in this project that passed while a defect shipped.
   if (!report.editions.size) {
     unchecked.push(report);
-    console.log(`${report.id}: COULD NOT CHECK. Its newest edition is ${report.newest.slug}, but no record cites a URL naming an edition, so nothing was compared.`);
-    console.log(`  ${report.records} record(s) cite ${name}.\n`);
+    console.log(`${report.id}: COULD NOT CHECK. Its newest edition is ${report.newest.slug}, but nothing citing it names an edition, so nothing was compared.`);
+    console.log(`  ${report.records} citation(s) point at ${name}.\n`);
     continue;
   }
   const stale = [...report.editions.entries()].filter(([key]) => key < report.newest.key);
@@ -213,13 +235,22 @@ for (const report of reports) {
   console.log(`  newest published edition: ${report.newest.slug} (${report.newest.key})`);
   for (const [key, { slug, refs }] of [...report.editions.entries()].sort()) {
     const mark = key < report.newest.key ? 'BEHIND' : 'current';
-    console.log(`  cites ${slug} (${key}), ${mark}, in ${refs.length} record(s)`);
+    console.log(`  cites ${slug} (${key}), ${mark}, in ${refs.length} citation(s)`);
     if (key < report.newest.key) for (const ref of refs) console.log(`    ${ref}`);
   }
   if (report.undated.length) {
-    console.log(`  ${report.undated.length} record(s) cite a URL that names no edition, so they cannot be compared:`);
+    console.log(`  ${report.undated.length} citation(s) name a URL with no edition in it, so they cannot be compared:`);
     for (const record of report.undated) console.log(`    ${record.ref}`);
   }
+  console.log('');
+}
+
+// A series that could not be attributed to a publisher is reported, never dropped. The data
+// contract requires both fields, so this should stay empty; a silent `continue` here is the
+// shape of the bug that left the series unwatched in the first place.
+if (unattributed.length) {
+  console.log(`${unattributed.length} series file(s) could not be attributed to a source and were not compared:`);
+  for (const line of unattributed) console.log(`  ${line}`);
   console.log('');
 }
 
@@ -228,7 +259,7 @@ for (const report of reports) {
 const unwatched = [...cited.keys()].filter((id) => !WATCHED[id]).sort();
 if (unwatched.length) {
   const total = unwatched.reduce((n, id) => n + cited.get(id).length, 0);
-  console.log(`Not watched: ${total} record(s) from ${unwatched.length} source(s). No route here checks these.`);
+  console.log(`Not watched: ${total} citation(s) from ${unwatched.length} source(s). No route here checks these.`);
   for (const id of unwatched) {
     console.log(`  ${id} (${cited.get(id).length}): ${sources.get(id)?.updateFrequency ?? 'no cadence recorded'}`);
   }

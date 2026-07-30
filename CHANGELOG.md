@@ -9,6 +9,22 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The series files join the source catalogue, 28 July 2026
+
+**No published figure changed**, and the built site is byte-identical to before, proved by
+diff. Each of the four series files now declares a `source_id` on its envelope, the way every
+metric already did, and `validate-data.mjs` requires it and checks it resolves.
+
+It closes a hole found by critiquing the update prompt for a fault the release notifier turned
+out to share: the notifier watched 71 records and none of the 100 series points, which are
+replaced wholesale on release. Two of the four series have no metric declaring a `series_ref`
+either, so a series file left on a superseded edition would have been invisible to every check
+here. The notifier now reads them, and catching that case is one of its negative tests.
+
+**The primary series only.** A companion block is deliberately a different vintage:
+`netMigration.historical` is the discontinued series at its 2020 vintage, and reading companion
+blocks would report that file behind for ever.
+
 ### The release notifier, 28 July 2026
 
 **No published figure changed.** `scripts/check-releases.mjs` asks each watched source which

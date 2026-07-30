@@ -147,8 +147,8 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This list is in recommended order. Take the first unfinished item, which is item 3, whose
-phase 3 is next.** The
+**This list is in recommended order. Take the first unfinished item, which is item 3, where the
+next step is the owner's: whether the proposed corrections watch comes before phase 3.** The
 order lives here rather than in the handoff's prompt, so that finishing something does not
 leave a stale instruction somewhere else. Re-order it freely; this is the only place the
 sequence is stated.
@@ -165,10 +165,10 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
 - **Phase 2, the evidence check. DONE (PR #43, 28 July 2026).** A figure whose value changed,
   or which is new, must be declared in `data/evidence/` with a quote from a fetched source
   containing that value, and CI fails without one. It applies to updates made by hand, which
-  is why it went first. Five things the scope had wrong or did not say are recorded in it
-  rather than restated here. **Not covered: the four series files**, whose 100 points are
-  replaced wholesale on release and carry no evidence at all. The check reports that on every
-  run rather than leaving it to be inferred.
+  is why it went first. **The series are covered too**, which closed the largest hole left in
+  it: 100 published points could move with nothing asking where they came from. Five things
+  the scope had wrong or did not say, and how a series is evidenced, are recorded in it and in
+  `data/evidence/README.md` rather than restated here.
 - **Phase 1, the notifier. DONE (PR #46, 28 July 2026).** `check-releases.mjs` compares the
   edition each record cites, by the month and year in its URL, against the newest edition the
   publisher lists, and opens one deduplicated issue from `main` or the weekly cron. It reports
@@ -178,8 +178,23 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   the next thing worth building here, and it is what the by-hand run in the scope found. **Not
   yet exercised:** the issue itself, since no release is pending; its parts are tested, the
   whole path is not.
-- **Phase 3, the update prompt, is next**, and phase 2 has made it safe to build. Phase 4,
-  rewriting what the sources page says about automation, needs the owner's sign-off.
+- **Phase 1b, the corrections watch, proposed 28 July 2026, and it may belong before phase 3.
+  The order is [you].** Nothing detects a correction *inside* an edition, which is the one
+  channel through which a wrong number can sit on the site indefinitely: the slug does not
+  change, so the notifier cannot see it, and a cadence cannot infer it. The route is already
+  fetched, and matching the data-tables change history against the tables the records name
+  produces one hit in sixteen, the `Vis_01` correction the by-hand run recorded as missing a
+  published figure by a single row. The scope holds the table count and the matching rule; it
+  said six here and twelve there for a day, which is what restating a number in two files does.
+  **The evidence check now refuses an unexplained move inside an edition**, which is this hole
+  from the other side and strengthens the case for building 1b early.
+- **Phase 3, the update prompt.** Seven things to settle before writing it, listed in the
+  scope. **Two are blockers, and both are the same hole:** the series files appear nowhere in
+  the procedure, so as scoped it cannot do an ONS update at all, because the four metrics that
+  declare a `series_ref` are all `ons-ltim` and moving them without the series fails
+  `validate-data.mjs`. The `source_id` query it is built on could not find the series either,
+  until this PR gave them one.
+- Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
 ### 4. The eight undrafted claims
 

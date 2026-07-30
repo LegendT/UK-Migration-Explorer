@@ -76,6 +76,14 @@ not anything later is.
 - **Not yet exercised: the issue itself.** No release is pending, so the path from a non-zero
   exit to an open issue has been tested only in its parts, the title extraction and the
   deduplication query. It will first run for real when a release lands.
+- **It ignored the series files, and that was found by critiquing Phase 3 for the same
+  fault, PR #47.** It watched 71 records and none of the 100 series points, which are replaced
+  wholesale on release. Two of the four series have no metric declaring a `series_ref`, so a
+  file left on a superseded edition would have been invisible to every check here. The series
+  now declare a `source_id`, `validate-data.mjs` requires it, and the notifier reads them.
+  **The primary series only:** a companion block is deliberately a different vintage, and
+  `netMigration.historical` is the discontinued series at its 2020 vintage, so reading
+  companions would report that file behind for ever.
 
 ### Detection: compare editions, not dates
 
@@ -189,6 +197,37 @@ routes still return 200. Three things changed the design and one concern was dro
   detection detail into an editorial change. Its `change_history` carried 16 entries naming
   exact tables, which is the corrections channel the by-hand run identified.
 
+## Phase 1b: the corrections watch, proposed 28 July 2026
+
+**Not in the original scope, and it may belong before Phase 3. That ordering is the owner's.**
+
+Phase 1 detects a new edition. It cannot detect a correction *inside* an edition, and says so
+on every run, because the edition slug does not change when a table is amended. The cadence
+check cannot infer one either. A correction is the one channel through which a wrong number can
+sit on this site indefinitely, so closing it buys something a faster quarterly update does not.
+
+The route is already fetched. The data-tables page carries a `details.change_history` of 16
+entries whose notes name the exact table and the corrected value, for example: *"Updated table
+'Vis_01' in 'Entry clearance visas summary tables, year ending March 2026' to amend the 'Other
+work visas and exemptions' figure"*. The data layer already names its tables, twelve of them:
+`ASY_03`, `Asy_00a`, `Asy_04`, `Asy_D02`, `EUSS_QTR`, `FIA_3`, `IER_02a`, `IER_D03`, `Res_01`,
+`Ret_01`, `T_3`, `Vis_01`.
+
+**Match case-insensitively.** `ASY_03` and `Asy_04` are the same publisher's naming written two
+ways in this repository, so a case-sensitive match would miss one of them. The first count of
+this list was six, because the pattern that produced it required a capital followed by two
+lower-case letters and silently dropped `EUSS_QTR`, `FIA_3` and four others.
+
+**Matching one list against the other produces exactly one hit in sixteen, and it is the right
+one:** the 1 June `Vis_01` correction, which the by-hand run below found and recorded as
+missing a published figure by a single row. One precise hit rather than sixteen notifications
+is the difference between a watch someone reads and one they mute.
+
+**It has a dependency the backlog already tracks.** `table_reference` is unimplemented, so a
+table identifier survives only as prose inside `source_name` and `notes`, and matching them
+means a pattern over prose. That works, and it is the weaker version. Implementing
+`table_reference` on the records would make the match exact and is the better first step.
+
 ## Phase 2: the evidence contract, and the check that enforces it
 
 **Built 28 July 2026, PR #43**, as `scripts/check-evidence.mjs`, `data/evidence/` and a CI step
@@ -224,10 +263,19 @@ never built, because it applies equally to a human update.
 - **Entries are matched, never validated wholesale.** The evidence files are kept, so an entry
   naming a metric since renamed or dropped is history rather than a defect. A check that
   failed on one would push someone into deleting the audit trail to get a green run.
-- **Series points are not covered, and the check says so on every run.** The contract is
-  metrics. The four series files are replaced wholesale from a single release under the
-  single-vintage rule, and their 100 points carry no evidence. The report counts the changed
-  files rather than leaving the gap to be inferred.
+- **Series were not covered at first, and now are.** The contract began at metrics, and the
+  check counted the changed series files on every run rather than leaving the gap to be
+  inferred. That was the largest hole left in it: 100 published points could move with nothing
+  asking where they came from. Closing it needed a different unit of evidence rather than a
+  bigger version of the same one, and what that unit is, why, and what it still does not
+  establish are in `data/evidence/README.md`, which is where the contract lives and where the
+  check's own error messages send an author. Not restated here.
+- **One thing found while closing it belongs in this scope rather than there.** Matching an
+  entry on its vintage cannot distinguish a correction the publisher made inside an edition from
+  an entry written before the change, so a fabricated middle point passed. That is the same hole
+  phase 1b exists to watch, arriving from the other direction, and it is the argument for
+  ordering 1b early: the evidence check can now refuse an unexplained within-edition move, but
+  only once someone has noticed the edition changed at all.
 
 Both CI traps were real and are handled as the scope preferred: `actions/checkout@v4` still
 carries no `fetch-depth`, and the step runs an explicit fetch rather than deepening every job.
@@ -314,10 +362,55 @@ this check would rot.
 
 ## Phase 3: the update prompt
 
-Only after Phase 2 exists and has been exercised.
+Only after Phase 2 exists and has been exercised. **Both are now true**: the evidence check
+was built on 28 July 2026 and exercised the same day on a real figure, PR #45.
+
+### Seven things to settle before writing it, found on 28 July
+
+The first two are blockers, and both come from the same hole: **the series files are not in
+this procedure anywhere.**
+
+- **As scoped, it cannot do an ONS update at all.** Four metrics declare a `series_ref`, and
+  `validate-data.mjs` refuses a metric whose value disagrees with the series point it names.
+  All four are `ons-ltim`: `net-migration`, `net-migration-2`, `total-long-term-immigration`
+  and `total-long-term-emigration`. An update that moves those four records and not the series
+  produces a pull request that cannot pass CI. Nothing below mentions a series file.
+- **The query it is built on could not find them either, and now can.** The series files
+  carried no `source_id`, so "list the affected figures by `source_id`" reached 71 records and
+  none of the 100 series points. They carry one as of PR #47 and `validate-data.mjs` requires
+  it, which also let the notifier start watching them. Both watched sources move series on
+  release: two files are ONS, two are Home Office, and the single-vintage rule means each is
+  replaced whole rather than appended to. What remains is the decision above: this procedure
+  refuses series work and hands it to a person, or grows a second half. Refusing is defensible,
+  silently omitting is not.
+- **The field list is half of what a real update touches.** It names `value`, `period_label`,
+  `date` and `retrieved_date`. PR #45 also changed `source_name`, `source_url`,
+  `published_date` and `notes`. Four of eight leaves a record citing the superseded edition's
+  URL beside the new edition's value.
+- **"Locate each figure in the named table" would have returned `UNVERIFIED` for a figure that
+  was perfectly verifiable.** The EUSS value appears in no table: it is the bulletin's own
+  total, and the tables give 270,235 settled conclusions plus a 100,300 automated estimate.
+  The step is reconcile, not look up. And `table_reference` is then omitted rather than
+  guessed, because naming a table that does not hold the value is the defect correction 1c
+  existed to fix.
+- **"Never edit prose" has to say which prose.** Page prose, plainly. But the record's own
+  `notes` said "an estimated 86,670 automated grants" beside a figure now built on 100,300,
+  and "4.4 million" where the release says 4.5 million. Leaving those would have shipped two
+  false statements inside the data layer. Notes are re-read against the release every time;
+  pages are never touched.
+- **Where it runs is unpinned, and that is the line this document is built on.** It is run by a
+  person with an assistant, on their machine. Not by CI: opening a pull request from CI needs
+  `contents: write`, which is a far larger grant than the `issues: write` the notifier uses,
+  and it moves the human gate rather than keeping it.
+- **A prompt is never part of the checking apparatus.** The line below overclaims. What makes
+  this safe is that three checks already refuse its worst outputs: `check-evidence.mjs` refuses
+  an unquoted value, `check-releases.mjs` refuses to call a record current when it cites a
+  superseded edition, and `validate-content.mjs` refuses a value written longhand in prose.
+  Version the prompt because a procedure worth following is worth diffing, not because it
+  checks anything.
 
 **Lives in the repository** at `docs/prompts/update-from-release.md`, versioned and
-reviewable. A prompt you cannot diff is not part of the checking apparatus.
+reviewable.
 
 **Input:** a `source_id` and a release URL, from the notifier's issue.
 
@@ -366,7 +459,8 @@ the update commitment does.
 | --- | --- | --- |
 | 1, notifier | **Built, 28 July 2026, PR #46.** Closes "nothing detects a release happened". | Nothing |
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
-| 3, prompt | No. Unsafe without 2. | 1 and 2 |
+| 1b, corrections watch | Yes, and it closes a channel nothing else watches. **Proposed; whether it comes before 3 is the owner's call.** | Nothing, though `table_reference` would sharpen it |
+| 3, prompt | No. Unsafe without 2, and seven things to settle first. | 1 and 2 |
 | 4, disclosure | Not applicable | 3, and owner sign-off |
 
 **None of it should delay launch.** Launch waits on two decisions, and this changes neither.

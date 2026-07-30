@@ -18,7 +18,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { SERIES_FILES } from '../lib/series.mjs';
+import { COMPANION_BLOCKS, SERIES_FILES } from '../lib/series.mjs';
 
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 const evidenceDir = `${repoRoot}data/evidence/`;
@@ -121,6 +121,7 @@ const carries = (text, value) =>
 // figure that has since been renamed or dropped is a historical record, not a defect, and a
 // check that failed on it would push someone into deleting the trail to get a green run.
 const entries = [];
+const seriesEntries = [];
 if (existsSync(evidenceDir)) {
   for (const file of readdirSync(evidenceDir).filter((name) => name.endsWith('.json'))) {
     let json;
@@ -134,11 +135,17 @@ if (existsSync(evidenceDir)) {
       errors.push(`data/evidence/${file}: is not valid JSON, ${error.message.split('\n')[0]}`);
       continue;
     }
-    if (!Array.isArray(json.figures)) {
-      errors.push(`data/evidence/${file}: has no "figures" array, so nothing in it can be found. See data/evidence/README.md.`);
+    // Either array, or both: a release moves records and series together, and one file per
+    // release holds whichever it moved. Requiring "figures" rejected a file that correctly
+    // held only a series, which is how this was found.
+    const figures = Array.isArray(json.figures) ? json.figures : null;
+    const series = Array.isArray(json.series) ? json.series : null;
+    if ((figures ?? series) === null || !(figures?.length || series?.length)) {
+      errors.push(`data/evidence/${file}: holds no "figures" or "series" array with anything in it, so nothing here can be found. See data/evidence/README.md.`);
       continue;
     }
-    json.figures.forEach((entry, i) => entries.push({ entry, where: `data/evidence/${file} figures[${i}]` }));
+    (figures ?? []).forEach((entry, i) => entries.push({ entry, where: `data/evidence/${file} figures[${i}]` }));
+    (series ?? []).forEach((entry, i) => seriesEntries.push({ entry, where: `data/evidence/${file} series[${i}]` }));
   }
 }
 
@@ -245,6 +252,121 @@ for (const [ref, metric] of current) {
   checkEntry(ref, metric, before, matched.entry, matched.where);
 }
 
+// --- and every series that moved ---------------------------------------------------------
+// A series is not a hundred independent figures. It is one array replaced whole from one
+// release, because ONS states you cannot append the latest estimates to a series taken from an
+// earlier one, so the evidence is per array and per release rather than per point. Requiring a
+// quote for each of 100 points would be theatre nobody could perform.
+//
+// Until this existed, those 100 published points could change with nothing asking where they
+// came from. It was the largest hole left in this contract, and the check announced it on every
+// run rather than closing it.
+const blocksOf = (series) => [
+  ['primary', series],
+  ...COMPANION_BLOCKS.filter((name) => series[name]).map((name) => [name, series[name]]),
+];
+const fingerprint = (block) => JSON.stringify((block?.data ?? []).map((p) => [p.date, p.value]));
+// Single vintage per block is enforced by validate-data.mjs, so the first point speaks for all.
+const vintageOf = (block) => (block?.data ?? [])[0]?.published_date ?? null;
+
+let seriesMoved = 0;
+for (const file of Object.values(SERIES_FILES)) {
+  const now = readJson(`${repoRoot}data/${file}`);
+  let before = null;
+  try {
+    before = JSON.parse(git('show', `${base}:data/${file}`));
+  } catch {
+    before = null;
+  }
+
+  // A block under a key nothing lists is invisible here and to validate-data.mjs, which walks
+  // the same list: 100 points could ship with no evidence and no field validation at all.
+  // Registering a companion in lib/series.mjs is what makes it visible to both, so say that.
+  const known = new Set(COMPANION_BLOCKS);
+  for (const [key, value] of Object.entries(now)) {
+    if (key === 'data' || known.has(key)) continue;
+    if (value && typeof value === 'object' && Array.isArray(value.data)) {
+      errors.push(`data/${file}: holds a block under "${key}" with ${value.data.length} point(s), and lib/series.mjs does not list it as a companion, so neither this check nor validate-data.mjs can see it. Add it to COMPANION_BLOCKS, or move the data somewhere that is watched.`);
+    }
+  }
+
+  for (const [name, block] of blocksOf(now)) {
+    const was = before && (name === 'primary' ? before : before[name]);
+    const vintage = vintageOf(block);
+    const points = (block.data ?? []).length;
+    if (was && fingerprint(was) === fingerprint(block) && vintageOf(was) === vintage) continue;
+    seriesMoved += 1;
+
+    const at = `${file} ${name}`;
+
+    // An empty block would be evidenced by a quote carrying nothing: `ends` is empty, so the
+    // quote check never runs, and the run would still report both ends as quoted.
+    // validate-data.mjs rejects an empty PRIMARY series and does not look at companions, so
+    // this is the only thing standing between a companion emptied by a bad paste and a pass.
+    if (points === 0) {
+      errors.push(`${at}: holds no points, so there are no ends to quote and any evidence for it would be vacuous. A series is replaced whole; an empty array is a failed paste, not a release.`);
+      continue;
+    }
+
+    // Filtered then matched, rather than matched in one pass, so an entry naming this block at
+    // some other vintage can be named in the message. That is what a series moving again after
+    // its evidence was written looks like, and the metric path says so for the same reason.
+    const named = seriesEntries.filter(({ entry }) =>
+      entry.file === file && (entry.block ?? 'primary') === name);
+    const matched = named.find(({ entry }) => entry.vintage === vintage);
+    if (!matched) {
+      const stale = named.length
+        ? ` ${named.length} entr${named.length === 1 ? 'y names' : 'ies name'} this block at a different vintage, which is what a series moving again after its evidence was written looks like.`
+        : '';
+      errors.push(`${at}: ${was ? 'moved' : 'is new'}, and no evidence entry declares it.${stale} Add to the "series" array of a file in data/evidence/:\n      { "file": "${file}", "block": "${name}", "previous_vintage": ${JSON.stringify(vintageOf(was))}, "vintage": ${JSON.stringify(vintage)}, "points": ${points}, "source_url": "https://...", "fetched_at": "YYYY-MM-DD", "quote": "..." }\n      ${SHAPE}`);
+      continue;
+    }
+
+    const { entry, where } = matched;
+    const claimed = 'previous_vintage' in entry ? entry.previous_vintage : undefined;
+    if (claimed === undefined) {
+      errors.push(`${where}: no previous_vintage. ${at} was ${JSON.stringify(vintageOf(was))} on ${base}.`);
+    } else if (claimed !== vintageOf(was)) {
+      errors.push(`${where}: previous_vintage ${JSON.stringify(claimed)} is not what ${at} holds on ${base}, which is ${JSON.stringify(vintageOf(was))}.`);
+    }
+
+    // A block whose contents moved while its vintage did not is either a correction inside an
+    // edition or an entry that predates the change. Matching on vintage cannot tell those
+    // apart, so without this an entry written for the previous state of the same edition covers
+    // a value it never saw, and the run reports it as declared. A fabricated middle point passed
+    // that way. It also fires for a block whose points carry no published_date, where the
+    // vintage is null on both sides and every later edit would match the first entry for ever.
+    //
+    // A correction inside an edition is the one channel through which a wrong number can sit on
+    // this site indefinitely: the slug does not change and no cadence implies it.
+    if (was && vintageOf(was) === vintage && !String(entry.correction ?? '').trim()) {
+      errors.push(`${where}: ${at} moved while its vintage stayed ${JSON.stringify(vintage)}, so this entry cannot be evidence for the change. An entry matched on vintage also matches every earlier state of the same edition. If the publisher corrected the array inside its edition, re-read both ends and say what changed in a "correction" field. If it did not, an array moved without a release and that is the thing to explain.`);
+    }
+
+    // The count catches an array pasted short, which quoting its two ends cannot. Stringified
+    // because "declares 14 point(s), but holds 14" is what a string 14 produces otherwise.
+    if (entry.points !== points) {
+      errors.push(`${where}: declares ${JSON.stringify(entry.points)} point(s), but ${at} holds ${points}. A series is replaced whole, so a mismatch means the array is not the one that was read.`);
+    }
+    if (!isRealDate(entry.fetched_at)) {
+      errors.push(`${where}: fetched_at "${entry.fetched_at}" is not a real YYYY-MM-DD date.`);
+    }
+    checkSourceUrl(where, 'source_url', entry.source_url);
+    // Both ends, because a release is read from a table and the two ends are what an author
+    // must look at to know they took the right column and the whole of it.
+    const ends = [(block.data ?? [])[0], (block.data ?? [])[points - 1]].filter(Boolean);
+    if (!entry.quote) {
+      errors.push(`${where}: no quote. ${SHAPE}`);
+    } else {
+      for (const point of ends) {
+        if (!carries(entry.quote, point.value)) {
+          errors.push(`${where}: the quote does not contain ${format(point.value)}, the ${point === ends[0] ? 'first' : 'last'} point of ${at} (${point.date}).`);
+        }
+      }
+    }
+  }
+}
+
 // --- report ----------------------------------------------------------------------------
 if (errors.length) {
   console.error(`Evidence check failed against ${base}, ${errors.length} problem(s):\n`);
@@ -253,18 +375,6 @@ if (errors.length) {
   console.error('nobody has seen in a source, which is the one thing this site promises never to publish.');
   process.exit(1);
 }
-
-// Counted, not diffed point by point: a series is replaced wholesale from a single release
-// under the single-vintage rule, so "which points changed" is not the question a reader of
-// this report is asking. That they carry no evidence at all is.
-const seriesFiles = Object.values(SERIES_FILES);
-const seriesChanged = seriesFiles.filter((file) => {
-  try {
-    return git('show', `${base}:data/${file}`) !== readFileSync(`${repoRoot}data/${file}`, 'utf8');
-  } catch {
-    return true;
-  }
-}).length;
 
 if (changed === 0) {
   console.log(`Evidence check passed against ${base}: no metric changed value and none is new, so there is nothing to evidence.`);
@@ -279,9 +389,18 @@ console.log('did not change.');
 if (derived) {
   console.log(`Also not established: the arithmetic of ${derived} derived figure(s) in this diff. Each input is quoted; the sum or share is not recomputed.`);
 }
-if (seriesChanged) {
-  console.log(`Not covered: ${seriesChanged} of the ${seriesFiles.length} series file(s) changed and carry no per-point evidence.`);
+if (seriesMoved) {
+  console.log(`\n${seriesMoved} series block(s) moved, each declared with its vintage, its point count and`);
+  console.log('both ends quoted, and a correction note where the array moved without a new release.');
+  console.log('Not established: the points between those ends. A series is evidenced as one array from');
+  console.log('one release, which is how it is published and how it is replaced, so a wrong value in the');
+  console.log('middle of a correctly sourced array passes this.');
 }
+// Printed whether or not a series moved. A pull request that only DELETES a companion moves
+// nothing, so it produces no series output at all, and the run where this limit matters most
+// would otherwise be the one that never mentions it.
+console.log('\nNot established about series: that a block still exists. Only blocks present now are');
+console.log('compared, so deleting a companion series is not a moved series and nothing here asks.');
 // Last, and set apart, because it is the one line that can make everything above vacuous.
 if (sameCommit) {
   console.log(`\nOnly uncommitted changes were compared: ${base} and HEAD are the same commit. On a push`);
