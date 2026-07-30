@@ -279,11 +279,17 @@ sentences**, and three of the four groups moved:
   `people-in-receipt-of-asylum-support`, which is 97,519. The sentence's whole point is that the
   two are of similar magnitude, so precision would work against it, and `historical_literals`
   would silence them as frozen when they are live. The glossary carries the same rounding: **[you]**.
-- **Arithmetic against a live value, where neither remedy in the message works.** The `100,000`
-  on `net-migration-is-arrivals` and in the glossary is `431,000` minus the live
-  `migration/net-migration-2`. A record for it would be a fake metric, and freezing it guarantees
-  it goes wrong at the next revision. This is the same shape as the `285,000` and `47%` sentence
-  under the editorial decisions below, so whatever is decided there should decide these too.
+- **Arithmetic against a live value, where neither remedy in the message works. DONE (PR #55,
+  30 July 2026), and it emptied this category.** The `100,000` on `net-migration-is-arrivals` and
+  in the glossary was `431,000` minus the live `migration/net-migration-2`. A record for it would
+  have been a fake metric and freezing it guaranteed it would go wrong at the next revision, so
+  both were dropped, along with the `285,000` and `47%` under the editorial decisions below and
+  two more sites of the same sentence. The baseline fell from 29 to 27.
+
+  **The lesson worth keeping is the shape, not the fix.** A figure computed against a citation is
+  invisible to every check here: it matches no record, so the longhand scan cannot see it, and it
+  is not frozen history, so declaring it would have been a lie that silenced it for ever. If one
+  appears again, dropping it and giving the reader both ends is the pattern.
 
 **Value-keyed sorting cannot finish this job**, which is worth knowing before anyone tries.
 `51,000` is the end-2019 initial-decision backlog in one file and the appeals backlog a year
@@ -338,13 +344,21 @@ Neither blocks anything. They are here because a decision recorded only in a mer
 request body is a decision that gets lost, and this file is the one place that cannot happen.
 Both came out of PR #41 on 28 July 2026.
 
-- **The revision sentence in `migration.njk`.** It reads "has moved by 285,000 across
-  revisions, from 606,000 when first published in May 2023 to [the 2022 estimate] in the
-  current series, 47% higher." The estimate is now cited, so it will update itself. The
-  `285,000` and the `47%` beside it will not, and nothing will fail the build when they go
-  wrong. The alternative was `meta.json`'s precedent of freezing a worked sum whole, which
-  was not taken because `historical_literals` is page-scoped and declaring the estimate would
-  also have un-protected the citation in the summary above it.
+- **The revision sentence in `migration.njk`. DONE (PR #55, 30 July 2026).** Decided by
+  dropping both numbers rather than freezing them. Freezing was the worse option and the
+  reason is worth keeping: `historical_literals` is page-scoped, so declaring the estimate to
+  protect the sum would have un-protected the citation in the summary above it, trading one
+  unprotected figure for two. The sentence now gives both ends, 606,000 and the cited current
+  estimate, and lets a reader take the difference.
+
+  **The same decision settled four more sites, because it was one defect in five places**, and
+  finding the fifth is why the count in this bullet used to say four. All were arithmetic or a
+  claim about arithmetic against a live value: the two `100,000` revision deltas on
+  `net-migration-is-arrivals` and in the glossary, `meta.json`'s "more than 120,000", which
+  renders on `/sources-and-method/` and was what correction 1e left behind, and the same
+  sentence again in `netMigrationTimeseries.json`'s own note, where it would have instructed the
+  next editor to reintroduce it. Proved by diff: four built pages changed and each only in the
+  sentence intended.
 - **The sources page carries four more hand-maintained counts, and at least one is provably
   wrong. [me + you].** Found 30 July 2026 while checking the bullet below, which turns out to be
   one member of a class rather than a single sentence. The page publishes a release table reading

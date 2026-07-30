@@ -112,9 +112,11 @@ const unrecorded = [];
 // What it does NOT establish, and the failure message says so: that the listed figures are
 // right, or that the set is unchanged. Fixing one figure and adding another keeps the count
 // level and passes. It stops the list growing, which is the thing that was happening silently.
-// 38 when the branch was added; 29 once the nine published-vintage figures were declared, which
-// is the ratchet working as intended rather than a number being edited to suit a run.
-const UNRECORDED_BASELINE = 29;
+// 38 when the branch was added, 29 once the nine published-vintage figures were declared, 27
+// once the two revision deltas were dropped. Each step down is the ratchet working as intended
+// rather than a number edited to suit a run, and the line below prints the count and this
+// constant separately so that a gap between them is visible instead of being read as agreement.
+const UNRECORDED_BASELINE = 27;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
@@ -818,4 +820,13 @@ if (unrecorded.length > UNRECORDED_BASELINE) {
   console.error('This does not establish that the other figures are right, or that the set is the same one. One fixed and one added keeps the count level and passes here.');
   process.exit(1);
 }
-console.log(`Unrecorded longhand figures are at the baseline of ${UNRECORDED_BASELINE} and may not grow. Lower it as they are recorded or declared; at zero the report becomes an error.`);
+// Prints the COUNT and the baseline as two numbers, because saying "at the baseline of N" was
+// true only while they were equal, and they stopped being equal the first time figures were
+// removed. A count below the baseline is slack: the ratchet would let that many new figures in
+// before it noticed. Saying so is the difference between a ratchet and a number nobody moves.
+console.log(`Unrecorded longhand figures: ${unrecorded.length}, against a baseline of ${UNRECORDED_BASELINE} which may not be exceeded.`);
+if (unrecorded.length < UNRECORDED_BASELINE) {
+  console.log(`Lower UNRECORDED_BASELINE to ${unrecorded.length}. Until it is lowered, ${UNRECORDED_BASELINE - unrecorded.length} new unrecorded figure(s) could be added without failing anything.`);
+} else {
+  console.log('At zero the report becomes an error and the constant goes.');
+}
