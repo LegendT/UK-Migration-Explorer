@@ -21,6 +21,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { SERIES_FILES } from '../lib/series.mjs';
+import { sameTable, tablesIn } from '../lib/tables.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
@@ -47,6 +48,23 @@ const WATCHED = {
   // bulletin's own /latest works, and its watch target is derived from the records below,
   // because sources.json holds the topic landing page and not the bulletin.
   'ons-ltim': { latestFromRecords: true },
+};
+
+// Phase 1b, the corrections watch. A correction *inside* an edition leaves the slug alone, so
+// everything above reports the edition as current and is right to: the site does cite the edition
+// the publisher lists. The change history on the data-tables page is where those corrections
+// surface, and its notes name the exact table, for example "Updated table 'Vis_01' ... to amend
+// the 'Other work visas and exemptions' figure". The records name their tables too, in
+// `table_reference`, so the two lists can be matched.
+//
+// One page, because one page is what carries this. A `table_reference` names which table, never
+// which page publishes it, so every declared table is matched against this one and a table
+// published elsewhere is matched here and found nowhere: `ASY_03` is Migration Transparency Data
+// and has never appeared in this history. The run says so rather than implying coverage.
+const CORRECTIONS = {
+  'ho-immigration-stats': {
+    api: 'https://www.gov.uk/api/content/government/statistical-data-sets/immigration-system-statistics-data-tables',
+  },
 };
 
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june',
@@ -134,12 +152,31 @@ async function newestFromLatest(url) {
 }
 
 // --- what the site cites ----------------------------------------------------------------
+// `declared` is the corrections watch's half: which publisher table each figure was read from,
+// and the day it was last read. That date is what makes the watch stateless and self-clearing.
+// A correction only matters where the figure has not been re-read since, so it is compared per
+// figure rather than per table, because three records cite Ret_01 and each is re-checked on its
+// own day. When someone re-reads the figure and moves the date forward, the alert stops on its
+// own, and there is no "last seen" file to go stale in the meantime.
+//
+// A missing date fires rather than passes. Absent means nobody knows when it was last read, and
+// an unchanged date keeps firing while corrections land, which is the answer this project now
+// demands of any key a check matches on: both cases have to leave it still asking for something.
 const cited = new Map();
+const declared = [];
 for (const file of THEME_FILES) {
   const theme = file.replace('.json', '');
   for (const metric of read(file).metrics ?? []) {
     if (!cited.has(metric.source_id)) cited.set(metric.source_id, []);
     cited.get(metric.source_id).push({ ref: `${theme}/${metric.id}`, url: metric.source_url });
+    if (metric.table_reference?.length) {
+      declared.push({
+        ref: `${theme}/${metric.id}`,
+        sourceId: metric.source_id,
+        tables: metric.table_reference,
+        checked: metric.retrieved_date,
+      });
+    }
   }
 }
 
@@ -161,6 +198,17 @@ for (const file of Object.values(SERIES_FILES)) {
   }
   if (!cited.has(series.source_id)) cited.set(series.source_id, []);
   for (const url of urls) cited.get(series.source_id).push({ ref: `${file} (series)`, url });
+  // The series points carry no retrieved_date, which is why the staleness check cannot age them
+  // either. The envelope's lastUpdated is the day the file was last refreshed, and a series is
+  // replaced whole, so it is the right date for the whole array.
+  if (series.table_reference?.length) {
+    declared.push({
+      ref: `${file} (series)`,
+      sourceId: series.source_id,
+      tables: series.table_reference,
+      checked: series.lastUpdated,
+    });
+  }
 }
 
 const sources = new Map(read('sources.json').sources.map((s) => [s.id, s]));
@@ -205,6 +253,64 @@ for (const [id, config] of Object.entries(WATCHED)) {
   }
 
   reports.push({ id, newest, editions, undated, records: records.length });
+}
+
+// --- ask each corrections route what it has amended ----------------------------------------
+async function changeHistory(api) {
+  const { body, error } = await get(api);
+  if (error) return { error: `${error} fetching ${api}` };
+  let history;
+  try {
+    history = JSON.parse(body).details?.change_history;
+  } catch {
+    return { error: `${api} did not return JSON` };
+  }
+  // An empty history is not "nothing has been corrected". This page has carried 16 entries since
+  // 2023, so an empty one means the schema moved or the page did, and reporting it as clean would
+  // be the shape of every check here that passed while a defect shipped.
+  if (!Array.isArray(history) || !history.length) {
+    return { error: `${api} returned no change history, so nothing was compared. The page or its content schema may have changed.` };
+  }
+  return { history };
+}
+
+const corrections = [];
+for (const [id, config] of Object.entries(CORRECTIONS)) {
+  const { history, error } = await changeHistory(config.api);
+  if (error) {
+    corrections.push({ id, error });
+    continue;
+  }
+  // Most entries announce a quarterly release and name its tables by title, not by identifier.
+  // Matching identifiers is what separates a correction from a release, and it is why sixteen
+  // entries produce one hit rather than sixteen notifications nobody would read.
+  const naming = history
+    .map((entry) => ({
+      date: String(entry.public_timestamp ?? '').slice(0, 10),
+      note: String(entry.note ?? '').replace(/\s+/g, ' ').trim(),
+      tables: tablesIn(entry.note),
+    }))
+    .filter((entry) => entry.tables.length);
+
+  // Every declared table is matched, not only those whose record cites this publisher.
+  // `small-boat-arrivals-year-ending-march-2026` reads IER_D03 and IER_02a through a Commons
+  // Library briefing that quotes them, and a correction to those tables is a correction to what
+  // the Home Office published however the site reached it. Restricting the match by source_id
+  // would have skipped it.
+  const matched = [];
+  const outstanding = [];
+  for (const entry of naming) {
+    for (const table of entry.tables) {
+      const citing = declared.filter((record) => record.tables.some((name) => sameTable(name, table)));
+      if (!citing.length) continue;
+      matched.push({ entry, table, citing });
+      // An entry with no timestamp fires rather than passing. Empty compares as earlier than
+      // every date, so leaving it to the comparison would silently clear every figure behind it.
+      const stale = citing.filter((record) => !record.checked || !entry.date || record.checked < entry.date);
+      if (stale.length) outstanding.push({ entry, table, stale });
+    }
+  }
+  corrections.push({ id, history, naming, matched, outstanding });
 }
 
 // --- report --------------------------------------------------------------------------------
@@ -266,15 +372,72 @@ if (unwatched.length) {
   console.log('A cadence in that column and no route is a gap worth closing; "ongoing" is not.\n');
 }
 
+// --- corrections inside an edition ----------------------------------------------------------
+const corrected = [];
+const correctionsUnchecked = [];
+console.log(`Corrections inside an edition: ${corrections.length} watched page(s), against the tables the site declares.\n`);
+
+const allTables = [...new Set(declared.flatMap((record) => record.tables))].sort();
+
+for (const report of corrections) {
+  if (report.error) {
+    correctionsUnchecked.push(report.id);
+    console.log(`${report.id}: COULD NOT CHECK. ${report.error}`);
+    console.log(`  ${declared.length} figure(s) declare a table, and none of them was compared.\n`);
+    continue;
+  }
+  // Nothing declared means nothing was compared, whatever the change history said.
+  if (!declared.length) {
+    correctionsUnchecked.push(report.id);
+    console.log(`${report.id}: COULD NOT CHECK. Its change history holds ${report.history.length} entries, but no figure declares a table_reference, so nothing was compared.\n`);
+    continue;
+  }
+  if (report.outstanding.length) corrected.push(report);
+  console.log(`${report.id}: ${report.outstanding.length ? 'CORRECTED SINCE LAST READ' : 'current'}`);
+  console.log(`  ${report.history.length} change history entries, ${report.naming.length} naming a table, ${report.matched.length} naming one of the ${allTables.length} this site declares: ${allTables.join(', ')}`);
+  for (const { entry, table, citing } of report.matched) {
+    const stale = report.outstanding.find((hit) => hit.entry === entry && hit.table === table);
+    console.log(`  ${table} amended ${entry.date}, cited by ${citing.length} figure(s), ${stale ? `${stale.stale.length} not re-read since` : 'all re-read since'}`);
+    if (stale) {
+      for (const record of stale.stale) console.log(`    ${record.ref}, last read ${record.checked ?? 'never recorded'}`);
+      console.log(`    note: ${entry.note}`);
+    }
+  }
+  console.log('');
+}
+
+// These tables are matched against the page above like every other, but their own publisher's
+// corrections channel is not read here. A tribunals table amended on the tribunals collection,
+// or a Migration Transparency Data sheet amended on its own page, surfaces nowhere in this run.
+const noOwnRoute = declared.filter((record) => !CORRECTIONS[record.sourceId]);
+if (noOwnRoute.length) {
+  console.log(`Publishers with no corrections route here: ${noOwnRoute.length} figure(s). Their tables are matched above, but a correction announced only by their own publisher is unseen.`);
+  for (const record of noOwnRoute) console.log(`  ${record.ref}: ${record.tables.join(', ')} (${record.sourceId})`);
+  console.log('');
+}
+// Said whether or not anything above fired, because a source that declares no table cannot
+// appear in the list above and would otherwise read as covered. ONS numbers its sheets "Table 1",
+// which is not an identifier that could be declared or matched at all.
+const noCorrectionsRoute = [...cited.keys()].filter((id) => !CORRECTIONS[id]).sort();
+console.log(`No corrections route at all: ${noCorrectionsRoute.length} of the ${cited.size} sources the site cites, ${noCorrectionsRoute.join(', ')}.`);
+console.log('One page is watched for corrections, and it is the Home Office data tables.\n');
+
 // Said on every run, including a quiet one. A notifier that speaks only when it fires cannot
 // be told apart from one that has stopped working.
-console.log('Not established: that a release which kept its edition slug has changed anything, or');
-console.log('that a figure inside a cited edition has been revised. Corrections between editions');
-console.log('land on the data-tables page, whose change history names the exact table, and this');
-console.log('reads neither. It compares which edition is cited, and nothing else.');
+console.log('Not established, by either half: that a release which kept its edition slug has');
+console.log('changed anything. The edition check compares which edition is cited and nothing else.');
+console.log('The corrections watch reads one page and matches table identifiers, so it cannot see a');
+console.log('correction whose note names a table by title only, one to a table nobody wrote down,');
+console.log('or one published anywhere but that page: a table_reference names which table, never');
+console.log('which page publishes it. It compares whole UTC days, so a correction published later');
+console.log('on the day a figure was read falls on the wrong side of it. A match means the table');
+console.log('moved, never that the row this site publishes did: the last one missed it by a single');
+console.log('row. And it clears when retrieved_date moves forward, or lastUpdated for a series,');
+console.log('which is a person saying they re-read it, not this or any check establishing so.');
 
-if (!behind.length && !unchecked.length) {
-  console.log('\nEvery watched source is on the edition the site cites.');
+if (!behind.length && !unchecked.length && !corrected.length && !correctionsUnchecked.length) {
+  console.log('\nEvery watched source is on the edition the site cites, and every corrected table');
+  console.log('was re-read after it was corrected.');
   process.exit(0);
 }
 
@@ -286,6 +449,16 @@ const signature = [
   // Not "unreachable": a collection that answers 200 while matching no document is the
   // rename case, and it is the failure this title most needs to be honest about.
   ...unchecked.map((report) => `${report.id} could not be checked`),
+  // The tables and the count, not just the source, so that a second correction landing while the
+  // first is open changes the title and opens a second issue rather than hiding inside the first.
+  // The count is what carries two corrections to the same table on the same day, which the tables
+  // and the date alone cannot tell apart.
+  ...corrected.map((report) => {
+    const tables = [...new Set(report.outstanding.map((hit) => hit.table))].sort().join('/');
+    const latest = report.outstanding.map((hit) => hit.entry.date).sort().pop();
+    return `${report.id} ${report.outstanding.length} correction(s) to ${tables} since ${latest}`;
+  }),
+  ...correctionsUnchecked.map((id) => `${id} corrections could not be checked`),
 ].sort().join(', ');
 console.log(`\nISSUE-TITLE: Release check: ${signature}`);
 process.exit(1);

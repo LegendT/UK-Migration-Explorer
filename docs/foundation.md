@@ -604,9 +604,12 @@ should be recorded so they are not silently reinstated:
 
 ### 9.3 Known gaps in the contract
 
-- **`table_reference` is still unimplemented.** Home Office table identifiers survive only
-  inside `notes` as prose. Section 6 requires table references in metadata. Add the field
-  when the next quarterly update touches those figures.
+- **`table_reference` no longer names the gap; what it cannot see does.** The field was
+  implemented on 30 July 2026, on 14 records and 2 series files, and `validate-data.mjs`
+  refuses a figure that names a table in its own prose and declares nothing. What is still
+  open is that this reads what was written: a figure whose table nobody wrote down declares
+  none and is asked for none, and an ONS sheet called "Table 1" carries no identifier that
+  could be declared at all. The corrections watch is only as complete as this declaration.
 - **`published_date` is now recorded for 66 of the 67 theme metrics**, closing what was 33
   outstanding in the June 2026 draft. Nothing was inferred to close it, because inventing a
   publication date on a project about statistical integrity is not a defensible shortcut. The
@@ -1111,8 +1114,8 @@ confidence_level     this site's grade for the source
 
 The catalogue is per SOURCE. Publication date, dataset or table used, geography, period
 covered and last-checked date are per FIGURE and live on the record, not here, because one
-source supplies figures with different periods and different table references. The one
-genuinely missing field is `table_reference` on the figure, recorded in section 9.3.
+source supplies figures with different periods and different table references. Those table
+references are now on the record, as `table_reference`; section 9.3 says what they buy.
 
 The sources page renders three of these columns, name with publisher, `covers` and
 `updateFrequency`. `id` and `confidence_level` are structural, and `url` is the link.

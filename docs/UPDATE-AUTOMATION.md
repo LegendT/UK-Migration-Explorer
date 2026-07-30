@@ -2,8 +2,9 @@
 
 What can be automated about keeping this site current, what must not be, and in what order to
 build it. Scoped 23 July 2026. **Phase 2, the evidence check, was built on 28 July 2026, PR #43,
-and phase 1, the notifier, the same day, PR #46. Phases 3 and 4 are not built.** Phases 1 and 2
-below are now the reasoning behind what exists; the rest is still a scope.
+phase 1, the notifier, the same day, PR #46, and phase 1b, the corrections watch, on 30 July,
+PR #48. Phases 3 and 4 are not built.** Phases 1, 1b and 2 below are now the reasoning behind
+what exists; the rest is still a scope.
 
 The problem it solves is named in the risk register: silent staleness is the most likely way
 this project fails. The staleness check added on 23 July ages every figure against its
@@ -197,9 +198,12 @@ routes still return 200. Three things changed the design and one concern was dro
   detection detail into an editorial change. Its `change_history` carried 16 entries naming
   exact tables, which is the corrections channel the by-hand run identified.
 
-## Phase 1b: the corrections watch, proposed 28 July 2026
+## Phase 1b: the corrections watch
 
-**Not in the original scope, and it may belong before Phase 3. That ordering is the owner's.**
+**Built 30 July 2026, PR #48**, as `table_reference` on the records, a guard in
+`validate-data.mjs` and a second half of `check-releases.mjs`. Proposed on 28 July and ordered
+ahead of phase 3 by the owner. What follows is what the proposal said; *What building it found*
+records what changed.
 
 Phase 1 detects a new edition. It cannot detect a correction *inside* an edition, and says so
 on every run, because the edition slug does not change when a table is amended. The cadence
@@ -227,6 +231,69 @@ is the difference between a watch someone reads and one they mute.
 table identifier survives only as prose inside `source_name` and `notes`, and matching them
 means a pattern over prose. That works, and it is the weaker version. Implementing
 `table_reference` on the records would make the match exact and is the better first step.
+
+### What building it found
+
+- **The clearing key was already in the data, and nothing needed to be stored.** A correction
+  only matters where the figure has not been re-read since, so each hit is raised against that
+  figure's own `retrieved_date`, and the alert clears itself when someone moves the date
+  forward. That is why this is stateless in the same way phase 1 is. It is compared per figure
+  rather than per table because three records cite `Ret_01` and each is re-checked on its own
+  day. The series carry no `retrieved_date`, which is why the staleness check cannot age them
+  either; the envelope's `lastUpdated` is the right date there, because a series is replaced
+  whole. **What it does not establish**, and the run says so, is that anyone re-read anything:
+  moving `retrieved_date` forward is a person's declaration, not a check.
+- **Both of the matching key's other answers had to be made to fire.** Absent, and unchanged.
+  A record with no `retrieved_date` is reported rather than passed, because absent means nobody
+  knows when it was last read. An unchanged one keeps firing while corrections land, which is
+  the point. A third case was a silent pass and is now guarded: a change-history entry with no
+  `public_timestamp` compares as earlier than every date, so leaving it to the comparison would
+  have cleared every figure behind it. Negative-tested, all three.
+- **Restricting the match by `source_id` would have skipped the two figures that need it most.**
+  `small-boat-arrivals-year-ending-march-2026` reads `IER_D03` and `IER_02a` through a Commons
+  Library briefing that quotes them, so its `source_id` is `commons-library`, and a correction
+  to those tables is still a correction to what it publishes. Every declared table is matched
+  against the watched page, whoever the record cites. What is reported separately is the other
+  thing: the tribunals and Commons Library figures whose own publisher has no corrections route
+  here at all.
+- **An empty change history is not a clean run.** This page has carried 16 entries since 2023,
+  so an empty array means the page or its content schema moved, and it is reported as
+  `COULD NOT CHECK`. Negative-tested against a GOV.UK page that answers 200 and carries no
+  `change_history` at all, because a 404 exercises the fetch path instead and proves nothing
+  about this one.
+- **The pattern lives in `lib/tables.mjs`, because two checks have to agree on it.** The guard
+  scans a record's prose and the watch scans the publisher's notes, and if the two definitions
+  of "a table identifier" drifted, a record could satisfy the guard while the watch read a note
+  it could never have been asked to declare. Same reasoning as `lib/series.mjs`. Widening it to
+  six characters either side also matches `metric_name` and `source_url` written as prose, and
+  drops `T_3`.
+- **The guard runs both ways, and only the second direction makes the first one able to catch a
+  typo.** Every table named in prose must be declared, and every declaration must be named in
+  prose. Without the second, `Vis_1` beside prose saying `Vis_01` fails on the first rule, but a
+  declaration nothing names is a string nobody can check: it matches no change-history entry,
+  raises no error and is silent. That every declaration was also written in `source_name` held
+  by habit until the loop that requires it. It still cannot catch a table nobody wrote down
+  anywhere, and both the guard and the watch say so.
+- **A second model found the one that mattered, and it was in the part this session was surest
+  of.** A series clears on the envelope's `lastUpdated`, which `validate-data.mjs` checked for
+  presence and never for shape: it was the only date in the data layer reaching a comparison
+  without passing `isRealDate`. A prose date, which is how the `vintage` field beside it is
+  already written, sorts above every ISO date, so `"22 July 2026"` would have reported every
+  correction to that series' tables as already re-read, for ever. Reproduced, then fixed and
+  negative-tested. Absent and unchanged had been asked of both sides of that comparison;
+  malformed had been asked only of the side `checkFields` already covered.
+- **`table_reference` says which table, never which page publishes it.** `ASY_03` is Migration
+  Transparency Data and has never appeared in the watched history, while its record sits under
+  `ho-immigration-stats`, so no `source_id`-keyed disclosure can report it as uncovered. The run
+  states the limit in general rather than pretending the list is exhaustive. The case fold has
+  the same root: `ASY_03` and `Asy_NN` are different schemes, so a correction to an `Asy_03` on
+  the watched page would raise `ASY_03`'s record. Folded anyway, because the failure it prevents
+  is a correction nobody sees and the failure it risks is a person reading a note.
+- **No CI change was needed**, which is the argument for the watch living inside
+  `check-releases.mjs` rather than beside it. The step, the `tee`, the `continue-on-error` and
+  the deduplicated issue already existed; the signature grew the corrected tables and the date,
+  so a second correction landing while the first issue is open opens a second rather than
+  hiding inside it.
 
 ## Phase 2: the evidence contract, and the check that enforces it
 
@@ -273,9 +340,9 @@ never built, because it applies equally to a human update.
 - **One thing found while closing it belongs in this scope rather than there.** Matching an
   entry on its vintage cannot distinguish a correction the publisher made inside an edition from
   an entry written before the change, so a fabricated middle point passed. That is the same hole
-  phase 1b exists to watch, arriving from the other direction, and it is the argument for
-  ordering 1b early: the evidence check can now refuse an unexplained within-edition move, but
-  only once someone has noticed the edition changed at all.
+  phase 1b watches, arriving from the other direction, and it was the argument for ordering 1b
+  early: this check can refuse an unexplained within-edition move, but only once someone has
+  noticed the edition changed at all. Since 30 July something does the noticing.
 
 Both CI traps were real and are handled as the scope preferred: `actions/checkout@v4` still
 carries no `fetch-depth`, and the step runs an explicit fetch rather than deepening every job.
@@ -459,7 +526,7 @@ the update commitment does.
 | --- | --- | --- |
 | 1, notifier | **Built, 28 July 2026, PR #46.** Closes "nothing detects a release happened". | Nothing |
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
-| 1b, corrections watch | Yes, and it closes a channel nothing else watches. **Proposed; whether it comes before 3 is the owner's call.** | Nothing, though `table_reference` would sharpen it |
+| 1b, corrections watch | **Built, 30 July 2026, PR #48.** Closes the one channel through which a wrong number can sit here indefinitely. | Nothing. `table_reference` was built with it |
 | 3, prompt | No. Unsafe without 2, and seven things to settle first. | 1 and 2 |
 | 4, disclosure | Not applicable | 3, and owner sign-off |
 

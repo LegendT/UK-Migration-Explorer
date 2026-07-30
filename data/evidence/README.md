@@ -41,7 +41,7 @@ renamed or dropped stays as history and fails nothing.
 | `value` | the new value, which must equal the record's |
 | `source_url` | the page or table the quote was read from, https |
 | `fetched_at` | the day it was read, `YYYY-MM-DD` |
-| `table_reference` | optional, and worth filling: most of this data lives in tables |
+| `table_reference` | optional, and worth filling: most of this data lives in tables. One string, the table this quote was read from. **Not the record's field of the same name**, which is an array of every table that record draws on and is what the corrections watch matches. Nothing compares the two, so an entry naming a table the record does not declare is a contradiction no check will report |
 | `quote` | text from the source containing the value |
 
 **A quote is not always a sentence.** Much of this data lives in ODS tables, and several

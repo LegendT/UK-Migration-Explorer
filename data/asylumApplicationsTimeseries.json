@@ -1,6 +1,9 @@
 {
   "series_name": "UK asylum applications over time (people claiming asylum)",
   "source_id": "ho-immigration-stats",
+  "table_reference": [
+    "Asy_00a"
+  ],
   "unit": "people",
   "basis": "PEOPLE, main applicants plus dependants",
   "geography": "United Kingdom",

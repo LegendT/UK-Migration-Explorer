@@ -156,6 +156,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026, settlement and citizenship",
+      "table_reference": [
+        "EUSS_QTR"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
       "published_date": "2026-05-21",

@@ -8,7 +8,7 @@ quietly falls out. An item leaves this list when it is done, and it leaves by be
 `scripts/validate-content.mjs` fails the build if a planning document in `docs/` is not
 referenced here, so a scope can no longer be written and forgotten.
 
-Last updated 28 July 2026.
+Last updated 30 July 2026.
 
 ---
 
@@ -147,8 +147,8 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This list is in recommended order. Take the first unfinished item, which is item 3, where the
-next step is the owner's: whether the proposed corrections watch comes before phase 3.** The
+**This list is in recommended order. Take the first unfinished item, which is item 3, where
+what is left is phase 3 and it is gated on two owner decisions, both recorded under it.** The
 order lives here rather than in the handoff's prompt, so that finishing something does not
 leave a stale instruction somewhere else. Re-order it freely; this is the only place the
 sequence is stated.
@@ -157,10 +157,10 @@ If you reorder, or complete something, **move the sections and renumber** rather
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item.
 
-### 3. Release notifier and evidence check: phases 1 and 2 built, two phases left
+### 3. Release notifier and evidence check: phases 1, 1b and 2 built, two phases left
 
-**`docs/UPDATE-AUTOMATION.md`.** Four phases. Phases 1 and 2 are each worth building alone;
-phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
+**`docs/UPDATE-AUTOMATION.md`.** Five phases now. Phases 1, 1b and 2 were each worth building
+alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
 
 - **Phase 2, the evidence check. DONE (PR #43, 28 July 2026).** A figure whose value changed,
   or which is new, must be declared in `data/evidence/` with a quote from a fetched source
@@ -178,22 +178,27 @@ phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   the next thing worth building here, and it is what the by-hand run in the scope found. **Not
   yet exercised:** the issue itself, since no release is pending; its parts are tested, the
   whole path is not.
-- **Phase 1b, the corrections watch, proposed 28 July 2026, and it may belong before phase 3.
-  The order is [you].** Nothing detects a correction *inside* an edition, which is the one
-  channel through which a wrong number can sit on the site indefinitely: the slug does not
-  change, so the notifier cannot see it, and a cadence cannot infer it. The route is already
-  fetched, and matching the data-tables change history against the tables the records name
-  produces one hit in sixteen, the `Vis_01` correction the by-hand run recorded as missing a
-  published figure by a single row. The scope holds the table count and the matching rule; it
-  said six here and twelve there for a day, which is what restating a number in two files does.
-  **The evidence check now refuses an unexplained move inside an edition**, which is this hole
-  from the other side and strengthens the case for building 1b early.
-- **Phase 3, the update prompt.** Seven things to settle before writing it, listed in the
-  scope. **Two are blockers, and both are the same hole:** the series files appear nowhere in
-  the procedure, so as scoped it cannot do an ONS update at all, because the four metrics that
-  declare a `series_ref` are all `ons-ltim` and moving them without the series fails
-  `validate-data.mjs`. The `source_id` query it is built on could not find the series either,
-  until this PR gave them one.
+- **Phase 1b, the corrections watch. DONE (PR #48, 30 July 2026).** The owner ordered it ahead
+  of phase 3 on 30 July. It closes the one channel through which a wrong number can sit on the
+  site indefinitely: a correction *inside* an edition leaves the slug alone, so the edition
+  check cannot see it and a cadence cannot infer it. 14 records and 2 series files now declare
+  the publisher table they were read from, `validate-data.mjs` refuses a figure that names a
+  table in its own prose and declares nothing, and `check-releases.mjs` matches the data-tables
+  change history against those declarations. It raises a hit only where the figure's own
+  `retrieved_date` pre-dates the correction, so it is stateless and clears itself. What building
+  it found is in the scope, uncounted and not restated here, because a count restated in two
+  files is what put six in one and twelve in the other for a day.
+- **Phase 3, the update prompt. Gated on two decisions that are [you], both stated here so
+  that neither has to be rediscovered.** Seven things to settle before writing it are listed
+  in the scope, and five of them are now mechanical. The two that are not:
+  - **Does the procedure do series work, or refuse it and hand it to a person?** As scoped it
+    cannot do an ONS update at all: the four metrics that declare a `series_ref` are all
+    `ons-ltim`, and moving them without the series fails `validate-data.mjs`. Refusing is
+    defensible; silently omitting is not.
+  - **Does item 5 come first?** That item says of `docs/UPDATING-DATA.md`, "write this before
+    automating any of it: you should be able to do the job by hand before delegating it."
+    Phase 3 is that job delegated, so its own rule puts item 5 ahead of it, and the list order
+    does not. Surfaced 30 July 2026; nothing has been reordered on it.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
 ### 4. The eight undrafted claims
@@ -230,9 +235,12 @@ Both came out of PR #41 on 28 July 2026.
   also have un-protected the citation in the summary above it.
 - **Whether `/sources-and-method/` should publish a third limit.** The bullet saying series
   values are not individually cited has gone, because they now are. Nothing replaced it, and
-  a candidate exists: a figure declared under `historical_literals` is exempted on trust and
-  nothing re-checks that the exemption is still deserved. Adding a limit to a live page is an
-  editorial call.
+  there are now three candidates. A figure declared under `historical_literals` is exempted on
+  trust and nothing re-checks that the exemption is still deserved. A correction inside an
+  edition is caught only where the publisher's note names its table by identifier, and most
+  name theirs by title. And no real screen reader has been run, which is the one gap below
+  that a reader might reasonably expect an accessibility-minded site to say out loud. Adding a
+  limit to a live page is an editorial call, and so is which of the three earns the space.
 
 ---
 
@@ -258,17 +266,19 @@ oversight.
 
 ## Known gaps, carried deliberately
 
-Genuinely not tasks, and each is published on the site rather than only recorded here.
+Genuinely not tasks. **One of the two is published on the site; the other is not**, and that
+sentence used to say all of them were. `/sources-and-method/` publishes two limits under *What
+the checks do not establish*, the prose one below and the sub-100 review, and neither of the
+others has ever appeared there. Whether the screen reader gap should is under the editorial
+decisions above.
 
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and is what was read, but it is not VoiceOver or NVDA reading a page
-  aloud.
-- **`table_reference` is unimplemented.** Home Office table identifiers survive only as prose
-  inside `notes`.
+  aloud. **Not published on the site.**
 - **Prose about figures is unprotected.** Nothing verifies a chart summary describes the data
   beside it. The series citations shrank this and could not remove it, because a citation
   protects a value and not a claim about a value: `at(2018)` under a sentence naming 2019
-  builds cleanly.
+  builds cleanly. Published.
 
 ---
 

@@ -176,6 +176,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026, Visas summary tables, table Vis_01",
+      "table_reference": [
+        "Vis_01"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a1d5ab3050971fbebf3bc88/visas-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",

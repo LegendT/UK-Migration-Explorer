@@ -7,6 +7,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { COMPANION_BLOCKS, SERIES_FILES, seriesPoints } from '../lib/series.mjs';
+import { sameTable, tablesIn } from '../lib/tables.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
@@ -93,6 +94,35 @@ function checkFields(where, item, required) {
   }
 }
 
+// The corrections watch in check-releases.mjs matches a publisher's change history against the
+// tables this site names, and it reads `table_reference`. Those identifiers lived only in prose
+// until now, so this is what stops the declaration and the prose drifting apart: a record that
+// names a table in its own text and declares nothing is invisible to that watch, silently.
+//
+// The pattern is in lib/tables.mjs, because the watch matches the publisher's change history
+// against these declarations with the same one.
+function checkTableReference(where, declared, ...prose) {
+  if (declared !== undefined && !Array.isArray(declared)) {
+    errors.push(`${where}: table_reference must be an array of table identifiers`);
+    return;
+  }
+  const named = tablesIn(...prose);
+  for (const table of named) {
+    if (!(declared ?? []).some((entry) => sameTable(entry, table))) {
+      errors.push(`${where}: names table ${table} in its own text but does not declare it in table_reference, so the corrections watch cannot see a correction to it`);
+    }
+  }
+  // And the other direction, which is what makes the first one able to catch a typo. A
+  // declaration nothing names in prose is a string nobody can check: `Vis_1` would match no
+  // change-history entry and no error, silently. Today every declaration is also written in the
+  // record's `source_name`, and that held by habit rather than by rule until this loop.
+  for (const entry of declared ?? []) {
+    if (!named.some((table) => sameTable(entry, table))) {
+      errors.push(`${where}: declares table ${entry} but never names it in source_name or notes, so nothing can tell a real table from a typo. Write it into source_name, which is what a reader sees.`);
+    }
+  }
+}
+
 function checkValue(where, metric) {
   // A sign-spanning range must never be flattened to a point a card could render.
   if (metric.value_type === 'range') {
@@ -141,6 +171,7 @@ for (const file of THEME_FILES) {
     checkFields(where, metric, METRIC_FIELDS);
     checkValue(where, metric);
     checkPeriod(where, metric);
+    checkTableReference(where, metric.table_reference, metric.source_name, metric.notes);
     const ref = `${theme}/${metric.id}`;
     if (registry.has(ref)) errors.push(`${where}: duplicate id "${metric.id}" within ${file}`);
     registry.set(ref, metric);
@@ -178,6 +209,14 @@ for (const file of TIMESERIES_FILES) {
   for (const field of ['series_name', 'unit', 'note', 'lastUpdated', 'source_id']) {
     if (!series[field]) errors.push(`${file}: missing envelope field ${field}`);
   }
+  // `lastUpdated` is the corrections watch's clearing key for a whole series, the way
+  // `retrieved_date` is for a metric, and it was the only date in the data layer that reached a
+  // comparison without going through this. A prose date sorts ASCII-greater than every ISO one,
+  // so "22 July 2026" would have cleared every correction to that series' tables for ever, and
+  // the envelope's own `vintage` field beside it is already written as prose.
+  if (series.lastUpdated && !isRealDate(series.lastUpdated)) {
+    errors.push(`${file}: lastUpdated "${series.lastUpdated}" is not a real YYYY-MM-DD date, and the corrections watch compares it against a date`);
+  }
   if (series.source_id && !sourceById.has(series.source_id)) {
     errors.push(`${file}: source_id "${series.source_id}" is not an id in sources.json`);
   }
@@ -186,6 +225,12 @@ for (const file of TIMESERIES_FILES) {
   for (const name of COMPANION_BLOCKS) {
     if (series[name]) blocks.push([`${name}.`, series[name]]);
   }
+
+  // One declaration per file, on the envelope beside source_id, because every block in a series
+  // file is read off the same publisher table. Both asylum series cite Asy_00a throughout,
+  // companion included.
+  checkTableReference(file, series.table_reference, series.note,
+    ...blocks.flatMap(([, block]) => [block.note, ...(block.data ?? []).map((p) => p.source_name)]));
 
   for (const [label, block] of blocks) {
     // A companion series without a note explaining how it differs is an invitation to
@@ -347,6 +392,17 @@ if (undeclared.length) {
   console.log('If it is the same measure, add series_ref to the metric so the two cannot drift apart.');
   console.log('If two different measures happen to share a value, leave it.');
 }
+
+// Publisher tables. Reported rather than left silent, because the corrections watch is only as
+// complete as this declaration is, and nothing else would say how far that reaches.
+const tabled = [...registry.values()].filter((m) => m.table_reference?.length).length;
+const seriesTabled = TIMESERIES_FILES.filter((file) => read(file).table_reference?.length).length;
+console.log(`\nPublisher tables: ${tabled} record(s) and ${seriesTabled} series file(s) declare one. Every table named in prose is declared, and every declaration is named in prose, which is what lets a typo be caught.`);
+console.log('Not established: that a figure which names no table has none. This reads what is');
+console.log('written, so a table nobody wrote down stays undeclared and unwatched, and an ONS');
+console.log('sheet called "Table 1" carries no identifier that could be declared at all. Nor that');
+console.log('the declared table is the one the value came from: the evidence entry names a table');
+console.log('too, and nothing compares the two.');
 
 // Staleness. Reported every run, including when it finds nothing, because a check that only
 // speaks up when it fires cannot be told apart from one that has stopped working.
