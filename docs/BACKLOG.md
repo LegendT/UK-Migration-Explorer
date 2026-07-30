@@ -162,7 +162,7 @@ If you reorder, or complete something, **move the sections and renumber** rather
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item.
 
-### 3. `docs/UPDATING-DATA.md`: the manual runbook. DONE (PR TBD, 30 July 2026)
+### 3. `docs/UPDATING-DATA.md`: the manual runbook. DONE (PR #52, 30 July 2026)
 
 The manual runbook for the update commitment, modelled on DEBT's, written **before** any of it
 is automated: you should be able to do the job by hand before delegating it. Moved ahead of the
@@ -224,7 +224,7 @@ alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
 
 ### 5. The figures the data layer never recorded
 
-**Found 30 July 2026, and the reporting half is built.** Both literal scans in
+**Found 30 July 2026, and the reporting half is built (PR #51).** Both literal scans in
 `validate-content.mjs` match prose against the values the site *holds*, a record value or one of
 the series points. A figure the site never recorded matches neither map, so it was invisible to
 both **by construction**, and the success message nonetheless printed "No page writes a
@@ -435,7 +435,7 @@ decisions above.
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
 
-- **The bold link in `most-immigration-is-asylum`**, 30 July 2026. Moved off the term and onto
+- **The bold link in `most-immigration-is-asylum`**, 30 July 2026. PR #51. Moved off the term and onto
   descriptive text inside the same sentence, so all three list items now open with a bold term.
   It was on the editorial list because fixing it was thought to need the sentence rewritten. It
   did not: every word is unchanged and the glossary link survives. Linking all three terms
