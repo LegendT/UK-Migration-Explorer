@@ -124,7 +124,9 @@ const unrecorded = [];
 // time and no scan looked at them. The step up records them becoming VISIBLE, not arriving,
 // and nothing on any page changed in the commit that raised it. What the ratchet forbids is
 // unchanged: from here the count may not grow, and these come down as the other sixteen did.
-const UNRECORDED_BASELINE = 33;
+// 31 once visitor visas got a record, which took two of the eleven off in one go: one figure,
+// written on two pages, and the first of the scale-word set to come down.
+const UNRECORDED_BASELINE = 31;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {

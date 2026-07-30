@@ -362,7 +362,12 @@ already says.
 **The eleven, sorted by the rule already set above, so only the last line is a question.**
 - **Needs a record and a fetched quote**, because it changes at the next Home Office quarterly:
   "over 2.2 million visitor visas" for the year ending March 2026, on the glossary and
-  `migration.njk`. **[me]**, a later session.
+  `migration.njk`. **DONE (PR #67, 30 July 2026)**, as `migration/visitor-visas-granted`,
+  **2,241,997**, read from table Vis_01 of the visas summary `.ods` rather than from a
+  bulletin. Two of the eleven came down with it, one figure written on two pages, and the
+  baseline went 33 to 31. **Neither rounding survived**: both pages now say 2,241,997, as
+  PR #60 found with the small-boats denominator. The figure had been living inside the
+  parent record's notes, which no longer restate it, the same shape PR #58 found for 627,000.
 - **The site already holds the figure and the prose rounds it**: "69.28 million" on the
   born-abroad claim is `population/total-uk-population`, 69,281,400. Cite it exactly or reword,
   which is the choice the rounded-restatement category above ends on. **[you]**, with the two
@@ -453,6 +458,14 @@ on `/sources-and-method/` with nothing reading them, which is the exact shape of
 item exists to record, and re-checking them by hand is what already failed once. Either compute
 them at build time, or have `check-build.mjs` recompute and compare against what the page
 prints. **[me]**, and the smaller of the two is worth preferring.
+
+**The case got stronger on 30 July, twice in three days.** Minting one record in PR #67 moved
+the Home Office row from 18 to 19 and the site total from 45 to 46, and nothing would have
+said so: the row was edited by hand, from a throwaway script written to derive it, and thrown
+away again. **Adding a record is now a five-file change**, the record, the evidence, the two
+pages citing it, and this page's count, and only the first four fail anything when missed. That
+is the argument for building it, and the derivation to reuse is in the handoff under *Where
+things stand*: union the five routes over `_site` and `data/`, then group by `source_id`.
 
 ### 7. The robots.txt prose says the review has not happened
 

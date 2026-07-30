@@ -12,10 +12,10 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. 16 pages from a governed data layer of **74 metric records** and
+Built and not yet launched. 16 pages from a governed data layer of **75 metric records** and
 four timeseries carrying 100 dated points, on Eleventy 3, with charts rendered as inline SVG
 at build time and no client-side JavaScript anywhere. `validate-data.mjs` counts both and
-reports 174. **45 of the 74 reach a reader**; the other 29 are unpublished reserve. The site is
+reports 175. **46 of the 75 reach a reader**; the other 29 are unpublished reserve. The site is
 deployed behind a `robots.txt` that disallows all crawlers, and every page carries a notice
 saying it is unfinished.
 
