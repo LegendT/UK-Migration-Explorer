@@ -242,6 +242,8 @@ seeker" prejudges it in the other.
 There is no such thing as **the** backlog. There are several queues, at different stages,
 of very different sizes:
 
+{caption}The queues that get called "the backlog", and what each one counts
+
 | Queue | Latest figure | What it is |
 | --- | --- | --- |
 | Initial decision backlog | {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people (31 March 2026) | Waiting for a first Home Office decision |

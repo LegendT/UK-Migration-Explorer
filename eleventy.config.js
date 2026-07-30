@@ -184,6 +184,30 @@ export default function (eleventyConfig) {
     );
   });
 
+  // Markdown has no caption syntax, so the four markdown tables on this site had none while
+  // every table written by hand in Nunjucks carried one. That was an inconsistency with the
+  // site's own practice rather than an accessibility failure: the transform below already
+  // names their scrolling region from the heading above, but an aria-label is invisible to a
+  // sighted reader and a caption is not.
+  //
+  // A paragraph reading {caption}Text immediately before a table becomes that table's
+  // <caption>. Runs BEFORE scrollable-regions, which prefers a caption to a heading when
+  // naming a region, so a captioned table is now named by its own caption.
+  eleventyConfig.addTransform('table-captions', function (content) {
+    if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
+    const html = content.replace(
+      /<p>\{caption\}([\s\S]*?)<\/p>\s*(<table[^>]*>)/g,
+      (_, text, open) => `${open}<caption>${text.trim()}</caption>`,
+    );
+    // A marker matching no table would ship as visible junk, which is exactly the failure
+    // heading-anchors had once with {#anchor}. Throwing here is the only guard: check-build
+    // scans for {{ }} and {#id} and knows nothing about this syntax.
+    if (html.includes('{caption}')) {
+      throw new Error(`${this.page.inputPath}: a {caption} marker is not immediately followed by a table, so it would ship as visible text on the page.`);
+    }
+    return html;
+  });
+
   // Every table and every chart sits in a horizontally scrolling box. A box that scrolls
   // has to be reachable and operable by keyboard, which means it must be focusable and
   // must say what it is when focus lands on it. Doing that here rather than at each of the
@@ -196,7 +220,17 @@ export default function (eleventyConfig) {
   // AFTER heading-anchors, or a heading still carrying its {#anchor} syntax names the
   // region and ships the raw syntax inside an aria-label, where nothing on the page shows
   // it. check-build caught exactly that.
-  const stripTags = (html) => html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+  // Entities are decoded, not just tags stripped, because the name goes straight back out
+  // through escape() and would otherwise be escaped twice. A caption containing a quotation
+  // mark arrives here as &quot; and shipped as &amp;quot; inside the aria-label, which a
+  // screen reader reads out as the entity. Nothing on the page shows it, which is how the
+  // {#anchor} version of this same fault survived until check-build caught it. Latent until
+  // the first caption with a quote, an apostrophe or an ampersand, which is now on the site.
+  const decodeEntities = (text) => text
+    .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
+  const stripTags = (html) => decodeEntities(html.replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim();
 
   eleventyConfig.addTransform('scrollable-regions', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html')) return content;

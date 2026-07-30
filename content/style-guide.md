@@ -18,6 +18,8 @@ people's language owes an account of its own.
 
 These are not matters of taste. Getting them wrong makes a sentence factually wrong.
 
+{caption}Wordings this site avoids, what it writes instead, and why the difference is factual
+
 | Instead of | We write | Because |
 | --- | --- | --- |
 | "Immigration is X" | Net migration / visa grants / asylum applications is X | Naming the measured quantity is the difference between a fact and a category error |
