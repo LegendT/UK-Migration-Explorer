@@ -9,6 +9,26 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Non-EU+ long-term immigration becomes a record, 30 July 2026
+
+**627,000 for the year ending December 2025**, a figure the site published on two pages while
+holding it nowhere: it existed only as prose inside the notes of the record for total
+immigration. The next ONS release would have made it wrong in both places with nothing to say so.
+
+Source: ONS, Long-term international migration, provisional, year ending December 2025, Table 1
+of the accompanying dataset, read from the .xlsx rather than the bulletin. "Immigration, YE Dec 25
+P: All Nationalities 813,000; British 110,000; EU+ 76,000; Non-EU+ 627,000". Evidence in
+`data/evidence/ons-ltim-year-ending-december-2025.json`.
+
+- **Reconciled, not just located.** The three nationality groups sum exactly to the 813,000 total
+  the site already publishes, which is what establishes the basis and the period rather than the
+  figure on its own. The bulletin states the same number twice, so this is a case where the
+  narrative and the table agree.
+- **The parent record's notes no longer restate it.** One figure, one home applies inside the
+  data layer as well as on a page, and a note repeating a value that now has a record is exactly
+  the drift that rule exists to prevent.
+
+
 ### People claiming asylum in 2025 becomes a record, 30 July 2026
 
 **100,625 for calendar year 2025**, a figure the site already published as "around 100,000" on

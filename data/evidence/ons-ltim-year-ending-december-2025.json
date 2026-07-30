@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "migration/non-eu-plus-long-term-immigration",
+      "previous_value": null,
+      "value": 627000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-07-30",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Immigration, YE Dec 25 P: All Nationalities 813,000; British 110,000; EU+ 76,000; Non-EU+ 627,000"
+    }
+  ]
+}

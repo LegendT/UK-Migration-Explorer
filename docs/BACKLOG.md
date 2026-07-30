@@ -284,13 +284,24 @@ sentences**, and three of the four groups moved:
   and the baseline fell from 38 to 29. `45,774` was **not** declared: it is frozen as a number
   but sits under "the peak was", which goes stale if a later year exceeds it, so it stays in the
   report where a person will see it.
-- **Current-edition figures with no record behind them**, which is a bigger group than first
-  sorted. `627,000` in two places, the study and work main-applicant and dependant splits, the
-  citizenship card's three, and **also `944,000`, `1,469,000`, `517,000`, `429,000`, `87,000` and
-  `272,000`, which read as history and are not**: "the highest twelve-month estimate ONS
-  publishes" is a claim about the *current* publication, and the year-on-year changes are
-  recomputed every release under the site's own single-vintage rule. Minting a record needs a
-  fetched quote per figure and is **[me]**; which deserve one rather than a rewording is **[you]**.
+- **Current-edition figures with no record behind them. Started, not finished.** `627,000` is
+  DONE (PR #58, 30 July 2026): it was on two pages and existed nowhere but inside the parent
+  record's notes, and it now has `migration/non-eu-plus-long-term-immigration`, read from Table 1
+  of the ONS dataset rather than the bulletin. The three nationality groups reconcile exactly to
+  the 813,000 total the site already publishes, which is what established the basis. The parent's
+  notes no longer restate it.
+
+  **Still outstanding, and each needs a fetched quote:** the study and work main-applicant and
+  dependant splits in the chart bar notes, the citizenship card's three, and `944,000`,
+  `1,469,000`, `517,000`, `429,000`, `87,000` and `272,000`, **which read as history and are
+  not**: "the highest twelve-month estimate ONS publishes" is a claim about the *current*
+  publication, and the year-on-year changes are recomputed every release under the site's own
+  single-vintage rule. Minting is **[me]**; which deserve a record rather than a rewording is
+  **[you]**, and `627,000` was taken as the clearest case rather than as a precedent for the rest.
+
+  **One pattern worth reusing.** Both records minted on 30 July were verified by reconciling
+  against a total the site already published, not by finding the number alone. That is what
+  distinguishes reading a figure from recognising one.
 - **Rounded restatements of live values. DONE (PR #57, 30 July 2026), and the mechanism the
   category said was missing turned out to exist.** "around 97,500" and "around 100,000" were both
   live figures rounded just enough to slip past an exact-match scan, in a sentence whose whole

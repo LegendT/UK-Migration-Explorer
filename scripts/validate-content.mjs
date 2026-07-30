@@ -114,10 +114,10 @@ const unrecorded = [];
 // level and passes. It stops the list growing, which is the thing that was happening silently.
 // 38 when the branch was added, 29 once the nine published-vintage figures were declared, 27
 // once the two revision deltas were dropped, 24 once the two rounded restatements of the 2025
-// asylum applications figure were given a record and cited. Each step down is the ratchet working as intended
+// asylum applications figure were given a record and cited, 22 once non-EU+ immigration got one. Each step down is the ratchet working as intended
 // rather than a number edited to suit a run, and the line below prints the count and this
 // constant separately so that a gap between them is visible instead of being read as agreement.
-const UNRECORDED_BASELINE = 24;
+const UNRECORDED_BASELINE = 22;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
