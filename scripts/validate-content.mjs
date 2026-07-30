@@ -97,6 +97,10 @@ for (const file of THEME_FILES) {
 
 const errors = [];
 const warnings = [];
+// Kept apart from `warnings` rather than pooled with it. The two ask different questions, and
+// the heading over a pooled list would have to describe both, which is how a success message
+// starts claiming more than its check verifies.
+const unrecorded = [];
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
@@ -607,6 +611,29 @@ function checkLiterals(file, prose, allowed) {
         ? `cite it with ${matched.map(citeSeries).join(' or ')}`
         : 'nothing here cites a series point, so reword it';
       errors.push(`${file}: writes ${literal} longhand, which is the value at ${matched.join(' and ')}. If it is that figure, ${remedy}. If it is a coincidence or deliberately frozen, list it under ${declareIn}.`);
+      continue;
+    }
+
+    // A figure the data layer never recorded reaches neither branch above, and until now that
+    // was silence. Both scans match prose against values the site HOLDS, so a number it never
+    // held is invisible to both by construction, and the success message below said no page
+    // wrote one. 37 of the 38 comma-grouped numbers in content/ were in that state on the day
+    // this was added, including current-edition figures that go wrong at the next release.
+    //
+    // Comma-grouped only. The bare-integer half of `candidates` is years, list positions and
+    // ordinary prose, where the collision rate the comment above calls low for the grouped
+    // form is hopeless.
+    //
+    // Reported, not failed, for the reason the rates scan already gives: the only way to clear
+    // an error here is to declare the literal, and a check whose remedy is a blanket exemption
+    // teaches authors to stuff the exemption list. The sub-100 warnings set that precedent and
+    // were reviewed rather than suppressed.
+    //
+    // What this does NOT establish: that a figure it names is wrong, that one it stays silent
+    // about is right, or that any of them came from anywhere. It establishes only that the site
+    // published a number it holds no record of, so nothing can tell you when that number ages.
+    if (/^\d{1,3}(?:,\d{3})+$/.test(literal)) {
+      unrecorded.push(`${file}: writes ${literal} longhand and no record or series point holds that value, so nothing can tell you when it goes stale. Give it a record and cite it, or list it under ${declareIn} if it is a frozen historical figure.`);
     }
   }
 }
@@ -689,7 +716,13 @@ if (warnings.length) {
   for (const warning of warnings) console.log(`  ${warning}`);
   console.log('Many are coincidence, several metrics share a value. Review, do not suppress.');
 }
-console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes a comma-grouped value longhand, whether it belongs to a record or to one of the ${points.size} points in the series files.`);
+if (unrecorded.length) {
+  console.log(`\n${unrecorded.length} comma-grouped figure(s) written longhand that no record or series point holds:`);
+  for (const entry of unrecorded) console.log(`  ${entry}`);
+  console.log('Some are frozen history and belong longhand; some are current-edition figures that go wrong at the next release. The list cannot tell them apart, which is why it is reviewed rather than cleared.');
+}
+console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes longhand a value that a record or one of the ${points.size} series points holds.`);
+console.log(`Not covered: a longhand figure the data layer never recorded, which both scans above are blind to by construction, because both match prose against values the site holds. ${unrecorded.length} are listed above rather than counted as clean.`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
