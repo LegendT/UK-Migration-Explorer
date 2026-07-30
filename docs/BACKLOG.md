@@ -220,28 +220,59 @@ literal, and a check whose remedy is a blanket exemption teaches authors to stuf
 list. The current count is what `npm run validate` prints; it is deliberately not restated here,
 because a count kept in two files is what put six in one and twelve in the other for a day.
 
-The list holds three different things and the check cannot tell them apart, which is why a person
-reads it:
+**It carries a ratchet, because report level on its own expires.** A list nobody has to act on
+sits in a green log and the next figure joins it invisibly, so the count may not grow:
+`UNRECORDED_BASELINE` fails the build if it does, runs after the list prints so a failing run
+still shows what it is complaining about, and says what it does not establish, that one fixed and
+one added passes. Lower it as figures are recorded or declared; at zero the branch becomes an
+error and the constant goes.
 
-- **Frozen history, correct as longhand.** The superseded net migration vintages, the June 2023
-  within-year peak, the 2022 small boats peak. These want a `historical_literals` declaration so
-  the choice is visible. Mechanical once someone confirms each is history: **[me]**.
+The list holds four different things and the check cannot tell them apart, which is why a person
+reads it. **The sort below was corrected on 30 July after a second model checked it against the
+sentences**, and three of the four groups moved:
+
+- **Frozen history, correct as longhand.** Only the published vintages really qualify: `431,000`,
+  `345,000` and `606,000`, because a first-published number never changes, which is the same
+  logic that makes the existing `285,000` declaration right. These want a `historical_literals`
+  declaration so the choice is visible: **[me]**, once someone confirms each. `45,774` is frozen
+  as a number but sits under "the peak was", which goes stale if a later year exceeds it.
+- **Current-edition figures with no record behind them**, which is a bigger group than first
+  sorted. `627,000` in two places, the study and work main-applicant and dependant splits, the
+  citizenship card's three, and **also `944,000`, `1,469,000`, `517,000`, `429,000`, `87,000` and
+  `272,000`, which read as history and are not**: "the highest twelve-month estimate ONS
+  publishes" is a claim about the *current* publication, and the year-on-year changes are
+  recomputed every release under the site's own single-vintage rule. Minting a record needs a
+  fetched quote per figure and is **[me]**; which deserve one rather than a rewording is **[you]**.
 - **Rounded restatements of live values, which no mechanism covers.** On
   `everyone-in-asylum-accommodation-arrived-recently`, "around 100,000" sits against the series
   point `asylumApplications@2025`, which is 100,625, and "around 97,500" against
   `people-in-receipt-of-asylum-support`, which is 97,519. The sentence's whole point is that the
   two are of similar magnitude, so precision would work against it, and `historical_literals`
-  would silence them as frozen when they are live. The glossary carries the same rounding. There
-  is no right answer in the contract today: **[you]**.
-- **Current-edition figures with no record behind them.** `627,000` in two places, `944,000`,
-  `1,469,000`, the study and work main-applicant and dependant splits, and the citizenship card's
-  three. Each goes wrong at the next release with nothing watching. Minting a record needs a
-  fetched quote per figure and is **[me]**; which of them deserve a record rather than a
-  rewording is **[you]**.
+  would silence them as frozen when they are live. The glossary carries the same rounding: **[you]**.
+- **Arithmetic against a live value, where neither remedy in the message works.** The `100,000`
+  on `net-migration-is-arrivals` and in the glossary is `431,000` minus the live
+  `migration/net-migration-2`. A record for it would be a fake metric, and freezing it guarantees
+  it goes wrong at the next revision. This is the same shape as the `285,000` and `47%` sentence
+  under the editorial decisions below, so whatever is decided there should decide these too.
+
+**Value-keyed sorting cannot finish this job**, which is worth knowing before anyone tries.
+`51,000` is the end-2019 initial-decision backlog in one file and the appeals backlog a year
+before the live March 2026 figure in another. `100,000` is three different figures. And the
+glossary's per-file de-duplication collapses two meanings of `100,000` into one report line, so
+no per-report classification can be right there.
+
+**What the check does not scan at all**, and this is the larger surface: a figure written in
+words. "over 2.2 million visitor visas" for the year ending March 2026 appears on both the
+glossary and `migration.njk`, is current-edition, and has no record. So do "69.28 million" and
+"10.6 million" on the born-abroad claim, and "5.8 million", "8.2 million", "1.3 billion" and
+"1.7 billion" on the costs page. None is comma-grouped, so none is errored, warned or listed.
+Extending the scan to them is **[me]** and is the obvious next piece of this item.
 
 **A separate finding from the same run, and it is a correction rather than a decision.**
 Correction 1e replaced "more than 120,000" with the precise 285,000 revision on `migration.njk`
-and left the old wording in `meta.json`'s third key caveat, which renders to a page. The site now
+and left the old wording in `meta.json`'s third key caveat, which renders to a page. It was
+written against a vintage where the 2022 estimate was 728,000, so the movement really was about
+122,000; the current point is 891,000 and the movement is 285,000. The site now
 describes the same revision two ways. Not false, since 285,000 is more than 120,000, but stale and
 inconsistent, and it is the sibling 1e did not grep for.
 
