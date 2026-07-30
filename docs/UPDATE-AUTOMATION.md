@@ -429,7 +429,7 @@ this check would rot.
 
 ## Phase 3: the update prompt
 
-**Built 30 July 2026, PR #55**, as `docs/prompts/update-from-release.md`. What follows is the
+**Built 30 July 2026, PR #56**, as `docs/prompts/update-from-release.md`. What follows is the
 design it was built to, and the seven things settled first.
 
 Only after Phase 2 exists and has been exercised. **Both were true before it was written**: the
@@ -567,7 +567,7 @@ the update commitment does.
 | 1, notifier | **Built, 28 July 2026, PR #46.** Closes "nothing detects a release happened". | Nothing |
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
 | 1b, corrections watch | **Built, 30 July 2026, PR #48.** Closes the one channel through which a wrong number can sit here indefinitely. | Nothing. `table_reference` was built with it |
-| 3, prompt | **Built, 30 July 2026, PR #55.** No, and it was not built alone: unsafe without 2, and the runbook had to exist first. | 1, 2, and `docs/UPDATING-DATA.md` |
+| 3, prompt | **Built, 30 July 2026, PR #56.** No, and it was not built alone: unsafe without 2, and the runbook had to exist first. | 1, 2, and `docs/UPDATING-DATA.md` |
 | 4, disclosure | Not applicable. **The only phase left.** | 3, and owner sign-off |
 
 **None of it should delay launch.** Launch waits on two decisions, and this changes neither.

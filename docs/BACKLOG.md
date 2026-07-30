@@ -217,7 +217,7 @@ reader-facing trust statement and needs the owner's sign-off, so it is the only 
   `retrieved_date` pre-dates the correction, so it is stateless and clears itself. What building
   it found is in the scope, uncounted and not restated here, because a count restated in two
   files is what put six in one and twelve in the other for a day.
-- **Phase 3, the update prompt. DONE (PR #55, 30 July 2026)**, as
+- **Phase 3, the update prompt. DONE (PR #56, 30 July 2026)**, as
   `docs/prompts/update-from-release.md`. Seven things to settle were in the scope; five were
   already mechanical and the two that were not were decided the same day. It is deliberately
   thin: it names the source, the release and the refusals, and sends the assistant to
