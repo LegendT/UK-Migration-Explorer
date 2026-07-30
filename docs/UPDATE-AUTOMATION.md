@@ -464,6 +464,11 @@ this procedure anywhere.**
   All four are `ons-ltim`: `net-migration`, `net-migration-2`, `total-long-term-immigration`
   and `total-long-term-emigration`. An update that moves those four records and not the series
   produces a pull request that cannot pass CI. Nothing below mentions a series file.
+  **And the reach is wider than this bullet says**, which the built prompt understated too until
+  a second model checked it: two of the four series files, `asylumApplicationsTimeseries.json`
+  and `asylumBacklogTimeseries.json`, are `ho-immigration-stats` and are replaced whole on every
+  Home Office quarterly. So the series problem covers two of the three cadenced releases, not
+  one, and only the tribunals release is free of it.
 - **The query it is built on could not find them either, and now can.** The series files
   carried no `source_id`, so "list the affected figures by `source_id`" reached 71 records and
   none of the 100 series points. They carry one as of PR #47 and `validate-data.mjs` requires

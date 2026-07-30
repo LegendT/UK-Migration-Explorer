@@ -14,8 +14,8 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 **No published figure changed.** `docs/prompts/update-from-release.md` is phase 3 of the update
 automation scope: a versioned prompt that drives a by-hand update, names the refusals, and sends
 the assistant to the runbook for the procedure rather than carrying a copy of it. It refuses
-series work outright, which costs the ONS release and is the accepted price of not omitting it
-silently. Not yet exercised against a real release, and it says so.
+series work outright, which costs two of the three cadenced releases, ONS and the Home Office
+quarterly, and is the accepted price of not omitting it silently. Not yet exercised against a real release, and it says so.
 
 Building it exposed a defect in an older check. `validate-content.mjs` required every planning
 document in `docs/` to be referenced from the backlog, and did not descend into directories, so

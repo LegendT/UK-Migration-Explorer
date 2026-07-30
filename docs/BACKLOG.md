@@ -240,8 +240,12 @@ reader-facing trust statement and needs the owner's sign-off, so it is the only 
     series file in scope, stops, and **names the runbook's section by path and heading without
     restating its steps.** That constraint came from a second model: a procedure printed in two
     places is the duplication this project has been burned by twice, and the copy a session
-    happens to read wins. Refusing costs the ONS release, one of the three cadenced ones, and
-    that is the accepted price of not omitting it silently.
+    happens to read wins. **It costs two of the three cadenced releases, not one**, which the
+    first version of this entry got wrong: the four `series_ref` metrics are all `ons-ltim`, but
+    two of the four series files are `ho-immigration-stats` and move on every Home Office
+    quarterly. Only the tribunals release runs to completion. That is the accepted price of not
+    omitting series work silently, and if it is judged too high the answer is to grow the series
+    half deliberately rather than loosen the refusal.
   - **The runbook came first, and is now built** as item 3. Phase 3 is the job it describes,
     delegated, so its own rule put it ahead. Decided and reordered on 30 July.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.

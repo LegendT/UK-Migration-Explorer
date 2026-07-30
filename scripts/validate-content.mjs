@@ -247,9 +247,20 @@ const docsDir = fileURLToPath(new URL('../docs/', import.meta.url));
 // moment the first subdirectory was added, by the session adding it: `docs/prompts/` would have
 // been invisible here on the day it was created.
 //
-// Matched on the path relative to docs/, not the basename, so two documents with the same name
-// in different directories cannot satisfy this through each other. A top-level file's relative
-// path IS its basename, so the exemptions and the existing references are unaffected.
+// Matched on `docs/` plus the path relative to docs/, and the prefix is the load-bearing part.
+// Matching the relative path alone fixed only one direction: a top-level name is a SUFFIX of any
+// nested path ending in it, so a reference to `docs/prompts/X.md` silently satisfied `docs/X.md`.
+// Worse, the same flaw was already live between top-level files, because a substring test cannot
+// tell a filename from the tail of a longer one: an unreferenced `docs/ATA.md` raised nothing,
+// satisfied by the `UPDATING-DATA.md` references. Found by a second model after this comment had
+// claimed both directions were covered and a negative test had exercised only one.
+//
+// Every reference in the backlog carries the `docs/` prefix, so requiring it costs nothing today
+// and makes the match a path rather than a fragment of one.
+//
+// What this still does NOT catch: an `.md` under a symlinked directory inside `docs/`, because a
+// symlink dirent is neither a directory nor a `.md` file, so the walk skips it. Following one
+// would mean handling cycles for a case nobody has created.
 const planningDocs = (dir, prefix = '') =>
   readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
     entry.isDirectory()
@@ -260,7 +271,7 @@ try {
   const backlog = readFileSync(`${docsDir}BACKLOG.md`, 'utf8');
   for (const file of planningDocs(docsDir)) {
     if (PLANNING_EXEMPT.has(file)) continue;
-    if (!backlog.includes(file)) {
+    if (!backlog.includes(`docs/${file}`)) {
       errors.push(`docs/BACKLOG.md: does not reference docs/${file}, so the work it describes can be lost in the next handoff rewrite. Add it, or move it under Completed.`);
     }
   }
