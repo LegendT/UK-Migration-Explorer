@@ -10,6 +10,12 @@ referenced here, so a scope can no longer be written and forgotten.
 
 Last updated 30 July 2026, after thirteen pull requests, #54 to #66.
 
+**A whole-project pre-launch audit is open in `docs/PRE-LAUNCH-AUDIT.md`**, on branch
+`pre-launch-audit`. It covers code, data, content, documentation and accessibility, and like the
+pre-publication review before it, its outcome is a findings list rather than an approval. Its
+findings are not restated here while it is open; when it closes, whatever it leaves undone moves
+into the sections below and the document joins Completed.
+
 ---
 
 ## Blocking launch
