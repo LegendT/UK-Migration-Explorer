@@ -117,7 +117,14 @@ const unrecorded = [];
 // asylum applications figure were given a record and cited, 22 once non-EU+ immigration got one. Each step down is the ratchet working as intended
 // rather than a number edited to suit a run, and the line below prints the count and this
 // constant separately so that a gap between them is visible instead of being read as agreement.
-const UNRECORDED_BASELINE = 22;
+//
+// RAISED ONCE, from 22 to 33, and this is the only entry here that goes up. It is the scan
+// widening rather than the site growing: eleven figures written "2.2 million" or "£1.3
+// billion" were on these pages the whole time and no scan looked at them, so the step up
+// records eleven figures becoming VISIBLE, not eleven arriving. Nothing on any page changed
+// in the commit that raised it. The ratchet is unchanged in what it forbids: from here the
+// count may not grow, and the eleven come down the same way the other sixteen did.
+const UNRECORDED_BASELINE = 33;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
@@ -568,6 +575,13 @@ function checkUnits(file, prose) {
 // and stay literal, but they must be declared so the choice is deliberate.
 const liveValues = new Map();
 const unitedValues = new Map();
+// Keyed on the value in base units, for the scale-word scan below. A record of 4.9 with unit
+// "£ billion" IS 4.9 billion pounds, and one of 10,700,000 people is what a page writes as
+// "10.7 million", so neither can be compared against that prose without putting both on the
+// same scale first.
+const scaledValues = new Map();
+const SCALE_WORDS = { million: 1e6, billion: 1e9 };
+const unitScale = (unit) => SCALE_WORDS[String(unit).match(/\b(million|billion)\b/i)?.[1].toLowerCase()] ?? 1;
 // `describe` names WHICH number of the record this is, because a range has no `value` and a
 // message saying "the current value of" about a bound is the overclaim this file has been
 // caught making before. It travels with the ref so the message cannot drift from the map.
@@ -586,6 +600,7 @@ const registerValue = (number, unit, ref, describe) => {
   // starts with the sign without being it, so this widens the scan by exactly one record.
   if (String(unit).startsWith('%')) unitedValues.set(`${number}%`, { ref, describe });
   if (String(unit).includes('£')) unitedValues.set(`£${number}`, { ref, describe });
+  scaledValues.set(Math.round(number * unitScale(unit)), { ref, describe });
 };
 
 for (const [ref, metric] of registry) {
@@ -632,6 +647,39 @@ const citeSeries = (ref) => {
   return `(series.${block}.data | at(${year}) | number)`;
 };
 
+// --- figures written with a scale word --------------------------------------------
+// "2.2 million", "£1.3 billion". Every other value scan here matches digits and only digits, so
+// a figure written this way was invisible to all three of them at once: not comma-grouped, so
+// not errored, not warned and not listed, and the success message said as much in a sentence
+// nobody had to act on. It is the larger half of the surface rather than a corner of it,
+// because it is how this site writes its biggest numbers: the population, the ten-year
+// contracts and the daily cost figures.
+//
+// Whitespace between the number and the word is bounded rather than `\s+`. Prose wraps, and
+// costs.njk writes "£13\nmillion", so a single space will not do; but a paragraph break is
+// whitespace too, and an unbounded run would let a number ending one paragraph pair with a
+// word opening the next.
+const scaledFigures = (text) =>
+  [...text.matchAll(/(£?)(\d+(?:\.\d+)?)\s{1,4}(million|billion)\b/gi)].map(([whole, , number, word]) => ({
+    text: whole.replace(/\s+/g, ' '),
+    number,
+    scale: SCALE_WORDS[word.toLowerCase()],
+    value: Math.round(Number(number) * SCALE_WORDS[word.toLowerCase()]),
+  }));
+
+// Control, run every time, for the reason the editorial lint gives above: this scan reports
+// rather than fails, so a matcher that quietly stopped matching would print a SHORTER list and
+// read as progress. The wrapped probe is the real sentence from costs.njk, because the newline
+// is the part a naive pattern gets wrong.
+for (const [probe, expected] of [['is closer to £13\nmillion a day', 13000000], ['granted over 2.2 million visitor visas', 2200000]]) {
+  if (scaledFigures(probe)[0]?.value !== expected) {
+    errors.push(`scale-word scan: no longer reads ${JSON.stringify(probe)} as ${expected}, so its silence means nothing`);
+  }
+}
+if (scaledFigures('in 2024 the total was 813,000').length) {
+  errors.push('scale-word scan: fires on prose carrying no scale word, so its list cannot be trusted');
+}
+
 // A declaration nothing matches is dead, and dies quietly. Three ways to get one, all of them
 // reachable today: writing `historical_literals: 1,000; 2,000` with a comma instead of the
 // semicolon `parseLiterals` splits on, which yields one entry matching nothing; a typo, or a
@@ -649,8 +697,16 @@ const citeSeries = (ref) => {
 // every caveat it holds, so a per-field test would fail on every field but the one that
 // contains the figure.
 function checkDeclarations(file, prose, allowed, declareIn) {
+  // Whitespace is collapsed before the test as well as tested raw, and that is the remedy for
+  // the scale-word scan working rather than a nicety. Prose wraps: costs.njk writes "£13" at
+  // the end of one line and "million" at the start of the next, so the scan reports "£13
+  // million" and tells the author to declare it, and front matter has no way to write a
+  // newline into a declaration. Without this, doing what the message says raises an error
+  // here saying the figure appears nowhere in the file it was just read from. The collapse
+  // can only ever match MORE strings, so no dead declaration is made harder to find by it.
+  const flowed = prose.replace(/\s+/g, ' ');
   for (const declared of allowed) {
-    if (prose.includes(declared)) continue;
+    if (prose.includes(declared) || flowed.includes(declared)) continue;
     errors.push(`${file}: declares ${declared} under ${declareIn}, and no such figure appears anywhere in its prose. Delete it or correct it. A declaration that matches nothing exempts nothing, and separating two declarations with a comma rather than a semicolon produces exactly one of these.`);
   }
 }
@@ -680,6 +736,36 @@ function checkLiterals(file, prose, allowed) {
   const declareIn = file.includes('.json')
     ? 'the sibling historical_literals array'
     : 'historical_literals in the front matter, semicolon separated';
+
+  // Scale-word figures, matched against both halves of the data layer because the report
+  // below claims that neither holds the value, and a claim about both has to ask both.
+  // Deduplicated per file on the text, as `new Set(candidates)` deduplicates the
+  // comma-grouped scan: costs.njk writes "£8 million a day" in a heading and again in the
+  // sentence under it, which is one decision rather than two.
+  const scaled = new Map(scaledFigures(withoutTokens).map((figure) => [figure.text, figure]));
+  for (const { text, number, scale, value } of scaled.values()) {
+    if (allowed.has(text)) continue;
+    // The unit scan above has already reported this sentence when the record it matched
+    // carries the same scale in its own unit: "£3 billion" against a record of 3 £ billion is
+    // one figure and belongs in one message. Only then, though. A record of 20 £ per night
+    // must not silence "£20 billion", which is a different number by a factor of a billion.
+    const united = unitedValues.get(`£${number}`);
+    if (united && unitScale(registry.get(united.ref)?.unit) === scale) continue;
+
+    const held = scaledValues.get(value);
+    const inSeries = seriesValues.get(String(value));
+    if (held || inSeries) {
+      // A warning rather than an error, and the difference is the REMEDY rather than the
+      // confidence. A token renders toLocaleString, so citing "10.7 million" puts
+      // "10,700,000" on the page: the wording changes, and choosing between that and a
+      // reword is an editorial call. The comma-grouped branch can error precisely because
+      // there the citation renders the same characters the page already shows.
+      const what = held ? `${held.describe} of ${held.ref}` : `the value at ${inSeries.join(' and ')}`;
+      warnings.push(`${file}: ${text} equals ${what}, which a citation would render "${value.toLocaleString('en-GB')}". Cite it and let the page carry that form, or reword it, but do not leave a live value written out here`);
+      continue;
+    }
+    unrecorded.push(`${file}: writes ${text} and no record or series point holds that value, so nothing can tell you when it goes stale. Give it a record and cite it, or list it under ${declareIn} if it is a frozen historical figure.`);
+  }
 
   // The decimal tail on the comma-grouped alternative is not decoration. Without it "1,234.5"
   // tokenises as "1,234" plus "5", so the report named a figure the page does not write, and
@@ -824,17 +910,17 @@ const byDirection = claims.reduce((acc, c) => ({ ...acc, [c.direction]: (acc[c.d
 const cited = new Set([...claims.flatMap((c) => [...c.tokens]), ...glossaryTokens]);
 console.log(`Content checks passed: ${claims.length} claims, ${terms} glossary terms, ${pages} other page(s).`);
 if (warnings.length) {
-  console.log(`\n${warnings.length} unit-qualified figure(s) match a live metric value and may need citing:`);
+  console.log(`\n${warnings.length} figure(s) match a live metric value and may need citing, unit-qualified ones under 100 and ones written with a scale word:`);
   for (const warning of warnings) console.log(`  ${warning}`);
   console.log('Many are coincidence, several metrics share a value. Review, do not suppress.');
 }
 if (unrecorded.length) {
-  console.log(`\n${unrecorded.length} comma-grouped figure(s) written longhand that no record or series point holds:`);
+  console.log(`\n${unrecorded.length} figure(s) written longhand, comma-grouped or with a scale word, that no record or series point holds:`);
   for (const entry of unrecorded) console.log(`  ${entry}`);
   console.log('Some are frozen history and belong longhand; some are current-edition figures that go wrong at the next release. The list cannot tell them apart, which is why it is printed for review. Printing is not reviewing, and nothing here checks that anyone read it.');
 }
-console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes longhand a comma-grouped value, or a bare value of 100 or more, that a record or one of the ${points.size} series points holds. Unit-qualified matches under 100 are the warnings above, not part of this claim.`);
-console.log(`Not covered: a longhand figure the data layer never recorded, which both scans above are blind to by construction, because both match prose against values the site holds. ${unrecorded.length ? `${unrecorded.length} comma-grouped ones are listed above rather than counted as clean` : 'None comma-grouped on this run'}, and a figure written "2.2 million", space-grouped, or bare is not scanned for this at all.`);
+console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes longhand a comma-grouped value, or a bare value of 100 or more, that a record or one of the ${points.size} series points holds. Unit-qualified matches under 100 are the warnings above, because at that size a value collides with unrelated figures, and so is a scale-word figure equal to a record value, because a citation there renders "10,700,000" and not "10.7 million". Neither is part of this claim.`);
+console.log(`Not covered: a longhand figure the data layer never recorded, which the value scans above are blind to by construction, because they match prose against values the site holds. ${unrecorded.length ? `${unrecorded.length} comma-grouped or scale-word ones are listed above rather than counted as clean` : 'None on this run'}. A figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand" is not scanned at all, and neither is front matter, where one claim's short answer carries a rounded figure this scan would otherwise see.`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
