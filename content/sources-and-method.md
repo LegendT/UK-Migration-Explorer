@@ -140,6 +140,8 @@ revision, that is usually the statistics system working rather than failing.
 Different measures cover different twelve-month windows, because different bodies publish on
 different cycles. At the last update:
 
+{caption}The twelve-month window each family of measures covers at the last update
+
 | Measure | Period |
 | --- | --- |
 | Asylum, returns, visas, settlement, citizenship | Year ending March 2026 |
@@ -157,6 +159,8 @@ the period on both.
 
 Most of this site is driven by three releases, and the commitment is to update within
 **one month** of each of them publishing new figures:
+
+{caption}The three releases this site promises to follow within one month
 
 | Release | How often | Figures here |
 | --- | --- | --- |
