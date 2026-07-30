@@ -471,6 +471,22 @@ for exactly this reason, on the page whose subject is other people's numbers.
 filter. The marker-and-transform idiom `{caption}` and `{#anchor}` already use is what it has
 instead, and `{count:ho-immigration-stats}` is that idiom.
 
+**What two readings of it found, and this is the part worth carrying forward.** None of it
+shipped, and with two of the probes applied the branch printed "47 of 75" and passed every
+check green, which is this item's own defect reintroduced by the fix for it.
+- **The scan was stricter than the renderer it modelled.** `resolve-citations` accepts
+  `{{ theme/id }}` with spaces; the scan did not. That figure would reach a reader and be
+  counted for nobody, and the check at the far end ran **one way only**, so it could find an
+  overcount and never an undercount. It now compares both ways, which is free today and is the
+  direction that was reachable.
+- **A comment is where a scan of text stops being a scan of what renders.** A chart bar left
+  inside a Nunjucks comment during a rework was counted; a citation inside an HTML comment was
+  counted AND confirmed by the far end, because `resolve-citations` renders it into the
+  comment. Both ends now strip comments.
+- A `{% figure %}` in a markdown page was counted, where that syntax ships as visible junk
+  rather than rendering. `check-build.mjs` now catches a stray `{% %}` and a mistyped
+  `{Count:...}` as unrendered syntax.
+
 **Three things worth knowing before touching it.**
 - **The source scan is a proxy for rendering, and `check-build.mjs` closes it at the far end**,
   confirming that every record the counts claim through a token really appears in the output.

@@ -30,13 +30,24 @@ keep a number nothing reads.
   `{count:ho-immigration-stats}` uses the marker-and-transform idiom `{caption}` and `{#anchor}`
   already use, and numerals go in the table while the prose sentence spells numbers to ten, as
   the site's own `inWords` rule does. "The other fifteen" now reads "The other 15".
-- **The scan reads the source, and `check-build.mjs` closes it at the far end**, confirming that
-  every record the counts claim through a token really appears in the output. Six of the 46
-  cannot be confirmed that way, because a chart bar and a dashboard card render a value with no
-  ref beside it, and every build says so.
+- **The scan reads the source, and `check-build.mjs` closes it at the far end**, comparing the
+  refs it counted against the refs in the built HTML **in both directions**, with comments
+  stripped at both ends. Six of the 46 cannot be compared that way, because a chart bar and a
+  dashboard card render a value with no ref beside it, and every passing build says so.
 - **Only the three cadenced publishers can be named by a marker.** Any other key is refused: a
   typo landing on a real publisher would render a plausible wrong number beside a row naming a
   different one, which is what the first negative test for this did by accident.
+
+**What two readings found, and the branch shipped none of it.** The scan was stricter than the
+renderer it modelled: `resolve-citations` accepts `{{ theme/id }}` with spaces, the scan did
+not, so a citation written that way would have reached a reader and been counted for nobody,
+and the check at the far end ran one way only and could not have seen it. It counted a chart
+bar left inside a Nunjucks comment during a rework, and a citation inside an HTML comment,
+which `resolve-citations` renders into the comment so that both ends confirmed a figure no
+reader can see. It counted a `{% figure %}` in a markdown page, where that syntax ships as
+visible junk rather than rendering. With both probes applied, the pre-fix branch printed
+"47 of 75" and passed every check green, which is the defect this work exists to remove,
+reintroduced by the work itself.
 
 The publisher names in the sentence under the table are still prose, so the count there is
 derived and the list beside it is not. That is in the backlog rather than fixed, because
