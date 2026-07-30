@@ -431,6 +431,9 @@ is what is actually copied and has to move in both places:
 | overturns of something asserted beside the figure asked about | *Verifying a figure* |
 | checks that passed while a real defect shipped | *The checking apparatus* |
 | negative tests that never fired | *Building a check* |
+| the three questions to ask of a matching key, on both sides | *Building a check* |
+| that a second model has twice found what self-critique did not | *Building a check* |
+| that branches carry history `main` does not | *Where things stand* |
 | scope documents written in one session | *Deciding what to build* |
 | which backlog item to take, and on what wording | `docs/BACKLOG.md`, not here |
 
@@ -469,7 +472,9 @@ talking to five target users and choosing the success measures, both
 under "Unmet acceptance criteria"; and removing the robots rule, which
 comes last and is launch. Do not treat any of those as done. The backlog
 also carries a short list of small editorial decisions waiting on me;
-those are mine to answer, not yours to take.
+those are mine to answer, not yours to take. Where an item is gated on a
+decision of mine, that decision is written under the item, so read it
+before assuming the item is yours to start.
 
 TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
 told you otherwise in this message. Unfinished, not unstarted: an item
@@ -515,9 +520,17 @@ changes; the rest bite on everything.
   build alike; an escape hatch one message recommended could not express
   a single value it existed to exempt; and a skeleton another message
   printed supplied the null that would have made an exemption permanent.
-  Where a check matches a declaration against a record, ask what its key
-  does when it does not change and when it is absent. Both answers have
-  to leave the check still asking for something.
+  Where a check matches a declaration against a record, ask three things
+  of the key, on BOTH sides: what it does when it does not change, when
+  it is absent, and when it is present but not the shape you assumed.
+  Every answer has to leave the check still asking for something. The
+  third one bit: a series cleared a correction on a date validated for
+  presence and never through isRealDate, and a prose date sorts above
+  every ISO date, so it would have cleared for ever.
+- Have a second model read anything whose whole purpose is refusing bad
+  input, before you believe your own critique of it. Twice now one has
+  found a real defect that two rounds of self-critique missed, and both
+  times it was in the part the author was surest of.
 - State what a check does NOT establish in its own success message.
   Seven times a checker here passed while a real defect shipped, every
   time because it verified the source or the declaration rather than the
@@ -533,7 +546,10 @@ changes; the rest bite on everything.
   session while the site did not change. Build the smallest real thing.
 
 Branch first; this project works through PRs even solo. Check main has
-not moved before you rewrite the handoff or the backlog.
+not moved before you rewrite the handoff or the backlog. Do not delete
+a branch: main's history is truncated at a parentless commit and
+everything before PR #42 survives only on history-to-pr-41 and
+design-and-a11y-rounds. The handoff says which and why.
 
 Stop and ask about anything that needs an editorial judgement rather
 than a correction.

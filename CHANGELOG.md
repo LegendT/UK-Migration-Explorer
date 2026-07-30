@@ -9,6 +9,40 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### A correction inside an edition is now watched for, 30 July 2026
+
+**No published figure changed**, and the built site is byte-identical to before, proved by
+diff. PRs #48 and #49.
+
+A correction the publisher makes *inside* an edition leaves the edition slug alone, so the
+release notifier reports the source as current and is right to. No publication cadence implies
+one either. That was the one channel through which a wrong number could sit on this site
+indefinitely, and nothing read it.
+
+- **14 records and 2 series files now declare `table_reference`**, the publisher tables behind
+  the figure, taken from the prose that already named them. `validate-data.mjs` holds the
+  declaration to the prose in both directions: a table named and not declared is one the watch
+  cannot see, and a declaration nothing names is a string nobody can check.
+- **`check-releases.mjs` reads the Home Office data-tables change history** and matches it
+  against those declarations. 16 entries, 3 naming a table identifier, 1 naming one of the
+  twelve this site declares: the 1 June `Vis_01` correction. It reports a figure only where
+  that figure's own `retrieved_date` pre-dates the correction, so it is stateless and clears
+  itself when someone re-reads the figure. Today it reports current.
+- **It reports and never gates**, like the notifier it sits inside, because a corrected table
+  may not touch the row this site publishes. The last one missed by a single row.
+- **What it cannot see is printed on every run**: most change-history notes name their tables
+  by title rather than by identifier, a `table_reference` says which table and never which page
+  publishes it, and the comparison is by whole UTC days.
+
+A second model reviewing the branch found the defect that mattered: the series clearing key,
+the envelope's `lastUpdated`, was the only date in the data layer reaching a comparison without
+passing `isRealDate`, so a prose date would have sorted above every ISO one and reported every
+correction to that series as already handled, for ever.
+
+`docs/HANDOFF.md` also now records that `main`'s history is truncated: its root commit is
+parentless and everything before PR #42 is a separate history, surviving on the branch
+`history-to-pr-41`.
+
 ### The series files join the source catalogue, 28 July 2026
 
 **No published figure changed**, and the built site is byte-identical to before, proved by
