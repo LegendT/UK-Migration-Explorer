@@ -9,6 +9,21 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The by-hand update runbook, 30 July 2026
+
+**No published figure changed.** `docs/UPDATING-DATA.md` is the procedure for moving the site
+onto a new release by hand, written before the assistant-drafted version so that the job can be
+done before it is delegated. `docs/UPDATE-AUTOMATION.md` phase 3 now points at it by path and
+heading instead of carrying its own four-field copy, which was wrong in four clauses.
+
+Two things it turned up about this repository rather than about the procedure. The first draft
+never mentioned this file, while `/sources-and-method/` promises readers that every change to a
+published figure is recorded here with its reason and source; that omission would have made the
+trust page false one update later. And the *Reference periods do not line up* table on that same
+page is introduced with "At the last update", so any of the three cadenced updates falsifies a
+row of it and no check reads a period label. It is now the one piece of page prose an update is
+told to edit.
+
 ### A correction inside an edition is now watched for, 30 July 2026
 
 **No published figure changed**, and the built site is byte-identical to before, proved by

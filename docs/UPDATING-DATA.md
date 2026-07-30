@@ -28,9 +28,18 @@ look, and only the third is a calendar:
 - **`check-releases.mjs` opens an issue** naming the source, the edition and the figures that
   cite the old one. That issue is the input to this procedure.
 - **The same script raises a corrections hit** when a table declared in a record's
-  `table_reference` was amended *inside* the edition the site already cites. That is a smaller
-  job than a release: re-read the one table, and move `retrieved_date` forward, which is what
-  clears the alert.
+  `table_reference` was amended *inside* the edition the site already cites. **The step is the
+  comparison, and the date is only the receipt for it.** Re-read the row this site publishes. If
+  the value moved, that is a full update from step 3 onwards: evidence, the fields, the
+  changelog. Only then move `retrieved_date`, or for a series `lastUpdated` plus a `correction`
+  field in the evidence entry.
+
+  Getting that order backwards is the most dangerous thing on this page. `check-evidence.mjs`
+  only fires when a value **changed**, so a bumped `retrieved_date` beside a value that should
+  have moved and did not passes every check, **clears the alert for ever**, and silences the one
+  channel through which a wrong number can sit on this site indefinitely. Nothing downstream can
+  tell. The checks say as much themselves: moving the date forward is a person's declaration,
+  not a check.
 - **`validate-data.mjs` reports figures overdue** against their source's cadence. It is a guess
   about time, not a detection of anything, so treat it as a prompt to go and look.
 
@@ -76,6 +85,15 @@ of them without its series point fails `validate-data.mjs`.
 
 Do not touch a figure whose `source_id` is not the one you are updating. A release you are not
 reading is not a release you can evidence.
+
+**One deliberate exception, or you will meet an alert you cannot clear.**
+`asylum/small-boat-arrivals-year-ending-march-2026` reads Home Office tables `IER_D03` and
+`IER_02a` through a Commons Library briefing, so its `source_id` is `commons-library` and the
+command above will not list it under `ho-immigration-stats`. The corrections watch matches every
+declared table **whatever the record cites**, so a Home Office correction can raise a record this
+step tells you not to touch. When that happens the record is in scope: re-read it through the
+briefing that publishes it, and if the briefing has not caught up, say so and leave the value
+alone rather than reading the table directly under a citation that does not point at it.
 
 ### 2. Go to the tables, not the bulletin
 
@@ -130,7 +148,10 @@ changed **eight**:
 | `notes` | see below |
 
 Updating four of the eight leaves a record citing the superseded edition's URL beside the new
-edition's value, which is the state PR #45 was opened to fix.
+edition's value. **That torn state is what the four-field procedure in
+`docs/UPDATE-AUTOMATION.md` would produce, not what PR #45 fixed.** PR #45 fixed a record that
+was consistently a release behind, old value beside old URL, which is a different and more
+visible fault. The torn one has never happened here, and it is the one no reader could spot.
 
 **A ninth that did not exist then.** `table_reference` was added in PR #48, after that update, so
 it is not in the eight above. It is an **array** of every publisher table the record draws on,
@@ -147,18 +168,44 @@ grants" beside a figure built on 100,300, and "4.4 million" where the release sa
 Leaving them would have shipped two false statements inside the data layer.
 
 **Page prose is never touched during an update.** A changed figure can make a chart summary wrong
-and nothing checks that, which is a limit published on `/sources-and-method/`. The right response
-is to list the pages that cite the figure, which is a query rather than a judgement: every page
-and claim declares its dependencies under `figures:` in front matter for this purpose. Hand that
-list to a person as a separate job.
+and nothing checks that, which is a limit published on `/sources-and-method/`. List the affected
+pages and hand that list on as a separate job.
+
+**That list takes three queries, not one**, and the obvious single query misses the two things
+most likely to be wrong:
+
+```sh
+grep -rl "theme/metric-id" content/          # figures: front matter and inline tokens
+grep -n "theme/metric-id" data/dashboard.json # the home page cites cards, not front matter
+grep -rn "series\." content/*.njk             # charts, which no figures: block declares
+```
+
+`content/index.njk` carries **no** `figures:` block at all: the home page draws from
+`dashboard.json` card refs. And no page declares a series under `figures:` anywhere, so for a
+move of `asylumApplicationsTimeseries.json` or `asylumBacklogTimeseries.json`, neither of which
+is protected by a `series_ref` metric, the front-matter query returns nothing at all.
+
+**A third kind of prose sits between the two rules above, and it renders to the most-read page.**
+`dashboard.json`'s `whatThisMeans` prints on the home page, and `meta.json`'s `keyCaveats` print
+as site-wide caveats. They are not record `notes` and they are not page prose. They carry longhand
+figures and period-relative claims like "down 9% on the previous 12 months". **Re-read them like
+notes**, because an update is exactly when they go wrong, and `npm run validate` only prints them
+for review. While you are there, read the unrecorded-longhand list for your source in that same
+output: it exists because current-edition figures written longhand go wrong at a release, and a
+release is what you are doing.
 
 ### 7. Series, if the release moves one
 
 A series is replaced **whole**. ONS states you cannot append the latest estimates to a series from
 an earlier release, and the single-vintage rule enforces it, so do not append points.
 
-- Replace the array, set the block's `published_date` and `lastUpdated`. **`lastUpdated` must be
-  a real `YYYY-MM-DD` date.** It is the corrections watch's clearing key for a whole series, and
+- Replace the array. **`published_date` is on every point, not on the block**, and the vintage a
+  check reads is `data[0].published_date`. Each point also carries its own `source_name` and
+  `source_url`, and it is that point URL's slug the release watch attributes the series by, so a
+  replaced array whose points still carry the old slug reads as behind for ever.
+- Set `lastUpdated`, which is on the **file envelope**, once per file rather than per block.
+  **It must be a real `YYYY-MM-DD` date.** It is the corrections watch's clearing key for a whole
+  series, and
   it was the one date in the data layer reaching a comparison without passing `isRealDate`: a
   prose date, which is how the `vintage` field beside it is written, sorts above every ISO date
   and would have cleared every correction to that series for ever. Guarded since PR #48, and the
@@ -177,11 +224,20 @@ an earlier release, and the single-vintage rule enforces it, so do not append po
 npm run validate
 npm run build
 npm run check-evidence
-npm run a11y
+npm run check-releases   # network. The only check that sees a record still citing the old edition
+npm run check-sources    # network. The only check that resolves the URLs you just typed
+npm run a11y             # runs build again, so put it last
 ```
 
-`check-evidence` is the one that gates on the work you just did. If it passes and you cannot say
-which quote covers which figure, something is wrong with the evidence, not with the check.
+`check-evidence` gates on the work you just did. If it passes and you cannot say which quote
+covers which figure, something is wrong with the evidence, not with the check.
+
+**The two network checks are not optional here, whatever CI does with them.** CI runs
+`check-sources` under `continue-on-error`, so a dead source URL you just typed ships silently.
+And `check-releases` is the **only** thing that catches a record still citing the superseded
+edition, which is exactly what you ship if `source_url` slipped out of the eight fields: the
+other four commands all pass green on that state. The worked example below is a record in that
+state, and neither of the checks that existed at the time could see it.
 
 ### 9. Write the changelog entry, because the site promises it
 
@@ -198,8 +254,22 @@ Under `## Unreleased`, a heading naming the figure and the date, then:
 - **anything the check could not establish**, such as a reconciliation done by arithmetic that
   the release does not state.
 
-Dates in that file are the date of the change to this repository, never the publication date of
-the statistics. Each figure carries its own `published_date` and `retrieved_date` for that.
+The convention for dates in that file is stated at the top of `CHANGELOG.md` itself, which wins
+if this ever disagrees with it.
+
+**One page prose exception, because step 6's rule would otherwise make a promise false.**
+`/sources-and-method/` publishes a *Reference periods do not line up* table introduced by "At the
+last update:", listing the period each family of measures covers. Any of the three cadenced
+updates falsifies a row of it, and no check reads a period label. So that table is the single
+piece of page prose an update **does** edit, and the changelog entry should say it was. Leaving
+it is not the safe option here; it is a stale promise on the page that explains the site's
+method.
+
+**When the value did not change**, which the checks are quietest about. A new edition that prints
+the same number still moves the other seven fields, or `check-releases.mjs` reports the record
+behind for ever. No check demands an evidence entry, because none fired. Write one anyway, or at
+least a changelog line saying the edition was read and the figure held, because this is the one
+path where nothing mechanical records that a person looked.
 
 ### 10. Open a pull request, and do not merge
 
@@ -227,8 +297,15 @@ that does not happen.
   not a check, and the corrections watch says so on every run.
 - **That the prose around a figure is still true.** Citations protect values, never the verbs
   around them.
-- **That the figures not in scope are current.** This procedure deliberately touches one source.
-  `check-releases.mjs` is what watches the rest.
+- **That the figures not in scope are current.** This procedure deliberately touches one source,
+  and `check-releases.mjs` does **not** cover the rest. It watches two GOV.UK collections and one
+  ONS bulletin. On 30 July 2026 the other eight cited sources, including the NAO, the Commons
+  Library, the Migration Observatory, ICIBI and the OBR, are reported as **not watched** on every
+  run, with no detection route at all. They are aged by cadence in `validate-data.mjs`, which is
+  a guess about time. Read the "Not watched" block; it is printed for exactly this reason.
+- **That a figure the edition check cannot compare is current.** Both small-boats figures cite
+  evergreen pages that name no edition, so the comparison reports "cannot be compared" rather
+  than passing them. Those need a hand check each cycle and nothing will remind you.
 
 ## The worked example
 
