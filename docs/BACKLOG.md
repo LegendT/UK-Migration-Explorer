@@ -194,7 +194,10 @@ alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   - **Does the procedure do series work, or refuse it and hand it to a person?** As scoped it
     cannot do an ONS update at all: the four metrics that declare a `series_ref` are all
     `ons-ltim`, and moving them without the series fails `validate-data.mjs`. Refusing is
-    defensible; silently omitting is not.
+    defensible; silently omitting is not. **One constraint on the refusing branch, found by a
+    second model on 30 July:** a refusal must name the runbook's section by path and heading and
+    must not restate its steps. A procedure printed in two places is the duplication this
+    project has already been burned by twice, and the copy a session happens to read wins.
   - **Does item 6 come first?** That item says of `docs/UPDATING-DATA.md`, "write this before
     automating any of it: you should be able to do the job by hand before delegating it."
     Phase 3 is that job delegated, so its own rule puts item 6 ahead of it, and the list order
