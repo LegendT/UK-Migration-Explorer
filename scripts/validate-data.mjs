@@ -7,6 +7,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { COMPANION_BLOCKS, SERIES_FILES, seriesPoints } from '../lib/series.mjs';
+import { sameTable, tablesIn } from '../lib/tables.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
@@ -93,6 +94,25 @@ function checkFields(where, item, required) {
   }
 }
 
+// The corrections watch in check-releases.mjs matches a publisher's change history against the
+// tables this site names, and it reads `table_reference`. Those identifiers lived only in prose
+// until now, so this is what stops the declaration and the prose drifting apart: a record that
+// names a table in its own text and declares nothing is invisible to that watch, silently.
+//
+// The pattern is in lib/tables.mjs, because the watch matches the publisher's change history
+// against these declarations with the same one.
+function checkTableReference(where, declared, ...prose) {
+  if (declared !== undefined && !Array.isArray(declared)) {
+    errors.push(`${where}: table_reference must be an array of table identifiers`);
+    return;
+  }
+  for (const table of tablesIn(...prose)) {
+    if (!(declared ?? []).some((entry) => sameTable(entry, table))) {
+      errors.push(`${where}: names table ${table} in its own text but does not declare it in table_reference, so the corrections watch cannot see a correction to it`);
+    }
+  }
+}
+
 function checkValue(where, metric) {
   // A sign-spanning range must never be flattened to a point a card could render.
   if (metric.value_type === 'range') {
@@ -141,6 +161,7 @@ for (const file of THEME_FILES) {
     checkFields(where, metric, METRIC_FIELDS);
     checkValue(where, metric);
     checkPeriod(where, metric);
+    checkTableReference(where, metric.table_reference, metric.source_name, metric.notes);
     const ref = `${theme}/${metric.id}`;
     if (registry.has(ref)) errors.push(`${where}: duplicate id "${metric.id}" within ${file}`);
     registry.set(ref, metric);
@@ -186,6 +207,12 @@ for (const file of TIMESERIES_FILES) {
   for (const name of COMPANION_BLOCKS) {
     if (series[name]) blocks.push([`${name}.`, series[name]]);
   }
+
+  // One declaration per file, on the envelope beside source_id, because every block in a series
+  // file is read off the same publisher table. Both asylum series cite Asy_00a throughout,
+  // companion included.
+  checkTableReference(file, series.table_reference, series.note,
+    ...blocks.flatMap(([, block]) => [block.note, ...(block.data ?? []).map((p) => p.source_name)]));
 
   for (const [label, block] of blocks) {
     // A companion series without a note explaining how it differs is an invitation to
@@ -347,6 +374,15 @@ if (undeclared.length) {
   console.log('If it is the same measure, add series_ref to the metric so the two cannot drift apart.');
   console.log('If two different measures happen to share a value, leave it.');
 }
+
+// Publisher tables. Reported rather than left silent, because the corrections watch is only as
+// complete as this declaration is, and nothing else would say how far that reaches.
+const tabled = [...registry.values()].filter((m) => m.table_reference?.length).length;
+const seriesTabled = TIMESERIES_FILES.filter((file) => read(file).table_reference?.length).length;
+console.log(`\nPublisher tables: ${tabled} record(s) and ${seriesTabled} series file(s) declare one, and every table named in prose is declared.`);
+console.log('Not established: that a figure which names no table has none. This reads what is');
+console.log('written, so a table nobody wrote down stays undeclared and unwatched, and an ONS');
+console.log('sheet called "Table 1" carries no identifier that could be declared at all.');
 
 // Staleness. Reported every run, including when it finds nothing, because a check that only
 // speaks up when it fires cannot be told apart from one that has stopped working.

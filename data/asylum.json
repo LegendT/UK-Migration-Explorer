@@ -44,6 +44,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026, How many people are granted asylum in the UK?",
+      "table_reference": [
+        "Asy_04"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-granted-asylum-in-the-uk",
       "published_date": "2026-05-21",
@@ -108,6 +111,9 @@
       "period_label": "as at 30 June 2024 (latest available)",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics (citing Migration Transparency Data ASY_03)",
+      "table_reference": [
+        "ASY_03"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
@@ -140,6 +146,10 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "House of Commons Library, Statistics on small boat Channel crossings (citing Home Office IER_D03 / IER_02a)",
+      "table_reference": [
+        "IER_D03",
+        "IER_02a"
+      ],
       "source_id": "commons-library",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10590/",
       "published_date": "2026-05-21",
@@ -205,6 +215,10 @@
       "period_label": "quarter January to March 2026",
       "geography": "United Kingdom",
       "source_name": "HM Courts & Tribunals Service / Ministry of Justice, Tribunals statistics quarterly, January to March 2026",
+      "table_reference": [
+        "FIA_3",
+        "T_3"
+      ],
       "source_id": "hmcts-tribunals",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
@@ -317,6 +331,9 @@
       "period_label": "cumulative, 2021 to end March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics, year ending March 2026, safe and legal (humanitarian) routes",
+      "table_reference": [
+        "Res_01"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
       "published_date": "2026-05-21",
@@ -349,6 +366,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics year ending March 2026, How many people are returned from the UK? (derived from table Ret_01)",
+      "table_reference": [
+        "Ret_01"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e54b22977ebc82cb3fb8/returns-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
@@ -365,6 +385,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics year ending March 2026, How many people are returned from the UK?",
+      "table_reference": [
+        "Ret_01"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
@@ -397,6 +420,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics year ending March 2026, How many people are returned from the UK? (table Ret_01)",
+      "table_reference": [
+        "Ret_01"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e54b22977ebc82cb3fb8/returns-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
@@ -429,6 +455,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "table_reference": [
+        "Asy_00a"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
@@ -445,6 +474,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "table_reference": [
+        "Asy_00a"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
@@ -461,6 +493,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "table_reference": [
+        "Asy_00a"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
@@ -477,6 +512,9 @@
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
       "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum claims and initial decisions detailed datasets, table Asy_D02",
+      "table_reference": [
+        "Asy_D02"
+      ],
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
       "published_date": "2026-05-21",
