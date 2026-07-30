@@ -51,7 +51,23 @@
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
-      "notes": "Provisional. Down 20% from the updated year ending December 2024 (1,012,000); down from a peak of 1,469,000 in the year ending March 2023. Non-EU+ accounted for 627,000 (77%).",
+      "notes": "Provisional. Down 20% from the updated year ending December 2024 (1,012,000); down from a peak of 1,469,000 in the year ending March 2023. Non-EU+ accounted for about 77% of it, held as its own record rather than restated here.",
+      "confidence_level": "provisional"
+    },
+    {
+      "id": "non-eu-plus-long-term-immigration",
+      "metric_name": "Long-term immigration of non-EU+ nationals",
+      "value": 627000,
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "geography": "United Kingdom",
+      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025, Table 1",
+      "source_id": "ons-ltim",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-30",
+      "notes": "Provisional. Non-EU+ is a nationality grouping, not a route or a visa type. Read from Table 1 of the accompanying dataset rather than the bulletin narrative: the three nationality groups reconcile exactly to the all-nationalities total, 110,000 British plus 76,000 EU+ plus 627,000 non-EU+ equals 813,000. It is the denominator ONS uses for its reason-for-immigration breakdown, which it publishes for this group only.",
       "confidence_level": "provisional"
     },
     {
