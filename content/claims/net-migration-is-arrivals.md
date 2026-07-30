@@ -53,8 +53,8 @@ time. Reading the net figure as an arrivals figure hides all of that.
 One further caution: these are estimates, and they are revised. The year ending December
 2024 figure was first published as 431,000, revised to about 345,000, and now stands at
 {{migration/net-migration-2}}, largely because ONS revised its estimate of British emigration upwards. The
-estimate fell by 100,000 because ONS brought in new data and methods, not because the 2024
-period itself changed.
+estimate fell because ONS brought in new data and methods, not because the 2024 period itself
+changed.
 
 ## Better questions to ask
 
