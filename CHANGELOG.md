@@ -9,6 +9,38 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Figures written in words are scanned, 30 July 2026
+
+**No published figure changed**, and the built site is byte-identical to before, proved by diff.
+PR #66.
+
+Every value scan in `validate-content.mjs` matched digits and only digits, so "2.2 million" and
+"£1.3 billion" reached none of them: not comma-grouped, so neither errored, warned nor listed.
+That is how this site writes its largest numbers, the population, the ten-year accommodation
+contracts and the daily cost figures.
+
+- **The comparison is at the unit's scale.** A record of 4.9 with unit `£ billion` is 4.9 billion
+  pounds, so "£4.9 billion" in prose is that figure and is reported once, by the existing unit
+  scan, rather than twice. A record of 20 with unit `£ per night` is not, so "£20 billion" is
+  still reported rather than silenced by it.
+- **A value that equals a record warns rather than fails, and the difference is the remedy
+  rather than the confidence.** A token renders `toLocaleString`, so citing "10.7 million" would
+  put "10,700,000" on the page. Two are live, the foreign-born card in `dashboard.json` and the
+  third key caveat in `meta.json`, and both are the same record.
+- **Eleven report lines the data layer never recorded became visible**, ten distinct figures
+  with the visitor-visa one on two pages, so `UNRECORDED_BASELINE` rose from 22 to 33. It is the
+  ratchet's only step up and the only one it should take: nothing arrived, a scan started
+  looking. Three of the eleven are a daily cost divided out of a cited
+  annual figure, the arithmetic-against-a-citation pattern PR #55 was recorded as having
+  emptied. It emptied the comma-grouped half of it.
+- **Three controls run on every invocation**, because a branch that reports rather than fails
+  would otherwise print a shorter list and read as progress when its matcher broke. One probe is
+  the real wrapped sentence from the costs page, where the number and the word "million" sit on
+  different lines.
+
+What it still does not read is printed on every run: "2 200 000", "two million", "£1.3bn",
+"2.2 thousand", and front matter, where one claim's short answer carries a rounded figure.
+
 ### The sources page counts itself correctly, and publishes a third limit, 30 July 2026
 
 **No published figure changed.** What changed is what the page says about how many there are,

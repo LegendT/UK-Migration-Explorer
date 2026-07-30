@@ -119,11 +119,11 @@ const unrecorded = [];
 // constant separately so that a gap between them is visible instead of being read as agreement.
 //
 // RAISED ONCE, from 22 to 33, and this is the only entry here that goes up. It is the scan
-// widening rather than the site growing: eleven figures written "2.2 million" or "£1.3
-// billion" were on these pages the whole time and no scan looked at them, so the step up
-// records eleven figures becoming VISIBLE, not eleven arriving. Nothing on any page changed
-// in the commit that raised it. The ratchet is unchanged in what it forbids: from here the
-// count may not grow, and the eleven come down the same way the other sixteen did.
+// widening rather than the site growing: eleven lines written "2.2 million" or "£1.3 billion",
+// ten distinct figures with the visitor-visa one on two pages, were on these pages the whole
+// time and no scan looked at them. The step up records them becoming VISIBLE, not arriving,
+// and nothing on any page changed in the commit that raised it. What the ratchet forbids is
+// unchanged: from here the count may not grow, and these come down as the other sixteen did.
 const UNRECORDED_BASELINE = 33;
 const claims = [];
 
