@@ -9,6 +9,40 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The sources page counts itself, 30 July 2026
+
+**No published figure changed.** The five figure counts on `/sources-and-method/` are now
+derived from the data layer at build time instead of being typed. Adding a record no longer
+touches that page. PR #68.
+
+Twice in three days a hand-maintained count on that page went wrong or had to be corrected by
+hand: PR #61 fixed rows that had drifted, and PR #67 moved a row again by minting one record.
+The page's subject is how this site's figures are maintained, which is the worst place on it to
+keep a number nothing reads.
+
+- **`lib/published.mjs` is the one home for the definition.** Reaching a reader means rendering,
+  by one of five routes: a token in a markdown page, a `{% figure %}` shortcode, a chart bar's
+  `ref` or a `| metric` summary, a dashboard card, or a token in the `data/` prose that renders
+  to a page. A `figures:` front-matter entry is not a route.
+- **A transform, not a filter, because the page is markdown.** Markdown templating is off
+  site-wide so that `{{theme/id}}` is a citation rather than an expression, so a markdown page
+  cannot call a filter the way the claims page calls `countWhere` for its direction split.
+  `{count:ho-immigration-stats}` uses the marker-and-transform idiom `{caption}` and `{#anchor}`
+  already use, and numerals go in the table while the prose sentence spells numbers to ten, as
+  the site's own `inWords` rule does. "The other fifteen" now reads "The other 15".
+- **The scan reads the source, and `check-build.mjs` closes it at the far end**, confirming that
+  every record the counts claim through a token really appears in the output. Six of the 46
+  cannot be confirmed that way, because a chart bar and a dashboard card render a value with no
+  ref beside it, and every build says so.
+- **Only the three cadenced publishers can be named by a marker.** Any other key is refused: a
+  typo landing on a real publisher would render a plausible wrong number beside a row naming a
+  different one, which is what the first negative test for this did by accident.
+
+The publisher names in the sentence under the table are still prose, so the count there is
+derived and the list beside it is not. That is in the backlog rather than fixed, because
+deriving it means either catalogue wording on a page that reads as prose, or six display names
+maintained by hand somewhere else.
+
 ### Visitor visas become a record, 30 July 2026
 
 **2,241,997 for the year ending March 2026**, up 4% on 2,157,064. The site published this on
