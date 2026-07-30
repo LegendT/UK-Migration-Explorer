@@ -62,9 +62,11 @@ If the branch is renamed or the history is grafted back on, correct this paragra
 that `main` starts at a parentless commit is checkable in one command and does not go stale:
 `git rev-list --max-parents=0 main`.
 
-16 pages build from a governed data layer of **71 metric records** in four theme files, plus
+16 pages build from a governed data layer of **74 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
-171. **A subset of those records reaches a reader.** Eleventy 3, no client-side JavaScript,
+174. **45 of the 74 reach a reader**, and the other 29 are unpublished reserve. That split is
+not decoration: it is the definition the sources page's own figure counts now rest on, settled
+on 30 July after every count on that page turned out to be wrong. Eleventy 3, no client-side JavaScript,
 charts rendered as inline SVG at build time. What is on each of the 16 pages is in `README.md`
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
@@ -107,9 +109,12 @@ author: the y-axis always starts at zero, the gridline interval is chosen from t
 people count in rather than by dividing the top into four, every chart carries its figures as a
 real table, and no series is distinguished by colour alone.
 
-**Three Eleventy transforms run on the built HTML, and the order is load-bearing.**
+**Four Eleventy transforms run on the built HTML, and the order is load-bearing.**
 `resolve-citations` renders the tokens and block partials, and throws on anything unresolved.
-`heading-anchors` turns `{#id}` syntax into real ids. `scrollable-regions` then wraps any
+`heading-anchors` turns `{#id}` syntax into real ids. `table-captions` lifts a `{caption}`
+paragraph into the `<caption>` of the table below it, and throws when a marker matches no table,
+because markdown has no caption syntax and a stray marker would ship as visible text.
+`scrollable-regions` then wraps any
 unwrapped table and gives every scrolling box a `tabindex`, a role and a name taken from its
 caption or the heading above it. Run the last before the second and a heading still carrying
 its `{#id}` names the region, shipping raw syntax inside an `aria-label`, where nothing on the
@@ -122,7 +127,7 @@ Seven checks, all in CI, all negative-tested.
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, outstanding work tracked in the backlog |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a comma-grouped figure the data layer never recorded, under a ratchet whose count may not grow |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
@@ -132,17 +137,22 @@ Seven checks, all in CI, all negative-tested.
 CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry and
 link rot, only fire if something runs.
 
-**Read this before trusting a green run.** Seven times in this project a checker passed while a
+**Read this before trusting a green run.** Eight times in this project a checker passed while a
 real defect shipped. Every one had the same shape: the check verified a property of the *source
 or the declaration* rather than the property a reader depends on, and the success message
 claimed the latter. The seventh was the literal check walking `content/` and not `data/`, which
 left the one file whose entire job is holding references as the only file nobody scanned for
-values. The messages now state only what they verify.
+values. **The eighth was found on 30 July and is the cleanest example of the shape:** the
+literal scan matched prose against the values the site HOLDS, so a figure it never recorded was
+invisible to it by construction, while the success message read "No page writes a comma-grouped
+value longhand". Thirty-eight did. The messages now state only what they verify.
 
-**The count is seven, and more of that shape have been caught since without being added to
+**The count is eight, and more of that shape have been caught since without being added to
 it**, every one of them before it merged. They are under *Building a check, and trusting it*.
-Seven is the number that shipped, and it is left alone deliberately: inflating the one figure
-this document uses to argue for scepticism would make it worth less.
+Eight is the number that SHIPPED, and that is the only test for joining the list: the eighth
+qualified because it sat on `main` while thirty-eight figures contradicted it. Nothing is added
+for being caught in review, because inflating the one figure this document uses to argue for
+scepticism would make it worth less.
 
 That second count used to be stated, as "three", and it went stale twice inside a week, the
 last time in the same edit that added two more instances four sections below it. A count of
@@ -220,6 +230,22 @@ is already here to adding a neighbour beside it.
   that block's exemption permanent, so the remedy handed the author the hole. A check is only as
   good as the thing it points at and the thing it sits beside.
 
+- **A figure computed against a citation is invisible to every check here.** It matches no
+  record, so the longhand scan cannot see it, and it is not frozen history, so declaring it
+  would be a lie that silences it for ever. Five sites of one such sentence were found on
+  30 July, the fifth only by grepping after the other four were fixed. Drop it and give the
+  reader both ends.
+
+- **Reconcile a new record against a total the site already publishes**, not just against its
+  own source. Both records minted on 30 July were confirmed that way: three nationality groups
+  summing exactly to a published immigration total, and four entry methods summing to a figure
+  the site already carried from a different publisher. Finding the number is not recognising it.
+
+- **When your count disagrees with something the project independently says about the same
+  thing, the disagreement is the check.** A query returned 74 published figures, which was every
+  record; the handoff's own "a subset of those records reaches a reader" said that was wrong, and
+  it was. The corrected answer, 45, is what the sources page now publishes.
+
 - **Find things the way that can show you are wrong.** Four figures held twice were found by
   matching equal values, which by construction can only find pairs that already agree. Whether
   anything had already drifted needed a different query, and "they all agree" was not evidence
@@ -250,7 +276,9 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model reading the same code found what a self-critique had not. Twice.** Two
+- **A second model has found the most serious defect in every piece of work it has read here, four times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, and that a paragraph whose declared purpose was stating a cost understated it by half. Budget for this rather than treating it as a last check.
+
+- **A second model reading the same code found what a self-critique had not. Twice, before that.** Two
   rounds of critique on the series evidence check found real defects and missed the one above,
   which a fresh reviewer reproduced in a scratch clone within one pass. On the corrections
   watch, a self-critique found six things and missed that the series clearing key,
@@ -426,7 +454,7 @@ is what is actually copied and has to move in both places:
 | checks that passed while a real defect shipped | *The checking apparatus* |
 | negative tests that never fired | *Building a check* |
 | the three questions to ask of a matching key, on both sides | *Building a check* |
-| that a second model has twice found what self-critique did not | *Building a check* |
+| that a second model has found the worst defect four times | *Building a check* |
 | that branches carry history `main` does not | *Where things stand* |
 | scope documents written in one session | *Deciding what to build* |
 | which backlog item to take, and on what wording | `docs/BACKLOG.md`, not here |
@@ -452,13 +480,12 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review is done. Its nine corrections, 1a to 1i under
-backlog item 1, landed across PRs #33 to #38, the last six in #38, and
-PR #39 reordered the backlog and rewrote the handoff around them.
-verification.txt at the repo root is the review itself. Every other
-completed item names its PR in the backlog's Completed section where one
-exists, so this prompt does not carry a list that would need updating
-each time.
+The pre-publication review is done and its nine corrections landed.
+verification.txt at the repo root is the review itself; it covers
+Sections 1 to 7 and Parts 2.1 to 2.7, which is ten pages and not
+sixteen, and that distinction settled the last_reviewed question.
+Completed items name their PR in the backlog's Completed section, so
+this prompt carries no list that would go stale.
 
 Work is tagged [me] or [you]. The tags are written from MY side, so they
 invert against the pronouns around them: [me] is a factual or mechanical
@@ -469,15 +496,13 @@ backwards hands the editorial calls to you. Do the [me] parts; for a
 work first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question even is.
 
-Still mine, not yours, and not a session's work: the three closing steps
-that are what is left of item 1, including the last_reviewed decision;
-talking to five target users and choosing the success measures, both
-under "Unmet acceptance criteria"; and removing the robots rule, which
-comes last and is launch. Do not treat any of those as done. The backlog
-also carries a short list of small editorial decisions waiting on me;
-those are mine to answer, not yours to take. Where an item is gated on a
-decision of mine, that decision is written under the item, so read it
-before assuming the item is yours to start.
+Still mine, not yours: recording the review as passed in CHANGELOG.md,
+which is what is left of item 1; removing the robots rule, which comes
+last and is launch; and talking to five target users, which is the one
+open acceptance criterion. Do not treat any of those as done. The
+backlog also carries editorial decisions waiting on me. Where an item is
+gated on a decision of mine, that decision is written under the item, so
+read it before assuming the item is yours to start.
 
 TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
 told you otherwise in this message. Unfinished, not unstarted: an item
@@ -492,10 +517,12 @@ mine, do not stall and do not take them: bring me the decisions, and
 start the [me] work on the next item that is not gated, saying which you
 have moved to.
 
-When you finish an item, mark it done in docs/BACKLOG.md with its PR and a
-date. Do not delete it. validate-content.mjs fails the build if a
-planning document in docs/ is not referenced from the backlog, or if the
-handoff stops pointing at it, so the list cannot quietly lose things.
+When you finish an item, mark it done in docs/BACKLOG.md with its PR and
+a date, and move it to Completed when nothing is left of it. Do not
+delete it. validate-content.mjs fails the build if a planning document
+in docs/, or any subdirectory of it, is not referenced from the backlog,
+or if the handoff stops pointing at it, so the list cannot quietly lose
+things.
 
 Rules this project has paid for. The first two bite whenever a figure
 changes; the rest bite on everything.
@@ -503,10 +530,14 @@ changes; the rest bite on everything.
 - Every changed or new figure needs a fetched source and a verbatim quote
   before it is written. The quote goes in data/evidence/ and CI fails
   without it; the shape is in data/evidence/README.md. Go to the
-  publisher's data tables, not its HTML bulletin: the bulletin aggregates,
-  and twice a site figure has looked wrong against one and been right.
-  .ods and .xlsx are zip archives, so download and parse them rather than
-  giving up when a fetch cannot read them.
+  publisher's data tables, not its HTML bulletin: the bulletin
+  aggregates, and twice a site figure has looked wrong against one and
+  been right. .ods and .xlsx are zip archives, so download and parse them
+  rather than giving up when a fetch cannot read them. The Commons
+  Library returns 403 to a fetch; go to the Home Office tables it cites.
+- Reconcile a new figure against a total the site already publishes, not
+  only against its own source. Both records minted on 30 July were
+  confirmed that way. Finding the number is not recognising it.
 - Confirming the figure you asked about is not the whole job. Five times
   a check here has overturned something asserted right beside it.
 - Check what this project has already published, or already enforces,
@@ -515,33 +546,40 @@ changes; the rest bite on everything.
   would never do, and an option I was offered turned out to be one the
   validator forbids.
 - A defect reported on one page usually has siblings. Grep the reasoning,
-  not just the sentence.
+  not just the sentence. One stale sentence was in five places on 30
+  July, and the fifth was found only by grepping after the other four
+  were fixed.
 - Anything you add must pass, and run these rather than assume:
-  npm run validate, npm run build, npm run a11y, and npm run check-evidence
-  if a figure changed.
-- Negative-test every new check. Confirm the break applied by grepping for
-  the broken text and printing the count, before believing the result:
-  four "failures" here were tests that never fired. Negative-test the
-  MECHANISM and the REMEDY too, not only the check. The at() filter
-  shipped an unformatted 45537 to the built page through validate and
-  build alike; an escape hatch one message recommended could not express
-  a single value it existed to exempt; and a skeleton another message
-  printed supplied the null that would have made an exemption permanent.
-  Where a check matches a declaration against a record, ask three things
-  of the key, on BOTH sides: what it does when it does not change, when
-  it is absent, and when it is present but not the shape you assumed.
-  Every answer has to leave the check still asking for something. The
-  third one bit: a series cleared a correction on a date validated for
-  presence and never through isRealDate, and a prose date sorts above
-  every ISO date, so it would have cleared for ever.
+  npm run validate, npm run build, npm run a11y, and npm run
+  check-evidence if a figure changed. check-releases and check-sources
+  are network checks that gate nothing, so run them by hand: a record
+  citing a superseded edition passes every other check green.
+- Negative-test every new check, in BOTH directions. Confirm the break
+  applied by grepping for the broken text and printing the count, before
+  believing the result: four "failures" here were tests that never fired,
+  and on 30 July a fix was documented as covering both directions when
+  its test had exercised only the one that already worked. Negative-test
+  the MECHANISM and the REMEDY too. The at() filter shipped an
+  unformatted 45537 through validate and build alike; an escape hatch one
+  message recommended could not express a single value it existed to
+  exempt; and a skeleton another message printed supplied the null that
+  would have made an exemption permanent. Where a check matches a
+  declaration against a record, ask three things of the key, on BOTH
+  sides: what it does when it does not change, when it is absent, and
+  when it is present but not the shape you assumed.
 - Have a second model read anything whose whole purpose is refusing bad
-  input, before you believe your own critique of it. Twice now one has
-  found a real defect that two rounds of self-critique missed, and both
-  times it was in the part the author was surest of.
+  input, before you believe your own critique of it. It has found the
+  most serious defect in every piece of work it has read here, four
+  times, and every time in the part the author was surest of.
 - State what a check does NOT establish in its own success message.
-  Seven times a checker here passed while a real defect shipped, every
+  Eight times a checker here passed while a real defect shipped, every
   time because it verified the source or the declaration rather than the
-  property a reader depends on.
+  property a reader depends on. The eighth said "No page writes a
+  comma-grouped value longhand" while thirty-eight did.
+- Read the built output, not the build. Three defects on 30 July were
+  invisible to every green check: an aria-label escaped twice so a screen
+  reader would read the entity aloud, a page contradicting its own
+  rendered catalogue, and a figure counted wrongly on a trust page.
 - If a change should not alter the output, prove it by diff. Copy _site
   to a scratch directory before, diff -r after. That is a stronger claim
   than reading the change, and it localises the changes you did mean.
@@ -549,15 +587,20 @@ changes; the rest bite on everything.
 - Do not fix by bulk substitution. Sentence by sentence, in view.
 - Never truncate the thing you are checking for absence, and prefer the
   query that could show you are wrong over the one that confirms you.
+  When your count disagrees with something the project independently
+  says about the same thing, the disagreement is the check.
 - Scoping is not progress. Four scope documents were written in one
   session while the site did not change. Build the smallest real thing.
 
-Branch first; this project works through PRs even solo. Check main has
-not moved before you rewrite the handoff or the backlog. Do not delete
-a branch: main's history is truncated at a parentless commit and
-everything before PR #42 survives only on history-to-pr-41 and
-design-and-a11y-rounds. The handoff says which and why.
+Branch FIRST, before editing anything; this project works through PRs
+even solo, and on 30 July a session began editing on main and had to move
+the work. Check main has not moved before you rewrite the handoff or the
+backlog. Do not delete a branch: main's history is truncated at a
+parentless commit and everything before PR #42 survives only on
+history-to-pr-41 and design-and-a11y-rounds. The handoff says which and
+why.
 
 Stop and ask about anything that needs an editorial judgement rather
 than a correction.
 ```
+

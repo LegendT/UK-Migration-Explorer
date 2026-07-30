@@ -8,7 +8,7 @@ quietly falls out. An item leaves this list when it is done, and it leaves by be
 `scripts/validate-content.mjs` fails the build if a planning document in `docs/` is not
 referenced here, so a scope can no longer be written and forgotten.
 
-Last updated 30 July 2026.
+Last updated 30 July 2026, after eight pull requests, #54 to #61.
 
 ---
 
@@ -158,35 +158,17 @@ comes last. That is launch.
 None of this blocks launch. Each has a scope document; read it before starting.
 
 **This list is in recommended order. Take the first unfinished item, which is item 4**, the
-release notifier, whose remaining phase 3 is no longer gated: both decisions it waited on were
-taken on 30 July 2026 and are recorded under it. The order lives here rather than in the
-handoff's prompt, so that finishing something does not leave a stale instruction somewhere
-else. Re-order it freely; this is the only place the sequence is stated.
-
-**Reordered 30 July 2026.** The runbook was item 6 and is now item 3, because item 4's own scope
-says the job must be doable by hand before it is delegated and phase 3 is that job delegated.
-The list order contradicted the scope for two days. Sections moved and renumbered rather than
-annotated, per the rule below.
+figures the data layer never recorded. Item 3's only remaining phase is a reader-facing trust
+statement needing the owner's sign-off rather than a build, so it is not work a session can take.
+The order lives here rather than in the handoff's prompt, so that finishing something does not
+leave a stale instruction somewhere else. Re-order it freely; this is the only place the
+sequence is stated.
 
 If you reorder, or complete something, **move the sections and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item.
 
-### 3. `docs/UPDATING-DATA.md`: the manual runbook. DONE (PR #52, 30 July 2026)
-
-The manual runbook for the update commitment, modelled on DEBT's, written **before** any of it
-is automated: you should be able to do the job by hand before delegating it. Moved ahead of the
-notifier on 30 July because item 4's own scope says so.
-
-It is deliberately pointer-heavy. The evidence contract lives in `data/evidence/README.md` and
-is not restated, because a contract kept in two files is one that drifts. What the runbook adds
-that existed nowhere: that a real update touches **eight** record fields and not the four the
-scope named, that the step is reconcile rather than look up, that record `notes` are re-read
-every time while page prose is never touched, and a tested command that lists a source's metrics
-**and its series files** together, since the series were invisible to every check until PR #47
-and a list that omits them ships half a release.
-
-### 4. Release notifier and evidence check: four phases built, phase 4 left
+### 3. Release notifier and evidence check: four phases built, phase 4 left
 
 **`docs/UPDATE-AUTOMATION.md`.** Five phases. Phases 1, 1b, 2 and 3 are built; phase 4 is a
 reader-facing trust statement and needs the owner's sign-off, so it is the only one left.
@@ -246,11 +228,11 @@ reader-facing trust statement and needs the owner's sign-off, so it is the only 
     quarterly. Only the tribunals release runs to completion. That is the accepted price of not
     omitting series work silently, and if it is judged too high the answer is to grow the series
     half deliberately rather than loosen the refusal.
-  - **The runbook came first, and is now built** as item 3. Phase 3 is the job it describes,
+  - **The runbook came first, and is now built.** It is under Completed. Phase 3 is the job it describes,
     delegated, so its own rule put it ahead. Decided and reordered on 30 July.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
-### 5. The figures the data layer never recorded
+### 4. The figures the data layer never recorded
 
 **Found 30 July 2026, and the reporting half is built (PR #51).** Both literal scans in
 `validate-content.mjs` match prose against the values the site *holds*, a record value or one of
@@ -362,7 +344,7 @@ written against a vintage where the 2022 estimate was 728,000, so the movement r
 describes the same revision two ways. Not false, since 285,000 is more than 120,000, but stale and
 inconsistent, and it is the sibling 1e did not grep for.
 
-### 6. The eight undrafted claims
+### 5. The eight undrafted claims
 
 Foundation section 8.5.3 specifies fifteen; seven are written. One of the eight,
 "Local areas all carry the same pressure", **cannot be written**: it needs per-capita local
@@ -540,6 +522,14 @@ decisions above.
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **`docs/UPDATING-DATA.md`, the by-hand update runbook**, 30 July 2026. PR #52. Written before
+  the assistant-drafted version, on the rule that you should be able to do a job before you
+  delegate it. What it added that existed nowhere: a real update touches eight record fields and
+  not the four the scope named, plus `table_reference` as a ninth; the step is reconcile rather
+  than look up; record `notes` are re-read every time while page prose is not. Critiquing it
+  against the site's own published promises found that the first draft never mentioned
+  `CHANGELOG.md`, which `/sources-and-method/` promises carries every figure change.
 
 - **The bold link in `most-immigration-is-asylum`**, 30 July 2026. PR #51. Moved off the term and onto
   descriptive text inside the same sentence, so all three list items now open with a bold term.
