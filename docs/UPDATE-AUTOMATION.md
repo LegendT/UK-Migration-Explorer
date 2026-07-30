@@ -267,9 +267,28 @@ means a pattern over prose. That works, and it is the weaker version. Implementi
   it could never have been asked to declare. Same reasoning as `lib/series.mjs`. Widening it to
   six characters either side also matches `metric_name` and `source_url` written as prose, and
   drops `T_3`.
-- **The guard catches a typo'd declaration for free**, because it asks that every table named in
-  prose be declared: `Vis_1` beside prose saying `Vis_01` fails on the same rule as declaring
-  nothing. It cannot catch a table nobody wrote down anywhere, and the run says so.
+- **The guard runs both ways, and only the second direction makes the first one able to catch a
+  typo.** Every table named in prose must be declared, and every declaration must be named in
+  prose. Without the second, `Vis_1` beside prose saying `Vis_01` fails on the first rule, but a
+  declaration nothing names is a string nobody can check: it matches no change-history entry,
+  raises no error and is silent. That every declaration was also written in `source_name` held
+  by habit until the loop that requires it. It still cannot catch a table nobody wrote down
+  anywhere, and both the guard and the watch say so.
+- **A second model found the one that mattered, and it was in the part this session was surest
+  of.** A series clears on the envelope's `lastUpdated`, which `validate-data.mjs` checked for
+  presence and never for shape: it was the only date in the data layer reaching a comparison
+  without passing `isRealDate`. A prose date, which is how the `vintage` field beside it is
+  already written, sorts above every ISO date, so `"22 July 2026"` would have reported every
+  correction to that series' tables as already re-read, for ever. Reproduced, then fixed and
+  negative-tested. Absent and unchanged had been asked of both sides of that comparison;
+  malformed had been asked only of the side `checkFields` already covered.
+- **`table_reference` says which table, never which page publishes it.** `ASY_03` is Migration
+  Transparency Data and has never appeared in the watched history, while its record sits under
+  `ho-immigration-stats`, so no `source_id`-keyed disclosure can report it as uncovered. The run
+  states the limit in general rather than pretending the list is exhaustive. The case fold has
+  the same root: `ASY_03` and `Asy_NN` are different schemes, so a correction to an `Asy_03` on
+  the watched page would raise `ASY_03`'s record. Folded anyway, because the failure it prevents
+  is a correction nobody sees and the failure it risks is a person reading a note.
 - **No CI change was needed**, which is the argument for the watch living inside
   `check-releases.mjs` rather than beside it. The step, the `tee`, the `continue-on-error` and
   the deduplicated issue already existed; the signature grew the corrected tables and the date,

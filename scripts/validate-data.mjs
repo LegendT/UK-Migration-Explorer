@@ -106,9 +106,19 @@ function checkTableReference(where, declared, ...prose) {
     errors.push(`${where}: table_reference must be an array of table identifiers`);
     return;
   }
-  for (const table of tablesIn(...prose)) {
+  const named = tablesIn(...prose);
+  for (const table of named) {
     if (!(declared ?? []).some((entry) => sameTable(entry, table))) {
       errors.push(`${where}: names table ${table} in its own text but does not declare it in table_reference, so the corrections watch cannot see a correction to it`);
+    }
+  }
+  // And the other direction, which is what makes the first one able to catch a typo. A
+  // declaration nothing names in prose is a string nobody can check: `Vis_1` would match no
+  // change-history entry and no error, silently. Today every declaration is also written in the
+  // record's `source_name`, and that held by habit rather than by rule until this loop.
+  for (const entry of declared ?? []) {
+    if (!named.some((table) => sameTable(entry, table))) {
+      errors.push(`${where}: declares table ${entry} but never names it in source_name or notes, so nothing can tell a real table from a typo. Write it into source_name, which is what a reader sees.`);
     }
   }
 }
@@ -198,6 +208,14 @@ for (const file of TIMESERIES_FILES) {
   // check-releases.mjs queries by source_id, and 100 points sat outside every such query.
   for (const field of ['series_name', 'unit', 'note', 'lastUpdated', 'source_id']) {
     if (!series[field]) errors.push(`${file}: missing envelope field ${field}`);
+  }
+  // `lastUpdated` is the corrections watch's clearing key for a whole series, the way
+  // `retrieved_date` is for a metric, and it was the only date in the data layer that reached a
+  // comparison without going through this. A prose date sorts ASCII-greater than every ISO one,
+  // so "22 July 2026" would have cleared every correction to that series' tables for ever, and
+  // the envelope's own `vintage` field beside it is already written as prose.
+  if (series.lastUpdated && !isRealDate(series.lastUpdated)) {
+    errors.push(`${file}: lastUpdated "${series.lastUpdated}" is not a real YYYY-MM-DD date, and the corrections watch compares it against a date`);
   }
   if (series.source_id && !sourceById.has(series.source_id)) {
     errors.push(`${file}: source_id "${series.source_id}" is not an id in sources.json`);
@@ -379,10 +397,12 @@ if (undeclared.length) {
 // complete as this declaration is, and nothing else would say how far that reaches.
 const tabled = [...registry.values()].filter((m) => m.table_reference?.length).length;
 const seriesTabled = TIMESERIES_FILES.filter((file) => read(file).table_reference?.length).length;
-console.log(`\nPublisher tables: ${tabled} record(s) and ${seriesTabled} series file(s) declare one, and every table named in prose is declared.`);
+console.log(`\nPublisher tables: ${tabled} record(s) and ${seriesTabled} series file(s) declare one. Every table named in prose is declared, and every declaration is named in prose, which is what lets a typo be caught.`);
 console.log('Not established: that a figure which names no table has none. This reads what is');
 console.log('written, so a table nobody wrote down stays undeclared and unwatched, and an ONS');
-console.log('sheet called "Table 1" carries no identifier that could be declared at all.');
+console.log('sheet called "Table 1" carries no identifier that could be declared at all. Nor that');
+console.log('the declared table is the one the value came from: the evidence entry names a table');
+console.log('too, and nothing compares the two.');
 
 // Staleness. Reported every run, including when it finds nothing, because a check that only
 // speaks up when it fires cannot be told apart from one that has stopped working.

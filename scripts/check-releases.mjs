@@ -57,8 +57,10 @@ const WATCHED = {
 // the 'Other work visas and exemptions' figure". The records name their tables too, in
 // `table_reference`, so the two lists can be matched.
 //
-// One page, because one page is what carries this. The tribunals and Migration Transparency Data
-// tables the site also names have no equivalent history here and are reported as unwatched.
+// One page, because one page is what carries this. A `table_reference` names which table, never
+// which page publishes it, so every declared table is matched against this one and a table
+// published elsewhere is matched here and found nowhere: `ASY_03` is Migration Transparency Data
+// and has never appeared in this history. The run says so rather than implying coverage.
 const CORRECTIONS = {
   'ho-immigration-stats': {
     api: 'https://www.gov.uk/api/content/government/statistical-data-sets/immigration-system-statistics-data-tables',
@@ -290,10 +292,11 @@ for (const [id, config] of Object.entries(CORRECTIONS)) {
     }))
     .filter((entry) => entry.tables.length);
 
-  // Every declared table is matched, not only those whose record cites this publisher. Two
-  // figures read Home Office tables through a Commons Library briefing that quotes them, and a
-  // correction to IER_D03 is a correction to what the Home Office published however the site
-  // reached it. Restricting the match by source_id would have skipped exactly those two.
+  // Every declared table is matched, not only those whose record cites this publisher.
+  // `small-boat-arrivals-year-ending-march-2026` reads IER_D03 and IER_02a through a Commons
+  // Library briefing that quotes them, and a correction to those tables is a correction to what
+  // the Home Office published however the site reached it. Restricting the match by source_id
+  // would have skipped it.
   const matched = [];
   const outstanding = [];
   for (const entry of naming) {
@@ -425,11 +428,12 @@ console.log('Not established, by either half: that a release which kept its edit
 console.log('changed anything. The edition check compares which edition is cited and nothing else.');
 console.log('The corrections watch reads one page and matches table identifiers, so it cannot see a');
 console.log('correction whose note names a table by title only, one to a table nobody wrote down,');
-console.log('or one published anywhere but that page. It compares whole days, so a correction');
-console.log('published later on the day a figure was read falls on the wrong side of it. A match');
-console.log('means the table moved, never that the row this site publishes did: the last one');
-console.log('missed it by a single row. And it clears when retrieved_date moves forward, which is');
-console.log('a person saying they re-read the figure, not this or any check establishing they did.');
+console.log('or one published anywhere but that page: a table_reference names which table, never');
+console.log('which page publishes it. It compares whole UTC days, so a correction published later');
+console.log('on the day a figure was read falls on the wrong side of it. A match means the table');
+console.log('moved, never that the row this site publishes did: the last one missed it by a single');
+console.log('row. And it clears when retrieved_date moves forward, or lastUpdated for a series,');
+console.log('which is a person saying they re-read it, not this or any check establishing so.');
 
 if (!behind.length && !unchecked.length && !corrected.length && !correctionsUnchecked.length) {
   console.log('\nEvery watched source is on the edition the site cites, and every corrected table');
@@ -445,12 +449,14 @@ const signature = [
   // Not "unreachable": a collection that answers 200 while matching no document is the
   // rename case, and it is the failure this title most needs to be honest about.
   ...unchecked.map((report) => `${report.id} could not be checked`),
-  // The tables, not just the source, so that a second correction landing while the first is open
-  // changes the title and opens a second issue rather than hiding inside the first.
+  // The tables and the count, not just the source, so that a second correction landing while the
+  // first is open changes the title and opens a second issue rather than hiding inside the first.
+  // The count is what carries two corrections to the same table on the same day, which the tables
+  // and the date alone cannot tell apart.
   ...corrected.map((report) => {
     const tables = [...new Set(report.outstanding.map((hit) => hit.table))].sort().join('/');
     const latest = report.outstanding.map((hit) => hit.entry.date).sort().pop();
-    return `${report.id} corrections to ${tables} since ${latest}`;
+    return `${report.id} ${report.outstanding.length} correction(s) to ${tables} since ${latest}`;
   }),
   ...correctionsUnchecked.map((id) => `${id} corrections could not be checked`),
 ].sort().join(', ');

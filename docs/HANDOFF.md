@@ -230,18 +230,25 @@ is already here to adding a neighbour beside it.
   matched null and the first entry would have exempted that block for ever. The skeleton the
   error message printed supplied that null itself, which is why it also appears two bullets up.
   Ask of any matching key: what happens when it is unchanged, and what happens when it is
-  absent. Both answers have to be "the check still asks for something". **Ask it of both
-  sides.** The corrections watch compares a record's `retrieved_date` against the date on the
-  publisher's change-history entry, and an entry with no timestamp gives an empty string, which
-  compares as earlier than every date and would have silently cleared every figure behind it.
-  The declaration was the side that had been thought about; the record it was matched against
-  was not.
+  absent. Both answers have to be "the check still asks for something". **Ask it of both sides,
+  and ask a third thing: what if the key is present, unchanged, and not the shape you assumed.**
+  The corrections watch compares a record's `retrieved_date` against the date on the publisher's
+  change-history entry. An entry with no timestamp gives an empty string, which compares as
+  earlier than every date and would have silently cleared every figure behind it: that was the
+  side nobody had thought about. And a series clears on `lastUpdated`, which was validated for
+  presence and never for shape, so a prose date beside the `vintage` field already written as
+  prose would have sorted above every ISO date and cleared for ever. Absent and unchanged were
+  asked of both sides. Malformed was asked only of the side already covered.
 
-- **A second model reading the same code found what a self-critique had not.** Two rounds of
-  critique on the series evidence check found real defects and missed the one above, which a
-  fresh reviewer reproduced in a scratch clone within one pass. Worth doing on anything whose
-  whole purpose is refusing bad input, because self-critique is weakest exactly where the
-  author's model of the design is the thing at fault.
+- **A second model reading the same code found what a self-critique had not. Twice.** Two
+  rounds of critique on the series evidence check found real defects and missed the one above,
+  which a fresh reviewer reproduced in a scratch clone within one pass. On the corrections
+  watch, a self-critique found six things and missed that the series clearing key,
+  `lastUpdated`, was the one date in the data layer reaching a comparison without passing
+  `isRealDate`, so a prose date would have sorted above every ISO one and cleared every
+  correction to that series for ever. Worth doing on anything whose whole purpose is refusing
+  bad input, because self-critique is weakest exactly where the author's model of the design is
+  the thing at fault: both misses were in the part the author was surest of.
 
 ### Looking at the built page
 
