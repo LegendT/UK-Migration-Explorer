@@ -12,7 +12,8 @@ or if a planning document exists that the backlog does not reference.
 ## Start here
 
 1. Read `docs/BACKLOG.md`. It is ordered; take the first **unfinished** item, which is not
-   always an unstarted one. Item 3 has two of its four phases built and is still the first.
+   always an unstarted one: an item can have phases built and still be the first. Which item
+   that is, and how far it has got, is the backlog's to say and not this document's.
 2. Read the rest of this document, for how the project works and what not to repeat.
 3. Read the scope document for whatever you pick up, and do not re-derive it.
    `verification.txt` at the repository root is the pre-publication review itself. It is the
@@ -197,15 +198,17 @@ is already here to adding a neighbour beside it.
   broken. A fourth was a search string that did not match. The cheap guard is to grep for the
   broken text and print the count before running anything.
 
-- **Negative-test the mechanism and the remedy, not only the check.** Both failed here in one
-  session, and neither was a check. `at()` returns the raw number, so a citation missing
+- **Negative-test the mechanism and the remedy, not only the check.** Three have failed here
+  across two sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
   `| number` shipped `45537` to the built page with `npm run validate` and `npm run build`
   both green: no literal in the source for the longhand scan to find, and an unformatted
   integer is not `NaN`. Separately, the literal check told authors to declare a frozen figure
   under `historical_literals`, and that escape hatch was split on commas, so every
   comma-grouped value it existed to exempt was shredded into two junk exemptions. Three copies
-  of it, and no content page had ever used one. A check is only as good as the thing it points
-  at and the thing it sits beside.
+  of it, and no content page had ever used one. Third, the series evidence check printed a
+  fillable skeleton carrying `"vintage": null`, and null was the one value that would have made
+  that block's exemption permanent, so the remedy handed the author the hole. A check is only as
+  good as the thing it points at and the thing it sits beside.
 
 - **Find things the way that can show you are wrong.** Four figures held twice were found by
   matching equal values, which by construction can only find pairs that already agree. Whether
@@ -225,9 +228,9 @@ is already here to adding a neighbour beside it.
   matched every earlier state of the same edition: a fabricated middle point passed while the
   run reported it as declared. Where the vintage was null, and it is a nullable field, null
   matched null and the first entry would have exempted that block for ever. The skeleton the
-  error message printed supplied that null itself, so the remedy created the hole. Ask of any
-  matching key: what happens when it is unchanged, and what happens when it is absent. Both
-  answers have to be "the check still asks for something".
+  error message printed supplied that null itself, which is why it also appears two bullets up.
+  Ask of any matching key: what happens when it is unchanged, and what happens when it is
+  absent. Both answers have to be "the check still asks for something".
 
 - **A second model reading the same code found what a self-critique had not.** Two rounds of
   critique on the series evidence check found real defects and missed the one above, which a
@@ -380,9 +383,24 @@ Each is cheap to reverse.
 Deliberately not tied to one task, so it does not go stale as items are completed.
 
 **It is a compression of this document, not a second source of truth.** Where the two
-disagree, this document is right and the prompt needs correcting. They have already drifted
-once: the prompt said a check had overturned the review five times while the body still said
-three.
+disagree, this document is right and the prompt needs correcting.
+
+They have drifted twice, and the prompt was the stale copy both times: it said a check had
+overturned the review five times while the body still said three, and it said to take the
+first *unstarted* backlog item after the backlog had moved to *unfinished*, which would have
+sent a session to the wrong work. Saying "keep them in sync" did not prevent either, so here
+is what is actually copied and has to move in both places:
+
+| Copied into the prompt | Kept here |
+| --- | --- |
+| overturns of something asserted beside the figure asked about | *Verifying a figure* |
+| checks that passed while a real defect shipped | *The checking apparatus* |
+| negative tests that never fired | *Building a check* |
+| scope documents written in one session | *Deciding what to build* |
+| which backlog item to take, and on what wording | `docs/BACKLOG.md`, not here |
+
+The last row is the one that bit. The prompt and this document should both use the backlog's
+word rather than inventing a third.
 
 ```
 Work on UK Migration Explorer at
