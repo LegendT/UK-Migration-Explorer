@@ -456,23 +456,23 @@ is what is actually copied and has to move in both places:
 
 | Copied into the prompt | Kept here |
 | --- | --- |
-| overturns of something asserted beside the figure asked about | *Verifying a figure* |
 | checks that passed while a real defect shipped | *The checking apparatus* |
-| negative tests that never fired | *Building a check* |
 | the three questions to ask of a matching key, on both sides | *Building a check* |
-| that a second model has found the worst defect four times | *Building a check* |
+| that a second model has found the worst defect in every piece it has read | *Building a check* |
+| that verification.txt covers ten pages and not sixteen | `docs/BACKLOG.md`, not here |
 | that branches carry history `main` does not | *Where things stand* |
-| scope documents written in one session | *Deciding what to build* |
 | which backlog item to take, and on what wording | `docs/BACKLOG.md`, not here |
 
 The last row is the one that bit. The prompt and this document should both use the backlog's
 word rather than inventing a third.
 
-**This table is not the whole of what is copied, and saying otherwise was the trap in it.** A
-dozen further rules appear in both places, and were listed here as tracked when they were not.
-What the table holds is every copied claim that carries a NUMBER or a specific word, which is
-where both drifts happened and where the next one will. Prose that agrees in substance can
-diverge in wording without costing anything; a count cannot.
+**The table used to be incomplete while claiming not to be**, which was the trap in it: a dozen
+copied rules carried numbers it did not track. The prompt was trimmed on 30 July for exactly that
+reason. It now recites no incidents, only rules, and each rule names the handoff heading where
+its incident lives, so the counts live in one place and the prompt points at them. Two counts
+survive in it and both are in the table. Prose that agrees in substance can diverge in wording
+without costing anything; a count cannot, which is why the trim was the fix rather than more
+diligence about keeping two copies aligned.
 
 ```
 Work on UK Migration Explorer at
@@ -486,13 +486,10 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review is done and its nine corrections landed.
+The pre-publication review is done and its corrections landed.
 verification.txt at the repo root is the review itself; it covers
 Sections 1 to 7 and Parts 2.1 to 2.7, which is ten pages and not
 sixteen, and that distinction settled the last_reviewed question.
-Most completed work names its PR, either in the backlog's Completed
-section or beside the item it belongs to; two of the oldest entries
-predate that habit. So this prompt carries no list that would go stale.
 
 Work is tagged [me] or [you], and the tags were written from the
 SESSION's side, so they invert against the pronouns in this prompt. Use
@@ -502,9 +499,9 @@ sourcing call, which is MINE. Check it against the backlog the first time
 you use it: correction 1a marks the owner's decision [you]. Getting this
 backwards hands the editorial calls to you, which is the worst outcome
 available here. Do the [me] parts; for a [you] part, propose and ask. On
-a list that mixes both, do all the [me]
-work first and bring me the [you] decisions in one batch, because the
-mechanical work usually determines what the editorial question even is.
+a list that mixes both, do all the [me] work first and bring me the [you]
+decisions in one batch, because the mechanical work usually determines
+what the editorial question even is.
 
 Still mine, not yours: recording the review as passed in CHANGELOG.md,
 which is what is left of item 1; removing the robots rule, which comes
@@ -519,8 +516,7 @@ told you otherwise in this message. Unfinished, not unstarted: an item
 can have phases built and still be the first one. Do not infer it from
 document order: the earlier items are mine or are launch, so the
 backlog's own preamble under "Scoped, not built" names which item to
-take, and that sentence is the instruction. It is maintained there, so
-this prompt names no task and does not go stale as items finish.
+take, and that sentence is the instruction.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.
@@ -536,88 +532,80 @@ in docs/, or any subdirectory of it, is not referenced from the backlog,
 or if the handoff stops pointing at it, so the list cannot quietly lose
 things.
 
-Rules this project has paid for. The first two bite whenever a figure
-changes; the rest bite on everything.
+Rules this project has paid for. Each earned its place by failing first,
+and the incident behind each one is in docs/HANDOFF.md under the heading
+named beside it. Read those before you decide a rule does not apply to
+what you are doing; the prompt states rules, the handoff is why.
 
 - Every changed or new figure needs a fetched source and a verbatim quote
-  before it is written. The quote goes in data/evidence/ and CI fails
+  BEFORE it is written. The quote goes in data/evidence/ and CI fails
   without it; the shape is in data/evidence/README.md. Go to the
-  publisher's data tables, not its HTML bulletin: the bulletin
-  aggregates, and twice a site figure has looked wrong against one and
-  been right. .ods and .xlsx are zip archives, so download and parse them
-  rather than giving up when a fetch cannot read them. The Commons
-  Library returns 403 to a fetch; go to the Home Office tables it cites.
+  publisher's data tables, not its HTML bulletin. .ods and .xlsx are zip
+  archives, so download and parse them rather than giving up when a fetch
+  cannot read them. The Commons Library returns 403; go to the Home
+  Office tables it cites. (Verifying a figure)
 - Reconcile a new figure against a total the site already publishes, not
-  only against its own source. Both records minted on 30 July were
-  confirmed that way. Finding the number is not recognising it.
-- Confirming the figure you asked about is not the whole job. Five times
-  a check here has overturned something asserted right beside it.
+  only against its own source. Finding the number is not recognising it.
+  (Verifying a figure)
+- Confirming the figure you asked about is not the whole job. Do not
+  merge over what a check reveals beside its target. (Verifying a figure)
 - Check what this project has already published, or already enforces,
-  before acting on outside advice or offering me an option. A review
-  recommended something the style guide had promised readers the site
-  would never do, and an option I was offered turned out to be one the
-  validator forbids.
+  before acting on outside advice or offering me an option. (Working with
+  this project's own documents and rules)
 - A defect reported on one page usually has siblings. Grep the reasoning,
-  not just the sentence. One stale sentence was in five places on 30
-  July, and the fifth was found only by grepping after the other four
-  were fixed.
+  not just the sentence, and grep the claim rather than the page.
+  (Changing something without breaking something else)
 - Anything you add must pass, and run these rather than assume:
   npm run validate, npm run build, npm run a11y, and npm run
   check-evidence if a figure changed. If you add a record, LOWER
-  UNRECORDED_BASELINE in validate-content.mjs to the new count; the run
-  prints the count and the baseline separately and tells you when they
-  differ, and a gap between them is that many new unrecorded figures that
-  could arrive without failing anything.
+  UNRECORDED_BASELINE in validate-content.mjs to the new count; a gap
+  between the count and the baseline is that many new unrecorded figures
+  that could arrive without failing anything.
+- check-releases and check-sources are network checks that gate nothing,
+  so run them by hand before opening a pull request: a record citing a
+  superseded edition passes every other check green.
 - Citation syntax differs by file type. Markdown uses {{theme/metric-id}};
   Nunjucks uses {% figure "theme/metric-id" %}, because {{ }} is Nunjucks'
   own expression syntax and would be evaluated as arithmetic, silently
   shipping NaN. A series point can only be cited inside a chart summary,
-  with the at() filter, so a Markdown page that needs one needs a metric
-  declaring series_ref instead.
-- check-releases and check-sources are network checks that gate nothing,
-  so run them by hand before opening a pull request: a record citing a
-  superseded edition passes every other check green.
-- Negative-test every new check, in BOTH directions. Confirm the break
-  applied by grepping for the broken text and printing the count, before
-  believing the result: four "failures" here were tests that never fired,
-  and on 30 July a fix was documented as covering both directions when
-  its test had exercised only the one that already worked. Negative-test
-  the MECHANISM and the REMEDY too. The at() filter shipped an
-  unformatted 45537 through validate and build alike; an escape hatch one
-  message recommended could not express a single value it existed to
-  exempt; and a skeleton another message printed supplied the null that
-  would have made an exemption permanent. Where a check matches a
-  declaration against a record, ask three things of the key, on BOTH
-  sides: what it does when it does not change, when it is absent, and
-  when it is present but not the shape you assumed.
+  with the at() filter, so a Markdown page needing one needs a metric
+  declaring series_ref instead. (How the project works)
+- Negative-test every new check, in BOTH directions, and confirm the
+  break applied by grepping for the broken text and printing the count
+  before believing the result. Negative-test the MECHANISM and the REMEDY
+  too, not only the check. Where a check matches a declaration against a
+  record, ask three things of the key, on BOTH sides: what it does when
+  it does not change, when it is absent, and when it is present but not
+  the shape you assumed. Every answer has to leave the check still asking
+  for something. (Building a check, and trusting it)
 - Have a second model read anything whose whole purpose is refusing bad
   input, before you believe your own critique of it. It has found the
-  most serious defect in every piece of work it has read here, four
-  times, and every time in the part the author was surest of.
+  most serious defect in every piece of work it has read here, every time
+  in the part the author was surest of. Budget for it rather than
+  treating it as a last look. (Building a check, and trusting it)
 - State what a check does NOT establish in its own success message.
   Eight times a checker here passed while a real defect shipped, every
   time because it verified the source or the declaration rather than the
-  property a reader depends on. The eighth said "No page writes a
-  comma-grouped value longhand" while thirty-eight did.
-- Read the built output, not the build. Three defects on 30 July were
-  invisible to every green check: an aria-label escaped twice so a screen
-  reader would read the entity aloud, a page contradicting its own
-  rendered catalogue, and a figure counted wrongly on a trust page.
+  property a reader depends on. (The checking apparatus, and its limits)
+- Read the built output, not the build. Several defects here were
+  invisible to every green check and visible on the page. (Looking at the
+  built page)
 - If a change should not alter the output, prove it by diff. Copy _site
-  to a scratch directory before, diff -r after. That is a stronger claim
+  to a scratch directory before, diff -r after. It is a stronger claim
   than reading the change, and it localises the changes you did mean.
-- No em-dashes, ever. Enforced by validate-content.mjs.
-- Do not fix by bulk substitution. Sentence by sentence, in view.
+  (Looking at the built page)
 - Never truncate the thing you are checking for absence, and prefer the
   query that could show you are wrong over the one that confirms you.
   When your count disagrees with something the project independently
-  says about the same thing, the disagreement is the check.
-- Scoping is not progress. Four scope documents were written in one
-  session while the site did not change. Build the smallest real thing.
+  says about the same thing, the disagreement is the check. (Building a
+  check, and trusting it)
+- No em-dashes, ever. Enforced by validate-content.mjs.
+- Do not fix by bulk substitution. Sentence by sentence, in view.
+- Scoping is not progress. Build the smallest real thing. (Deciding what
+  to build)
 
 Branch FIRST, before editing anything; this project works through PRs
-even solo, and on 30 July a session began editing on main and had to move
-the work. Check main has not moved before you rewrite the handoff or the
+even solo. Check main has not moved before you rewrite the handoff or the
 backlog. Do not delete a branch: main's history is truncated at a
 parentless commit and everything before PR #42 survives only on
 history-to-pr-41 and design-and-a11y-rounds. The handoff says which and
