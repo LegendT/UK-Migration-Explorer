@@ -481,10 +481,23 @@ reviewable.
 
 **Input:** a `source_id` and a release URL, from the notifier's issue.
 
-**Procedure:** list the affected figures by `source_id`; fetch the release; locate each figure
-in the named table; write the evidence file; update `value`, `period_label`, `date` and
-`retrieved_date` on each record; run `npm run validate` and `npm run build`; open a **draft**
-pull request with the evidence table in the body beside the diff.
+**Procedure: `docs/UPDATING-DATA.md`, under *The procedure*.** It is not restated here. The
+runbook was written on 30 July 2026 and is the by-hand version of this same job, so a prompt that
+carried its own copy would be the duplication this project has been burned by twice, and the copy
+a session happens to read would win. **Where the two disagree the runbook is right.**
+
+The paragraph that stood here until then said "list the affected figures by `source_id`; fetch
+the release; locate each figure in the named table; write the evidence file; update `value`,
+`period_label`, `date` and `retrieved_date` on each record; run `npm run validate` and
+`npm run build`". Four of its clauses are now known wrong: `source_id` alone misses the Commons
+Library record that reads Home Office tables; the step is **reconcile**, not locate, because the
+EUSS figure is in no table; four fields is half of what an update touches; and those two commands
+omit `check-evidence`, which gates, and `check-releases`, which is the only check that sees a
+record still citing the old edition. It is quoted here rather than deleted so that anyone
+returning to this scope can see the version they may have followed.
+
+Everything else about phase 3 stays here: what it is for, where it runs, its input, and the hard
+rules below. Only the steps move.
 
 **Hard rules, all of which have a reason in this repository's history:**
 

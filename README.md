@@ -69,6 +69,7 @@ docs/HANDOFF.md         How the project works, and what earlier sessions cost
 docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026 worked through
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
 docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; phases 1, 1b and 2 built
+docs/UPDATING-DATA.md           The by-hand runbook for moving the site onto a new release
 .pa11yci.json           pa11y over all 16 URLs at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes

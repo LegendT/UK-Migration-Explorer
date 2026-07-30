@@ -401,7 +401,9 @@ validator guards.
   it groups nav items under `<details>` rather than listing them flat, and it scales the root
   font size (`html { font-size: 106.25% }`) where this project scales `body`, which is why
   `--measure` and the chart's `min-width` are pinned to 16px and do not grow with the type
-  scale. Its `docs/UPDATING-DATA.md` is still worth porting.
+  scale. Its `docs/UPDATING-DATA.md` was ported on 30 July 2026 and is now
+  `docs/UPDATING-DATA.md` here, longer than the original because this data layer has an evidence
+  contract and four series files that DEBT's does not.
 - `~/Projects/UK Civil Society Explorer` has the `editorial-lint.test.js` that this project's
   language lint was modelled on.
 
