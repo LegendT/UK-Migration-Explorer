@@ -26,18 +26,28 @@ on it, 1a to 1i, has landed. Four claim pages had carried "do not publish as wri
 "substantial revision required" (2.2, 2.3, 2.6, 2.7); five of the seven data sections had carried
 required corrections (2, 3, 4, 5, 7).
 
-**Three closing steps remain, and they are the owner's.** They were deliberately gated on the
-corrections landing, and that gate has now opened:
+**Of the three closing steps, two are settled and one is the owner's still.**
 
-1. **Decide the `last_reviewed` question, which is not as small as it looks.** This document says
-   not to stamp `last_reviewed` until the corrections land. They have. But the practice already
-   diverged while they were landing: 1a and 1b bumped `last_reviewed` and `review_due` to 27 July
-   on the claim pages they corrected, and 1c did not bump `costs.njk`. 1d to 1i deliberately
-   bumped nothing, on the instruction above. So three claim pages now show a review date after
-   their corrections and four pages show one before. The claims index displays this to readers.
-   Whichever way it goes, it should go one way.
-2. Remove the pre-launch banner from `content/_includes/base.njk`.
-3. Record the review as passed in `CHANGELOG.md`.
+1. **The `last_reviewed` question. DONE (PR #54, 30 July 2026).** Settled by asking what the
+   review actually read rather than which pages had been corrected. `verification.txt` has
+   fourteen headings, Sections 1 to 7 and Parts 2.1 to 2.7, which map to `asylum.njk`,
+   `costs.njk`, `migration.njk` and the seven claim pages. **Those ten** carry
+   `last_reviewed: 2026-07-27`. The other six are deliberately left on their older dates,
+   because the review never opened them and `base.njk` prints the date to a reader. An earlier
+   recommendation to stamp all sixteen was wrong for exactly that reason. The claims index shows
+   a per-claim date and all seven now agree, which was the reader-facing part of this. Two
+   residues kept on purpose: four claim pages corrected on 28 July show 27 July, with their
+   landing dates in `CHANGELOG.md` where a landing date belongs, and the claims index footer
+   reads 23 July beside cards reading 27 July, which is honest rather than tidy.
+2. **The pre-launch banner. Corrected rather than removed (PR #54, 30 July 2026).** It said the
+   review "has not happened yet", false on every page since 27 July, so this was a live defect
+   and not a launch chore. Removing it would itself have asserted step 3, which is not decided,
+   so the sentence now says the review was done, its corrections landed, and it has not been
+   recorded as passed. **The banner still goes at launch.**
+3. **Record the review as passed in `CHANGELOG.md`. Deferred 30 July 2026, and still the
+   owner's.** Worth knowing before signing: the review's own selection criteria failed 2.6 and
+   2.7, and both were kept on the strength of the site's published no-attribution policy, so
+   signing backs that policy over the reviewer's criterion.
 
 The review happening is not the review passing, and neither is the corrections landing: someone
 still has to decide the pages now pass.
