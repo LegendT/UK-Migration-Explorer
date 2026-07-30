@@ -29,6 +29,7 @@ figures:
   - fiscal/government-spending-on-the-asylum-system
   - migration/net-migration-2
   - asylum/total-asylum-cases-in-the-casework-system
+  - migration/visitor-visas-granted
 layout: base.njk
 permalink: /what-the-words-mean/
 ---
@@ -74,8 +75,8 @@ immigration, emigration and net migration figures.
 **Why it matters.** It excludes visitors, short courses, seasonal work under twelve
 months, and business trips. Millions of people enter the UK each year who are not counted
 in migration statistics at all, because they are not migrating by this definition. In the
-year ending March 2026 the Home Office granted over 2.2 million visitor visas, none of
-which appear in migration figures.
+year ending March 2026 the Home Office granted {{migration/visitor-visas-granted}} visitor
+visas, none of which appear in migration figures.
 
 **The common mistake.** Assuming migration statistics count everyone who crosses the
 border. They count a specific and much smaller group.

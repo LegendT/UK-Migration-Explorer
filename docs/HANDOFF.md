@@ -62,9 +62,9 @@ If the branch is renamed or the history is grafted back on, correct this paragra
 that `main` starts at a parentless commit is checkable in one command and does not go stale:
 `git rev-list --max-parents=0 main`.
 
-16 pages build from a governed data layer of **74 metric records** in four theme files, plus
+16 pages build from a governed data layer of **75 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
-174. **45 of the 74 reach a reader**, and the other 29 are unpublished reserve. Reaching a reader
+175. **46 of the 75 reach a reader**, and the other 29 are unpublished reserve. Reaching a reader
 means **rendering**: a token, a chart bar's `ref`, a `| metric` summary, a dashboard card or a
 caveat in `data/`. A `figures:` front-matter entry is NOT a route, because nothing renders that
 list, and counting it was the error that made the sources page's Home Office row wrong. The

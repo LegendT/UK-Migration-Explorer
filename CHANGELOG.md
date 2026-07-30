@@ -9,6 +9,29 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Visitor visas become a record, 30 July 2026
+
+**2,241,997 for the year ending March 2026**, up 4% on 2,157,064. The site published this on
+two pages as "over 2.2 million" and held it nowhere but inside another record's notes, which is
+the same shape as the 627,000 in PR #58. PR #67.
+
+Source: Home Office, Immigration system statistics, year ending March 2026, visas summary
+tables, **table Vis_01**, read from the `.ods` rather than from a bulletin, and quoted in
+`data/evidence/ho-immigration-stats-year-ending-march-2026.json`.
+
+- **Reconciled against a total this site already publishes**, not just against its own source.
+  Vis_01's 3,040,475 total entry clearance visas, less 2,241,997 visitor and 19,853 transit,
+  is exactly the 778,625 held as total entry clearance visas granted excluding visitor and
+  transit, and the seven route components sum to the same number independently.
+- **Neither rounding survived.** "Over 2.2 million" on the glossary and the migration page now
+  read 2,241,997, as the small-boats denominator did in PR #60.
+- **The parent record no longer restates it.** Its notes said "Excludes 2,241,997 Visitor and
+  19,853 Transit visas"; the visitor half is now held once, where a figure belongs.
+- **`/sources-and-method/` moves with it**, Home Office 18 to 19, derived from the five routes
+  a ref reaches a reader by rather than incremented, and confirmed by reproducing every other
+  row of that table unchanged.
+- `UNRECORDED_BASELINE` falls 33 to 31, the first two of the eleven scale-word figures.
+
 ### Figures written in words are scanned, 30 July 2026
 
 **No published figure changed**, and the built site is byte-identical to before, proved by diff.
