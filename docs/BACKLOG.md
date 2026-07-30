@@ -291,6 +291,12 @@ sentences**, and three of the four groups moved:
   the 813,000 total the site already publishes, which is what established the basis. The parent's
   notes no longer restate it.
 
+  **The rule for the rest is set, 30 July 2026, so no per-figure decision is needed.** Any
+  figure that changes when its publisher next publishes gets a record and a fetched quote.
+  Anything else is reworded, or declared as frozen history where the prose itself says it is
+  history. Bring back only what is genuinely ambiguous. Twenty-two remain and each needs its own
+  source fetched, so this is several sessions rather than one.
+
   **Still outstanding, and each needs a fetched quote:** the study and work main-applicant and
   dependant splits in the chart bar notes, the citizenship card's three, and `944,000`,
   `1,469,000`, `517,000`, `429,000`, `87,000` and `272,000`, **which read as history and are
@@ -362,9 +368,17 @@ Foundation section 8.5.3 specifies fifteen; seven are written. One of the eight,
 "Local areas all carry the same pressure", **cannot be written**: it needs per-capita local
 authority figures and `data/` holds none.
 
-Two need a direction decision from the owner before drafting, because there is no "both"
-label: "The asylum backlog is one number" and "Falling net migration means the asylum system
-is shrinking".
+**The two directions are decided, 30 July 2026.** They take foundation 8.5.3's own starting
+positions: "The asylum backlog is one number" is **restrictionist**, and "Falling net migration
+means the asylum system is shrinking" is **pro-migration**. Both are cheap to reverse, and
+handoff decision 7 already recorded them as a starting position rather than a finding, so
+adopting them commits nothing.
+
+**It buys no structural payoff until a page merges**, which is worth knowing before anyone
+expects one. `validate-content.mjs` counts parsed files in `content/claims/`, so a direction
+assigned to an undrafted claim changes nothing at all; only the pro-migration one, once written
+and merged, moves the split off the enforced floor of two and reopens the option of dropping
+claim 2.7 that correction 1g found closed.
 
 **Who drafts, decided 30 July 2026.** A session drafts and proposes; the **verdict and the short
 answer come to the owner before merge**. An earlier framing of this, that drafting is merely
@@ -403,38 +417,32 @@ Both came out of PR #41 on 28 July 2026.
   sentence again in `netMigrationTimeseries.json`'s own note, where it would have instructed the
   next editor to reintroduce it. Proved by diff: four built pages changed and each only in the
   sentence intended.
-- **The sources page carries four more hand-maintained counts, and at least one is provably
-  wrong. [me + you].** Found 30 July 2026 while checking the bullet below, which turns out to be
-  one member of a class rather than a single sentence. The page publishes a release table reading
-  13, 7 and 2 figures, then "The other fourteen published figures come from the National Audit
-  Office, the House of Commons Library, the Migration Observatory and the Office for Budget
-  Responsibility", then "The most recent full cycle took twenty-seven days", then "Two limits"
-  over a list. Nothing reads any of them.
+- **The sources page's five hand-maintained counts, and the correction-note sentence.
+  DONE (PR #61, 30 July 2026), and every number on it was wrong.** The owner settled the
+  definition that had blocked it: a **published figure** is a record whose ref reaches a reader
+  by any route, page prose, chart config, front-matter dependency or a dashboard card. That
+  gives **45 of the 74 records**, with 29 held as unpublished reserve, which is the same
+  "a subset of those records reaches a reader" the handoff already stated. That agreement is
+  the check that mattered: a first query returned 74, matched every record, and was thrown away.
 
-  **The named-publisher sentence is demonstrably incomplete**, and the page contradicts itself to
-  a reader who scrolls: the source catalogue rendered further down the same page lists
-  `Independent Chief Inspector of Borders and Immigration` and `ONS: Population estimates`, and
-  both now carry published figures, the two accommodation costs on `costs.njk` from correction 1c
-  and `population/total-uk-population` on the born-abroad claim from correction 1a. The
-  corrections added publishers and the prose beside them was not updated.
+  | The page said | It now says |
+  | --- | --- |
+  | Home Office 13 | 17 |
+  | ONS 7 | 10 |
+  | Ministry of Justice 2 | 2, the only one that was right |
+  | "the other fourteen" from four publishers | "the other sixteen" from six, adding ICIBI and ONS population estimates |
+  | "No claim currently carries one" | removed, since three do and a count nothing reads is what caused all of the above |
 
-  The counts were derived when the total was 36, which is 13 plus 7 plus 2 plus 14. A substring
-  count over `content/` and the rendered `data/` prose now finds 43 records reaching a reader.
-  **Do not write 43 onto the page from this note.** "Published figure" needs pinning first, since
-  a ref declared in `figures:` front matter and a ref tokenised in a sentence are not obviously
-  the same thing, and the site has three different counts in play. Defining it is **[you]**;
-  counting against the definition, and re-deriving all four numbers, is **[me]** once it is
-  defined. What the sentence should then say, on a trust page, is **[you]**.
+  **One claim on that page is left alone deliberately.** "The most recent full cycle took
+  twenty-seven days" is a statement about a past cycle that no session can verify, so it is
+  neither corrected nor endorsed here. It is the last hand-maintained number on the page.
 
-- **The sources page says no claim carries a correction note, and three do. [me + you].** All
-  three are dated 27 July 2026 and came from corrections 1a and 1b:
-  `nineteen-per-cent-born-abroad`, `immigrants-pay-far-more-than-they-cost` and
-  `immigrants-are-a-drain-on-public-finances`. `content/sources-and-method.md` still reads "No
-  claim currently carries one." **The built site therefore contradicts itself**, and nothing
-  checks it: the validator refuses a `correction` without a `corrected_on`, and has no opinion
-  on a page that counts them. The correction is factual; what the sentence should say instead,
-  on a trust page, is the owner's. Found 30 July 2026 by a second model reading the handoff,
-  which had been repeating the same false sentence as a settled decision.
+  **The third limit landed with it (PR #61), which is why the two were bundled.** The section
+  opened "Two limits" and framed them as "about where a number comes from", and both had to
+  change for an accessibility limit to fit. It now publishes that no real screen reader has been
+  run over the pages, that the checks are an automated WCAG audit plus a reading of the
+  accessibility tree, and that this is not the same as someone listening to a page.
+
 - **Three entries moved out of the handoff's decisions list, 30 July 2026**, because they were
   outstanding editorial work rather than decisions taken, and the handoff sends that here.
   - **Captions. DONE (PR #59, 30 July 2026).** Markdown has no caption syntax, which is why the
@@ -491,9 +499,21 @@ oversight.
 - **"Five target users have been spoken to, and what they said is written down."** Open since
   June. Section 18 calls it the cheapest possible way to find out the whole thing is unwanted,
   and puts it at a week. Of everything on this page, it is the one most worth not skipping.
-- **"Success measures are chosen and recorded."** Section 4.2 offers three candidates and says
-  to commit to one in phase 1. None has been chosen, so the project cannot be evaluated and
-  will be sustained or abandoned on feel.
+- **"Success measures are chosen and recorded." MET, 30 July 2026.** The measure is
+  **candidate 1 of section 4.2: cited by a named outlet or briefing within six months.** It was
+  chosen over the other two because 4.2's own audience statement names "professionals who need a
+  citation quickly", so citation is the thing this site is for rather than a proxy for it.
+
+  **A correction to the reasoning that nearly picked it for the wrong reason.** An earlier
+  recommendation argued it was the only candidate measurable as the site is built, because there
+  is no analytics of any kind and no client-side JavaScript. That is false: candidate 2, organic
+  search entries on definitional queries, is measurable through Search Console, which verifies by
+  DNS record, file or meta tag and needs no JavaScript. Only candidate 3, return visits, needs
+  what the project refused. So set Search Console up at launch regardless; it costs nothing and
+  it is how you would notice candidate 2 happening.
+
+  **Open, and small:** whether the measure should be published on `/about/`, which already
+  carries who runs the site and who pays for it, the other two items of section 4.2.
 - **The two comprehension criteria**, that a reader can explain the difference between
   immigration, emigration and net migration after reading the homepage and glossary, and can
   see that asylum is one part of a wider system. These are not failed; they are **untested**,
