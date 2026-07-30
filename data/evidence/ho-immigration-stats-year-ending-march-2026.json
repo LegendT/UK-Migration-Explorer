@@ -7,6 +7,15 @@
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
       "fetched_at": "2026-07-28",
       "quote": "Of these, 71% (370,535) were settled status grants under the EUSS, 29% (152,306) were settlement grants under other immigration routes, and fewer than 1% were immediate settlement (family) grants."
+    },
+    {
+      "ref": "asylum/asylum-applications-2025",
+      "previous_value": null,
+      "value": 100625,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-07-30",
+      "table_reference": "Asy_00a",
+      "quote": "Asy_00a: Asylum claims, initial decisions, awaiting an initial decision, appeals, support and returns, by date of event. People claiming asylum, 2025: 100,625"
     }
   ]
 }

@@ -20,6 +20,26 @@
       "confidence_level": "official"
     },
     {
+      "id": "asylum-applications-2025",
+      "metric_name": "People claiming asylum, calendar year 2025",
+      "value": 100625,
+      "series_ref": "asylumApplications@2025",
+      "unit": "people",
+      "date": "2025-12-31",
+      "period_label": "calendar year 2025",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, Asylum summary tables, table Asy_00a",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-30",
+      "table_reference": [
+        "Asy_00a"
+      ],
+      "notes": "PEOPLE, main applicants plus dependants. A calendar year, so it does not line up with the year-ending-March figures used elsewhere on this site. Held twice deliberately: it is also the 2025 point of the asylum applications series, and series_ref keeps the two from drifting. It exists as a metric because Markdown pages cannot cite a series point and two of them were rounding it to 100,000 longhand.",
+      "confidence_level": "official"
+    },
+    {
       "id": "asylum-applications-main-applicants",
       "metric_name": "Asylum applications, main applicants (cases requiring a decision)",
       "value": 76714,
