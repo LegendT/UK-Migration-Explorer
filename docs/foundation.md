@@ -610,7 +610,7 @@ should be recorded so they are not silently reinstated:
   open is that this reads what was written: a figure whose table nobody wrote down declares
   none and is asked for none, and an ONS sheet called "Table 1" carries no identifier that
   could be declared at all. The corrections watch is only as complete as this declaration.
-- **`published_date` is now recorded for 66 of the 67 theme metrics**, closing what was 33
+- **`published_date` is now recorded for all but one of the theme metrics**, closing what was 33
   outstanding in the June 2026 draft. Nothing was inferred to close it, because inventing a
   publication date on a project about statistical integrity is not a defensible shortcut. The
   one remaining null is a daily-updated operational page whose past snapshot has no
@@ -1133,7 +1133,7 @@ Data criteria:
 - `node scripts/validate-data.mjs` passes, and CI enforces it on every push.
 - The dashboard references, it does not copy, and no card carries its own value. **Not yet the broader claim this criterion once made.** Four figures are held both as a theme metric and as the latest point of a series, with nothing reconciling them: net migration, the revised prior year, and both gross flows. All four agree today, so this is a latent risk rather than a live defect, and it is tracked as item 3 in `docs/BACKLOG.md`.
 - No published figure has `published_date: null`. The validator reports the outstanding count; it must reach zero for the published subset before launch.
-- No more than four source releases are in the routine update cycle, so the update commitment is sustainable. The published figure count follows from that and is recorded, not targeted. Currently three releases and 36 figures.
+- No more than four source releases are in the routine update cycle, so the update commitment is sustainable. The published figure count follows from that and is recorded, not targeted. Currently three releases. The figure count is whatever validate-data.mjs reports on the day; it was restated here and went stale, which is what a count in two places does.
 
 Editorial criteria:
 

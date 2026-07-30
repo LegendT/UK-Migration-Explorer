@@ -59,6 +59,7 @@ content/                Eleventy input
   robots.txt              Disallows all crawlers until launch
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code
 lib/series.mjs          The four timeseries and the names everything else calls them by
+lib/tables.mjs          What a publisher's table identifier looks like, for the two checks that must agree
 data/                   Governed data layer, one file per theme, plus four timeseries
 data/evidence/          One file per release: the quote behind every figure that moved
 scripts/                Six scripts, seven checks, all in CI, all negative-tested
@@ -67,7 +68,7 @@ docs/BACKLOG.md         The durable list of outstanding work; every other doc po
 docs/HANDOFF.md         How the project works, and what earlier sessions cost
 docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026 worked through
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
-docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; phases 1 and 2 built
+docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; phases 1, 1b and 2 built
 .pa11yci.json           pa11y over all 16 URLs at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes
@@ -188,7 +189,8 @@ message claimed the latter. The messages now state only what they verify.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
-value took it to 0/16. It passed all five of the accessibility defects found by hand.
+value took it to 0/16. It flagged none of the five accessibility defects found by hand,
+which is the point: it is a floor.
 
 Known limits, published on the sources page under *What the checks do not establish*:
 

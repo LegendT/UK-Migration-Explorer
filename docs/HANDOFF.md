@@ -44,11 +44,11 @@ section was wrong within the hour because branches were tidied after it was writ
 
 **One exception, because it is structural rather than operational.** `main`'s history is
 truncated. Its root commit is `126a40a`, "Merge pull request #42", and that commit has no
-parent, so `main` holds 24 commits and begins in the middle of the project. Everything before
-it, from the first commit through PR #41, is a **separate history with no common ancestor**:
+parent, so `main` begins in the middle of the project. Everything before it, from the first
+commit through PR #41, is a **separate history with no common ancestor**:
 `git merge-base main history-to-pr-41` exits 1. That is the 37-defect audit, the design and
-accessibility rounds, the costs page, the nine pre-publication review corrections in PR #38 and
-the series citations in PR #41. The content all reached `main`; the commits did not.
+accessibility rounds, the costs page, the nine pre-publication review corrections in PRs #33
+to #38 and the series citations in PR #41. The content all reached `main`; the commits did not.
 
 It survives on the branch `history-to-pr-41`, which is the fullest copy and contains six of the
 seven other pre-#42 branches. `design-and-a11y-rounds` is the seventh and is contained in
@@ -64,21 +64,10 @@ that `main` starts at a parentless commit is checkable in one command and does n
 
 16 pages build from a governed data layer of **71 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
-171. **A subset of those records reach a reader.** Eleventy 3, no client-side JavaScript, charts
-rendered as inline SVG at build time.
-
-| Page | |
-| --- | --- |
-| `/` | Hero, three distinction panels, eight headline cards, generated period list, three claim previews |
-| `/what-the-words-mean/` | 23 glossary terms in five groups, anchored |
-| `/migration/` | 3 charts, ONS vs Home Office table |
-| `/asylum/` | 3 charts, stage table, three-queues table |
-| `/costs/` | Audited spending only, nested table, per-night chart |
-| `/common-claims/` | Index plus 7 claim checks, split generated from the collection |
-| `/sources-and-method/` | Catalogue, contract, limits, caveats, corrections, scope |
-| `/style-guide/` | Precision rules vs value judgements |
-| `/about/` | Owner, funding, what the site is not |
-| 7 claim pages | One layout, seven documents |
+171. **A subset of those records reaches a reader.** Eleventy 3, no client-side JavaScript,
+charts rendered as inline SVG at build time. What is on each of the 16 pages is in `README.md`
+under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
+rule is one figure, one home.
 
 ## How the project works
 
@@ -150,18 +139,19 @@ claimed the latter. The seventh was the literal check walking `content/` and not
 left the one file whose entire job is holding references as the only file nobody scanned for
 values. The messages now state only what they verify.
 
-**The count is seven, and three more of that shape have been caught since without being added
-to it**, because all three were found before they merged: the `at()` filter shipping an
-unformatted figure, the `historical_literals` escape hatch that could not express what it
-exempted, and a series evidence entry matched on a vintage, which also matched every earlier
-state of the same edition and would have matched for ever where the vintage was null. They are
-under *Building a check, and trusting it*. Seven is the number that shipped, and it is left
-alone deliberately: inflating the one figure this document uses to argue for scepticism would
-make it worth less.
+**The count is seven, and more of that shape have been caught since without being added to
+it**, every one of them before it merged. They are under *Building a check, and trusting it*.
+Seven is the number that shipped, and it is left alone deliberately: inflating the one figure
+this document uses to argue for scepticism would make it worth less.
+
+That second count used to be stated, as "three", and it went stale twice inside a week, the
+last time in the same edit that added two more instances four sections below it. A count of
+the near-misses earns nothing, because the argument does not rest on how many there were.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
-value took it to 0/16. It passed all five of the accessibility defects found by hand.
+value took it to 0/16. It flagged none of the five accessibility defects found by hand,
+which is the point: it is a floor.
 
 The known gaps in coverage are published on the sources page under *What the checks do not
 establish*, and listed in `docs/BACKLOG.md`.
@@ -213,10 +203,10 @@ is already here to adding a neighbour beside it.
 ### Building a check, and trusting it
 
 - **Negative-test every new check**, and confirm the break actually applied before concluding
-  anything. Three "failures" here were tests that never fired: two in an earlier session, and
-  a `perl` edit on 28 July whose pattern missed, so a check "passed" against a file nobody had
-  broken. A fourth was a search string that did not match. The cheap guard is to grep for the
-  broken text and print the count before running anything.
+  anything. Four "failures" here were tests that never fired: two in an earlier session, a
+  `perl` edit on 28 July whose pattern missed so a check "passed" against a file nobody had
+  broken, and a search string that did not match. The cheap guard is to grep for the broken
+  text and print the count before running anything.
 
 - **Negative-test the mechanism and the remedy, not only the check.** Three have failed here
   across two sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
@@ -243,22 +233,22 @@ is already here to adding a neighbour beside it.
 - **A denylist needs a review pass, not a sweep.** Four of seven sub-100 matches were
   coincidences. Tokenising all of them would have cited the wrong record four times.
 
-- **When a check matches a declaration to a record, ask what the key does when it does not
-  change.** Series evidence was matched on the release vintage, which meant one entry also
-  matched every earlier state of the same edition: a fabricated middle point passed while the
-  run reported it as declared. Where the vintage was null, and it is a nullable field, null
-  matched null and the first entry would have exempted that block for ever. The skeleton the
-  error message printed supplied that null itself, which is why it also appears two bullets up.
-  Ask of any matching key: what happens when it is unchanged, and what happens when it is
-  absent. Both answers have to be "the check still asks for something". **Ask it of both sides,
-  and ask a third thing: what if the key is present, unchanged, and not the shape you assumed.**
-  The corrections watch compares a record's `retrieved_date` against the date on the publisher's
-  change-history entry. An entry with no timestamp gives an empty string, which compares as
-  earlier than every date and would have silently cleared every figure behind it: that was the
-  side nobody had thought about. And a series clears on `lastUpdated`, which was validated for
-  presence and never for shape, so a prose date beside the `vintage` field already written as
-  prose would have sorted above every ISO date and cleared for ever. Absent and unchanged were
-  asked of both sides. Malformed was asked only of the side already covered.
+- **When a check matches a declaration to a record, interrogate the key it matches on. Three
+  questions, asked of BOTH sides:** what does it do when it does not change, when it is absent,
+  and when it is present but not the shape you assumed. Every answer has to leave the check
+  still asking for something. Each question was learned by failing it:
+
+  - *Unchanged.* Series evidence matched on the release vintage, so one entry also covered every
+    earlier state of that edition and a fabricated middle point passed while the run reported it
+    as declared.
+  - *Absent.* The vintage is nullable, so null matched null and the first entry would have
+    exempted that block for ever. The skeleton the error message printed supplied that null.
+  - *Wrong shape.* A series clears a correction on `lastUpdated`, validated for presence and
+    never through `isRealDate`. A prose date sorts above every ISO date, so it would have
+    cleared for ever. Found by a second model, after absent and unchanged had been asked of both
+    sides and malformed only of the side already covered.
+  - *The other side.* A change-history entry with no timestamp gives an empty string, which
+    compares as earlier than every date and would have silently cleared every figure behind it.
 
 - **A second model reading the same code found what a self-critique had not. Twice.** Two
   rounds of critique on the series evidence check found real defects and missed the one above,
@@ -392,14 +382,16 @@ Each is cheap to reverse.
    a starting position, not a finding.
 8. **The correction note was built rather than the promise weakened.** Claims accept
    `correction` and `corrected_on`, the layout renders a dated note, and the validator refuses
-   one without the other. No claim carries one, and the sources page says so.
-9. **Two Markdown tables and the three-queues table still have no caption.** They are wrapped
-   and named from the heading above them. A caption is new prose and is the owner's to write.
-10. **In `most-immigration-is-asylum`**, two list items open with a bold term and the third with
-    a bold link, so the third reads as more important. Fixing it means rewriting the sentence.
-11. **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
-    belongs to the year-ending-March record rather than the calendar-2025 card. It is still in
-    the record's notes and could be placed on the asylum page.
+   one without the other. **Three claims now carry one**, all dated 27 July 2026, from
+   corrections 1a and 1b. This entry said "No claim carries one, and the sources page says so"
+   until 30 July, and both halves had become false: the page still says it, which makes the
+   built site contradict itself, and that correction is on the backlog.
+
+Three entries that sat here until 30 July were not decisions taken at all. They were
+outstanding editorial work, which the paragraph at the top of this document sends to the
+backlog, and one of them had been false since the day it was written. They are now under
+*Small editorial decisions waiting on the owner* in `docs/BACKLOG.md`, which is the list the
+validator guards.
 
 ## Sibling projects
 
@@ -440,6 +432,12 @@ is what is actually copied and has to move in both places:
 The last row is the one that bit. The prompt and this document should both use the backlog's
 word rather than inventing a third.
 
+**This table is not the whole of what is copied, and saying otherwise was the trap in it.** A
+dozen further rules appear in both places, and were listed here as tracked when they were not.
+What the table holds is every copied claim that carries a NUMBER or a specific word, which is
+where both drifts happened and where the next one will. Prose that agrees in substance can
+diverge in wording without costing anything; a count cannot.
+
 ```
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
@@ -452,19 +450,22 @@ and do not re-derive it.
 This project has no CLAUDE.md of its own. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review is done. All nine of its corrections, 1a to
-1i under backlog item 1, landed in PR #38, and PR #39 reordered the
-backlog and rewrote the handoff around them. verification.txt at the
-repo root is the review itself. Every other completed item names its own
-PR in the backlog's Completed section, so this prompt does not carry a
-list that would need updating each time.
+The pre-publication review is done. Its nine corrections, 1a to 1i under
+backlog item 1, landed across PRs #33 to #38, the last six in #38, and
+PR #39 reordered the backlog and rewrote the handoff around them.
+verification.txt at the repo root is the review itself. Every other
+completed item names its PR in the backlog's Completed section where one
+exists, so this prompt does not carry a list that would need updating
+each time.
 
-Work is tagged [me] or [you]: [me] is a factual or mechanical change you
-make against a cited source; [you] is an editorial or sourcing call that
-is mine. Do the [me] parts; for a [you] part, propose and ask. On a list
-that mixes both, do all the [me] work first and bring me the [you]
-decisions in one batch, because the mechanical work usually determines
-what the editorial question even is.
+Work is tagged [me] or [you]. The tags are written from MY side, so they
+invert against the pronouns around them: [me] is a factual or mechanical
+change YOU make against a cited source, and [you] is an editorial or
+sourcing call that is MINE. Read them that way every time; getting it
+backwards hands the editorial calls to you. Do the [me] parts; for a
+[you] part, propose and ask. On a list that mixes both, do all the [me]
+work first and bring me the [you] decisions in one batch, because the
+mechanical work usually determines what the editorial question even is.
 
 Still mine, not yours, and not a session's work: the three closing steps
 that are what is left of item 1, including the last_reviewed decision;
@@ -484,6 +485,10 @@ stale as items finish.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.
+If the first unfinished item turns out to be wholly gated on decisions of
+mine, do not stall and do not take them: bring me the decisions, and
+start the [me] work on the next item that is not gated, saying which you
+have moved to.
 
 When you finish an item, mark it done in docs/BACKLOG.md with its PR and a
 date. Do not delete it. validate-content.mjs fails the build if a
