@@ -134,7 +134,7 @@ npm run serve     # local dev server
 npm run a11y      # build, serve, and run pa11y over all 16 URLs
 npm run check-sources   # network check that every source URL still resolves
 npm run check-evidence  # every changed or new figure carries a quote (needs origin/main)
-npm run check-releases  # network check for a newer edition than the site cites
+npm run check-releases  # network check: a newer edition, or a correction inside this one
 ```
 
 Content files are **not** pre-processed as templates (`markdownTemplateEngine: false`).
@@ -165,7 +165,7 @@ Seven checks, all in CI, all negative-tested.
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. Gates the build |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
-| `check-releases.mjs` | Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
+| `check-releases.mjs` | Two questions. Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. And whether a table the site declares in `table_reference` was corrected *inside* the edition it cites, matched against the Home Office change history and reported only where the figure has not been re-read since. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
 
 **Read this before trusting a green run.** Seven times in this project a checker passed while
@@ -278,8 +278,11 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   rather than broken. Verify by hand. 44 of 49 resolve.
 - **One source URL redirects**, which usually means a newer release has superseded the
   figure: the Home Office data tables anchor.
-- **`table_reference` is unimplemented.** Home Office table identifiers survive only as
-  prose inside `notes`, though the newer metrics name their table in `source_name`.
+- **A correction is only seen where it names its table.** 14 records and 2 series files
+  declare a `table_reference`, and `check-releases.mjs` matches the Home Office change
+  history against them, but most of that history names its tables by title rather than by
+  identifier. A correction announced that way, or one to a table nobody wrote down, is
+  invisible to it.
 - **Asylum work-in-progress (total casework backlog) is stale.** The last complete figure is
   from June 2024 and the breakdown was suspended; the record's own notes say so. Do not
   present it as current.

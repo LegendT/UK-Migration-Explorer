@@ -112,12 +112,12 @@ Seven checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, outstanding work tracked in the backlog |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
-| `check-releases.mjs` | Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document fails loudly, because the publisher has renamed these series twice |
+| `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
 
 CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry and
@@ -230,7 +230,12 @@ is already here to adding a neighbour beside it.
   matched null and the first entry would have exempted that block for ever. The skeleton the
   error message printed supplied that null itself, which is why it also appears two bullets up.
   Ask of any matching key: what happens when it is unchanged, and what happens when it is
-  absent. Both answers have to be "the check still asks for something".
+  absent. Both answers have to be "the check still asks for something". **Ask it of both
+  sides.** The corrections watch compares a record's `retrieved_date` against the date on the
+  publisher's change-history entry, and an entry with no timestamp gives an empty string, which
+  compares as earlier than every date and would have silently cleared every figure behind it.
+  The declaration was the side that had been thought about; the record it was matched against
+  was not.
 
 - **A second model reading the same code found what a self-critique had not.** Two rounds of
   critique on the series evidence check found real defects and missed the one above, which a
@@ -249,7 +254,10 @@ is already here to adding a neighbour beside it.
   directory before the change and `diff -r` after. That is what established twelve series
   substitutions rendered exactly what they replaced, and it is a stronger claim than reading
   them. It also localises the changes you did mean: when one page differed, it was the one
-  whose published prose the work had made false.
+  whose published prose the work had made false. The same reading of `git diff --stat` one
+  level down caught a script that added a field to four data files touching a fifth: a JSON
+  round-trip is not text-preserving, and `3.0` came back as `3`. Numerically identical, and
+  a line in the diff of a file the work had no business in.
 
 - **Render with a real layout viewport.** Headless Chrome's `--window-size` clamps the layout
   viewport to 500px, so a screenshot at `--window-size=390` is a crop of a 500px layout.
