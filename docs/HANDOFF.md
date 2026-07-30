@@ -166,8 +166,11 @@ believed: an isolated missing `lang` took it to 15/16 and named the rule, a fail
 value took it to 0/16. It flagged none of the five accessibility defects found by hand,
 which is the point: it is a floor.
 
-The known gaps in coverage are published on the sources page under *What the checks do not
-establish*, and listed in `docs/BACKLOG.md`.
+**Three of the four known gaps are published** on the sources page under *What the checks do
+not establish*: the prose one, the sub-100 review and the screen reader. The fourth is that a
+figure the data layer never recorded is reported and never refused, which is the one a reader is
+most affected by and the one the page does not say. Whether it should is an editorial decision
+in `docs/BACKLOG.md`, where all four are listed.
 
 ## Working practices that earned their place
 
@@ -216,10 +219,20 @@ is already here to adding a neighbour beside it.
 ### Building a check, and trusting it
 
 - **Negative-test every new check**, and confirm the break actually applied before concluding
-  anything. Four "failures" here were tests that never fired: two in an earlier session, a
+  anything. Five "failures" here were tests that never fired: two in an earlier session, a
   `perl` edit on 28 July whose pattern missed so a check "passed" against a file nobody had
-  broken, and a search string that did not match. The cheap guard is to grep for the broken
-  text and print the count before running anything.
+  broken, a search string that did not match, and on 30 July a `perl` escape that left the file
+  untouched while the run it "proved" exited zero. The cheap guard is to grep for the broken
+  text and print the count before running anything, and it is what caught the fifth in the same
+  minute it was made.
+
+- **A suppression is the most dangerous code in a check, and it needs a test of its own.** The
+  scale-word scan's duplicate guard was three lines, written so one figure could not be reported
+  twice, and it silenced every figure written with no currency sign: not an error, not a
+  warning, not a line in the report. The two controls running on every invocation could not have
+  caught it, because both called the matcher and neither called the thing reading its output.
+  Test what DECIDES, not only what parses, and treat `continue` in a scanner as the place to
+  look first.
 
 - **Negative-test the mechanism and the remedy, not only the check.** Four have failed here
   across three sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
@@ -563,7 +576,9 @@ what you are doing; the prompt states rules, the handoff is why.
   check-evidence if a figure changed. If you add a record, LOWER
   UNRECORDED_BASELINE in validate-content.mjs to the new count; a gap
   between the count and the baseline is that many new unrecorded figures
-  that could arrive without failing anything.
+  that could arrive without failing anything. Raising it is a decision and
+  is only ever right when a SCAN widened rather than the site: say which in
+  the commit, and prove no page changed by diffing the built site.
 - check-releases and check-sources are network checks that gate nothing,
   so run them by hand before opening a pull request: a record citing a
   superseded edition passes every other check green.
@@ -576,11 +591,18 @@ what you are doing; the prompt states rules, the handoff is why.
 - Negative-test every new check, in BOTH directions, and confirm the
   break applied by grepping for the broken text and printing the count
   before believing the result. Negative-test the MECHANISM and the REMEDY
-  too, not only the check. Where a check matches a declaration against a
+  too, not only the check: do what the failure message tells an author to
+  do, and watch it work. Where a check matches a declaration against a
   record, ask three things of the key, on BOTH sides: what it does when
   it does not change, when it is absent, and when it is present but not
   the shape you assumed. Every answer has to leave the check still asking
   for something. (Building a check, and trusting it)
+- A suppression needs a test of its own, and it is where to look first.
+  Any line that decides NOT to report, a continue, an exemption, a
+  de-duplication guard, can silence far more than it was written for, and
+  a control that calls the matcher does not call the thing reading the
+  matcher's output. Test what decides, not only what parses. (Building a
+  check, and trusting it)
 - Have a second model read anything whose whole purpose is refusing bad
   input, before you believe your own critique of it. It has found the
   most serious defect in every piece of work it has read here, every time

@@ -547,14 +547,22 @@ Both came out of PR #41 on 28 July 2026.
     exactly what this site already published for that period from the Commons Library briefing.
     That briefing returns 403 to a fetch, so this incidentally gives that figure a primary source
     it did not have.
-- **Whether `/sources-and-method/` should publish a third limit.** The bullet saying series
-  values are not individually cited has gone, because they now are. Nothing replaced it, and
-  there are now three candidates. A figure declared under `historical_literals` is exempted on
-  trust and nothing re-checks that the exemption is still deserved. A correction inside an
-  edition is caught only where the publisher's note names its table by identifier, and most
-  name theirs by title. And no real screen reader has been run, which is the one gap below
-  that a reader might reasonably expect an accessibility-minded site to say out loud. Adding a
-  limit to a live page is an editorial call, and so is which of the three earns the space.
+- **Whether `/sources-and-method/` should publish a FOURTH limit.** This bullet said "a third"
+  until 30 July, and one of the three candidates it listed, the screen reader, had already been
+  published by PR #61 in the bullet above it. Three limits are live. Three candidates are left,
+  and the last is new:
+  - A figure declared under `historical_literals` is exempted on trust and nothing re-checks
+    that the exemption is still deserved.
+  - A correction inside an edition is caught only where the publisher's note names its table by
+    identifier, and most name theirs by title.
+  - **A figure the data layer never recorded is reported and never refused**, so the site can
+    carry a number that nothing can tell you has aged. This is the one a reader is most
+    affected by, because it is about the numbers rather than about the checking, and the scan
+    that reads figures written in words made it larger rather than smaller. What the count is
+    on any given day is what `npm run validate` prints.
+
+  Adding a limit to a live page is an editorial call, and so is which of the three earns the
+  space.
 
 ---
 
@@ -592,15 +600,15 @@ oversight.
 
 ## Known gaps, carried deliberately
 
-Genuinely not tasks. **One of the two is published on the site; the other is not**, and that
-sentence used to say all of them were. `/sources-and-method/` publishes two limits under *What
-the checks do not establish*, the prose one below and the sub-100 review, and neither of the
-others has ever appeared there. Whether the screen reader gap should is under the editorial
-decisions above.
+Genuinely not tasks. **Both are now published on the site**, which they were not when this
+section was written and were not on 30 July either: it said one of the two was, and PR #61 had
+already published the other in the same hours. `/sources-and-method/` carries three limits under
+*What the checks do not establish*, the two below plus the sub-100 review. The one still unpublished
+is the unrecorded-figure report, and that is the editorial decision above rather than a gap here.
 
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and is what was read, but it is not VoiceOver or NVDA reading a page
-  aloud. **Not published on the site.**
+  aloud. **Published, PR #61.**
 - **Prose about figures is unprotected.** Nothing verifies a chart summary describes the data
   beside it. The series citations shrank this and could not remove it, because a citation
   protects a value and not a claim about a value: `at(2018)` under a sentence naming 2019
