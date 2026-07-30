@@ -9,6 +9,32 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The sources page counts itself correctly, and publishes a third limit, 30 July 2026
+
+**No published figure changed.** What changed is what the page says about how many there are,
+and every number of it was wrong.
+
+A published figure is now defined as a record whose ref reaches a reader by any route: page
+prose, a chart config, a front-matter dependency, or a dashboard card. That gives 45 of the 74
+records, with 29 held as unpublished reserve.
+
+- **Home Office 13 becomes 17, ONS 7 becomes 10**, and the Ministry of Justice figure of 2 was
+  the only one that was right.
+- **"The other fourteen" becomes "the other sixteen"**, from six publishers rather than four.
+  The two missing were the Independent Chief Inspector of Borders and Immigration and ONS
+  population estimates, both added by corrections 1c and 1a while the prose beside the source
+  catalogue was left alone. A reader who scrolled saw the page contradict itself.
+- **"No claim currently carries one" is removed.** Three claims carry a correction note, and a
+  hand-maintained count that nothing reads is what produced every error above.
+
+**The third limit.** The page now says that no real screen reader has been run over it: the
+accessibility checks are an automated WCAG 2.2 AA audit on every page plus a reading of the
+accessibility tree that assistive technology consumes, and that is not the same as someone
+listening to a page. The section had opened "Two limits" and framed them as being about where a
+number comes from, so both had to change before an accessibility limit could sit in it.
+
+One number on that page is deliberately untouched: "the most recent full cycle took twenty-seven
+days" is a statement about a past cycle that cannot be verified from the repository.
 ### Detected unauthorised arrivals become a record, 30 July 2026
 
 **43,806 for the year ending March 2026**, a figure the site had only as prose inside another

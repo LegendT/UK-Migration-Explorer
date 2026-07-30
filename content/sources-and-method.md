@@ -98,9 +98,9 @@ this site derived rather than read off a release. The grades mean:
 
 ### What the checks do not establish {#limits}
 
-They are about where a number comes from, not about whether the sentence around it is
-right. Two limits, stated because a check trusted for more than it does is worse than no
-check at all:
+Mostly they are about where a number comes from, not about whether the sentence around it
+is right, and the last of these is not about numbers at all. Stated because a check trusted
+for more than it does is worse than no check at all:
 
 - **A description of a figure is not checked against the figure.** A chart summary saying a
   series rose when it fell would build cleanly, and so would one that quotes the right
@@ -109,6 +109,11 @@ check at all:
 - **Values under 100 are reported for review rather than refused.** Too many measures share
   a small value for a match to mean much, so those are flagged on every build and looked
   at, not blocked.
+- **No real screen reader has been run over these pages.** The accessibility checks here are
+  an automated audit against WCAG 2.2 AA on every page, plus reading the accessibility tree
+  that assistive technology actually consumes. That is not the same as someone listening to a
+  page with VoiceOver or NVDA, and it is the gap on this list most likely to matter to a
+  reader rather than to an editor.
 
 ---
 
@@ -164,13 +169,14 @@ Most of this site is driven by three releases, and the commitment is to update w
 
 | Release | How often | Figures here |
 | --- | --- | --- |
-| Home Office, immigration system statistics | Quarterly | 13 |
-| ONS, long-term international migration | Twice yearly | 7 |
+| Home Office, immigration system statistics | Quarterly | 17 |
+| ONS, long-term international migration | Twice yearly | 10 |
 | Ministry of Justice, tribunals statistics | Quarterly | 2 |
 
-The other fourteen published figures come from the National Audit Office, the House of
-Commons Library, the Migration Observatory and the Office for Budget Responsibility, which
-publish irregularly rather than on a cycle. Those are re-checked when they publish, and no
+The other sixteen published figures come from six publishers that release irregularly
+rather than on a cycle: the National Audit Office, the House of Commons Library, the
+Migration Observatory, the Office for Budget Responsibility, the Independent Chief Inspector
+of Borders and Immigration, and ONS population estimates. Those are re-checked when they publish, and no
 schedule is promised for them, because a schedule nobody can predict is not a commitment.
 
 One month rather than something tighter because this is one person working unfunded, and a
@@ -200,7 +206,7 @@ are at handling its own mistakes.
 - Every change to a published figure is recorded in a public changelog, with the reason and
   the source.
 - Where a revision changes the substance of a claim, the claim carries a dated correction
-  note at the top of the page. It is not silently edited. No claim currently carries one.
+  note at the top of the page. It is not silently edited.
 - Where a revision changes a number but not the conclusion, the figure updates and the
   changelog records it.
 - Every claim shows when it was last reviewed. A claim unreviewed for twelve months is
