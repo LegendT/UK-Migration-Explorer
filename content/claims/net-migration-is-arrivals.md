@@ -10,8 +10,8 @@ short_answer: >-
   much larger numbers, not a count of arrivals.
 direction: restrictionist
 error_type: net flow read as gross inflow
-last_reviewed: 2026-07-22
-review_due: 2027-07-22
+last_reviewed: 2026-07-27
+review_due: 2027-07-27
 figures:
   - migration/net-migration
   - migration/total-long-term-immigration
