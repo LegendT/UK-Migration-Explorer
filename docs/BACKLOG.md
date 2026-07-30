@@ -231,11 +231,13 @@ The list holds four different things and the check cannot tell them apart, which
 reads it. **The sort below was corrected on 30 July after a second model checked it against the
 sentences**, and three of the four groups moved:
 
-- **Frozen history, correct as longhand.** Only the published vintages really qualify: `431,000`,
-  `345,000` and `606,000`, because a first-published number never changes, which is the same
-  logic that makes the existing `285,000` declaration right. These want a `historical_literals`
-  declaration so the choice is visible: **[me]**, once someone confirms each. `45,774` is frozen
-  as a number but sits under "the peak was", which goes stale if a later year exceeds it.
+- **Frozen history, correct as longhand. DONE.** Only the published vintages really qualify:
+  `431,000`, `345,000` and `606,000`, because a first-published number never changes, which is
+  the same logic that makes the existing `285,000` declaration right. All nine reports of them,
+  across four files, are now declared under `historical_literals` with the reason beside them,
+  and the baseline fell from 38 to 29. `45,774` was **not** declared: it is frozen as a number
+  but sits under "the peak was", which goes stale if a later year exceeds it, so it stays in the
+  report where a person will see it.
 - **Current-edition figures with no record behind them**, which is a bigger group than first
   sorted. `627,000` in two places, the study and work main-applicant and dependant splits, the
   citizenship card's three, and **also `944,000`, `1,469,000`, `517,000`, `429,000`, `87,000` and
