@@ -1,0 +1,33 @@
+{
+  "figures": [
+    {
+      "ref": "asylum/detected-unauthorised-arrivals-year-ending-march-2026",
+      "previous_value": null,
+      "value": 43806,
+      "fetched_at": "2026-07-30",
+      "derivation": "Sum of the four methods of entry over the four quarters 2025 Q2 to 2026 Q1, taken from the IER_D01 pivot: small boats 39,271, inadequately documented air arrivals 2,621, recorded detections in the UK 1,687, recorded detections at UK ports 227. The Home Office publishes this table by quarter and by calendar year, and no published cell states a year-ending-March total. Two checks on the arithmetic: the same sum computed from the row-level Data_IER_D01 sheet gives 43,806 independently, and the small boats component reproduces 39,271, which is the value this site already publishes for the same period from a different source.",
+      "components": [
+        {
+          "value": 39271,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "IER_D01: Number of detected arrivals via illegal routes to the UK, 2018 Q1 to 2026 Q1. Small boat arrivals: 2025 Q2 13340, 2025 Q3 14105, 2025 Q4 7385, 2026 Q1 4441. These four sum to 39271."
+        },
+        {
+          "value": 2621,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "IER_D01: Inadequately documented air arrivals: 2025 Q2 678, 2025 Q3 763, 2025 Q4 810, 2026 Q1 370. These four sum to 2621."
+        },
+        {
+          "value": 1687,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "IER_D01: Recorded detections in the UK: 2025 Q2 340, 2025 Q3 459, 2025 Q4 489, 2026 Q1 399. These four sum to 1687."
+        },
+        {
+          "value": 227,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "IER_D01: Recorded detections at UK ports: 2025 Q2 49, 2025 Q3 42, 2025 Q4 54, 2026 Q1 82. These four sum to 227."
+        }
+      ]
+    }
+  ]
+}

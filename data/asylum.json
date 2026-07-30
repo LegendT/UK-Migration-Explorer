@@ -174,8 +174,27 @@
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10590/",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
-      "notes": "About a 3% increase year-on-year. Made up about 90% of all detected unauthorised arrivals (around 44,000 total). 95-99% of small boat arrivals go on to claim asylum.",
+      "notes": "About a 3% increase year-on-year. 95-99% of small boat arrivals go on to claim asylum. The share of all detected unauthorised arrivals is no longer stated here: the denominator is now its own record and the asylum page cites both, so a note restating either would be a second copy that can drift.",
       "confidence_level": "official"
+    },
+    {
+      "id": "detected-unauthorised-arrivals-year-ending-march-2026",
+      "metric_name": "Detected arrivals via illegal routes, all methods",
+      "value": 43806,
+      "unit": "people",
+      "date": "2026-03-31",
+      "period_label": "year ending March 2026",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Illegal entry routes to the UK detailed dataset, table IER_D01",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://www.gov.uk/government/statistical-data-sets/immigration-system-statistics-data-tables#illegal-entry-routes",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-07-30",
+      "table_reference": [
+        "IER_D01"
+      ],
+      "notes": "CALCULATED, not published: the Home Office publishes this table by quarter and by calendar year and states no year-ending-March total. Summed over 2025 Q2 to 2026 Q1 across all four methods of entry: small boats 39,271, inadequately documented air arrivals 2,621, detections in the UK 1,687, detections at UK ports 227. Small boats are 89.6% of it. Detected means detected: it cannot count arrivals nobody detected, so it is a floor rather than a total.",
+      "confidence_level": "calculated"
     },
     {
       "id": "small-boat-arrivals-2026-year-to-date",
