@@ -185,9 +185,9 @@ alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   the publisher table they were read from, `validate-data.mjs` refuses a figure that names a
   table in its own prose and declares nothing, and `check-releases.mjs` matches the data-tables
   change history against those declarations. It raises a hit only where the figure's own
-  `retrieved_date` pre-dates the correction, so it is stateless and clears itself. Six things
-  building it found, including the two figures a `source_id` filter would have skipped, are in
-  the scope rather than restated here.
+  `retrieved_date` pre-dates the correction, so it is stateless and clears itself. What building
+  it found is in the scope, uncounted and not restated here, because a count restated in two
+  files is what put six in one and twelve in the other for a day.
 - **Phase 3, the update prompt. Gated on two decisions that are [you], both stated here so
   that neither has to be rediscovered.** Seven things to settle before writing it are listed
   in the scope, and five of them are now mechanical. The two that are not:

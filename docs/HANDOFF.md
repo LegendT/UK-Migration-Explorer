@@ -254,10 +254,10 @@ is already here to adding a neighbour beside it.
   directory before the change and `diff -r` after. That is what established twelve series
   substitutions rendered exactly what they replaced, and it is a stronger claim than reading
   them. It also localises the changes you did mean: when one page differed, it was the one
-  whose published prose the work had made false. The same reading of `git diff --stat` one
-  level down caught a script that added a field to four data files touching a fifth: a JSON
-  round-trip is not text-preserving, and `3.0` came back as `3`. Numerically identical, and
-  a line in the diff of a file the work had no business in.
+  whose published prose the work had made false. The same reading of `git diff --stat` one level
+  down caught a script that added a field to five data files and rewrote a sixth it had nothing
+  to add to: a JSON round-trip is not text-preserving, and `3.0` came back as `3`. Numerically
+  identical, and a line in the diff of a file the work had no business in.
 
 - **Render with a real layout viewport.** Headless Chrome's `--window-size` clamps the layout
   viewport to 500px, so a screenshot at `--window-size=390` is a crop of a 500px layout.

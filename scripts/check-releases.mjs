@@ -274,14 +274,9 @@ async function changeHistory(api) {
 
 const corrections = [];
 for (const [id, config] of Object.entries(CORRECTIONS)) {
-  // Every declared table, not only those whose record cites this publisher. Two figures read
-  // Home Office tables through a Commons Library briefing that quotes them, and a correction to
-  // IER_D03 is a correction to what they publish however the site reached it. Restricting the
-  // match by source_id would have skipped exactly those two.
-  const records = declared;
   const { history, error } = await changeHistory(config.api);
   if (error) {
-    corrections.push({ id, records, error });
+    corrections.push({ id, error });
     continue;
   }
   // Most entries announce a quarterly release and name its tables by title, not by identifier.
@@ -295,20 +290,24 @@ for (const [id, config] of Object.entries(CORRECTIONS)) {
     }))
     .filter((entry) => entry.tables.length);
 
+  // Every declared table is matched, not only those whose record cites this publisher. Two
+  // figures read Home Office tables through a Commons Library briefing that quotes them, and a
+  // correction to IER_D03 is a correction to what the Home Office published however the site
+  // reached it. Restricting the match by source_id would have skipped exactly those two.
   const matched = [];
-  const behind = [];
+  const outstanding = [];
   for (const entry of naming) {
     for (const table of entry.tables) {
-      const citing = records.filter((record) => record.tables.some((name) => sameTable(name, table)));
+      const citing = declared.filter((record) => record.tables.some((name) => sameTable(name, table)));
       if (!citing.length) continue;
       matched.push({ entry, table, citing });
       // An entry with no timestamp fires rather than passing. Empty compares as earlier than
       // every date, so leaving it to the comparison would silently clear every figure behind it.
       const stale = citing.filter((record) => !record.checked || !entry.date || record.checked < entry.date);
-      if (stale.length) behind.push({ entry, table, stale });
+      if (stale.length) outstanding.push({ entry, table, stale });
     }
   }
-  corrections.push({ id, records, history, naming, matched, behind });
+  corrections.push({ id, history, naming, matched, outstanding });
 }
 
 // --- report --------------------------------------------------------------------------------
@@ -375,26 +374,26 @@ const corrected = [];
 const correctionsUnchecked = [];
 console.log(`Corrections inside an edition: ${corrections.length} watched page(s), against the tables the site declares.\n`);
 
+const allTables = [...new Set(declared.flatMap((record) => record.tables))].sort();
+
 for (const report of corrections) {
-  const name = sources.get(report.id)?.name ?? report.id;
   if (report.error) {
     correctionsUnchecked.push(report.id);
     console.log(`${report.id}: COULD NOT CHECK. ${report.error}`);
-    console.log(`  ${report.records.length} figure(s) declare a table under ${name}, and none was compared.\n`);
+    console.log(`  ${declared.length} figure(s) declare a table, and none of them was compared.\n`);
     continue;
   }
   // Nothing declared means nothing was compared, whatever the change history said.
-  if (!report.records.length) {
+  if (!declared.length) {
     correctionsUnchecked.push(report.id);
     console.log(`${report.id}: COULD NOT CHECK. Its change history holds ${report.history.length} entries, but no figure declares a table_reference, so nothing was compared.\n`);
     continue;
   }
-  if (report.behind.length) corrected.push(report);
-  const tables = [...new Set(report.records.flatMap((record) => record.tables))].sort();
-  console.log(`${report.id}: ${report.behind.length ? 'CORRECTED SINCE LAST READ' : 'current'}`);
-  console.log(`  ${report.history.length} change history entries, ${report.naming.length} naming a table, ${report.matched.length} naming one of the ${tables.length} this site declares: ${tables.join(', ')}`);
+  if (report.outstanding.length) corrected.push(report);
+  console.log(`${report.id}: ${report.outstanding.length ? 'CORRECTED SINCE LAST READ' : 'current'}`);
+  console.log(`  ${report.history.length} change history entries, ${report.naming.length} naming a table, ${report.matched.length} naming one of the ${allTables.length} this site declares: ${allTables.join(', ')}`);
   for (const { entry, table, citing } of report.matched) {
-    const stale = report.behind.find((hit) => hit.entry === entry && hit.table === table);
+    const stale = report.outstanding.find((hit) => hit.entry === entry && hit.table === table);
     console.log(`  ${table} amended ${entry.date}, cited by ${citing.length} figure(s), ${stale ? `${stale.stale.length} not re-read since` : 'all re-read since'}`);
     if (stale) {
       for (const record of stale.stale) console.log(`    ${record.ref}, last read ${record.checked ?? 'never recorded'}`);
@@ -413,6 +412,12 @@ if (noOwnRoute.length) {
   for (const record of noOwnRoute) console.log(`  ${record.ref}: ${record.tables.join(', ')} (${record.sourceId})`);
   console.log('');
 }
+// Said whether or not anything above fired, because a source that declares no table cannot
+// appear in the list above and would otherwise read as covered. ONS numbers its sheets "Table 1",
+// which is not an identifier that could be declared or matched at all.
+const noCorrectionsRoute = [...cited.keys()].filter((id) => !CORRECTIONS[id]).sort();
+console.log(`No corrections route at all: ${noCorrectionsRoute.length} of the ${cited.size} sources the site cites, ${noCorrectionsRoute.join(', ')}.`);
+console.log('One page is watched for corrections, and it is the Home Office data tables.\n');
 
 // Said on every run, including a quiet one. A notifier that speaks only when it fires cannot
 // be told apart from one that has stopped working.
@@ -420,10 +425,11 @@ console.log('Not established, by either half: that a release which kept its edit
 console.log('changed anything. The edition check compares which edition is cited and nothing else.');
 console.log('The corrections watch reads one page and matches table identifiers, so it cannot see a');
 console.log('correction whose note names a table by title only, one to a table nobody wrote down,');
-console.log('or one published anywhere but that page. A match means the table moved, never that');
-console.log('the row this site publishes did: the last one missed it by a single row. It clears');
-console.log('when retrieved_date moves forward, which is a person saying they re-read the figure,');
-console.log('not this or any other check establishing that they did.');
+console.log('or one published anywhere but that page. It compares whole days, so a correction');
+console.log('published later on the day a figure was read falls on the wrong side of it. A match');
+console.log('means the table moved, never that the row this site publishes did: the last one');
+console.log('missed it by a single row. And it clears when retrieved_date moves forward, which is');
+console.log('a person saying they re-read the figure, not this or any check establishing they did.');
 
 if (!behind.length && !unchecked.length && !corrected.length && !correctionsUnchecked.length) {
   console.log('\nEvery watched source is on the edition the site cites, and every corrected table');
@@ -442,8 +448,8 @@ const signature = [
   // The tables, not just the source, so that a second correction landing while the first is open
   // changes the title and opens a second issue rather than hiding inside the first.
   ...corrected.map((report) => {
-    const tables = [...new Set(report.behind.map((hit) => hit.table))].sort().join('/');
-    const latest = report.behind.map((hit) => hit.entry.date).sort().pop();
+    const tables = [...new Set(report.outstanding.map((hit) => hit.table))].sort().join('/');
+    const latest = report.outstanding.map((hit) => hit.entry.date).sort().pop();
     return `${report.id} corrections to ${tables} since ${latest}`;
   }),
   ...correctionsUnchecked.map((id) => `${id} corrections could not be checked`),

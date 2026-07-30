@@ -604,12 +604,12 @@ should be recorded so they are not silently reinstated:
 
 ### 9.3 Known gaps in the contract
 
-- **`table_reference` is implemented**, 30 July 2026. 14 records and 2 series files declare
-  the publisher table they were read from, and `validate-data.mjs` refuses a record that
-  names a table in its own prose and declares nothing. It was built because the corrections
-  watch needs it: a correction inside an edition is announced against a table identifier, and
-  matching prose could not tell the Home Office `ASY_03` from the Migration Transparency Data
-  one. What it does not establish is that a figure naming no table has none.
+- **`table_reference` no longer names the gap; what it cannot see does.** The field was
+  implemented on 30 July 2026, on 14 records and 2 series files, and `validate-data.mjs`
+  refuses a figure that names a table in its own prose and declares nothing. What is still
+  open is that this reads what was written: a figure whose table nobody wrote down declares
+  none and is asked for none, and an ONS sheet called "Table 1" carries no identifier that
+  could be declared at all. The corrections watch is only as complete as this declaration.
 - **`published_date` is now recorded for 66 of the 67 theme metrics**, closing what was 33
   outstanding in the June 2026 draft. Nothing was inferred to close it, because inventing a
   publication date on a project about statistical integrity is not a defensible shortcut. The
