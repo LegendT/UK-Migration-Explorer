@@ -38,6 +38,14 @@ contracts and the daily cost figures.
   the real wrapped sentence from the costs page, where the number and the word "million" sit on
   different lines.
 
+A second model found the defect that mattered, in the three lines written to stop one figure
+being reported twice. The guard asked for "£" plus the number whatever the prose said, so a
+figure carrying no currency sign at all, "3 billion" of anything, was answered by a record of
+3 £ billion and silenced completely: no error, no warning, not even a line in the report. The
+input that makes it serious is the £ dropped from "£4.9 billion", the slip this site has already
+shipped once. Two self-critiques had read that guard and seen only its precision. The skip now
+requires the prose to have written the £, and a control pins that.
+
 What it still does not read is printed on every run: "2 200 000", "two million", "£1.3bn",
 "2.2 thousand", and front matter, where one claim's short answer carries a rounded figure.
 

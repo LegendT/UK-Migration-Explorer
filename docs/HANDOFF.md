@@ -221,8 +221,8 @@ is already here to adding a neighbour beside it.
   broken, and a search string that did not match. The cheap guard is to grep for the broken
   text and print the count before running anything.
 
-- **Negative-test the mechanism and the remedy, not only the check.** Three have failed here
-  across two sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
+- **Negative-test the mechanism and the remedy, not only the check.** Four have failed here
+  across three sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
   `| number` shipped `45537` to the built page with `npm run validate` and `npm run build`
   both green: no literal in the source for the longhand scan to find, and an unformatted
   integer is not `NaN`. Separately, the literal check told authors to declare a frozen figure
@@ -230,7 +230,10 @@ is already here to adding a neighbour beside it.
   comma-grouped value it existed to exempt was shredded into two junk exemptions. Three copies
   of it, and no content page had ever used one. Third, the series evidence check printed a
   fillable skeleton carrying `"vintage": null`, and null was the one value that would have made
-  that block's exemption permanent, so the remedy handed the author the hole. A check is only as
+  that block's exemption permanent, so the remedy handed the author the hole. Fourth, the
+  scale-word report told an author to declare a figure under `historical_literals`, and doing
+  exactly that failed the build, because the figure wraps across two lines in the source and the
+  declaration check compared raw text. A check is only as
   good as the thing it points at and the thing it sits beside.
 
 - **A figure computed against a citation is invisible to every check here.** It matches no
@@ -281,7 +284,7 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model has found the most serious defect in every piece of work it has read here, four times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, and that a paragraph whose declared purpose was stating a cost understated it by half. Budget for this rather than treating it as a last check.
+- **A second model has found the most serious defect in every piece of work it has read here, five times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
 
 - **A second model reading the same code found what a self-critique had not. Twice, before that.** Two
   rounds of critique on the series evidence check found real defects and missed the one above,

@@ -338,6 +338,15 @@ their unit's scale, because a record of 4.9 with unit `£ billion` **is** 4.9 bi
 the series are asked too, because the report claims that neither holds the value and a claim
 about both has to ask both. No page changed: the built site is byte-identical, proved by diff.
 
+**What a second model found in it, because the shape recurs and the sentence above is where a
+reader will look for it.** The three lines written to stop one figure being reported twice
+asked for "£" plus the number whatever the prose said, so a figure with no currency sign,
+"3 billion" of anything, was answered by a fiscal record and silenced completely: not an error,
+not a warning, not even a line in the report. Two self-critiques had read that guard and seen
+only its precision. **A suppression is the most dangerous three lines in any check here**, and
+the two controls that ran on every invocation could not have caught it, because both called the
+matcher and neither called the thing reading its output.
+
 **`UNRECORDED_BASELINE` went UP, 22 to 33, and this is the only step up it should ever take.**
 Eleven report lines became *visible*, ten distinct figures with the visitor-visa one on two
 pages; none arrived. What the ratchet forbids is unchanged and the count may not grow from 33.

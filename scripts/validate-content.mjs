@@ -659,9 +659,17 @@ const citeSeries = (ref) => {
 // costs.njk writes "£13\nmillion", so a single space will not do; but a paragraph break is
 // whitespace too, and an unbounded run would let a number ending one paragraph pair with a
 // word opening the next.
+// `currency` is carried rather than discarded, and dropping it was this scan's worst defect on
+// the day it was written. The duplicate guard below asked `unitedValues` for "£" plus the
+// number whatever the prose said, so "3 billion" with no currency sign anywhere was answered by
+// a record of 3 £ billion and silenced completely: no error, no warning, not even a line in the
+// report. The input that makes it serious is not exotic, it is the £ dropped from "£4.9
+// billion", which is the slip `checkUnits` above exists because this site already shipped once.
+// Found by a second model; two self-critiques had read the guard and seen only its precision.
 const scaledFigures = (text) =>
-  [...text.matchAll(/(£?)(\d+(?:\.\d+)?)\s{1,4}(million|billion)\b/gi)].map(([whole, , number, word]) => ({
+  [...text.matchAll(/(£?)(\d+(?:\.\d+)?)\s{1,4}(million|billion)\b/gi)].map(([whole, currency, number, word]) => ({
     text: whole.replace(/\s+/g, ' '),
+    currency,
     number,
     scale: SCALE_WORDS[word.toLowerCase()],
     value: Math.round(Number(number) * SCALE_WORDS[word.toLowerCase()]),
@@ -678,6 +686,14 @@ for (const [probe, expected] of [['is closer to £13\nmillion a day', 13000000],
 }
 if (scaledFigures('in 2024 the total was 813,000').length) {
   errors.push('scale-word scan: fires on prose carrying no scale word, so its list cannot be trusted');
+}
+// The third control exists because the first two would not have caught the defect above: they
+// call the matcher and never the guard that reads its output. This pins the one property the
+// guard depends on, that the currency sign survives the match, which is the whole of what was
+// dropped. It is not a test of the guard, and the guard has none: it decides using the registry
+// from inside checkLiterals, and reaching it needs a fixture file rather than a string.
+if (scaledFigures('3 billion')[0]?.currency || scaledFigures('£3 billion')[0]?.currency !== '£') {
+  errors.push('scale-word scan: no longer tells "£3 billion" from "3 billion", so the duplicate guard would silence a figure that carries no currency sign at all');
 }
 
 // A declaration nothing matches is dead, and dies quietly. Three ways to get one, all of them
@@ -743,13 +759,16 @@ function checkLiterals(file, prose, allowed) {
   // comma-grouped scan: costs.njk writes "£8 million a day" in a heading and again in the
   // sentence under it, which is one decision rather than two.
   const scaled = new Map(scaledFigures(withoutTokens).map((figure) => [figure.text, figure]));
-  for (const { text, number, scale, value } of scaled.values()) {
+  for (const { text, currency, number, scale, value } of scaled.values()) {
     if (allowed.has(text)) continue;
-    // The unit scan above has already reported this sentence when the record it matched
-    // carries the same scale in its own unit: "£3 billion" against a record of 3 £ billion is
-    // one figure and belongs in one message. Only then, though. A record of 20 £ per night
-    // must not silence "£20 billion", which is a different number by a factor of a billion.
-    const united = unitedValues.get(`£${number}`);
+    // Skipped only where the unit scan above has ALREADY reported this same sentence, which
+    // takes all three of: the prose wrote a £, that £ and number are a key it matched, and the
+    // record behind that key carries the same scale in its own unit. "£3 billion" against a
+    // record of 3 £ billion is one figure and belongs in one message. Each condition is
+    // load-bearing. Without the first, "3 billion" of anything is answered by a £ record and
+    // silenced. Without the third, a record of 20 £ per night silences "£20 billion", a
+    // different number by a factor of a billion.
+    const united = currency && unitedValues.get(`£${number}`);
     if (united && unitScale(registry.get(united.ref)?.unit) === scale) continue;
 
     const held = scaledValues.get(value);
