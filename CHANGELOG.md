@@ -9,6 +9,26 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### People claiming asylum in 2025 becomes a record, 30 July 2026
+
+**100,625 for calendar year 2025**, a figure the site already published as "around 100,000" on
+two pages without holding it anywhere. It was a live number rounded just enough to slip past the
+scan that refuses a longhand record value, in a sentence whose whole point is that it is of
+similar magnitude to the support figure beside it.
+
+Source: Home Office, Immigration system statistics year ending March 2026, Asylum summary tables,
+table `Asy_00a`, read from the .ods rather than the bulletin. "People claiming asylum, 2025:
+100,625". Evidence in `data/evidence/ho-immigration-stats-year-ending-march-2026.json`.
+
+- **Held twice on purpose.** It is also the 2025 point of the asylum applications series, so the
+  record declares `series_ref` and `validate-data.mjs` refuses a mismatch. That was the only
+  way to cite it from a Markdown page: the `at()` filter works in a chart summary and nowhere
+  else, which the validator says when it refuses a series value written longhand.
+- **The other half needed no record.** "around 97,500" was the support figure, which the glossary
+  already cited and the claim page did not. An inconsistency between two pages rather than a gap
+  in the contract.
+
+
 ### The update prompt, and a tracking rule that did not look down, 30 July 2026
 
 **No published figure changed.** `docs/prompts/update-from-release.md` is phase 3 of the update

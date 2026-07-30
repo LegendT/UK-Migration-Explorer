@@ -9,6 +9,7 @@ error_type: stock read as flow
 last_reviewed: 2026-07-27
 review_due: 2027-07-27
 figures:
+  - asylum/asylum-applications-2025
   - asylum/people-in-receipt-of-asylum-support
   - asylum/people-in-asylum-accommodation
   - asylum/people-in-asylum-hotel-accommodation
@@ -46,7 +47,7 @@ one day is not the number of people who arrived that year, and the two are not
 interchangeable.
 
 The confusion is easy to fall into because the two figures happen to be of similar
-magnitude. Around 100,000 people claimed asylum during 2025; around 97,500 were being
+magnitude. {{asylum/asylum-applications-2025}} people claimed asylum during 2025; {{asylum/people-in-receipt-of-asylum-support}} were being
 supported on one day in March 2026. Those look like the same quantity and are not. One is
 a flow measured over twelve months; the other is a stock measured at an instant. Someone
 who claimed asylum in 2023 and is still waiting could appear in the second and not the

@@ -15,6 +15,7 @@ figures:
   - migration/total-long-term-immigration
   - migration/total-long-term-emigration
   - asylum/asylum-applications
+  - asylum/asylum-applications-2025
   - asylum/asylum-applications-main-applicants
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
   - asylum/asylum-appeals-backlog
@@ -56,7 +57,7 @@ A **stock** counts a state at a single moment: people waiting for a decision tod
 in supported accommodation on 31 March, people living in the UK who were born abroad.
 
 **Why it matters.** The two answer different questions and cannot be compared or
-subtracted. Around 100,000 people claimed asylum during 2025, a flow. About
+subtracted. {{asylum/asylum-applications-2025}} people claimed asylum during 2025, a flow. About
 {{asylum/people-in-receipt-of-asylum-support}} people were receiving asylum support on one
 day in March 2026, a stock. Those figures are of similar size and describe entirely
 different things. Someone who claimed in 2023 and is still waiting appears in the second

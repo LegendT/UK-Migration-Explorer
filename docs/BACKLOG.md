@@ -291,12 +291,27 @@ sentences**, and three of the four groups moved:
   publishes" is a claim about the *current* publication, and the year-on-year changes are
   recomputed every release under the site's own single-vintage rule. Minting a record needs a
   fetched quote per figure and is **[me]**; which deserve one rather than a rewording is **[you]**.
-- **Rounded restatements of live values, which no mechanism covers.** On
-  `everyone-in-asylum-accommodation-arrived-recently`, "around 100,000" sits against the series
-  point `asylumApplications@2025`, which is 100,625, and "around 97,500" against
-  `people-in-receipt-of-asylum-support`, which is 97,519. The sentence's whole point is that the
-  two are of similar magnitude, so precision would work against it, and `historical_literals`
-  would silence them as frozen when they are live. The glossary carries the same rounding: **[you]**.
+- **Rounded restatements of live values. DONE (PR #57, 30 July 2026), and the mechanism the
+  category said was missing turned out to exist.** "around 97,500" and "around 100,000" were both
+  live figures rounded just enough to slip past an exact-match scan, in a sentence whose whole
+  point is that the two are of similar magnitude.
+
+  The two halves were not the same problem. `97,519` needed no decision at all: the glossary
+  already cited `people-in-receipt-of-asylum-support` for the same figure and the claim page did
+  not, so that half was an inconsistency between two pages. `100,625` genuinely could not be
+  cited, because it is a **series point** and only a Nunjucks chart summary can cite one, which
+  the validator's own message says. It now has a metric declaring
+  `series_ref: asylumApplications@2025`, the established pattern for a figure held twice, so
+  `validate-data.mjs` refuses any drift between the record and the point.
+
+  **Verified against the primary table, not the bulletin.** The `.ods` was fetched and unzipped
+  and `Asy_00a` read directly: row "People claiming asylum", column 2025, is 100,625, and the
+  support row is 97,519 for the year ending March 2026. Evidence written before the record, and
+  `check-evidence.mjs` gated on it as a new metric. Baseline 26 to 24.
+
+  **What is left of this category is the pattern rather than a task.** A deliberately rounded
+  live figure still has no home in the contract. It was avoidable here only because a record
+  could be minted; where one cannot, the choice is still to cite exactly or to reword.
 - **Arithmetic against a live value, where neither remedy in the message works. DONE (PR #55,
   30 July 2026), and it emptied this category.** The `100,000` on `net-migration-is-arrivals` and
   in the glossary was `431,000` minus the live `migration/net-migration-2`. A record for it would
