@@ -8,8 +8,8 @@ short_answer: >-
   recognition.
 direction: pro-migration
 error_type: appeal success rate generalised to all refusals
-last_reviewed: 2026-07-22
-review_due: 2027-07-22
+last_reviewed: 2026-07-27
+review_due: 2027-07-27
 figures:
   - asylum/asylum-initial-decision-grant-rate
   - asylum/asylum-appeal-success-rate
