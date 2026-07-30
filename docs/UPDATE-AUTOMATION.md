@@ -1,10 +1,12 @@
 # Update automation, scoped
 
 What can be automated about keeping this site current, what must not be, and in what order to
-build it. Scoped 23 July 2026. **Phase 2, the evidence check, was built on 28 July 2026, PR #43,
-phase 1, the notifier, the same day, PR #46, and phase 1b, the corrections watch, on 30 July,
-PR #48. Phases 3 and 4 are not built.** Phases 1, 1b and 2 below are now the reasoning behind
-what exists; the rest is still a scope.
+build it. Scoped 23 July 2026. **Four of the five phases are built:** phase 2, the evidence
+check, on 28 July 2026, PR #43; phase 1, the notifier, the same day, PR #46; phase 1b, the
+corrections watch, on 30 July, PR #48; and phase 3, the update prompt, the same day, PR #56.
+**Phase 4 is the only one left**, and it is a reader-facing trust statement needing the owner's
+sign-off rather than a build. Everything below except phase 4 is now the reasoning behind what
+exists rather than a scope for what does not.
 
 The problem it solves is named in the risk register: silent staleness is the most likely way
 this project fails. The staleness check added on 23 July ages every figure against its
