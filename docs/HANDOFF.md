@@ -42,6 +42,26 @@ Deliberately not recorded here: which branches exist, what CI last did, what is 
 That is operational state, it is discoverable in seconds, and a previous version of this
 section was wrong within the hour because branches were tidied after it was written.
 
+**One exception, because it is structural rather than operational.** `main`'s history is
+truncated. Its root commit is `126a40a`, "Merge pull request #42", and that commit has no
+parent, so `main` holds 24 commits and begins in the middle of the project. Everything before
+it, from the first commit through PR #41, is a **separate history with no common ancestor**:
+`git merge-base main history-to-pr-41` exits 1. That is the 37-defect audit, the design and
+accessibility rounds, the costs page, the nine pre-publication review corrections in PR #38 and
+the series citations in PR #41. The content all reached `main`; the commits did not.
+
+It survives on the branch `history-to-pr-41`, which is the fullest copy and contains six of the
+seven other pre-#42 branches. `design-and-a11y-rounds` is the seventh and is contained in
+nothing else: it holds one further commit, `62d9dba`, a superseded handoff rewrite that also
+touches `lib/charts.mjs`. Why the truncation happened is not known here.
+
+The branch name is the part of this that can go stale, and naming it breaks the rule above on
+purpose: a reader who does not know the history is detached will read `git log` as the whole
+project and a branch list as clutter, which is how the record gets deleted by someone tidying.
+If the branch is renamed or the history is grafted back on, correct this paragraph. The fact
+that `main` starts at a parentless commit is checkable in one command and does not go stale:
+`git rev-list --max-parents=0 main`.
+
 16 pages build from a governed data layer of **71 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
 171. **A subset of those records reach a reader.** Eleventy 3, no client-side JavaScript, charts
