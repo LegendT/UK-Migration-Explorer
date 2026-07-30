@@ -1,4 +1,4 @@
-# Handoff, 28 July 2026
+# Handoff, 30 July 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -11,7 +11,8 @@ or if a planning document exists that the backlog does not reference.
 
 ## Start here
 
-1. Read `docs/BACKLOG.md`. It is ordered; take the first unstarted item.
+1. Read `docs/BACKLOG.md`. It is ordered; take the first **unfinished** item, which is not
+   always an unstarted one. Item 3 has two of its four phases built and is still the first.
 2. Read the rest of this document, for how the project works and what not to repeat.
 3. Read the scope document for whatever you pick up, and do not re-derive it.
    `verification.txt` at the repository root is the pre-publication review itself. It is the
@@ -417,10 +418,11 @@ comes last and is launch. Do not treat any of those as done. The backlog
 also carries a short list of small editorial decisions waiting on me;
 those are mine to answer, not yours to take.
 
-TASK: take the first unstarted item in docs/BACKLOG.md, unless I have
-told you otherwise in this message. It is in recommended order,
-maintained there, so this prompt names no task and does not go stale as
-items finish.
+TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
+told you otherwise in this message. Unfinished, not unstarted: an item
+can have phases built and still be the first one. It is in recommended
+order, maintained there, so this prompt names no task and does not go
+stale as items finish.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.
@@ -457,8 +459,12 @@ changes; the rest bite on everything.
   three "failures" here were tests that never fired. Negative-test the
   MECHANISM and the REMEDY too, not only the check. The at() filter
   shipped an unformatted 45537 to the built page through validate and
-  build alike, and the escape hatch one message recommended could not
-  express a single value it existed to exempt.
+  build alike; an escape hatch one message recommended could not express
+  a single value it existed to exempt; and a skeleton another message
+  printed supplied the null that would have made an exemption permanent.
+  Where a check matches a declaration against a record, ask what its key
+  does when it does not change and when it is absent. Both answers have
+  to leave the check still asking for something.
 - State what a check does NOT establish in its own success message.
   Seven times a checker here passed while a real defect shipped, every
   time because it verified the source or the declaration rather than the
