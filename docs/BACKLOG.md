@@ -437,16 +437,21 @@ Both came out of PR #41 on 28 July 2026.
   which had been repeating the same false sentence as a settled decision.
 - **Three entries moved out of the handoff's decisions list, 30 July 2026**, because they were
   outstanding editorial work rather than decisions taken, and the handoff sends that here.
-  - **Captions.** Four Markdown tables have none: one in the glossary, two on the sources page,
-    one in the style guide. They are wrapped and named from the heading above them. A caption is
-    new prose and is the owner's to write. The handoff said "two Markdown tables and the
-    three-queues table"; the three-queues table has had a caption since the page was written.
-    **Two things found on 30 July that bear on the decision**, after this was briefly written off
-    as a non-task. There is no accessibility deficit: each of the four sits directly under a
-    descriptive heading and `scrollable-regions` names the region from it. But every table the
-    site hand-writes in Nunjucks carries a visible caption, four of them, so the Markdown four are
-    inconsistent with the site's own practice, and an `aria-label` is invisible to a sighted
-    reader. Consistency is the argument, not compliance.
+  - **Captions. DONE (PR #59, 30 July 2026).** Markdown has no caption syntax, which is why the
+    four had none while every table written by hand in Nunjucks carried one. A paragraph reading
+    `{caption}Text` immediately before a table now becomes its `<caption>`, in a transform that
+    throws when a marker matches no table. There was never an accessibility deficit:
+    `scrollable-regions` already named those regions from the heading above. The argument was
+    consistency with the site's own practice, and that an `aria-label` is invisible to a sighted
+    reader. This was briefly written off as a non-task on the same day, on the accessibility
+    half of that alone.
+
+    **The first caption containing a quotation mark found a latent bug beside it.** `stripTags`
+    removed tags and never decoded entities, so a region name went back out through `escape()`
+    and was escaped twice, shipping the entity itself inside the `aria-label` where a screen
+    reader would read it aloud. Nothing on the page shows it, which is how the `{#anchor}`
+    version of the same fault survived until `check-build` caught it. Found by reading the built
+    output rather than trusting a green build.
   - **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
     belongs to the year-ending-March record rather than the calendar-2025 card. It is still in
     the record's notes and could be placed on the asylum page.
