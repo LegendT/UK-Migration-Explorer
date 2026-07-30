@@ -130,7 +130,7 @@ Seven checks, all in CI, all negative-tested.
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a comma-grouped figure the data layer never recorded, under a ratchet whose count may not grow |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, under a ratchet whose count may not grow |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
@@ -166,8 +166,11 @@ believed: an isolated missing `lang` took it to 15/16 and named the rule, a fail
 value took it to 0/16. It flagged none of the five accessibility defects found by hand,
 which is the point: it is a floor.
 
-The known gaps in coverage are published on the sources page under *What the checks do not
-establish*, and listed in `docs/BACKLOG.md`.
+**Three of the four known gaps are published** on the sources page under *What the checks do
+not establish*: the prose one, the sub-100 review and the screen reader. The fourth is that a
+figure the data layer never recorded is reported and never refused, which is the one a reader is
+most affected by and the one the page does not say. Whether it should is an editorial decision
+in `docs/BACKLOG.md`, where all four are listed.
 
 ## Working practices that earned their place
 
@@ -216,13 +219,23 @@ is already here to adding a neighbour beside it.
 ### Building a check, and trusting it
 
 - **Negative-test every new check**, and confirm the break actually applied before concluding
-  anything. Four "failures" here were tests that never fired: two in an earlier session, a
+  anything. Five "failures" here were tests that never fired: two in an earlier session, a
   `perl` edit on 28 July whose pattern missed so a check "passed" against a file nobody had
-  broken, and a search string that did not match. The cheap guard is to grep for the broken
-  text and print the count before running anything.
+  broken, a search string that did not match, and on 30 July a `perl` escape that left the file
+  untouched while the run it "proved" exited zero. The cheap guard is to grep for the broken
+  text and print the count before running anything, and it is what caught the fifth in the same
+  minute it was made.
 
-- **Negative-test the mechanism and the remedy, not only the check.** Three have failed here
-  across two sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
+- **A suppression is the most dangerous code in a check, and it needs a test of its own.** The
+  scale-word scan's duplicate guard was three lines, written so one figure could not be reported
+  twice, and it silenced every figure written with no currency sign: not an error, not a
+  warning, not a line in the report. The two controls running on every invocation could not have
+  caught it, because both called the matcher and neither called the thing reading its output.
+  Test what DECIDES, not only what parses, and treat `continue` in a scanner as the place to
+  look first.
+
+- **Negative-test the mechanism and the remedy, not only the check.** Four have failed here
+  across three sessions, and not one of them was a check. `at()` returns the raw number, so a citation missing
   `| number` shipped `45537` to the built page with `npm run validate` and `npm run build`
   both green: no literal in the source for the longhand scan to find, and an unformatted
   integer is not `NaN`. Separately, the literal check told authors to declare a frozen figure
@@ -230,7 +243,10 @@ is already here to adding a neighbour beside it.
   comma-grouped value it existed to exempt was shredded into two junk exemptions. Three copies
   of it, and no content page had ever used one. Third, the series evidence check printed a
   fillable skeleton carrying `"vintage": null`, and null was the one value that would have made
-  that block's exemption permanent, so the remedy handed the author the hole. A check is only as
+  that block's exemption permanent, so the remedy handed the author the hole. Fourth, the
+  scale-word report told an author to declare a figure under `historical_literals`, and doing
+  exactly that failed the build, because the figure wraps across two lines in the source and the
+  declaration check compared raw text. A check is only as
   good as the thing it points at and the thing it sits beside.
 
 - **A figure computed against a citation is invisible to every check here.** It matches no
@@ -281,7 +297,7 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model has found the most serious defect in every piece of work it has read here, four times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, and that a paragraph whose declared purpose was stating a cost understated it by half. Budget for this rather than treating it as a last check.
+- **A second model has found the most serious defect in every piece of work it has read here, five times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
 
 - **A second model reading the same code found what a self-critique had not. Twice, before that.** Two
   rounds of critique on the series evidence check found real defects and missed the one above,
@@ -560,7 +576,9 @@ what you are doing; the prompt states rules, the handoff is why.
   check-evidence if a figure changed. If you add a record, LOWER
   UNRECORDED_BASELINE in validate-content.mjs to the new count; a gap
   between the count and the baseline is that many new unrecorded figures
-  that could arrive without failing anything.
+  that could arrive without failing anything. Raising it is a decision and
+  is only ever right when a SCAN widened rather than the site: say which in
+  the commit, and prove no page changed by diffing the built site.
 - check-releases and check-sources are network checks that gate nothing,
   so run them by hand before opening a pull request: a record citing a
   superseded edition passes every other check green.
@@ -573,11 +591,18 @@ what you are doing; the prompt states rules, the handoff is why.
 - Negative-test every new check, in BOTH directions, and confirm the
   break applied by grepping for the broken text and printing the count
   before believing the result. Negative-test the MECHANISM and the REMEDY
-  too, not only the check. Where a check matches a declaration against a
+  too, not only the check: do what the failure message tells an author to
+  do, and watch it work. Where a check matches a declaration against a
   record, ask three things of the key, on BOTH sides: what it does when
   it does not change, when it is absent, and when it is present but not
   the shape you assumed. Every answer has to leave the check still asking
   for something. (Building a check, and trusting it)
+- A suppression needs a test of its own, and it is where to look first.
+  Any line that decides NOT to report, a continue, an exemption, a
+  de-duplication guard, can silence far more than it was written for, and
+  a control that calls the matcher does not call the thing reading the
+  matcher's output. Test what decides, not only what parses. (Building a
+  check, and trusting it)
 - Have a second model read anything whose whole purpose is refusing bad
   input, before you believe your own critique of it. It has found the
   most serious defect in every piece of work it has read here, every time

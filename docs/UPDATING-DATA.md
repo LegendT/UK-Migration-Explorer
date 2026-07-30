@@ -194,6 +194,11 @@ for review. While you are there, read the unrecorded-longhand list for your sour
 output: it exists because current-edition figures written longhand go wrong at a release, and a
 release is what you are doing.
 
+**Read the warning list above it for the same reason**, and this prose is where both of today's
+live cases sit. A figure written "10.7 million" equals a record the site already holds, so it is
+a live value restated in words rather than cited, and it moves when that record moves. The card
+in `dashboard.json` and the foreign-born caveat in `meta.json` are both doing it now.
+
 ### 7. Series, if the release moves one
 
 A series is replaced **whole**. ONS states you cannot append the latest estimates to a series from

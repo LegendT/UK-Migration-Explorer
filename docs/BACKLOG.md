@@ -8,7 +8,7 @@ quietly falls out. An item leaves this list when it is done, and it leaves by be
 `scripts/validate-content.mjs` fails the build if a planning document in `docs/` is not
 referenced here, so a scope can no longer be written and forgotten.
 
-Last updated 30 July 2026, after nine pull requests, #54 to #62.
+Last updated 30 July 2026, after thirteen pull requests, #54 to #66.
 
 ---
 
@@ -242,8 +242,9 @@ both **by construction**, and the success message nonetheless printed "No page w
 comma-grouped value longhand". That is the eighth instance of this project's oldest pattern: the
 check verified the declaration, the message claimed the property a reader depends on.
 
-A third branch now reports every comma-grouped literal that no record or series point holds,
-under its own heading, and the success message states the limit. **Reported, not failed**, on the
+A third branch now reports every literal that no record or series point holds, comma-grouped
+since PR #51 and written with a scale word since PR #66, under its own heading, and the success
+message states the limit. **Reported, not failed**, on the
 precedent the sub-100 warnings set: the only way to clear an error here is to declare the
 literal, and a check whose remedy is a blanket exemption teaches authors to stuff the exemption
 list. The current count is what `npm run validate` prints; it is deliberately not restated here,
@@ -330,20 +331,75 @@ before the live March 2026 figure in another. `100,000` is three different figur
 glossary's per-file de-duplication collapses two meanings of `100,000` into one report line, so
 no per-report classification can be right there.
 
-**What the check does not scan at all**, and this is the larger surface: a figure written in
-words. "over 2.2 million visitor visas" for the year ending March 2026 appears on both the
-glossary and `migration.njk`, is current-edition, and has no record. So do "69.28 million" and
-"10.6 million" on the born-abroad claim, and "5.8 million", "8.2 million", "1.3 billion" and
-"1.7 billion" on the costs page. None is comma-grouped, so none is errored, warned or listed.
-Extending the scan to them is **[me]** and is the obvious next piece of this item.
+**What the check did not scan at all, the larger surface: a figure written in words. DONE
+(PR #66, 30 July 2026).** `validate-content.mjs` now reads "2.2 million" and "£1.3 billion" as
+numbers and asks them the same questions it asks a comma-grouped one. Records are compared at
+their unit's scale, because a record of 4.9 with unit `£ billion` **is** 4.9 billion pounds, and
+the series are asked too, because the report claims that neither holds the value and a claim
+about both has to ask both. No page changed: the built site is byte-identical, proved by diff.
 
-**A separate finding from the same run, and it is a correction rather than a decision.**
-Correction 1e replaced "more than 120,000" with the precise 285,000 revision on `migration.njk`
-and left the old wording in `meta.json`'s third key caveat, which renders to a page. It was
-written against a vintage where the 2022 estimate was 728,000, so the movement really was about
-122,000; the current point is 891,000 and the movement is 285,000. The site now
-describes the same revision two ways. Not false, since 285,000 is more than 120,000, but stale and
-inconsistent, and it is the sibling 1e did not grep for.
+**What a second model found in it, because the shape recurs and the sentence above is where a
+reader will look for it.** The three lines written to stop one figure being reported twice
+asked for "£" plus the number whatever the prose said, so a figure with no currency sign,
+"3 billion" of anything, was answered by a fiscal record and silenced completely: not an error,
+not a warning, not even a line in the report. Two self-critiques had read that guard and seen
+only its precision. **A suppression is the most dangerous three lines in any check here**, and
+the two controls that ran on every invocation could not have caught it, because both called the
+matcher and neither called the thing reading its output.
+
+**`UNRECORDED_BASELINE` went UP, 22 to 33, and this is the only step up it should ever take.**
+Eleven report lines became *visible*, ten distinct figures with the visitor-visa one on two
+pages; none arrived. What the ratchet forbids is unchanged and the count may not grow from 33.
+
+**Two live record values are written out in words, in `data/` prose that renders to a page.**
+`dashboard.json`'s foreign-born card and `meta.json`'s key caveat on foreign-born vintages both
+write "10.7 million", which is exactly `population/foreign-born-population-of-the-uk`. It is a **warning and
+not an error, and the difference is the remedy rather than the confidence**: a token renders
+`toLocaleString`, so citing it puts "10,700,000" on the page and the wording changes. The
+comma-grouped branch can error precisely because there the citation renders what the page
+already says.
+
+**The eleven, sorted by the rule already set above, so only the last line is a question.**
+- **Needs a record and a fetched quote**, because it changes at the next Home Office quarterly:
+  "over 2.2 million visitor visas" for the year ending March 2026, on the glossary and
+  `migration.njk`. **[me]**, a later session.
+- **The site already holds the figure and the prose rounds it**: "69.28 million" on the
+  born-abroad claim is `population/total-uk-population`, 69,281,400. Cite it exactly or reword,
+  which is the choice the rounded-restatement category above ends on. **[you]**, with the two
+  "10.7 million" warnings, which are the same question.
+- **Arithmetic against a live value, three more sites of it**: "£5.8 million a day", "£8.2
+  million a day" and "£13 million a day" on the costs page are the cited hotel and system
+  spending divided by 365, in the same sentences as the tokens. PR #55 emptied the
+  **comma-grouped** half of that category, not the category. Same remedy, drop it and give the
+  reader both ends. **[you]**.
+- **Frozen history on the face of the prose**, so declarable if you agree: "£1.3 billion" and
+  "£1.7 billion" (NAO, HC 874, the first seven months of 2024-25), "£4.5 billion" (the original
+  contract estimate) and "£8 million a day" (the circulating claim the page exists to examine).
+  Deliberately **not** declared here: an exemption is permanent, nothing re-checks that it is
+  still deserved, and the branch reports rather than fails so that nobody is ever forced to
+  stuff the exemption list. **[you]**.
+- **Genuinely ambiguous, so brought back as the rule says**: "about 10.6 million" on the
+  born-abroad claim is an ONS ad hoc release on a different population base, published on no
+  cadence, and the page's point is that it does **not** reconcile. A record would give a figure
+  the site tells readers not to use. **[you]**.
+
+**What it still cannot see**, and the success message now says so instead of naming this as
+unscanned: a figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand", and **front
+matter**. That gap has one real instance today, "about 13.1 million" in the born-abroad claim's
+`short_answer`, which renders on the page and is a rounded restatement of the live mid-2024
+estimate. Scanning front matter is not free: `claim:` holds the proposition being corrected and
+may legitimately carry a figure the site is arguing against, so it is a decision rather than a
+widening.
+
+**A separate finding from the same run. FIXED in PR #55, and this paragraph outlived it by two
+days.** Correction 1e replaced "more than 120,000" with the precise 285,000 revision on
+`migration.njk` and left the old wording in `meta.json`'s net-migration methodology caveat,
+which renders to a page, so the site described one revision two ways. The editorial decision
+below settled it by dropping both numbers rather than freezing either, and "120,000" now appears
+nowhere in `data/` or `content/`. **Left here rather than deleted, and the lesson is the
+paragraph and not the defect:** a finding written under one item and fixed under another goes on
+reading as outstanding, which is the same shape as the counts this project keeps finding in two
+places. Fixing something means grepping this file for it too.
 
 ### 5. The eight undrafted claims
 
@@ -491,14 +547,22 @@ Both came out of PR #41 on 28 July 2026.
     exactly what this site already published for that period from the Commons Library briefing.
     That briefing returns 403 to a fetch, so this incidentally gives that figure a primary source
     it did not have.
-- **Whether `/sources-and-method/` should publish a third limit.** The bullet saying series
-  values are not individually cited has gone, because they now are. Nothing replaced it, and
-  there are now three candidates. A figure declared under `historical_literals` is exempted on
-  trust and nothing re-checks that the exemption is still deserved. A correction inside an
-  edition is caught only where the publisher's note names its table by identifier, and most
-  name theirs by title. And no real screen reader has been run, which is the one gap below
-  that a reader might reasonably expect an accessibility-minded site to say out loud. Adding a
-  limit to a live page is an editorial call, and so is which of the three earns the space.
+- **Whether `/sources-and-method/` should publish a FOURTH limit.** This bullet said "a third"
+  until 30 July, and one of the three candidates it listed, the screen reader, had already been
+  published by PR #61 in the bullet above it. Three limits are live. Three candidates are left,
+  and the last is new:
+  - A figure declared under `historical_literals` is exempted on trust and nothing re-checks
+    that the exemption is still deserved.
+  - A correction inside an edition is caught only where the publisher's note names its table by
+    identifier, and most name theirs by title.
+  - **A figure the data layer never recorded is reported and never refused**, so the site can
+    carry a number that nothing can tell you has aged. This is the one a reader is most
+    affected by, because it is about the numbers rather than about the checking, and the scan
+    that reads figures written in words made it larger rather than smaller. What the count is
+    on any given day is what `npm run validate` prints.
+
+  Adding a limit to a live page is an editorial call, and so is which of the three earns the
+  space.
 
 ---
 
@@ -536,15 +600,15 @@ oversight.
 
 ## Known gaps, carried deliberately
 
-Genuinely not tasks. **One of the two is published on the site; the other is not**, and that
-sentence used to say all of them were. `/sources-and-method/` publishes two limits under *What
-the checks do not establish*, the prose one below and the sub-100 review, and neither of the
-others has ever appeared there. Whether the screen reader gap should is under the editorial
-decisions above.
+Genuinely not tasks. **Both are now published on the site**, which they were not when this
+section was written and were not on 30 July either: it said one of the two was, and PR #61 had
+already published the other in the same hours. `/sources-and-method/` carries three limits under
+*What the checks do not establish*, the two below plus the sub-100 review. The one still unpublished
+is the unrecorded-figure report, and that is the editorial decision above rather than a gap here.
 
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and is what was read, but it is not VoiceOver or NVDA reading a page
-  aloud. **Not published on the site.**
+  aloud. **Published, PR #61.**
 - **Prose about figures is unprotected.** Nothing verifies a chart summary describes the data
   beside it. The series citations shrank this and could not remove it, because a citation
   protects a value and not a claim about a value: `at(2018)` under a sentence naming 2019

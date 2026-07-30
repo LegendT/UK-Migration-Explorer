@@ -178,17 +178,19 @@ Seven checks, all in CI, all negative-tested.
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, and outstanding work tracked in `docs/BACKLOG.md` |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, under a ratchet whose count may not grow |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. Gates the build |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two questions. Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. And whether a table the site declares in `table_reference` was corrected *inside* the edition it cites, matched against the Home Office change history and reported only where the figure has not been re-read since. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
 | `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
 
-**Read this before trusting a green run.** Seven times in this project a checker passed while
+**Read this before trusting a green run.** Eight times in this project a checker passed while
 a real defect shipped. Every one had the same shape: the check verified a property of the
 *source or the declaration* rather than the property a reader depends on, and the success
-message claimed the latter. The messages now state only what they verify.
+message claimed the latter. The messages now state only what they verify. The count is
+maintained in `docs/HANDOFF.md`, which is where the incidents are; it is here because a reader
+of this file should not have to go and look before deciding how much a green run is worth.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
@@ -202,11 +204,19 @@ Known limits, published on the sources page under *What the checks do not establ
   series point fixes the value and not the sentence: `at(2018)` under a sentence naming 2019
   builds cleanly.
 - **Sub-100 figures are matched with their unit only** (`21%`, `£3`) and reported as
-  warnings rather than failures, because many metrics share a value. Ten surface
-  currently, each a coincidental match against an unrelated metric. Review them; do not
+  warnings rather than failures, because many metrics share a value. How many surface is
+  what the run prints, and it is deliberately not repeated here: a count kept in two files is
+  how this project once had six in one and twelve in the other. Review them; do not
   suppress them, and re-derive them per item rather than trusting a stored note that they
   were all checked: three that a note called coincidences were live values restated
   longhand.
+- **No real screen reader has been run over the pages.** The accessibility checks are an
+  automated WCAG 2.2 AA audit on every page plus a reading of the accessibility tree that
+  assistive technology consumes, which is not the same as someone listening to a page.
+
+One further limit is **not** published there, and whether it should be is an open editorial
+question in the backlog: a figure the data layer never recorded is reported and never refused,
+so the site can carry a number that nothing can tell you has aged.
 
 ## Content
 
@@ -231,11 +241,24 @@ the validator confirms it, because the first draft rendered "4.9 billion" where 
 
 Writing a number longhand opts out of this protection, so a literal matching a current metric
 value fails the build unless declared under `historical_literals`, which is **semicolon
-separated**, because every value this fires on is comma grouped. This applies to the prose
+separated**, because the values this fires on are comma grouped. This applies to the prose
 in `data/` that reaches a page as well as to content files: the card paragraphs in
 `dashboard.json`, and the caveats, confidence definitions and footer note in `meta.json`.
 Data files have no front matter, so they declare frozen figures in a sibling
 `historical_literals` key.
+
+**A figure written with a scale word, "2.2 million" or "£1.3 billion", is read as a number
+too**, and compared at the record's own scale, because a record of `4.9` with unit `£ billion`
+is 4.9 billion pounds. It **warns** rather than fails where it equals a record value, and the
+difference is the remedy rather than the confidence: a token renders `10,700,000`, so it cannot
+reproduce "10.7 million" and citing it changes the wording. Where nothing holds the value it
+joins the report below. Still unread: `2 200 000`, `two million`, `£1.3bn`, `2.2 thousand` and
+front matter, and the run says so on every invocation.
+
+**A figure the data layer never recorded is reported, never refused**, under a ratchet whose
+count may not grow. Erroring would force a page of exemptions on day one, and a check whose only
+remedy is a blanket exemption teaches authors to stuff the exemption list. The current count is
+what `npm run validate` prints.
 
 **A series point is cited the same way, with a filter rather than a token.** A chart summary
 is a Nunjucks string built with `~` concatenation, so a shortcode cannot be used inside one:
