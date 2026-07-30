@@ -84,7 +84,10 @@ rule is one figure, one home.
 
 **Citation syntax differs by file type.** Markdown uses `{{theme/metric-id}}`. Nunjucks uses
 `{% figure "theme/metric-id" %}`, because `{{ }}` is Nunjucks' own expression syntax and would
-be evaluated as arithmetic, silently producing `NaN`. That shipped once.
+be evaluated as arithmetic, silently producing `NaN`. That shipped once. **Whitespace inside the
+braces is accepted and trimmed**, by the renderer and by `validate-content.mjs` alike, which
+matters to anything else that matches a citation by pattern: a scan stricter than the renderer
+silently disagrees with it about what the site publishes, and one was.
 
 **Prose inside `data/` cites the same way.** A token in a data-file string resolves, because
 `resolve-citations` runs on the built HTML after Nunjucks and after the partials expand. The
@@ -246,12 +249,6 @@ is already here to adding a neighbour beside it.
   something that was not there. Strip comments at every end that compares, or the agreement
   between them means nothing.
 
-- **A check that compares two sets has to compare them both ways.** The same scan was verified
-  against the built output in one direction only, which can find an overcount and never an
-  undercount, and the undercount was the reachable one: the scan's pattern was stricter than the
-  renderer's, so a citation written `{{ theme/id }}` with spaces would reach a reader and be
-  counted for nobody. Match what the RENDERER accepts, not what the source happens to say today.
-
 - **A suppression is the most dangerous code in a check, and it needs a test of its own.** The
   scale-word scan's duplicate guard was three lines, written so one figure could not be reported
   twice, and it silenced every figure written with no currency sign: not an error, not a
@@ -293,10 +290,15 @@ is already here to adding a neighbour beside it.
   total agreed only because a missed renderer and a counted non-renderer cancelled. Agreement on
   a total is not agreement on its parts.
 
-- **Find things the way that can show you are wrong.** Four figures held twice were found by
-  matching equal values, which by construction can only find pairs that already agree. Whether
-  anything had already drifted needed a different query, and "they all agree" was not evidence
-  until that query was run.
+- **Find things the way that can show you are wrong, and compare two sets in BOTH directions.**
+  Four figures held twice were found by matching equal values, which by construction can only
+  find pairs that already agree; whether anything had already drifted needed a different query,
+  and "they all agree" was not evidence until that query was run. The same shape in a check: the
+  published-figure scan was verified against the built output one way only, which can find an
+  overcount and never an undercount, and the undercount was the reachable one, because the
+  scan's pattern was stricter than the renderer's. A citation written `{{ theme/id }}` with
+  spaces would have reached a reader and been counted for nobody. Match what the RENDERER
+  accepts, not what the source happens to say today.
 
 - **Never truncate the thing you are checking for absence.** A finding that three claim cards
   were missing `period` and `source` was wrong: the check piped each front matter through
@@ -323,17 +325,22 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model has found the most serious defect in every piece of work it has read here, six times, and every time it was in the part the author was surest of.** The sixth changed the argument slightly and is recorded rather than rounded up: the author had found that defect independently an hour earlier, the first time that has happened, and the reading still returned four more beside it, two of them serious. The count is of pieces read, not of defects only a second model could have reached. On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
+- **A second model has found the most serious defect in every piece of work it has read here, six times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
 
-- **A second model reading the same code found what a self-critique had not. Twice, before that.** Two
-  rounds of critique on the series evidence check found real defects and missed the one above,
-  which a fresh reviewer reproduced in a scratch clone within one pass. On the corrections
-  watch, a self-critique found six things and missed that the series clearing key,
-  `lastUpdated`, was the one date in the data layer reaching a comparison without passing
-  `isRealDate`, so a prose date would have sorted above every ISO one and cleared every
-  correction to that series for ever. Worth doing on anything whose whole purpose is refusing
-  bad input, because self-critique is weakest exactly where the author's model of the design is
-  the thing at fault: both misses were in the part the author was surest of.
+  **The sixth reading is recorded rather than rounded up, because it changed the argument
+  slightly.** The author had found its worst finding independently an hour earlier, the first
+  time that has happened, and it still returned four more beside it, two of them serious. So the
+  count is of pieces read, not of defects only a second model could have reached. It has never
+  read one and found nothing.
+
+  **Why self-critique does not substitute for it.** Two rounds of critique on the series
+  evidence check found real defects and missed the one a fresh reviewer reproduced in a scratch
+  clone within one pass. On the corrections watch, a self-critique found six things and missed
+  that the series clearing key, `lastUpdated`, was the one date in the data layer reaching a
+  comparison without passing `isRealDate`, so a prose date would have sorted above every ISO one
+  and cleared every correction to that series for ever. Self-critique is weakest exactly where
+  the author's model of the design is the thing at fault, which is where every one of these has
+  been.
 
 ### Looking at the built page
 
@@ -616,7 +623,9 @@ what you are doing; the prompt states rules, the handoff is why.
   declaring series_ref instead. (How the project works)
 - Negative-test every new check, in BOTH directions, and confirm the
   break applied by grepping for the broken text and printing the count
-  before believing the result. Negative-test the MECHANISM and the REMEDY
+  before believing the result. Then confirm the CONDITION fired, not only
+  that the edit landed: a probe that leaves a second path to the same
+  answer tests the second path. Negative-test the MECHANISM and the REMEDY
   too, not only the check: do what the failure message tells an author to
   do, and watch it work. Where a check matches a declaration against a
   record, ask three things of the key, on BOTH sides: what it does when
@@ -629,6 +638,13 @@ what you are doing; the prompt states rules, the handoff is why.
   a control that calls the matcher does not call the thing reading the
   matcher's output. Test what decides, not only what parses. (Building a
   check, and trusting it)
+- If you match something the site renders, match what the RENDERER
+  accepts, and strip comments first. A pattern stricter than the renderer
+  disagrees with it in silence, and a citation inside a comment is
+  rendered into that comment, so two scans blind to different text can
+  confirm each other about a figure no reader sees. Compare two sets both
+  ways: one direction finds only one kind of error. (Building a check, and
+  trusting it)
 - Have a second model read anything whose whole purpose is refusing bad
   input, before you believe your own critique of it. It has found the
   most serious defect in every piece of work it has read here, every time
