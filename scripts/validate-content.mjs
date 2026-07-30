@@ -112,7 +112,9 @@ const unrecorded = [];
 // What it does NOT establish, and the failure message says so: that the listed figures are
 // right, or that the set is unchanged. Fixing one figure and adding another keeps the count
 // level and passes. It stops the list growing, which is the thing that was happening silently.
-const UNRECORDED_BASELINE = 38;
+// 38 when the branch was added; 29 once the nine published-vintage figures were declared, which
+// is the ratchet working as intended rather than a number being edited to suit a run.
+const UNRECORDED_BASELINE = 29;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
