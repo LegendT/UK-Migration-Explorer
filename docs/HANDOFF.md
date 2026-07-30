@@ -501,8 +501,8 @@ against a cited source, which YOU do. [you] means an editorial or
 sourcing call, which is MINE. Check it against the backlog the first time
 you use it: correction 1a marks the owner's decision [you]. Getting this
 backwards hands the editorial calls to you, which is the worst outcome
-available here. Do the [me] parts; for a
-[you] part, propose and ask. On a list that mixes both, do all the [me]
+available here. Do the [me] parts; for a [you] part, propose and ask. On
+a list that mixes both, do all the [me]
 work first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question even is.
 
@@ -573,9 +573,10 @@ changes; the rest bite on everything.
   own expression syntax and would be evaluated as arithmetic, silently
   shipping NaN. A series point can only be cited inside a chart summary,
   with the at() filter, so a Markdown page that needs one needs a metric
-  declaring series_ref instead. check-releases and check-sources
-  are network checks that gate nothing, so run them by hand: a record
-  citing a superseded edition passes every other check green.
+  declaring series_ref instead.
+- check-releases and check-sources are network checks that gate nothing,
+  so run them by hand before opening a pull request: a record citing a
+  superseded edition passes every other check green.
 - Negative-test every new check, in BOTH directions. Confirm the break
   applied by grepping for the broken text and printing the count, before
   believing the result: four "failures" here were tests that never fired,
