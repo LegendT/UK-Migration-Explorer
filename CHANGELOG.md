@@ -9,6 +9,21 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The update prompt, and a tracking rule that did not look down, 30 July 2026
+
+**No published figure changed.** `docs/prompts/update-from-release.md` is phase 3 of the update
+automation scope: a versioned prompt that drives a by-hand update, names the refusals, and sends
+the assistant to the runbook for the procedure rather than carrying a copy of it. It refuses
+series work outright, which costs the ONS release and is the accepted price of not omitting it
+silently. Not yet exercised against a real release, and it says so.
+
+Building it exposed a defect in an older check. `validate-content.mjs` required every planning
+document in `docs/` to be referenced from the backlog, and did not descend into directories, so
+`docs/prompts/` was the first subdirectory and its contents were invisible to the rule whose whole
+purpose is that a scope cannot be written and forgotten. The scan is now recursive and matches on
+the path relative to `docs/`, so a nested document cannot be satisfied by a reference to a
+same-named one above it, nor inherit a top-level exemption.
+
 ### The by-hand update runbook, 30 July 2026
 
 **No published figure changed.** `docs/UPDATING-DATA.md` is the procedure for moving the site

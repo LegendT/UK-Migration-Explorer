@@ -429,8 +429,30 @@ this check would rot.
 
 ## Phase 3: the update prompt
 
-Only after Phase 2 exists and has been exercised. **Both are now true**: the evidence check
-was built on 28 July 2026 and exercised the same day on a real figure, PR #45.
+**Built 30 July 2026, PR #55**, as `docs/prompts/update-from-release.md`. What follows is the
+design it was built to, and the seven things settled first.
+
+Only after Phase 2 exists and has been exercised. **Both were true before it was written**: the
+evidence check was built on 28 July 2026 and exercised the same day on a real figure, PR #45. So
+was the third condition added later: the by-hand runbook it delegates from, `docs/UPDATING-DATA.md`,
+was written first, on the rule that you should be able to do a job before you delegate it.
+
+**It is deliberately thin, and that is the design rather than an omission.** It names the source,
+the release and the refusals, and sends the assistant to the runbook for the procedure. Everything
+this scope once said about steps and fields now lives there.
+
+### What building it found
+
+- **The first subdirectory under `docs/` escaped the rule that tracks planning documents.**
+  `validate-content.mjs` required every `docs/*.md` to be referenced from the backlog, and did not
+  descend, so `docs/prompts/update-from-release.md` was invisible to it on the day it was created.
+  The document whose whole purpose is that a scope cannot be written and forgotten was itself
+  unforgettable only by luck. Now recursive, matching on the path relative to `docs/` so two
+  documents sharing a basename in different directories cannot satisfy the rule through each
+  other, and so a nested file cannot inherit a top-level exemption. Negative-tested three ways.
+- **Nothing about the prompt is a check, and the prompt says so first.** What makes it safe is
+  that three existing checks refuse its worst outputs. That claim is load-bearing enough to be
+  stated at the top of the file rather than buried.
 
 ### Seven things to settle before writing it, found on 28 July
 
@@ -540,8 +562,8 @@ the update commitment does.
 | 1, notifier | **Built, 28 July 2026, PR #46.** Closes "nothing detects a release happened". | Nothing |
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
 | 1b, corrections watch | **Built, 30 July 2026, PR #48.** Closes the one channel through which a wrong number can sit here indefinitely. | Nothing. `table_reference` was built with it |
-| 3, prompt | No. Unsafe without 2, and seven things to settle first. | 1 and 2 |
-| 4, disclosure | Not applicable | 3, and owner sign-off |
+| 3, prompt | **Built, 30 July 2026, PR #55.** No, and it was not built alone: unsafe without 2, and the runbook had to exist first. | 1, 2, and `docs/UPDATING-DATA.md` |
+| 4, disclosure | Not applicable. **The only phase left.** | 3, and owner sign-off |
 
 **None of it should delay launch.** Launch waits on two decisions, and this changes neither.
 The first real run of Phase 3 should be against a release that was going to be checked by

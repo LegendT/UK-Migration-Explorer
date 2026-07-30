@@ -240,9 +240,25 @@ if (claims.length) {
 // BACKLOG.md are the two documents doing the tracking, so all three are exempt.
 const PLANNING_EXEMPT = new Set(['foundation.md', 'HANDOFF.md', 'BACKLOG.md']);
 const docsDir = fileURLToPath(new URL('../docs/', import.meta.url));
+
+// Recursive, and it was not until 30 July 2026. `readdirSync` on its own does not descend, so a
+// document one directory down escaped the rule whose entire purpose is that a planning document
+// cannot be written and forgotten. It went unnoticed while `docs/` was flat, and was found the
+// moment the first subdirectory was added, by the session adding it: `docs/prompts/` would have
+// been invisible here on the day it was created.
+//
+// Matched on the path relative to docs/, not the basename, so two documents with the same name
+// in different directories cannot satisfy this through each other. A top-level file's relative
+// path IS its basename, so the exemptions and the existing references are unaffected.
+const planningDocs = (dir, prefix = '') =>
+  readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
+    entry.isDirectory()
+      ? planningDocs(`${dir}${entry.name}/`, `${prefix}${entry.name}/`)
+      : entry.name.endsWith('.md') ? [`${prefix}${entry.name}`] : []);
+
 try {
   const backlog = readFileSync(`${docsDir}BACKLOG.md`, 'utf8');
-  for (const file of readdirSync(docsDir).filter((f) => f.endsWith('.md'))) {
+  for (const file of planningDocs(docsDir)) {
     if (PLANNING_EXEMPT.has(file)) continue;
     if (!backlog.includes(file)) {
       errors.push(`docs/BACKLOG.md: does not reference docs/${file}, so the work it describes can be lost in the next handoff rewrite. Add it, or move it under Completed.`);
