@@ -65,11 +65,12 @@ jobs:
         run: node scripts/check-sources.mjs
         continue-on-error: true
 
-      - name: Newer releases than the site cites
+      - name: Newer releases, and corrections inside the edition the site cites
         id: releases
         # Reports, never gates: a newer edition does not make a published figure wrong, it
-        # makes it worth re-checking. It exits 1 so the step below can see that, which is
-        # exactly what continue-on-error preserves.
+        # makes it worth re-checking, and nor does a corrected table, which may not even
+        # touch the row this site publishes. It exits 1 so the step below can see that,
+        # which is exactly what continue-on-error preserves.
         #
         # shell: bash for the pipefail it sets. Without it the exit code would be tee's, and
         # this step would pass every week while saying otherwise on screen.
@@ -77,7 +78,7 @@ jobs:
         shell: bash
         run: node scripts/check-releases.mjs | tee release-check.txt
 
-      - name: Open an issue when a release is newer
+      - name: Open an issue when a release is newer or a table was corrected
         # Only from main and the weekly cron. A pull request must not open issues about the
         # state of the world: it did not cause it, and every open PR would race for the same
         # one. The condition it reports persists until a person acts on it, so the title is
