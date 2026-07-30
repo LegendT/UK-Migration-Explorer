@@ -12,12 +12,12 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. 16 pages from a governed data layer of **71 metric records** and
+Built and not yet launched. 16 pages from a governed data layer of **74 metric records** and
 four timeseries carrying 100 dated points, on Eleventy 3, with charts rendered as inline SVG
 at build time and no client-side JavaScript anywhere. `validate-data.mjs` counts both and
-reports 171. A subset of those records reaches a reader. The site is deployed behind a
-`robots.txt` that disallows all crawlers, and every page carries a notice saying it is
-unfinished.
+reports 174. **45 of the 74 reach a reader**; the other 29 are unpublished reserve. The site is
+deployed behind a `robots.txt` that disallows all crawlers, and every page carries a notice
+saying it is unfinished.
 
 **The pre-publication review has been conducted, and its corrections have landed.** It ran
 on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its
@@ -25,11 +25,12 @@ outcome was a corrections list rather than an approval: four claim pages carried
 publish as written" or "substantial revision required". Those became corrections 1a to 1i,
 all of which were completed by 28 July 2026.
 
-**The corrections landing is not the review passing.** Someone still has to decide the pages
-now pass, and then settle `last_reviewed`, drop the pre-launch banner from
-`content/_includes/base.njk`, and record the review as passed in `CHANGELOG.md`. Those three
-steps and the outstanding work behind them are tracked in `docs/BACKLOG.md`, which is the
-durable list; this file does not restate it.
+**The corrections landing is not the review passing.** Of the three closing steps, two are
+settled: `last_reviewed` now carries 27 July on the ten pages the review actually read, and the
+pre-launch banner has been corrected rather than removed, because removing it would itself have
+asserted the step that is not decided. What remains is recording the review as passed in
+`CHANGELOG.md`, and that is the owner's. The banner goes at launch. Outstanding work is tracked
+in `docs/BACKLOG.md`, which is the durable list; this file does not restate it.
 
 The update commitment was signed on 23 July 2026: **one month** from each of the three
 cadenced releases, named on the sources page. Sources that publish irregularly carry no
@@ -63,6 +64,7 @@ lib/tables.mjs          What a publisher's table identifier looks like, for the 
 data/                   Governed data layer, one file per theme, plus four timeseries
 data/evidence/          One file per release: the quote behind every figure that moved
 scripts/                Six scripts, seven checks, all in CI, all negative-tested
+docs/prompts/           Versioned prompts. update-from-release.md drives an assisted update
 docs/foundation.md      Positioning, editorial principles, IA, data governance, risk register
 docs/BACKLOG.md         The durable list of outstanding work; every other doc points here
 docs/HANDOFF.md         How the project works, and what earlier sessions cost
