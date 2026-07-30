@@ -617,8 +617,10 @@ function checkLiterals(file, prose, allowed) {
     // A figure the data layer never recorded reaches neither branch above, and until now that
     // was silence. Both scans match prose against values the site HOLDS, so a number it never
     // held is invisible to both by construction, and the success message below said no page
-    // wrote one. 37 of the 38 comma-grouped numbers in content/ were in that state on the day
-    // this was added, including current-edition figures that go wrong at the next release.
+    // wrote one. When this was added, every comma-grouped number on the site was in that state
+    // except the one declared literal, and they included current-edition figures that go wrong
+    // at the next release. How many there are now is what the run prints; a count repeated in a
+    // comment is the drift this project has already paid for twice.
     //
     // Comma-grouped only. The bare-integer half of `candidates` is years, list positions and
     // ordinary prose, where the collision rate the comment above calls low for the grouped
@@ -722,7 +724,7 @@ if (unrecorded.length) {
   console.log('Some are frozen history and belong longhand; some are current-edition figures that go wrong at the next release. The list cannot tell them apart, which is why it is reviewed rather than cleared.');
 }
 console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes longhand a value that a record or one of the ${points.size} series points holds.`);
-console.log(`Not covered: a longhand figure the data layer never recorded, which both scans above are blind to by construction, because both match prose against values the site holds. ${unrecorded.length} are listed above rather than counted as clean.`);
+console.log(`Not covered: a longhand figure the data layer never recorded, which both scans above are blind to by construction, because both match prose against values the site holds. ${unrecorded.length ? `${unrecorded.length} are listed above rather than counted as clean.` : 'None on this run, which means every longhand figure is either declared or matches something the site holds, not that the prose around them is right.'}`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
