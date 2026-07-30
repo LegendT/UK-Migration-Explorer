@@ -279,7 +279,7 @@ sentences**, and three of the four groups moved:
   `people-in-receipt-of-asylum-support`, which is 97,519. The sentence's whole point is that the
   two are of similar magnitude, so precision would work against it, and `historical_literals`
   would silence them as frozen when they are live. The glossary carries the same rounding: **[you]**.
-- **Arithmetic against a live value, where neither remedy in the message works. DONE (PR #56,
+- **Arithmetic against a live value, where neither remedy in the message works. DONE (PR #55,
   30 July 2026), and it emptied this category.** The `100,000` on `net-migration-is-arrivals` and
   in the glossary was `431,000` minus the live `migration/net-migration-2`. A record for it would
   have been a fake metric and freezing it guaranteed it would go wrong at the next revision, so
@@ -344,7 +344,7 @@ Neither blocks anything. They are here because a decision recorded only in a mer
 request body is a decision that gets lost, and this file is the one place that cannot happen.
 Both came out of PR #41 on 28 July 2026.
 
-- **The revision sentence in `migration.njk`. DONE (PR #56, 30 July 2026).** Decided by
+- **The revision sentence in `migration.njk`. DONE (PR #55, 30 July 2026).** Decided by
   dropping both numbers rather than freezing them. Freezing was the worse option and the
   reason is worth keeping: `historical_literals` is page-scoped, so declaring the estimate to
   protect the sum would have un-protected the citation in the summary above it, trading one
