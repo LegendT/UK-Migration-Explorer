@@ -195,13 +195,54 @@ alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
     cannot do an ONS update at all: the four metrics that declare a `series_ref` are all
     `ons-ltim`, and moving them without the series fails `validate-data.mjs`. Refusing is
     defensible; silently omitting is not.
-  - **Does item 5 come first?** That item says of `docs/UPDATING-DATA.md`, "write this before
+  - **Does item 6 come first?** That item says of `docs/UPDATING-DATA.md`, "write this before
     automating any of it: you should be able to do the job by hand before delegating it."
-    Phase 3 is that job delegated, so its own rule puts item 5 ahead of it, and the list order
+    Phase 3 is that job delegated, so its own rule puts item 6 ahead of it, and the list order
     does not. Surfaced 30 July 2026; nothing has been reordered on it.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
-### 4. The eight undrafted claims
+### 4. The figures the data layer never recorded
+
+**Found 30 July 2026, and the reporting half is built.** Both literal scans in
+`validate-content.mjs` match prose against the values the site *holds*, a record value or one of
+the series points. A figure the site never recorded matches neither map, so it was invisible to
+both **by construction**, and the success message nonetheless printed "No page writes a
+comma-grouped value longhand". That is the eighth instance of this project's oldest pattern: the
+check verified the declaration, the message claimed the property a reader depends on.
+
+A third branch now reports every comma-grouped literal that no record or series point holds,
+under its own heading, and the success message states the limit. **Reported, not failed**, on the
+precedent the sub-100 warnings set: the only way to clear an error here is to declare the
+literal, and a check whose remedy is a blanket exemption teaches authors to stuff the exemption
+list. The current count is what `npm run validate` prints; it is deliberately not restated here,
+because a count kept in two files is what put six in one and twelve in the other for a day.
+
+The list holds three different things and the check cannot tell them apart, which is why a person
+reads it:
+
+- **Frozen history, correct as longhand.** The superseded net migration vintages, the June 2023
+  within-year peak, the 2022 small boats peak. These want a `historical_literals` declaration so
+  the choice is visible. Mechanical once someone confirms each is history: **[me]**.
+- **Rounded restatements of live values, which no mechanism covers.** On
+  `everyone-in-asylum-accommodation-arrived-recently`, "around 100,000" sits against the series
+  point `asylumApplications@2025`, which is 100,625, and "around 97,500" against
+  `people-in-receipt-of-asylum-support`, which is 97,519. The sentence's whole point is that the
+  two are of similar magnitude, so precision would work against it, and `historical_literals`
+  would silence them as frozen when they are live. The glossary carries the same rounding. There
+  is no right answer in the contract today: **[you]**.
+- **Current-edition figures with no record behind them.** `627,000` in two places, `944,000`,
+  `1,469,000`, the study and work main-applicant and dependant splits, and the citizenship card's
+  three. Each goes wrong at the next release with nothing watching. Minting a record needs a
+  fetched quote per figure and is **[me]**; which of them deserve a record rather than a
+  rewording is **[you]**.
+
+**A separate finding from the same run, and it is a correction rather than a decision.**
+Correction 1e replaced "more than 120,000" with the precise 285,000 revision on `migration.njk`
+and left the old wording in `meta.json`'s third key caveat, which renders to a page. The site now
+describes the same revision two ways. Not false, since 285,000 is more than 120,000, but stale and
+inconsistent, and it is the sibling 1e did not grep for.
+
+### 5. The eight undrafted claims
 
 Foundation section 8.5.3 specifies fifteen; seven are written. One of the eight,
 "Local areas all carry the same pressure", **cannot be written**: it needs per-capita local
@@ -211,7 +252,7 @@ Two need a direction decision from the owner before drafting, because there is n
 label: "The asylum backlog is one number" and "Falling net migration means the asylum system
 is shrinking".
 
-### 5. `docs/UPDATING-DATA.md`
+### 6. `docs/UPDATING-DATA.md`
 
 The manual runbook for the update commitment, modelled on DEBT's. Write this **before**
 automating any of it: you should be able to do the job by hand before delegating it. Smaller
@@ -248,8 +289,12 @@ Both came out of PR #41 on 28 July 2026.
     one in the style guide. They are wrapped and named from the heading above them. A caption is
     new prose and is the owner's to write. The handoff said "two Markdown tables and the
     three-queues table"; the three-queues table has had a caption since the page was written.
-  - **In `most-immigration-is-asylum`**, two list items open with a bold term and the third with
-    a bold link, so the third reads as more important. Fixing it means rewriting the sentence.
+    **Two things found on 30 July that bear on the decision**, after this was briefly written off
+    as a non-task. There is no accessibility deficit: each of the four sits directly under a
+    descriptive heading and `scrollable-regions` names the region from it. But every table the
+    site hand-writes in Nunjucks carries a visible caption, four of them, so the Markdown four are
+    inconsistent with the site's own practice, and an `aria-label` is invisible to a sighted
+    reader. Consistency is the argument, not compliance.
   - **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
     belongs to the year-ending-March record rather than the calendar-2025 card. It is still in
     the record's notes and could be placed on the asylum page.
@@ -305,6 +350,12 @@ decisions above.
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The bold link in `most-immigration-is-asylum`**, 30 July 2026. Moved off the term and onto
+  descriptive text inside the same sentence, so all three list items now open with a bold term.
+  It was on the editorial list because fixing it was thought to need the sentence rewritten. It
+  did not: every word is unchanged and the glossary link survives. Linking all three terms
+  instead was checked and is not available, because the first item's term has no glossary anchor.
 
 - **`eu-settlement-scheme-settled-status-grants` brought onto the current release**, 28 July
   2026. PR #45. Found and fixed the same day, while re-verifying the phase 1 endpoints: it
