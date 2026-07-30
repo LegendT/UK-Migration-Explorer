@@ -8,7 +8,7 @@ quietly falls out. An item leaves this list when it is done, and it leaves by be
 `scripts/validate-content.mjs` fails the build if a planning document in `docs/` is not
 referenced here, so a scope can no longer be written and forgotten.
 
-Last updated 30 July 2026, after eight pull requests, #54 to #61.
+Last updated 30 July 2026, after nine pull requests, #54 to #62.
 
 ---
 
@@ -192,7 +192,7 @@ reader-facing trust statement and needs the owner's sign-off, so it is the only 
 - **Phase 1b, the corrections watch. DONE (PR #48, 30 July 2026).** The owner ordered it ahead
   of phase 3 on 30 July. It closes the one channel through which a wrong number can sit on the
   site indefinitely: a correction *inside* an edition leaves the slug alone, so the edition
-  check cannot see it and a cadence cannot infer it. 14 records and 2 series files now declare
+  check cannot see it and a cadence cannot infer it. Records and series files now declare
   the publisher table they were read from, `validate-data.mjs` refuses a figure that names a
   table in its own prose and declares nothing, and `check-releases.mjs` matches the data-tables
   change history against those declarations. It raises a hit only where the figure's own
@@ -223,7 +223,8 @@ reader-facing trust statement and needs the owner's sign-off, so it is the only 
     restating its steps.** That constraint came from a second model: a procedure printed in two
     places is the duplication this project has been burned by twice, and the copy a session
     happens to read wins. **It costs two of the three cadenced releases, not one**, which the
-    first version of this entry got wrong: the four `series_ref` metrics are all `ons-ltim`, but
+    first version of this entry got wrong: the `series_ref` metrics that existed then were all `ons-ltim`, though a fifth has since been
+    added on a Home Office series, but
     two of the four series files are `ho-immigration-stats` and move on every Home Office
     quarterly. Only the tribunals release runs to completion. That is the accepted price of not
     omitting series work silently, and if it is judged too high the answer is to grow the series
@@ -306,7 +307,7 @@ sentences**, and three of the four groups moved:
   **Verified against the primary table, not the bulletin.** The `.ods` was fetched and unzipped
   and `Asy_00a` read directly: row "People claiming asylum", column 2025, is 100,625, and the
   support row is 97,519 for the year ending March 2026. Evidence written before the record, and
-  `check-evidence.mjs` gated on it as a new metric. Baseline 26 to 24.
+  `check-evidence.mjs` gated on it as a new metric. Baseline 27 to 24.
 
   **What is left of this category is the pattern rather than a task.** A deliberately rounded
   live figure still has no home in the contract. It was avoidable here only because a record
@@ -378,6 +379,36 @@ dropping claim 2.7 that correction 1g found closed.
 
 ---
 
+### 6. The sources page's counts have no check behind them
+
+**Found 30 July 2026, by a second model, hours after those counts were "corrected".** The fix in
+PR #61 got the total right and two of the rows wrong, and the total agreed only because the two
+errors cancelled: `asylum/returns-refused-entry-at-port` renders through a `data/` caveat and was
+missed, and `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp` renders nowhere at all
+and was counted. Home Office was published as 17 and is 18; "the other sixteen" is fifteen.
+
+**Three queries gave three answers on the same day**, 74, 45 and 39, because "reaches a reader"
+was never pinned to a mechanism. It is now: a token in the built HTML, a chart bar's `ref`, a
+`| metric` summary, a dashboard card, or a caveat in `data/`. A `figures:` front-matter entry is
+**not** a route, because nothing renders that list.
+
+**The work is to make it derived rather than declared.** Five hand-maintained numbers still sit
+on `/sources-and-method/` with nothing reading them, which is the exact shape of the defect this
+item exists to record, and re-checking them by hand is what already failed once. Either compute
+them at build time, or have `check-build.mjs` recompute and compare against what the page
+prints. **[me]**, and the smaller of the two is worth preferring.
+
+### 7. The robots.txt prose says the review has not happened
+
+**Found 30 July 2026.** PR #54 corrected exactly this sentence in the pre-launch banner, calling
+it "false on every page since 27 July", and the identical claim survived in `content/robots.txt`,
+which is served publicly. It is the sibling that "a defect named on one page usually has
+siblings" exists to catch, and neither the handoff nor the prompt knew that file carries prose at
+all. **Corrected in PR #63 rather than left**, but the lesson belongs here: grep the claim, not
+the page.
+
+---
+
 ## Small editorial decisions waiting on the owner
 
 Neither blocks anything. They are here because a decision recorded only in a merged pull
@@ -417,7 +448,9 @@ Both came out of PR #41 on 28 July 2026.
 
   **One claim on that page is left alone deliberately.** "The most recent full cycle took
   twenty-seven days" is a statement about a past cycle that no session can verify, so it is
-  neither corrected nor endorsed here. It is the last hand-maintained number on the page.
+  neither corrected nor endorsed here. It is not the last hand-maintained number on the page:
+  the release table and the "other fifteen" are hand-maintained too, and one of them was wrong
+  for as long as this entry claimed the page counted itself correctly.
 
   **The third limit landed with it (PR #61), which is why the two were bundled.** The section
   opened "Two limits" and framed them as "about where a number comes from", and both had to

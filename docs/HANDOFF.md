@@ -64,9 +64,12 @@ that `main` starts at a parentless commit is checkable in one command and does n
 
 16 pages build from a governed data layer of **74 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
-174. **45 of the 74 reach a reader**, and the other 29 are unpublished reserve. That split is
-not decoration: it is the definition the sources page's own figure counts now rest on, settled
-on 30 July after every count on that page turned out to be wrong. Eleventy 3, no client-side JavaScript,
+174. **45 of the 74 reach a reader**, and the other 29 are unpublished reserve. Reaching a reader
+means **rendering**: a token, a chart bar's `ref`, a `| metric` summary, a dashboard card or a
+caveat in `data/`. A `figures:` front-matter entry is NOT a route, because nothing renders that
+list, and counting it was the error that made the sources page's Home Office row wrong. The
+split is the definition that page's figure counts rest on, so it is derived, not remembered:
+union those five routes over `_site` and `data/`, then group by `source_id`. Eleventy 3, no client-side JavaScript,
 charts rendered as inline SVG at build time. What is on each of the 16 pages is in `README.md`
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
@@ -93,7 +96,7 @@ Nunjucks string built with `~` concatenation, so a shortcode cannot go inside on
 `(series.netMigration.data | at(2022) | number)` is the citation. It throws on a year the
 series does not hold, and the `| number` is not optional, because `at` returns the raw value
 and a page that omits it ships `45537`. A series value written longhand fails the build. The
-four figures held both as a metric and as a series point declare `series_ref`, so a release
+five figures held both as a metric and as a series point declare `series_ref`, so a release
 cannot revise one and leave the other, and `lib/series.mjs` is the single home for the series
 names, so a template's `series.flows` and a record's `flows@2025` cannot come to mean
 different things. Reasoning in `docs/SERIES-CITATIONS.md`.
@@ -244,7 +247,9 @@ is already here to adding a neighbour beside it.
 - **When your count disagrees with something the project independently says about the same
   thing, the disagreement is the check.** A query returned 74 published figures, which was every
   record; the handoff's own "a subset of those records reaches a reader" said that was wrong, and
-  it was. The corrected answer, 45, is what the sources page now publishes.
+  it was. The corrected answer was 45, but the per-publisher rows under it were still wrong, and the
+  total agreed only because a missed renderer and a counted non-renderer cancelled. Agreement on
+  a total is not agreement on its parts.
 
 - **Find things the way that can show you are wrong.** Four figures held twice were found by
   matching equal values, which by construction can only find pairs that already agree. Whether
@@ -412,8 +417,9 @@ Each is cheap to reverse.
    `correction` and `corrected_on`, the layout renders a dated note, and the validator refuses
    one without the other. **Three claims now carry one**, all dated 27 July 2026, from
    corrections 1a and 1b. This entry said "No claim carries one, and the sources page says so"
-   until 30 July, and both halves had become false: the page still says it, which makes the
-   built site contradict itself, and that correction is on the backlog.
+   until 30 July, and both halves had become false. The page's sentence was removed in PR #61,
+   so the contradiction is closed; this entry asserted it was still open for ten minutes after
+   it was not.
 
 Three entries that sat here until 30 July were not decisions taken at all. They were
 outstanding editorial work, which the paragraph at the top of this document sends to the
@@ -484,14 +490,18 @@ The pre-publication review is done and its nine corrections landed.
 verification.txt at the repo root is the review itself; it covers
 Sections 1 to 7 and Parts 2.1 to 2.7, which is ten pages and not
 sixteen, and that distinction settled the last_reviewed question.
-Completed items name their PR in the backlog's Completed section, so
-this prompt carries no list that would go stale.
+Most completed work names its PR, either in the backlog's Completed
+section or beside the item it belongs to; two of the oldest entries
+predate that habit. So this prompt carries no list that would go stale.
 
-Work is tagged [me] or [you]. The tags are written from MY side, so they
-invert against the pronouns around them: [me] is a factual or mechanical
-change YOU make against a cited source, and [you] is an editorial or
-sourcing call that is MINE. Read them that way every time; getting it
-backwards hands the editorial calls to you. Do the [me] parts; for a
+Work is tagged [me] or [you], and the tags were written from the
+SESSION's side, so they invert against the pronouns in this prompt. Use
+the mapping, never the pronoun: [me] means a factual or mechanical change
+against a cited source, which YOU do. [you] means an editorial or
+sourcing call, which is MINE. Check it against the backlog the first time
+you use it: correction 1a marks the owner's decision [you]. Getting this
+backwards hands the editorial calls to you, which is the worst outcome
+available here. Do the [me] parts; for a
 [you] part, propose and ask. On a list that mixes both, do all the [me]
 work first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question even is.
@@ -506,9 +516,11 @@ read it before assuming the item is yours to start.
 
 TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
 told you otherwise in this message. Unfinished, not unstarted: an item
-can have phases built and still be the first one. It is in recommended
-order, maintained there, so this prompt names no task and does not go
-stale as items finish.
+can have phases built and still be the first one. Do not infer it from
+document order: the earlier items are mine or are launch, so the
+backlog's own preamble under "Scoped, not built" names which item to
+take, and that sentence is the instruction. It is maintained there, so
+this prompt names no task and does not go stale as items finish.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.
@@ -551,7 +563,17 @@ changes; the rest bite on everything.
   were fixed.
 - Anything you add must pass, and run these rather than assume:
   npm run validate, npm run build, npm run a11y, and npm run
-  check-evidence if a figure changed. check-releases and check-sources
+  check-evidence if a figure changed. If you add a record, LOWER
+  UNRECORDED_BASELINE in validate-content.mjs to the new count; the run
+  prints the count and the baseline separately and tells you when they
+  differ, and a gap between them is that many new unrecorded figures that
+  could arrive without failing anything.
+- Citation syntax differs by file type. Markdown uses {{theme/metric-id}};
+  Nunjucks uses {% figure "theme/metric-id" %}, because {{ }} is Nunjucks'
+  own expression syntax and would be evaluated as arithmetic, silently
+  shipping NaN. A series point can only be cited inside a chart summary,
+  with the at() filter, so a Markdown page that needs one needs a metric
+  declaring series_ref instead. check-releases and check-sources
   are network checks that gate nothing, so run them by hand: a record
   citing a superseded edition passes every other check green.
 - Negative-test every new check, in BOTH directions. Confirm the break

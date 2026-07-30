@@ -42,7 +42,7 @@ and it is deliberate.
 ## Layout
 
 ```
-eleventy.config.js      Build: citation resolution, partials, filters, three HTML transforms
+eleventy.config.js      Build: citation resolution, partials, filters, four HTML transforms
 content/                Eleventy input
   index.njk               Overview: three distinction panels, eight cards, generated periods
   migration.njk           Net migration, the two flows, reason splits, ONS vs Home Office
@@ -72,7 +72,6 @@ docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
 docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; four of five phases built
 docs/UPDATING-DATA.md           The by-hand runbook for moving the site onto a new release
-docs/prompts/                   Versioned prompts. update-from-release.md drives an assisted update
 .pa11yci.json           pa11y over all 16 URLs at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes
