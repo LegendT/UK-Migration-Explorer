@@ -97,6 +97,24 @@ for (const file of THEME_FILES) {
 
 const errors = [];
 const warnings = [];
+// Kept apart from `warnings` rather than pooled with it. The two ask different questions, and
+// the heading over a pooled list would have to describe both, which is how a success message
+// starts claiming more than its check verifies.
+const unrecorded = [];
+
+// The ratchet, and the reason this check does not become wallpaper. Report level is right for
+// the figures already here, because erroring on day one would force three dozen exemptions and
+// that is the stuffing the rates scan exists to avoid. But report level with no ceiling asks
+// nothing of anyone ever: the list would sit in a green log and the next figure would join it
+// invisibly. So the count may not GROW. Lower this as figures are given records or declared;
+// when it reaches zero, promote the branch to an error and delete the constant.
+//
+// What it does NOT establish, and the failure message says so: that the listed figures are
+// right, or that the set is unchanged. Fixing one figure and adding another keeps the count
+// level and passes. It stops the list growing, which is the thing that was happening silently.
+// 38 when the branch was added; 29 once the nine published-vintage figures were declared, which
+// is the ratchet working as intended rather than a number being edited to suit a run.
+const UNRECORDED_BASELINE = 29;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
@@ -520,16 +538,41 @@ function checkUnits(file, prose) {
 // and stay literal, but they must be declared so the choice is deliberate.
 const liveValues = new Map();
 const unitedValues = new Map();
+// `describe` names WHICH number of the record this is, because a range has no `value` and a
+// message saying "the current value of" about a bound is the overclaim this file has been
+// caught making before. It travels with the ref so the message cannot drift from the map.
+const registerValue = (number, unit, ref, describe) => {
+  for (const form of new Set([number.toLocaleString('en-GB'), String(number)])) {
+    if (/\d,\d/.test(form) || Math.abs(number) >= 100) liveValues.set(form, { ref, describe });
+  }
+  // Rates and money are mostly under 100, where a bare number is too common in prose to
+  // match on, "39" appears in dates, counts and ordinary sentences. Matched WITH their
+  // unit instead, which is unambiguous: "39%" or "£4.9" is a figure, not a coincidence.
+  //
+  // `startsWith` rather than equality, because the one qualified percentage unit in the data,
+  // "% of GDP", was excluded by the equality test and is the unit of the only range. Its two
+  // claim pages declare that record under `figures:` and then write "1% of GDP" in prose four
+  // times without citing it, which no check could see. "% of GDP" is the only unit here that
+  // starts with the sign without being it, so this widens the scan by exactly one record.
+  if (String(unit).startsWith('%')) unitedValues.set(`${number}%`, { ref, describe });
+  if (String(unit).includes('£')) unitedValues.set(`£${number}`, { ref, describe });
+};
+
 for (const [ref, metric] of registry) {
   if (typeof metric.value === 'number') {
-    for (const form of new Set([metric.value.toLocaleString('en-GB'), String(metric.value)])) {
-      if (/\d,\d/.test(form) || Number(metric.value) >= 100) liveValues.set(form, ref);
-    }
-    // Rates and money are mostly under 100, where a bare number is too common in prose to
-    // match on, "39" appears in dates, counts and ordinary sentences. Matched WITH their
-    // unit instead, which is unambiguous: "39%" or "£4.9" is a figure, not a coincidence.
-    if (metric.unit === '%') unitedValues.set(`${metric.value}%`, ref);
-    if (String(metric.unit).includes('£')) unitedValues.set(`£${metric.value}`, ref);
+    registerValue(metric.value, metric.unit, ref, 'the current value');
+    continue;
+  }
+  // A range holds no single value, so `value` is present and null, and both maps were built
+  // under `typeof metric.value === 'number'`. That is the third question this project learned
+  // to ask of a matching key, present but not the shape you assumed, and the answer was that
+  // NO bound of ANY range could be matched against prose. One record is a range today and its
+  // bounds are 1 and -1, so nothing comma-grouped was hidden by it; the two claim pages built
+  // on that record write "1% of GDP" in prose four times between them and cite it nowhere,
+  // which is what led here. A range added later with comma-grouped bounds would have been
+  // silently unprotected.
+  for (const [name, bound] of [['range_min', metric.range_min], ['range_max', metric.range_max]]) {
+    if (typeof bound === 'number') registerValue(bound, metric.unit, ref, `the ${name}`);
   }
 }
 
@@ -559,6 +602,29 @@ const citeSeries = (ref) => {
   return `(series.${block}.data | at(${year}) | number)`;
 };
 
+// A declaration nothing matches is dead, and dies quietly. Three ways to get one, all of them
+// reachable today: writing `historical_literals: 1,000; 2,000` with a comma instead of the
+// semicolon `parseLiterals` splits on, which yields one entry matching nothing; a typo, or a
+// leftover after the prose it exempted was rewritten; and a data file whose sibling key holds a
+// JSON string rather than an array, where `new Set("1,000")` iterates characters. None of the
+// three raised anything, and because the exemption is tested BEFORE every branch in
+// checkLiterals, a dead entry is also one that can never come back on its own.
+//
+// This is the project's own rule about a key that matches, asked of the declaring side rather
+// than the record side: what it does when it is absent, unchanged, or present in the wrong
+// shape. Error rather than report, because the remedy is to delete or correct the declaration,
+// which is the opposite of the exemption-stuffing that keeps the branch below at report level.
+//
+// Takes the whole file's prose, never a single field: meta.json applies one declaration set to
+// every caveat it holds, so a per-field test would fail on every field but the one that
+// contains the figure.
+function checkDeclarations(file, prose, allowed, declareIn) {
+  for (const declared of allowed) {
+    if (prose.includes(declared)) continue;
+    errors.push(`${file}: declares ${declared} under ${declareIn}, and no such figure appears anywhere in its prose. Delete it or correct it. A declaration that matches nothing exempts nothing, and separating two declarations with a comma rather than a semicolon produces exactly one of these.`);
+  }
+}
+
 function checkLiterals(file, prose, allowed) {
   // Only citations are removed before scanning. Stripping every {% %} tag took the chart
   // configs out with them, and the chart configs were the one place on the site where live
@@ -572,9 +638,9 @@ function checkLiterals(file, prose, allowed) {
   // an error here would be silenced by stuffing historical_literals, which is worse than
   // no check at all. The comma-grouped check below stays an error; its collision rate is low.
   for (const united of new Set(withoutTokens.match(/£\d+(?:\.\d+)?|\d+(?:\.\d+)?%/g) ?? [])) {
-    const ref = unitedValues.get(united);
-    if (ref && !allowed.has(united)) {
-      warnings.push(`${file}: ${united} equals the current value of ${ref}, check whether it should be cited`);
+    const match = unitedValues.get(united);
+    if (match && !allowed.has(united)) {
+      warnings.push(`${file}: ${united} equals ${match.describe} of ${match.ref}, check whether it should be cited`);
     }
   }
 
@@ -585,12 +651,17 @@ function checkLiterals(file, prose, allowed) {
     ? 'the sibling historical_literals array'
     : 'historical_literals in the front matter, semicolon separated';
 
-  const candidates = withoutTokens.match(/\b\d{1,3}(?:,\d{3})+\b|\b\d+(?:\.\d+)?\b/g) ?? [];
+  // The decimal tail on the comma-grouped alternative is not decoration. Without it "1,234.5"
+  // tokenises as "1,234" plus "5", so the report named a figure the page does not write, and
+  // declaring the real value cleared nothing. The error branch had the mirror of the same bug:
+  // a record holding a decimal at or above 1000 has the toLocaleString form "1,234.5", which
+  // no token could ever equal, so writing it out longhand was invisible.
+  const candidates = withoutTokens.match(/\b\d{1,3}(?:,\d{3})+(?:\.\d+)?\b|\b\d+(?:\.\d+)?\b/g) ?? [];
   for (const literal of new Set(candidates)) {
     if (allowed.has(literal)) continue;
-    const ref = liveValues.get(literal);
-    if (ref) {
-      errors.push(`${file}: writes ${literal} longhand, which is the current value of ${ref}, cite {{${ref}}} so it cannot go stale, or list it under ${declareIn} if it is deliberately frozen`);
+    const match = liveValues.get(literal);
+    if (match) {
+      errors.push(`${file}: writes ${literal} longhand, which is ${match.describe} of ${match.ref}, cite {{${match.ref}}} so it cannot go stale, or list it under ${declareIn} if it is deliberately frozen`);
       // Four figures are held as a metric AND as a series point. The metric message is the
       // more useful of the two, and reporting the same literal twice would read as two
       // defects. validate-data.mjs is what keeps those two copies in step.
@@ -607,6 +678,33 @@ function checkLiterals(file, prose, allowed) {
         ? `cite it with ${matched.map(citeSeries).join(' or ')}`
         : 'nothing here cites a series point, so reword it';
       errors.push(`${file}: writes ${literal} longhand, which is the value at ${matched.join(' and ')}. If it is that figure, ${remedy}. If it is a coincidence or deliberately frozen, list it under ${declareIn}.`);
+      continue;
+    }
+
+    // A figure the data layer never recorded reaches neither branch above, and until now that
+    // was silence. Both scans match prose against values the site HOLDS, so a number it never
+    // held is invisible to both by construction, and the success message below said no page
+    // wrote one. When this was added, every comma-grouped number on the site was in that state
+    // apart from the five declared ones, one in `migration.njk` and four in `meta.json`, and
+    // they included current-edition figures that go wrong at the next release. How many there
+    // are now is what the run prints; a count repeated in a comment is the drift this project
+    // has already paid for twice, and an earlier draft of this very comment said "37 of the 38
+    // in content/", which was wrong about both the number and where they were.
+    //
+    // Comma-grouped only. The bare-integer half of `candidates` is years, list positions and
+    // ordinary prose, where the collision rate the comment above calls low for the grouped
+    // form is hopeless.
+    //
+    // Reported, not failed, for the reason the rates scan already gives: the only way to clear
+    // an error here is to declare the literal, and a check whose remedy is a blanket exemption
+    // teaches authors to stuff the exemption list. The sub-100 warnings set that precedent and
+    // were reviewed rather than suppressed.
+    //
+    // What this does NOT establish: that a figure it names is wrong, that one it stays silent
+    // about is right, or that any of them came from anywhere. It establishes only that the site
+    // published a number it holds no record of, so nothing can tell you when that number ages.
+    if (/^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(literal)) {
+      unrecorded.push(`${file}: writes ${literal} longhand and no record or series point holds that value, so nothing can tell you when it goes stale. Give it a record and cite it, or list it under ${declareIn} if it is a frozen historical figure.`);
     }
   }
 }
@@ -626,6 +724,7 @@ for (const { file, prose, literals, lineOffset } of contentPages) {
   checkUnclosed(file, prose);
   checkUnits(file, prose);
   checkLiterals(file, prose, literals);
+  checkDeclarations(file, prose, literals, 'historical_literals in the front matter');
   checkGlossaryLinks(file, prose, glossaryAnchors);
   checkEditorial(file, prose, lineOffset);
 }
@@ -663,14 +762,24 @@ for (const [file, extract] of DATA_PROSE) {
   // sibling key. meta.json's last caveat is a worked reconciliation at one vintage whose
   // point is that the subtraction does not come out; citing a live record for any part of
   // it would let a revision move one number and leave the arithmetic around it wrong.
-  const allowed = new Set(data.historical_literals ?? []);
+  // The shape guard is the reason this is not just `?? []`. A JSON string here is iterable, so
+  // `new Set("1,012,000")` yields the eight distinct characters and every exemption dies with
+  // no error raised. Present but not the shape assumed, which is the question this project
+  // learned to ask third and has been bitten by twice.
+  if (data.historical_literals !== undefined && !Array.isArray(data.historical_literals)) {
+    errors.push(`${file}: historical_literals must be an array. A string is iterated character by character, so every exemption in it silently stops exempting anything.`);
+  }
+  const allowed = new Set(Array.isArray(data.historical_literals) ? data.historical_literals : []);
+  const scanned = [];
   for (const [where, prose] of extract(data)) {
     if (!prose) continue;
     checkUnclosed(`${file} ${where}`, prose);
     checkUnits(`${file} ${where}`, prose);
     checkLiterals(`${file} ${where}`, prose, allowed);
+    scanned.push(prose);
     dataFields += 1;
   }
+  checkDeclarations(file, scanned.join('\n'), allowed, 'the sibling historical_literals array');
 }
 
 // Report last, so that every check above has run. Reporting mid-file once silently
@@ -689,8 +798,24 @@ if (warnings.length) {
   for (const warning of warnings) console.log(`  ${warning}`);
   console.log('Many are coincidence, several metrics share a value. Review, do not suppress.');
 }
-console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes a comma-grouped value longhand, whether it belongs to a record or to one of the ${points.size} points in the series files.`);
+if (unrecorded.length) {
+  console.log(`\n${unrecorded.length} comma-grouped figure(s) written longhand that no record or series point holds:`);
+  for (const entry of unrecorded) console.log(`  ${entry}`);
+  console.log('Some are frozen history and belong longhand; some are current-edition figures that go wrong at the next release. The list cannot tell them apart, which is why it is printed for review. Printing is not reviewing, and nothing here checks that anyone read it.');
+}
+console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes longhand a comma-grouped value, or a bare value of 100 or more, that a record or one of the ${points.size} series points holds. Unit-qualified matches under 100 are the warnings above, not part of this claim.`);
+console.log(`Not covered: a longhand figure the data layer never recorded, which both scans above are blind to by construction, because both match prose against values the site holds. ${unrecorded.length ? `${unrecorded.length} comma-grouped ones are listed above rather than counted as clean` : 'None comma-grouped on this run'}, and a figure written "2.2 million", space-grouped, or bare is not scanned for this at all.`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
 console.log('This counts whose claim is corrected. It is not a measure of fairness; the split is disclosed on the claims page.');
+
+// Last, and after the list has printed, so that a run which fails on the ratchet still shows
+// WHICH figures it is complaining about. Pushing this into `errors` would have exited above,
+// before the block that prints them.
+if (unrecorded.length > UNRECORDED_BASELINE) {
+  console.error(`\nUnrecorded longhand figures have grown from ${UNRECORDED_BASELINE} to ${unrecorded.length}. Give the new one a record and cite it, or declare it. If it is genuinely a new frozen figure, raise UNRECORDED_BASELINE deliberately and say why in the commit; the constant exists to make that a decision rather than a drift.`);
+  console.error('This does not establish that the other figures are right, or that the set is the same one. One fixed and one added keeps the count level and passes here.');
+  process.exit(1);
+}
+console.log(`Unrecorded longhand figures are at the baseline of ${UNRECORDED_BASELINE} and may not grow. Lower it as they are recorded or declared; at zero the report becomes an error.`);

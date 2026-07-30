@@ -194,14 +194,91 @@ alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   - **Does the procedure do series work, or refuse it and hand it to a person?** As scoped it
     cannot do an ONS update at all: the four metrics that declare a `series_ref` are all
     `ons-ltim`, and moving them without the series fails `validate-data.mjs`. Refusing is
-    defensible; silently omitting is not.
-  - **Does item 5 come first?** That item says of `docs/UPDATING-DATA.md`, "write this before
+    defensible; silently omitting is not. **One constraint on the refusing branch, found by a
+    second model on 30 July:** a refusal must name the runbook's section by path and heading and
+    must not restate its steps. A procedure printed in two places is the duplication this
+    project has already been burned by twice, and the copy a session happens to read wins.
+  - **Does item 6 come first?** That item says of `docs/UPDATING-DATA.md`, "write this before
     automating any of it: you should be able to do the job by hand before delegating it."
-    Phase 3 is that job delegated, so its own rule puts item 5 ahead of it, and the list order
+    Phase 3 is that job delegated, so its own rule puts item 6 ahead of it, and the list order
     does not. Surfaced 30 July 2026; nothing has been reordered on it.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
-### 4. The eight undrafted claims
+### 4. The figures the data layer never recorded
+
+**Found 30 July 2026, and the reporting half is built.** Both literal scans in
+`validate-content.mjs` match prose against the values the site *holds*, a record value or one of
+the series points. A figure the site never recorded matches neither map, so it was invisible to
+both **by construction**, and the success message nonetheless printed "No page writes a
+comma-grouped value longhand". That is the eighth instance of this project's oldest pattern: the
+check verified the declaration, the message claimed the property a reader depends on.
+
+A third branch now reports every comma-grouped literal that no record or series point holds,
+under its own heading, and the success message states the limit. **Reported, not failed**, on the
+precedent the sub-100 warnings set: the only way to clear an error here is to declare the
+literal, and a check whose remedy is a blanket exemption teaches authors to stuff the exemption
+list. The current count is what `npm run validate` prints; it is deliberately not restated here,
+because a count kept in two files is what put six in one and twelve in the other for a day.
+
+**It carries a ratchet, because report level on its own expires.** A list nobody has to act on
+sits in a green log and the next figure joins it invisibly, so the count may not grow:
+`UNRECORDED_BASELINE` fails the build if it does, runs after the list prints so a failing run
+still shows what it is complaining about, and says what it does not establish, that one fixed and
+one added passes. Lower it as figures are recorded or declared; at zero the branch becomes an
+error and the constant goes.
+
+The list holds four different things and the check cannot tell them apart, which is why a person
+reads it. **The sort below was corrected on 30 July after a second model checked it against the
+sentences**, and three of the four groups moved:
+
+- **Frozen history, correct as longhand. DONE.** Only the published vintages really qualify:
+  `431,000`, `345,000` and `606,000`, because a first-published number never changes, which is
+  the same logic that makes the existing `285,000` declaration right. All nine reports of them,
+  across four files, are now declared under `historical_literals` with the reason beside them,
+  and the baseline fell from 38 to 29. `45,774` was **not** declared: it is frozen as a number
+  but sits under "the peak was", which goes stale if a later year exceeds it, so it stays in the
+  report where a person will see it.
+- **Current-edition figures with no record behind them**, which is a bigger group than first
+  sorted. `627,000` in two places, the study and work main-applicant and dependant splits, the
+  citizenship card's three, and **also `944,000`, `1,469,000`, `517,000`, `429,000`, `87,000` and
+  `272,000`, which read as history and are not**: "the highest twelve-month estimate ONS
+  publishes" is a claim about the *current* publication, and the year-on-year changes are
+  recomputed every release under the site's own single-vintage rule. Minting a record needs a
+  fetched quote per figure and is **[me]**; which deserve one rather than a rewording is **[you]**.
+- **Rounded restatements of live values, which no mechanism covers.** On
+  `everyone-in-asylum-accommodation-arrived-recently`, "around 100,000" sits against the series
+  point `asylumApplications@2025`, which is 100,625, and "around 97,500" against
+  `people-in-receipt-of-asylum-support`, which is 97,519. The sentence's whole point is that the
+  two are of similar magnitude, so precision would work against it, and `historical_literals`
+  would silence them as frozen when they are live. The glossary carries the same rounding: **[you]**.
+- **Arithmetic against a live value, where neither remedy in the message works.** The `100,000`
+  on `net-migration-is-arrivals` and in the glossary is `431,000` minus the live
+  `migration/net-migration-2`. A record for it would be a fake metric, and freezing it guarantees
+  it goes wrong at the next revision. This is the same shape as the `285,000` and `47%` sentence
+  under the editorial decisions below, so whatever is decided there should decide these too.
+
+**Value-keyed sorting cannot finish this job**, which is worth knowing before anyone tries.
+`51,000` is the end-2019 initial-decision backlog in one file and the appeals backlog a year
+before the live March 2026 figure in another. `100,000` is three different figures. And the
+glossary's per-file de-duplication collapses two meanings of `100,000` into one report line, so
+no per-report classification can be right there.
+
+**What the check does not scan at all**, and this is the larger surface: a figure written in
+words. "over 2.2 million visitor visas" for the year ending March 2026 appears on both the
+glossary and `migration.njk`, is current-edition, and has no record. So do "69.28 million" and
+"10.6 million" on the born-abroad claim, and "5.8 million", "8.2 million", "1.3 billion" and
+"1.7 billion" on the costs page. None is comma-grouped, so none is errored, warned or listed.
+Extending the scan to them is **[me]** and is the obvious next piece of this item.
+
+**A separate finding from the same run, and it is a correction rather than a decision.**
+Correction 1e replaced "more than 120,000" with the precise 285,000 revision on `migration.njk`
+and left the old wording in `meta.json`'s third key caveat, which renders to a page. It was
+written against a vintage where the 2022 estimate was 728,000, so the movement really was about
+122,000; the current point is 891,000 and the movement is 285,000. The site now
+describes the same revision two ways. Not false, since 285,000 is more than 120,000, but stale and
+inconsistent, and it is the sibling 1e did not grep for.
+
+### 5. The eight undrafted claims
 
 Foundation section 8.5.3 specifies fifteen; seven are written. One of the eight,
 "Local areas all carry the same pressure", **cannot be written**: it needs per-capita local
@@ -211,7 +288,7 @@ Two need a direction decision from the owner before drafting, because there is n
 label: "The asylum backlog is one number" and "Falling net migration means the asylum system
 is shrinking".
 
-### 5. `docs/UPDATING-DATA.md`
+### 6. `docs/UPDATING-DATA.md`
 
 The manual runbook for the update commitment, modelled on DEBT's. Write this **before**
 automating any of it: you should be able to do the job by hand before delegating it. Smaller
@@ -233,6 +310,29 @@ Both came out of PR #41 on 28 July 2026.
   wrong. The alternative was `meta.json`'s precedent of freezing a worked sum whole, which
   was not taken because `historical_literals` is page-scoped and declaring the estimate would
   also have un-protected the citation in the summary above it.
+- **The sources page carries four more hand-maintained counts, and at least one is provably
+  wrong. [me + you].** Found 30 July 2026 while checking the bullet below, which turns out to be
+  one member of a class rather than a single sentence. The page publishes a release table reading
+  13, 7 and 2 figures, then "The other fourteen published figures come from the National Audit
+  Office, the House of Commons Library, the Migration Observatory and the Office for Budget
+  Responsibility", then "The most recent full cycle took twenty-seven days", then "Two limits"
+  over a list. Nothing reads any of them.
+
+  **The named-publisher sentence is demonstrably incomplete**, and the page contradicts itself to
+  a reader who scrolls: the source catalogue rendered further down the same page lists
+  `Independent Chief Inspector of Borders and Immigration` and `ONS: Population estimates`, and
+  both now carry published figures, the two accommodation costs on `costs.njk` from correction 1c
+  and `population/total-uk-population` on the born-abroad claim from correction 1a. The
+  corrections added publishers and the prose beside them was not updated.
+
+  The counts were derived when the total was 36, which is 13 plus 7 plus 2 plus 14. A substring
+  count over `content/` and the rendered `data/` prose now finds 43 records reaching a reader.
+  **Do not write 43 onto the page from this note.** "Published figure" needs pinning first, since
+  a ref declared in `figures:` front matter and a ref tokenised in a sentence are not obviously
+  the same thing, and the site has three different counts in play. Defining it is **[you]**;
+  counting against the definition, and re-deriving all four numbers, is **[me]** once it is
+  defined. What the sentence should then say, on a trust page, is **[you]**.
+
 - **The sources page says no claim carries a correction note, and three do. [me + you].** All
   three are dated 27 July 2026 and came from corrections 1a and 1b:
   `nineteen-per-cent-born-abroad`, `immigrants-pay-far-more-than-they-cost` and
@@ -248,8 +348,12 @@ Both came out of PR #41 on 28 July 2026.
     one in the style guide. They are wrapped and named from the heading above them. A caption is
     new prose and is the owner's to write. The handoff said "two Markdown tables and the
     three-queues table"; the three-queues table has had a caption since the page was written.
-  - **In `most-immigration-is-asylum`**, two list items open with a bold term and the third with
-    a bold link, so the third reads as more important. Fixing it means rewriting the sentence.
+    **Two things found on 30 July that bear on the decision**, after this was briefly written off
+    as a non-task. There is no accessibility deficit: each of the four sits directly under a
+    descriptive heading and `scrollable-regions` names the region from it. But every table the
+    site hand-writes in Nunjucks carries a visible caption, four of them, so the Markdown four are
+    inconsistent with the site's own practice, and an `aria-label` is invisible to a sighted
+    reader. Consistency is the argument, not compliance.
   - **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
     belongs to the year-ending-March record rather than the calendar-2025 card. It is still in
     the record's notes and could be placed on the asylum page.
@@ -305,6 +409,12 @@ decisions above.
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The bold link in `most-immigration-is-asylum`**, 30 July 2026. Moved off the term and onto
+  descriptive text inside the same sentence, so all three list items now open with a bold term.
+  It was on the editorial list because fixing it was thought to need the sentence rewritten. It
+  did not: every word is unchanged and the glossary link survives. Linking all three terms
+  instead was checked and is not available, because the first item's term has no glossary anchor.
 
 - **`eu-settlement-scheme-settled-status-grants` brought onto the current release**, 28 July
   2026. PR #45. Found and fixed the same day, while re-verifying the phase 1 endpoints: it

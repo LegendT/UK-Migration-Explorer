@@ -1,5 +1,9 @@
 ---
 id: sources-and-method
+# Published vintages of the year ending December 2024 net migration estimate: what ONS said at
+# the time, not what it says now. A first-published number never changes, so no record holds
+# one, and citing the live estimate would destroy the sentence, whose point is that it moved.
+historical_literals: 431,000; 345,000
 title: Sources and method
 strapline: >-
   Where every figure on this site comes from, how it is recorded, what it does not show,

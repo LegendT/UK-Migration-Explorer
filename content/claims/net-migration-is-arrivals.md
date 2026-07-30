@@ -1,5 +1,9 @@
 ---
 id: net-migration-is-arrivals
+# Published vintages of the year ending December 2024 net migration estimate: what ONS said at
+# the time, not what it says now. A first-published number never changes, so no record holds
+# one, and citing the live estimate would destroy the sentence, whose point is that it moved.
+historical_literals: 431,000; 345,000
 claim: Net migration is the number of people who entered the UK.
 short_answer: >-
   No. Net migration is immigration minus emigration. It is a balance between two
