@@ -519,7 +519,7 @@ changes; the rest bite on everything.
   if a figure changed.
 - Negative-test every new check. Confirm the break applied by grepping for
   the broken text and printing the count, before believing the result:
-  three "failures" here were tests that never fired. Negative-test the
+  four "failures" here were tests that never fired. Negative-test the
   MECHANISM and the REMEDY too, not only the check. The at() filter
   shipped an unformatted 45537 to the built page through validate and
   build alike; an escape hatch one message recommended could not express
