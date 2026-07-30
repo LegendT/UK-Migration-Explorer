@@ -9,6 +9,26 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Detected unauthorised arrivals become a record, 30 July 2026
+
+**43,806 for the year ending March 2026**, a figure the site had only as prose inside another
+record's notes, as "around 44,000". Small boats are 89.6% of it, where that note said "about 90%".
+Neither rounding survived contact with the source.
+
+Source: Home Office, Illegal entry routes to the UK detailed dataset, table `IER_D01`, read from
+the .xlsx. **Calculated, and the record says so:** the Home Office publishes this table by quarter
+and by calendar year and states no year-ending-March total, so it is summed over 2025 Q2 to
+2026 Q1 across all four methods of entry, with every quarterly component quoted in
+`data/evidence/ho-irregular-entry-year-ending-march-2026.json`.
+
+- **Checked twice, and the second check was free.** The row-level `Data_IER_D01` sheet reproduces
+  43,806 independently of the pivot, and the small boats component comes to 39,271, which is
+  exactly what this site already publishes for that period from the Commons Library briefing. That
+  briefing refuses automated fetching, so this gives that figure a primary source it did not have.
+- **The page states what the figure cannot do.** Detected means detected: it cannot count anyone
+  nobody found, so it is a floor and not a total.
+
+
 ### Non-EU+ long-term immigration becomes a record, 30 July 2026
 
 **627,000 for the year ending December 2025**, a figure the site published on two pages while

@@ -452,9 +452,22 @@ Both came out of PR #41 on 28 July 2026.
     reader would read it aloud. Nothing on the page shows it, which is how the `{#anchor}`
     version of the same fault survived until `check-build` caught it. Found by reading the built
     output rather than trusting a green build.
-  - **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
-    belongs to the year-ending-March record rather than the calendar-2025 card. It is still in
-    the record's notes and could be placed on the asylum page.
+  - **The small-boats line. DONE (PR #60, 30 July 2026).** It could not simply be moved: the
+    prose carried two longhand figures, and putting them on a page would have broken the promise
+    on `/sources-and-method/` that a number in a sentence is inserted from a record. So the
+    denominator got a record and the asylum page cites both.
+
+    **Neither rounding survived the source.** The exact total is 43,806 and small boats are 89.6%
+    of it, not "around 44,000" and "about 90%". The figure is `calculated` and says so: the Home
+    Office publishes this table by quarter and by calendar year and states no year-ending-March
+    total, so it is summed over 2025 Q2 to 2026 Q1 across all four methods of entry with every
+    component quoted.
+
+    **Two checks on the arithmetic, and one of them was free.** The row-level sheet reproduces
+    43,806 independently of the pivot, and the small boats component comes to 39,271, which is
+    exactly what this site already published for that period from the Commons Library briefing.
+    That briefing returns 403 to a fetch, so this incidentally gives that figure a primary source
+    it did not have.
 - **Whether `/sources-and-method/` should publish a third limit.** The bullet saying series
   values are not individually cited has gone, because they now are. Nothing replaced it, and
   there are now three candidates. A figure declared under `historical_literals` is exempted on
