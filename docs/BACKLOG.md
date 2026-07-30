@@ -147,17 +147,36 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This list is in recommended order. Take the first unfinished item, which is item 3, where
-what is left is phase 3 and it is gated on two owner decisions, both recorded under it.** The
-order lives here rather than in the handoff's prompt, so that finishing something does not
-leave a stale instruction somewhere else. Re-order it freely; this is the only place the
-sequence is stated.
+**This list is in recommended order. Take the first unfinished item, which is item 4**, the
+release notifier, whose remaining phase 3 is no longer gated: both decisions it waited on were
+taken on 30 July 2026 and are recorded under it. The order lives here rather than in the
+handoff's prompt, so that finishing something does not leave a stale instruction somewhere
+else. Re-order it freely; this is the only place the sequence is stated.
+
+**Reordered 30 July 2026.** The runbook was item 6 and is now item 3, because item 4's own scope
+says the job must be doable by hand before it is delegated and phase 3 is that job delegated.
+The list order contradicted the scope for two days. Sections moved and renumbered rather than
+annotated, per the rule below.
 
 If you reorder, or complete something, **move the sections and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item.
 
-### 3. Release notifier and evidence check: phases 1, 1b and 2 built, two phases left
+### 3. `docs/UPDATING-DATA.md`: the manual runbook. DONE (PR TBD, 30 July 2026)
+
+The manual runbook for the update commitment, modelled on DEBT's, written **before** any of it
+is automated: you should be able to do the job by hand before delegating it. Moved ahead of the
+notifier on 30 July because item 4's own scope says so.
+
+It is deliberately pointer-heavy. The evidence contract lives in `data/evidence/README.md` and
+is not restated, because a contract kept in two files is one that drifts. What the runbook adds
+that existed nowhere: that a real update touches **eight** record fields and not the four the
+scope named, that the step is reconcile rather than look up, that record `notes` are re-read
+every time while page prose is never touched, and a tested command that lists a source's metrics
+**and its series files** together, since the series were invisible to every check until PR #47
+and a list that omits them ships half a release.
+
+### 4. Release notifier and evidence check: phases 1, 1b and 2 built, two phases left
 
 **`docs/UPDATE-AUTOMATION.md`.** Five phases now. Phases 1, 1b and 2 were each worth building
 alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
@@ -188,23 +207,22 @@ alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   `retrieved_date` pre-dates the correction, so it is stateless and clears itself. What building
   it found is in the scope, uncounted and not restated here, because a count restated in two
   files is what put six in one and twelve in the other for a day.
-- **Phase 3, the update prompt. Gated on two decisions that are [you], both stated here so
-  that neither has to be rediscovered.** Seven things to settle before writing it are listed
-  in the scope, and five of them are now mechanical. The two that are not:
-  - **Does the procedure do series work, or refuse it and hand it to a person?** As scoped it
-    cannot do an ONS update at all: the four metrics that declare a `series_ref` are all
-    `ons-ltim`, and moving them without the series fails `validate-data.mjs`. Refusing is
-    defensible; silently omitting is not. **One constraint on the refusing branch, found by a
-    second model on 30 July:** a refusal must name the runbook's section by path and heading and
-    must not restate its steps. A procedure printed in two places is the duplication this
-    project has already been burned by twice, and the copy a session happens to read wins.
-  - **Does item 6 come first?** That item says of `docs/UPDATING-DATA.md`, "write this before
-    automating any of it: you should be able to do the job by hand before delegating it."
-    Phase 3 is that job delegated, so its own rule puts item 6 ahead of it, and the list order
-    does not. Surfaced 30 July 2026; nothing has been reordered on it.
+- **Phase 3, the update prompt. Both gates were decided on 30 July 2026, so it is now the first
+  unfinished work on this list.** Seven things to settle are in the scope and five were already
+  mechanical. The two that were not, and what was decided:
+  - **Series work: refuse it, and hand it to a person.** As scoped the procedure cannot do an
+    ONS update at all: the four metrics that declare a `series_ref` are all `ons-ltim`, and
+    moving them without the series fails `validate-data.mjs`. So v1 detects a `series_ref` or a
+    series file in scope, stops, and **names the runbook's section by path and heading without
+    restating its steps.** That constraint came from a second model: a procedure printed in two
+    places is the duplication this project has been burned by twice, and the copy a session
+    happens to read wins. Refusing costs the ONS release, one of the three cadenced ones, and
+    that is the accepted price of not omitting it silently.
+  - **The runbook came first, and is now built** as item 3. Phase 3 is the job it describes,
+    delegated, so its own rule put it ahead. Decided and reordered on 30 July.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
 
-### 4. The figures the data layer never recorded
+### 5. The figures the data layer never recorded
 
 **Found 30 July 2026, and the reporting half is built.** Both literal scans in
 `validate-content.mjs` match prose against the values the site *holds*, a record value or one of
@@ -278,7 +296,7 @@ written against a vintage where the 2022 estimate was 728,000, so the movement r
 describes the same revision two ways. Not false, since 285,000 is more than 120,000, but stale and
 inconsistent, and it is the sibling 1e did not grep for.
 
-### 5. The eight undrafted claims
+### 6. The eight undrafted claims
 
 Foundation section 8.5.3 specifies fifteen; seven are written. One of the eight,
 "Local areas all carry the same pressure", **cannot be written**: it needs per-capita local
@@ -288,12 +306,19 @@ Two need a direction decision from the owner before drafting, because there is n
 label: "The asylum backlog is one number" and "Falling net migration means the asylum system
 is shrinking".
 
-### 6. `docs/UPDATING-DATA.md`
+**Who drafts, decided 30 July 2026.** A session drafts and proposes; the **verdict and the short
+answer come to the owner before merge**. An earlier framing of this, that drafting is merely
+executing the spec in 8.5.3 because it already gives claim, direction, short answer and
+statistical issue for all fifteen, was wrong: the tagging history marks short-answer writing
+**[you]** every time it has arisen, in 1b, 1f and 1h. The spec is a starting position, and four
+of its rows were overtaken by the review on 27 July, so a drafter meets that question rather than
+avoiding it.
 
-The manual runbook for the update commitment, modelled on DEBT's. Write this **before**
-automating any of it: you should be able to do the job by hand before delegating it. Smaller
-than it once was, because the cycle is three named releases and the validator reports which
-figures are overdue.
+**One thing to know before drafting for the representation floor.** Assigning a direction changes
+nothing on its own. `validate-content.mjs` counts parsed files in `content/claims/`, so the split
+moves only when a drafted page merges, and of the two above only the pro-migration one
+("Falling net migration...") would move it off the enforced floor of two and reopen the option of
+dropping claim 2.7 that correction 1g found closed.
 
 ---
 
