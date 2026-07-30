@@ -274,6 +274,29 @@ Both came out of PR #41 on 28 July 2026.
   wrong. The alternative was `meta.json`'s precedent of freezing a worked sum whole, which
   was not taken because `historical_literals` is page-scoped and declaring the estimate would
   also have un-protected the citation in the summary above it.
+- **The sources page carries four more hand-maintained counts, and at least one is provably
+  wrong. [me + you].** Found 30 July 2026 while checking the bullet below, which turns out to be
+  one member of a class rather than a single sentence. The page publishes a release table reading
+  13, 7 and 2 figures, then "The other fourteen published figures come from the National Audit
+  Office, the House of Commons Library, the Migration Observatory and the Office for Budget
+  Responsibility", then "The most recent full cycle took twenty-seven days", then "Two limits"
+  over a list. Nothing reads any of them.
+
+  **The named-publisher sentence is demonstrably incomplete**, and the page contradicts itself to
+  a reader who scrolls: the source catalogue rendered further down the same page lists
+  `Independent Chief Inspector of Borders and Immigration` and `ONS: Population estimates`, and
+  both now carry published figures, the two accommodation costs on `costs.njk` from correction 1c
+  and `population/total-uk-population` on the born-abroad claim from correction 1a. The
+  corrections added publishers and the prose beside them was not updated.
+
+  The counts were derived when the total was 36, which is 13 plus 7 plus 2 plus 14. A substring
+  count over `content/` and the rendered `data/` prose now finds 43 records reaching a reader.
+  **Do not write 43 onto the page from this note.** "Published figure" needs pinning first, since
+  a ref declared in `figures:` front matter and a ref tokenised in a sentence are not obviously
+  the same thing, and the site has three different counts in play. Defining it is **[you]**;
+  counting against the definition, and re-deriving all four numbers, is **[me]** once it is
+  defined. What the sentence should then say, on a trust page, is **[you]**.
+
 - **The sources page says no claim carries a correction note, and three do. [me + you].** All
   three are dated 27 July 2026 and came from corrections 1a and 1b:
   `nineteen-per-cent-born-abroad`, `immigrants-pay-far-more-than-they-cost` and
