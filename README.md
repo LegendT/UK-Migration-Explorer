@@ -59,6 +59,7 @@ content/                Eleventy input
   robots.txt              Disallows all crawlers until launch
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code
 lib/series.mjs          The four timeseries and the names everything else calls them by
+lib/tables.mjs          What a publisher's table identifier looks like, for the two checks that must agree
 data/                   Governed data layer, one file per theme, plus four timeseries
 data/evidence/          One file per release: the quote behind every figure that moved
 scripts/                Six scripts, seven checks, all in CI, all negative-tested
@@ -67,7 +68,7 @@ docs/BACKLOG.md         The durable list of outstanding work; every other doc po
 docs/HANDOFF.md         How the project works, and what earlier sessions cost
 docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026 worked through
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
-docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; phases 1 and 2 built
+docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; phases 1, 1b and 2 built
 .pa11yci.json           pa11y over all 16 URLs at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes
@@ -97,6 +98,9 @@ The data model is the trust model. Every published figure carries its own metada
 `id` `metric_name` `value` `unit` `date` `period_label` `geography` `source_name`
 `source_id` `source_url` `published_date` `retrieved_date` `notes` `confidence_level`
 
+plus `table_reference` where the publisher names a table, and `series_ref` on the four figures
+held twice.
+
 `date` is the **end of the period covered**, never the publication date. `source_id` names
 the entry in `sources.json` the figure came from, because a hostname cannot: `www.gov.uk`
 serves three different publishers here, and several figures cite an
@@ -123,6 +127,16 @@ from an earlier release, and the Home Office revises historical asylum figures. 
 timeseries therefore draws from a single publication, and the validator rejects a series
 whose points carry more than one `published_date`. Refresh the whole array each release;
 never append. Mixing vintages is what made the first net migration series unpublishable.
+
+**Which table a figure came from.** 14 records and 2 series files carry `table_reference`, an
+array naming the publisher tables behind the figure: `Vis_01`, `Asy_00a`, `Ret_01` and nine
+others. It exists so that a correction *inside* an edition can be matched to the figures it
+touches, which is the one channel through which a wrong number can sit here indefinitely, and
+`check-releases.mjs` is what reads it. The validator holds it to the prose both ways. Every
+table named in a record's `source_name` or `notes` must be declared, or the corrections watch
+cannot see a correction to it; and every declaration must be named in the prose, or it is a
+string nobody can check, matching nothing and failing nothing. A table nobody wrote down in
+either place is still invisible, and both the validator and the watch say so.
 
 ## Build
 
@@ -160,7 +174,7 @@ Seven checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, and outstanding work tracked in `docs/BACKLOG.md` |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. Gates the build |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *` |
@@ -175,7 +189,8 @@ message claimed the latter. The messages now state only what they verify.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
-value took it to 0/16. It passed all five of the accessibility defects found by hand.
+value took it to 0/16. It flagged none of the five accessibility defects found by hand,
+which is the point: it is a floor.
 
 Known limits, published on the sources page under *What the checks do not establish*:
 

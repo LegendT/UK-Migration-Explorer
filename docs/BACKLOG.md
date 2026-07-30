@@ -233,6 +233,26 @@ Both came out of PR #41 on 28 July 2026.
   wrong. The alternative was `meta.json`'s precedent of freezing a worked sum whole, which
   was not taken because `historical_literals` is page-scoped and declaring the estimate would
   also have un-protected the citation in the summary above it.
+- **The sources page says no claim carries a correction note, and three do. [me + you].** All
+  three are dated 27 July 2026 and came from corrections 1a and 1b:
+  `nineteen-per-cent-born-abroad`, `immigrants-pay-far-more-than-they-cost` and
+  `immigrants-are-a-drain-on-public-finances`. `content/sources-and-method.md` still reads "No
+  claim currently carries one." **The built site therefore contradicts itself**, and nothing
+  checks it: the validator refuses a `correction` without a `corrected_on`, and has no opinion
+  on a page that counts them. The correction is factual; what the sentence should say instead,
+  on a trust page, is the owner's. Found 30 July 2026 by a second model reading the handoff,
+  which had been repeating the same false sentence as a settled decision.
+- **Three entries moved out of the handoff's decisions list, 30 July 2026**, because they were
+  outstanding editorial work rather than decisions taken, and the handoff sends that here.
+  - **Captions.** Four Markdown tables have none: one in the glossary, two on the sources page,
+    one in the style guide. They are wrapped and named from the heading above them. A caption is
+    new prose and is the owner's to write. The handoff said "two Markdown tables and the
+    three-queues table"; the three-queues table has had a caption since the page was written.
+  - **In `most-immigration-is-asylum`**, two list items open with a bold term and the third with
+    a bold link, so the third reads as more important. Fixing it means rewriting the sentence.
+  - **The small-boats card lost a line** about 90% of detected unauthorised arrivals, which
+    belongs to the year-ending-March record rather than the calendar-2025 card. It is still in
+    the record's notes and could be placed on the asylum page.
 - **Whether `/sources-and-method/` should publish a third limit.** The bullet saying series
   values are not individually cited has gone, because they now are. Nothing replaced it, and
   there are now three candidates. A figure declared under `historical_literals` is exempted on

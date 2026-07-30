@@ -55,8 +55,11 @@ jobs:
         # below: an accessibility regression is a defect in the artefact, not a transient
         # outage. It is not the whole of the standard. Keyboard operation of the scrolling
         # regions, what the charts announce, focus against both palettes and reflow at 400%
-        # were measured by hand and are recorded in docs/HANDOFF.md; nothing here proves
-        # them, and a green run must not be read as though it did.
+        # were measured by hand during the July 2026 accessibility rounds. Successive
+        # rewrites of docs/HANDOFF.md dropped those records while this comment went on
+        # pointing at them, so do not read this as saying the evidence is still filed
+        # somewhere. Nothing here proves them, and a green run must not be read as though
+        # it did.
         run: npm run a11y
 
       - name: Source URLs still resolve
