@@ -1,10 +1,12 @@
 # Update automation, scoped
 
 What can be automated about keeping this site current, what must not be, and in what order to
-build it. Scoped 23 July 2026. **Phase 2, the evidence check, was built on 28 July 2026, PR #43,
-phase 1, the notifier, the same day, PR #46, and phase 1b, the corrections watch, on 30 July,
-PR #48. Phases 3 and 4 are not built.** Phases 1, 1b and 2 below are now the reasoning behind
-what exists; the rest is still a scope.
+build it. Scoped 23 July 2026. **Four of the five phases are built:** phase 2, the evidence
+check, on 28 July 2026, PR #43; phase 1, the notifier, the same day, PR #46; phase 1b, the
+corrections watch, on 30 July, PR #48; and phase 3, the update prompt, the same day, PR #56.
+**Phase 4 is the only one left**, and it is a reader-facing trust statement needing the owner's
+sign-off rather than a build. Everything below except phase 4 is now the reasoning behind what
+exists rather than a scope for what does not.
 
 The problem it solves is named in the risk register: silent staleness is the most likely way
 this project fails. The staleness check added on 23 July ages every figure against its
@@ -429,8 +431,30 @@ this check would rot.
 
 ## Phase 3: the update prompt
 
-Only after Phase 2 exists and has been exercised. **Both are now true**: the evidence check
-was built on 28 July 2026 and exercised the same day on a real figure, PR #45.
+**Built 30 July 2026, PR #56**, as `docs/prompts/update-from-release.md`. What follows is the
+design it was built to, and the seven things settled first.
+
+Only after Phase 2 exists and has been exercised. **Both were true before it was written**: the
+evidence check was built on 28 July 2026 and exercised the same day on a real figure, PR #45. So
+was the third condition added later: the by-hand runbook it delegates from, `docs/UPDATING-DATA.md`,
+was written first, on the rule that you should be able to do a job before you delegate it.
+
+**It is deliberately thin, and that is the design rather than an omission.** It names the source,
+the release and the refusals, and sends the assistant to the runbook for the procedure. Everything
+this scope once said about steps and fields now lives there.
+
+### What building it found
+
+- **The first subdirectory under `docs/` escaped the rule that tracks planning documents.**
+  `validate-content.mjs` required every `docs/*.md` to be referenced from the backlog, and did not
+  descend, so `docs/prompts/update-from-release.md` was invisible to it on the day it was created.
+  The document whose whole purpose is that a scope cannot be written and forgotten was itself
+  unforgettable only by luck. Now recursive, matching on the path relative to `docs/` so two
+  documents sharing a basename in different directories cannot satisfy the rule through each
+  other, and so a nested file cannot inherit a top-level exemption. Negative-tested three ways.
+- **Nothing about the prompt is a check, and the prompt says so first.** What makes it safe is
+  that three existing checks refuse its worst outputs. That claim is load-bearing enough to be
+  stated at the top of the file rather than buried.
 
 ### Seven things to settle before writing it, found on 28 July
 
@@ -442,6 +466,11 @@ this procedure anywhere.**
   All four are `ons-ltim`: `net-migration`, `net-migration-2`, `total-long-term-immigration`
   and `total-long-term-emigration`. An update that moves those four records and not the series
   produces a pull request that cannot pass CI. Nothing below mentions a series file.
+  **And the reach is wider than this bullet says**, which the built prompt understated too until
+  a second model checked it: two of the four series files, `asylumApplicationsTimeseries.json`
+  and `asylumBacklogTimeseries.json`, are `ho-immigration-stats` and are replaced whole on every
+  Home Office quarterly. So the series problem covers two of the three cadenced releases, not
+  one, and only the tribunals release is free of it.
 - **The query it is built on could not find them either, and now can.** The series files
   carried no `source_id`, so "list the affected figures by `source_id`" reached 71 records and
   none of the 100 series points. They carry one as of PR #47 and `validate-data.mjs` requires
@@ -540,8 +569,8 @@ the update commitment does.
 | 1, notifier | **Built, 28 July 2026, PR #46.** Closes "nothing detects a release happened". | Nothing |
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
 | 1b, corrections watch | **Built, 30 July 2026, PR #48.** Closes the one channel through which a wrong number can sit here indefinitely. | Nothing. `table_reference` was built with it |
-| 3, prompt | No. Unsafe without 2, and seven things to settle first. | 1 and 2 |
-| 4, disclosure | Not applicable | 3, and owner sign-off |
+| 3, prompt | **Built, 30 July 2026, PR #56.** No, and it was not built alone: unsafe without 2, and the runbook had to exist first. | 1, 2, and `docs/UPDATING-DATA.md` |
+| 4, disclosure | Not applicable. **The only phase left.** | 3, and owner sign-off |
 
 **None of it should delay launch.** Launch waits on two decisions, and this changes neither.
 The first real run of Phase 3 should be against a release that was going to be checked by

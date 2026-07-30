@@ -186,10 +186,10 @@ every time while page prose is never touched, and a tested command that lists a 
 **and its series files** together, since the series were invisible to every check until PR #47
 and a list that omits them ships half a release.
 
-### 4. Release notifier and evidence check: phases 1, 1b and 2 built, two phases left
+### 4. Release notifier and evidence check: four phases built, phase 4 left
 
-**`docs/UPDATE-AUTOMATION.md`.** Five phases now. Phases 1, 1b and 2 were each worth building
-alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
+**`docs/UPDATE-AUTOMATION.md`.** Five phases. Phases 1, 1b, 2 and 3 are built; phase 4 is a
+reader-facing trust statement and needs the owner's sign-off, so it is the only one left.
 
 - **Phase 2, the evidence check. DONE (PR #43, 28 July 2026).** A figure whose value changed,
   or which is new, must be declared in `data/evidence/` with a quote from a fetched source
@@ -217,17 +217,35 @@ alone; phase 3 is unsafe before phase 2 exists; phase 4 needs owner sign-off.
   `retrieved_date` pre-dates the correction, so it is stateless and clears itself. What building
   it found is in the scope, uncounted and not restated here, because a count restated in two
   files is what put six in one and twelve in the other for a day.
-- **Phase 3, the update prompt. Both gates were decided on 30 July 2026, so it is now the first
-  unfinished work on this list.** Seven things to settle are in the scope and five were already
-  mechanical. The two that were not, and what was decided:
+- **Phase 3, the update prompt. DONE (PR #56, 30 July 2026)**, as
+  `docs/prompts/update-from-release.md`. Seven things to settle were in the scope; five were
+  already mechanical and the two that were not were decided the same day. It is deliberately
+  thin: it names the source, the release and the refusals, and sends the assistant to
+  `docs/UPDATING-DATA.md` for the procedure rather than carrying a copy of it. **Not yet
+  exercised against a real release**, and it says so; the first run should be against one that
+  was going to be checked by hand anyway.
+
+  **What building it found, and it is a defect in an older check rather than in the prompt.**
+  `docs/prompts/` is the first subdirectory under `docs/`, and the rule that every planning
+  document must be referenced from this file **did not descend into directories**. The document
+  whose whole purpose is that a scope cannot be written and forgotten was itself invisible to the
+  rule on the day it was written. The scan is now recursive and matches on the path relative to
+  `docs/`, so two documents sharing a basename in different directories cannot satisfy it through
+  each other. Negative-tested both ways.
+
+  The two decisions, kept because they explain the shape of what was built:
   - **Series work: refuse it, and hand it to a person.** As scoped the procedure cannot do an
     ONS update at all: the four metrics that declare a `series_ref` are all `ons-ltim`, and
     moving them without the series fails `validate-data.mjs`. So v1 detects a `series_ref` or a
     series file in scope, stops, and **names the runbook's section by path and heading without
     restating its steps.** That constraint came from a second model: a procedure printed in two
     places is the duplication this project has been burned by twice, and the copy a session
-    happens to read wins. Refusing costs the ONS release, one of the three cadenced ones, and
-    that is the accepted price of not omitting it silently.
+    happens to read wins. **It costs two of the three cadenced releases, not one**, which the
+    first version of this entry got wrong: the four `series_ref` metrics are all `ons-ltim`, but
+    two of the four series files are `ho-immigration-stats` and move on every Home Office
+    quarterly. Only the tribunals release runs to completion. That is the accepted price of not
+    omitting series work silently, and if it is judged too high the answer is to grow the series
+    half deliberately rather than loosen the refusal.
   - **The runbook came first, and is now built** as item 3. Phase 3 is the job it describes,
     delegated, so its own rule put it ahead. Decided and reordered on 30 July.
 - Phase 4, rewriting what the sources page says about automation, needs the owner's sign-off.
