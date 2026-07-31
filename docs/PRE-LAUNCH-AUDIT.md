@@ -445,6 +445,55 @@ outside the SVG.
 
 ---
 
+**E2. HIGH. Printed and saved as PDF, the site breaks its own first editorial rule.**
+
+There is no `@media print` block anywhere in `content/assets/style.css`. Grep returns zero. The
+consequences are not cosmetic, because of two structural choices that are right on screen and wrong
+on paper.
+
+**Every chart's figures disappear.** `lib/charts.mjs:129` puts each chart's data table inside a
+disclosure control:
+
+```html
+<details class="chart-data">
+  <summary>Show the figures behind this chart<span class="visually-hidden">: ${escape(title)}</span></summary>
+```
+
+Seven charts across three pages, none carrying `open`. A `<details>` that is closed is closed when
+printed, so a printed migration or asylum page carries the SVG and none of the numbers behind it. On
+a monochrome printer, where the series are told apart by stroke pattern and by a label at the end of
+each line, the chart alone is close to unreadable and the table that exists to fix that is not there.
+
+**Every source link loses its destination.** Printed HTML renders link text without its URL unless
+CSS puts it back. Each chart ends with `<p class="chart-source">Source: <a href="...">NAME</a>`, and
+the claim pages, the glossary and the sources page are dense with them. On paper the reader gets the
+publisher's name and no way to reach the publication.
+
+Read against the site's own rules in `README.md`, this is not a polish item. The first editorial rule
+listed is "**No number is shown without its definition, period and source visible without
+hovering**". Print is a medium where that rule currently fails twice over, and it is a medium this
+audience uses: the stated audience is professionals who need a citation quickly, and the foundation
+already anticipates claim cards being screenshotted and shared out of context.
+
+Fix, entirely in CSS, no JavaScript, roughly a dozen lines: open the chart tables for print, print
+the URL after each external link, and drop the navigation, the skip link and the pre-launch banner.
+Verify it in a real print preview rather than by reading the CSS, because the rule that reveals a
+closed `<details>` is one browsers implement differently, and because whether a chart table should
+print at all is a layout judgement rather than a correctness one.
+
+A secondary consequence worth knowing but not worth acting on separately: in-page search behaviour
+for text inside a closed `<details>` varies between browsers, so a researcher searching a page for a
+figure that lives only in a chart table may or may not find it depending on what they are using.
+
+**E3. LOW. There is no 404 page.**
+
+`_site/` contains no `404.html`, so Netlify serves its own default. A site that expects to be linked
+into from articles and briefings will accumulate broken inbound links as URLs change, and the page
+those readers land on should send them to the homepage and the sources page rather than to a
+platform's generic message. One markdown file with `permalink: /404.html`.
+
+---
+
 ### F. Verified as correct
 
 Recorded because a review that lists only defects invites the reading that everything unlisted was
@@ -474,6 +523,12 @@ point by point against the series arrays and the records:
 **F2. The internal link graph is sound.** 273 internal links and every same-page fragment resolve,
 every internal link is root-relative, and no link carries an `aria-label` that could diverge from its
 visible text.
+
+**F3a. The build output is lean and matches its own security posture.** The heaviest page is 28KB,
+there is no client-side JavaScript, and there is not a single inline `style` attribute anywhere in
+the built HTML, so the `style-src 'self'` content security policy in `netlify.toml` holds without an
+exception. A dark theme exists via `prefers-color-scheme`; its contrast is the running accessibility
+pass's subject, not this one's.
 
 **F3. The decisions arithmetic is documented against its own trap.** The notes on
 `asylum-initial-decision-grant-rate` and `asylum-initial-decisions-total` both warn against
