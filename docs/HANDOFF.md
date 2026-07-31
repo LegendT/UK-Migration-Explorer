@@ -651,18 +651,34 @@ what the editorial question even is.
 
 Still mine, not yours: recording the review as passed in CHANGELOG.md,
 which is what is left of item 1; removing the robots rule, which comes
-last and is launch; and talking to five target users, which is the one
-open acceptance criterion. Do not treat any of those as done. The
+last and is launch; talking to five target users, which is the one open
+acceptance criterion; and the audit's three launch gates, which the
+backlog names at the top. Two are glossary rewrites and one re-sources a
+record in a way that adds a publisher to sources.json. Do not treat any
+of those as done, and do not write the glossary wording for me: propose
+it and stop. The
 backlog also carries editorial decisions waiting on me. Where an item is
 gated on a decision of mine, that decision is written under the item, so
 read it before assuming the item is yours to start.
 
-TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
-told you otherwise in this message. Unfinished, not unstarted: an item
-can have phases built and still be the first one. Do not infer it from
-document order: the earlier items are mine or are launch, so the
-backlog's own preamble under "Scoped, not built" names which item to
-take, and that sentence is the instruction.
+TASK: unless I have told you otherwise in this message, work from the
+actionable list in docs/PRE-LAUNCH-AUDIT.md. It is the live list while
+the audit is open, its rows say Session or Owner, and the Session rows
+are ordered by what launch needs. Take Session rows; bring me Owner rows
+rather than starting them.
+
+When the audit closes, that list empties into docs/BACKLOG.md and the
+backlog becomes the live one again. Its rule then: take the first
+UNFINISHED item, not the first unstarted one, since an item can have
+phases built and still be first. Do not infer it from document order,
+because the earlier items are mine or are launch; the backlog's own
+preamble under "Scoped, not built" names which to take, and that sentence
+is the instruction.
+
+Read both preambles before deciding either way. Two lists exist only
+while the audit is open, and this project has twice watched two lists
+diverge, so if they disagree about what is outstanding, say so rather
+than picking one.
 
 Before you start, tell me which item you are taking and what you expect
 to change. If it is larger than a session, say so and propose a split.

@@ -15,6 +15,10 @@ Last updated 31 July 2026, after fifteen pull requests, #54 to #68.
 pre-publication review before it, its outcome is a findings list rather than an approval. It applied
 the mechanical half and left every editorial and sourcing call.
 
+**The prompt for a fresh session is generated to `docs/prompts/fresh-session.md`** from the
+handoff, so it can be copied without opening a 700-line document. The handoff remains its source
+of truth.
+
 **Its own actionable list is the live one, and this file does not copy it.** Forty-odd rows, each
 saying where the work is and whether a session can take it. Copying it here would create the second
 list that this project has now watched diverge twice. When the audit closes, whatever it leaves
