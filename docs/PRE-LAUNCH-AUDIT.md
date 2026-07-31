@@ -52,15 +52,21 @@ written from memory rather than from the record and only the downgrade was real.
 here rather than quietly, because a document whose subject is success messages that overclaim
 should not contain one.
 
-| Pass | State | Findings |
+| Pass | Section | Headline |
 | --- | --- | --- |
-| Content and editorial precision | Complete | 2 blockers, 1 high, 2 medium, 3 low |
-| Data layer integrity | Complete | 2 high, 3 medium, 3 low, no wrong published value |
-| Documentation consistency | Complete | 3 high, 2 medium groups, plus the README's four |
-| Checking apparatus, `scripts/` and `lib/` | Complete | 1 high, 4 medium, 2 low |
-| Accessibility, WCAG 2.2 AA | Complete | 1 high (Level A), 1 medium, 2 low; pa11y 16/16 clean |
-| Build, deploy and supply chain | Complete | 2 high, 1 medium |
-| Reader-facing trust surface | Complete | 1 high, 4 medium, 3 low, 2 decisions |
+| Content and editorial precision | 0A, 0B, K | Both blockers, and the neutrality assessment |
+| Data layer integrity | F0 | No published value is internally wrong |
+| Documentation consistency | A, J | A count typed where a run should be cited, repeatedly |
+| Checking apparatus, `scripts/` and `lib/` | I | The ninth instance of the project's own pattern |
+| Accessibility, WCAG 2.2 AA | E | pa11y 16/16 clean; one Level A failure found by hand |
+| Build, deploy and supply chain | B | The two strongest gates do not gate the deploy |
+| Reader-facing trust surface | C, D, G, H | Corrections can only be reported via GitHub |
+
+**This table used to carry a count of findings per pass, and a second model found the counts were
+wrong.** They were typed by hand, they went stale as later commits added findings, and they sat in a
+document whose central charge against this project is a count typed where a run should be cited.
+They are gone rather than corrected, for the same reason `lib/published.mjs` exists. Severity is
+carried on each finding, which is the one place it cannot drift from itself.
 
 ### What has been applied in this branch, and what has not
 
@@ -123,25 +129,28 @@ reverted. It is recorded here because it is this project's own lesson arriving f
 direction: a tool that reformats what it touches will make changes nobody asked for, and reading the
 diff is what catches them.
 
-### The eight things to fix before launch
+### What is left to fix before launch
 
-Everything else in this document can follow the launch. These cannot, in this order:
+**Five items, and this list used to say eight.** Three of the eight had already been applied on this
+branch when the list shipped, and the list went on naming them in the present tense while the
+applied-fixes table above recorded them as done. A second model caught it. A later reader would have
+redone finished work, which is the same failure as a stale count and in the same document.
+
+Everything else here can follow the launch. These cannot, in this order:
 
 1. **The two glossary blockers, 0A and 0B.** Both are the site publishing statistical reasoning its
-   own data files forbid, on the page its claim pages cite as the authority.
+   own data files forbid, on the page its claim pages cite as the authority. Wording is yours.
 2. **Review the six pages the pre-publication review never opened**, finding 0. Both blockers are on
    one of them, and the decision to record the review as passed currently rests on ten pages of
    sixteen.
-3. **The 76% period contradiction**, K1, which needs HC 874 re-read.
-4. **The `series_ref` count in the runbook and the prompt**, J1, which will mislead the next Home
-   Office update.
-5. **The flows chart's methodology break**, E4, which is a Level A accessibility failure and a
-   statistical caution the site's own purpose depends on.
-6. **The success message that overclaims**, I1, because it is the ninth instance of the pattern the
-   README warns about and it is in the check the README points at.
-7. **The two confidence and edition errors in the data**, F0-1 and F0-2, both minutes of work.
-8. **The four stale README counts and the three stale foundation ones**, A1 to A4 and J3 to J4, since
-   the README is what a citing journalist reads first.
+3. **The 76% period question**, K1, which needs HC 874 re-read.
+4. **The flows chart's methodology break**, E4, a Level A accessibility failure and a statistical
+   caution the site's own purpose depends on.
+5. **The success message that overclaims**, I1, the ninth instance of the pattern the README warns
+   about, in the check the README points readers at.
+
+Applied on this branch and therefore **not** on this list: A1 to A4, J1 to J4, F0-1, F0-2 and F0-4.
+The applied-fixes table above is the record of what changed.
 
 ---
 
@@ -197,7 +206,7 @@ The record it cites two lines above, `asylum/asylum-initial-decision-grant-rate`
 
 The glossary sentence contradicts its own record four times over:
 
-1. **It performs the addition the record forbids.** "So the initial rate understates eventual
+1. **It draws the inference the record forbids.** "So the initial rate understates eventual
    protection rates" applies a 2010 to 2020 cohort uplift to the current rate. The record's
    instruction is three words long and unambiguous.
 2. **It calls the later figure "final outcome".** The Home Office calls it the latest recorded
@@ -309,7 +318,10 @@ standard is that a number kept in two files is a defect. Four of its live claims
 was re-derived, and none is a historical narrative about a past pull request: all four read as
 present-tense statements of what the repository is.
 
-**A1. BLOCKER. The record count is given as both 75 and 71.**
+**A1. HIGH. The record count is given as both 75 and 71.** *Labelled BLOCKER in the first draft.
+A second model was right that this was severity inflation: no site reader sees the README, and it is
+identical in kind to A2 and A3, which were HIGH. Corrected, and the "two blockers" framing elsewhere
+in this document is now consistent with the labels rather than contradicting them.*
 
 `README.md:15` says the data layer holds "**75 metric records**". `README.md:313` says
 "**23 of the 71 metric records cannot be aged**". Summing the metrics arrays across the four theme
@@ -583,7 +595,7 @@ once as a headline and once as a series point, cannot drift from itself. Both ar
 `validate-data.mjs`.
 
 The third boundary is unguarded. Scanning every record's `notes` for the formatted value of any
-other record finds 26 restatements across 15 records. A sample, and each pair is live today:
+other record finds 26 restatements across 14 records. A sample, and each pair is live today:
 
 | The note belongs to | It restates | Which is owned by |
 | --- | --- | --- |
@@ -632,8 +644,18 @@ expiry, and `base.njk:46` prints nothing where the review date would go. The pag
 `README.md:311` says "every page carries the date it was last reviewed". Five of the site's sixteen
 pages are `.njk`, including the homepage, and all five happen to carry it, so the defect is latent
 rather than live. It is listed because five of the site's most important pages depend on an author
-remembering, the promise is published, and the fix is deleting the conditional: the four `.njk`
-front matters already satisfy the stricter rule.
+remembering, and the promise is published.
+
+**The fix is not the obvious one, and the first draft of this finding got it wrong.** It said to
+delete the conditional, on the reasoning that the `.njk` front matters already satisfy the stricter
+rule. They do not: the stricter rule is `['id', 'title', 'last_reviewed']`, and `grep '^id:'
+content/*.njk` matches nothing, so deleting the conditional fails the build on all five pages with
+"missing front matter field id". A second model caught it, and the shape is worth keeping: a fix
+recommended without being run is a fix that has not been checked, which is this document's own
+complaint about the project restated against itself.
+
+The fix that works is to require `last_reviewed` for both file types while leaving `id` scoped to
+markdown, so the conditional narrows rather than disappears.
 
 **D3. LOW. Every claim page prints its review date twice.**
 
@@ -737,7 +759,14 @@ audience uses: the stated audience is professionals who need a citation quickly,
 already anticipates claim cards being screenshotted and shared out of context.
 
 Fix, entirely in CSS, no JavaScript, roughly a dozen lines: open the chart tables for print, print
-the URL after each external link, and drop the navigation, the skip link and the pre-launch banner.
+the URL after each external link, and drop the navigation and the skip link.
+
+**Do not drop the pre-launch banner, which the first draft of this fix said to drop.** Finding C7
+rests its severity on that banner: the site is reachable before launch, and the reason that is a
+small problem rather than a large one is that every page tells an early reader what they are
+reading. A printed page with the banner suppressed is exactly the artefact C7 says does not exist,
+shared with the audience E2 says prints and shares. The two findings were written independently and
+contradicted each other; a second model found it. The banner prints until it is removed at launch.
 Verify it in a real print preview rather than by reading the CSS, because the rule that reveals a
 closed `<details>` is one browsers implement differently, and because whether a chart table should
 print at all is a layout judgement rather than a correctness one.
@@ -857,10 +886,19 @@ identical record two entries away, `detected-unauthorised-arrivals-year-ending-m
 quarters from a Home Office pivot for the same reason and is correctly graded `calculated`, its notes
 opening "CALCULATED, not published". Two identical operations, two different grades.
 
-This one is reader-facing: 5,931 appears on the asylum page in the sentence explaining that the three
-bars are not every outcome, and the confidence taxonomy is part of what the site asks readers to
-trust. Fix: `official` becomes `calculated`, unless the Asy_D02 pivot itself prints a
-year-ending-March total, in which case the notes should say so instead. **OWNER-VERIFY** which.
+The value is reader-facing: 5,931 appears on the asylum page in the sentence explaining that the
+three bars are not every outcome. **The grade is not**, and this audit's own byte-identical build
+proves it: regrading the record changed no rendered page. The first draft called the finding
+"reader-facing" without that distinction, which overstated it. It remains HIGH on the ground that
+`data/` is published and `/about/` points readers at it, so a hostile expert reads the wrong grade
+in the public data file even though no page shows it.
+
+**Applied on this branch**, `official` to `calculated`. **With one correction to how it was
+applied.** The notes were given the opening its verified sibling carries, "CALCULATED, not published
+as a year-ending total", which asserted the very thing this finding marked OWNER-VERIFY: whether the
+Asy_D02 pivot prints a year-ending-March total was never re-checked. A second model caught the
+overstep. The note now says what is actually established, that the figure was summed from published
+quarterly cells, and says explicitly that the pivot has not been re-read. **OWNER-VERIFY** stands.
 
 **F0-3. MEDIUM. The `series_ref` guard checks the value and lets everything else drift.**
 
@@ -905,7 +943,7 @@ checked by nothing and is stale everywhere. Fix: set each to its file's maximum 
 have `validate-data.mjs` derive or check it, since a field nothing reads is the shape this project
 keeps finding.
 
-**F0-5. MEDIUM. A record whose own notes say "Do not publish without re-checking" is 44 days stale.**
+**F0-5. MEDIUM. A record whose own notes say "Do not publish without re-checking" is 43 days stale.**
 
 `asylum/small-boat-arrivals-2026-year-to-date`: `"value": 9000`,
 `"retrieved_date": "2026-06-17"`, `"period_label": "1 January to 31 May 2026 (provisional)"`, notes
@@ -919,7 +957,7 @@ itself.
 
 The risk is a loaded one rather than a live one: a record that decays weekly, sitting in reserve with
 a warning label, one citation away from a page. The validator cannot age it, because it is scored
-against a quarterly cadence and 44 days is inside that. Fix: re-read it before launch and update all
+against a quarterly cadence and 43 days is inside that. Fix: re-read it before launch and update all
 four fields, or drop it. Leaving it is the option that needs the argument.
 
 **F0-6. LOW. Three smaller data findings, each verified.**
@@ -1001,10 +1039,16 @@ should be read against.
 `migration.njk`, the flows chart summary: "Emigration rose steadily from **480,000 in 2021** to
 680,000 in 2024, easing to 642,000 in 2025." Every number is right, verified above.
 
-2021 is the lowest emigration point in the fourteen-year series. The two preceding points are
-605,000 in 2019 and 569,000 in 2020, so emigration fell for two years and then rose, and the
-sentence begins at the bottom of that fall. Starting there makes the rise the largest it can be
-made to look while remaining true.
+2021 is a local trough. The two preceding points are 605,000 in 2019 and 569,000 in 2020, so
+emigration fell for two years and the sentence begins at the bottom of that fall.
+
+**A correction, and it is the most embarrassing one in this document.** The first draft called 2021
+"the lowest emigration point in the fourteen-year series". It is not: 2012 is 448,000 and 2013 is
+469,000, both below 2021's 480,000. A second model caught it. The error was in the one section
+accusing the site of choosing a flattering baseline, in a document that opens by claiming every
+number was re-derived, and it was produced by reasoning from the shape of the recent trend instead
+of reading the array that was already on screen. The point about baseline choice survives on the
+2019 and 2020 figures alone; the superlative did not.
 
 This is raised because of what the site is. `lib/charts.mjs` enforces that "the y-axis always starts
 at zero. A truncated axis exaggerates change, and this site exists to correct exactly that kind of
@@ -1306,7 +1350,9 @@ data files are public:
 
 The same 76%, attached to two different periods. The arithmetic is internally consistent either way,
 1.3/1.7 is 76.5% and 76% of an annualised contract total also roughly coheres, so the repository
-cannot settle which HC 874 actually states. One of the two is wrong and both are published.
+cannot settle which HC 874 actually states, and a share near 76% could hold over both windows, so
+this is a question rather than a proven error. The first draft asserted that one of the two must be
+wrong; a second model was right that this does not follow.
 
 **OWNER-VERIFY** against HC 874, then fix whichever is wrong. Note also that £1.3 billion and
 £1.7 billion exist in no record, which is finding K3.
@@ -1419,6 +1465,63 @@ the reading that it checked everything.
   landed were spot-checked by grepping for the phrases the review said to delete, which is how
   blocker 0B was found. That method finds surviving phrases; it does not confirm that a correction
   described as done was done well.
+
+---
+
+## What a second model found in this audit
+
+**Two adversarial passes were run against this document and against the diff it produced**, on the
+project's own rule that anything evidence-bearing gets a second model, and with instructions to
+refute rather than confirm. They found eleven real defects. All eleven are corrected above, in place
+and with the correction visible rather than silently. They are collected here because the pattern
+matters more than any single one.
+
+**Four were the disease this document diagnoses, committed by this document.**
+
+- The status table carried a hand-typed count of findings per pass. The counts were wrong and went
+  stale as later commits added findings, in a document whose central charge is a count typed where a
+  run should be cited. The counts are gone rather than corrected.
+- The pre-launch list said eight items. Three had already been applied on this branch and the same
+  document's own table said so. It is five.
+- A1 was labelled BLOCKER while the document asserted "two blockers" three times. Severity
+  inflation, and an internal contradiction. A1 is HIGH.
+- `docs/UPDATE-AUTOMATION.md:158` still said "71 metric records, 48 cadenced, 45 covered" against a
+  true 75, 52 and 49. It survived the sibling grep that had corrected the same fault at line 418 of
+  the same file.
+
+**Three were assertions stronger than the evidence.**
+
+- G1 called 2021 "the lowest emigration point in the fourteen-year series". It is not; 2012 and 2013
+  are lower. False, in the section accusing the site of choosing a flattering baseline.
+- K1 said one of the two 76% periods must be wrong. A share near 76% could hold over both windows.
+- F0-2 called a confidence grade reader-facing when this audit's own byte-identical build proves it
+  renders nowhere.
+
+**Two were fixes that did not work.**
+
+- D2 recommended deleting a conditional in `validate-content.mjs`. Doing so fails the build on all
+  five Nunjucks pages, because none carries the `id` the stricter branch requires. A fix
+  recommended without being run has not been checked.
+- E2 recommended print CSS that hides the pre-launch banner, which is the mitigation C7 depends on.
+
+**Two were overstatements inside otherwise sound findings**: 0A's first charge said the glossary
+"performs the addition" the record forbids when it draws a directional inference, and D1 said 26
+restatements across 15 records when it is 14.
+
+**And one was an overstep in an applied change**, caught by the diff review: the regrade's note
+asserted that the Asy_D02 pivot prints no year-ending total, which is exactly what this document had
+marked OWNER-VERIFY. Corrected in the data file.
+
+**What survived.** Both blockers, verbatim-verified independently. Finding 0, the review's ten-page
+coverage. Every arithmetic claim in F1, the chart summaries. B1, B2, C1 to C7, D1's substance, E1,
+E2's substance, E4, I1, I2, I3, J1 and K2 to K4. The refuting pass's own verdict was that the
+headline recommendation stands and that "recording the review as passed against that evidence would
+be indefensible".
+
+**How to read this document, given the above.** Its findings are worth acting on and its
+self-description was not worth trusting. That is the same verdict it reaches about the project's
+green checks, and it would be dishonest to apply the standard in one direction only. Nothing here
+says a third pass would find nothing.
 
 ---
 

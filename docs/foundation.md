@@ -1031,9 +1031,11 @@ one of 100 or more is distinctive enough to fail the build. Rates and money are 
 100, where too many unrelated metrics share a value for a match to mean anything, 21% is both
 the NHS staff share and the asylum hotel share, so those are matched with their unit and
 **reported as warnings rather than refused**. How many surface is what `npm run validate` prints,
-and it is not restated here. Nor is a stored note that they were reviewed: one such note claimed
-ten coincidences, and re-deriving them found three that were live metric values restated
-longhand. Re-derive them per item rather than trusting the note. An error there would be silenced by stuffing
+and it is not restated here. Nor is a stored note that they were reviewed: this document once
+recorded ten, all reviewed as coincidences, and a separate re-derivation of the same class of
+warning found three that were live metric values restated longhand. The two notes were about
+overlapping but not identical lists, which is itself the argument: re-derive them per item rather
+than trusting any stored all-clear. An error there would be silenced by stuffing
 `historical_literals:`, which is worse than no check at all. Review them; do not suppress
 them.
 

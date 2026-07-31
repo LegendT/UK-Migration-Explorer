@@ -223,8 +223,10 @@ reader-facing trust statement and needs the owner's sign-off, so it is the only 
 
   The two decisions, kept because they explain the shape of what was built:
   - **Series work: refuse it, and hand it to a person.** As scoped the procedure cannot do an
-    ONS update at all: the four metrics that declare a `series_ref` are all `ons-ltim`, and
-    moving them without the series fails `validate-data.mjs`. So v1 detects a `series_ref` or a
+    ONS update at all: the metrics that declared a `series_ref` **when this was scoped** were all
+    `ons-ltim`, and moving them without the series fails `validate-data.mjs`. There are five now
+    and one is Home Office, which is recorded below; the past tense here is the fix, because this
+    sentence read as current until 31 July 2026 with its own correction five lines beneath it. So v1 detects a `series_ref` or a
     series file in scope, stops, and **names the runbook's section by path and heading without
     restating its steps.** That constraint came from a second model: a procedure printed in two
     places is the duplication this project has been burned by twice, and the copy a session

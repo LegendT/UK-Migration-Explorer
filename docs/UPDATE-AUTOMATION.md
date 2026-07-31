@@ -155,9 +155,12 @@ which figures depend on it. Query the affected figures by `source_id`, which exi
 exactly this reason.
 
 Runs on the weekly cron that already exists, and **must not fail the build**. Use
-`continue-on-error`, as `check-sources.mjs` does. It is a notifier, not a gate. Of the 71
-metric records, 48 come from a source with a fixed cadence and 45 of those are covered by
-the two routes above. The rest should be reported as unwatched rather than silently skipped,
+`continue-on-error`, as `check-sources.mjs` does. It is a notifier, not a gate. Of the 75
+metric records, 52 come from a source with a fixed cadence and 49 of those are covered by
+the two routes above. Take those from `npm run validate`, which prints the cadenced and
+uncovered split on every run, rather than from this sentence: it was wrong at 71, 48 and 45
+until 31 July 2026, and it survived the sweep that corrected the same fault further down
+this very file. The rest should be reported as unwatched rather than silently skipped,
 on the same principle the staleness check already follows: 23 figures from five irregular
 sources, and three more from `ons-population`, `skills-for-care` and `mac`, which have a
 cadence but no detection route here.
