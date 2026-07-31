@@ -207,7 +207,7 @@ tier is wider; the difference is now stated rather than implied.*
 | # | Do this | Where | Who |
 | --- | --- | --- | --- |
 | 19 | Report every note restating another record's value, so an update knows which notes to re-read. The scan exists in finding D1 | `validate-data.mjs` | Session |
-| 20 | Fire `check-evidence` on a `confidence_level` change into the derived set, not only on a value change | `check-evidence.mjs` | Session |
+| 20 | Fire `check-evidence` on a `confidence_level` change into the derived set. **Written and tested on 31 July; it correctly failed on `asylum-administrative-outcomes` and was reverted.** Order matters: fetch Asy_D02, write the evidence entry, *then* land the change, or the fix forces a fabricated quote | `check-evidence.mjs`, `data/evidence/` | Owner, for the fetch |
 | 21 | Boundary-anchor the evidence quote match so one figure's digits inside another do not satisfy it | `check-evidence.mjs:120`, moved from :115 by this branch's own comment edit | Session |
 | 22 | Make `review_due` actually fire when the date passes, validate `last_reviewed`, and call the check for the glossary | `validate-content.mjs:32` | Session |
 | 23 | Require `last_reviewed` on `.njk` pages by narrowing the conditional, **not** by deleting it | `validate-content.mjs:494` | Session |
@@ -1561,9 +1561,31 @@ What makes it worth fixing is the shape, which is this project's own: the check 
 **transition** and the message describes the **state**. A grandfathered figure is invisible to it
 for ever, and a regrade is a silent door into the grandfathered set.
 
-Fix, smallest: make `check-evidence.mjs` fire on a `confidence_level` change into `DERIVED` as well
-as on a value change, which closes the door. Backfilling the four is separate, larger, and needs
-each source re-read, so it is **OWNER-VERIFY** rather than a task this branch could take.
+**Fix written, tested, and deliberately not landed. This is the strongest form of the finding.**
+The one-line change was made on 31 July: trigger when `before` is outside `DERIVED` and `metric` is
+inside it, as well as on a changed value. Run against `origin/main` it immediately failed:
+
+```
+asylum/asylum-administrative-outcomes: changed from 5,931 to 5,931,
+and no evidence entry declares it.
+```
+
+**The check fired on this audit's own regrade**, which is precisely the door the finding says nothing
+watches. It is no longer a theorised gap; it is a demonstrated one.
+
+It was then reverted, and the reason is the point. Landing it turns the branch red until
+`asylum-administrative-outcomes` carries an evidence entry, and that entry needs a `source_url` and a
+verbatim quote per component from the Asy_D02 pivot. **Nobody on this branch fetched Asy_D02.**
+Writing the entry from the record's own notes would mean composing quotes from a source that had not
+been opened, which is the single thing this project's evidence contract exists to prevent, and it
+would be this audit committing the sin it is auditing for.
+
+So the ordering is fixed: **fetch Asy_D02, write the evidence entry, then land the one-line change.**
+Doing it in the other order forces a fabricated quote. The message should also be improved when it
+lands, because "changed from 5,931 to 5,931" describes a grade change badly.
+
+Backfilling the other derived records is separate and larger, and each needs its source re-read, so
+it stays **OWNER-VERIFY**.
 
 **I2. MEDIUM, LATENT. The evidence quote check is an unanchored substring match.**
 

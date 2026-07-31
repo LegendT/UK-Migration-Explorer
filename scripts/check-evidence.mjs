@@ -117,8 +117,15 @@ const isRealDate = (value) => {
 // The same two forms validate-content.mjs matches longhand literals on, for the same reason:
 // a source prints 97,120 or 97120 and both are the figure. Nothing else is accepted. A source
 // that only says "13.1 million" has not stated the value, and the remedy is the data table.
+// Boundary-anchored, because a bare substring test lets one figure's digits inside another satisfy
+// it: "total rose to 24.9 billion" answered for 4.9, and "1,313 applications" answered for 313. The
+// guard is the same shape validate-content.mjs uses on longhand literals, and it is what makes the
+// success message's "a quote containing its value" mean the value rather than its digits.
 const carries = (text, value) =>
-  [...new Set([format(value), String(value)])].some((form) => String(text).includes(form));
+  [...new Set([format(value), String(value)])].some((form) => {
+    const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(?<![\\d,.])${escaped}(?![\\d,.])`).test(String(text));
+  });
 
 // --- the evidence on file ------------------------------------------------------------
 // Every entry ever written stays here; it is the audit trail that makes a figure's history

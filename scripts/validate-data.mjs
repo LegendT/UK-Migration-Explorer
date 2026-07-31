@@ -80,8 +80,18 @@ function checkFields(where, item, required) {
   if (item.source_url && !item.source_url.startsWith('https://')) {
     errors.push(`${where}: source_url is not https, ${item.source_url}`);
   }
-  if (item.source_url && !catalogued.has(resolveHost(item.source_url))) {
-    errors.push(`${where}: cites ${new URL(item.source_url).hostname}, which is not a publisher in sources.json`);
+  if (item.source_url) {
+    // Wrapped, because new URL() throws on a plausible typo such as a missing scheme, and this runs
+    // after the errors above are queued and before any of them print. An unparseable URL used to
+    // take the whole report with it, including the "source_url is not https" error queued two lines
+    // up which would have named the same defect.
+    let hostname;
+    try { hostname = resolveHost(item.source_url); } catch {
+      errors.push(`${where}: source_url is not a parseable URL, ${item.source_url}`);
+    }
+    if (hostname !== undefined && !catalogued.has(hostname)) {
+      errors.push(`${where}: cites ${hostname}, which is not a publisher in sources.json`);
+    }
   }
   if (item.confidence_level && !confidenceLevels.includes(item.confidence_level)) {
     errors.push(`${where}: unknown confidence_level "${item.confidence_level}"`);
