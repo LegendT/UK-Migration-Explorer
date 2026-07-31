@@ -592,6 +592,13 @@ is what is actually copied and has to move in both places:
 | that verification.txt covers ten pages and not sixteen | `docs/BACKLOG.md`, not here |
 | that branches carry history `main` does not | *Where things stand* |
 | which backlog item to take, and on what wording | `docs/BACKLOG.md`, not here |
+| that a source naming a figure is not the source containing it | *Where things stand* |
+| that a fix goes stale one reference away | *Auditing, and auditing your own audit* |
+| that a count about your own work rots like any other | *Auditing, and auditing your own audit* |
+
+**No count was added in this update**, deliberately. The three new rows are shape rules, which can be
+worded differently in two places without costing anything. The moment one of them acquires a number,
+it belongs in one file and a pointer in the other.
 
 The last row is the one that bit. The prompt and this document should both use the backlog's
 word rather than inventing a third.
@@ -619,7 +626,16 @@ This project has no CLAUDE.md of its own. Your global instructions at
 The pre-publication review is done and its corrections landed.
 verification.txt at the repo root is the review itself; it covers
 Sections 1 to 7 and Parts 2.1 to 2.7, which is ten pages and not
-sixteen, and that distinction settled the last_reviewed question.
+sixteen, and that distinction settled the last_reviewed question. It
+has since done more than that: a whole-project audit on 30 and 31 July
+found its two worst defects on a page the review never opened, so treat
+the six unreviewed pages as unreviewed rather than as fine.
+
+That audit is open as PR #70 and written up in docs/PRE-LAUNCH-AUDIT.md.
+It applied the mechanical half and left every editorial and sourcing
+call. Read its actionable list before starting anything: each row says
+whether a session can take it or whether it is mine. Do not re-derive
+its findings, and do not trust its prose over a run.
 
 Work is tagged [me] or [you], and the tags were written from the
 SESSION's side, so they invert against the pronouns in this prompt. Use
@@ -682,6 +698,25 @@ what you are doing; the prompt states rules, the handoff is why.
 - Check what this project has already published, or already enforces,
   before acting on outside advice or offering me an option. (Working with
   this project's own documents and rules)
+- A source NAMING a figure is not the source CONTAINING it. Every check
+  here verifies the first. Reading five publications during the July 2026
+  audit found a headline figure whose cited report does not contain it, a
+  phrase attributed to a publisher that it does not use, and a note
+  reproducing wording a publisher had formally retracted. When you touch a
+  record, open its source and find the number in it. (Where things stand)
+- After changing a number or a label anywhere, GREP FOR IT before
+  committing. Every such change during the audit landed correctly and left
+  exactly one remote reference stale: a downgraded finding still called a
+  blocker elsewhere, two line numbers that moved with only one table
+  following, a page count corrected everywhere but the CI step name.
+  (Auditing, and auditing your own audit)
+- A count about your own work rots as fast as one about the data, and the
+  fix is deleting it rather than correcting it again. (Auditing, and
+  auditing your own audit)
+- Publish the command you ran. A fix replacing typed counts with a
+  derivation shipped one that printed nothing while the document claimed
+  its output; the version run and the version published differed. Copy it
+  out of your terminal. (Auditing, and auditing your own audit)
 - A defect reported on one page usually has siblings. Grep the reasoning,
   not just the sentence, and grep the claim rather than the page.
   (Changing something without breaking something else)

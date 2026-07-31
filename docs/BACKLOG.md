@@ -10,11 +10,36 @@ referenced here, so a scope can no longer be written and forgotten.
 
 Last updated 31 July 2026, after fifteen pull requests, #54 to #68.
 
-**A whole-project pre-launch audit is open in `docs/PRE-LAUNCH-AUDIT.md`**, on branch
+**A whole-project pre-launch audit is open in `docs/PRE-LAUNCH-AUDIT.md`**, PR #70, on branch
 `pre-launch-audit`. It covers code, data, content, documentation and accessibility, and like the
-pre-publication review before it, its outcome is a findings list rather than an approval. Its
-findings are not restated here while it is open; when it closes, whatever it leaves undone moves
-into the sections below and the document joins Completed.
+pre-publication review before it, its outcome is a findings list rather than an approval. It applied
+the mechanical half and left every editorial and sourcing call.
+
+**Its own actionable list is the live one, and this file does not copy it.** Forty-odd rows, each
+saying where the work is and whether a session can take it. Copying it here would create the second
+list that this project has now watched diverge twice. When the audit closes, whatever it leaves
+undone moves into the sections below and the document joins Completed.
+
+**Three things from it gate launch and are mine**, named here because this file is where a launch
+gate belongs and a session reading only the backlog must not miss them:
+
+1. **`content/glossary.md`, the Grant rate entry.** It applies a cohort uplift its own record says
+   `Do not add`, calls the later figure "final outcome" where the Home Office says "latest outcome",
+   attributes it to appeals when the publisher says "following appeals and reconsiderations", and
+   omits administrative outcomes from the exclusions. The Home Office's own wording is quoted in the
+   audit, fetched 31 July. **[you]**, wording.
+2. **`content/glossary.md`, the Net fiscal impact entry.** It still says "a range that spans zero",
+   which correction 1b retired from the two claim pages that link to it, both of which carry a notice
+   saying they no longer do this. Two paragraphs, not four words. **[you]**, wording.
+3. **`fiscal/home-office-spending-on-asylum-hotel-accommodation` cites the wrong source.** £2.1bn is
+   real and official and is in the Home Office Annual Report and Accounts 2024-25, HC 1133, page 75,
+   quoted in the audit. It is not in the NAO report the record names. Re-sourcing it adds a publisher
+   to `sources.json`, which is why it is **[you]**.
+
+**And one that is not a gate but changes what the review's sign-off means.** Both glossary blockers
+sit on a page `verification.txt` never opened. The review read ten of sixteen. Recording it as passed
+is a judgement about the other six as much as about the ten, and the audit recommends putting those
+six through `docs/PRE-PUBLICATION-REVIEW.md` before signing.
 
 ---
 
