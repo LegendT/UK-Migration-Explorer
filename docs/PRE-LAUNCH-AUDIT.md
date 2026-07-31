@@ -152,6 +152,39 @@ reverted. It is recorded here because it is this project's own lesson arriving f
 direction: a tool that reformats what it touches will make changes nobody asked for, and reading the
 diff is what catches them.
 
+### What was applied on 31 July, second batch
+
+**The Session-marked items, applied and each verified rather than assumed.** The blocker E4 is
+closed. Nothing marked Owner was touched.
+
+| Item | What landed | Verified by |
+| --- | --- | --- |
+| 9a, E4 | `breakAfter` now emits the caution into the SVG description and the disclosure body, so a methodology break reaches a screen reader and a table reader, not only the plot | Reading the built flows figure: the caution appears outside the SVG and inside the `<desc>` |
+| 21 | Evidence quote match boundary-anchored | Negative-tested: `24.9 billion` no longer answers for `4.9`, `1,313` no longer answers for `313`, and both true cases still pass |
+| 22 | `review_due` now fires when the date passes; `last_reviewed` validated | Negative-tested. The first attempt fired on the wrong rule, which was caught and re-tested with a date after `last_reviewed` and before today |
+| 23 | `.njk` pages must carry `last_reviewed`, by narrowing the conditional rather than deleting it | Negative-tested by removing it from `index.njk` |
+| 24 | The language rules and the glossary-link check now reach `data/` prose | Negative-tested with a banned term in a card and a dead anchor in a caveat |
+| 25 | Neither validator now discards its findings on a dateless series point or an unparseable URL | Negative-tested: the "not https" error that used to be lost now prints beside the new one |
+| 26 | House-style scan no longer reports a root file once per directory, and no longer swallows a read error | Run |
+| 15 | Print stylesheet: chart tables open, link destinations printed, nav dropped, **banner kept** | In the served stylesheet; needs a real print preview |
+| 17, 18f | OGL link to `https://` in both places; `LICENCE` added to the style scan and its em-dashes replaced | The scan now covers it and passes |
+| 18d | "wrong by twenty per cent or more" becomes "roughly a fifth" on both pages | The arithmetic: 18.0% one way, 21.9% the other |
+| 16, 18g | README's corrections limit widened to name the real gap; robots rule described as indexing rather than access | Read |
+| 28, 29 | Chart SVG font sizes raised to clear about 11px at the 32rem floor; every markdown table header now carries `scope="col"` | Zero bare `<th>` in the built output |
+| 31, 32 | A 404 page, an inline SVG favicon, and a canonical URL that makes `site.url` live | Built; `check-build` caught the 404 missing its layout |
+| 14 | `pa11y-ci`, `http-server` and `start-server-and-test` pinned exactly; `npx --yes` gone | **`npm run a11y` run end to end: 17 of 17 URLs pass**, including the new 404 |
+
+**Item 20 was written, tested, and deliberately reverted.** See I1a: it correctly failed on this
+audit's own regrade, and landing it before the evidence entry exists would force a quote from a
+source nobody opened.
+
+**The `_site` output is no longer byte-identical to `main`, and now should not be.** Seventeen pages
+rather than sixteen, and the chart, table-header and stylesheet changes are all intentional. Every
+earlier claim of byte-identity was scoped to the documentation and metadata batch, and remains true
+of it.
+
+---
+
 ### The actionable list
 
 Everything outstanding, in one place, in the order it should be done. **Owner** means only you can
