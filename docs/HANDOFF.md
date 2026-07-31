@@ -62,7 +62,7 @@ If the branch is renamed or the history is grafted back on, correct this paragra
 that `main` starts at a parentless commit is checkable in one command and does not go stale:
 `git rev-list --max-parents=0 main`.
 
-16 pages build from a governed data layer of **75 metric records** in four theme files, plus
+17 pages build from a governed data layer of **75 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
 175. **46 of the 75 reach a reader**, and the other 29 are unpublished reserve. Reaching a reader
 means **rendering**: a token, a chart bar's `ref`, a `| metric` summary, a dashboard card or a
@@ -71,7 +71,7 @@ list, and counting it was the error that made the sources page's Home Office row
 definition is code, not a paragraph:** `lib/published.mjs` holds those five routes, the sources
 page renders from it, and `npm run build` prints the split, so do not hand-roll a query for it
 and do not trust the two numbers in this sentence over the run. Eleventy 3, no client-side JavaScript,
-charts rendered as inline SVG at build time. What is on each of the 16 pages is in `README.md`
+charts rendered as inline SVG at build time. What is on each page is in `README.md`
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
 
@@ -144,7 +144,7 @@ Seven checks, all in CI, all negative-tested.
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
-| `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
+| `npm run a11y` | pa11y at WCAG2AA over every URL in `.pa11yci.json`. Fails the build |
 
 CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry and
 link rot, only fire if something runs.
