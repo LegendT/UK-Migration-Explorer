@@ -13,10 +13,12 @@ project's own checks and reading their output, or by reading the file. The comma
 `npm run validate`, `npm run build`, `npm run check-sources`, `npm run a11y`, and direct reads of
 `data/`, `_site/` and the scripts.
 
-**This began as an internal-consistency audit and stopped being one on 31 July.** Four publications
-were then fetched and read: NAO HC 874, the NAO's December 2025 asylum report, the Home Office's
-year ending March 2026 asylum bulletin, and the `Asy_D04` spreadsheet. Findings 0-ZERO, 0A-bis,
-0A-ter and K1's resolution rest on those readings and **are** asserted against publishers. Every
+**This began as an internal-consistency audit and stopped being one on 31 July.** Publications were
+then fetched and read: NAO HC 874, the NAO's December 2025 asylum report, the Home Office Annual
+Report and Accounts 2024-25, the Home Office's year ending March 2026 asylum bulletin, and the
+`Asy_D04` spreadsheet. Findings 0-ZERO, 0A-bis, 0A-ter and K1's resolution rest on those readings
+and **are** asserted against publishers. **The number is deliberately not written here**: it was
+"four" for one commit after it became five, which is this document's fourth stale self-count. Every
 other finding is internal, and anything still needing a publication opened is marked OWNER-VERIFY
 and is not asserted as wrong.
 
@@ -156,6 +158,13 @@ Everything outstanding, in one place, in the order it should be done. **Owner** 
 decide it. **Session** means a session can do it and the answer is already established here.
 
 #### Blocking launch
+
+*This tier is not a restatement of the BLOCKER labels and does not claim to be. It holds the three
+BLOCKER findings' fixes plus work that must precede launch for a different reason: item 1 because the
+site's traceability promise is false until it lands, item 8 because the review's coverage gap is what
+the launch decision turns on, and item 9 because item 1 proved the class it addresses is real. A
+third model was right that "Fix before launch" in the severity table maps to BLOCKER and that this
+tier is wider; the difference is now stated rather than implied.*
 
 | # | Do this | Where | Who |
 | --- | --- | --- | --- |
@@ -700,8 +709,8 @@ present-tense statements of what the repository is.
 
 **A1. HIGH. The record count is given as both 75 and 71.** *Labelled BLOCKER in the first draft.
 A second model was right that this was severity inflation: no site reader sees the README, and it is
-identical in kind to A2 and A3, which were HIGH. Corrected, and the "two blockers" framing elsewhere
-in this document is now consistent with the labels rather than contradicting them.*
+identical in kind to A2 and A3, which were HIGH. Corrected. The document's blocker set has since
+changed twice more, so the labels rather than any prose count are authoritative.*
 
 `README.md:15` says the data layer holds "**75 metric records**". `README.md:313` says
 "**23 of the 71 metric records cannot be aged**". Summing the metrics arrays across the four theme
@@ -1075,8 +1084,8 @@ non-text at 3.16:1; the focus indicator reaches every interactive element includ
 regions, at 6.77:1 worst case; exactly one h1 per page with no skipped levels anywhere; all 24 scroll
 regions carry `tabindex`, `role` and a real accessible name, and the one name containing entities is
 correctly single-escaped; reflow at 320px scrolls only inside the permitted table and chart
-exceptions; and there is no animation to respect a motion preference against. The four findings
-below are what a hand pass adds to that.
+exceptions; and there is no animation to respect a motion preference against. What follows is what a
+hand pass adds to that.
 
 **E1. MEDIUM. Every chart summary is announced twice by a screen reader.**
 
@@ -1395,7 +1404,8 @@ checked and failed, or was not checked at all.
 
 **F1. Every chart summary describes its data correctly.** This is the site's largest published
 limit, "prose about figures is unprotected", and the surface on which four false summaries were
-previously found by reading. All seven summaries on the four pages that carry charts were re-derived
+previously found by reading. Every chart summary on the **three** pages that carry charts, migration
+with three charts, asylum with three and costs with one, was re-derived
 point by point against the series arrays and the records:
 
 - *Net migration.* "Reached 891,000 in 2022, the highest point on this calendar-year series"
@@ -1534,7 +1544,11 @@ The wider state, which the regrade only made visible:
 | `asylum/asylum-administrative-outcomes` | none |
 | `population/foreign-born-share-mid-2024` | none |
 
-**Four of the five derived figures on this site have no entry in `data/evidence/`.** None of them
+**Four of the five `calculated` figures have no entry in `data/evidence/`.** The derived class
+`check-evidence.mjs` actually uses is `calculated` **plus** `estimated`, which is nine records, and
+the evidence status of the four `estimated` ones is not stated anywhere in this document. A third
+model caught the narrowing; anyone scoping the backfill from this finding would plan for four
+records and meet nine. None of them
 is failing anything: the four predate the evidence contract, and the check is scoped to what moves
 rather than to what exists, deliberately and for good reasons.
 
@@ -1567,7 +1581,7 @@ one figure embedded inside another satisfy the check. The run then prints that e
 figure and not a misread one". A misread whose digits happen to embed is not caught either, and for
 small values, a range bound of 1 for instance, the check is close to vacuous.
 
-The comment at line 112 says this mirrors `validate-content.mjs:796`. That one wraps its forms in
+Its own comment says this mirrors the literal scan in `validate-content.mjs`. That one wraps its forms in
 `\b…\b`; this one does not.
 
 Latent, because the check fires only on figures that changed against `origin/main` and nothing has.
@@ -1778,7 +1792,8 @@ the note held the retracted version until 31 July 2026.
    to catch a correction made inside an edition is structurally blind to this publisher and to this
    form of correction, and the site had a live instance of exactly that.
 
-`README.md:324` already publishes a version of this limit: "A correction is only seen where it names
+`README.md:330`, moved from `:324` by this branch's own edits above it, already publishes a version
+of this limit: "A correction is only seen where it names
 its table... most of that history names its tables by title rather than by identifier." That is
 narrower than the truth. The limit is not only about how tables are named; it is that **only three
 gov.uk collections are watched at all**, and eight of the twelve cited publishers have no
@@ -1793,8 +1808,12 @@ whether to be more precise than the NAO, not a correction. **[you].**
 
 ---
 
-**K1 as originally written, kept because the reasoning is what found it.** The finding below is
-superseded by the resolution above.
+### K1-original. The finding as first written, resolved above and kept for the reasoning.
+
+*Everything from here to the end of this section is the SUPERSEDED text. Its HIGH label and its
+closing "OWNER-VERIFY against HC 874" are both discharged: HC 874 was fetched on 31 July and the
+answer is in K1 above. Its closing cross-reference to K3 is stale, because K3 no longer discusses
+those two figures. It is kept because the reasoning is what found the answer.*
 
 **K1-original. HIGH. The 76% hotel-cost share is given two different periods, in two public places.**
 
@@ -1945,7 +1964,14 @@ the reading that it checked everything.
 
 ---
 
-## What a second model found in this audit
+## What the adversarial passes found in this audit
+
+*Scoped deliberately. The twelve below are what the two adversarial passes of 31 July found. They are
+**not** the whole of what second models caught: a later pass found the true source for £2.1 billion
+and forced 0-ZERO's downgrade, another forced E4's upgrade to BLOCKER, another found the published
+derivation query was a silent no-op, and a fourth found this document's self-counts stale for a
+fourth time. Those are recorded at their own findings. A single running total across rounds is
+exactly the kind of hand-maintained count this document keeps getting wrong, so there is not one.*
 
 **Two adversarial passes were run against this document and against the diff it produced**, on the
 project's own rule that anything evidence-bearing gets a second model, and with instructions to
@@ -1961,7 +1987,7 @@ matters more than any single one.
   stale as later commits added findings, in a document whose central charge is a count typed where a
   run should be cited. The counts are gone rather than corrected.
 - The pre-launch list said eight items. Three had already been applied on this branch and the same
-  document's own table said so. It is five.
+  document's own table said so.
 - A1 was labelled BLOCKER while the document asserted "two blockers" three times. Severity
   inflation, and an internal contradiction. A1 is HIGH.
 - `docs/UPDATE-AUTOMATION.md:158` still said "71 metric records, 48 cadenced, 45 covered" against a
