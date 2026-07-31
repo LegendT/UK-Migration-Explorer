@@ -321,9 +321,70 @@ expensive kind. And the mechanism that should have caught it did not exist: noth
 sentence describing a record agrees with that record's notes, which is the site's own largest
 published limit.
 
-**Fix.** Rebuild both paragraphs on the record's language and the claim page's. The record's notes
-contain everything needed: cohort, period, latest recorded outcome, what the uplift covers, and why
-it cannot be added. **The wording is the owner's**, per the project's own tagging of this class.
+**Fix, and the source was read on 31 July 2026 so the Home Office's own wording is now available.**
+Do **not** rebuild on the record's language, which was the first draft of this recommendation. The
+record is itself wrong in two ways, set out in 0A-bis below. Rebuild on the publisher's words:
+
+> "Figure 4 shows that **the grant rate at the latest outcome, following appeals and
+> reconsiderations**, was between 17 and 29 percentage points higher than the initial grant rate for
+> each year of claim **between 2007 and 2020**."
+
+> "the proportion of initial decisions (main applicants only) which resulted in a grant of protection
+> or other leave. The grant rate **excludes withdrawals and administrative outcomes**."
+
+Both verbatim from
+`https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-granted-asylum-in-the-uk`,
+fetched 31 July 2026. Note the glossary also omits "and administrative outcomes" from the exclusions,
+which is a third error in the same sentence and was not in the first draft of this finding.
+
+**The wording is the owner's**, per the project's own tagging of this class.
+
+---
+
+### 0A-bis. HIGH. The record behind 0A puts a phrase in the Home Office's mouth that it does not use
+
+**Found 31 July 2026 by reading the Home Office release, and it matters because this audit spent
+several passes treating this record as the authority against which the glossary was wrong.** The
+glossary is still wrong. The record is not the clean standard it looked like.
+
+`asylum/asylum-initial-decision-grant-rate` notes assert:
+
+> and **the Home Office calls the later figure the latest recorded outcome** rather than the final one.
+
+**The Home Office does not use that phrase.** Fetching the bulletin and asking directly whether
+"latest recorded outcome" appears returns **no**. The Home Office's vocabulary is "latest outcome",
+"latest decision", "latest case outcome", "Estimated latest grant rate", and its note 42 says "The
+data shows the latest case outcome **as at the point of data extraction**".
+
+The substance the record is defending is correct and important: the later figure is not final. But
+the site invented a phrase and attributed it to the publisher. On a site whose subject is other
+people's misattributions, that is the wrong kind of error to make, and it has propagated: the phrase
+is also used at `content/claims/refused-asylum-seekers-are-eventually-recognised.md:54`.
+
+**Second error in the same note: the cohort window is narrowed while keeping the publisher's
+number.** The record says "17 to 29 percentage points above the initial rate for claims made
+**between 2010 and 2020**". The Home Office publishes that range for "each year of claim **between
+2007 and 2020**". The research pass computed that 17 to 29 does also hold unrounded for 2010 to 2020,
+so the figure is not wrong, but the site attaches the publisher's published range to a period the
+publisher did not state it for. `content/asylum.njk:95` and three places in the refused-asylum claim
+page carry the same 2010 to 2020 framing.
+
+**Third, smaller: "Do not add a cohort uplift to this rate" reads as reported and is editorial.** No
+Home Office sentence says it. It is a sound rule, well grounded in the publisher's notes 45, 47 and
+48, and it should stay. It should not read as though the Home Office said it.
+
+**Note 48 verified verbatim**, and the record's quotation of it is accurate apart from dropping the
+opening words:
+
+> "Estimated grant rate at initial decision in this data table will not match the grant rate in the
+> 'initial decisions' dataset as they relate to a different cohort of initial decisions."
+
+**One thing reported by the research pass that this audit has NOT independently verified**, stated
+because it would matter if true: that Asy_D04 note 5 in the year ending March 2026 release says
+"Data on appeals was not available at the time of data extraction for this release, due to ongoing
+work as immigration data transitions to a new case working system." If that is right, every statement
+the site makes about post-appeal outcomes on this edition needs a caveat it does not currently carry.
+**Confirm before acting on it.** It came from a spreadsheet this audit did not open itself.
 
 ---
 
@@ -1596,14 +1657,18 @@ the correction. Stating both would close the denominator gap the page otherwise 
 Stated in the project's own idiom, because a review that does not say what it did not check invites
 the reading that it checked everything.
 
-- **It re-read exactly two publications, and found a blocker in both.** The audit was conducted as
-  an internal-consistency review, and on 31 July two source questions were settled by fetching: NAO
-  HC 874, which produced K1's resolution, and the NAO's December 2025 asylum report, which produced
-  finding 0-ZERO. **Two publications opened, two defects found.** Every other data finding remains
-  an internal-consistency finding, and anything needing a publication re-opened is marked
-  OWNER-VERIFY. The base rate from a sample of two is not a measurement, but it is the only evidence
-  available about what re-reading the rest would turn up, and it does not point in a comfortable
-  direction.
+- **It re-read three publications, and found a defect in every one.** The audit was conducted as an
+  internal-consistency review. On 31 July three source questions were settled by fetching: NAO HC
+  874, which produced K1's resolution and showed the site carrying wording the NAO had retracted; the
+  NAO's December 2025 asylum report, which produced finding 0-ZERO, a headline figure absent from the
+  source it cites; and the Home Office's year ending March 2026 asylum bulletin, which produced
+  0A-bis, a phrase attributed to the Home Office that it does not use.
+
+  **Three publications opened, three defects found, one of them a blocker.** Every other data
+  finding remains an internal-consistency finding, and anything needing a publication re-opened is
+  marked OWNER-VERIFY. Three is not a sample from which to compute a rate, and it would be
+  overclaiming to present it as one. It is the only evidence available about what re-reading the
+  rest would turn up, and it does not point in a comfortable direction.
 - **It has not tested the site with a real screen reader**, which the site already publishes as a
   limit. It does not close that gap.
 - **It has not been read by a target user.** The unmet acceptance criterion in `docs/BACKLOG.md`,
