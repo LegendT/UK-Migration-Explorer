@@ -370,9 +370,6 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 - **Print was unstyled until 31 July 2026**, so a printed page lost every chart's figures, which sit
   inside a closed disclosure, and every source link's destination. Both are fixed; the print rules
   have not been checked in a real print preview.
-- **A correction is only seen where the publisher is watched at all.** Three gov.uk collections are.
-  Eight of the twelve cited publishers have no corrections route, and the NAO is one: it corrected
-  HC 874 by a slip inside the PDF, and this site carried the retracted wording for a year.
 
 ## Provenance
 
