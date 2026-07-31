@@ -36,8 +36,21 @@ Baseline on entry, all green:
 - `npm run check-sources`: 43 of 48 resolve, 5 uncheckable by hand, 1 redirect.
 
 All seven passes are complete. Each ran independently, and every finding below was re-verified
-against the repository before being written down; three claims that did not survive that check were
-dropped, and one was downgraded.
+against the repository before being written down rather than taken on the pass's word.
+
+**What that verification actually changed, stated precisely rather than as a claim about rigour.**
+One finding was downgraded, `F0-5`, from high to medium, after checking established that the stale
+record reaches no reader. One recommendation was withdrawn after checking contradicted it, `F0-3`,
+and the reasoning is kept in place rather than deleted. Two findings were added by work done
+*after* the passes finished: `I1a`, which one of this audit's own applied fixes opened, and the two
+surviving counts recorded under the applied-fixes note below. One minor accessibility item, that
+the pre-launch banner sits outside every landmark, was judged too small to carry and is recorded
+here so that dropping it was a decision rather than an omission.
+
+An earlier draft of this paragraph said three claims were dropped and one downgraded. That was
+written from memory rather than from the record and only the downgrade was real. It is corrected
+here rather than quietly, because a document whose subject is success messages that overclaim
+should not contain one.
 
 | Pass | State | Findings |
 | --- | --- | --- |
