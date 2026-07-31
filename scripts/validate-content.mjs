@@ -320,7 +320,7 @@ try {
 // where they carry a source's own words, but notes and card text are ours, so data/ is
 // scanned too. Anything under node_modules or _site is generated, not authored.
 const STYLE_DIRS = ['content', 'docs', 'scripts', 'lib', 'data', '.github'];
-const STYLE_FILES = ['README.md', 'CHANGELOG.md', 'eleventy.config.js', 'netlify.toml'];
+const STYLE_FILES = ['README.md', 'CHANGELOG.md', 'eleventy.config.js', 'netlify.toml', 'LICENCE'];
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 
 function walkAuthored(dir) {

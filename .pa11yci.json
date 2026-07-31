@@ -4,7 +4,10 @@
     "timeout": 30000,
     "wait": 1000,
     "chromeLaunchConfig": {
-      "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+      "args": [
+        "--no-sandbox",
+        "--disable-setuid-sandbox"
+      ]
     }
   },
   "urls": [
@@ -23,6 +26,7 @@
     "http://127.0.0.1:8081/common-claims/immigrants-are-a-drain-on-public-finances/",
     "http://127.0.0.1:8081/common-claims/nineteen-per-cent-born-abroad/",
     "http://127.0.0.1:8081/common-claims/everyone-in-asylum-accommodation-arrived-recently/",
-    "http://127.0.0.1:8081/common-claims/refused-asylum-seekers-are-eventually-recognised/"
+    "http://127.0.0.1:8081/common-claims/refused-asylum-seekers-are-eventually-recognised/",
+    "http://127.0.0.1:8081/404.html"
   ]
 }

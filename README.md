@@ -19,7 +19,8 @@ reports 175. **46 of the 75 reach a reader**; the other 29 are unpublished reser
 numbers are derived by `lib/published.mjs` and printed by `npm run build`, so trust the run
 over this sentence: they are typed here and nothing checks that they still agree. The site is
 deployed behind a `robots.txt` that disallows all crawlers, and every page carries a notice
-saying it is unfinished.
+saying it is unfinished. **That rule governs indexing, not access:** the site is reachable now
+by anyone with the URL, which is why the notice on every page is the thing doing the work.
 
 **The pre-publication review has been conducted, and its corrections have landed.** It ran
 on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its
@@ -327,9 +328,13 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   rather than broken. Verify by hand. 43 of 48 resolve.
 - **One source URL redirects**, which usually means a newer release has superseded the
   figure: the Home Office data tables anchor.
-- **A correction is only seen where it names its table.** 17 records and 2 series files
-  declare a `table_reference`, and `check-releases.mjs` matches the Home Office change
-  history against them, but most of that history names its tables by title rather than by
+- **A correction is only seen where the publisher is watched at all.** `check-releases.mjs`
+  watches three gov.uk collections. Eight of the twelve cited publishers have no corrections
+  route of any kind, and the run says so on every invocation. The NAO is one of them: it
+  corrected HC 874 by a slip inside the PDF on 1 July 2025, and this site carried the retracted
+  wording in a record's notes until 31 July 2026 with every check green. Within the publishers
+  that are watched, 17 records and 2 series files declare a `table_reference`, and the change
+  history is matched against them, but most of that history names its tables by title rather than by
   identifier. A correction announced that way, or one to a table nobody wrote down, is
   invisible to it.
 - **Asylum work-in-progress (total casework backlog) is stale.** The last complete figure is

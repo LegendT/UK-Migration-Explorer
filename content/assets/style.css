@@ -408,10 +408,16 @@ th.nested-2 { padding-left: 2.75rem; }
 .chart-summary { margin: 0 0 1rem; color: var(--ink-soft); max-width: var(--measure); }
 .chart-svg { width: 100%; min-width: 32rem; height: auto; display: block; }
 
+/* SVG text is in viewBox units, so it scales with the chart. At the 32rem minimum width the
+   factor is 512/760, about 0.674, which rendered 13px axis labels at 8.8px and the 11px break
+   label at 7.4px on every viewport below roughly 700px, not only at 320px. These sizes are set
+   so the scaled result clears about 11px. Not a WCAG failure before the change, since zoom works
+   and the data table carries the values, but the break label was the only notice of a methodology
+   change a sighted phone reader got. */
 .grid { stroke: var(--rule); stroke-width: 1; }
 .axis-line { stroke: var(--ink-soft); stroke-width: 1; }
-.axis { fill: var(--ink-soft); font-size: 13px; }
-.axis-title { fill: var(--ink-soft); font-size: 12px; }
+.axis { fill: var(--ink-soft); font-size: 17px; }
+.axis-title { fill: var(--ink-soft); font-size: 16px; }
 
 /* Series are told apart by stroke pattern and a direct label, never by colour alone.
    Selectors are element-qualified because a line, its markers and its label need
@@ -419,7 +425,7 @@ th.nested-2 { padding-left: 2.75rem; }
 path.series { fill: none; stroke-width: 2.5; }
 path.series.dashed { stroke-dasharray: 7 5; }
 circle.marker { stroke: var(--paper); stroke-width: 1.5; }
-text.series-label { font-size: 13px; font-weight: 600; stroke: none; }
+text.series-label { font-size: 17px; font-weight: 600; stroke: none; }
 
 path.series-0 { stroke: var(--accent); }
 circle.series-0, text.series-0 { fill: var(--accent); }
@@ -427,7 +433,7 @@ path.series-1 { stroke: var(--ink-soft); }
 circle.series-1, text.series-1 { fill: var(--ink-soft); }
 
 .break { stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 3 4; }
-.break-label { fill: var(--ink-soft); font-size: 11px; }
+.break-label { fill: var(--ink-soft); font-size: 15px; }
 
 .bar { fill: var(--accent); }
 .bar-label { fill: var(--ink); font-size: 14px; font-weight: 600; }
@@ -457,3 +463,36 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 .chart-data summary:hover { text-decoration: underline; }
 .chart-data td { font-variant-numeric: tabular-nums; }
 .nodata { color: var(--ink-soft); font-style: italic; }
+
+
+/* --- print ---------------------------------------------------------------------------
+   A printed or PDF'd page is how a researcher files a citation, and until 31 July 2026 it
+   lost two things the site's first editorial rule requires: every chart's figures, because
+   the data table sits inside a closed <details>, and every source link's destination,
+   because printed HTML drops the href unless CSS puts it back.
+
+   The pre-launch banner deliberately PRINTS. It is the mitigation that makes the site being
+   reachable before launch a small problem rather than a large one, and a printed page with
+   it suppressed is exactly the artefact that reasoning says does not exist. It goes when the
+   banner goes, at launch. */
+@media print {
+  .skip-link,
+  .site-header nav { display: none; }
+
+  /* Open every chart's figures. UA styles hide a closed details' children, so both the
+     element and its contents are forced back. Verify in a real print preview rather than by
+     reading this: browsers implement the closed-details rule differently. */
+  details { display: block; }
+  details > *:not(summary) { display: block !important; }
+  .chart-data summary { display: none; }
+
+  /* A link with no destination is not a citation. Internal links get the site's own domain
+     so a printed page can be typed back in; external ones print their href. */
+  main a[href^="/"]::after { content: " (ukmigrationexplorer.netlify.app" attr(href) ")"; }
+  main a[href^="http"]::after { content: " (" attr(href) ")"; }
+  main a::after { font-size: 0.85em; word-break: break-all; }
+
+  /* Nothing should scroll on paper. */
+  .scroll-x { overflow: visible; }
+  a, .figure { color: inherit; }
+}

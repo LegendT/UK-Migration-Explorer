@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if claim %}Claim checked: {{ claim }} | {{ site.name }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
 <meta name="description" content="{{ short_answer or strapline or site.strapline }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
@@ -54,7 +56,7 @@
     <p>{{ site.strapline }}</p>
     <p>{{ meta.footerNote }}</p>
     <p>Contains public sector information licensed under the
-      <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>.
+      <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>.
       <a href="https://github.com/LegendT/UK-Migration-Explorer">Source and data on GitHub</a>.</p>
     <p><strong>Found an error?</strong> Tell us which figure and what you think it should be:
       <a href="https://github.com/LegendT/UK-Migration-Explorer/issues/new">report it here</a>.

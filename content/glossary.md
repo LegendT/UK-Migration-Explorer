@@ -98,7 +98,7 @@ Both are correct. Neither is "the" figure.
 
 The Home Office headlines people for asylum claims, but grant rates and case queues are
 usually published on main applicants. Mixing the two produces answers that are wrong by
-twenty per cent or more, and the error is invisible unless you check the basis.
+roughly a fifth, and the error is invisible unless you check the basis.
 
 **The common mistake.** Dividing a people-based numerator by a case-based denominator.
 Every figure on this site states its basis for exactly this reason.
