@@ -9,10 +9,16 @@ pre-publication review of 27 July: the outcome of a review is what it found, and
 decides whether the site now passes. Nothing here is fixed by being written down.
 
 **How ground truth was established.** Every number asserted below was re-derived by running the
-project's own checks and reading their output, or by reading the file. Where a finding could only
-be settled by re-reading a publisher, it is marked OWNER-VERIFY and is not asserted as wrong. The
-commands run were `npm run validate`, `npm run build`, `npm run check-sources`, `npm run a11y`,
-and direct reads of `data/`, `_site/` and the scripts.
+project's own checks and reading their output, or by reading the file. The commands run were
+`npm run validate`, `npm run build`, `npm run check-sources`, `npm run a11y`, and direct reads of
+`data/`, `_site/` and the scripts.
+
+**This began as an internal-consistency audit and stopped being one on 31 July.** Four publications
+were then fetched and read: NAO HC 874, the NAO's December 2025 asylum report, the Home Office's
+year ending March 2026 asylum bulletin, and the `Asy_D04` spreadsheet. Findings 0-ZERO, 0A-bis,
+0A-ter and K1's resolution rest on those readings and **are** asserted against publishers. Every
+other finding is internal, and anything still needing a publication opened is marked OWNER-VERIFY
+and is not asserted as wrong.
 
 Severity means what it costs at launch:
 
@@ -35,8 +41,11 @@ Baseline on entry, all green:
 - `npm run build`: 16 pages, 273 internal links resolve, 46 of 75 records reach a reader.
 - `npm run check-sources`: 43 of 48 resolve, 5 uncheckable by hand, 1 redirect.
 
-All seven passes are complete. Each ran independently, and every finding below was re-verified
-against the repository before being written down rather than taken on the pass's word.
+All seven passes are complete, and each ran independently. Every finding below has been verified
+against the repository. **Not all of it was verified before being written down**, which an earlier
+version of this sentence claimed: G1's superlative was produced by reasoning from a trend rather
+than reading the array, and D2's fix was recommended without being run. Both were caught by a second
+model and are corrected in place.
 
 **What that verification actually changed, stated precisely rather than as a claim about rigour.**
 One finding was downgraded, `F0-5`, from high to medium, after checking established that the stale
@@ -74,8 +83,10 @@ carried on each finding, which is the one place it cannot drift from itself.
 verifiable right answer, where applying it requires no editorial judgement. Nothing that needed a
 decision, a wording choice, a publisher re-read, or a change to code or infrastructure was touched.
 
-The built site is **byte-identical** before and after, proved by diffing `_site/`. Nothing below
-changed what a reader sees.
+The built site was **byte-identical** before and after, proved by diffing `_site/` against `main`
+at the time the mechanical fixes landed. Later data-file corrections under K1 and F0-2 touch only
+`notes` fields, which no template renders, so the claim should still hold; it has not been re-proved
+since. Nothing below changed what a reader sees.
 
 | Applied | Where |
 | --- | --- |
@@ -92,7 +103,8 @@ changed what a reader sees.
 | `.history/` ignored | `.gitignore` |
 
 **Not applied, and why.** All three blockers and every other content change need wording that is yours,
-per the project's own tagging of that class. `K1` needs HC 874 re-read. `F0-3` turned out not to be
+per the project's own tagging of that class. `K1` was settled by fetching HC 874 on 31 July and is
+resolved in section K. `F0-3` turned out not to be
 mechanical at all and this document now says so. Everything in sections B, C, D1, E and I is a code,
 infrastructure or design change rather than a correction, including the `.gitignore`-adjacent ones,
 and none was made.
@@ -138,30 +150,38 @@ decide it. **Session** means a session can do it and the answer is already estab
 
 | # | Do this | Where | Who |
 | --- | --- | --- | --- |
-| 1 | Establish where **£2.1 billion** came from. Then either re-source the record and write an evidence entry, or replace it with HC 874's £1.3bn over seven months, or remove the hotel row and say why. It renders in the costs table, the costs prose and the home page card | `fiscal/home-office-spending-on-asylum-hotel-accommodation` | Owner |
+| 1 | **Found.** Re-source to Home Office Annual Report and Accounts 2024-25, HC 1133, 17 July 2025, page 75, quote in 0-ZERO. Add the catalogue entry, write the evidence entry, correct `source_name`, `source_url`, `published_date`, `retrieved_date`. The value and the `official` grade are correct and do not change | `fiscal/home-office-spending-on-asylum-hotel-accommodation`, `data/sources.json`, `data/evidence/` | Owner, because it adds a publisher |
 | 2 | *Withdrawn 31 July. Was "disclose the appeals gap and say which way it cuts". Testing the inference refuted it; see 0A-ter. The disclosure survives as a MEDIUM, listed below.* | | |
 | 3 | Rebuild the **Grant rate** glossary entry on the publisher's wording: "latest outcome", "following appeals and reconsiderations", "each year of claim between 2007 and 2020", and add "and administrative outcomes" to the exclusions | `content/glossary.md:225` | Owner |
 | 4 | Rebuild the **Net fiscal impact** glossary entry: separate studies of different periods, groups and methods, small in magnitude, positive in some and negative in others, no single correct figure. Both paragraphs, not four words | `content/glossary.md:363` | Owner |
 | 5 | Remove "the Home Office calls the later figure **the latest recorded outcome**". The Home Office does not use that phrase | grant-rate record notes, and `refused-asylum...md:54` | Session |
-| 6 | Correct **"between 2010 and 2020"** to 2007 to 2020 wherever the publisher's 17-to-29 range is quoted, or stop attributing that range to a narrowed window | grant-rate record notes | Session |
+| 6 | Correct **"between 2010 and 2020"** wherever the publisher's 17-to-29 range is quoted, or stop attributing that range to a narrowed window. **Three sites, not one**: the record notes, `asylum.njk:95` and `refused-asylum...md:44`. Also the invented compound "latest recorded grant rate" at `asylum.njk:96` and `md:45` | grant-rate record notes, `asylum.njk`, `refused-asylum...md` | Session |
 | 7 | Reword "Do not add a cohort uplift to this rate" so it reads as the site's rule rather than as reported from the Home Office | grant-rate record notes | Session |
 | 8 | Review the **six pages the pre-publication review never opened**, glossary first, against `docs/PRE-PUBLICATION-REVIEW.md` | `index.njk`, `common-claims.njk`, `glossary.md`, `sources-and-method.md`, `about.md`, `style-guide.md` | Owner |
 | 9 | Backfill `data/evidence/` for every reader-facing record, or accept that traceability is unverified for those that predate the contract | `data/evidence/` | Owner |
+| 9a | Make `breakAfter` self-insuring so the methodology break reaches the `<desc>` and the data table. Moved here from the tier below when E4 was relabelled BLOCKER; duplicates item 10, which is now struck | `lib/charts.mjs:100` | Session |
 
 #### Should be done before launch, not strictly blocking
 
 | # | Do this | Where | Who |
 | --- | --- | --- | --- |
-| 10 | Make `breakAfter` self-insuring so a methodology break appears in the `<desc>` and the data table, not only as SVG text. Level A failure today on the flows chart | `lib/charts.mjs:100` | Session |
+| 10 | *Struck 31 July: promoted to blocking as item 9a when E4 was relabelled.* | | |
 | 11 | Qualify the success message so it does not claim no page writes a live value longhand while four sit on `/sources-and-method/` under an exemption | `validate-content.mjs:943` | Session |
 | 12 | Add a contact route that is not a GitHub account | `base.njk:59`, `/about/` | Owner |
 | 13 | Make the two strongest gates gate the deploy, or state in the README which pipeline each gates | `netlify.toml`, `README.md` | Owner |
 | 14 | Pin `pa11y-ci`, `http-server` and `start-server-and-test` as devDependencies and drop `npx --yes` | `package.json` | Session |
 | 15 | Add a print stylesheet: open chart tables, print link URLs, drop nav and skip link, **keep** the pre-launch banner | `content/assets/style.css` | Session |
-| 16 | Widen the README's corrections limit: it is not only that tables are named by title, it is that only three gov.uk collections are watched and eight of twelve publishers have no corrections route | `README.md:324` | Session |
+| 16 | Widen the README's corrections limit: it is not only that tables are named by title, it is that only three gov.uk collections are watched and eight of twelve publishers have no corrections route | `README.md:330`, moved from :324 by this branch's own edits above it | Session |
 | 17 | Fix `http://` to `https://` on the OGL link, both places | `base.njk:57`, `LICENCE:41` | Session |
 | 18 | Scope the licence to cover `content/`, `lib/` and the rest, or invert it | `LICENCE:7` | Owner |
-| 18a | Record `Asy_D04` note 5, appeals data not loaded at this extraction, and note 4, outcomes as at January 2026, in the grant-rate record's notes. Moved here from blocking when 0A-ter was downgraded | grant-rate record notes | Session |
+| 18a | Record `Asy_D04` note 5, appeals data not loaded at this extraction, and note 4, outcomes as at January 2026, in the grant-rate record's notes. Moved here from blocking when 0A-ter was downgraded. **Note also that the publisher disagrees with itself**: the bulletin's Figure 4 says extraction "in April 2026", the spreadsheet's note 4 says January 2026. Record which was followed and why, and the project's own rule is the primary table | grant-rate record notes | Session |
+| 18b | Re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`. Its own notes say "Do not publish without re-checking" and it is 43 days stale. F0-5, which had no entry until 31 July | `data/asylum.json` | Owner |
+| 18c | Qualify the sources page's promise that every number in a sentence is inserted from a record, or finish backlog item 4 first. K3 | `content/sources-and-method.md:82` | Owner |
+| 18d | Correct "wrong by twenty per cent or more" to "roughly a fifth": the site's own example gives 18.0% one way. Fix the dashboard card's "work and care visas" to name the ONS reason grouping. Drop "In 2024" from the costs page where the briefing states no period. K4, three confirmed fixes | `glossary.md:100`, `sources-and-method.md:133`, `dashboard.json`, `costs.njk:139` | Session |
+| 18e | Reword the refused-asylum short answer from "ended without a grant" to "had not ended in a grant at the latest recorded outcome". K2 | `refused-asylum...md:5` | Owner |
+| 18f | Add `LICENCE` to `STYLE_FILES` and replace its two em-dashes, or record it as exempt beside `verification.txt`. C6 | `validate-content.mjs:303`, `LICENCE` | Session |
+| 18g | Add one README sentence saying the site is reachable now and the robots rule governs indexing rather than access. C7 | `README.md` | Session |
+| 18h | Parameterise the claim-list heading level so home page cards sit at `h3`. E6's second item, which action 29 does not cover | `content/` | Session |
 
 #### Mechanical, safe, small
 
@@ -169,7 +189,7 @@ decide it. **Session** means a session can do it and the answer is already estab
 | --- | --- | --- | --- |
 | 19 | Report every note restating another record's value, so an update knows which notes to re-read. The scan exists in finding D1 | `validate-data.mjs` | Session |
 | 20 | Fire `check-evidence` on a `confidence_level` change into the derived set, not only on a value change | `check-evidence.mjs` | Session |
-| 21 | Boundary-anchor the evidence quote match so one figure's digits inside another do not satisfy it | `check-evidence.mjs:115` | Session |
+| 21 | Boundary-anchor the evidence quote match so one figure's digits inside another do not satisfy it | `check-evidence.mjs:120`, moved from :115 by this branch's own comment edit | Session |
 | 22 | Make `review_due` actually fire when the date passes, validate `last_reviewed`, and call the check for the glossary | `validate-content.mjs:32` | Session |
 | 23 | Require `last_reviewed` on `.njk` pages by narrowing the conditional, **not** by deleting it | `validate-content.mjs:494` | Session |
 | 24 | Run `checkEditorial` and `checkGlossaryLinks` over the `data/` prose that renders to pages | `validate-content.mjs:911` | Session |
@@ -178,7 +198,7 @@ decide it. **Session** means a session can do it and the answer is already estab
 | 27 | Extend the `series_ref` comparison beyond `value` once the confidence convention is settled | `validate-data.mjs` | Owner then session |
 | 28 | Raise chart SVG font sizes so they clear about 11px at the 32rem floor | `style.css:409` | Session |
 | 29 | Add `scope="col"` to markdown table headers in the `table-captions` transform | `eleventy.config.js:230` | Session |
-| 30 | Point `aria-describedby` at the visible summary instead of duplicating it into `<desc>`, after testing in a screen reader | `lib/charts.mjs:114` | Session |
+| 30 | Point `aria-describedby` at the visible summary instead of duplicating it into `<desc>`, after testing in a screen reader | `lib/charts.mjs:114` | Owner then session: its own precondition is a screen reader the project has never run |
 | 31 | Add a favicon and a 404 page | `content/` | Session |
 | 32 | Add `<link rel="canonical">` and make `site.url` live | `base.njk` | Session |
 
@@ -189,40 +209,26 @@ decide it. **Session** means a session can do it and the answer is already estab
 | 33 | Which confidence convention wins between the metrics and the series, F0-3 |
 | 34 | Whether `og:` tags should lead with the claim or the correction on a claim page, C2 |
 | 35 | Whether to cut "the two longest and most pointed checks", K5. Recommended: cut |
-| 36 | Whether the `.netlify.app` domain is the launch domain, C5 |
-| 37 | Whether `/sources-and-method/` publishes a fourth limit, and which |
+| 36 | Whether the `.netlify.app` domain is the launch domain, C8 |
+| 37 | Whether `/sources-and-method/` publishes a fourth limit, and which. This comes from `docs/BACKLOG.md`'s own open question rather than from a finding here |
+| 37a | Whether the emigration sentence names the 2019 peak or lets the chart carry it. G1, whose DECISION never reached this table |
+| 37b | The OWNER-VERIFY residues in F0-2 (does Asy_D02 print a year-ending total) and F0-6 (the `date` on the fiscal-impact record, and the 47% in the work-immigration notes) |
 | 38 | The K1 residue: whether to be more precise than the NAO about 76% being a seven-month share and 35% a point-in-time headcount |
 | 39 | Whether the claim card's duplicated review date stays, D3 |
 | 40 | The `most-immigration-is-asylum` denominator: state 10.8% of all immigration alongside the 14% non-EU+ share |
 
 ---
 
-### What is left to fix before launch, in prose
+### Why there is no second list here
 
-**Five items, and this list used to say eight.** Three of the eight had already been applied on this
-branch when the list shipped, and the list went on naming them in the present tense while the
-applied-fixes table above recorded them as done. A second model caught it. A later reader would have
-redone finished work, which is the same failure as a stale count and in the same document.
+There was one, in prose, repeating the actionable table above. It diverged from it within two
+commits: it deferred nothing the table deferred, it still demanded a re-read of HC 874 that had
+already happened, and it was headed "five items" above six.
 
-Everything else here can follow the launch. These cannot, in this order:
-
-0. **Find where £2.1 billion came from**, finding 0-ZERO. A headline figure on the home page and the
-   costs page, graded `official`, is not in the source it cites. Until its provenance is settled the
-   site cannot claim every figure is traceable, which is its central promise. This displaced the
-   glossary blockers from the top of this list on 31 July.
-1. **The two glossary blockers, 0A and 0B.** Both are the site publishing statistical reasoning its
-   own data files forbid, on the page its claim pages cite as the authority. Wording is yours.
-2. **Review the six pages the pre-publication review never opened**, finding 0. Both *glossary*
-   blockers are on one of them, and the decision to record the review as passed currently rests on
-   ten pages of sixteen.
-3. **The 76% period question**, K1, which needs HC 874 re-read.
-4. **The flows chart's methodology break**, E4, a Level A accessibility failure and a statistical
-   caution the site's own purpose depends on.
-5. **The success message that overclaims**, I1, the ninth instance of the pattern the README warns
-   about, in the check the README points readers at.
-
-Applied on this branch and therefore **not** on this list: A1 to A4, J1 to J4, F0-1, F0-2 and F0-4.
-The applied-fixes table above is the record of what changed.
+**A list kept in two places is this project's own definition of a defect**, and this document spends
+several pages saying so about counts. Deleting the duplicate is the fix; the table above is the only
+list. Applied on this branch and therefore absent from it: A1 to A4, J1 to J4, F0-1, F0-2, F0-4 and
+K1's data-file correction.
 
 ---
 
@@ -262,7 +268,66 @@ serious ones, which establishes that they are worth reviewing, not that they are
 
 ---
 
-### 0-ZERO. BLOCKER. A published headline figure cannot be found in the source it cites
+### 0-ZERO. HIGH, downgraded from BLOCKER on 31 July. A published headline figure cites the wrong source
+
+**This audit's most serious finding was overstated, and a second model found the source in minutes
+using a clue that was sitting inside the record's own notes.** The correction is at the top of the
+finding rather than the bottom because the original framing, "cannot be found in the source it
+cites", invited the reading that the figure was unsourced. It is not. It is real, official, and
+misattributed.
+
+**The source is the Home Office Annual Report and Accounts 2024-25, HC 1133**, page 75. Verified by
+downloading the PDF and extracting its text, verbatim across the two-column layout:
+
+> "Asylum support spend was £4.0 billion compared to £4.7 billion in 2023-24. **Of this, £2.1
+> billion was spent on hotels in 2024-25, at an average of £5.77 million per day**, compared to £3.0
+> billion spent on hotels in 2023-24 at an average of £8.3 million per day."
+
+That one sentence carries all three of the record's claims: the £2.1 billion value, the note's
+"roughly £5.77m per day", and the note's "Down from about £3bn in 2023-24". **"£5.77 million per day"
+appears in no NAO document.** It was a fingerprint of the true source sitting in the record's own
+notes, and this audit walked past it while asserting the figure had no home.
+
+**What the finding got wrong, listed rather than softened.**
+
+- "A published headline figure **cannot be found** in the source it cites" was true only of the NAO
+  report. It was written as though it were true of the world.
+- "**The report's own breakdown leaves no room for it**" is a non-sequitur, and the sharpest error
+  here. Figure 5 note 2 puts "around £2.7 billion on direct spending on asylum accommodation" inside
+  the £3.4 billion. £2.1 billion of hotels fits inside £2.7 billion with room to spare. The absence
+  of a hotel *line* does not mean there is no room; it means the NAO did not split it out.
+- The derivation hypothesis, that annualising HC 874's £1.3 billion "lands near £2.2 billion, which
+  is suggestive", pointed away from the answer. The figure is published, not derived.
+- The proposed remedies, "replace it with HC 874's £1.3 billion" or "remove the hotel row", were
+  never live options and would have replaced a correct figure with a worse one.
+
+**What survives, and it is still worth acting on.** The record cites the NAO's December 2025 report
+for a figure that is not in it, on `source_name`, `source_url` and `published_date`. The `official`
+grade is correct. The value is correct. The mis-citation sat on a headline figure, rendered in three
+places including the home page, for over a year, and no check could see it.
+
+**The structural lesson is unchanged and is now better evidenced.** `README.md` promises "Every
+figure is traceable to a named official publication". Traceability was verified as *a named source
+existing*, never as *the source containing the number*. This record proves the gap is real: it named
+a source, passed every check, and named the wrong one.
+
+**Fix, now mechanical because the quote is established.** Re-source to Home Office Annual Report and
+Accounts 2024-25, HC 1133, published 17 July 2025, page 75. That needs a `sources.json` catalogue
+entry, since no Home Office ARA entry exists, and an evidence entry carrying the quote above. Correct
+`source_name`, `source_url`, `published_date` and `retrieved_date`. **Not applied on this branch**:
+adding a publisher to the catalogue is a change to the data contract's own furniture rather than a
+correction, and it should be your call.
+
+---
+
+### 0-ZERO-original. The finding as first written, downgraded above and kept for the lesson.
+
+*Everything from here to the end of this section is the OVERSTATED text. Its severity, its "cannot
+be found", and its proposed remedies are all superseded above. It is kept because the error is
+instructive: it is this audit asserting a negative from two sources and presenting it as a property
+of the world.*
+
+### 0-ZERO as first written. A published headline figure cannot be found in the source it cites
 
 **Found 31 July 2026, by fetching the source rather than reading the repository. It is the most
 serious finding in this audit, and no internal check could have found it.**
@@ -380,9 +445,14 @@ from people-based figures, which gives a different answer, or **quoting the init
 were the final one**." That sentence tells a reader a final rate exists to be quoted.
 
 **The site refutes itself one click away.**
-`content/claims/refused-asylum-seekers-are-eventually-recognised.md:54` gets it right: "each cohort
-that had ended in a grant **by its latest recorded outcome**". A hostile reader does not need
-external evidence to attack the glossary; the correct version is on this site, in the data file the
+`content/claims/refused-asylum-seekers-are-eventually-recognised.md:54` gets the **substance** right:
+"each cohort that had ended in a grant **by its latest recorded outcome**", which is latest rather
+than final, and that is the distinction the glossary loses. It does **not** get the wording right,
+and 0A-bis below is the reason: "latest recorded outcome" is this site's own coinage, not the Home
+Office's. Used descriptively on a page it is unremarkable; asserted as the publisher's phrase in the
+record's notes it is a false attribution. An earlier draft of this paragraph praised the sentence
+without that qualification and contradicted 0A-bis. A hostile reader still does not need external
+evidence to attack the glossary: the correct distinction is on this site, in the data file the
 glossary cites and on the claim page about this exact question.
 
 **Why this is a blocker and not a wording fix.** The error runs in one political direction: it
@@ -500,6 +570,10 @@ caveat a reader can carry, not a correction. **[you].**
 ---
 
 ### 0A-ter-original. The finding as first written, withdrawn above and kept for the lesson.
+
+*Everything from here to the end of this section is the WITHDRAWN text. Its severity, its
+"should not wait for launch", and its claim about which way the gap cuts are all superseded by
+0A-ter above. It is kept because the error is instructive, not because any of it stands.*
 
 **Verified directly on 31 July 2026** by downloading
 `outcome-analysis-asylum-claims-datasets-mar-2026.xlsx` and reading its Notes worksheet. Rows 5 and
@@ -870,7 +944,8 @@ behind it.
 Fix: one sentence in the README saying the site is reachable now and that the robots rule governs
 indexing rather than access. `content/robots.txt` already gets this right in its own comment.
 
-**C5. DECISION. The site is served from a `netlify.app` subdomain.**
+**C8. DECISION. The site is served from a `netlify.app` subdomain.** *Was a second C5 until 31 July;
+the licence finding above kept the number.*
 
 `site.url` is `https://ukmigrationexplorer.netlify.app`. Nothing about that is technically wrong.
 It is raised here only because the success measure is citation by a named outlet or briefing, and a
@@ -1080,8 +1155,11 @@ platform's generic message. One markdown file with `permalink: /404.html`.
 
 ---
 
-**E4. HIGH. A methodology break is drawn on a chart and stated nowhere a screen reader or a table
-reader can find it.** WCAG 2.2 criterion 1.1.1, Level A.
+**E4. BLOCKER. A methodology break is drawn on a chart and stated nowhere a screen reader or a
+table reader can find it.** WCAG 2.2 criterion 1.1.1, Level A. *Labelled HIGH until 31 July. A
+second model was right to press it: this document's BLOCKER test is "a reader would be misled", and
+a table reader here compares figures across a methodology break with nothing telling them so. That
+is the exact misuse the site exists to correct, so the label follows the definition.*
 
 `content/migration.njk` sets `breakAfter: 2020` on both of its line charts, at lines 56 and 78.
 `lib/charts.mjs:100` draws it:
@@ -1627,7 +1705,7 @@ cross-reference resolves to the section it claims.
 
 ### K. Content: the remaining precision findings
 
-Two blockers are at the top of this document. These are the rest, and two need the publisher re-read
+Three blockers are at the top of this document. These are the rest. One needed the publisher re-read
 rather than a decision here.
 
 **K1. RESOLVED against the source, 31 July 2026, and the answer is worse than the question.**
@@ -1842,7 +1920,9 @@ the reading that it checked everything.
 
 **Two adversarial passes were run against this document and against the diff it produced**, on the
 project's own rule that anything evidence-bearing gets a second model, and with instructions to
-refute rather than confirm. They found eleven real defects. All eleven are corrected above, in place
+refute rather than confirm. They found twelve real defects, and the categories below enumerate
+twelve: this sentence said eleven until 31 July, in the section that exists to record miscounts. All
+twelve are corrected above, in place
 and with the correction visible rather than silently. They are collected here because the pattern
 matters more than any single one.
 
