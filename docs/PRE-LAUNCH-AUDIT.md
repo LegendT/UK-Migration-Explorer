@@ -36,6 +36,12 @@ Severity means what it costs at launch:
 
 ## Status
 
+**Open as [PR #70](https://github.com/LegendT/UK-Migration-Explorer/pull/70), pushed 31 July 2026.**
+CI green on every step, including the first run of the pinned accessibility toolchain, and Netlify's
+deploy preview builds. This document is part of that PR and is updated in place rather than
+superseded.
+
+
 Baseline on entry, all green:
 
 - `npm run validate`: data contract passed, 175 figures, 7 claims, 23 glossary terms, 16 pages.
@@ -104,9 +110,9 @@ after the last data-file change on 31 July. Nothing on this branch changed what 
 | The regrade note, softened to drop an assertion this audit had itself marked OWNER-VERIFY | `asylum.json` |
 | `.history/` ignored | `.gitignore` |
 
-**Not applied, and why.** The three blockers are 0A and 0B, whose fixes are wording that is yours,
-and E4, whose fix is a code change in `lib/charts.mjs`. Every other content change likewise needs
-your wording,
+**Not applied, and why.** The two outstanding blockers are 0A and 0B, whose fixes are wording that is
+yours. E4 was the third and its fix was a code change, so it was applied. Every other content change
+likewise needs your wording,
 per the project's own tagging of that class. `K1` was settled by fetching HC 874 on 31 July and is
 resolved in section K. `F0-3` turned out not to be
 mechanical at all and this document now says so. Everything in sections B, C, D1, E and I is a code,
@@ -152,38 +158,12 @@ reverted. It is recorded here because it is this project's own lesson arriving f
 direction: a tool that reformats what it touches will make changes nobody asked for, and reading the
 diff is what catches them.
 
-### What was applied on 31 July, second batch
+### Where the state of each item is recorded
 
-**The Session-marked items, applied and each verified rather than assumed.** The blocker E4 is
-closed. Nothing marked Owner was touched.
-
-| Item | What landed | Verified by |
-| --- | --- | --- |
-| 9a, E4 | `breakAfter` now emits the caution into the SVG description and the disclosure body, so a methodology break reaches a screen reader and a table reader, not only the plot | Reading the built flows figure: the caution appears outside the SVG and inside the `<desc>` |
-| 21 | Evidence quote match boundary-anchored | Negative-tested: `24.9 billion` no longer answers for `4.9`, `1,313` no longer answers for `313`, and both true cases still pass |
-| 22 | `review_due` now fires when the date passes; `last_reviewed` validated | Negative-tested. The first attempt fired on the wrong rule, which was caught and re-tested with a date after `last_reviewed` and before today |
-| 23 | `.njk` pages must carry `last_reviewed`, by narrowing the conditional rather than deleting it | Negative-tested by removing it from `index.njk` |
-| 24 | The language rules and the glossary-link check now reach `data/` prose | Negative-tested with a banned term in a card and a dead anchor in a caveat |
-| 25 | Neither validator now discards its findings on a dateless series point or an unparseable URL | Negative-tested: the "not https" error that used to be lost now prints beside the new one |
-| 26 | House-style scan no longer reports a root file once per directory, and no longer swallows a read error | Run |
-| 15 | Print stylesheet: chart tables open, link destinations printed, nav dropped, **banner kept** | In the served stylesheet; needs a real print preview |
-| 17, 18f | OGL link to `https://` in both places; `LICENCE` added to the style scan and its em-dashes replaced | The scan now covers it and passes |
-| 18d | "wrong by twenty per cent or more" becomes "roughly a fifth" on both pages | The arithmetic: 18.0% one way, 21.9% the other |
-| 16, 18g | README's corrections limit widened to name the real gap; robots rule described as indexing rather than access | Read |
-| 28, 29 | Chart SVG font sizes raised to clear about 11px at the 32rem floor; every markdown table header now carries `scope="col"` | Zero bare `<th>` in the built output |
-| 31, 32 | A 404 page, an inline SVG favicon, and a canonical URL that makes `site.url` live | Built; `check-build` caught the 404 missing its layout |
-| 14 | `pa11y-ci`, `http-server` and `start-server-and-test` pinned exactly; `npx --yes` gone | **`npm run a11y` run end to end: 17 of 17 URLs pass**, including the new 404 |
-
-**Item 20 was written, tested, and deliberately reverted.** See I1a: it correctly failed on this
-audit's own regrade, and landing it before the evidence entry exists would force a quote from a
-source nobody opened.
-
-**The `_site` output is no longer byte-identical to `main`, and now should not be.** Seventeen pages
-rather than sixteen, and the chart, table-header and stylesheet changes are all intentional. Every
-earlier claim of byte-identity was scoped to the documentation and metadata batch, and remains true
-of it.
-
----
+**In the list below and nowhere else.** A second table summarising what had been applied was written
+on 31 July and deleted the same day, for the reason the prose launch list was deleted before it: this
+document has now had two lists diverge once and will not have it again. Each row carries its own
+state. `DONE` means applied on this branch and verified; the verification is named in the finding.
 
 ### The actionable list
 
@@ -210,7 +190,7 @@ tier is wider; the difference is now stated rather than implied.*
 | 7 | Reword "Do not add a cohort uplift to this rate" so it reads as the site's rule rather than as reported from the Home Office | grant-rate record notes | Session |
 | 8 | Review the **six pages the pre-publication review never opened**, glossary first, against `docs/PRE-PUBLICATION-REVIEW.md` | `index.njk`, `common-claims.njk`, `glossary.md`, `sources-and-method.md`, `about.md`, `style-guide.md` | Owner |
 | 9 | Backfill `data/evidence/` for every reader-facing record, or accept that traceability is unverified for those that predate the contract | `data/evidence/` | Owner |
-| 9a | Make `breakAfter` self-insuring so the methodology break reaches the `<desc>` and the data table. Moved here from the tier below when E4 was relabelled BLOCKER; duplicates item 10, which is now struck | `lib/charts.mjs:100` | Session |
+| 9a | **DONE.** Make `breakAfter` self-insuring so the methodology break reaches the `<desc>` and the data table. Moved here from the tier below when E4 was relabelled BLOCKER; duplicates item 10, which is now struck | `lib/charts.mjs:100` | Session |
 
 #### Should be done before launch, not strictly blocking
 
@@ -220,20 +200,21 @@ tier is wider; the difference is now stated rather than implied.*
 | 11 | Qualify the success message so it does not claim no page writes a live value longhand while four sit on `/sources-and-method/` under an exemption | `validate-content.mjs:943` | Session |
 | 12 | Add a contact route that is not a GitHub account | `base.njk:59`, `/about/` | Owner |
 | 13 | Make the two strongest gates gate the deploy, or state in the README which pipeline each gates | `netlify.toml`, `README.md` | Owner |
-| 14 | Pin `pa11y-ci`, `http-server` and `start-server-and-test` as devDependencies and drop `npx --yes` | `package.json` | Session |
-| 15 | Add a print stylesheet: open chart tables, print link URLs, drop nav and skip link, **keep** the pre-launch banner | `content/assets/style.css` | Session |
-| 16 | Widen the README's corrections limit: it is not only that tables are named by title, it is that only three gov.uk collections are watched and eight of twelve publishers have no corrections route | `README.md:330`, moved from :324 by this branch's own edits above it | Session |
-| 17 | Fix `http://` to `https://` on the OGL link, both places | `base.njk:57`, `LICENCE:41` | Session |
+| 14 | **DONE.** Pin `pa11y-ci`, `http-server` and `start-server-and-test` as devDependencies and drop `npx --yes` | `package.json` | Session |
+| 15 | **DONE.** Add a print stylesheet: open chart tables, print link URLs, drop nav and skip link, **keep** the pre-launch banner | `content/assets/style.css` | Session |
+| 16 | **DONE.** Widen the README's corrections limit: it is not only that tables are named by title, it is that only three gov.uk collections are watched and eight of twelve publishers have no corrections route | `README.md:330`, moved from :324 by this branch's own edits above it | Session |
+| 17 | **DONE.** Fix `http://` to `https://` on the OGL link, both places | `base.njk:57`, `LICENCE:41` | Session |
 | 18 | Scope the licence to cover `content/`, `lib/` and the rest, or invert it | `LICENCE:7` | Owner |
 | 18a | Record `Asy_D04` note 5, appeals data not loaded at this extraction, and note 4, outcomes as at January 2026, in the grant-rate record's notes. Moved here from blocking when 0A-ter was downgraded. **Note also that the publisher disagrees with itself**: the bulletin's Figure 4 says extraction "in April 2026", the spreadsheet's note 4 says January 2026. Record which was followed and why, and the project's own rule is the primary table | grant-rate record notes | Session |
 | 18b | Re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`. Its own notes say "Do not publish without re-checking" and it is 43 days stale. F0-5, which had no entry until 31 July | `data/asylum.json` | Owner |
 | 18c | Qualify the sources page's promise that every number in a sentence is inserted from a record, or finish backlog item 4 first. K3 | `content/sources-and-method.md:82` | Owner |
-| 18d | Correct "wrong by twenty per cent or more" to "roughly a fifth": the site's own example gives 18.0% one way. Drop "In 2024" from the costs page where the briefing states no period. K4 | `glossary.md:100`, `sources-and-method.md:133`, `costs.njk:139` | Session |
+| 18d | **DONE.** Correct "wrong by twenty per cent or more" to "roughly a fifth": the site's own example gives 18.0% one way. Drop "In 2024" from the costs page where the briefing states no period. K4 | `glossary.md:100`, `sources-and-method.md:133`, `costs.njk:139` | Session |
 | 18d-ii | Reword the dashboard card's "work and care visas" to name the ONS reason grouping it actually cites. **Owner, not Session**: it is a reader-facing reword, which this project tags to the owner every time, and classing it Session while 18e's identical shape was Owner was an inconsistency a third model caught | `data/dashboard.json` | Owner |
 | 18e | Reword the refused-asylum short answer from "ended without a grant" to "had not ended in a grant at the latest recorded outcome". K2 | `refused-asylum...md:5` | Owner |
-| 18f | Add `LICENCE` to `STYLE_FILES` and replace its two em-dashes, or record it as exempt beside `verification.txt`. C6 | `validate-content.mjs:303`, `LICENCE` | Session |
-| 18g | Add one README sentence saying the site is reachable now and the robots rule governs indexing rather than access. C7 | `README.md` | Session |
-| 18h | Parameterise the claim-list heading level so home page cards sit at `h3`. E6's second item, which action 29 does not cover | `content/` | Session |
+| 18f | **DONE.** Add `LICENCE` to `STYLE_FILES` and replace its two em-dashes, or record it as exempt beside `verification.txt`. C6 | `validate-content.mjs:303`, `LICENCE` | Session |
+| 18g | **DONE.** Add one README sentence saying the site is reachable now and the robots rule governs indexing rather than access. C7 | `README.md` | Session |
+| 18h | Parameterise the claim-list heading level so home page cards sit at `h3`. E6's second item, which action 29 does not cover. **Not done**: verified still `h2` in the built home page on 31 July | `content/` | Session |
+| 18i | Correct the CI step name from "all 16 pages" to 17, or drop the count. I1b. Left visible rather than amended after the branch was pushed | `.github/workflows/validate-data.yml` | Session |
 
 #### Mechanical, safe, small
 
@@ -241,18 +222,18 @@ tier is wider; the difference is now stated rather than implied.*
 | --- | --- | --- | --- |
 | 19 | Report every note restating another record's value, so an update knows which notes to re-read. The scan exists in finding D1 | `validate-data.mjs` | Session |
 | 20 | Fire `check-evidence` on a `confidence_level` change into the derived set. **Written and tested on 31 July; it correctly failed on `asylum-administrative-outcomes` and was reverted.** Order matters: fetch Asy_D02, write the evidence entry, *then* land the change, or the fix forces a fabricated quote | `check-evidence.mjs`, `data/evidence/` | Owner, for the fetch |
-| 21 | Boundary-anchor the evidence quote match so one figure's digits inside another do not satisfy it | `check-evidence.mjs:120`, moved from :115 by this branch's own comment edit | Session |
-| 22 | Make `review_due` actually fire when the date passes, validate `last_reviewed`, and call the check for the glossary | `validate-content.mjs:32` | Session |
-| 23 | Require `last_reviewed` on `.njk` pages by narrowing the conditional, **not** by deleting it | `validate-content.mjs:494` | Session |
-| 24 | Run `checkEditorial` and `checkGlossaryLinks` over the `data/` prose that renders to pages | `validate-content.mjs:911` | Session |
-| 25 | Stop the validators throwing away collected findings on a malformed date or URL | `lib/series.mjs:42`, `validate-data.mjs:83` | Session |
-| 26 | Move `STYLE_FILES` out of the per-directory loop, and stop the two `catch` blocks swallowing every error | `validate-content.mjs:317` | Session |
+| 21 | **DONE.** Boundary-anchor the evidence quote match so one figure's digits inside another do not satisfy it | `check-evidence.mjs:120`, moved from :115 by this branch's own comment edit | Session |
+| 22 | **DONE.** Make `review_due` actually fire when the date passes, validate `last_reviewed`, and call the check for the glossary | `validate-content.mjs:32` | Session |
+| 23 | **DONE.** Require `last_reviewed` on `.njk` pages by narrowing the conditional, **not** by deleting it | `validate-content.mjs:494` | Session |
+| 24 | **DONE.** Run `checkEditorial` and `checkGlossaryLinks` over the `data/` prose that renders to pages | `validate-content.mjs:911` | Session |
+| 25 | **DONE.** Stop the validators throwing away collected findings on a malformed date or URL | `lib/series.mjs:42`, `validate-data.mjs:83` | Session |
+| 26 | **DONE.** Move `STYLE_FILES` out of the per-directory loop, and stop the two `catch` blocks swallowing every error | `validate-content.mjs:317` | Session |
 | 27 | Extend the `series_ref` comparison beyond `value` once the confidence convention is settled | `validate-data.mjs` | Owner then session |
-| 28 | Raise chart SVG font sizes so they clear about 11px at the 32rem floor | `style.css:409` | Session |
-| 29 | Add `scope="col"` to markdown table headers in the `table-captions` transform | `eleventy.config.js:230` | Session |
+| 28 | **DONE.** Raise chart SVG font sizes so they clear about 11px at the 32rem floor | `style.css:409` | Session |
+| 29 | **DONE.** Add `scope="col"` to markdown table headers in the `table-captions` transform | `eleventy.config.js:230` | Session |
 | 30 | Point `aria-describedby` at the visible summary instead of duplicating it into `<desc>`, after testing in a screen reader | `lib/charts.mjs:114` | Owner then session: its own precondition is a screen reader the project has never run |
-| 31 | Add a favicon and a 404 page | `content/` | Session |
-| 32 | Add `<link rel="canonical">` and make `site.url` live | `base.njk` | Session |
+| 31 | **DONE.** Add a favicon and a 404 page | `content/` | Session |
+| 32 | **DONE.** Add `<link rel="canonical">` and make `site.url` live | `base.njk` | Session |
 
 #### Decisions only you can take
 
@@ -302,9 +283,11 @@ The six the review never opened are `index.njk`, `common-claims.njk`, **`glossar
 `sources-and-method.md`, `about.md` and `style-guide.md`.
 
 **Both of the glossary blockers are in `glossary.md`.** Two independent passes reached it separately.
-The third blocker is **E4**, the chart methodology break, which is neither a glossary defect nor on
-an unreviewed page. This sentence has now been wrong twice: it read "both blockers this audit found"
-until 0-ZERO existed, then named 0-ZERO as the third after 0-ZERO had been downgraded to HIGH. That is not a coincidence about the glossary; it is what an unreviewed page looks like
+A third blocker, **E4**, was raised on 31 July and fixed the same day, so the two below are what is
+outstanding. This sentence has now been wrong three times: it read "both blockers this audit found"
+until 0-ZERO existed, then named 0-ZERO as the third after 0-ZERO had been downgraded, then named E4
+after E4 was fixed. It is the single most rotted sentence in this document and it is left in place
+as the exhibit. That is not a coincidence about the glossary; it is what an unreviewed page looks like
 when someone finally reads it.
 
 The consequence for the decision in `docs/BACKLOG.md` item 1, step 3, recording the review as passed,
@@ -1213,7 +1196,11 @@ platform's generic message. One markdown file with `permalink: /404.html`.
 
 ---
 
-**E4. BLOCKER. A methodology break is drawn on the flows chart and stated nowhere in that figure.**
+**E4. BLOCKER, FIXED on this branch and shipped in PR #70.** *A methodology break is drawn on the
+flows chart and was stated nowhere in that figure. `lib/charts.mjs` now emits the caution into the
+SVG description and the disclosure body whenever `breakAfter` is set, so the next chart to set it
+cannot repeat the omission. Verified by reading the built figure. The finding is kept in full below
+because the reasoning is what justified the severity.*
 *An earlier draft said "nowhere a screen reader or a table reader can find it", which is overdrawn: a
 reader moving linearly down the page meets the ONS caution in the net-migration figure's note one
 chart earlier, though that note says "The break is marked on the chart", singular and scoped to its
@@ -1620,6 +1607,32 @@ lands, because "changed from 5,931 to 5,931" describes a grade change badly.
 Backfilling the other derived records is separate and larger, and each needs its source re-read, so
 it stays **OWNER-VERIFY**.
 
+**I1b. LOW. A page count typed into a CI step name, stale within one commit of the change that
+moved it.**
+
+`.github/workflows/validate-data.yml`:
+
+```yaml
+- name: Accessibility, WCAG 2.2 AA on all 16 pages
+```
+
+The site now serves 17 pages. **The commit that made it 17 was in this audit's own second batch**,
+which added the 404 page and added it to `.pa11yci.json` so the gate covers it. The step name was
+not touched, so a green CI run now reports covering 16 pages while covering 17.
+
+Found by reading the CI output of PR #70 rather than by any check, which is the whole point: this is
+the ninth or tenth instance of the same pattern, it is trivially small, it was introduced **by the
+fix for another instance of it**, and nothing in the apparatus can see it because a step name is
+prose in a YAML file.
+
+Not fixed on this branch deliberately. The branch was already pushed and under review, and a count
+quietly amended after the fact is worth less than one left visible. It is a one-word change.
+
+The wider point, which is worth more than the fix: `.github/workflows/` is inside `STYLE_DIRS`, so
+the em-dash rule reaches it, but nothing reaches a number in it. Every count this project types
+outside `data/` is unguarded, and the audit's own recommendation, derive it or do not write it,
+applies to CI step names too.
+
 **I2. MEDIUM, LATENT. The evidence quote check is an unanchored substring match.**
 
 `scripts/check-evidence.mjs:120`, and it was `:115` until this branch's own comment edit moved it:
@@ -1800,8 +1813,9 @@ cross-reference resolves to the section it claims.
 
 ### K. Content: the remaining precision findings
 
-Two of the three blockers, 0A and 0B, are at the top of this document; the third, E4, is in section
-E. These are the rest. One needed the publisher re-read
+**Two blockers are outstanding**, 0A and 0B, both at the top of this document and both glossary
+entries. A third, E4, was raised on 31 July and fixed the same day. These are the rest. One needed
+the publisher re-read
 rather than a decision here.
 
 **K1. RESOLVED against the source, 31 July 2026, and the answer is worse than the question.**
