@@ -224,12 +224,201 @@ launch-day decision with a cost either way, and it is the owner's.
 
 ---
 
-### D. Housekeeping
+### D. One figure, one home, is not enforced between a record and another record's notes
 
-**D1. LOW. `.history/` is untracked and not ignored.** It is the VS Code Local History directory,
+**D1. HIGH. Twenty-six record values are restated inside a different record's `notes`, and nothing
+checks that the two agree.**
+
+The README states the principle plainly: "**One figure, one home.**" It has been enforced twice, at
+the two boundaries where it was found broken. `dashboard.json` was emptied of values so a card
+references a theme metric rather than holding a copy. `series_ref` was added so a metric held twice,
+once as a headline and once as a series point, cannot drift from itself. Both are checked by
+`validate-data.mjs`.
+
+The third boundary is unguarded. Scanning every record's `notes` for the formatted value of any
+other record finds 26 restatements across 15 records. A sample, and each pair is live today:
+
+| The note belongs to | It restates | Which is owned by |
+| --- | --- | --- |
+| `asylum/asylum-initial-decisions-total` | 48,581, 79,719, 16,901 | three separate records |
+| `asylum/asylum-administrative-outcomes` | 48,581, 128,300, 79,719, 16,901 | four separate records |
+| `asylum/returns-enforced-plus-voluntary` | 9,723, 29,284, 17,623 | three separate records |
+| `asylum/people-in-asylum-accommodation` | 97,519, 20,885 | two separate records |
+| `population/foreign-born-share-mid-2024` | 13,115,000, 69,281,400 | two separate records |
+| `migration/total-entry-clearance-visas-granted` | 252,775, 62,470 | two separate records |
+
+All 26 agree today, necessarily: the scan matches on equal values, so it can only see agreement.
+That is the point. **What it cannot see is the moment they stop agreeing**, which is the next Home
+Office quarterly. When `asylum-refusals` moves, four other records go on saying 79,719 and every
+check stays green.
+
+This is not a hypothetical shape for this project. It is the shape it has already been bitten by
+twice, both recorded in `docs/BACKLOG.md`: PR #58 found 627,000 "living inside the parent record's
+notes", and PR #67 found the visitor-visa figure the same way and called it "the same shape PR #58
+found". Both were fixed one figure at a time. The pattern was never mechanised, and 26 instances
+remain.
+
+The current mitigation is a line in `docs/UPDATING-DATA.md` saying that record `notes` are re-read
+every time. That is a human procedure standing in for a check, on a project whose own record is that
+procedures are what fail and checks are what hold.
+
+Fix, and it is small because the scan above already exists as a working script: add a branch to
+`validate-data.mjs` that reports every note restating another record's value, naming both records.
+**Report rather than fail**, on the precedent the sub-100 warnings and the unrecorded-literal ratchet
+already set, and for the same reason: several of the 26 are coincidence rather than restatement
+(9,000 appears in two notes and is a round number, not a citation), and a check whose only remedy is
+an exemption list teaches authors to stuff it. What it buys is that an updater moving a value is
+told which notes now need re-reading, by name, instead of being asked to remember.
+
+**D2. MEDIUM, LATENT. A Nunjucks page can ship with no review date, and the site promises otherwise.**
+
+`scripts/validate-content.mjs:494`:
+
+```js
+const required = file.endsWith('.njk') ? ['title'] : ['id', 'title', 'last_reviewed'];
+```
+
+A `.md` page must carry `last_reviewed`. A `.njk` page must not. `checkReviewDue` at line 533 then
+runs only `if (lastReviewed)`, so a Nunjucks page without one gets no due date and no twelve-month
+expiry, and `base.njk:46` prints nothing where the review date would go. The page builds green.
+
+`README.md:311` says "every page carries the date it was last reviewed". Five of the site's sixteen
+pages are `.njk`, including the homepage, and all five happen to carry it, so the defect is latent
+rather than live. It is listed because five of the site's most important pages depend on an author
+remembering, the promise is published, and the fix is deleting the conditional: the four `.njk`
+front matters already satisfy the stricter rule.
+
+**D3. LOW. Every claim page prints its review date twice.**
+
+`content/_includes/claim.njk:20` renders "Reviewed 27 July 2026" inside the claim card.
+`content/_includes/base.njk:46` then renders "Last reviewed 27 July 2026. Figures are the latest
+published at that date, not a live count." at the foot of `<main>`. Both appear on all seven claim
+pages.
+
+Each is deliberate on its own. The card version exists because foundation section 8.5.4 requires
+period, source and date to sit inside the card's visual boundary, since claim cards get
+screenshotted. The base version is the site-wide pattern and carries the qualifier the card version
+lacks. Together they say the same date twice, and a screen reader user hears it twice.
+
+**DECISION for the owner:** whether the card version should drop the date (losing it from a
+screenshot, which 8.5.4 forbids) or the base version should be suppressed on claim pages (losing
+the "not a live count" qualifier). A third option keeps both and accepts the repetition, which is
+the status quo and is defensible.
+
+---
+
+### E. Accessibility findings from reading the built output
+
+The dedicated accessibility pass is still running. One finding is recorded here because it was
+found while checking chart prose, and it is in code that a previous accessibility round already
+touched for the same reason.
+
+**E1. MEDIUM. Every chart summary is announced twice by a screen reader.**
+
+`lib/charts.mjs` renders the summary into the visible figcaption at line 114:
+
+```html
+<p class="chart-summary">${escape(summary)}</p>
+```
+
+and again into the SVG's description at line 119, which `aria-describedby` points at:
+
+```html
+<desc id="${escape(id)}-d">${escape(summary)} Full figures are in the table below the chart.</desc>
+```
+
+Both are in the accessibility tree. Reading the asylum page linearly, assistive technology
+announces the summary sentence as a paragraph, then reaches the image and announces the same
+sentence again as its description.
+
+The header comment in `lib/charts.mjs` records fixing what looks like this and is not: pointing
+`aria-labelledby` at both the title and the description "concatenated them into one name and left
+the summary as the description as well, so a screen reader read the whole summary sentence twice
+before reaching the chart". That fix separated name from description **inside the SVG**. The
+duplication between the visible figcaption and the description survived it, because the two live in
+different elements and the fix only looked at one.
+
+Fix, smallest version that keeps the description non-empty: give the visible summary an id and point
+`aria-describedby` at it, leaving `<desc>` to carry only the sentence directing a reader to the
+table. That removes the duplication without removing either piece of information, and needs no
+JavaScript.
+
+Confirm against the running accessibility pass before acting, since `<desc>` support varies between
+screen readers and the safe version may be to keep `<desc>` and shorten it rather than to point
+outside the SVG.
+
+---
+
+### F. Verified as correct
+
+Recorded because a review that lists only defects invites the reading that everything unlisted was
+checked and failed, or was not checked at all.
+
+**F1. Every chart summary describes its data correctly.** This is the site's largest published
+limit, "prose about figures is unprotected", and the surface on which four false summaries were
+previously found by reading. All seven summaries on the four pages that carry charts were re-derived
+point by point against the series arrays and the records:
+
+- *Net migration.* "Reached 891,000 in 2022, the highest point on this calendar-year series"
+  matches the maximum of the array. "It has fallen in each of the three years since, to 171,000"
+  holds at every step: 891,000 to 848,000 to 331,000 to 171,000.
+- *Flows.* Immigration's maximum is 1,441,000 in 2023 and it falls in both later years. Emigration
+  runs 480,000, 508,000, 593,000, 680,000 across 2021 to 2024 with no reversal, then 642,000 in
+  2025, which is what "rose steadily... easing to" describes.
+- *Asylum applications.* 22,644 to 45,537 is a factor of 2.01, so "roughly doubled" holds. The
+  fall from 95,007 to 87,427 is 7.98%, so "fell 8%" holds. 104,764 is the maximum of the array.
+- *Asylum backlog.* Both bases peak in 2022. The people basis falls 59.96% to 2025 and the cases
+  basis 63.14%, which is what "60%" and "63%" state. "Among the year-end points shown" is doing
+  real work in that sentence and is correctly placed.
+- *Initial decisions.* 48,581 plus 79,719 is exactly 128,300, and the page states that the three
+  bars are not every outcome, names the 5,931 administrative outcomes the chart omits, and gives
+  the 39% against 37.9% basis difference as a worked example rather than burying it.
+- *Costs.* £158 against £20 is a factor of 7.9, which "roughly eight times" states.
+
+**F2. The internal link graph is sound.** 273 internal links and every same-page fragment resolve,
+every internal link is root-relative, and no link carries an `aria-label` that could diverge from its
+visible text.
+
+**F3. The decisions arithmetic is documented against its own trap.** The notes on
+`asylum-initial-decision-grant-rate` and `asylum-initial-decisions-total` both warn against
+recomputing the published rate from the people basis, and `asylum-administrative-outcomes` records
+two independent decompositions of 5,931 that agree. This is the standard the rest of the data layer
+should be read against.
+
+---
+
+### G. Framing questions rather than defects
+
+**G1. DECISION. The emigration sentence starts at the series trough.**
+
+`migration.njk`, the flows chart summary: "Emigration rose steadily from **480,000 in 2021** to
+680,000 in 2024, easing to 642,000 in 2025." Every number is right, verified above.
+
+2021 is the lowest emigration point in the fourteen-year series. The two preceding points are
+605,000 in 2019 and 569,000 in 2020, so emigration fell for two years and then rose, and the
+sentence begins at the bottom of that fall. Starting there makes the rise the largest it can be
+made to look while remaining true.
+
+This is raised because of what the site is. `lib/charts.mjs` enforces that "the y-axis always starts
+at zero. A truncated axis exaggerates change, and this site exists to correct exactly that kind of
+misuse." Choosing a trough as the narrative baseline is the same manoeuvre on the time axis, and the
+site enforces the rule in its charts while its prose is not held to it.
+
+There is a fair defence: the sentence pairs emigration with immigration, whose story genuinely
+starts in 2021, and the chart beside it shows all fourteen years, so nothing is hidden from a reader
+who looks. That defence is real, which is why this is a question and not a finding.
+
+**DECISION for the owner:** whether to name the 2019 peak in the sentence, or to let the chart carry
+it.
+
+---
+
+### H. Housekeeping
+
+**H1. LOW. `.history/` is untracked and not ignored.** It is the VS Code Local History directory,
 36K today, holding copies of earlier file versions. It shows in `git status` on a clean tree, which
 trains a maintainer to ignore a dirty status, and an accidental `git add -A` would commit working
-drafts of content pages. Add `.history/` to `.gitignore`.
+drafts of content pages. **Fixed in this branch:** added to `.gitignore`.
 
 ---
 
