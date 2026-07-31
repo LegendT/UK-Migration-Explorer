@@ -29,6 +29,11 @@ Everything still outstanding from it is in this file, under *From the pre-launch
 `docs/PRE-LAUNCH-AUDIT.md` is now a findings record like `verification.txt`, read for reasoning and
 never edited.
 
+**What to take, and in what order, is one sentence and it is not this one.** It lives under
+*Scoped, not built* below, beginning "This sentence governs the whole file". It is the only place
+the sequence is stated, deliberately, so that finishing something cannot leave a stale instruction
+somewhere else. Read it before starting anything.
+
 **Three things from it gate launch and are mine**, named here because this file is where a launch
 gate belongs and a session reading only the backlog must not miss them:
 
@@ -302,12 +307,27 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This list is in recommended order. Take the first unfinished item, which is item 4**, the
-figures the data layer never recorded. Item 3's only remaining phase is a reader-facing trust
-statement needing the owner's sign-off rather than a build, so it is not work a session can take.
-The order lives here rather than in the handoff's prompt, so that finishing something does not
-leave a stale instruction somewhere else. Re-order it freely; this is the only place the
-sequence is stated.
+**This sentence governs the whole file, not only the section below it, and it went stale the moment
+the audit section was added above without touching it.** It says so here because that is exactly the
+failure it warns about two paragraphs down. The order lives here rather than in the handoff's prompt,
+so that finishing something does not leave a stale instruction somewhere else. Re-order it freely;
+this is the only place the sequence is stated.
+
+**Take, in this order:**
+
+1. **A2, the three corrections to the grant-rate record**, under *From the pre-launch audit* above.
+   `[me]`, mechanical, the publisher's wording already quoted. **It comes first because it is the
+   prerequisite for the launch gate behind it:** the glossary entry is meant to be rebuilt on that
+   record, and the record currently attributes a phrase to the Home Office that the Home Office does
+   not use. Fixing the authority before the page that cites it makes the owner's decision cleaner.
+2. **A3, the checks worth hardening**, and **A5's two `[me]` items**. Small, independent, no gates.
+3. **Item 4 below, the figures the data layer never recorded.** This was the first item before the
+   audit and is now behind it. Item 3's only remaining phase needs the owner's sign-off rather than a
+   build, so it is not work a session can take.
+
+**Not takeable by a session, and they are the launch gates**: the two glossary rewrites and the
+£2.1bn re-source, named at the top of this file. Bring them; do not start them. If a session's first
+act is to ask about those three rather than to take item 1 above, that is the right first act.
 
 If you reorder, or complete something, **move the sections and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
