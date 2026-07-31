@@ -19,10 +19,11 @@ the mechanical half and left every editorial and sourcing call.
 handoff, so it can be copied without opening a 700-line document. The handoff remains its source
 of truth.
 
-**Its own actionable list is the live one, and this file does not copy it.** Forty-odd rows, each
-saying where the work is and whether a session can take it. Copying it here would create the second
-list that this project has now watched diverge twice. When the audit closes, whatever it leaves
-undone moves into the sections below and the document joins Completed.
+**It closed on 31 July 2026 and its document is frozen.** It carried its own action list for a day,
+which was the mistake: two lists meant every change had to land twice, and they diverged twice.
+Everything still outstanding from it is in this file, under *From the pre-launch audit* below.
+`docs/PRE-LAUNCH-AUDIT.md` is now a findings record like `verification.txt`, read for reasoning and
+never edited.
 
 **Three things from it gate launch and are mine**, named here because this file is where a launch
 gate belongs and a session reading only the backlog must not miss them:
@@ -44,6 +45,111 @@ gate belongs and a session reading only the backlog must not miss them:
 sit on a page `verification.txt` never opened. The review read ten of sixteen. Recording it as passed
 is a judgement about the other six as much as about the ten, and the audit recommends putting those
 six through `docs/PRE-PUBLICATION-REVIEW.md` before signing.
+
+---
+
+## From the pre-launch audit, closed 31 July 2026
+
+**The audit is closed and `docs/PRE-LAUNCH-AUDIT.md` is frozen.** It is the findings record, like
+`verification.txt` is the review record, and it is not edited again. Everything still outstanding
+from it is here, in this file's format, because this file is the one work list and the audit's
+parallel one is what made a long session unmanageable: 23 of its 33 commits went to maintaining that
+document rather than doing the work.
+
+The three launch gates it found are named at the top of this file. These are the rest.
+
+### A1. Traceability was never checked at the far end
+
+Every check verifies a figure NAMES a source. Nothing verifies the source CONTAINS it. Opening five
+publications during the audit found three defects, one of them a headline figure on the home page.
+
+- **Backfill `data/evidence/` for every reader-facing record**, or accept in writing that
+  traceability is unverified for the records predating the evidence contract. Those never get asked,
+  because `check-evidence.mjs` fires on a value that moved or a figure that is new and most have done
+  neither. **[you]** to decide the scope; the fetching is **[me]**.
+- **Fire `check-evidence.mjs` on a `confidence_level` change into the derived set.** Written and
+  tested on 31 July; it correctly failed on `asylum-administrative-outcomes` and was reverted. The
+  ordering matters and doing it the other way forces a fabricated quote: **fetch Asy_D02, write the
+  evidence entry, then land the one-line change.** **[you]** for the fetch.
+- **Re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`.** Its own notes say "Do not
+  publish without re-checking" and it was 43 days stale. It is unpublished reserve, so no reader sees
+  it, which is why this is not a gate. **[you]**.
+
+### A2. Three corrections to the grant-rate record, and they are mechanical
+
+The Home Office's own wording is quoted in the audit, fetched 31 July. All three are **[me]**.
+
+- Remove "the Home Office calls the later figure **the latest recorded outcome**". It does not use
+  that phrase; its terms are "latest outcome" and "latest decision".
+- Correct **"between 2010 and 2020"** wherever the publisher's 17-to-29 point range is quoted. The
+  Home Office publishes it for 2007 to 2020. Three sites: the record notes, `content/asylum.njk:95`,
+  and `content/claims/refused-asylum-seekers-are-eventually-recognised.md:44`.
+- Reword "Do not add a cohort uplift to this rate" so it reads as this site's rule rather than as
+  something the Home Office said. It is a sound rule and no publisher sentence states it.
+- Record `Asy_D04` notes 4 and 5 in that record: outcomes are as at January 2026, and appeals data
+  was not loaded for this release. Note the publisher disagrees with itself, the bulletin saying
+  April 2026, so say which was followed and why.
+
+### A3. Checks worth hardening, none of them urgent
+
+All **[me]**, all small, each with its reasoning in the audit.
+
+- Qualify `validate-content.mjs`'s success message: it claims no page writes a live value longhand
+  while four sit on `/sources-and-method/` under a `historical_literals` exemption.
+- Report every record note restating another record's value, so an update knows which notes to
+  re-read. Twenty-six exist; the scan is written out in the audit.
+- Extend the `series_ref` comparison beyond `value`, once the confidence convention below is settled.
+
+### A4. Reader-facing wording, all of it yours
+
+Each is a sentence, and each is **[you]** because it is wording.
+
+- The refused-asylum short answer says "ended without a grant" where the page's own body says "had
+  not ended in a grant by its latest recorded outcome". The short answer makes the move the page
+  criticises.
+- The dashboard's net-migration card says the fall was "on work and care visas"; the record it cites
+  is an ONS reason grouping, and `migration.json`'s own note says the two sources are not
+  interchangeable.
+- `/sources-and-method/` promises every number in a sentence is inserted from a record. The
+  unrecorded-literal report prints 31 that are not. Qualify the promise, or finish item 4 first.
+- Whether to cut "the two longest and most pointed checks on this site both run against the
+  pro-migration side" from `common-claims.njk`. **Recommended: cut.** It is true by a twenty-word
+  margin, "most pointed" is unfalsifiable, and the page's credibility rests on not doing that.
+- Whether `most-immigration-is-asylum` should state the all-immigration share, 10.8%, beside the
+  non-EU+ 14%. The smaller figure strengthens the correction and closes a denominator gap.
+
+### A5. Site-level decisions and small build work
+
+- **Add a contact route that is not a GitHub account.** The corrections policy depends on people
+  reporting errors, and the only door is an issue tracker. Cheapest item on this list. **[you]** for
+  the address.
+- **Make `check-evidence` and `npm run a11y` gate the Netlify deploy**, or state in the README which
+  pipeline each gates. They gate CI only; the README says "gates the build". **[you]**.
+- **Scope the LICENCE** to cover `content/` and `lib/`, or invert it so it covers everything except
+  the figures in `data/`. Neither clause currently names the site's own prose. **[you]**.
+- Parameterise the claim-list heading level so home page cards sit at `h3` under the `h2` that
+  introduces them. **[me]**.
+- Point `aria-describedby` at the visible chart summary instead of duplicating it into `<desc>`.
+  **Gated on a real screen reader**, which this project has never run, so it is **[you]** first.
+
+### A6. Decisions with no build behind them
+
+Each is one call. None blocks anything.
+
+- Which confidence convention wins between the metrics and the series: the metrics grade all ONS LTIM
+  figures `provisional`, the series grades per ONS marker, and nothing reconciles them.
+- Whether `og:` tags should exist, and whether a claim page's `og:title` leads with the claim or the
+  correction. Foundation 8.5.4's rejection of a share image is not reopened by this.
+- Whether `.netlify.app` is the launch domain, given the success measure is citation by a named
+  outlet.
+- Whether `/sources-and-method/` publishes a fourth limit, and which of the three candidates.
+- Whether the emigration sentence names the 2019 peak or lets the chart carry it.
+- Whether the claim card's duplicated review date stays: it prints once in the card and once at the
+  foot of `<main>`, and each is individually justified.
+- Whether to be more precise than the NAO about the 76% being a seven-month cost share while the 35%
+  is a point-in-time headcount.
+- Two OWNER-VERIFY residues: whether the Asy_D02 pivot prints a year-ending total, and the `date`
+  field on the fiscal-impact record plus the 47% in the work-immigration notes.
 
 ---
 

@@ -78,7 +78,8 @@ rule is one figure, one home.
 **A whole-project pre-launch audit ran on 30 and 31 July 2026** and is open as PR #70, written up
 in `docs/PRE-LAUNCH-AUDIT.md`. Its outcome is a findings list, on the same principle as the review
 before it. It applied the mechanical half and left every editorial and sourcing call. What is
-outstanding from it is in the backlog and in the audit's own actionable list, not here.
+outstanding from it is in `docs/BACKLOG.md`, not here and not in the audit: that document is a
+frozen findings record as of 31 July, for the same reason `verification.txt` is.
 
 Three things from it belong in this document because they change how the project should be read.
 
@@ -577,8 +578,9 @@ Deliberately not tied to one task, so it does not go stale as items are complete
 `docs/prompts/fresh-session.md` so it can be copied without opening this document; **this section is
 the source of truth and that file is a copy.** Regenerate it rather than editing it there.
 
-**Cut to about fifty lines on 31 July 2026, from just over two hundred.** The long version recited
-the rules; this one points at them. That is the opposite of the previous fix, and the reasoning
+**Cut to about fifty lines on 31 July 2026, from just over two hundred, and re-routed at the backlog
+the same day when the audit closed and its parallel list was deleted.** The long version recited the
+rules; this one points at them. That is the opposite of the previous fix, and the reasoning
 changed because the evidence did.
 
 **Why the long version existed, and why reciting was the wrong answer.** The prompt and this document
@@ -613,19 +615,18 @@ Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
 READ FIRST, in this order, and do not re-derive what they already settle:
-  1. docs/PRE-LAUNCH-AUDIT.md, its actionable list. While the audit is
-     open this is the live list of work.
-  2. docs/BACKLOG.md. The durable list, and it names the launch gates
-     that are mine. It becomes the live list again when the audit closes.
-  3. docs/HANDOFF.md. How the project works, and what earlier sessions
+  1. docs/BACKLOG.md. The one list of outstanding work, ordered, and it
+     names the launch gates that are mine. There is no second list.
+  2. docs/HANDOFF.md. How the project works, and what earlier sessions
      cost. Its "Working practices that earned their place" section is
      rules this project has paid for, each with the incident behind it.
      Read it before deciding a rule does not apply to what you are doing.
-  4. The scope document for whatever you pick up.
+  3. The scope document for whatever you pick up.
 
-If the audit's list and the backlog disagree about what is outstanding,
-SAY SO rather than picking one. Two lists exist only while the audit is
-open, and this project has twice watched two lists diverge.
+docs/PRE-LAUNCH-AUDIT.md and verification.txt are FROZEN RECORDS, not
+work lists. Read either for the reasoning behind an item. Do not edit
+them and do not take work from them: whatever is still outstanding is in
+the backlog.
 
 This project has no CLAUDE.md. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
@@ -641,12 +642,20 @@ the owner's decision [you]. On a list mixing both, do all the [me] work
 first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question is.
 
-TASK: take the first item you are allowed to take, by the routing above,
-unless I have told you otherwise in this message. Tell me which one and
-what you expect to change before you start. If it is larger than a
-session, propose a split. If it turns out to be wholly gated on a
-decision of mine, do not stall and do not take the decision: bring it to
-me and start on the next ungated item, saying which you moved to.
+TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
+told you otherwise in this message. Unfinished, not unstarted: an item
+can have phases built and still be first. Do not infer it from document
+order, because the earlier items are mine or are launch; the backlog's
+own preamble names which to take, and that sentence is the instruction.
+
+Tell me which item you are taking and what you expect to change before
+you start. If it is larger than a session, propose a split. If it is
+wholly gated on a decision of mine, do not stall and do not take the
+decision: bring it to me and start the next ungated item, saying which.
+
+ONE DELIVERABLE PER SESSION. Audit, then fix, then critique the fix is
+three. When a critique pass is mostly finding mistakes this session
+introduced rather than defects in the work, stop and tell me.
 
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y, and npm run check-evidence if a figure
@@ -654,7 +663,7 @@ changed. check-releases and check-sources are network checks that gate
 nothing, so run them by hand before opening a pull request.
 
 Branch and PR, never straight to main, and the PR body carries the
-reasoning. When you finish an item, mark it done where it is listed with
+reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
 its PR and a date, and move it to Completed when nothing is left. Do not
 delete it.
 ```

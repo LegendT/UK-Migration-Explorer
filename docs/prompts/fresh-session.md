@@ -1,14 +1,13 @@
 # Prompt for a fresh session
 
 **Generated from `docs/HANDOFF.md`, section *Prompt for a fresh session*, which is the source of
-truth.** This file exists so the prompt can be copied without opening a 700-line document. If the two
-disagree, the handoff is right and this file is stale: regenerate it rather than editing it here.
+truth.** If the two disagree, the handoff is right and this file is stale: regenerate rather than
+editing here.
 
-Cut to about fifty lines on 31 July 2026. It deliberately recites almost nothing, because the two
-times it and the handoff drifted, the prompt was the stale copy. The handoff's own section explains
-which four things it still carries and why each cannot be a pointer.
+It recites almost nothing, because the two times it and the handoff drifted the prompt was the stale
+copy. The handoff explains which few things it still carries and why each cannot be a pointer.
 
-Generated 31 July 2026.
+Generated 31 July 2026, after the pre-launch audit closed.
 
 ---
 
@@ -17,19 +16,18 @@ Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
 READ FIRST, in this order, and do not re-derive what they already settle:
-  1. docs/PRE-LAUNCH-AUDIT.md, its actionable list. While the audit is
-     open this is the live list of work.
-  2. docs/BACKLOG.md. The durable list, and it names the launch gates
-     that are mine. It becomes the live list again when the audit closes.
-  3. docs/HANDOFF.md. How the project works, and what earlier sessions
+  1. docs/BACKLOG.md. The one list of outstanding work, ordered, and it
+     names the launch gates that are mine. There is no second list.
+  2. docs/HANDOFF.md. How the project works, and what earlier sessions
      cost. Its "Working practices that earned their place" section is
      rules this project has paid for, each with the incident behind it.
      Read it before deciding a rule does not apply to what you are doing.
-  4. The scope document for whatever you pick up.
+  3. The scope document for whatever you pick up.
 
-If the audit's list and the backlog disagree about what is outstanding,
-SAY SO rather than picking one. Two lists exist only while the audit is
-open, and this project has twice watched two lists diverge.
+docs/PRE-LAUNCH-AUDIT.md and verification.txt are FROZEN RECORDS, not
+work lists. Read either for the reasoning behind an item. Do not edit
+them and do not take work from them: whatever is still outstanding is in
+the backlog.
 
 This project has no CLAUDE.md. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
@@ -45,12 +43,20 @@ the owner's decision [you]. On a list mixing both, do all the [me] work
 first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question is.
 
-TASK: take the first item you are allowed to take, by the routing above,
-unless I have told you otherwise in this message. Tell me which one and
-what you expect to change before you start. If it is larger than a
-session, propose a split. If it turns out to be wholly gated on a
-decision of mine, do not stall and do not take the decision: bring it to
-me and start on the next ungated item, saying which you moved to.
+TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
+told you otherwise in this message. Unfinished, not unstarted: an item
+can have phases built and still be first. Do not infer it from document
+order, because the earlier items are mine or are launch; the backlog's
+own preamble names which to take, and that sentence is the instruction.
+
+Tell me which item you are taking and what you expect to change before
+you start. If it is larger than a session, propose a split. If it is
+wholly gated on a decision of mine, do not stall and do not take the
+decision: bring it to me and start the next ungated item, saying which.
+
+ONE DELIVERABLE PER SESSION. Audit, then fix, then critique the fix is
+three. When a critique pass is mostly finding mistakes this session
+introduced rather than defects in the work, stop and tell me.
 
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y, and npm run check-evidence if a figure
@@ -58,7 +64,7 @@ changed. check-releases and check-sources are network checks that gate
 nothing, so run them by hand before opening a pull request.
 
 Branch and PR, never straight to main, and the PR body carries the
-reasoning. When you finish an item, mark it done where it is listed with
+reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
 its PR and a date, and move it to Completed when nothing is left. Do not
 delete it.
 ```
