@@ -6,7 +6,11 @@ quietly falls out. An item leaves this list when it is done, and it leaves by be
 "Completed" with a date, never by being deleted.
 
 `scripts/validate-content.mjs` fails the build if a planning document in `docs/` is not
-referenced here, so a scope can no longer be written and forgotten.
+referenced here, so a scope can no longer be written and forgotten. **Since 31 July 2026 it also
+fails if any planning document other than this one carries work state**, meaning a table row
+marked done, withdrawn or struck. That rule exists because the pre-launch audit built a second
+list, the two diverged twice in a day, and this file was briefly edited to say the other one was
+live. The resolution did not hold, so it is a build failure now.
 
 Last updated 31 July 2026, after fifteen pull requests, #54 to #68.
 

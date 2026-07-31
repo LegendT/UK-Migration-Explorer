@@ -314,6 +314,31 @@ try {
   errors.push('docs/BACKLOG.md: missing. It is the durable list of outstanding work.');
 }
 
+// --- one list, and only one ---------------------------------------------------------
+// docs/BACKLOG.md is the durable list of outstanding work. On 31 July 2026 a pre-launch audit built
+// a SECOND one inside its own document: a 53-row table with DONE markers, its own ids and its own
+// severities. Both then had to be maintained in step, they diverged twice within a day, and the
+// backlog was edited to say the audit's list was "the live one", so this project's one-list rule was
+// suspended in writing to accommodate the artefact that broke it. 23 of that branch's 33 commits went
+// to maintaining that document rather than doing the work.
+//
+// So the rule is a build failure rather than a resolution. A planning document may hold reasoning, a
+// finding, or a frozen record; it may not hold work STATE. State means a row marked done, withdrawn
+// or struck, which is what turns a table into a list somebody has to keep true.
+//
+// Matched on a table ROW, not on the words anywhere in the file, because a document should be able to
+// say in prose that something was withdrawn. It is the row-with-a-marker shape that is a second list.
+// verification.txt is not scanned: it sits outside docs/ for its own reasons.
+const STATE_ROW = /^\s*\|.*\*\*(DONE|Withdrawn|Struck)\b/i;
+for (const file of planningDocs(docsDir)) {
+  if (file === 'BACKLOG.md') continue;
+  const rows = readFileSync(`${docsDir}${file}`, 'utf8').split('\n')
+    .map((line, i) => [i + 1, line]).filter(([, line]) => STATE_ROW.test(line));
+  if (rows.length) {
+    errors.push(`docs/${file}: ${rows.length} table row(s) carry work state, from line ${rows[0][0]}. Only docs/BACKLOG.md tracks what is outstanding. A second list has to be kept true in two places, and this project watched two diverge twice in one day. Move the work to the backlog and leave the reasoning here.`);
+  }
+}
+
 // --- house style: no em-dashes ------------------------------------------------
 // Matches the sibling projects' rule. The em-dash is banned in authored copy, literal or
 // URL-encoded; the en-dash stays available for numeric ranges. Data files are excluded
