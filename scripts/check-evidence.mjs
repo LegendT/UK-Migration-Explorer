@@ -33,7 +33,7 @@ const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal
 // How many are derived is NOT written here. It was, and it was wrong by one before anyone
 // noticed and by two after a regrade elsewhere, because a count in a comment is a count nothing
 // reads. Derive it instead:
-//   node -e "['migration','asylum','population','fiscal'].flatMap(f=>require('./data/'+f+'.json').metrics).reduce((n,m)=>(n[m.confidence_level]=(n[m.confidence_level]||0)+1,n),{})"
+//   node -p "JSON.stringify(['migration','asylum','population','fiscal'].flatMap(f=>require('./data/'+f+'.json').metrics).reduce((n,m)=>(n[m.confidence_level]=(n[m.confidence_level]||0)+1,n),{}))"
 const DERIVED = new Set(['calculated', 'estimated']);
 
 const errors = [];

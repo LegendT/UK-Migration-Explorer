@@ -125,9 +125,16 @@ project's own rule and not an optional extra. Two live present-tense claims had 
   been corrected once, from "three of 67", and it says so in its own next line. This was its third
   wrong version.
 
-Both are now replaced with the query that derives the answer, and the query was run to confirm it
-returns `{ provisional: 19, official: 47, calculated: 5, estimated: 4 }` rather than being written
-down untested.
+Both are now replaced with the query that derives the answer.
+
+**And that replacement was itself defective for one round.** The published command used `node -e`,
+which does not print an expression's value, so a maintainer following either document ran a silent
+no-op. This document meanwhile claimed "the query was run to confirm it returns
+`{ provisional: 19, official: 47, calculated: 5, estimated: 4 }`". The query *was* run, with a
+`console.log` wrapper; the command *published* was the version without it. **A claim about a
+different artefact than the one shipped** is the exact shape this audit spends nine findings on, and
+it was committed by the fix that exists to cure it, in two files. A third model caught it. Both now
+use `node -p "JSON.stringify(...)"`, and that form has been run verbatim as published.
 
 **The lesson is not that two more were found; it is that applying a correct fix created one of
 them.** Regrading a record is a data change with documentation consequences, and nothing in the
@@ -152,7 +159,7 @@ decide it. **Session** means a session can do it and the answer is already estab
 
 | # | Do this | Where | Who |
 | --- | --- | --- | --- |
-| 1 | **Found.** Re-source to Home Office Annual Report and Accounts 2024-25, HC 1133, 17 July 2025, page 75, quote in 0-ZERO. Add the catalogue entry, write the evidence entry, correct `source_name`, `source_url`, `published_date`, `retrieved_date`. The value and the `official` grade are correct and do not change | `fiscal/home-office-spending-on-asylum-hotel-accommodation`, `data/sources.json`, `data/evidence/` | Owner, because it adds a publisher |
+| 1 | **Found.** Re-source to Home Office Annual Report and Accounts 2024-25, HC 1133, 17 July 2025, page 75, quote in 0-ZERO. Add the catalogue entry, write the evidence entry, correct `source_name`, `source_url`, `published_date`, `retrieved_date`. The value and the `official` grade are correct and do not change. **Also fix the note's opening clause**: "Within the £3.4bn accommodation total" is an NAO decomposition and "£3.4 billion" appears nowhere in the ARA, so re-sourcing alone would leave the first clause asserting a figure the new source never states. Cut it or attribute it inline | `fiscal/home-office-spending-on-asylum-hotel-accommodation`, `data/sources.json`, `data/evidence/` | Owner, because it adds a publisher |
 | 2 | *Withdrawn 31 July. Was "disclose the appeals gap and say which way it cuts". Testing the inference refuted it; see 0A-ter. The disclosure survives as a MEDIUM, listed below.* | | |
 | 3 | Rebuild the **Grant rate** glossary entry on the publisher's wording: "latest outcome", "following appeals and reconsiderations", "each year of claim between 2007 and 2020", and add "and administrative outcomes" to the exclusions | `content/glossary.md:225` | Owner |
 | 4 | Rebuild the **Net fiscal impact** glossary entry: separate studies of different periods, groups and methods, small in magnitude, positive in some and negative in others, no single correct figure. Both paragraphs, not four words | `content/glossary.md:363` | Owner |
@@ -179,7 +186,8 @@ decide it. **Session** means a session can do it and the answer is already estab
 | 18a | Record `Asy_D04` note 5, appeals data not loaded at this extraction, and note 4, outcomes as at January 2026, in the grant-rate record's notes. Moved here from blocking when 0A-ter was downgraded. **Note also that the publisher disagrees with itself**: the bulletin's Figure 4 says extraction "in April 2026", the spreadsheet's note 4 says January 2026. Record which was followed and why, and the project's own rule is the primary table | grant-rate record notes | Session |
 | 18b | Re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`. Its own notes say "Do not publish without re-checking" and it is 43 days stale. F0-5, which had no entry until 31 July | `data/asylum.json` | Owner |
 | 18c | Qualify the sources page's promise that every number in a sentence is inserted from a record, or finish backlog item 4 first. K3 | `content/sources-and-method.md:82` | Owner |
-| 18d | Correct "wrong by twenty per cent or more" to "roughly a fifth": the site's own example gives 18.0% one way. Fix the dashboard card's "work and care visas" to name the ONS reason grouping. Drop "In 2024" from the costs page where the briefing states no period. K4, three confirmed fixes | `glossary.md:100`, `sources-and-method.md:133`, `dashboard.json`, `costs.njk:139` | Session |
+| 18d | Correct "wrong by twenty per cent or more" to "roughly a fifth": the site's own example gives 18.0% one way. Drop "In 2024" from the costs page where the briefing states no period. K4 | `glossary.md:100`, `sources-and-method.md:133`, `costs.njk:139` | Session |
+| 18d-ii | Reword the dashboard card's "work and care visas" to name the ONS reason grouping it actually cites. **Owner, not Session**: it is a reader-facing reword, which this project tags to the owner every time, and classing it Session while 18e's identical shape was Owner was an inconsistency a third model caught | `data/dashboard.json` | Owner |
 | 18e | Reword the refused-asylum short answer from "ended without a grant" to "had not ended in a grant at the latest recorded outcome". K2 | `refused-asylum...md:5` | Owner |
 | 18f | Add `LICENCE` to `STYLE_FILES` and replace its two em-dashes, or record it as exempt beside `verification.txt`. C6 | `validate-content.mjs:303`, `LICENCE` | Session |
 | 18g | Add one README sentence saying the site is reachable now and the robots rule governs indexing rather than access. C7 | `README.md` | Session |
@@ -252,9 +260,9 @@ The six the review never opened are `index.njk`, `common-claims.njk`, **`glossar
 `sources-and-method.md`, `about.md` and `style-guide.md`.
 
 **Both of the glossary blockers are in `glossary.md`.** Two independent passes reached it separately.
-There is a third blocker, 0-ZERO, which is not a glossary defect and was found by reading a source
-rather than by reading a page. This sentence read "both blockers this audit found" until 0-ZERO
-existed, and was left standing for one commit after it did. That is not a coincidence about the glossary; it is what an unreviewed page looks like
+The third blocker is **E4**, the chart methodology break, which is neither a glossary defect nor on
+an unreviewed page. This sentence has now been wrong twice: it read "both blockers this audit found"
+until 0-ZERO existed, then named 0-ZERO as the third after 0-ZERO had been downgraded to HIGH. That is not a coincidence about the glossary; it is what an unreviewed page looks like
 when someone finally reads it.
 
 The consequence for the decision in `docs/BACKLOG.md` item 1, step 3, recording the review as passed,
@@ -705,6 +713,8 @@ Fix: `README.md:313`, 71 becomes 75.
 
 **A2. HIGH. The `table_reference` count is stale in three places.**
 
+*Applied on this branch. The quoted file contents below are the pre-fix state, kept so the finding still shows its own evidence.*
+
 `README.md:136` and `README.md:324` both say "**14 records and 2 series files** carry
 `table_reference`". `npm run validate` reports "17 record(s) and 2 series file(s) declare one".
 `docs/foundation.md:608` says 14 as well, in a sentence that reads as current rather than as a
@@ -721,6 +731,8 @@ order to print it.
 
 **A3. HIGH. The source URL resolution count is wrong in both halves.**
 
+*Applied on this branch. The quoted file contents below are the pre-fix state, kept so the finding still shows its own evidence.*
+
 `README.md:321` says "**44 of 49 resolve**". `npm run check-sources` reports "43 of 48 source URLs
 resolve; 5 need checking by hand". Both the numerator and the denominator are wrong. The
 accompanying sentence, that five cannot be checked automatically and are four Commons Library
@@ -730,6 +742,8 @@ Fix: `README.md:321`, "44 of 49" becomes "43 of 48". The same argument as A2 app
 number a script already prints.
 
 **A4. MEDIUM. The transform count is given as three, as four, and is actually five.**
+
+*Applied on this branch. The quoted file contents below are the pre-fix state, kept so the finding still shows its own evidence.*
 
 `README.md:47` describes `eleventy.config.js` as "citation resolution, partials, filters, **four**
 HTML transforms". `README.md:165` says "**Three** Eleventy transforms run on the built HTML and the
@@ -1157,8 +1171,11 @@ platform's generic message. One markdown file with `permalink: /404.html`.
 
 ---
 
-**E4. BLOCKER. A methodology break is drawn on a chart and stated nowhere a screen reader or a
-table reader can find it.** WCAG 2.2 criterion 1.1.1, Level A. *Labelled HIGH until 31 July. A
+**E4. BLOCKER. A methodology break is drawn on the flows chart and stated nowhere in that figure.**
+*An earlier draft said "nowhere a screen reader or a table reader can find it", which is overdrawn: a
+reader moving linearly down the page meets the ONS caution in the net-migration figure's note one
+chart earlier, though that note says "The break is marked on the chart", singular and scoped to its
+own. The severity is unaffected; the sentence was.* WCAG 2.2 criterion 1.1.1, Level A. *Labelled HIGH until 31 July. A
 second model was right to press it: this document's BLOCKER test is "a reader would be misled", and
 a table reader here compares figures across a methodology break with nothing telling them so. That
 is the exact misuse the site exists to correct, so the label follows the definition.*
@@ -1311,6 +1328,8 @@ decision, because this is a live instance of a documented pattern: a check keyed
 that happens to agree is permanently satisfied.
 
 **F0-4. MEDIUM. Every theme file's `lastUpdated` predates its own newest record.**
+
+*Applied on this branch. The quoted file contents below are the pre-fix state, kept so the finding still shows its own evidence.*
 
 | File | `lastUpdated` | Newest `retrieved_date` |
 | --- | --- | --- |
@@ -1534,7 +1553,7 @@ each source re-read, so it is **OWNER-VERIFY** rather than a task this branch co
 
 **I2. MEDIUM, LATENT. The evidence quote check is an unanchored substring match.**
 
-`scripts/check-evidence.mjs:115`:
+`scripts/check-evidence.mjs:120`, and it was `:115` until this branch's own comment edit moved it:
 
 ```js
 const carries = (text, value) =>
@@ -1848,8 +1867,10 @@ more than the figure does.
 - `content/glossary.md:100` and `content/sources-and-method.md:133` both say mixing people and cases
   "produces answers that are wrong by **twenty per cent or more**". On the site's own headline
   example, 93,525 people against 76,714 main-applicant applications, the difference is 16,811, which
-  is 18.0% of 93,525 and 21.9% of 76,714. "Or more" is a floor and one direction breaks it. The
-  series file already says "roughly a fifth lower", which is the fix.
+  is 18.0% of 93,525 and 21.9% of 76,714. "Or more" is a floor and one direction breaks it. The phrase
+  "roughly a fifth lower" already exists on the site and is the fix. **It is at
+  `content/asylum.njk:64`, a chart note, not in a series file**, which an earlier draft of this
+  bullet asserted and a third model refuted by grepping `data/`.
 - `data/dashboard.json`'s net-migration card says the fall is "mainly because fewer people arrived
   **on work and care visas**". The record attributes it to ONS work-related immigration, a reason
   grouping of people, and `migration.json`'s own envelope note says the ONS and visa sources "are not

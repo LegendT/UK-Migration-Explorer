@@ -428,7 +428,7 @@ data layer grew and because a regrade moved one record between the two groups. A
 document is a count nothing reads. Derive it:
 
 ```
-node -e "['migration','asylum','population','fiscal'].flatMap(f=>require('./data/'+f+'.json').metrics).reduce((n,m)=>(n[m.confidence_level]=(n[m.confidence_level]||0)+1,n),{})"
+node -p "JSON.stringify(['migration','asylum','population','fiscal'].flatMap(f=>require('./data/'+f+'.json').metrics).reduce((n,m)=>(n[m.confidence_level]=(n[m.confidence_level]||0)+1,n),{}))"
 ```
 
 - **The `calculated` figures**, each a sum or a share of published components. Require every
