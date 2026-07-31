@@ -45,10 +45,10 @@ Severity means what it costs at launch:
 
 ## Status
 
-**Open as [PR #70](https://github.com/LegendT/UK-Migration-Explorer/pull/70), pushed 31 July 2026.**
-CI green on every step, including the first run of the pinned accessibility toolchain, and Netlify's
-deploy preview builds. This document is part of that PR and is updated in place rather than
-superseded.
+**Shipped in [PR #70](https://github.com/LegendT/UK-Migration-Explorer/pull/70), 31 July 2026**, CI
+green on every step including the first run of the pinned accessibility toolchain. **This document
+was frozen at the end of that PR**, trimmed of its action table and its superseded drafts, and is not
+edited again. The figures below marked "on entry" are the state the audit found, not the state now.
 
 
 Baseline on entry, all green:
@@ -57,6 +57,8 @@ Baseline on entry, all green:
   Unrecorded longhand figures 31 against a baseline of 31.
 - `npm run build`: 16 pages, 273 internal links resolve, 46 of 75 records reach a reader.
 - `npm run check-sources`: 43 of 48 resolve, 5 uncheckable by hand, 1 redirect.
+
+The site serves 17 pages now: this audit added a 404. Run the commands for anything current.
 
 All seven passes are complete, and each ran independently. Every finding below has been verified
 against the repository. **Not all of it was verified before being written down**, which an earlier
@@ -94,107 +96,21 @@ document whose central charge against this project is a count typed where a run 
 They are gone rather than corrected, for the same reason `lib/published.mjs` exists. Severity is
 carried on each finding, which is the one place it cannot drift from itself.
 
-### What has been applied in this branch, and what has not
+### What this branch did, and where the work went
 
-**Applied: the mechanical corrections only.** A mechanical correction here means a claim with one
-verifiable right answer, where applying it requires no editorial judgement. Nothing that needed a
-decision, a wording choice, a publisher re-read, or a change to code or infrastructure was touched.
+**It applied the mechanical half and left every editorial and sourcing call.** Two batches: stale
+counts, wrong editions and one confidence grade across the documentation and data layer, with the
+built site proved byte-identical; then five hardened checks, a print stylesheet, a 404, a favicon, a
+canonical URL and a pinned accessibility toolchain, which change the built site deliberately. PR #70
+carries the full list in its body, and `git log main..HEAD` is the record.
 
-The built site is **byte-identical** to `main`, re-proved by building both trees and diffing them
-after the last data-file change on 31 July. Nothing on this branch changed what a reader sees.
+**Everything still outstanding is in `docs/BACKLOG.md`**, under *From the pre-launch audit*, in that
+file's own format. This document carried its own 53-row action table for a day. That was the
+mistake: two lists meant every change had to land twice, they diverged twice, and the backlog was
+briefly edited to say this one was live. The rule is now a build failure rather than a resolution,
+in `validate-content.mjs`: no planning document except the backlog may carry work state.
 
-| Applied | Where |
-| --- | --- |
-| Record count 71 to 75; `table_reference` 14 to 17 in two places; source URLs 44 of 49 to 43 of 48; transforms three and four to five, with the two ordering constraints stated | `README.md` |
-| Catalogue twelve/eleven to thirteen/twelve; `table_reference` 14 to 17; 67 metrics to 75; three transforms to five; the routine-cycle counts and the published-figure count replaced by a pointer to the run that derives them; the warnings count and its stored all-clear replaced by the same; the risk register's "the commitment is still a proposal" corrected to signed | `docs/foundation.md` |
-| Four `series_ref` metrics to five, and "all `ons-ltim`" removed, with the Home Office one named; the applications series no longer described as unprotected; nine `ons-ltim` metrics to ten | `docs/UPDATING-DATA.md`, `docs/prompts/update-from-release.md` |
-| The banner justification, which described a sentence PR #54 had already corrected | `docs/PRE-PUBLICATION-REVIEW.md` |
-| "Three of the four known gaps", which disagreed with both the backlog and the page | `docs/HANDOFF.md` |
-| Header PR range #54 to #66, corrected to #68 | `docs/BACKLOG.md` |
-| Visa and citizenship envelope notes, year ending December 2025 to March 2026 | `migration.json`, `population.json` |
-| `asylum-administrative-outcomes` regraded `official` to `calculated`, with its notes opening the way its identical sibling's do | `asylum.json` |
-| All four theme files' `lastUpdated`, each set to its own newest `retrieved_date` | the four theme files |
-| The contract description, which omitted `id` and `source_id` | `meta.json` |
-| The hotel-cost note, which reproduced wording the NAO formally retracted on 1 July 2025. K1 | `fiscal.json` |
-| The regrade note, softened to drop an assertion this audit had itself marked OWNER-VERIFY | `asylum.json` |
-| `.history/` ignored | `.gitignore` |
-
-**Not applied, and why.** The two outstanding blockers are 0A and 0B, whose fixes are wording that is
-yours. E4 was the third and its fix was a code change, so it was applied. Every other content change
-likewise needs your wording,
-per the project's own tagging of that class. `K1` was settled by fetching HC 874 on 31 July and is
-resolved in section K. `F0-3` turned out not to be
-mechanical at all and this document now says so. Everything in sections B, C, D1, E and I is a code,
-infrastructure or design change rather than a correction, including the `.gitignore`-adjacent ones,
-and none was made.
-
-**The sibling grep found two more, and one of them this audit's own fix had just made worse.**
-After applying the corrections, every old value was grepped across the repository, which is the
-project's own rule and not an optional extra. Two live present-tense claims had survived:
-
-- `scripts/check-evidence.mjs:29` said "Seven of the 71 metrics are derived today, three
-  `calculated` and four `estimated`". The record count was 75, and the `calculated` count was
-  already wrong by one **before** this audit touched anything. Regrading
-  `asylum-administrative-outcomes` then made it wrong by two. A count in a code comment is a
-  count nothing reads, and this one had drifted twice without anyone noticing either time.
-- `docs/UPDATE-AUTOMATION.md:418` said "**64 of the 71 records are read straight off a release**
-  (46 `official`, 18 `provisional`)". The truth is 66 of 75, 47 and 19. That sentence had already
-  been corrected once, from "three of 67", and it says so in its own next line. This was its third
-  wrong version.
-
-Both are now replaced with the query that derives the answer.
-
-**And that replacement was itself defective for one round.** The published command used `node -e`,
-which does not print an expression's value, so a maintainer following either document ran a silent
-no-op. This document meanwhile claimed "the query was run to confirm it returns
-`{ provisional: 19, official: 47, calculated: 5, estimated: 4 }`". The query *was* run, with a
-`console.log` wrapper; the command *published* was the version without it. **A claim about a
-different artefact than the one shipped** is the exact shape this audit spends nine findings on, and
-it was committed by the fix that exists to cure it, in two files. A third model caught it. Both now
-use `node -p "JSON.stringify(...)"`, and that form has been run verbatim as published.
-
-**The lesson is not that two more were found; it is that applying a correct fix created one of
-them.** Regrading a record is a data change with documentation consequences, and nothing in the
-apparatus connects the two. That is the same shape as finding D1 in this document, one file's value
-restated in another with nothing checking they agree, arriving from the direction of a code comment
-rather than a record's notes.
-
-**One thing worth knowing about how this was applied.** The script that rewrote the data files
-round-tripped them through `JSON.parse` and `JSON.stringify`, which silently turned
-`"value": 3.0` into `"value": 3` in `fiscal.json` and reformatted an array in `meta.json`. Neither
-changed a rendered figure and both were caught by reading the diff rather than by any check, then
-reverted. It is recorded here because it is this project's own lesson arriving from the other
-direction: a tool that reformats what it touches will make changes nobody asked for, and reading the
-diff is what catches them.
-
-### Where the outstanding work went
-
-**Into `docs/BACKLOG.md`, on 31 July 2026, and this document is now frozen.**
-
-It carried a 53-row action table until then. That table was the mistake. This project already had a
-work list with a validator behind it, and building a second one meant every change had to land in
-two places; they diverged twice, and 23 of this branch's 33 commits went to maintaining this document
-rather than doing the work.
-
-The precedent for what this file is now is `verification.txt`: the review itself, never edited again,
-with the backlog carrying what is left of it. **A frozen record cannot rot.**
-
-So: the findings below are the record and stay as written, including the ones this document withdrew
-or downgraded. The work is in the backlog, in its format, under *From the pre-launch audit*. If the
-two ever disagree, the backlog is right and this file is history.
-
-### Why there is no second list here
-
-There was one, in prose, repeating the actionable table above. It diverged from it within two
-commits: it deferred nothing the table deferred, it still demanded a re-read of HC 874 that had
-already happened, and it was headed "five items" above six.
-
-**A list kept in two places is this project's own definition of a defect**, and this document spends
-several pages saying so about counts. Deleting the duplicate is the fix; the table above is the only
-list. Applied on this branch and therefore absent from it: A1 to A4, J1 to J4, F0-1, F0-2, F0-4 and
-K1's data-file correction.
-
----
+If the backlog and this file ever disagree, the backlog is right and this file is history.
 
 ## Findings
 
@@ -283,98 +199,6 @@ entry, since no Home Office ARA entry exists, and an evidence entry carrying the
 `source_name`, `source_url`, `published_date` and `retrieved_date`. **Not applied on this branch**:
 adding a publisher to the catalogue is a change to the data contract's own furniture rather than a
 correction, and it should be your call.
-
----
-
-### 0-ZERO-original. The finding as first written, downgraded above and kept for the lesson.
-
-*Everything from here to the end of this section is the OVERSTATED text. Its severity, its "cannot
-be found", and its proposed remedies are all superseded above. It is kept because the error is
-instructive: it is this audit asserting a negative from two sources and presenting it as a property
-of the world.*
-
-### 0-ZERO as first written. A published headline figure cannot be found in the source it cites
-
-**Found 31 July 2026, by fetching the source rather than reading the repository. It is the most
-serious finding in this audit, and no internal check could have found it.**
-
-`fiscal/home-office-spending-on-asylum-hotel-accommodation` holds:
-
-```
-"value": 2.1, "unit": "£ billion", "period_label": "financial year 2024-25",
-"source_name": "National Audit Office, An analysis of the asylum system",
-"source_url": "https://www.nao.org.uk/reports/an-analysis-of-the-asylum-system/",
-"published_date": "2025-12-10", "confidence_level": "official"
-```
-
-`data/meta.json` defines `official` as "**Taken directly from an official published release.**"
-
-**The figure is not in that release.** Both PDFs linked from that landing page were downloaded and
-their full text extracted:
-
-- `an-analysis-of-the-asylum-system.pdf`: the string "£2.1 billion" does not occur. The only "2.1"
-  in the document is "the Home Office spent around **£2.1 million**" on an unrelated item.
-- `an-analysis-of-the-asylum-system-summary.pdf`: no occurrence of "2.1" at all, and no hotel
-  spending figure.
-
-**The report's own breakdown leaves no room for it.** Figure 5, note 2:
-
-> Accommodation and support: In 2024-25, the Home Office spent around £3.4 billion on asylum
-> accommodation and support (excluding on unaccompanied asylum-seeking children (UASC)). This
-> includes around **£2.7 billion on direct spending on asylum accommodation**, around £220 million
-> on cash support provided to those seeking asylum, and around £247 million in grants paid to local
-> authorities for dispersal accommodation.
-
-There is no hotel line anywhere in that breakdown. The record's own notes assert one: "Within the
-£3.4bn accommodation total".
-
-**Nor is it in the other NAO report this site cites.** HC 874 gives hotel cost as £1.3 billion of an
-estimated £1.7 billion over the first seven months of 2024-25. "£2.1 billion" does not appear in HC
-874 either.
-
-**Where it reaches a reader.** Three places, all headline:
-
-- `content/costs.njk:74`, the spending table: "of which hotels £2.1 billion"
-- `content/costs.njk:113`: "Hotel spending of £2.1 billion works out at roughly £5.8 million a day"
-- `data/dashboard.json`, the asylum-cost card on the **home page**: "of which hotels were £2.1
-  billion"
-
-**What is established and what is not, stated separately because the difference matters.**
-
-- **CONFIRMED:** the value cannot be located in the cited source, in its summary, or in the other
-  NAO report the site cites, by full-text search of the published PDFs.
-- **CONFIRMED:** the report's stated decomposition of the £3.4 billion contains no hotel component.
-- **NOT ESTABLISHED:** that £2.1 billion is *wrong*. It may come from another NAO product, a Home
-  Office release, a parliamentary answer, or a derivation. Annualising HC 874's £1.3 billion over
-  seven months lands near £2.2 billion, which is suggestive of a derivation and is **not** evidence
-  of one.
-
-The same applies to the note's second claim, "Down from about £3bn in 2023-24", which is also not in
-the cited source. The report's comparable sentence is about a different quantity: "£4.0 billion in
-2024-25 (£4.7 billion in 2023-24)".
-
-**Why no check caught it.** Every check in this repository verifies internal consistency or the
-presence of metadata. `check-evidence.mjs` demands a fetched quote, but only for a figure whose value
-**changed** or which is **new** against `origin/main`; this record has not moved since before the
-evidence contract existed, so nothing has ever asked where it came from. This audit's own data pass
-reported "no published value was found to be internally wrong", and that remains true: the failure is
-external provenance, which an internal-consistency pass cannot see by construction. **That is the
-lesson, not the figure.** The site's promise in `README.md` is that "Every figure is traceable to a
-named official publication with a retrieval date". Traceability was verified as *a named source
-existing*, never as *the source containing the number*.
-
-**Fix, and the first step is not editing anything.** Establish where £2.1 billion came from. If a
-source is found, correct `source_name`, `source_url` and `published_date` to it and write an
-evidence entry. If none is found, the figure cannot stand as `official` on a page that derives
-"£5.8 million a day" from it, and the honest options are to replace it with HC 874's £1.3 billion
-over seven months, properly labelled, or to remove the hotel row and say why. **[you]**, and this
-one genuinely blocks launch.
-
-**The wider action this argues for.** Nothing has ever asked the same question of the other figures
-that predate the evidence contract. This one was found only because a separate question sent someone
-to the source. **Recommend backfilling `data/evidence/` for every published record, or at minimum
-for every record a reader sees**, before launch rather than after. That is the only way to know
-whether this is one record or the first of several.
 
 ---
 
@@ -532,45 +356,6 @@ and neither can be attributed to the other.
 from, and the site does not mention it. Note 4 adds that outcomes are "as at January 2026". Both
 belong in the record's notes. Whether either belongs on the claim page is a judgement about how much
 caveat a reader can carry, not a correction. **[you].**
-
----
-
-### 0A-ter-original. The finding as first written, withdrawn above and kept for the lesson.
-
-*Everything from here to the end of this section is the WITHDRAWN text. Its severity, its
-"should not wait for launch", and its claim about which way the gap cuts are all superseded by
-0A-ter above. It is kept because the error is instructive, not because any of it stands.*
-
-**Verified directly on 31 July 2026** by downloading
-`outcome-analysis-asylum-claims-datasets-mar-2026.xlsx` and reading its Notes worksheet. Rows 5 and
-9 of the "Notes for Asy_D04" table:
-
-| Note | Text |
-| --- | --- |
-| 4 | "The data shows the latest case outcomes on asylum claims **as at January 2026**." |
-| 5 | "**Data on appeals was not available at the time of data extraction for this release**, due to ongoing work as immigration data transitions to a new case working system. Updated data will be included in a future edition of the Immigration system statistics release." |
-
-The cohort analysis in the year ending March 2026 release therefore reports "latest outcomes" that
-**do not include appeal outcomes**. The site says nothing about this anywhere.
-
-**Why this is a blocker rather than a caveat to add later, and it is about fairness rather than
-accuracy.** The page that leans hardest on this table is
-`content/claims/refused-asylum-seekers-are-eventually-recognised.md`, whose whole argument is that
-between a fifth and a half of each 2010 to 2020 cohort ended without a grant. Appeals are the single
-mechanism by which a refusal becomes a grant. **The missing data runs in the direction that supports
-the site's own refutation**: including appeals can only move outcomes towards more grants, which is
-the claim the page exists to correct.
-
-The site is arguing from a table whose publisher has flagged that the data most favourable to the
-opposing case is absent from this edition, and it does not disclose it. That is exactly the kind of
-selective silence the site was built to correct in others, and correction 1h already went through
-this page once for an invalid comparison on the same subject.
-
-`content/asylum.njk:95` carries the same 2010 to 2020 cohort framing and needs the same disclosure.
-
-**Fix.** Disclose the gap wherever the cohort figures are used, in the record's notes and on both
-pages, and say which way it cuts. Then re-check when the Home Office publishes the updated data it
-promises. **[you]** for the wording, and this one should not wait for launch.
 
 ---
 
@@ -1547,7 +1332,7 @@ moved it.**
 - name: Accessibility, WCAG 2.2 AA on all 16 pages
 ```
 
-The site now serves 17 pages. **The commit that made it 17 was in this audit's own second batch**,
+The site now serves 17 pages. **The commit that made it 17 was one of this audit's own**,
 which added the 404 page and added it to `.pa11yci.json` so the gate covers it. The step name was
 not touched, so a green CI run now reports covering 16 pages while covering 17.
 
@@ -1808,122 +1593,6 @@ whether to be more precise than the NAO, not a correction. **[you].**
 
 ---
 
-### K1-original. The finding as first written, resolved above and kept for the reasoning.
-
-*Everything from here to the end of this section is the SUPERSEDED text. Its HIGH label and its
-closing "OWNER-VERIFY against HC 874" are both discharged: HC 874 was fetched on 31 July and the
-answer is in K1 above. Its closing cross-reference to K3 is stale, because K3 no longer discusses
-those two figures. It is kept because the reasoning is what found the answer.*
-
-**K1-original. HIGH. The 76% hotel-cost share is given two different periods, in two public places.**
-
-`content/costs.njk:83`, which a reader sees:
-
-> Hotels housed about 35% of the people in asylum accommodation but accounted for about 76% of the
-> cost of the accommodation contracts, £1.3 billion of an estimated £1.7 billion **in the first seven
-> months of 2024-25** (National Audit Office, HC 874).
-
-`fiscal/home-office-spending-on-asylum-hotel-accommodation` notes, and `/about/` tells readers the
-data files are public:
-
-> Hotels were about 76% of the **annual** cost of asylum accommodation contracts but housed only
-> about 35% of people in asylum accommodation.
-
-The same 76%, attached to two different periods. The arithmetic is internally consistent either way,
-1.3/1.7 is 76.5% and 76% of an annualised contract total also roughly coheres, so the repository
-cannot settle which HC 874 actually states, and a share near 76% could hold over both windows, so
-this is a question rather than a proven error. The first draft asserted that one of the two must be
-wrong; a second model was right that this does not follow.
-
-**OWNER-VERIFY** against HC 874, then fix whichever is wrong. Note also that £1.3 billion and
-£1.7 billion exist in no record, which is finding K3.
-
-**K2. MEDIUM. A short answer converts "had not ended in a grant" into "ended without a grant".**
-
-`content/claims/refused-asylum-seekers-are-eventually-recognised.md:5`, the `short_answer`, which
-renders on three pages:
-
-> for claims made between 2010 and 2020, between a fifth and a half of each cohort **ended without a
-> grant**.
-
-The page's own body at line 54 is careful and correct: "each cohort that **had ended in a grant by its
-latest recorded outcome**". A case that has not yet ended in a grant has not necessarily ended
-without one, and the page's own source notes say more recent cohorts are not comparable because more
-of their cases are still progressing.
-
-The short answer makes exactly the move the page exists to criticise: it converts a latest-recorded
--outcome measure into a concluded one. It is also the same error family as blocker 0A, on the same
-subject, which is why the glossary fix and this one should be done together.
-
-Minimal correction: "had not ended in a grant at the latest recorded outcome". The wording is the
-owner's.
-
-**K3. MEDIUM. The sources page promises more protection than the site has.**
-
-`content/sources-and-method.md:82` states, in the site's own voice:
-
-> Prose cites records, it does not restate them. Where a number appears in a sentence on this site,
-> **it is inserted from the record when the page is built**.
-
-That is stronger than what holds, and the project already knows it: the unrecorded-literal report
-prints 31 figures on every run for this reason. Load-bearing counterexamples, held in no record and
-not declared as historical literals:
-
-- `content/migration.njk:57`: "The highest twelve-month net migration estimate ONS publishes is
-  **944,000**, in the year ending March 2023." A current-release figure, recomputed every release,
-  protected by nothing. `docs/BACKLOG.md:286` already names it as reading as history and not being
-  history.
-- `content/costs.njk:104`: "£144.98 and £23.25 per person per night as of June 2025 (HC 580)", which
-  are newer than the £158 and £20 the chart beside them carries.
-
-This is not a new defect; it is the published promise being wider than the mechanism. **The remedy is
-the promise, not the figures.** Qualify it, or finish the work in backlog item 4 first. As written, a
-reader who finds one prose-only figure has caught the site overstating its own guarantee, which costs
-more than the figure does.
-
-**K4. LOW. Three small ones, each confirmed.**
-
-- `content/glossary.md:100` and `content/sources-and-method.md:133` both say mixing people and cases
-  "produces answers that are wrong by **twenty per cent or more**". On the site's own headline
-  example, 93,525 people against 76,714 main-applicant applications, the difference is 16,811, which
-  is 18.0% of 93,525 and 21.9% of 76,714. "Or more" is a floor and one direction breaks it. The phrase
-  "roughly a fifth lower" already exists on the site and is the fix. **It is at
-  `content/asylum.njk:64`, a chart note, not in a series file**, which an earlier draft of this
-  bullet asserted and a third model refuted by grepping `data/`.
-- `data/dashboard.json`'s net-migration card says the fall is "mainly because fewer people arrived
-  **on work and care visas**". The record attributes it to ONS work-related immigration, a reason
-  grouping of people, and `migration.json`'s own envelope note says the ONS and visa sources "are not
-  interchangeable". Naming the measured quantity is the site's first precision rule.
-- `content/costs.njk:139` asserts "**In 2024** the Home Office collected around £3.0 billion", then
-  says four lines later that the briefing "does not state which twelve months it covers". Drop the
-  date.
-
-**K5. Neutrality: better than the 5:2 split suggests, with one sentence to cut.**
-
-The split disclosure was assessed rather than assumed and it is better than adequate. It is stated in
-bold on `/common-claims/`, the two-per-direction floor is enforced in the build, the label choice is
-defended in the style guide, and the mirrored fiscal claim pages are genuinely symmetric in
-structure, length and language, with concession sections on both sides. One restrictionist claim is
-graded "roughly right", so the raw count understates the site's even-handedness rather than
-concealing bias.
-
-Two asymmetries are worth naming.
-
-`content/common-claims.njk:32` says "The two longest and most pointed checks on this site both run
-against the pro-migration side." Measured on built word counts the "longest" half is true by about
-twenty words, and "most pointed" is not falsifiable. The longest of the two also concedes, at
-`refused-asylum-seekers-are-eventually-recognised.md:138`, that "The versions we have found are
-weaker, putting it as 'many' or 'most' rather than 'almost all'", so its strongest exhibit corrects a
-claim stronger than any the site located. **Recommendation: cut the sentence.** It is editorial
-self-defence resting on evidence too thin to carry it, on the page whose credibility depends on not
-doing that. The disclosed count stands better on its own.
-
-`most-immigration-is-asylum` answers a claim about all immigration using a non-EU+ denominator of
-14%. The all-immigration share, 88,000 against 813,000, is 10.8%, which is smaller and strengthens
-the correction. Stating both would close the denominator gap the page otherwise leaves open.
-
----
-
 ## What this audit does not establish
 
 Stated in the project's own idiom, because a review that does not say what it did not check invites
@@ -1964,71 +1633,33 @@ the reading that it checked everything.
 
 ---
 
-## What the adversarial passes found in this audit
+## How much of this document was wrong, and how it was found
 
-*Scoped deliberately. The twelve below are what the two adversarial passes of 31 July found. They are
-**not** the whole of what second models caught: a later pass found the true source for £2.1 billion
-and forced 0-ZERO's downgrade, another forced E4's upgrade to BLOCKER, another found the published
-derivation query was a silent no-op, and a fourth found this document's self-counts stale for a
-fourth time. Those are recorded at their own findings. A single running total across rounds is
-exactly the kind of hand-maintained count this document keeps getting wrong, so there is not one.*
+**Read this before trusting anything above.** Three adversarial passes and one self-test were run
+against this audit, with instructions to refute rather than confirm. They found twelve defects in it,
+and later work found more. All are corrected in place above; the superseded text has been deleted
+rather than kept, because git holds it and this document was 18% self-description before the trim.
 
-**Two adversarial passes were run against this document and against the diff it produced**, on the
-project's own rule that anything evidence-bearing gets a second model, and with instructions to
-refute rather than confirm. They found twelve real defects, and the categories below enumerate
-twelve: this sentence said eleven until 31 July, in the section that exists to record miscounts. All
-twelve are corrected above, in place
-and with the correction visible rather than silently. They are collected here because the pattern
-matters more than any single one.
+What they were, without re-narrating each:
 
-**Four were the disease this document diagnoses, committed by this document.**
+- **Four were the disease this document diagnoses.** A stale summary table of its own findings, a
+  launch list headed "five items" above six, a severity label contradicting the count asserted three
+  times, and a stale count surviving in the very file a sweep had just corrected.
+- **Three were claims stronger than the evidence**, the worst a false superlative in the section
+  accusing the site of choosing a flattering baseline.
+- **Two were fixes that did not work**: one would have failed the project's own validator, one
+  undermined a sibling finding's mitigation.
+- **Two were overstatements inside sound findings**, and one was an overstep in an applied change
+  that asserted something this document had itself marked OWNER-VERIFY.
+- **Then two findings were substantially wrong.** `0-ZERO` claimed a figure could not be found in
+  the source it cites, written as though it could not be found anywhere; a second model found it in
+  minutes using a clue inside the record's own notes. `0A-ter` was raised as a blocker on an
+  inference that testing refuted.
 
-- The status table carried a hand-typed count of findings per pass. The counts were wrong and went
-  stale as later commits added findings, in a document whose central charge is a count typed where a
-  run should be cited. The counts are gone rather than corrected.
-- The pre-launch list said eight items. Three had already been applied on this branch and the same
-  document's own table said so.
-- A1 was labelled BLOCKER while the document asserted "two blockers" three times. Severity
-  inflation, and an internal contradiction. A1 is HIGH.
-- `docs/UPDATE-AUTOMATION.md:158` still said "71 metric records, 48 cadenced, 45 covered" against a
-  true 75, 52 and 49. It survived the sibling grep that had corrected the same fault at line 418 of
-  the same file.
-
-**Three were assertions stronger than the evidence.**
-
-- G1 called 2021 "the lowest emigration point in the fourteen-year series". It is not; 2012 and 2013
-  are lower. False, in the section accusing the site of choosing a flattering baseline.
-- K1 said one of the two 76% periods must be wrong. A share near 76% could hold over both windows.
-- F0-2 called a confidence grade reader-facing when this audit's own byte-identical build proves it
-  renders nowhere.
-
-**Two were fixes that did not work.**
-
-- D2 recommended deleting a conditional in `validate-content.mjs`. Doing so fails the build on all
-  five Nunjucks pages, because none carries the `id` the stricter branch requires. A fix
-  recommended without being run has not been checked.
-- E2 recommended print CSS that hides the pre-launch banner, which is the mitigation C7 depends on.
-
-**Two were overstatements inside otherwise sound findings**: 0A's first charge said the glossary
-"performs the addition" the record forbids when it draws a directional inference, and D1 said 26
-restatements across 15 records when it is 14.
-
-**And one was an overstep in an applied change**, caught by the diff review: the regrade's note
-asserted that the Asy_D02 pivot prints no year-ending total, which is exactly what this document had
-marked OWNER-VERIFY. Corrected in the data file.
-
-**What survived.** Both glossary blockers, verbatim-verified independently. Finding 0, the review's ten-page
-coverage. Every arithmetic claim in F1, the chart summaries. B1, B2, C1 to C7, D1's substance, E1,
-E2's substance, E4, I1, I2, I3, J1 and K2 to K4. The refuting pass's own verdict was that the
-headline recommendation stands and that "recording the review as passed against that evidence would
-be indefensible".
-
-**How to read this document, given the above.** Its findings are worth acting on and its
-self-description was not worth trusting. That is the same verdict it reaches about the project's
-green checks, and it would be dishonest to apply the standard in one direction only. Nothing here
-says a third pass would find nothing.
-
----
+**The verdict to carry forward is not the count.** It is that the findings were worth acting on and
+the self-description was not worth trusting, and that this document applied to the project a standard
+it did not meet itself. The working practices this cost are in `docs/HANDOFF.md` under *Auditing, and
+auditing your own audit*. Nothing here says a fourth pass would find nothing.
 
 ## Recommendation
 
