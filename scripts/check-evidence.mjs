@@ -26,9 +26,14 @@ const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal
 
 // A figure a source states outright is quoted directly. A figure nobody publishes, because
 // this site worked it out, cannot be: its evidence is a quote for each input and a sentence
-// saying what was done to them. Seven of the 71 metrics are derived today, three calculated
-// and four estimated, one of which is also the only range. Keep this set small and explicit.
-// An exemption that can be claimed freely is how this check would rot.
+// saying what was done to them. The derived set is small and is meant to stay that way; one of
+// it is also the only range. Keep it small and explicit: an exemption that can be claimed
+// freely is how this check would rot.
+//
+// How many are derived is NOT written here. It was, and it was wrong by one before anyone
+// noticed and by two after a regrade elsewhere, because a count in a comment is a count nothing
+// reads. Derive it instead:
+//   node -e "['migration','asylum','population','fiscal'].flatMap(f=>require('./data/'+f+'.json').metrics).reduce((n,m)=>(n[m.confidence_level]=(n[m.confidence_level]||0)+1,n),{})"
 const DERIVED = new Set(['calculated', 'estimated']);
 
 const errors = [];

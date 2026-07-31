@@ -78,6 +78,30 @@ mechanical at all and this document now says so. Everything in sections B, C, D1
 infrastructure or design change rather than a correction, including the `.gitignore`-adjacent ones,
 and none was made.
 
+**The sibling grep found two more, and one of them this audit's own fix had just made worse.**
+After applying the corrections, every old value was grepped across the repository, which is the
+project's own rule and not an optional extra. Two live present-tense claims had survived:
+
+- `scripts/check-evidence.mjs:29` said "Seven of the 71 metrics are derived today, three
+  `calculated` and four `estimated`". The record count was 75, and the `calculated` count was
+  already wrong by one **before** this audit touched anything. Regrading
+  `asylum-administrative-outcomes` then made it wrong by two. A count in a code comment is a
+  count nothing reads, and this one had drifted twice without anyone noticing either time.
+- `docs/UPDATE-AUTOMATION.md:418` said "**64 of the 71 records are read straight off a release**
+  (46 `official`, 18 `provisional`)". The truth is 66 of 75, 47 and 19. That sentence had already
+  been corrected once, from "three of 67", and it says so in its own next line. This was its third
+  wrong version.
+
+Both are now replaced with the query that derives the answer, and the query was run to confirm it
+returns `{ provisional: 19, official: 47, calculated: 5, estimated: 4 }` rather than being written
+down untested.
+
+**The lesson is not that two more were found; it is that applying a correct fix created one of
+them.** Regrading a record is a data change with documentation consequences, and nothing in the
+apparatus connects the two. That is the same shape as finding D1 in this document, one file's value
+restated in another with nothing checking they agree, arriving from the direction of a code comment
+rather than a record's notes.
+
 **One thing worth knowing about how this was applied.** The script that rewrote the data files
 round-tripped them through `JSON.parse` and `JSON.stringify`, which silently turned
 `"value": 3.0` into `"value": 3` in `fiscal.json` and reformatted an array in `meta.json`. Neither

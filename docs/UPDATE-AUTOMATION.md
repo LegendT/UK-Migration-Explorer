@@ -415,16 +415,25 @@ involved, because a fabricated value cannot appear in a quote taken from a real 
 
 ### Exemptions, and why they are small
 
-**64 of the 71 records are read straight off a release** (46 `official`, 18 `provisional`) and
-should quote cleanly. Seven need something else. The counts are corrected from the three of 67
-this section was scoped with, for the reason in the block above.
+**Most records are read straight off a release**, `official` or `provisional`, and should quote
+cleanly. A small minority need something else, and that minority is what this section is about.
 
-- **Three `calculated` figures**, each a sum or a share of published components. Require every
+**The counts are deliberately not written here any more, and the reason is the third time they
+went stale.** This section was scoped with "three of 67", corrected once to "64 of the 71
+records (46 `official`, 18 `provisional`)", and was wrong again by 31 July 2026, both because the
+data layer grew and because a regrade moved one record between the two groups. A count in a
+document is a count nothing reads. Derive it:
+
+```
+node -e "['migration','asylum','population','fiscal'].flatMap(f=>require('./data/'+f+'.json').metrics).reduce((n,m)=>(n[m.confidence_level]=(n[m.confidence_level]||0)+1,n),{})"
+```
+
+- **The `calculated` figures**, each a sum or a share of published components. Require every
   component to be evidenced instead, and require the arithmetic to be stated.
-- **Four `estimated` figures**, which are interpolations or scenarios. Require a quote for
+- **The `estimated` figures**, which are interpolations or scenarios. Require a quote for
   whatever they are derived from and a sentence naming the derivation.
-- **One of those four is also the only range metric**, which has no single value. A range
-  evidences `range_min` and `range_max` rather than a value.
+- **One of the `estimated` figures is also the only range metric**, which has no single value. A
+  range evidences `range_min` and `range_max` rather than a value.
 
 Keep the exemption list explicit and small. An exemption that can be claimed freely is how
 this check would rot.
