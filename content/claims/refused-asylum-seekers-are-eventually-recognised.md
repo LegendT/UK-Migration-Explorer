@@ -41,8 +41,8 @@ at a hearing or on the papers at the First-tier Tribunal in the quarter January 
 asylum and protection appeals disposed of in that quarter were determined at all: 35% were
 withdrawn, 6% struck out and 6% invalid or out of time.
 
-Separately, for claims made between 2007 and 2020, the Home Office's cohort analysis shows
-the latest recorded grant rate running 17 to 29 percentage points above the initial rate
+Separately, for claims made between 2007 and 2020, the Home Office's cohort analysis puts
+the grant rate at the latest outcome 17 to 29 percentage points above the initial rate
 for the same cohort. That gap is not appeals alone. It also takes in reconsiderations, and
 claims reinstated after a withdrawal or an administrative outcome.
 
@@ -101,7 +101,8 @@ a large tranche of the relevant cases has not concluded.
 
 ## Better questions to ask
 
-- Is this the grant rate at initial decision, or at final outcome after appeal?
+- Is this the grant rate at initial decision, or at the latest outcome after appeals and
+  reconsiderations?
 - What share of refusals were actually appealed?
 - Over what period, and does the appeal figure cover the same period as the decision
   figure?

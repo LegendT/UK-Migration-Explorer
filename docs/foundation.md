@@ -496,9 +496,9 @@ as follows, and `verification.txt` at the repository root carries the reasoning:
   broadly supportable when dated, and the page was rebuilt around precision rather than
   falsity.
 - *Almost all refused asylum seekers are eventually recognised as refugees.* "Appeal success
-  raises the final grant rate" is wrong twice over: the Home Office's own label is the latest
-  recorded outcome rather than the final one, and the rise covers reconsiderations and
-  reinstated claims, not appeals alone.
+  raises the final grant rate" is wrong twice over: the Home Office's own terms are "latest
+  outcome" and "latest decision" and it does not call the later figure final, and the rise
+  covers reconsiderations and reinstated claims, not appeals alone.
 
 **There is no "both" direction.** `scripts/validate-content.mjs` accepts `restrictionist` and
 `pro-migration` and nothing else, because a third label that no claim ever carried was a

@@ -75,7 +75,7 @@ charts rendered as inline SVG at build time. What is on each page is in `README.
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
 
-**A whole-project pre-launch audit ran on 30 and 31 July 2026** and is open as PR #70, written up
+**A whole-project pre-launch audit ran on 30 and 31 July 2026** and merged as PR #70, written up
 in `docs/PRE-LAUNCH-AUDIT.md`. Its outcome is a findings list, on the same principle as the review
 before it. It applied the mechanical half and left every editorial and sourcing call. What is
 outstanding from it is in `docs/BACKLOG.md`, not here and not in the audit: that document is a

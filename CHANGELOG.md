@@ -447,8 +447,10 @@ the closing steps behind it, are tracked in `docs/BACKLOG.md`. The review itself
 
 **Changed, terminology and disclosure**
 
-- "Final grant rate" is now "latest recorded grant rate", which is the Home Office's own
-  label. "Appeals heard" is now "appeals determined at a hearing or on the papers", and the
+- "Final grant rate" is now "latest recorded grant rate". **Corrected 31 July 2026, PR #72:**
+  this entry called that phrase the Home Office's own label. It is not one. The publisher's
+  terms are "latest outcome" and "latest decision", and searching the bulletin for "latest
+  recorded outcome" returns nothing. "Appeals heard" is now "appeals determined at a hearing or on the papers", and the
   denominator is disclosed: of 7,799 asylum and protection appeals disposed of in the
   quarter, 52% were determined, 35% withdrawn, 6% struck out and 6% invalid or out of time.
 - The refused-asylum claim's front-matter source is now "Home Office; Ministry of
