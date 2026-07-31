@@ -8,7 +8,7 @@ quietly falls out. An item leaves this list when it is done, and it leaves by be
 `scripts/validate-content.mjs` fails the build if a planning document in `docs/` is not
 referenced here, so a scope can no longer be written and forgotten.
 
-Last updated 30 July 2026, after thirteen pull requests, #54 to #66.
+Last updated 31 July 2026, after fifteen pull requests, #54 to #68.
 
 **A whole-project pre-launch audit is open in `docs/PRE-LAUNCH-AUDIT.md`**, on branch
 `pre-launch-audit`. It covers code, data, content, documentation and accessibility, and like the

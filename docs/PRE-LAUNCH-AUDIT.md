@@ -49,6 +49,43 @@ dropped, and one was downgraded.
 | Build, deploy and supply chain | Complete | 2 high, 1 medium |
 | Reader-facing trust surface | Complete | 1 high, 4 medium, 3 low, 2 decisions |
 
+### What has been applied in this branch, and what has not
+
+**Applied: the mechanical corrections only.** A mechanical correction here means a claim with one
+verifiable right answer, where applying it requires no editorial judgement. Nothing that needed a
+decision, a wording choice, a publisher re-read, or a change to code or infrastructure was touched.
+
+The built site is **byte-identical** before and after, proved by diffing `_site/`. Nothing below
+changed what a reader sees.
+
+| Applied | Where |
+| --- | --- |
+| Record count 71 to 75; `table_reference` 14 to 17 in two places; source URLs 44 of 49 to 43 of 48; transforms three and four to five, with the two ordering constraints stated | `README.md` |
+| Catalogue twelve/eleven to thirteen/twelve; `table_reference` 14 to 17; 67 metrics to 75; three transforms to five; the routine-cycle counts and the published-figure count replaced by a pointer to the run that derives them; the warnings count and its stored all-clear replaced by the same; the risk register's "the commitment is still a proposal" corrected to signed | `docs/foundation.md` |
+| Four `series_ref` metrics to five, and "all `ons-ltim`" removed, with the Home Office one named; the applications series no longer described as unprotected; nine `ons-ltim` metrics to ten | `docs/UPDATING-DATA.md`, `docs/prompts/update-from-release.md` |
+| The banner justification, which described a sentence PR #54 had already corrected | `docs/PRE-PUBLICATION-REVIEW.md` |
+| "Three of the four known gaps", which disagreed with both the backlog and the page | `docs/HANDOFF.md` |
+| Header PR range #54 to #66, corrected to #68 | `docs/BACKLOG.md` |
+| Visa and citizenship envelope notes, year ending December 2025 to March 2026 | `migration.json`, `population.json` |
+| `asylum-administrative-outcomes` regraded `official` to `calculated`, with its notes opening the way its identical sibling's do | `asylum.json` |
+| All four theme files' `lastUpdated`, each set to its own newest `retrieved_date` | the four theme files |
+| The contract description, which omitted `id` and `source_id` | `meta.json` |
+| `.history/` ignored | `.gitignore` |
+
+**Not applied, and why.** Both blockers and every other content change need wording that is yours,
+per the project's own tagging of that class. `K1` needs HC 874 re-read. `F0-3` turned out not to be
+mechanical at all and this document now says so. Everything in sections B, C, D1, E and I is a code,
+infrastructure or design change rather than a correction, including the `.gitignore`-adjacent ones,
+and none was made.
+
+**One thing worth knowing about how this was applied.** The script that rewrote the data files
+round-tripped them through `JSON.parse` and `JSON.stringify`, which silently turned
+`"value": 3.0` into `"value": 3` in `fiscal.json` and reformatted an array in `meta.json`. Neither
+changed a rendered figure and both were caught by reading the diff rather than by any check, then
+reverted. It is recorded here because it is this project's own lesson arriving from the other
+direction: a tool that reformats what it touches will make changes nobody asked for, and reading the
+diff is what catches them.
+
 ### The eight things to fix before launch
 
 Everything else in this document can follow the launch. These cannot, in this order:
@@ -796,15 +833,26 @@ year-ending-March total, in which case the notes should say so instead. **OWNER-
 
 The same measure, the same value, two confidence levels. `validate-data.mjs` compares only `value`
 across a `series_ref` pair, so the drift is invisible to the mechanism built to stop exactly this
-kind of drift.
+kind of drift. **That half of the finding stands and is the part worth acting on.**
 
-Which is wrong is decidable from the site's own definitions. `provisional` means "Official but
-flagged by the publisher as subject to revision". ONS's marker on 2024 is **revised**, not
-provisional, and the series envelope says so. The metric is the one that is wrong.
+**A correction to this audit's own first recommendation, which was too quick.** It said the metric
+was simply wrong and should be set to `official`, on the reasoning that ONS marks 2024 revised
+rather than provisional. Checking the other three ONS metrics before acting showed why that was
+wrong. All four, `net-migration`, `net-migration-2`, `total-long-term-immigration` and
+`total-long-term-emigration`, are graded `provisional`, and `data/meta.json`'s own definition of
+`provisional` names ONS net migration as its example. The series grades per ONS marker instead:
+2023 and 2024 `official`, 2025 `provisional`.
 
-Fix: two changes, and the second is the one that lasts. Set the metric to `official`. Then extend the
-`series_ref` comparison beyond `value`, because this finding is a live instance of a documented
-pattern: a check keyed on the one field that happens to agree is permanently satisfied.
+So this is not a typo on one record. It is **two internally consistent conventions that nobody has
+reconciled**: the metrics grade the source, the series grades the vintage. Changing the one record
+would make it the only ONS metric out of step with its three siblings, and would be a decision about
+which convention wins dressed up as a correction. **Left unapplied deliberately, and it is
+[you].**
+
+Fix, once the convention is chosen: settle which side is authoritative, align the other, and then
+extend the `series_ref` comparison beyond `value`. That last part is worth doing regardless of the
+decision, because this is a live instance of a documented pattern: a check keyed on the one field
+that happens to agree is permanently satisfied.
 
 **F0-4. MEDIUM. Every theme file's `lastUpdated` predates its own newest record.**
 

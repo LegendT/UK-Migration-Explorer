@@ -175,11 +175,15 @@ believed: an isolated missing `lang` took it to 15/16 and named the rule, a fail
 value took it to 0/16. It flagged none of the five accessibility defects found by hand,
 which is the point: it is a floor.
 
-**Three of the four known gaps are published** on the sources page under *What the checks do
-not establish*: the prose one, the sub-100 review and the screen reader. The fourth is that a
-figure the data layer never recorded is reported and never refused, which is the one a reader is
-most affected by and the one the page does not say. Whether it should is an editorial decision
-in `docs/BACKLOG.md`, where all four are listed.
+**Three known gaps are published** on the sources page under *What the checks do not establish*:
+the prose one, the sub-100 review and the screen reader. Three more are candidates for a fourth
+and none is on the page: that a figure the data layer never recorded is reported and never
+refused, that a `historical_literals` exemption is granted on trust and nothing re-checks it, and
+that a correction inside an edition is seen only where the publisher names its table by
+identifier. The first is the one a reader is most affected by. Which, if any, earns the space is
+an editorial decision in `docs/BACKLOG.md`, where the candidates are listed. Do not take the
+count from here: this sentence said "four" while the backlog listed three candidates and the page
+published three limits.
 
 ## Working practices that earned their place
 
