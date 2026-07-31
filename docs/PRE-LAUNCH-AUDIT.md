@@ -83,10 +83,8 @@ carried on each finding, which is the one place it cannot drift from itself.
 verifiable right answer, where applying it requires no editorial judgement. Nothing that needed a
 decision, a wording choice, a publisher re-read, or a change to code or infrastructure was touched.
 
-The built site was **byte-identical** before and after, proved by diffing `_site/` against `main`
-at the time the mechanical fixes landed. Later data-file corrections under K1 and F0-2 touch only
-`notes` fields, which no template renders, so the claim should still hold; it has not been re-proved
-since. Nothing below changed what a reader sees.
+The built site is **byte-identical** to `main`, re-proved by building both trees and diffing them
+after the last data-file change on 31 July. Nothing on this branch changed what a reader sees.
 
 | Applied | Where |
 | --- | --- |
@@ -100,9 +98,13 @@ since. Nothing below changed what a reader sees.
 | `asylum-administrative-outcomes` regraded `official` to `calculated`, with its notes opening the way its identical sibling's do | `asylum.json` |
 | All four theme files' `lastUpdated`, each set to its own newest `retrieved_date` | the four theme files |
 | The contract description, which omitted `id` and `source_id` | `meta.json` |
+| The hotel-cost note, which reproduced wording the NAO formally retracted on 1 July 2025. K1 | `fiscal.json` |
+| The regrade note, softened to drop an assertion this audit had itself marked OWNER-VERIFY | `asylum.json` |
 | `.history/` ignored | `.gitignore` |
 
-**Not applied, and why.** All three blockers and every other content change need wording that is yours,
+**Not applied, and why.** The three blockers are 0A and 0B, whose fixes are wording that is yours,
+and E4, whose fix is a code change in `lib/charts.mjs`. Every other content change likewise needs
+your wording,
 per the project's own tagging of that class. `K1` was settled by fetching HC 874 on 31 July and is
 resolved in section K. `F0-3` turned out not to be
 mechanical at all and this document now says so. Everything in sections B, C, D1, E and I is a code,
@@ -1224,7 +1226,12 @@ Every published figure was re-derived where the data holds enough to do so. **No
 found to be internally wrong**, which is the most important sentence in this section. What follows is
 metadata, grading and staleness.
 
-**F0-1. HIGH. Two theme files' envelope notes name the wrong edition, and contradict the caveat a
+**F0-1. HIGH, and the differentiator from F0-4 is stated because a second model was right that it
+was not.** Both are stale metadata reaching no reader. This one is HIGH rather than MEDIUM for one
+reason: it contradicts `meta.json` keyCaveats[1], which **does** render to a reader, so the
+repository asserts two different editions for the same figures and one of them is on the site.
+F0-4 has no rendered counterpart. **Two theme files' envelope notes name the wrong edition, and
+contradict the caveat a
 reader is shown.**
 
 `data/migration.json`'s envelope note says "Visa-grant figures come from Home Office Immigration
@@ -1705,7 +1712,8 @@ cross-reference resolves to the section it claims.
 
 ### K. Content: the remaining precision findings
 
-Three blockers are at the top of this document. These are the rest. One needed the publisher re-read
+Two of the three blockers, 0A and 0B, are at the top of this document; the third, E4, is in section
+E. These are the rest. One needed the publisher re-read
 rather than a decision here.
 
 **K1. RESOLVED against the source, 31 July 2026, and the answer is worse than the question.**
