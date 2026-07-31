@@ -138,6 +138,10 @@ redone finished work, which is the same failure as a stale count and in the same
 
 Everything else here can follow the launch. These cannot, in this order:
 
+0. **Find where £2.1 billion came from**, finding 0-ZERO. A headline figure on the home page and the
+   costs page, graded `official`, is not in the source it cites. Until its provenance is settled the
+   site cannot claim every figure is traceable, which is its central promise. This displaced the
+   glossary blockers from the top of this list on 31 July.
 1. **The two glossary blockers, 0A and 0B.** Both are the site publishing statistical reasoning its
    own data files forbid, on the page its claim pages cite as the authority. Wording is yours.
 2. **Review the six pages the pre-publication review never opened**, finding 0. Both blockers are on
@@ -184,6 +188,91 @@ on, and it is where a reader is sent when a definition is the thing in dispute.
 same evidence template in `docs/PRE-PUBLICATION-REVIEW.md` that the ten went through. The glossary
 first. This audit is not a substitute for that: it read the six looking for defects and found two
 serious ones, which establishes that they are worth reviewing, not that they are now reviewed.
+
+---
+
+### 0-ZERO. BLOCKER. A published headline figure cannot be found in the source it cites
+
+**Found 31 July 2026, by fetching the source rather than reading the repository. It is the most
+serious finding in this audit, and no internal check could have found it.**
+
+`fiscal/home-office-spending-on-asylum-hotel-accommodation` holds:
+
+```
+"value": 2.1, "unit": "£ billion", "period_label": "financial year 2024-25",
+"source_name": "National Audit Office, An analysis of the asylum system",
+"source_url": "https://www.nao.org.uk/reports/an-analysis-of-the-asylum-system/",
+"published_date": "2025-12-10", "confidence_level": "official"
+```
+
+`data/meta.json` defines `official` as "**Taken directly from an official published release.**"
+
+**The figure is not in that release.** Both PDFs linked from that landing page were downloaded and
+their full text extracted:
+
+- `an-analysis-of-the-asylum-system.pdf`: the string "£2.1 billion" does not occur. The only "2.1"
+  in the document is "the Home Office spent around **£2.1 million**" on an unrelated item.
+- `an-analysis-of-the-asylum-system-summary.pdf`: no occurrence of "2.1" at all, and no hotel
+  spending figure.
+
+**The report's own breakdown leaves no room for it.** Figure 5, note 2:
+
+> Accommodation and support: In 2024-25, the Home Office spent around £3.4 billion on asylum
+> accommodation and support (excluding on unaccompanied asylum-seeking children (UASC)). This
+> includes around **£2.7 billion on direct spending on asylum accommodation**, around £220 million
+> on cash support provided to those seeking asylum, and around £247 million in grants paid to local
+> authorities for dispersal accommodation.
+
+There is no hotel line anywhere in that breakdown. The record's own notes assert one: "Within the
+£3.4bn accommodation total".
+
+**Nor is it in the other NAO report this site cites.** HC 874 gives hotel cost as £1.3 billion of an
+estimated £1.7 billion over the first seven months of 2024-25. "£2.1 billion" does not appear in HC
+874 either.
+
+**Where it reaches a reader.** Three places, all headline:
+
+- `content/costs.njk:74`, the spending table: "of which hotels £2.1 billion"
+- `content/costs.njk:113`: "Hotel spending of £2.1 billion works out at roughly £5.8 million a day"
+- `data/dashboard.json`, the asylum-cost card on the **home page**: "of which hotels were £2.1
+  billion"
+
+**What is established and what is not, stated separately because the difference matters.**
+
+- **CONFIRMED:** the value cannot be located in the cited source, in its summary, or in the other
+  NAO report the site cites, by full-text search of the published PDFs.
+- **CONFIRMED:** the report's stated decomposition of the £3.4 billion contains no hotel component.
+- **NOT ESTABLISHED:** that £2.1 billion is *wrong*. It may come from another NAO product, a Home
+  Office release, a parliamentary answer, or a derivation. Annualising HC 874's £1.3 billion over
+  seven months lands near £2.2 billion, which is suggestive of a derivation and is **not** evidence
+  of one.
+
+The same applies to the note's second claim, "Down from about £3bn in 2023-24", which is also not in
+the cited source. The report's comparable sentence is about a different quantity: "£4.0 billion in
+2024-25 (£4.7 billion in 2023-24)".
+
+**Why no check caught it.** Every check in this repository verifies internal consistency or the
+presence of metadata. `check-evidence.mjs` demands a fetched quote, but only for a figure whose value
+**changed** or which is **new** against `origin/main`; this record has not moved since before the
+evidence contract existed, so nothing has ever asked where it came from. This audit's own data pass
+reported "no published value was found to be internally wrong", and that remains true: the failure is
+external provenance, which an internal-consistency pass cannot see by construction. **That is the
+lesson, not the figure.** The site's promise in `README.md` is that "Every figure is traceable to a
+named official publication with a retrieval date". Traceability was verified as *a named source
+existing*, never as *the source containing the number*.
+
+**Fix, and the first step is not editing anything.** Establish where £2.1 billion came from. If a
+source is found, correct `source_name`, `source_url` and `published_date` to it and write an
+evidence entry. If none is found, the figure cannot stand as `official` on a page that derives
+"£5.8 million a day" from it, and the honest options are to replace it with HC 874's £1.3 billion
+over seven months, properly labelled, or to remove the hotel row and say why. **[you]**, and this
+one genuinely blocks launch.
+
+**The wider action this argues for.** Nothing has ever asked the same question of the other figures
+that predate the evidence contract. This one was found only because a separate question sent someone
+to the source. **Recommend backfilling `data/evidence/` for every published record, or at minimum
+for every record a reader sees**, before launch rather than after. That is the only way to know
+whether this is one record or the first of several.
 
 ---
 
@@ -1334,7 +1423,68 @@ cross-reference resolves to the section it claims.
 Two blockers are at the top of this document. These are the rest, and two need the publisher re-read
 rather than a decision here.
 
-**K1. HIGH. The 76% hotel-cost share is given two different periods, in two public places.**
+**K1. RESOLVED against the source, 31 July 2026, and the answer is worse than the question.**
+
+**The NAO formally retracted the wording this site's data record carries.** HC 874 has a
+**correction slip dated 1 July 2025**, on page 2 of the published PDF:
+
+> **Correction:** The correction relates to a misrepresentation of 2024-25 spending on asylum
+> accommodation that affects paragraphs 4, 8 and 1.18.
+>
+> **Paragraph 8. Text currently reads:** People accommodated in hotels account for around 35% of
+> all people in asylum accommodation and for around 76% of **the annual cost** of the contracts
+> (£1.3 billion out of an estimated £1.7 billion **in 2024-25**).
+>
+> **Text should read:** People accommodated in hotels account for around 35% of all people in
+> asylum accommodation and for around 76% of **the cost** of the contracts (£1.3 billion out of an
+> estimated £1.7 billion **in the first seven months of 2024-25**).
+
+The body of the report carries the corrected wording at paragraphs 8 and 1.18. Verified by fetching
+`https://www.nao.org.uk/wp-content/uploads/2025/05/home-offices-asylum-accommodation-contracts.pdf`
+and extracting its text, not from a summary.
+
+**So the page was right and the record was wrong.** `content/costs.njk:83` matches the NAO's
+corrected text word for word. `fiscal/home-office-spending-on-asylum-hotel-accommodation`'s notes
+reproduced the retracted text, "76% of the **annual** cost". **Applied on this branch:** the notes
+now carry the corrected characterisation, the correction slip's date and wording, and a line saying
+the note held the retracted version until 31 July 2026.
+
+**Three things this turned up that are worth more than the fix.**
+
+1. **The record was read on 2026-06-17, almost a year after the correction slip.** Whoever read it
+   was looking at a corrected PDF and wrote the uncorrected sentence, which means it came from a
+   secondary source rather than the primary document. That is the failure the project's own evidence
+   contract exists to prevent, on a record that predates it.
+2. **Secondary sources are still propagating the retracted wording.** A web search run during this
+   audit returned "around 76% of the annual cost of the contracts" as its summary answer. Anyone
+   checking this figure the quick way gets the version the NAO withdrew.
+3. **The corrections watch could never have caught it, and this is the finding.**
+   `check-releases.mjs` matches declared `table_reference` values against the Home Office
+   data-tables change history. Its `WATCHED` list holds three gov.uk collections. **The NAO is not
+   watched, none of the four NAO records declares a `table_reference`, and this correction was a
+   slip inside a PDF rather than an entry in a change history.** The one channel this project built
+   to catch a correction made inside an edition is structurally blind to this publisher and to this
+   form of correction, and the site had a live instance of exactly that.
+
+`README.md:324` already publishes a version of this limit: "A correction is only seen where it names
+its table... most of that history names its tables by title rather than by identifier." That is
+narrower than the truth. The limit is not only about how tables are named; it is that **only three
+gov.uk collections are watched at all**, and eight of the twelve cited publishers have no
+corrections route of any kind. `check-releases.mjs` says as much on every run, in the line beginning
+"Publishers with no corrections route here". The README does not.
+
+**Still OWNER-VERIFY, and smaller than it was.** The 76% is a seven-month cost share; the 35% is a
+headcount as at 1 January 2025, per paragraph 1.14. The site's sentence, following the NAO's own
+paragraph 8, sets them side by side without saying they are different kinds of measure over
+different windows. The site is faithfully reproducing its source, so this is a judgement about
+whether to be more precise than the NAO, not a correction. **[you].**
+
+---
+
+**K1 as originally written, kept because the reasoning is what found it.** The finding below is
+superseded by the resolution above.
+
+**K1-original. HIGH. The 76% hotel-cost share is given two different periods, in two public places.**
 
 `content/costs.njk:83`, which a reader sees:
 
@@ -1446,9 +1596,14 @@ the correction. Stating both would close the denominator gap the page otherwise 
 Stated in the project's own idiom, because a review that does not say what it did not check invites
 the reading that it checked everything.
 
-- **It has not re-read a single publisher.** Every data finding is an internal-consistency finding
-  against the repository. Anything needing the original bulletin, dataset or table re-opened is
-  marked OWNER-VERIFY and is a question rather than a defect.
+- **It re-read exactly two publications, and found a blocker in both.** The audit was conducted as
+  an internal-consistency review, and on 31 July two source questions were settled by fetching: NAO
+  HC 874, which produced K1's resolution, and the NAO's December 2025 asylum report, which produced
+  finding 0-ZERO. **Two publications opened, two defects found.** Every other data finding remains
+  an internal-consistency finding, and anything needing a publication re-opened is marked
+  OWNER-VERIFY. The base rate from a sample of two is not a measurement, but it is the only evidence
+  available about what re-reading the rest would turn up, and it does not point in a comfortable
+  direction.
 - **It has not tested the site with a real screen reader**, which the site already publishes as a
   limit. It does not close that gap.
 - **It has not been read by a target user.** The unmet acceptance criterion in `docs/BACKLOG.md`,
