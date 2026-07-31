@@ -41,7 +41,7 @@ at a hearing or on the papers at the First-tier Tribunal in the quarter January 
 asylum and protection appeals disposed of in that quarter were determined at all: 35% were
 withdrawn, 6% struck out and 6% invalid or out of time.
 
-Separately, for claims made between 2010 and 2020, the Home Office's cohort analysis shows
+Separately, for claims made between 2007 and 2020, the Home Office's cohort analysis shows
 the latest recorded grant rate running 17 to 29 percentage points above the initial rate
 for the same cohort. That gap is not appeals alone. It also takes in reconsiderations, and
 claims reinstated after a withdrawal or an administrative outcome.
@@ -123,15 +123,15 @@ already been revised once.
 
 **This page mixes three reference periods,** and they cannot be set against one another: a
 year to March 2026 for the initial decisions, a quarter to March 2026 for the appeals, and
-cohorts of claims made between 2010 and 2020 for the later grant rates.
+cohorts of claims made between 2007 and 2020 for the later grant rates.
 
 The 17 to 29 percentage point gap is a cohort measurement covering claims made between
-2010 and 2020, not a current one, and it must not be applied to the latest year to produce
+2007 and 2020, not a current one, and it must not be applied to the latest year to produce
 a final rate. The Home Office says the initial rate in its cohort table "will not match the
 grant rate in the 'initial decisions' dataset as they relate to a different cohort of
 initial decisions", and that more recent cohorts are not comparable because more of their
-cases are still progressing. Its own label for the later figure is the latest recorded
-outcome, not the final one.
+cases are still progressing. Its own terms for the later figure are "latest outcome" and
+"latest decision"; it does not call it final.
 
 **On selection.** This site checks propositions that circulate rather than quotations
 attributed to particular people, as the [style guide](/style-guide/) sets out. For this
