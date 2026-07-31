@@ -154,6 +154,14 @@ Each is a sentence, and each is **[you]** because it is wording.
   margin, "most pointed" is unfalsifiable, and the page's credibility rests on not doing that.
 - Whether `most-immigration-is-asylum` should state the all-immigration share, 10.8%, beside the
   non-EU+ 14%. The smaller figure strengthens the correction and closes a denominator gap.
+- **Whether `Asy_D04`'s notes 4 and 5 belong on the refused-asylum claim page as well as in the
+  record.** Audit finding 0A-ter left this **[you]**, calling it a judgement about how much caveat a
+  reader can carry rather than a correction, and **it existed only in the frozen audit until
+  31 July 2026**, which is the way work falls out that this file exists to stop. The record half
+  landed with A2, PR #72, so the reader-facing half is all that is left: the page argues from that
+  table and does not tell a reader the publisher dates its outcomes to January 2026 or that appeals
+  data was not loaded for the release. **Do not infer a direction from note 5**; 0A-ter withdrew a
+  blocker for doing exactly that, and opening the table refuted it.
 
 ### A5. Site-level decisions and small build work
 
