@@ -1056,6 +1056,44 @@ claimed the latter." That count is now nine.
 Fix: qualify the sentence, and print how many declared literals currently equal a live value, so the
 exemption cannot quietly grow.
 
+**I1a. MEDIUM. A record can enter the derived class with no evidence, because the check fires on
+a changed value and never on a changed grade.**
+
+**Found by making one of this audit's own applied fixes, which is why it is worth recording.**
+Regrading `asylum-administrative-outcomes` from `official` to `calculated` moved it into the set
+that `check-evidence.mjs` treats specially: a derived figure cannot quote a source that states it,
+so its evidence is "a quote for each input and a sentence saying what was done to them". Running
+`check-evidence.mjs` after the regrade reports "no metric changed value and none is new, so there
+is nothing to evidence". It is right, and that is the gap: the check fires on `value` and on
+newness, and a `confidence_level` change is neither.
+
+The wider state, which the regrade only made visible:
+
+| `calculated` record | Evidence entry |
+| --- | --- |
+| `asylum/detected-unauthorised-arrivals-year-ending-march-2026` | yes |
+| `asylum/people-in-asylum-accommodation` | none |
+| `asylum/returns-enforced-plus-voluntary` | none |
+| `asylum/asylum-administrative-outcomes` | none |
+| `population/foreign-born-share-mid-2024` | none |
+
+**Four of the five derived figures on this site have no entry in `data/evidence/`.** None of them
+is failing anything: the four predate the evidence contract, and the check is scoped to what moves
+rather than to what exists, deliberately and for good reasons.
+
+**Two things keep this at MEDIUM rather than higher.** The arithmetic the contract wants is
+present in the records' own notes in every case, including two independent decompositions for
+`asylum-administrative-outcomes`, so the substance exists and only its home is missing. And the
+site publishes nothing claiming otherwise.
+
+What makes it worth fixing is the shape, which is this project's own: the check verifies the
+**transition** and the message describes the **state**. A grandfathered figure is invisible to it
+for ever, and a regrade is a silent door into the grandfathered set.
+
+Fix, smallest: make `check-evidence.mjs` fire on a `confidence_level` change into `DERIVED` as well
+as on a value change, which closes the door. Backfilling the four is separate, larger, and needs
+each source re-read, so it is **OWNER-VERIFY** rather than a task this branch could take.
+
 **I2. MEDIUM, LATENT. The evidence quote check is an unanchored substring match.**
 
 `scripts/check-evidence.mjs:115`:
