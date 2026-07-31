@@ -44,7 +44,7 @@ and it is deliberate.
 ## Layout
 
 ```
-eleventy.config.js      Build: citation resolution, partials, filters, four HTML transforms
+eleventy.config.js      Build: citation resolution, partials, filters, five HTML transforms
 content/                Eleventy input
   index.njk               Overview: three distinction panels, eight cards, generated periods
   migration.njk           Net migration, the two flows, reason splits, ONS vs Home Office
@@ -133,7 +133,7 @@ timeseries therefore draws from a single publication, and the validator rejects 
 whose points carry more than one `published_date`. Refresh the whole array each release;
 never append. Mixing vintages is what made the first net migration series unpublishable.
 
-**Which table a figure came from.** 14 records and 2 series files carry `table_reference`, an
+**Which table a figure came from.** 17 records and 2 series files carry `table_reference`, an
 array naming the publisher tables behind the figure: `Vis_01`, `Asy_00a`, `Ret_01` and nine
 others. It exists so that a correction *inside* an edition can be matched to the figures it
 touches, which is the one channel through which a wrong number can sit here indefinitely, and
@@ -162,13 +162,19 @@ a Liquid expression, silently breaking the guarantee that no figure is hard-code
 Citations resolve in a post-render transform, and anything unresolved throws rather than
 shipping `{{...}}` to a reader.
 
-**Three Eleventy transforms run on the built HTML and the order is load-bearing.**
+**Five Eleventy transforms run on the built HTML and the order is load-bearing.**
 `resolve-citations` renders the tokens and block partials and throws on anything unresolved.
-`heading-anchors` turns `{#id}` syntax into real ids. `scrollable-regions` then wraps any
-unwrapped table and gives every scrolling box a `tabindex`, a role and a name taken from its
-caption or the heading above it. Run the last before the second and a heading still carrying
-its `{#id}` names the region, shipping raw syntax inside an `aria-label` where nothing on the
-page shows it. `check-build` caught exactly that.
+`published-counts` renders the figure counts on `/sources-and-method/` from `lib/published.mjs`
+and throws on a marker it cannot resolve. `heading-anchors` turns `{#id}` syntax into real ids.
+`table-captions` turns a `{caption}` paragraph sitting before a table into that table's
+`<caption>`. `scrollable-regions` then wraps any unwrapped table and gives every scrolling box a
+`tabindex`, a role and a name taken from its caption or the heading above it.
+
+Two orderings carry the weight. Run `scrollable-regions` before `heading-anchors` and a heading
+still carrying its `{#id}` names the region, shipping raw syntax inside an `aria-label` where
+nothing on the page shows it; `check-build` caught exactly that. Run it before `table-captions`
+and a captioned table is named by the heading above it rather than by its own caption, which is
+the text a sighted reader can see.
 
 Netlify runs `npm test` before `npm run build`, so a figure missing its source, or a claim
 citing a metric that no longer exists, fails the deploy rather than reaching anyone.
@@ -310,7 +316,7 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   against their source's cycle before publication, and every page carries the date it was
   last reviewed, but a static build cannot know how late it is at the moment someone reads
   it. Foundation section 13 says so rather than implying otherwise.
-- **23 of the 71 metric records cannot be aged**, because their sources publish irregularly:
+- **23 of the 75 metric records cannot be aged**, because their sources publish irregularly:
   the Migration Observatory (11), the Commons Library (5), the NAO (4), the ICIBI (2) and the
   OBR (1). The validator names them on every run rather than counting them as covered. The
   timeseries points cannot be aged either, because they carry no `retrieved_date`.
@@ -318,10 +324,10 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   parliamentary research PDF. The host returns 403 to every request, including deliberately
   invalid paths, with or without a browser user-agent, so an automated check cannot tell a
   live page from a dead one there. `scripts/check-sources.mjs` reports them as uncheckable
-  rather than broken. Verify by hand. 44 of 49 resolve.
+  rather than broken. Verify by hand. 43 of 48 resolve.
 - **One source URL redirects**, which usually means a newer release has superseded the
   figure: the Home Office data tables anchor.
-- **A correction is only seen where it names its table.** 14 records and 2 series files
+- **A correction is only seen where it names its table.** 17 records and 2 series files
   declare a `table_reference`, and `check-releases.mjs` matches the Home Office change
   history against them, but most of that history names its tables by title rather than by
   identifier. A correction announced that way, or one to a table nobody wrote down, is
