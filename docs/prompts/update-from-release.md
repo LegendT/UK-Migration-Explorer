@@ -100,8 +100,9 @@ period_label or date moved, for every record where they did.
 
 ## What this refuses, and why that is the whole design
 
-**Series work.** Decided 30 July 2026. If a series file is in scope, or any of the four metrics
-declaring a `series_ref` is, the run stops and hands the job to a person.
+**Series work.** Decided 30 July 2026. If a series file is in scope, or any of the metrics
+declaring a `series_ref` is, the run stops and hands the job to a person. There are five of them;
+do not take that number from here, take it from what `npm run validate` prints.
 
 The refusal names where to go and **does not restate the steps**:
 
@@ -113,8 +114,10 @@ That wording is deliberate. A procedure printed in two places is the duplication
 been burned by twice, and the copy a session happens to read wins. If the refusal grew a helpful
 summary of what to do, that summary would be the second copy.
 
-**What it costs, and the first version of this paragraph understated it by half.** The four
-`series_ref` metrics are all `ons-ltim`, so this prompt cannot do an ONS update at all. But two
+**What it costs, and the first version of this paragraph understated it by half.** Four of the
+five `series_ref` metrics are `ons-ltim`, so this prompt cannot do an ONS update at all. The
+fifth, `asylum/asylum-applications-2025`, is `ho-immigration-stats`, so the refusal now fires on
+the Home Office quarterly through a metric as well as through a series file. Two
 of the four series files are `ho-immigration-stats`, `asylumApplicationsTimeseries.json` and
 `asylumBacklogTimeseries.json`, and both are replaced whole on every Home Office quarterly. So
 the refusal fires on **two of the three cadenced releases**, including the most frequent one and

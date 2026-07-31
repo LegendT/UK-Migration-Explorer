@@ -1,0 +1,70 @@
+# Prompt for a fresh session
+
+**Generated from `docs/HANDOFF.md`, section *Prompt for a fresh session*, which is the source of
+truth.** If the two disagree, the handoff is right and this file is stale: regenerate rather than
+editing here.
+
+It recites almost nothing, because the two times it and the handoff drifted the prompt was the stale
+copy. The handoff explains which few things it still carries and why each cannot be a pointer.
+
+Generated 31 July 2026, after the pre-launch audit closed.
+
+---
+
+```
+Work on UK Migration Explorer at
+/Users/anthonygeorge/Projects/Migration Immigration and Asylum
+
+READ FIRST, in this order, and do not re-derive what they already settle:
+  1. docs/BACKLOG.md. The one list of outstanding work, ordered, and it
+     names the launch gates that are mine. There is no second list.
+  2. docs/HANDOFF.md. How the project works, and what earlier sessions
+     cost. Its "Working practices that earned their place" section is
+     rules this project has paid for, each with the incident behind it.
+     Read it before deciding a rule does not apply to what you are doing.
+  3. The scope document for whatever you pick up.
+
+docs/PRE-LAUNCH-AUDIT.md and verification.txt are FROZEN RECORDS, not
+work lists. Read either for the reasoning behind an item. Do not edit
+them and do not take work from them: whatever is still outstanding is in
+the backlog.
+
+This project has no CLAUDE.md. Your global instructions at
+~/.claude/CLAUDE.md load automatically.
+
+ONE THING RECITED HERE, because it inverts and getting it backwards does
+the most damage available. Work is tagged [me] or [you] from the
+SESSION's side, so the tags invert against the pronouns in this message.
+Use the mapping, never the pronoun:
+  [me] = a factual or mechanical change against a cited source. YOU do it.
+  [you] = an editorial or sourcing call. It is MINE. Propose and stop.
+Check it the first time you use it: correction 1a in the backlog marks
+the owner's decision [you]. On a list mixing both, do all the [me] work
+first and bring me the [you] decisions in one batch, because the
+mechanical work usually determines what the editorial question is.
+
+TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
+told you otherwise in this message. Unfinished, not unstarted: an item
+can have phases built and still be first. Do not infer it from document
+order, because the earlier items are mine or are launch; the backlog's
+own preamble names which to take, and that sentence is the instruction.
+
+Tell me which item you are taking and what you expect to change before
+you start. If it is larger than a session, propose a split. If it is
+wholly gated on a decision of mine, do not stall and do not take the
+decision: bring it to me and start the next ungated item, saying which.
+
+ONE DELIVERABLE PER SESSION. Audit, then fix, then critique the fix is
+three. When a critique pass is mostly finding mistakes this session
+introduced rather than defects in the work, stop and tell me.
+
+Everything must pass, and run these rather than assume: npm run validate,
+npm run build, npm run a11y, and npm run check-evidence if a figure
+changed. check-releases and check-sources are network checks that gate
+nothing, so run them by hand before opening a pull request.
+
+Branch and PR, never straight to main, and the PR body carries the
+reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
+its PR and a date, and move it to Completed when nothing is left. Do not
+delete it.
+```

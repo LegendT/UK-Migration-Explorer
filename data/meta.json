@@ -1,6 +1,6 @@
 {
   "project": "UK Migration Explorer",
-  "description": "Structured, fully sourced figures on UK immigration, net migration and asylum, modelled on the UK Public Finances Explorer data contract. Every figure carries metric_name, value, unit, date, period_label, geography, source_name, source_url, published_date, retrieved_date, notes and confidence_level.",
+  "description": "Structured, fully sourced figures on UK immigration, net migration and asylum, modelled on the UK Public Finances Explorer data contract. Every figure carries id, metric_name, value, unit, date, period_label, geography, source_name, source_id, source_url, published_date, retrieved_date, notes and confidence_level.",
   "lastReviewed": "2026-07-22",
   "footerNote": "Figures are official statistics and may be revised. Net migration estimates are provisional and have been revised substantially in recent releases. Foreign-born population figures come from the 2021/22 Census and a provisional ONS rolled-forward estimate for mid-2024. Fiscal-impact estimates are contested and method-dependent. Every figure shows its source, reference period and confidence level.",
   "confidenceLevels": {

@@ -50,7 +50,7 @@ jobs:
         run: node scripts/validate-content.mjs
       - name: Build and check the built site
         run: npm run build
-      - name: Accessibility, WCAG 2.2 AA on all 16 pages
+      - name: Accessibility, WCAG 2.2 AA on every URL in .pa11yci.json
         # pa11y over every URL the site serves. It fails the build, unlike the source check
         # below: an accessibility regression is a defect in the artefact, not a transient
         # outage. It is not the whole of the standard. Keyboard operation of the scrolling

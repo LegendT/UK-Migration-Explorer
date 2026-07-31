@@ -204,7 +204,7 @@ The project should use official statistics as the primary source and selected in
 The first eight rows were the June 2026 list. Five publishers the site now cites were absent
 from it altogether, most of them arriving with the costs and labour-market material, and the
 National Audit Office was listed as deferred while its figures were being built into the MVP.
-`data/sources.json` is the catalogue of record: twelve entries across eleven publishers, and
+`data/sources.json` is the catalogue of record: thirteen entries across twelve publishers, and
 `scripts/validate-data.mjs` rejects any figure whose source host is not one of them. Update
 this table from that file, not from memory.
 
@@ -605,7 +605,7 @@ should be recorded so they are not silently reinstated:
 ### 9.3 Known gaps in the contract
 
 - **`table_reference` no longer names the gap; what it cannot see does.** The field was
-  implemented on 30 July 2026, on 14 records and 2 series files, and `validate-data.mjs`
+  implemented on 30 July 2026, and carried today by 17 records and 2 series files, and `validate-data.mjs`
   refuses a figure that names a table in its own prose and declares nothing. What is still
   open is that this reads what was written: a figure whose table nobody wrote down declares
   none and is asked for none, and an ONS sheet called "Table 1" carries no identifier that
@@ -685,7 +685,7 @@ This should be a static-first public explainer with governed data files, not a h
 What exists as of 23 July 2026:
 
 ```
-data/                       67 governed metrics and four timeseries
+data/                       75 governed metrics and four timeseries
   migration.json            net migration, flows, reason splits, visa grants
   asylum.json               claims, decisions, backlog, small boats, appeals, support, returns
   population.json           foreign-born population, citizenship, settlement
@@ -706,7 +706,7 @@ content/                    the site's pages, 16 of them
   assets/style.css          one stylesheet
   robots.txt                disallows all crawlers until launch
 lib/charts.mjs              inline SVG charts, built at build time
-eleventy.config.js          citation shortcodes, filters and the three HTML transforms
+eleventy.config.js          citation shortcodes, filters and the five HTML transforms
 docs/foundation.md          this document
 docs/HANDOFF.md             state of play between sessions
 scripts/validate-data.mjs   data contract enforcement, stdlib only
@@ -859,22 +859,23 @@ its tables once, and re-check everything that came from it. Publishing four of t
 instead would save almost nothing, while making the site worse. What actually predicts
 staleness is the number of releases you have to chase.
 
-The routine cycle is currently **three releases**, covering 22 of the 36 published figures:
+The routine cycle is **three releases**: Home Office immigration system statistics, quarterly;
+ONS long-term international migration, twice yearly; and HMCTS and Ministry of Justice tribunals
+statistics, quarterly. They are the three the update commitment covers.
 
-| Release | Cadence | Published figures |
-| --- | --- | --- |
-| Home Office, immigration system statistics | Quarterly | 13 |
-| ONS, long-term international migration | Twice yearly | 7 |
-| HMCTS / Ministry of Justice, tribunals statistics | Quarterly | 2 |
+**How many figures each of them carries is not typed here.** It was, and it went stale twice in
+three days, which is the same fault this document records at the end of section 14. Those counts
+are derived by `lib/published.mjs` and render on `/sources-and-method/`, and `npm run build`
+prints the totals. Read them there.
 
-The other 14 come from the National Audit Office, the Commons Library, the Migration
-Observatory and the OBR, which publish irregularly and are re-checked when they do rather
-than on a schedule. `scripts/validate-data.mjs` ages every figure against its own source's
-cycle and names those four as the ones it cannot age.
+Every other cited publisher publishes irregularly and is re-checked when it does rather than on
+a schedule. `scripts/validate-data.mjs` ages every figure against its own source's cycle and
+names on each run the sources it cannot age.
 
 The figure count follows from the cap rather than being the cap, and it is recorded rather
-than targeted: 36 records reach a reader, out of 67 in the data layer. The unpublished
-figures are not wasted; they are the reserve that makes the published ones defensible.
+than targeted. How many records reach a reader, and how many are held in reserve, is printed by
+`npm run build` rather than typed here. The unpublished figures are not wasted; they are the
+reserve that makes the published ones defensible.
 
 No longer blocked on research, and the build is done. As of 23 July 2026 the site is 16
 pages, with seven charts across the migration, asylum and costs pages, each carrying an
@@ -1029,8 +1030,12 @@ around it wrong, which is the opposite of what a caveat about arithmetic should 
 one of 100 or more is distinctive enough to fail the build. Rates and money are mostly under
 100, where too many unrelated metrics share a value for a match to mean anything, 21% is both
 the NHS staff share and the asylum hotel share, so those are matched with their unit and
-**reported as warnings rather than refused**. Ten warnings surface today and all ten were
-reviewed on 22 July as coincidences. An error there would be silenced by stuffing
+**reported as warnings rather than refused**. How many surface is what `npm run validate` prints,
+and it is not restated here. Nor is a stored note that they were reviewed: this document once
+recorded ten, all reviewed as coincidences, and a separate re-derivation of the same class of
+warning found three that were live metric values restated longhand. The two notes were about
+overlapping but not identical lists, which is itself the argument: re-derive them per item rather
+than trusting any stored all-clear. An error there would be silenced by stuffing
 `historical_literals:`, which is worse than no check at all. Review them; do not suppress
 them.
 
@@ -1167,7 +1172,7 @@ The first build should answer five questions well: What is net migration? How is
 Three things this document did not originally say, which the 22 July 2026 review concluded matter more than anything on the build list:
 
 1. **The claim list must correct both directions, or the neutrality claim is false.** This is the difference between a clarity project and a well-sourced partisan one, and it is decided by editorial discipline, not by data quality.
-2. **Silent staleness is the most likely way this fails.** Not political capture, not legal risk. Sixty-seven figures and four series, eleven publishers, eight cadences, one person, no deadline. Publish fewer figures and commit to a cadence in public. Neither has happened: 36 records reach a reader and the commitment is still a proposal.
+2. **Silent staleness is the most likely way this fails.** Not political capture, not legal risk. Seventy-five figures and four series, twelve publishers, eight cadences, one person, no deadline. Publish fewer figures and commit to a cadence in public. The second has happened: the commitment was signed on 23 July 2026 at one month from each of the three cadenced releases. The first is held rather than achieved, and how many records reach a reader is printed by `npm run build` rather than typed here.
 3. **Nobody has been asked whether they want this.** Five conversations cost a week and could save the entire build.
 
 > The product should be boring in the best possible way: sourced, dated, caveated and hard to misuse.

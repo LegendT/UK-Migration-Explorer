@@ -31,6 +31,13 @@ const REVIEW_MONTHS = 12;
 // nothing to bite on until it has already been broken.
 function checkReviewDue(file, lastReviewed, reviewDue) {
   if (!lastReviewed) return;
+  // last_reviewed was checked for presence and never for validity, so "last_reviewed: yesterday"
+  // passed and every comparison below it silently went false against an Invalid Date.
+  const reviewed = new Date(`${lastReviewed}T00:00:00Z`);
+  if (Number.isNaN(reviewed.getTime())) {
+    errors.push(`${file}: last_reviewed "${lastReviewed}" is not a valid date`);
+    return;
+  }
   if (!reviewDue) {
     errors.push(`${file}: has last_reviewed but no review_due, so nothing says when this page falls due`);
     return;
@@ -38,8 +45,20 @@ function checkReviewDue(file, lastReviewed, reviewDue) {
   const due = new Date(`${reviewDue}T00:00:00Z`);
   if (Number.isNaN(due.getTime())) {
     errors.push(`${file}: review_due "${reviewDue}" is not a valid date`);
-  } else if (due <= new Date(`${lastReviewed}T00:00:00Z`)) {
+    return;
+  }
+  if (due <= reviewed) {
     errors.push(`${file}: review_due ${reviewDue} is not after last_reviewed ${lastReviewed}`);
+    return;
+  }
+  // AND THE DUE DATE HAS TO BITE. Everything above checks the declaration: that a due date exists,
+  // parses, and sits after the review. Nothing compared it with today, so the error message's own
+  // words, "when this page falls due", described a property no code asked about, and every page
+  // outside content/claims/ could pass its due date with the build staying green. The twelve-month
+  // rule covers the claims; this covers the other nine pages. The weekly cron exists so a
+  // time-based rule fires without anyone pushing, and until now it ran this file and noticed nothing.
+  if (due < new Date()) {
+    errors.push(`${file}: review_due ${reviewDue} has passed. Re-review the page and move the date, or unpublish it.`);
   }
 }
 
@@ -295,13 +314,38 @@ try {
   errors.push('docs/BACKLOG.md: missing. It is the durable list of outstanding work.');
 }
 
+// --- one list, and only one ---------------------------------------------------------
+// docs/BACKLOG.md is the durable list of outstanding work. On 31 July 2026 a pre-launch audit built
+// a SECOND one inside its own document: a 53-row table with DONE markers, its own ids and its own
+// severities. Both then had to be maintained in step, they diverged twice within a day, and the
+// backlog was edited to say the audit's list was "the live one", so this project's one-list rule was
+// suspended in writing to accommodate the artefact that broke it. 23 of that branch's 33 commits went
+// to maintaining that document rather than doing the work.
+//
+// So the rule is a build failure rather than a resolution. A planning document may hold reasoning, a
+// finding, or a frozen record; it may not hold work STATE. State means a row marked done, withdrawn
+// or struck, which is what turns a table into a list somebody has to keep true.
+//
+// Matched on a table ROW, not on the words anywhere in the file, because a document should be able to
+// say in prose that something was withdrawn. It is the row-with-a-marker shape that is a second list.
+// verification.txt is not scanned: it sits outside docs/ for its own reasons.
+const STATE_ROW = /^\s*\|.*\*\*(DONE|Withdrawn|Struck)\b/i;
+for (const file of planningDocs(docsDir)) {
+  if (file === 'BACKLOG.md') continue;
+  const rows = readFileSync(`${docsDir}${file}`, 'utf8').split('\n')
+    .map((line, i) => [i + 1, line]).filter(([, line]) => STATE_ROW.test(line));
+  if (rows.length) {
+    errors.push(`docs/${file}: ${rows.length} table row(s) carry work state, from line ${rows[0][0]}. Only docs/BACKLOG.md tracks what is outstanding. A second list has to be kept true in two places, and this project watched two diverge twice in one day. Move the work to the backlog and leave the reasoning here.`);
+  }
+}
+
 // --- house style: no em-dashes ------------------------------------------------
 // Matches the sibling projects' rule. The em-dash is banned in authored copy, literal or
 // URL-encoded; the en-dash stays available for numeric ranges. Data files are excluded
 // where they carry a source's own words, but notes and card text are ours, so data/ is
 // scanned too. Anything under node_modules or _site is generated, not authored.
 const STYLE_DIRS = ['content', 'docs', 'scripts', 'lib', 'data', '.github'];
-const STYLE_FILES = ['README.md', 'CHANGELOG.md', 'eleventy.config.js', 'netlify.toml'];
+const STYLE_FILES = ['README.md', 'CHANGELOG.md', 'eleventy.config.js', 'netlify.toml', 'LICENCE'];
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 
 function walkAuthored(dir) {
@@ -314,12 +358,27 @@ function walkAuthored(dir) {
   return out;
 }
 
-for (const dir of STYLE_DIRS) {
-  let files = [];
-  try { files = walkAuthored(repoRoot + dir); } catch { continue; }
-  for (const file of [...files, ...STYLE_FILES.map((f) => repoRoot + f)]) {
+// STYLE_FILES sits outside the loop. Inside it, one em-dash in README.md reported once per entry in
+// STYLE_DIRS, six identical errors for one fault. And both catches swallowed every error rather than
+// a missing path, so an unreadable directory or file exempted itself from the house-style rule in
+// silence, which is the suppression shape this project treats as the first place to look.
+const styleTargets = [
+  ...STYLE_DIRS.flatMap((dir) => {
+    try { return walkAuthored(repoRoot + dir); } catch (error) {
+      if (error.code === 'ENOENT') return [];
+      errors.push(`${dir}: could not be read for the house-style scan, ${error.message}`);
+      return [];
+    }
+  }),
+  ...STYLE_FILES.map((f) => repoRoot + f),
+];
+{
+  for (const file of styleTargets) {
     let body;
-    try { body = readFileSync(file, 'utf8'); } catch { continue; }
+    try { body = readFileSync(file, 'utf8'); } catch (error) {
+      if (error.code !== 'ENOENT') errors.push(`${file.replace(repoRoot, '')}: could not be read for the house-style scan, ${error.message}`);
+      continue;
+    }
     const lines = body.split('\n');
     lines.forEach((line, i) => {
       // Needles built at runtime: written literally, this file would match itself.
@@ -491,7 +550,10 @@ for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f
     continue;
   }
   const [, front, prose] = match;
-  const required = file.endsWith('.njk') ? ['title'] : ['id', 'title', 'last_reviewed'];
+  // `id` is markdown-only. `last_reviewed` is not: base.njk prints it to a reader on every page,
+  // and README promises every page carries one, so a Nunjucks page without it shipped a promise
+  // the site could not keep and got no review expiry either. All five .njk pages already carry it.
+  const required = file.endsWith('.njk') ? ['title', 'last_reviewed'] : ['id', 'title', 'last_reviewed'];
   for (const field of required) {
     if (!new RegExp(`^${field}:`, 'm').test(front)) errors.push(`${file}: missing front matter field ${field}`);
   }
@@ -913,6 +975,13 @@ for (const [file, extract] of DATA_PROSE) {
     checkUnclosed(`${file} ${where}`, prose);
     checkUnits(`${file} ${where}`, prose);
     checkLiterals(`${file} ${where}`, prose, allowed);
+    // The language rules and the glossary-link check reach here too, and did not until 31 July.
+    // The literal scan was extended to data/ prose when it was found to be scanning only content/;
+    // these two were left behind, so a banned term or a dead /what-the-words-mean# link in a card
+    // paragraph or a caveat shipped unflagged while the lint's own comment claimed it scanned the
+    // pages a reader sees. Card text and caveats are on pages a reader sees.
+    checkGlossaryLinks(`${file} ${where}`, prose, glossaryAnchors);
+    checkEditorial(`${file} ${where}`, prose, 0);
     scanned.push(prose);
     dataFields += 1;
   }

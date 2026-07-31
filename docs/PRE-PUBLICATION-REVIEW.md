@@ -320,5 +320,7 @@ figures and the claims."
 Reviewed by: ____________________  Date: ____________
 
 When this is signed, the second launch blocker is closed. Record it in `CHANGELOG.md` and
-update the pre-launch banner in `content/_includes/base.njk`, which currently tells every
-reader that this review has not happened.
+update the pre-launch banner in `content/_includes/base.njk`, which currently tells every reader
+that the review was done and its corrections landed but that it has not been recorded as passed.
+It said the review had not happened at all until PR #54 corrected it on 30 July 2026, which was a
+live defect rather than a launch chore.

@@ -155,9 +155,12 @@ which figures depend on it. Query the affected figures by `source_id`, which exi
 exactly this reason.
 
 Runs on the weekly cron that already exists, and **must not fail the build**. Use
-`continue-on-error`, as `check-sources.mjs` does. It is a notifier, not a gate. Of the 71
-metric records, 48 come from a source with a fixed cadence and 45 of those are covered by
-the two routes above. The rest should be reported as unwatched rather than silently skipped,
+`continue-on-error`, as `check-sources.mjs` does. It is a notifier, not a gate. Of the 75
+metric records, 52 come from a source with a fixed cadence and 49 of those are covered by
+the two routes above. Take those from `npm run validate`, which prints the cadenced and
+uncovered split on every run, rather than from this sentence: it was wrong at 71, 48 and 45
+until 31 July 2026, and it survived the sweep that corrected the same fault further down
+this very file. The rest should be reported as unwatched rather than silently skipped,
 on the same principle the staleness check already follows: 23 figures from five irregular
 sources, and three more from `ons-population`, `skills-for-care` and `mac`, which have a
 cadence but no detection route here.
@@ -415,16 +418,25 @@ involved, because a fabricated value cannot appear in a quote taken from a real 
 
 ### Exemptions, and why they are small
 
-**64 of the 71 records are read straight off a release** (46 `official`, 18 `provisional`) and
-should quote cleanly. Seven need something else. The counts are corrected from the three of 67
-this section was scoped with, for the reason in the block above.
+**Most records are read straight off a release**, `official` or `provisional`, and should quote
+cleanly. A small minority need something else, and that minority is what this section is about.
 
-- **Three `calculated` figures**, each a sum or a share of published components. Require every
+**The counts are deliberately not written here any more, and the reason is the third time they
+went stale.** This section was scoped with "three of 67", corrected once to "64 of the 71
+records (46 `official`, 18 `provisional`)", and was wrong again by 31 July 2026, both because the
+data layer grew and because a regrade moved one record between the two groups. A count in a
+document is a count nothing reads. Derive it:
+
+```
+node -p "JSON.stringify(['migration','asylum','population','fiscal'].flatMap(f=>require('./data/'+f+'.json').metrics).reduce((n,m)=>(n[m.confidence_level]=(n[m.confidence_level]||0)+1,n),{}))"
+```
+
+- **The `calculated` figures**, each a sum or a share of published components. Require every
   component to be evidenced instead, and require the arithmetic to be stated.
-- **Four `estimated` figures**, which are interpolations or scenarios. Require a quote for
+- **The `estimated` figures**, which are interpolations or scenarios. Require a quote for
   whatever they are derived from and a sentence naming the derivation.
-- **One of those four is also the only range metric**, which has no single value. A range
-  evidences `range_min` and `range_max` rather than a value.
+- **One of the `estimated` figures is also the only range metric**, which has no single value. A
+  range evidences `range_min` and `range_max` rather than a value.
 
 Keep the exemption list explicit and small. An exemption that can be claimed freely is how
 this check would rot.

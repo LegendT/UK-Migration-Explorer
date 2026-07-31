@@ -1,6 +1,6 @@
 {
   "theme": "Economic and fiscal impact",
-  "lastUpdated": "2026-06-17",
+  "lastUpdated": "2026-07-27",
   "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across academic studies the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
   "metrics": [
     {
@@ -48,7 +48,7 @@
       "source_url": "https://www.nao.org.uk/reports/an-analysis-of-the-asylum-system/",
       "published_date": "2025-12-10",
       "retrieved_date": "2026-06-17",
-      "notes": "Within the £3.4bn accommodation total; roughly £5.77m per day. Down from about £3bn in 2023-24. Hotels were about 76% of the annual cost of asylum accommodation contracts but housed only about 35% of people in asylum accommodation.",
+      "notes": "Within the £3.4bn accommodation total; roughly £5.77m per day. Down from about £3bn in 2023-24. Hotels were about 76% of the cost of asylum accommodation contracts, £1.3bn of an estimated £1.7bn in the FIRST SEVEN MONTHS of 2024-25, and housed about 35% of people in asylum accommodation as at 1 January 2025 (NAO, HC 874, paragraphs 8 and 1.18). Not an annual share: the NAO issued a correction slip dated 1 July 2025 for 'a misrepresentation of 2024-25 spending on asylum accommodation', replacing 'the annual cost ... in 2024-25' with 'the cost ... in the first seven months of 2024-25' in paragraphs 4, 8 and 1.18. This note carried the retracted wording until 31 July 2026. Note also that the 76% is a seven-month cost share and the 35% a point-in-time headcount, so they are different kinds of measure.",
       "confidence_level": "official"
     },
     {

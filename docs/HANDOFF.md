@@ -62,7 +62,7 @@ If the branch is renamed or the history is grafted back on, correct this paragra
 that `main` starts at a parentless commit is checkable in one command and does not go stale:
 `git rev-list --max-parents=0 main`.
 
-16 pages build from a governed data layer of **75 metric records** in four theme files, plus
+17 pages build from a governed data layer of **75 metric records** in four theme files, plus
 **four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
 175. **46 of the 75 reach a reader**, and the other 29 are unpublished reserve. Reaching a reader
 means **rendering**: a token, a chart bar's `ref`, a `| metric` summary, a dashboard card or a
@@ -71,9 +71,33 @@ list, and counting it was the error that made the sources page's Home Office row
 definition is code, not a paragraph:** `lib/published.mjs` holds those five routes, the sources
 page renders from it, and `npm run build` prints the split, so do not hand-roll a query for it
 and do not trust the two numbers in this sentence over the run. Eleventy 3, no client-side JavaScript,
-charts rendered as inline SVG at build time. What is on each of the 16 pages is in `README.md`
+charts rendered as inline SVG at build time. What is on each page is in `README.md`
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
+
+**A whole-project pre-launch audit ran on 30 and 31 July 2026** and is open as PR #70, written up
+in `docs/PRE-LAUNCH-AUDIT.md`. Its outcome is a findings list, on the same principle as the review
+before it. It applied the mechanical half and left every editorial and sourcing call. What is
+outstanding from it is in `docs/BACKLOG.md`, not here and not in the audit: that document is a
+frozen findings record as of 31 July, for the same reason `verification.txt` is.
+
+Three things from it belong in this document because they change how the project should be read.
+
+**The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
+outstanding blockers are in `content/glossary.md`, one of the six the review never opened. Two
+independent passes reached it separately. That is not a fact about the glossary; it is what an
+unreviewed page looks like when someone finally reads it.
+
+**Traceability was never checked at the far end.** Every check verifies that a figure names a source.
+Nothing verifies the source contains the figure. Reading five publications during the audit found
+three defects: a record citing an NAO report that does not contain its value, a phrase attributed to
+the Home Office that it does not use, and a note reproducing wording the NAO formally retracted by a
+correction slip inside its own PDF. The first is the one to know: `£2.1 billion` is real and official
+and lives in the Home Office Annual Report and Accounts, not in the report the record names.
+
+**The audit committed the project's own signature defect four times while auditing for it**, and
+each is recorded in `docs/PRE-LAUNCH-AUDIT.md` at its own finding rather than summarised here. That
+is the strongest evidence available that the pattern is structural rather than careless.
 
 ## How the project works
 
@@ -84,7 +108,10 @@ rule is one figure, one home.
 
 **Citation syntax differs by file type.** Markdown uses `{{theme/metric-id}}`. Nunjucks uses
 `{% figure "theme/metric-id" %}`, because `{{ }}` is Nunjucks' own expression syntax and would
-be evaluated as arithmetic, silently producing `NaN`. That shipped once.
+be evaluated as arithmetic, silently producing `NaN`. That shipped once. **Whitespace inside the
+braces is accepted and trimmed**, by the renderer and by `validate-content.mjs` alike, which
+matters to anything else that matches a citation by pattern: a scan stricter than the renderer
+silently disagrees with it about what the site publishes, and one was.
 
 **Prose inside `data/` cites the same way.** A token in a data-file string resolves, because
 `resolve-citations` runs on the built HTML after Nunjucks and after the partials expand. The
@@ -141,7 +168,7 @@ Seven checks, all in CI, all negative-tested.
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
-| `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
+| `npm run a11y` | pa11y at WCAG2AA over every URL in `.pa11yci.json`. Fails the build |
 
 CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry and
 link rot, only fire if something runs.
@@ -172,11 +199,39 @@ believed: an isolated missing `lang` took it to 15/16 and named the rule, a fail
 value took it to 0/16. It flagged none of the five accessibility defects found by hand,
 which is the point: it is a floor.
 
-**Three of the four known gaps are published** on the sources page under *What the checks do
-not establish*: the prose one, the sub-100 review and the screen reader. The fourth is that a
-figure the data layer never recorded is reported and never refused, which is the one a reader is
-most affected by and the one the page does not say. Whether it should is an editorial decision
-in `docs/BACKLOG.md`, where all four are listed.
+**Three known gaps are published** on the sources page under *What the checks do not establish*:
+the prose one, the sub-100 review and the screen reader. Three more are candidates for a fourth
+and none is on the page: that a figure the data layer never recorded is reported and never
+refused, that a `historical_literals` exemption is granted on trust and nothing re-checks it, and
+that a correction inside an edition is seen only where the publisher names its table by
+identifier. The first is the one a reader is most affected by. Which, if any, earns the space is
+an editorial decision in `docs/BACKLOG.md`, where the candidates are listed. Do not take the
+count from here: this sentence said "four" while the backlog listed three candidates and the page
+published three limits.
+
+**What the audit changed in the apparatus, 31 July 2026.** Five checks were hardened, each
+negative-tested in both directions:
+
+- The evidence quote match is **boundary-anchored**. It was a bare substring test, so `24.9 billion`
+  answered for `4.9` and `1,313` answered for `313`.
+- `review_due` **fires when the date passes**. It was validated as a declaration and read by nothing,
+  so the error message's own words, "when this page falls due", described a property no code asked
+  about, and every page outside `content/claims/` could pass its date green.
+- A **Nunjucks page must carry `last_reviewed`**. Only markdown did, while the README promised every
+  page carried one.
+- The **language rules and the glossary-link check reach `data/` prose**. The literal scan had been
+  extended there and these two were left behind.
+- **Neither validator now discards its findings** on a dateless series point or an unparseable URL.
+  Both threw on exactly the malformed input they exist to report, after collecting errors and before
+  printing them, so the one run with something useful to say printed a stack trace instead.
+
+**One was written, tested and deliberately reverted**, and it is the most useful of the six.
+Firing `check-evidence` on a regrade **into** the derived set works, and run against `main` it failed
+immediately on the audit's own regrade of `asylum-administrative-outcomes`. It was reverted because
+landing it turns the branch red until that record has an evidence entry, and the entry needs verbatim
+quotes from a pivot nobody had opened. **The ordering is the lesson: fetch the source, write the
+entry, then land the check.** The other way round forces a fabricated quote, which is the one thing
+the evidence contract exists to prevent.
 
 ## Working practices that earned their place
 
@@ -246,12 +301,6 @@ is already here to adding a neighbour beside it.
   something that was not there. Strip comments at every end that compares, or the agreement
   between them means nothing.
 
-- **A check that compares two sets has to compare them both ways.** The same scan was verified
-  against the built output in one direction only, which can find an overcount and never an
-  undercount, and the undercount was the reachable one: the scan's pattern was stricter than the
-  renderer's, so a citation written `{{ theme/id }}` with spaces would reach a reader and be
-  counted for nobody. Match what the RENDERER accepts, not what the source happens to say today.
-
 - **A suppression is the most dangerous code in a check, and it needs a test of its own.** The
   scale-word scan's duplicate guard was three lines, written so one figure could not be reported
   twice, and it silenced every figure written with no currency sign: not an error, not a
@@ -293,10 +342,15 @@ is already here to adding a neighbour beside it.
   total agreed only because a missed renderer and a counted non-renderer cancelled. Agreement on
   a total is not agreement on its parts.
 
-- **Find things the way that can show you are wrong.** Four figures held twice were found by
-  matching equal values, which by construction can only find pairs that already agree. Whether
-  anything had already drifted needed a different query, and "they all agree" was not evidence
-  until that query was run.
+- **Find things the way that can show you are wrong, and compare two sets in BOTH directions.**
+  Four figures held twice were found by matching equal values, which by construction can only
+  find pairs that already agree; whether anything had already drifted needed a different query,
+  and "they all agree" was not evidence until that query was run. The same shape in a check: the
+  published-figure scan was verified against the built output one way only, which can find an
+  overcount and never an undercount, and the undercount was the reachable one, because the
+  scan's pattern was stricter than the renderer's. A citation written `{{ theme/id }}` with
+  spaces would have reached a reader and been counted for nobody. Match what the RENDERER
+  accepts, not what the source happens to say today.
 
 - **Never truncate the thing you are checking for absence.** A finding that three claim cards
   were missing `period` and `source` was wrong: the check piped each front matter through
@@ -323,17 +377,22 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model has found the most serious defect in every piece of work it has read here, six times, and every time it was in the part the author was surest of.** The sixth changed the argument slightly and is recorded rather than rounded up: the author had found that defect independently an hour earlier, the first time that has happened, and the reading still returned four more beside it, two of them serious. The count is of pieces read, not of defects only a second model could have reached. On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
+- **A second model has found the most serious defect in every piece of work it has read here, six times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
 
-- **A second model reading the same code found what a self-critique had not. Twice, before that.** Two
-  rounds of critique on the series evidence check found real defects and missed the one above,
-  which a fresh reviewer reproduced in a scratch clone within one pass. On the corrections
-  watch, a self-critique found six things and missed that the series clearing key,
-  `lastUpdated`, was the one date in the data layer reaching a comparison without passing
-  `isRealDate`, so a prose date would have sorted above every ISO one and cleared every
-  correction to that series for ever. Worth doing on anything whose whole purpose is refusing
-  bad input, because self-critique is weakest exactly where the author's model of the design is
-  the thing at fault: both misses were in the part the author was surest of.
+  **The sixth reading is recorded rather than rounded up, because it changed the argument
+  slightly.** The author had found its worst finding independently an hour earlier, the first
+  time that has happened, and it still returned four more beside it, two of them serious. So the
+  count is of pieces read, not of defects only a second model could have reached. It has never
+  read one and found nothing.
+
+  **Why self-critique does not substitute for it.** Two rounds of critique on the series
+  evidence check found real defects and missed the one a fresh reviewer reproduced in a scratch
+  clone within one pass. On the corrections watch, a self-critique found six things and missed
+  that the series clearing key, `lastUpdated`, was the one date in the data layer reaching a
+  comparison without passing `isRealDate`, so a prose date would have sorted above every ISO one
+  and cleared every correction to that series for ever. Self-critique is weakest exactly where
+  the author's model of the design is the thing at fault, which is where every one of these has
+  been.
 
 ### Looking at the built page
 
@@ -415,6 +474,36 @@ is already here to adding a neighbour beside it.
   would have reverted the owner's own merged work. The edit tool caught it by reporting the file
   had changed on disk. Rebase before writing the durable documents, not after.
 
+### Auditing, and auditing your own audit
+
+Four practices the July 2026 audit paid for, all of them by getting it wrong first.
+
+**Test the inference, not just the caveat.** A finding was raised as a blocker on the strength of a
+publisher's note saying appeals data was not loaded for a release, inferring that the site's cohort
+argument was therefore biased in its own favour. Opening the table refuted it: the historical cohorts
+carry uplifts of 17 to 29 percentage points, so appeal outcomes plainly are reflected. **Reading a
+caveat and assuming its direction is the same move this site exists to correct in others**, and it
+took a deliberate test to catch, not a re-read.
+
+**A fix lands at its own site and goes stale one reference away.** Every severity change and every
+count correction during the audit landed cleanly where it was made and left exactly one remote
+reference wrong: a downgrade left a "third blocker" sentence naming the downgraded finding, two line
+numbers moved and only the action table followed, a page count changed and the CI step name did not.
+**After changing a number or a label, grep for it before committing.** The rule already existed for
+defects, under *Changing something without breaking something else*; it applies to your own edits.
+
+**A count about your own work rots exactly as fast as one about the data.** The audit's summary table
+miscounted its own findings, its launch list was headed "five items" above six, its second-model
+tally enumerated twelve under a heading saying eleven, and its publication count was wrong twice. All
+four were fixed by **deleting the count**, not by correcting it. The project already knows this about
+`data/`; it is not a different rule for prose.
+
+**Publish the command you ran, and run the command you published.** A fix replacing stale counts with
+a derivation shipped `node -e "...expression"`, which prints nothing, while the document claimed the
+query had been run and named its output. The query had been run, with `console.log`; the version
+published lacked it. **A claim about a different artefact than the one shipped** is this project's
+oldest defect, committed by the fix for it, in two files. Copy the command out of your terminal.
+
 ### Deciding what to build
 
 - **Test the mechanism before recommending it.** A scope recommended a Nunjucks filter for
@@ -485,184 +574,97 @@ validator guards.
 
 ## Prompt for a fresh session
 
-Deliberately not tied to one task, so it does not go stale as items are completed.
+Deliberately not tied to one task, so it does not go stale as items are completed. Generated to
+`docs/prompts/fresh-session.md` so it can be copied without opening this document; **this section is
+the source of truth and that file is a copy.** Regenerate it rather than editing it there.
 
-**It is a compression of this document, not a second source of truth.** Where the two
-disagree, this document is right and the prompt needs correcting.
+**Cut to about fifty lines on 31 July 2026, from just over two hundred, and re-routed at the backlog
+the same day when the audit closed and its parallel list was deleted.** The long version recited the
+rules; this one points at them. That is the opposite of the previous fix, and the reasoning
+changed because the evidence did.
 
-They have drifted twice, and the prompt was the stale copy both times: it said a check had
-overturned the review five times while the body still said three, and it said to take the
-first *unstarted* backlog item after the backlog had moved to *unfinished*, which would have
-sent a session to the wrong work. Saying "keep them in sync" did not prevent either, so here
-is what is actually copied and has to move in both places:
+**Why the long version existed, and why reciting was the wrong answer.** The prompt and this document
+drifted twice, and the prompt was the stale copy both times: it said a check had overturned the
+review five times while the body still said three, and it said to take the first *unstarted* backlog
+item after the backlog had moved to *unfinished*, which would have sent a session to the wrong work.
+The response was to trim it to rules-without-counts and track what was copied in a table. That
+table then had to grow every time a rule was added, and the drift it existed to prevent simply moved
+into it: by 31 July it listed nine copied rules, of which the prompt still carried all nine and the
+table's own accuracy had become one more thing to maintain.
 
-| Copied into the prompt | Kept here |
+**So the rule now is that the prompt copies nothing that can rot.** No counts, no rule text, no
+enumeration of what is mine. It carries four things and nothing else:
+
+| In the prompt | Why it cannot be a pointer |
 | --- | --- |
-| checks that passed while a real defect shipped | *The checking apparatus* |
-| the three questions to ask of a matching key, on both sides | *Building a check* |
-| that a second model has found the worst defect in every piece it has read | *Building a check* |
-| that verification.txt covers ten pages and not sixteen | `docs/BACKLOG.md`, not here |
-| that branches carry history `main` does not | *Where things stand* |
-| which backlog item to take, and on what wording | `docs/BACKLOG.md`, not here |
+| What to read, in what order | It is the instruction that makes every pointer work |
+| The `[me]` / `[you]` mapping | It **inverts** against the prompt's own pronouns. A session that gets it backwards does the editorial work rather than bringing it, which is the worst outcome available, and it is not discoverable by reading carefully |
+| Which list is live, and to flag a disagreement | Two lists exist only while the audit is open, and this is the window in which they can diverge |
+| Which commands must pass, and branch-and-PR | Cheap to state, expensive to omit, and neither changes |
 
-The last row is the one that bit. The prompt and this document should both use the backlog's
-word rather than inventing a third.
+Everything else is a pointer at a heading in this document. **The table above is short by design**:
+if it grows past four rows, the prompt has started reciting again and the fix is to cut it, not to
+extend the table.
 
-**The table used to be incomplete while claiming not to be**, which was the trap in it: a dozen
-copied rules carried numbers it did not track. The prompt was trimmed on 30 July for exactly that
-reason. It now recites no incidents, only rules, and each rule names the handoff heading where
-its incident lives, so the counts live in one place and the prompt points at them. Two counts
-survive in it and both are in the table. Prose that agrees in substance can diverge in wording
-without costing anything; a count cannot, which is why the trim was the fix rather than more
-diligence about keeping two copies aligned.
+**One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
+from the code block below. If you edit the block, regenerate the file and confirm the two match; if
+you edit the file, you have edited the copy and it will be overwritten.
 
 ```
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
-Read docs/BACKLOG.md first. It is the durable list of outstanding work.
-Then read docs/HANDOFF.md for how the project works and what earlier
-sessions cost. Then read the scope document for whatever you pick up,
-and do not re-derive it.
+READ FIRST, in this order, and do not re-derive what they already settle:
+  1. docs/BACKLOG.md. The one list of outstanding work, ordered, and it
+     names the launch gates that are mine. There is no second list.
+  2. docs/HANDOFF.md. How the project works, and what earlier sessions
+     cost. Its "Working practices that earned their place" section is
+     rules this project has paid for, each with the incident behind it.
+     Read it before deciding a rule does not apply to what you are doing.
+  3. The scope document for whatever you pick up.
 
-This project has no CLAUDE.md of its own. Your global instructions at
+docs/PRE-LAUNCH-AUDIT.md and verification.txt are FROZEN RECORDS, not
+work lists. Read either for the reasoning behind an item. Do not edit
+them and do not take work from them: whatever is still outstanding is in
+the backlog.
+
+This project has no CLAUDE.md. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
 
-The pre-publication review is done and its corrections landed.
-verification.txt at the repo root is the review itself; it covers
-Sections 1 to 7 and Parts 2.1 to 2.7, which is ten pages and not
-sixteen, and that distinction settled the last_reviewed question.
-
-Work is tagged [me] or [you], and the tags were written from the
-SESSION's side, so they invert against the pronouns in this prompt. Use
-the mapping, never the pronoun: [me] means a factual or mechanical change
-against a cited source, which YOU do. [you] means an editorial or
-sourcing call, which is MINE. Check it against the backlog the first time
-you use it: correction 1a marks the owner's decision [you]. Getting this
-backwards hands the editorial calls to you, which is the worst outcome
-available here. Do the [me] parts; for a [you] part, propose and ask. On
-a list that mixes both, do all the [me] work first and bring me the [you]
-decisions in one batch, because the mechanical work usually determines
-what the editorial question even is.
-
-Still mine, not yours: recording the review as passed in CHANGELOG.md,
-which is what is left of item 1; removing the robots rule, which comes
-last and is launch; and talking to five target users, which is the one
-open acceptance criterion. Do not treat any of those as done. The
-backlog also carries editorial decisions waiting on me. Where an item is
-gated on a decision of mine, that decision is written under the item, so
-read it before assuming the item is yours to start.
+ONE THING RECITED HERE, because it inverts and getting it backwards does
+the most damage available. Work is tagged [me] or [you] from the
+SESSION's side, so the tags invert against the pronouns in this message.
+Use the mapping, never the pronoun:
+  [me] = a factual or mechanical change against a cited source. YOU do it.
+  [you] = an editorial or sourcing call. It is MINE. Propose and stop.
+Check it the first time you use it: correction 1a in the backlog marks
+the owner's decision [you]. On a list mixing both, do all the [me] work
+first and bring me the [you] decisions in one batch, because the
+mechanical work usually determines what the editorial question is.
 
 TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
 told you otherwise in this message. Unfinished, not unstarted: an item
-can have phases built and still be the first one. Do not infer it from
-document order: the earlier items are mine or are launch, so the
-backlog's own preamble under "Scoped, not built" names which item to
-take, and that sentence is the instruction.
+can have phases built and still be first. Do not infer it from document
+order, because the earlier items are mine or are launch; the backlog's
+own preamble names which to take, and that sentence is the instruction.
 
-Before you start, tell me which item you are taking and what you expect
-to change. If it is larger than a session, say so and propose a split.
-If the first unfinished item turns out to be wholly gated on decisions of
-mine, do not stall and do not take them: bring me the decisions, and
-start the [me] work on the next item that is not gated, saying which you
-have moved to.
+Tell me which item you are taking and what you expect to change before
+you start. If it is larger than a session, propose a split. If it is
+wholly gated on a decision of mine, do not stall and do not take the
+decision: bring it to me and start the next ungated item, saying which.
 
-When you finish an item, mark it done in docs/BACKLOG.md with its PR and
-a date, and move it to Completed when nothing is left of it. Do not
-delete it. validate-content.mjs fails the build if a planning document
-in docs/, or any subdirectory of it, is not referenced from the backlog,
-or if the handoff stops pointing at it, so the list cannot quietly lose
-things.
+ONE DELIVERABLE PER SESSION. Audit, then fix, then critique the fix is
+three. When a critique pass is mostly finding mistakes this session
+introduced rather than defects in the work, stop and tell me.
 
-Rules this project has paid for. Each earned its place by failing first,
-and the incident behind each one is in docs/HANDOFF.md under the heading
-named beside it. Read those before you decide a rule does not apply to
-what you are doing; the prompt states rules, the handoff is why.
+Everything must pass, and run these rather than assume: npm run validate,
+npm run build, npm run a11y, and npm run check-evidence if a figure
+changed. check-releases and check-sources are network checks that gate
+nothing, so run them by hand before opening a pull request.
 
-- Every changed or new figure needs a fetched source and a verbatim quote
-  BEFORE it is written. The quote goes in data/evidence/ and CI fails
-  without it; the shape is in data/evidence/README.md. Go to the
-  publisher's data tables, not its HTML bulletin. .ods and .xlsx are zip
-  archives, so download and parse them rather than giving up when a fetch
-  cannot read them. The Commons Library returns 403; go to the Home
-  Office tables it cites. (Verifying a figure)
-- Reconcile a new figure against a total the site already publishes, not
-  only against its own source. Finding the number is not recognising it.
-  (Verifying a figure)
-- Confirming the figure you asked about is not the whole job. Do not
-  merge over what a check reveals beside its target. (Verifying a figure)
-- Check what this project has already published, or already enforces,
-  before acting on outside advice or offering me an option. (Working with
-  this project's own documents and rules)
-- A defect reported on one page usually has siblings. Grep the reasoning,
-  not just the sentence, and grep the claim rather than the page.
-  (Changing something without breaking something else)
-- Anything you add must pass, and run these rather than assume:
-  npm run validate, npm run build, npm run a11y, and npm run
-  check-evidence if a figure changed. If you add a record, LOWER
-  UNRECORDED_BASELINE in validate-content.mjs to the new count; a gap
-  between the count and the baseline is that many new unrecorded figures
-  that could arrive without failing anything. Raising it is a decision and
-  is only ever right when a SCAN widened rather than the site: say which in
-  the commit, and prove no page changed by diffing the built site.
-- check-releases and check-sources are network checks that gate nothing,
-  so run them by hand before opening a pull request: a record citing a
-  superseded edition passes every other check green.
-- Citation syntax differs by file type. Markdown uses {{theme/metric-id}};
-  Nunjucks uses {% figure "theme/metric-id" %}, because {{ }} is Nunjucks'
-  own expression syntax and would be evaluated as arithmetic, silently
-  shipping NaN. A series point can only be cited inside a chart summary,
-  with the at() filter, so a Markdown page needing one needs a metric
-  declaring series_ref instead. (How the project works)
-- Negative-test every new check, in BOTH directions, and confirm the
-  break applied by grepping for the broken text and printing the count
-  before believing the result. Negative-test the MECHANISM and the REMEDY
-  too, not only the check: do what the failure message tells an author to
-  do, and watch it work. Where a check matches a declaration against a
-  record, ask three things of the key, on BOTH sides: what it does when
-  it does not change, when it is absent, and when it is present but not
-  the shape you assumed. Every answer has to leave the check still asking
-  for something. (Building a check, and trusting it)
-- A suppression needs a test of its own, and it is where to look first.
-  Any line that decides NOT to report, a continue, an exemption, a
-  de-duplication guard, can silence far more than it was written for, and
-  a control that calls the matcher does not call the thing reading the
-  matcher's output. Test what decides, not only what parses. (Building a
-  check, and trusting it)
-- Have a second model read anything whose whole purpose is refusing bad
-  input, before you believe your own critique of it. It has found the
-  most serious defect in every piece of work it has read here, every time
-  in the part the author was surest of. Budget for it rather than
-  treating it as a last look. (Building a check, and trusting it)
-- State what a check does NOT establish in its own success message.
-  Eight times a checker here passed while a real defect shipped, every
-  time because it verified the source or the declaration rather than the
-  property a reader depends on. (The checking apparatus, and its limits)
-- Read the built output, not the build. Several defects here were
-  invisible to every green check and visible on the page. (Looking at the
-  built page)
-- If a change should not alter the output, prove it by diff. Copy _site
-  to a scratch directory before, diff -r after. It is a stronger claim
-  than reading the change, and it localises the changes you did mean.
-  (Looking at the built page)
-- Never truncate the thing you are checking for absence, and prefer the
-  query that could show you are wrong over the one that confirms you.
-  When your count disagrees with something the project independently
-  says about the same thing, the disagreement is the check. (Building a
-  check, and trusting it)
-- No em-dashes, ever. Enforced by validate-content.mjs.
-- Do not fix by bulk substitution. Sentence by sentence, in view.
-- Scoping is not progress. Build the smallest real thing. (Deciding what
-  to build)
-
-Branch FIRST, before editing anything; this project works through PRs
-even solo. Check main has not moved before you rewrite the handoff or the
-backlog. Do not delete a branch: main's history is truncated at a
-parentless commit and everything before PR #42 survives only on
-history-to-pr-41 and design-and-a11y-rounds. The handoff says which and
-why.
-
-Stop and ask about anything that needs an editorial judgement rather
-than a correction.
+Branch and PR, never straight to main, and the PR body carries the
+reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
+its PR and a date, and move it to Completed when nothing is left. Do not
+delete it.
 ```
 

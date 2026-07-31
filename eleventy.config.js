@@ -233,13 +233,20 @@ export default function (eleventyConfig) {
       /<p>\{caption\}([\s\S]*?)<\/p>\s*(<table[^>]*>)/g,
       (_, text, open) => `${open}<caption>${text.trim()}</caption>`,
     );
+    // Column headers in markdown tables ship as bare <th>. Every table written by hand and every
+    // chart table carries scope; markdown-it emits none, so four tables on this site were the odd
+    // ones out. Single-header-row tables infer reliably, so this is consistency rather than a 1.3.1
+    // failure, and doing it here means the next markdown table cannot arrive without it.
+    const scoped = html.replace(/<thead>([\s\S]*?)<\/thead>/g,
+      (whole, inner) => `<thead>${inner.replace(/<th(?![^>]*\bscope=)/g, '<th scope="col"')}</thead>`);
+
     // A marker matching no table would ship as visible junk, which is exactly the failure
     // heading-anchors had once with {#anchor}. Throwing here is the only guard: check-build
     // scans for {{ }} and {#id} and knows nothing about this syntax.
-    if (html.includes('{caption}')) {
+    if (scoped.includes('{caption}')) {
       throw new Error(`${this.page.inputPath}: a {caption} marker is not immediately followed by a table, so it would ship as visible text on the page.`);
     }
-    return html;
+    return scoped;
   });
 
   // Every table and every chart sits in a horizontally scrolling box. A box that scrolls

@@ -1,7 +1,7 @@
 This repository contains two kinds of material, licensed differently.
 
 ================================================================================
-1. CODE AND ORIGINAL WRITING — MIT Licence
+1. CODE AND ORIGINAL WRITING: MIT Licence
 ================================================================================
 
 Applies to: scripts/, any site source added later, README.md, and the original
@@ -28,7 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ================================================================================
-2. DATA — Open Government Licence v3.0 and third-party terms
+2. DATA: Open Government Licence v3.0 and third-party terms
 ================================================================================
 
 Applies to: the figures in data/.
@@ -38,7 +38,7 @@ licensed under the Open Government Licence v3.0:
 
     Contains public sector information licensed under the Open Government
     Licence v3.0.
-    http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+    https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
 
 This covers material published by the Office for National Statistics, the Home
 Office, the National Audit Office, the Office for Budget Responsibility, the

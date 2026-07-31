@@ -130,8 +130,7 @@ The two that catch people most often are worth putting in plain terms.
 {{asylum/asylum-applications}} people claiming asylum and
 {{asylum/asylum-applications-main-applicants}} main-applicant applications. Both are
 correct; they count different things. Dividing one by the other, or comparing a figure on
-one basis with a figure on the other, produces answers wrong by twenty per cent or more,
-invisibly. Every figure on this site states its basis.
+one basis with a figure on the other, produces answers wrong by roughly a fifth, invisibly. Every figure on this site states its basis.
 
 **Estimates get revised, sometimes heavily.** Net migration for the year ending December
 2024 was first published at 431,000, then about 345,000, and now stands at

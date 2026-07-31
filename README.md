@@ -12,20 +12,31 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. 16 pages from a governed data layer of **75 metric records** and
+Built and not yet launched. 17 pages from a governed data layer of **75 metric records** and
 four timeseries carrying 100 dated points, on Eleventy 3, with charts rendered as inline SVG
 at build time and no client-side JavaScript anywhere. `validate-data.mjs` counts both and
 reports 175. **46 of the 75 reach a reader**; the other 29 are unpublished reserve. Those two
 numbers are derived by `lib/published.mjs` and printed by `npm run build`, so trust the run
 over this sentence: they are typed here and nothing checks that they still agree. The site is
 deployed behind a `robots.txt` that disallows all crawlers, and every page carries a notice
-saying it is unfinished.
+saying it is unfinished. **That rule governs indexing, not access:** the site is reachable now
+by anyone with the URL, which is why the notice on every page is the thing doing the work.
 
 **The pre-publication review has been conducted, and its corrections have landed.** It ran
 on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its
 outcome was a corrections list rather than an approval: four claim pages carried "do not
 publish as written" or "substantial revision required". Those became corrections 1a to 1i,
 all of which were completed by 28 July 2026.
+
+**A whole-project pre-launch audit ran on 30 and 31 July 2026**, open as PR #70 and written up in
+`docs/PRE-LAUNCH-AUDIT.md`. Like the review before it, its outcome is a findings list rather than an
+approval. It applied the mechanical half and left every editorial and sourcing call. **Two blockers
+are outstanding, both in `content/glossary.md`**, and the finding underneath them is that the
+pre-publication review read ten of the site's pages and neither of them was on one it opened.
+
+It also found, by reading sources rather than the repository, that a headline figure on the home
+page cites a publication that does not contain it. The figure is real: it is in the Home Office
+Annual Report and Accounts 2024-25. The citation is not.
 
 **The corrections landing is not the review passing.** Of the three closing steps, two are
 settled: `last_reviewed` now carries 27 July on the ten pages the review actually read, and the
@@ -44,7 +55,7 @@ and it is deliberate.
 ## Layout
 
 ```
-eleventy.config.js      Build: citation resolution, partials, filters, four HTML transforms
+eleventy.config.js      Build: citation resolution, partials, filters, five HTML transforms
 content/                Eleventy input
   index.njk               Overview: three distinction panels, eight cards, generated periods
   migration.njk           Net migration, the two flows, reason splits, ONS vs Home Office
@@ -58,7 +69,9 @@ content/                Eleventy input
   claims/                 Seven claim checks, citing live figures by token
   _includes/              base.njk, and claim.njk for claim pages
   _data/site.js           Name, strapline, navigation
-  assets/style.css        One stylesheet
+  assets/style.css        One stylesheet, including the print rules
+  assets/favicon.svg      Inline SVG, no binary asset
+  404.md                  Served by Netlify when a link into the site goes stale
   robots.txt              Disallows all crawlers until launch
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code
 lib/series.mjs          The four timeseries and the names everything else calls them by
@@ -74,7 +87,7 @@ docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
 docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; four of five phases built
 docs/UPDATING-DATA.md           The by-hand runbook for moving the site onto a new release
-.pa11yci.json           pa11y over all 16 URLs at WCAG2AA
+.pa11yci.json           The URL list the accessibility gate runs over, at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes
 LICENCE                 MIT for code, Open Government Licence v3.0 attribution for data
@@ -133,7 +146,7 @@ timeseries therefore draws from a single publication, and the validator rejects 
 whose points carry more than one `published_date`. Refresh the whole array each release;
 never append. Mixing vintages is what made the first net migration series unpublishable.
 
-**Which table a figure came from.** 14 records and 2 series files carry `table_reference`, an
+**Which table a figure came from.** 17 records and 2 series files carry `table_reference`, an
 array naming the publisher tables behind the figure: `Vis_01`, `Asy_00a`, `Ret_01` and nine
 others. It exists so that a correction *inside* an edition can be matched to the figures it
 touches, which is the one channel through which a wrong number can sit here indefinitely, and
@@ -150,7 +163,7 @@ npm test          # data contract and content checks
 npm run validate  # the same, with the outstanding published_date list
 npm run build     # Eleventy -> _site, then the built-site checks
 npm run serve     # local dev server
-npm run a11y      # build, serve, and run pa11y over all 16 URLs
+npm run a11y      # build, serve, and run pa11y over every URL in .pa11yci.json
 npm run check-sources   # network check that every source URL still resolves
 npm run check-evidence  # every changed or new figure carries a quote (needs origin/main)
 npm run check-releases  # network check: a newer edition, or a correction inside this one
@@ -162,13 +175,19 @@ a Liquid expression, silently breaking the guarantee that no figure is hard-code
 Citations resolve in a post-render transform, and anything unresolved throws rather than
 shipping `{{...}}` to a reader.
 
-**Three Eleventy transforms run on the built HTML and the order is load-bearing.**
+**Five Eleventy transforms run on the built HTML and the order is load-bearing.**
 `resolve-citations` renders the tokens and block partials and throws on anything unresolved.
-`heading-anchors` turns `{#id}` syntax into real ids. `scrollable-regions` then wraps any
-unwrapped table and gives every scrolling box a `tabindex`, a role and a name taken from its
-caption or the heading above it. Run the last before the second and a heading still carrying
-its `{#id}` names the region, shipping raw syntax inside an `aria-label` where nothing on the
-page shows it. `check-build` caught exactly that.
+`published-counts` renders the figure counts on `/sources-and-method/` from `lib/published.mjs`
+and throws on a marker it cannot resolve. `heading-anchors` turns `{#id}` syntax into real ids.
+`table-captions` turns a `{caption}` paragraph sitting before a table into that table's
+`<caption>`. `scrollable-regions` then wraps any unwrapped table and gives every scrolling box a
+`tabindex`, a role and a name taken from its caption or the heading above it.
+
+Two orderings carry the weight. Run `scrollable-regions` before `heading-anchors` and a heading
+still carrying its `{#id}` names the region, shipping raw syntax inside an `aria-label` where
+nothing on the page shows it; `check-build` caught exactly that. Run it before `table-captions`
+and a captioned table is named by the heading above it rather than by its own caption, which is
+the text a sighted reader can see.
 
 Netlify runs `npm test` before `npm run build`, so a figure missing its source, or a claim
 citing a metric that no longer exists, fails the deploy rather than reaching anyone.
@@ -180,15 +199,19 @@ Seven checks, all in CI, all negative-tested.
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, under a ratchet whose count may not grow |
-| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. Gates the build |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **No planning document other than the backlog may carry work state**, meaning a table row marked done, withdrawn or struck, because a second list has to be kept true in two places and this project watched two diverge twice in one day. **A review date that has passed fails the build**, not merely one that was never declared, and a Nunjucks page must carry one like every other. **The language rules and the glossary-link check reach the `data/` prose that renders to a page**, which they did not until 31 July 2026. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, under a ratchet whose count may not grow |
+| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. The quote match is boundary-anchored, so one figure's digits sitting inside another do not satisfy it. Gates the build in CI, **not the Netlify deploy**, which runs only `npm test` and `npm run build` |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two questions. Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. And whether a table the site declares in `table_reference` was corrected *inside* the edition it cites, matched against the Home Office change history and reported only where the figure has not been re-read since. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
-| `npm run a11y` | pa11y over all 16 URLs at WCAG2AA. Fails the build |
+| `npm run a11y` | pa11y at WCAG2AA over every URL listed in `.pa11yci.json`. Fails the build. Pinned rather than fetched at run time, so two runs a month apart test against the same code |
 
-**Read this before trusting a green run.** Eight times in this project a checker passed while
-a real defect shipped. Every one had the same shape: the check verified a property of the
+**Read this before trusting a green run.** Repeatedly in this project a checker has passed while
+a real defect shipped, and the July 2026 audit added to the tally rather than closing it: a success
+message claiming no page writes a live value longhand while four sat on a published page, and a
+figure whose cited source does not contain it. **The count is deliberately no longer written here.**
+It was eight for a while, then nine, and a number that only ever goes up is one more thing to keep
+correct. `docs/HANDOFF.md` holds the incidents. Every one had the same shape: the check verified a property of the
 *source or the declaration* rather than the property a reader depends on, and the success
 message claimed the latter. The messages now state only what they verify. The count is
 maintained in `docs/HANDOFF.md`, which is where the incidents are; it is here because a reader
@@ -310,7 +333,7 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   against their source's cycle before publication, and every page carries the date it was
   last reviewed, but a static build cannot know how late it is at the moment someone reads
   it. Foundation section 13 says so rather than implying otherwise.
-- **23 of the 71 metric records cannot be aged**, because their sources publish irregularly:
+- **23 of the 75 metric records cannot be aged**, because their sources publish irregularly:
   the Migration Observatory (11), the Commons Library (5), the NAO (4), the ICIBI (2) and the
   OBR (1). The validator names them on every run rather than counting them as covered. The
   timeseries points cannot be aged either, because they carry no `retrieved_date`.
@@ -318,12 +341,16 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   parliamentary research PDF. The host returns 403 to every request, including deliberately
   invalid paths, with or without a browser user-agent, so an automated check cannot tell a
   live page from a dead one there. `scripts/check-sources.mjs` reports them as uncheckable
-  rather than broken. Verify by hand. 44 of 49 resolve.
+  rather than broken. Verify by hand. 43 of 48 resolve.
 - **One source URL redirects**, which usually means a newer release has superseded the
   figure: the Home Office data tables anchor.
-- **A correction is only seen where it names its table.** 14 records and 2 series files
-  declare a `table_reference`, and `check-releases.mjs` matches the Home Office change
-  history against them, but most of that history names its tables by title rather than by
+- **A correction is only seen where the publisher is watched at all.** `check-releases.mjs`
+  watches three gov.uk collections. Eight of the twelve cited publishers have no corrections
+  route of any kind, and the run says so on every invocation. The NAO is one of them: it
+  corrected HC 874 by a slip inside the PDF on 1 July 2025, and this site carried the retracted
+  wording in a record's notes until 31 July 2026 with every check green. Within the publishers
+  that are watched, 17 records and 2 series files declare a `table_reference`, and the change
+  history is matched against them, but most of that history names its tables by title rather than by
   identifier. A correction announced that way, or one to a table nobody wrote down, is
   invisible to it.
 - **Asylum work-in-progress (total casework backlog) is stale.** The last complete figure is
@@ -334,6 +361,15 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and it is what was read, but it is not VoiceOver or NVDA reading a page
   aloud.
+- **Traceability has never been checked at the far end.** Every check verifies that a figure names
+  a source. Nothing verifies that the source contains the figure, and the July 2026 audit found one
+  record where it does not. Records predating the evidence contract have never been asked, because
+  `check-evidence.mjs` fires on a value that moved or a figure that is new, and most have done
+  neither. Backfilling `data/evidence/` for every published record is the only way to know whether
+  that is one record or several.
+- **Print was unstyled until 31 July 2026**, so a printed page lost every chart's figures, which sit
+  inside a closed disclosure, and every source link's destination. Both are fixed; the print rules
+  have not been checked in a real print preview.
 
 ## Provenance
 

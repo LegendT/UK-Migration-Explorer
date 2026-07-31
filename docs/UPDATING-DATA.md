@@ -72,16 +72,19 @@ for(const f of readdirSync("data").filter(f=>f.endsWith(".json"))){
 }' ons-ltim
 ```
 
-On 30 July 2026 that prints nine `ons-ltim` metrics and two series files. Run it rather than
-counting by hand: the two series were invisible to every check here until PR #47 gave them a
-`source_id`, and a list that omits them is how an update passes validation and ships half a
-release.
+On 31 July 2026 that prints ten `ons-ltim` metrics and two series files, and the count moved
+between two sessions on 30 July. Run it rather than counting by hand: the two series were
+invisible to every check here until PR #47 gave them a `source_id`, and a list that omits them is
+how an update passes validation and ships half a release.
 
 Every record carries `source_id` for exactly this. **Series files carry one too**, as of PR #47,
-so a source that moves a series shows up here rather than being invisible. Note which of the four
-`series_ref` metrics are in scope: `net-migration`, `net-migration-2`,
-`total-long-term-immigration` and `total-long-term-emigration` are all `ons-ltim`, and moving any
-of them without its series point fails `validate-data.mjs`.
+so a source that moves a series shows up here rather than being invisible. Note which of the
+`series_ref` metrics are in scope, and moving any of them without its series point fails
+`validate-data.mjs`. There are **five**, and they are **not** all ONS, which the first version of
+this runbook got wrong: `net-migration`, `net-migration-2`, `total-long-term-immigration` and
+`total-long-term-emigration` are `ons-ltim`, and `asylum/asylum-applications-2025` is
+`ho-immigration-stats`. Count them from the data rather than from this sentence, which is what
+`npm run validate` prints under "Figures held twice".
 
 Do not touch a figure whose `source_id` is not the one you are updating. A release you are not
 reading is not a release you can evidence.
@@ -182,8 +185,10 @@ grep -rn "series\." content/*.njk             # charts, which no figures: block 
 
 `content/index.njk` carries **no** `figures:` block at all: the home page draws from
 `dashboard.json` card refs. And no page declares a series under `figures:` anywhere, so for a
-move of `asylumApplicationsTimeseries.json` or `asylumBacklogTimeseries.json`, neither of which
-is protected by a `series_ref` metric, the front-matter query returns nothing at all.
+move of `asylumApplicationsTimeseries.json` or `asylumBacklogTimeseries.json`, the front-matter
+query returns nothing at all. Of those two, only the backlog series has no `series_ref` metric
+protecting it: `asylum/asylum-applications-2025` declares `asylumApplications@2025`, so the
+applications series cannot drift from its metric in silence.
 
 **A third kind of prose sits between the two rules above, and it renders to the most-read page.**
 `dashboard.json`'s `whatThisMeans` prints on the home page, and `meta.json`'s `keyCaveats` print
@@ -215,7 +220,8 @@ an earlier release, and the single-vintage rule enforces it, so do not append po
   prose date, which is how the `vintage` field beside it is written, sorts above every ISO date
   and would have cleared every correction to that series for ever. Guarded since PR #48, and the
   reason the guard exists is worth knowing when you are typing the field.
-- Keep the four `series_ref` metrics in step, or the build fails.
+- Keep every `series_ref` metric in step with the point it names, or the build fails. There are
+  five, and one of them is Home Office rather than ONS.
 - Evidence is **per array and per release**, carrying the vintage, the point count and a quote
   holding both ends. `data/evidence/README.md` has the shape.
 - **Companion blocks are separate series with their own release.** `netMigration.historical` is
