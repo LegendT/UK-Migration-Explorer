@@ -12,22 +12,24 @@ marked done, withdrawn or struck. That rule exists because the pre-launch audit 
 list, the two diverged twice in a day, and this file was briefly edited to say the other one was
 live. The resolution did not hold, so it is a build failure now.
 
-Last updated 31 July 2026, after fifteen pull requests, #54 to #68.
+Last updated 31 July 2026. The pull request count that sat on this line was stale and is deleted
+rather than corrected, which is this project's rule for a count about its own work.
 
-**A whole-project pre-launch audit is open in `docs/PRE-LAUNCH-AUDIT.md`**, PR #70, on branch
-`pre-launch-audit`. It covers code, data, content, documentation and accessibility, and like the
+**A whole-project pre-launch audit was written up in `docs/PRE-LAUNCH-AUDIT.md`** and merged as
+PR #70. It covers code, data, content, documentation and accessibility, and like the
 pre-publication review before it, its outcome is a findings list rather than an approval. It applied
 the mechanical half and left every editorial and sourcing call.
-
-**The prompt for a fresh session is generated to `docs/prompts/fresh-session.md`** from the
-handoff, so it can be copied without opening a 700-line document. The handoff remains its source
-of truth.
 
 **It closed on 31 July 2026 and its document is frozen.** It carried its own action list for a day,
 which was the mistake: two lists meant every change had to land twice, and they diverged twice.
 Everything still outstanding from it is in this file, under *From the pre-launch audit* below.
 `docs/PRE-LAUNCH-AUDIT.md` is now a findings record like `verification.txt`, read for reasoning and
 never edited.
+
+**The prompt for a fresh session is generated to `docs/prompts/fresh-session.md`** from the
+handoff, so it can be copied without opening a 700-line document. The handoff remains its source
+of truth. It sat between the two paragraphs above until 31 July, so "It closed" read as though the
+prompt had.
 
 **What to take, and in what order, is one sentence and it is not this one.** It lives under
 *Scoped, not built* below, beginning "This sentence governs the whole file". It is the only place
@@ -41,7 +43,9 @@ gate belongs and a session reading only the backlog must not miss them:
    `Do not add`, calls the later figure "final outcome" where the Home Office says "latest outcome",
    attributes it to appeals when the publisher says "following appeals and reconsiderations", and
    omits administrative outcomes from the exclusions. The Home Office's own wording is quoted in the
-   audit, fetched 31 July. **[you]**, wording.
+   audit, fetched 31 July. **[you]**, wording. **Its prerequisite landed on 31 July 2026, PR #72**:
+   the record this entry is meant to be rebuilt on no longer attributes a phrase to the Home Office
+   that the Home Office does not use, so the two now disagree only where the glossary is wrong.
 2. **`content/glossary.md`, the Net fiscal impact entry.** It still says "a range that spans zero",
    which correction 1b retired from the two claim pages that link to it, both of which carry a notice
    saying they no longer do this. Two paragraphs, not four words. **[you]**, wording.
@@ -84,20 +88,44 @@ publications during the audit found three defects, one of them a headline figure
   publish without re-checking" and it was 43 days stale. It is unpublished reserve, so no reader sees
   it, which is why this is not a gate. **[you]**.
 
-### A2. Three corrections to the grant-rate record, and they are mechanical
+### A2. The corrections to the grant-rate record. DONE (PR #72, 31 July 2026)
 
-The Home Office's own wording is quoted in the audit, fetched 31 July. All three are **[me]**.
+Marked done here rather than moved to *Completed*, because the rest of this section is open and
+section 3 already treats a finished phase of an unfinished item this way.
 
-- Remove "the Home Office calls the later figure **the latest recorded outcome**". It does not use
-  that phrase; its terms are "latest outcome" and "latest decision".
-- Correct **"between 2010 and 2020"** wherever the publisher's 17-to-29 point range is quoted. The
-  Home Office publishes it for 2007 to 2020. Three sites: the record notes, `content/asylum.njk:95`,
-  and `content/claims/refused-asylum-seekers-are-eventually-recognised.md:44`.
-- Reword "Do not add a cohort uplift to this rate" so it reads as this site's rule rather than as
-  something the Home Office said. It is a sound rule and no publisher sentence states it.
-- Record `Asy_D04` notes 4 and 5 in that record: outcomes are as at January 2026, and appeals data
-  was not loaded for this release. Note the publisher disagrees with itself, the bulletin saying
-  April 2026, so say which was followed and why.
+**The bulletin was fetched and searched rather than the audit's quotation of it trusted.** "Latest
+recorded outcome" appears nowhere in it; the publisher's terms are "latest outcome" and "latest
+decision". The record no longer attributes the phrase, and neither does the refused-asylum claim
+page, which said "Its own label for the later figure is the latest recorded outcome" and which the
+audit noted as propagation without listing as work. That page's other use of the phrase, describing
+the measure rather than attributing it, is left alone: the audit says that use is unremarkable.
+
+**The publisher's 17 to 29 point range now carries the window the publisher states it for, 2007 to
+2020.** It was written at the record and at four prose sites; the audit named the record and two of
+the four. The other two are both on the claim page, in its "three reference periods" caution and in
+the sentence warning that the gap is a cohort measurement rather than a current rate. The site's own
+cohort reading, a fifth to a half of each **2010 to 2020** cohort, is deliberately untouched: that
+window is this site's, and is not the publisher's range.
+
+"Do not add a cohort uplift to this rate" now reads as this site's rule.
+
+**`Asy_D04` notes 4 and 5 are recorded, and the publisher's disagreement with itself is settled in
+the record.** Note 4 gives outcomes as at January 2026 and note 5 says appeals data was not
+available at extraction for this release; the bulletin dates the same outcomes to "the point of data
+extraction in April 2026"; `Asy_04`'s note 42 gives no date at all. **January is followed**, being
+the date the cohort table publishes for itself and the earlier of the two, so the record claims no
+more currency than the publisher's own table does. Reversing that is a one-word edit.
+
+**Two things that checking rather than assuming produced.** The record's `Asy_04` and its "note 48"
+are both right and neither was touched: the summary workbook carries note 48 verbatim under Asy_04,
+while the detailed workbook numbers the identical sentence 13 under `Asy_D04`. And `Asy_D04` is
+declared in `table_reference` now, which the validator requires once a record names a table in its
+own prose, and which puts that table under the corrections watch.
+
+**Value unchanged at 39%**, so there was nothing to evidence, though the bulletin confirms it and
+the 49% and 77% beside it. `retrieved_date` was deliberately **not** bumped: re-reading the wording
+is not re-reading the figure, and moving that date clears the corrections watch, which is the
+runbook defect a second model found on 30 July.
 
 ### A3. Checks worth hardening, none of them urgent
 
@@ -315,13 +343,8 @@ this is the only place the sequence is stated.
 
 **Take, in this order:**
 
-1. **A2, the three corrections to the grant-rate record**, under *From the pre-launch audit* above.
-   `[me]`, mechanical, the publisher's wording already quoted. **It comes first because it is the
-   prerequisite for the launch gate behind it:** the glossary entry is meant to be rebuilt on that
-   record, and the record currently attributes a phrase to the Home Office that the Home Office does
-   not use. Fixing the authority before the page that cites it makes the owner's decision cleaner.
-2. **A3, the checks worth hardening**, and **A5's two `[me]` items**. Small, independent, no gates.
-3. **Item 4 below, the figures the data layer never recorded.** This was the first item before the
+1. **A3, the checks worth hardening**, and **A5's two `[me]` items**. Small, independent, no gates.
+2. **Item 4 below, the figures the data layer never recorded.** This was the first item before the
    audit and is now behind it. Item 3's only remaining phase needs the owner's sign-off rather than a
    build, so it is not work a session can take.
 
