@@ -129,7 +129,74 @@ reverted. It is recorded here because it is this project's own lesson arriving f
 direction: a tool that reformats what it touches will make changes nobody asked for, and reading the
 diff is what catches them.
 
-### What is left to fix before launch
+### The actionable list
+
+Everything outstanding, in one place, in the order it should be done. **Owner** means only you can
+decide it. **Session** means a session can do it and the answer is already established here.
+
+#### Blocking launch
+
+| # | Do this | Where | Who |
+| --- | --- | --- | --- |
+| 1 | Establish where **£2.1 billion** came from. Then either re-source the record and write an evidence entry, or replace it with HC 874's £1.3bn over seven months, or remove the hotel row and say why. It renders in the costs table, the costs prose and the home page card | `fiscal/home-office-spending-on-asylum-hotel-accommodation` | Owner |
+| 2 | Disclose that this edition's cohort table **has no appeals data** (Asy_D04 note 5), and say which way the gap cuts | the refused-asylum claim page, `asylum.njk:95`, and the grant-rate record's notes | Owner |
+| 3 | Rebuild the **Grant rate** glossary entry on the publisher's wording: "latest outcome", "following appeals and reconsiderations", "each year of claim between 2007 and 2020", and add "and administrative outcomes" to the exclusions | `content/glossary.md:225` | Owner |
+| 4 | Rebuild the **Net fiscal impact** glossary entry: separate studies of different periods, groups and methods, small in magnitude, positive in some and negative in others, no single correct figure. Both paragraphs, not four words | `content/glossary.md:363` | Owner |
+| 5 | Remove "the Home Office calls the later figure **the latest recorded outcome**". The Home Office does not use that phrase | grant-rate record notes, and `refused-asylum...md:54` | Session |
+| 6 | Correct **"between 2010 and 2020"** to 2007 to 2020 wherever the publisher's 17-to-29 range is quoted, or stop attributing that range to a narrowed window | grant-rate record notes | Session |
+| 7 | Reword "Do not add a cohort uplift to this rate" so it reads as the site's rule rather than as reported from the Home Office | grant-rate record notes | Session |
+| 8 | Review the **six pages the pre-publication review never opened**, glossary first, against `docs/PRE-PUBLICATION-REVIEW.md` | `index.njk`, `common-claims.njk`, `glossary.md`, `sources-and-method.md`, `about.md`, `style-guide.md` | Owner |
+| 9 | Backfill `data/evidence/` for every reader-facing record, or accept that traceability is unverified for those that predate the contract | `data/evidence/` | Owner |
+
+#### Should be done before launch, not strictly blocking
+
+| # | Do this | Where | Who |
+| --- | --- | --- | --- |
+| 10 | Make `breakAfter` self-insuring so a methodology break appears in the `<desc>` and the data table, not only as SVG text. Level A failure today on the flows chart | `lib/charts.mjs:100` | Session |
+| 11 | Qualify the success message so it does not claim no page writes a live value longhand while four sit on `/sources-and-method/` under an exemption | `validate-content.mjs:943` | Session |
+| 12 | Add a contact route that is not a GitHub account | `base.njk:59`, `/about/` | Owner |
+| 13 | Make the two strongest gates gate the deploy, or state in the README which pipeline each gates | `netlify.toml`, `README.md` | Owner |
+| 14 | Pin `pa11y-ci`, `http-server` and `start-server-and-test` as devDependencies and drop `npx --yes` | `package.json` | Session |
+| 15 | Add a print stylesheet: open chart tables, print link URLs, drop nav and skip link, **keep** the pre-launch banner | `content/assets/style.css` | Session |
+| 16 | Widen the README's corrections limit: it is not only that tables are named by title, it is that only three gov.uk collections are watched and eight of twelve publishers have no corrections route | `README.md:324` | Session |
+| 17 | Fix `http://` to `https://` on the OGL link, both places | `base.njk:57`, `LICENCE:41` | Session |
+| 18 | Scope the licence to cover `content/`, `lib/` and the rest, or invert it | `LICENCE:7` | Owner |
+
+#### Mechanical, safe, small
+
+| # | Do this | Where | Who |
+| --- | --- | --- | --- |
+| 19 | Report every note restating another record's value, so an update knows which notes to re-read. The scan exists in finding D1 | `validate-data.mjs` | Session |
+| 20 | Fire `check-evidence` on a `confidence_level` change into the derived set, not only on a value change | `check-evidence.mjs` | Session |
+| 21 | Boundary-anchor the evidence quote match so one figure's digits inside another do not satisfy it | `check-evidence.mjs:115` | Session |
+| 22 | Make `review_due` actually fire when the date passes, validate `last_reviewed`, and call the check for the glossary | `validate-content.mjs:32` | Session |
+| 23 | Require `last_reviewed` on `.njk` pages by narrowing the conditional, **not** by deleting it | `validate-content.mjs:494` | Session |
+| 24 | Run `checkEditorial` and `checkGlossaryLinks` over the `data/` prose that renders to pages | `validate-content.mjs:911` | Session |
+| 25 | Stop the validators throwing away collected findings on a malformed date or URL | `lib/series.mjs:42`, `validate-data.mjs:83` | Session |
+| 26 | Move `STYLE_FILES` out of the per-directory loop, and stop the two `catch` blocks swallowing every error | `validate-content.mjs:317` | Session |
+| 27 | Extend the `series_ref` comparison beyond `value` once the confidence convention is settled | `validate-data.mjs` | Owner then session |
+| 28 | Raise chart SVG font sizes so they clear about 11px at the 32rem floor | `style.css:409` | Session |
+| 29 | Add `scope="col"` to markdown table headers in the `table-captions` transform | `eleventy.config.js:230` | Session |
+| 30 | Point `aria-describedby` at the visible summary instead of duplicating it into `<desc>`, after testing in a screen reader | `lib/charts.mjs:114` | Session |
+| 31 | Add a favicon and a 404 page | `content/` | Session |
+| 32 | Add `<link rel="canonical">` and make `site.url` live | `base.njk` | Session |
+
+#### Decisions only you can take
+
+| # | The question |
+| --- | --- |
+| 33 | Which confidence convention wins between the metrics and the series, F0-3 |
+| 34 | Whether `og:` tags should lead with the claim or the correction on a claim page, C2 |
+| 35 | Whether to cut "the two longest and most pointed checks", K5. Recommended: cut |
+| 36 | Whether the `.netlify.app` domain is the launch domain, C5 |
+| 37 | Whether `/sources-and-method/` publishes a fourth limit, and which |
+| 38 | The K1 residue: whether to be more precise than the NAO about 76% being a seven-month share and 35% a point-in-time headcount |
+| 39 | Whether the claim card's duplicated review date stays, D3 |
+| 40 | The `most-immigration-is-asylum` denominator: state 10.8% of all immigration alongside the 14% non-EU+ share |
+
+---
+
+### What is left to fix before launch, in prose
 
 **Five items, and this list used to say eight.** Three of the eight had already been applied on this
 branch when the list shipped, and the list went on naming them in the present tense while the
@@ -379,12 +446,40 @@ opening words:
 > "Estimated grant rate at initial decision in this data table will not match the grant rate in the
 > 'initial decisions' dataset as they relate to a different cohort of initial decisions."
 
-**One thing reported by the research pass that this audit has NOT independently verified**, stated
-because it would matter if true: that Asy_D04 note 5 in the year ending March 2026 release says
-"Data on appeals was not available at the time of data extraction for this release, due to ongoing
-work as immigration data transitions to a new case working system." If that is right, every statement
-the site makes about post-appeal outcomes on this edition needs a caveat it does not currently carry.
-**Confirm before acting on it.** It came from a spreadsheet this audit did not open itself.
+---
+
+### 0A-ter. BLOCKER. This release has no appeals data, and the site argues from it without saying so
+
+**Verified directly on 31 July 2026** by downloading
+`outcome-analysis-asylum-claims-datasets-mar-2026.xlsx` and reading its Notes worksheet. Rows 5 and
+9 of the "Notes for Asy_D04" table:
+
+| Note | Text |
+| --- | --- |
+| 4 | "The data shows the latest case outcomes on asylum claims **as at January 2026**." |
+| 5 | "**Data on appeals was not available at the time of data extraction for this release**, due to ongoing work as immigration data transitions to a new case working system. Updated data will be included in a future edition of the Immigration system statistics release." |
+
+The cohort analysis in the year ending March 2026 release therefore reports "latest outcomes" that
+**do not include appeal outcomes**. The site says nothing about this anywhere.
+
+**Why this is a blocker rather than a caveat to add later, and it is about fairness rather than
+accuracy.** The page that leans hardest on this table is
+`content/claims/refused-asylum-seekers-are-eventually-recognised.md`, whose whole argument is that
+between a fifth and a half of each 2010 to 2020 cohort ended without a grant. Appeals are the single
+mechanism by which a refusal becomes a grant. **The missing data runs in the direction that supports
+the site's own refutation**: including appeals can only move outcomes towards more grants, which is
+the claim the page exists to correct.
+
+The site is arguing from a table whose publisher has flagged that the data most favourable to the
+opposing case is absent from this edition, and it does not disclose it. That is exactly the kind of
+selective silence the site was built to correct in others, and correction 1h already went through
+this page once for an invalid comparison on the same subject.
+
+`content/asylum.njk:95` carries the same 2010 to 2020 cohort framing and needs the same disclosure.
+
+**Fix.** Disclose the gap wherever the cohort figures are used, in the record's notes and on both
+pages, and say which way it cuts. Then re-check when the Home Office publishes the updated data it
+promises. **[you]** for the wording, and this one should not wait for launch.
 
 ---
 
