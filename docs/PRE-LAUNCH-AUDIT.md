@@ -200,20 +200,116 @@ verdict rather than from the claim, not for having none.
 **DECISION for the owner:** whether to add `og:title`, `og:description` and `og:url`, and if so
 whether a claim page's `og:title` should lead with the claim or with the correction.
 
+**C3a. HIGH. The only way to report an error is a GitHub account.**
+
+`content/_includes/base.njk:59` is the site's entire corrections intake:
+
+```html
+<p><strong>Found an error?</strong> Tell us which figure and what you think it should be:
+  <a href="https://github.com/LegendT/UK-Migration-Explorer/issues/new">report it here</a>.
+```
+
+There is no email address, no contact form and no `mailto:` anywhere in `content/`. Grepping
+`about.md`, `sources-and-method.md` and `base.njk` returns nothing.
+
+The site publishes a corrections policy, discloses revisions on the claim pages they change, and
+tells readers every figure change is recorded in a public changelog. That whole apparatus depends on
+someone telling it when a figure is wrong, and the only door is a GitHub account and a working
+knowledge of issue trackers.
+
+The audience makes this worse rather than better. `docs/BACKLOG.md` records the chosen success
+measure and its reasoning: the audience statement names "**professionals who need a citation
+quickly**", and the measure is being cited by a named outlet or briefing. A journalist on deadline, a
+Commons Library researcher, a teacher or a member of the public who spots an error will not open a
+GitHub issue. The people most able to catch a subtle statistical error are close to the least likely
+to use that channel.
+
+This is not a defect in anything built. It is a gap in the trust loop the site publishes, and it is
+the cheapest one on this list to close.
+
+Fix: add one contact address to the footer and to `/about/`, beside the GitHub link rather than
+instead of it. A role address rather than a personal one, if the ownership disclosure on `/about/`
+makes that appropriate. If the decision is deliberately to accept a GitHub-only channel, that
+belongs on `/sources-and-method/` next to the corrections policy, where a reader can see what the
+policy costs them.
+
 **C3. LOW. No favicon.** `_site/assets/` holds only `style.css`. Every browser request produces a
 404 on `/favicon.ico`, and a tab with a blank document icon is a small credibility cost on a site
 whose subject is rigour. An inline SVG favicon needs no new asset pipeline and no JavaScript.
 
-**C4. LOW. The Open Government Licence link uses `http://`.**
+**C4. LOW. The Open Government Licence link uses `http://`, in both places it appears.**
 
-`content/_includes/base.njk:57`:
+`content/_includes/base.njk:57`, which every page renders:
 
 ```html
 <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">
 ```
 
-The host serves HTTPS. This is the attribution link required by the licence the site's data is
-used under, so it is the one outbound link that should be beyond reproach. One character.
+and `LICENCE:41`:
+
+```
+    http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+```
+
+The host serves HTTPS. This is the attribution link required by the licence the site's data is used
+under, so it is the one outbound link that should be beyond reproach. Two characters, in two files.
+
+Recorded as a pair deliberately. The project's own lesson from `docs/BACKLOG.md` item 7 is "grep the
+claim, not the page", after the pre-launch banner was corrected on every page and the identical
+sentence survived in `content/robots.txt`. Fixing only the one a reader sees would repeat that.
+
+**C5. MEDIUM. The site's own editorial writing is not covered by either licence clause.**
+
+`LICENCE:7` scopes the MIT clause to "**scripts/, any site source added later, README.md, and the
+original editorial writing in docs/**". `LICENCE:34` scopes the OGL clause to "**the figures in
+data/**".
+
+Between them they do not name `content/`, which is every word of the sixteen pages a reader
+actually reads, nor `lib/`, `eleventy.config.js`, `.github/`, `CHANGELOG.md`, nor the prose fields
+inside `data/` that render to a page. That last one matters on its own terms: the card paragraphs in
+`dashboard.json` and the caveats in `meta.json` are this project's writing, not Crown copyright
+material, and clause 2 covers `data/` as "the figures".
+
+"Any site source added later" can be stretched to cover `content/` and `lib/`, but a reuser should
+not have to guess, and a citing outlet's legal desk will not. For a project whose success measure is
+being cited, and which asks reusers to keep its source metadata attached, the licensing of its own
+prose should be the clearest thing in the file.
+
+Fix: enumerate the directories, or invert the scope so clause 1 reads "everything in this repository
+except the figures in `data/`, which are covered by clause 2 below".
+
+**C6. LOW. `LICENCE` carries two em-dashes and the house-style check cannot see it.**
+
+`validate-content.mjs:303` sets `STYLE_DIRS = ['content', 'docs', 'scripts', 'lib', 'data',
+'.github']` and `STYLE_FILES = ['README.md', 'CHANGELOG.md', 'eleventy.config.js', 'netlify.toml']`.
+`LICENCE` is in neither, so its two em-dashes at lines 4 and 31 pass a check whose stated subject is
+"authored copy".
+
+`verification.txt` also has 22, and that one is deliberate and documented: `docs/BACKLOG.md:20` says
+it is kept at the repository root precisely because the style scan would reject it. `LICENCE` has no
+such exemption recorded, so it is an unnoticed gap in the check's scope rather than a decision.
+
+Fix: add `LICENCE` to `STYLE_FILES` and replace the two em-dashes, or record it as exempt beside
+`verification.txt` so the gap is a decision.
+
+**C7. MEDIUM. "Launch" is discoverability, not publication, and the docs read as though it were both.**
+
+`README.md:21` says "The site is **deployed** behind a `robots.txt` that disallows all crawlers", and
+`docs/BACKLOG.md:149` frames removing that file as "**That is launch.**"
+
+Both are accurate about what `robots.txt` does and neither says what it does not do. `Disallow: /` is
+a request to well-behaved crawlers. It is not access control, it does not make a URL private, and it
+does not stop a URL that someone shares from being opened, quoted or archived. The site is
+published today. What has not happened is indexing.
+
+The consequence is small in practice, and the reason it is small is a deliberate decision already
+taken: every page carries the pre-launch banner, so a reader who arrives early is told what they are
+reading. That is the mitigation working. The finding is that the documents describe a gate that does
+not exist, on a project whose standard is that a claim must not be stronger than the mechanism
+behind it.
+
+Fix: one sentence in the README saying the site is reachable now and that the robots rule governs
+indexing rather than access. `content/robots.txt` already gets this right in its own comment.
 
 **C5. DECISION. The site is served from a `netlify.app` subdomain.**
 
