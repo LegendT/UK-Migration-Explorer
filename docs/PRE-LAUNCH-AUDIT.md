@@ -54,7 +54,7 @@ should not contain one.
 
 | Pass | Section | Headline |
 | --- | --- | --- |
-| Content and editorial precision | 0A, 0B, K | Both blockers, and the neutrality assessment |
+| Content and editorial precision | 0A, 0B, K | The two glossary blockers, and the neutrality assessment |
 | Data layer integrity | F0 | No published value is internally wrong |
 | Documentation consistency | A, J | A count typed where a run should be cited, repeatedly |
 | Checking apparatus, `scripts/` and `lib/` | I | The ninth instance of the project's own pattern |
@@ -91,7 +91,7 @@ changed what a reader sees.
 | The contract description, which omitted `id` and `source_id` | `meta.json` |
 | `.history/` ignored | `.gitignore` |
 
-**Not applied, and why.** Both blockers and every other content change need wording that is yours,
+**Not applied, and why.** All three blockers and every other content change need wording that is yours,
 per the project's own tagging of that class. `K1` needs HC 874 re-read. `F0-3` turned out not to be
 mechanical at all and this document now says so. Everything in sections B, C, D1, E and I is a code,
 infrastructure or design change rather than a correction, including the `.gitignore`-adjacent ones,
@@ -139,7 +139,7 @@ decide it. **Session** means a session can do it and the answer is already estab
 | # | Do this | Where | Who |
 | --- | --- | --- | --- |
 | 1 | Establish where **£2.1 billion** came from. Then either re-source the record and write an evidence entry, or replace it with HC 874's £1.3bn over seven months, or remove the hotel row and say why. It renders in the costs table, the costs prose and the home page card | `fiscal/home-office-spending-on-asylum-hotel-accommodation` | Owner |
-| 2 | Disclose that this edition's cohort table **has no appeals data** (Asy_D04 note 5), and say which way the gap cuts | the refused-asylum claim page, `asylum.njk:95`, and the grant-rate record's notes | Owner |
+| 2 | *Withdrawn 31 July. Was "disclose the appeals gap and say which way it cuts". Testing the inference refuted it; see 0A-ter. The disclosure survives as a MEDIUM, listed below.* | | |
 | 3 | Rebuild the **Grant rate** glossary entry on the publisher's wording: "latest outcome", "following appeals and reconsiderations", "each year of claim between 2007 and 2020", and add "and administrative outcomes" to the exclusions | `content/glossary.md:225` | Owner |
 | 4 | Rebuild the **Net fiscal impact** glossary entry: separate studies of different periods, groups and methods, small in magnitude, positive in some and negative in others, no single correct figure. Both paragraphs, not four words | `content/glossary.md:363` | Owner |
 | 5 | Remove "the Home Office calls the later figure **the latest recorded outcome**". The Home Office does not use that phrase | grant-rate record notes, and `refused-asylum...md:54` | Session |
@@ -161,6 +161,7 @@ decide it. **Session** means a session can do it and the answer is already estab
 | 16 | Widen the README's corrections limit: it is not only that tables are named by title, it is that only three gov.uk collections are watched and eight of twelve publishers have no corrections route | `README.md:324` | Session |
 | 17 | Fix `http://` to `https://` on the OGL link, both places | `base.njk:57`, `LICENCE:41` | Session |
 | 18 | Scope the licence to cover `content/`, `lib/` and the rest, or invert it | `LICENCE:7` | Owner |
+| 18a | Record `Asy_D04` note 5, appeals data not loaded at this extraction, and note 4, outcomes as at January 2026, in the grant-rate record's notes. Moved here from blocking when 0A-ter was downgraded | grant-rate record notes | Session |
 
 #### Mechanical, safe, small
 
@@ -211,9 +212,9 @@ Everything else here can follow the launch. These cannot, in this order:
    glossary blockers from the top of this list on 31 July.
 1. **The two glossary blockers, 0A and 0B.** Both are the site publishing statistical reasoning its
    own data files forbid, on the page its claim pages cite as the authority. Wording is yours.
-2. **Review the six pages the pre-publication review never opened**, finding 0. Both blockers are on
-   one of them, and the decision to record the review as passed currently rests on ten pages of
-   sixteen.
+2. **Review the six pages the pre-publication review never opened**, finding 0. Both *glossary*
+   blockers are on one of them, and the decision to record the review as passed currently rests on
+   ten pages of sixteen.
 3. **The 76% period question**, K1, which needs HC 874 re-read.
 4. **The flows chart's methodology break**, E4, a Level A accessibility failure and a statistical
    caution the site's own purpose depends on.
@@ -227,10 +228,11 @@ The applied-fixes table above is the record of what changed.
 
 ## Findings
 
-### 0. The systemic finding: the review covered ten pages of sixteen, and both blockers are on one it never opened
+### 0. The systemic finding: the review covered ten pages of sixteen, and both glossary blockers are on one it never opened
 
-**Read this before the two blockers below, because it is the reason they exist and it bears directly
-on the launch decision that is still outstanding.**
+**Read this before the two glossary blockers below, because it is the reason they exist and it bears
+directly on the launch decision that is still outstanding.** It does not explain 0-ZERO, which was
+found on a page the review did read.
 
 `docs/BACKLOG.md:31` records what the pre-publication review of 27 July actually read.
 `verification.txt` has fourteen headings, mapping to `asylum.njk`, `costs.njk`, `migration.njk` and
@@ -241,8 +243,10 @@ is honestly disclosed on every page.
 The six the review never opened are `index.njk`, `common-claims.njk`, **`glossary.md`**,
 `sources-and-method.md`, `about.md` and `style-guide.md`.
 
-**Both blockers this audit found are in `glossary.md`.** Two independent passes reached it
-separately. That is not a coincidence about the glossary; it is what an unreviewed page looks like
+**Both of the glossary blockers are in `glossary.md`.** Two independent passes reached it separately.
+There is a third blocker, 0-ZERO, which is not a glossary defect and was found by reading a source
+rather than by reading a page. This sentence read "both blockers this audit found" until 0-ZERO
+existed, and was left standing for one commit after it did. That is not a coincidence about the glossary; it is what an unreviewed page looks like
 when someone finally reads it.
 
 The consequence for the decision in `docs/BACKLOG.md` item 1, step 3, recording the review as passed,
@@ -448,7 +452,54 @@ opening words:
 
 ---
 
-### 0A-ter. BLOCKER. This release has no appeals data, and the site argues from it without saying so
+### 0A-ter. MEDIUM. An undisclosed publisher caveat, and a blocker this audit withdrew
+
+**Downgraded from BLOCKER on 31 July 2026, by testing its own inference against the data.** The
+disclosure gap is real. The argument built on top of it was not, and it was the more serious half.
+
+**What was claimed and is now withdrawn.** The first version said the missing appeals data "runs in
+the direction that supports the site's own refutation", implying the cohort figures the refused-asylum
+claim page relies on are biased in the site's favour. That was an inference from note 5 alone,
+without opening the table it describes.
+
+**Opening the table refutes it.** Reading `Asy_D04` from the spreadsheet directly and computing the
+gap between the initial and the latest grant rate for every cohort:
+
+| Year of claim | Initial | Latest | Gap |
+| --- | --- | --- | --- |
+| 2010 | 27.2% | 50.0% | +22.8 |
+| 2012 | 36.6% | 53.7% | **+17.1** |
+| 2015 | 40.6% | 64.3% | +23.7 |
+| 2017 | 32.6% | 61.5% | **+28.9** |
+| 2020 | 60.3% | 80.1% | +19.7 |
+| 2021 | 70.9% | 80.2% | +9.3 |
+| 2024 | 41.4% | 44.0% | +2.6 |
+
+**If this release's cohort table were missing appeal outcomes, the historical uplifts would be small.
+They are not.** The 2007 to 2020 cohorts carry gaps of 17.1 to 28.9 percentage points, which is a
+mature, fully-worked-through pattern. Note 5 therefore describes appeal data not loaded at *this*
+extraction, affecting recent cases, not the absence of historical appeal outcomes. The small gaps on
+2021 to 2024 are what an immature cohort looks like anyway, so the two effects cannot be separated
+and neither can be attributed to the other.
+
+**Two useful things fell out of the test.**
+
+1. **It independently confirms the site's "17 to 29".** The minimum gap is 17.1 in 2012 and the
+   maximum 28.9 in 2017. Both fall inside 2010 to 2020 **and** inside 2007 to 2020, so the range is
+   identical on either window. The narrowing flagged in 0A-bis is an attribution error and provably
+   not a numerical one.
+2. **The withdrawn inference is the exact error this site exists to correct**: reading a caveat,
+   assuming its direction, and building an argument on the assumption without opening the data. It
+   was produced by this audit, in a finding accusing the site of selective silence.
+
+**What survives, at MEDIUM.** `Asy_D04` note 5 is a live publisher caveat on a table the site argues
+from, and the site does not mention it. Note 4 adds that outcomes are "as at January 2026". Both
+belong in the record's notes. Whether either belongs on the claim page is a judgement about how much
+caveat a reader can carry, not a correction. **[you].**
+
+---
+
+### 0A-ter-original. The finding as first written, withdrawn above and kept for the lesson.
 
 **Verified directly on 31 July 2026** by downloading
 `outcome-analysis-asylum-claims-datasets-mar-2026.xlsx` and reading its Notes worksheet. Rows 5 and
@@ -1759,11 +1810,15 @@ the reading that it checked everything.
   source it cites; and the Home Office's year ending March 2026 asylum bulletin, which produced
   0A-bis, a phrase attributed to the Home Office that it does not use.
 
-  **Three publications opened, three defects found, one of them a blocker.** Every other data
-  finding remains an internal-consistency finding, and anything needing a publication re-opened is
-  marked OWNER-VERIFY. Three is not a sample from which to compute a rate, and it would be
-  overclaiming to present it as one. It is the only evidence available about what re-reading the
-  rest would turn up, and it does not point in a comfortable direction.
+  A fourth source was then opened, the `Asy_D04` spreadsheet, which produced 0A-ter and then
+  **refuted** it: testing the inference against the cohort data withdrew this audit's newest blocker.
+
+  **Four publications opened, four findings, one of them a blocker and one of them withdrawn by the
+  same reading that produced it.** Every other data finding remains an internal-consistency finding,
+  and anything needing a publication re-opened is marked OWNER-VERIFY. Four is not a sample from
+  which to compute a rate, and it would be overclaiming to present it as one. It is the only
+  evidence available about what re-reading the rest would turn up, and it points both ways: three
+  real defects, and one of this audit's own claims destroyed on contact with the data.
 - **It has not tested the site with a real screen reader**, which the site already publishes as a
   limit. It does not close that gap.
 - **It has not been read by a target user.** The unmet acceptance criterion in `docs/BACKLOG.md`,
@@ -1827,7 +1882,7 @@ restatements across 15 records when it is 14.
 asserted that the Asy_D02 pivot prints no year-ending total, which is exactly what this document had
 marked OWNER-VERIFY. Corrected in the data file.
 
-**What survived.** Both blockers, verbatim-verified independently. Finding 0, the review's ten-page
+**What survived.** Both glossary blockers, verbatim-verified independently. Finding 0, the review's ten-page
 coverage. Every arithmetic claim in F1, the chart summaries. B1, B2, C1 to C7, D1's substance, E1,
 E2's substance, E4, I1, I2, I3, J1 and K2 to K4. The refuting pass's own verdict was that the
 headline recommendation stands and that "recording the review as passed against that evidence would
