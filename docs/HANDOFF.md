@@ -75,6 +75,29 @@ charts rendered as inline SVG at build time. What is on each page is in `README.
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
 
+**A whole-project pre-launch audit ran on 30 and 31 July 2026** and is open as PR #70, written up
+in `docs/PRE-LAUNCH-AUDIT.md`. Its outcome is a findings list, on the same principle as the review
+before it. It applied the mechanical half and left every editorial and sourcing call. What is
+outstanding from it is in the backlog and in the audit's own actionable list, not here.
+
+Three things from it belong in this document because they change how the project should be read.
+
+**The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
+outstanding blockers are in `content/glossary.md`, one of the six the review never opened. Two
+independent passes reached it separately. That is not a fact about the glossary; it is what an
+unreviewed page looks like when someone finally reads it.
+
+**Traceability was never checked at the far end.** Every check verifies that a figure names a source.
+Nothing verifies the source contains the figure. Reading five publications during the audit found
+three defects: a record citing an NAO report that does not contain its value, a phrase attributed to
+the Home Office that it does not use, and a note reproducing wording the NAO formally retracted by a
+correction slip inside its own PDF. The first is the one to know: `£2.1 billion` is real and official
+and lives in the Home Office Annual Report and Accounts, not in the report the record names.
+
+**The audit committed the project's own signature defect four times while auditing for it**, and
+each is recorded in `docs/PRE-LAUNCH-AUDIT.md` at its own finding rather than summarised here. That
+is the strongest evidence available that the pattern is structural rather than careless.
+
 ## How the project works
 
 **One figure, one home.** Every published figure is a record in `data/` carrying `id`,
@@ -184,6 +207,30 @@ identifier. The first is the one a reader is most affected by. Which, if any, ea
 an editorial decision in `docs/BACKLOG.md`, where the candidates are listed. Do not take the
 count from here: this sentence said "four" while the backlog listed three candidates and the page
 published three limits.
+
+**What the audit changed in the apparatus, 31 July 2026.** Five checks were hardened, each
+negative-tested in both directions:
+
+- The evidence quote match is **boundary-anchored**. It was a bare substring test, so `24.9 billion`
+  answered for `4.9` and `1,313` answered for `313`.
+- `review_due` **fires when the date passes**. It was validated as a declaration and read by nothing,
+  so the error message's own words, "when this page falls due", described a property no code asked
+  about, and every page outside `content/claims/` could pass its date green.
+- A **Nunjucks page must carry `last_reviewed`**. Only markdown did, while the README promised every
+  page carried one.
+- The **language rules and the glossary-link check reach `data/` prose**. The literal scan had been
+  extended there and these two were left behind.
+- **Neither validator now discards its findings** on a dateless series point or an unparseable URL.
+  Both threw on exactly the malformed input they exist to report, after collecting errors and before
+  printing them, so the one run with something useful to say printed a stack trace instead.
+
+**One was written, tested and deliberately reverted**, and it is the most useful of the six.
+Firing `check-evidence` on a regrade **into** the derived set works, and run against `main` it failed
+immediately on the audit's own regrade of `asylum-administrative-outcomes`. It was reverted because
+landing it turns the branch red until that record has an evidence entry, and the entry needs verbatim
+quotes from a pivot nobody had opened. **The ordering is the lesson: fetch the source, write the
+entry, then land the check.** The other way round forces a fabricated quote, which is the one thing
+the evidence contract exists to prevent.
 
 ## Working practices that earned their place
 
@@ -425,6 +472,36 @@ is already here to adding a neighbour beside it.
   mid-session here, so a branch cut an hour earlier carried a superseded handoff, and editing it
   would have reverted the owner's own merged work. The edit tool caught it by reporting the file
   had changed on disk. Rebase before writing the durable documents, not after.
+
+### Auditing, and auditing your own audit
+
+Four practices the July 2026 audit paid for, all of them by getting it wrong first.
+
+**Test the inference, not just the caveat.** A finding was raised as a blocker on the strength of a
+publisher's note saying appeals data was not loaded for a release, inferring that the site's cohort
+argument was therefore biased in its own favour. Opening the table refuted it: the historical cohorts
+carry uplifts of 17 to 29 percentage points, so appeal outcomes plainly are reflected. **Reading a
+caveat and assuming its direction is the same move this site exists to correct in others**, and it
+took a deliberate test to catch, not a re-read.
+
+**A fix lands at its own site and goes stale one reference away.** Every severity change and every
+count correction during the audit landed cleanly where it was made and left exactly one remote
+reference wrong: a downgrade left a "third blocker" sentence naming the downgraded finding, two line
+numbers moved and only the action table followed, a page count changed and the CI step name did not.
+**After changing a number or a label, grep for it before committing.** The rule already existed for
+defects, under *Changing something without breaking something else*; it applies to your own edits.
+
+**A count about your own work rots exactly as fast as one about the data.** The audit's summary table
+miscounted its own findings, its launch list was headed "five items" above six, its second-model
+tally enumerated twelve under a heading saying eleven, and its publication count was wrong twice. All
+four were fixed by **deleting the count**, not by correcting it. The project already knows this about
+`data/`; it is not a different rule for prose.
+
+**Publish the command you ran, and run the command you published.** A fix replacing stale counts with
+a derivation shipped `node -e "...expression"`, which prints nothing, while the document claimed the
+query had been run and named its output. The query had been run, with `console.log`; the version
+published lacked it. **A claim about a different artefact than the one shipped** is this project's
+oldest defect, committed by the fix for it, in two files. Copy the command out of your terminal.
 
 ### Deciding what to build
 
