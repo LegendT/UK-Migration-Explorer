@@ -9,6 +9,37 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The hotel figure is re-sourced to the publication that contains it, 1 August 2026
+
+**The value did not change. The source was wrong.** £2.1 billion of spending on asylum hotels in
+2024-25 was attributed to the National Audit Office's *An analysis of the asylum system*. That
+report does not contain it: all 57 pages were downloaded and searched, and there is no "2.1
+billion", no "5.77", and no line where "hotel" appears with "billion". The figure is real and
+official and is in the **Home Office Annual Report and Accounts 2024-25, HC 1133, page 75**,
+printed 17 July 2025. PR #73.
+
+> "Asylum support spend was £4.0 billion compared to £4.7 billion in 2023-24. Of this, £2.1
+> billion was spent on hotels in 2024-25, at an average of £5.77 million per day, compared to
+> £3.0 billion spent on hotels in 2023-24 at an average of £8.3 million per day."
+
+The mis-citation sat on a figure rendered in three places, including the home page, and no check
+could see it, because every check here verifies that a figure names a source and none verified
+that the source contains it. **The clue was inside the record's own notes**: "£5.77m per day"
+appears in no NAO document.
+
+**The two neighbouring figures were checked and are correctly sourced.** The £4.9 billion total
+and the £3.4 billion accommodation and support figure are both verbatim in the NAO report, so
+nothing cascaded.
+
+**The next annual report will not update this figure.** The 2025-26 edition, HC 440, publishes no
+hotel spending figure at all, only hotel headcounts. The report is annual; this figure is not, and
+the record says so.
+
+Adding the Home Office's annual accounts to the source catalogue moved a derived count on
+`/sources-and-method/` from six irregular publishers to seven, where the names beside it are
+written by hand. The sentence would have said seven and listed six, and the build would have
+passed. The seventh name is now in the list.
+
 ### The sources page counts itself, 30 July 2026
 
 **No published figure changed.** The five figure counts on `/sources-and-method/` are now

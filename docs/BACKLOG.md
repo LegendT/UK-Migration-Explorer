@@ -36,8 +36,10 @@ prompt had.
 the sequence is stated, deliberately, so that finishing something cannot leave a stale instruction
 somewhere else. Read it before starting anything.
 
-**Three things from it gate launch and are mine**, named here because this file is where a launch
-gate belongs and a session reading only the backlog must not miss them:
+**What from it gates launch, and it is all mine**, named here because this file is where a launch
+gate belongs and a session reading only the backlog must not miss them. The count that stood at the
+head of this sentence is deleted rather than decremented, which is this project's rule for a count
+about its own work:
 
 1. **`content/glossary.md`, the Grant rate entry.** It applies a cohort uplift its own record says
    `do not add`, calls the later figure "final outcome" where the Home Office says "latest outcome",
@@ -49,10 +51,17 @@ gate belongs and a session reading only the backlog must not miss them:
 2. **`content/glossary.md`, the Net fiscal impact entry.** It still says "a range that spans zero",
    which correction 1b retired from the two claim pages that link to it, both of which carry a notice
    saying they no longer do this. Two paragraphs, not four words. **[you]**, wording.
-3. **`fiscal/home-office-spending-on-asylum-hotel-accommodation` cites the wrong source.** £2.1bn is
-   real and official and is in the Home Office Annual Report and Accounts 2024-25, HC 1133, page 75,
-   quoted in the audit. It is not in the NAO report the record names. Re-sourcing it adds a publisher
-   to `sources.json`, which is why it is **[you]**.
+3. **`fiscal/home-office-spending-on-asylum-hotel-accommodation` cited the wrong source.
+   DONE (PR #73, 1 August 2026).** Re-sourced to the Home Office Annual Report and Accounts 2024-25,
+   HC 1133, page 75, which was fetched and read rather than taken from the audit. The NAO report was
+   downloaded too and searched in full: it contains no "2.1 billion", no "5.77", and no line where
+   "hotel" meets "billion", so the audit's finding is confirmed at first hand. The two neighbouring
+   figures, £4.9bn and £3.4bn, **are** verbatim in the NAO report, so nothing cascaded. What made
+   this **[you]**, adding a publisher to `sources.json`, is done: `ho-ara`, and the derived count of
+   irregular publishers on `/sources-and-method/` moved from six to seven, where the names beside it
+   are hand-written, so the seventh name went in with it. **The next annual report will not update
+   this figure**: the 2025-26 edition, HC 440, publishes hotel headcounts and no hotel spending at
+   all. Recorded in the record's notes so the next reader is not surprised.
 
 **And one that is not a gate but changes what the review's sign-off means.** Both glossary blockers
 sit on a page `verification.txt` never opened. The review read ten of sixteen. Recording it as passed
@@ -69,7 +78,7 @@ from it is here, in this file's format, because this file is the one work list a
 parallel one is what made a long session unmanageable: 23 of its 33 commits went to maintaining that
 document rather than doing the work.
 
-The three launch gates it found are named at the top of this file. These are the rest.
+The launch gates it found are named at the top of this file. These are the rest.
 
 ### A1. Traceability was never checked at the far end
 
@@ -323,8 +332,9 @@ this is the only place the sequence is stated.
    audit and is now behind it. Item 3's only remaining phase needs the owner's sign-off rather than a
    build, so it is not work a session can take.
 
-**Not takeable by a session, and they are the launch gates**: the two glossary rewrites and the
-£2.1bn re-source, named at the top of this file. Bring them; do not start them. If a session's first
+**Not takeable by a session, and they are the launch gates**: the two glossary rewrites, named at
+the top of this file. The £2.1bn re-source was the third and is done. Bring them; do not start
+them. If a session's first
 act is to ask about those three rather than to take item 1 above, that is the right first act.
 
 If you reorder, or complete something, **move the sections and renumber** rather than adding a
