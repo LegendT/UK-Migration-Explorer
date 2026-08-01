@@ -35,8 +35,12 @@ are outstanding, both in `content/glossary.md`**, and the finding underneath the
 pre-publication review read ten of the site's pages and neither of them was on one it opened.
 
 It also found, by reading sources rather than the repository, that a headline figure on the home
-page cites a publication that does not contain it. The figure is real: it is in the Home Office
-Annual Report and Accounts 2024-25. The citation is not.
+page cited a publication that does not contain it. **Corrected on 1 August 2026, PR #73**: the
+£2.1 billion of spending on asylum hotels was always real and official, and is in the Home Office
+Annual Report and Accounts 2024-25 at page 75. The NAO report it named does not carry it. The
+figure had rendered in three places, including the home page, with every check green, because
+nothing here verifies that a named source contains the figure naming it. That gap is still open
+and is the first item under *From the pre-launch audit* in `docs/BACKLOG.md`.
 
 **The corrections landing is not the review passing.** Of the three closing steps, two are
 settled: `last_reviewed` now carries 27 July on the ten pages the review actually read, and the
@@ -106,7 +110,7 @@ LICENCE                 MIT for code, Open Government Licence v3.0 attribution f
 | `asylumBacklogTimeseries.json` | Initial decision backlog 2010-2025, on both the people and cases bases |
 | `migrationFlowsTimeseries.json` | Immigration and emigration 2012-2025, the gross flows behind net migration |
 | `dashboard.json` | Home page cards. References only; it holds no values and no unrendered prose |
-| `sources.json` | Catalogue of publishers, thirteen entries across twelve publishers |
+| `sources.json` | Catalogue of the publications figures are cited from. More entries than publishers: the Home Office has two, its statistics collection and its annual accounts, and ONS has two, migration and population estimates. That is why a figure names its source by id and not by hostname, and why neither count is written down here |
 | `meta.json` | Confidence-level definitions, cross-cutting caveats, footer note |
 
 ## Data contract

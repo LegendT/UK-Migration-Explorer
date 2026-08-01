@@ -12,7 +12,7 @@ marked done, withdrawn or struck. That rule exists because the pre-launch audit 
 list, the two diverged twice in a day, and this file was briefly edited to say the other one was
 live. The resolution did not hold, so it is a build failure now.
 
-Last updated 31 July 2026. The pull request count that sat on this line was stale and is deleted
+Last updated 1 August 2026. The pull request count that sat on this line was stale and is deleted
 rather than corrected, which is this project's rule for a count about its own work.
 
 **A whole-project pre-launch audit was written up in `docs/PRE-LAUNCH-AUDIT.md`** and merged as

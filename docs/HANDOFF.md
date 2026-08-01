@@ -1,4 +1,4 @@
-# Handoff, 30 July 2026
+# Handoff, 1 August 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -92,9 +92,9 @@ unreviewed page looks like when someone finally reads it.
 Nothing verifies the source contains the figure. Reading five publications during the audit found
 three defects: a record citing an NAO report that does not contain its value, a phrase attributed to
 the Home Office that it does not use, and a note reproducing wording the NAO formally retracted by a
-correction slip inside its own PDF. **All three are now corrected**, the first two on 1 August 2026
-and 31 July 2026, but the gap they came through is not: nothing still verifies that a source contains
-the figure citing it, and the backlog carries that as A1. `£2.1 billion` was the clearest case. It is
+correction slip inside its own PDF. **All three are now corrected, and the gap they came through is
+not**: nothing still verifies that a source contains the figure citing it, and the backlog carries
+that as A1. `£2.1 billion` was the clearest case. It is
 real and official, it lives in the Home Office Annual Report and Accounts, and it named an NAO report
 that does not contain it from this site's first research pass until 1 August 2026, while every check
 passed. An earlier version of this sentence said "for over a year", which is not possible: the NAO
@@ -178,26 +178,27 @@ Seven checks, all in CI, all negative-tested.
 CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry and
 link rot, only fire if something runs.
 
-**Read this before trusting a green run.** Eight times in this project a checker passed while a
+**Read this before trusting a green run.** Repeatedly in this project a checker has passed while a
 real defect shipped. Every one had the same shape: the check verified a property of the *source
 or the declaration* rather than the property a reader depends on, and the success message
-claimed the latter. The seventh was the literal check walking `content/` and not `data/`, which
+claimed the latter. One was the literal check walking `content/` and not `data/`, which
 left the one file whose entire job is holding references as the only file nobody scanned for
-values. **The eighth was found on 30 July and is the cleanest example of the shape:** the
+values. The cleanest example of the shape: the
 literal scan matched prose against the values the site HOLDS, so a figure it never recorded was
 invisible to it by construction, while the success message read "No page writes a comma-grouped
-value longhand". Thirty-eight did. The messages now state only what they verify.
+value longhand". Thirty-eight did. **The most expensive one reached a reader**: a headline figure
+cited an NAO report that does not contain it, on the home page, for as long as the site has had
+that figure, while `README.md` promised every figure was traceable to a named official
+publication. Traceability was verified as a source EXISTING, never as the source CONTAINING the
+number. The messages now state only what they verify.
 
-**The count is eight, and more of that shape have been caught since without being added to
-it**, every one of them before it merged. They are under *Building a check, and trusting it*.
-Eight is the number that SHIPPED, and that is the only test for joining the list: the eighth
-qualified because it sat on `main` while thirty-eight figures contradicted it. Nothing is added
-for being caught in review, because inflating the one figure this document uses to argue for
-scepticism would make it worth less.
-
-That second count used to be stated, as "three", and it went stale twice inside a week, the
-last time in the same edit that added two more instances four sections below it. A count of
-the near-misses earns nothing, because the argument does not rest on how many there were.
+**The count is deliberately not written here**, and `README.md` retired it first, for the reason
+this document gives about every other self-count. It was eight, then nine, and a number that only
+goes up is one more thing to keep correct; the argument does not rest on how many there were. The
+test for whether an incident belongs in this paragraph is unchanged and worth keeping: it has to
+have SHIPPED. More of the shape are caught in review every session, they are under *Building a
+check, and trusting it*, and none is added here, because inflating the figure this document uses
+to argue for scepticism would make it worth less.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
@@ -253,6 +254,16 @@ is already here to adding a neighbour beside it.
   tables FIA_3 and T_3 give 40% and 67 weeks for asylum and protection. Believing the bulletin
   would have introduced two errors while "correcting" them. The `.ods` and `.xlsx` files are zip
   archives; unzip and parse the sheet XML directly.
+
+- **An absolute negative about a publication is a claim, and it needs a search designed to refute
+  it.** "The 2025-26 annual report publishes no hotel spending figure at all" was written into a
+  record, the changelog and the backlog on 1 August 2026 after a search for hotel money. It is
+  false: page 218 carries a £22.9m constructive loss on a hotel contract. One disclosure defeats
+  an absolute, and the substance survived only because the useful claim was narrower all along,
+  that there is no hotel spending TOTAL, no per-day rate and no unit cost to update the figure
+  from. Write the narrow claim, and before writing any "no X at all", spend one search actively
+  trying to find an X. This is the same discipline as *Test the inference, not just the caveat*
+  below, applied to your own sentence.
 
 - **Reconcile a derived figure against published ones before writing it.** The 5,931 was summed
   from a pivot over four quarters. The same four quarters reproduce the published 79,719 refusals,
@@ -382,7 +393,7 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model has found the most serious defect in every piece of work it has read here, six times, and every time it was in the part the author was surest of.** On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
+- **A second model has found the most serious defect in every piece of work it has read here, eight times now, and every time it was in the part the author was surest of.** **The two readings on 31 July and 1 August are the sharpest evidence yet, because both pieces were corrections of a misattribution and both had committed one.** In the grant-rate work it found that widening a cohort window to the publisher's own 2007 had made the record attribute that range to `Asy_04`, a table titled "2010 to 2024" which cannot show a 2007 cohort: the project's signature defect, committed by the fix for it, and invisible to every check. In the hotel re-source it found four false claims, including an absolute negative ("publishes no hotel spending figure at all") defeated by a single £22.9m disclosure, a page count off by one, a correction slip described as touching a heading when it changed audited figures, and "for over a year" about a report published eight months earlier. In both it found the same structural miss: the fix had been applied at the site named and not at its siblings, leaving a false attribution in `docs/foundation.md` and `CHANGELOG.md` the first time, and the home page card still pointing at the wrong publisher the second. On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
 
   **The sixth reading is recorded rather than rounded up, because it changed the argument
   slightly.** The author had found its worst finding independently an hour earlier, the first
@@ -444,6 +455,14 @@ is already here to adding a neighbour beside it.
   places, only one of which the review names, and one of those was a record's `notes`, where it
   would have instructed the next editor to reintroduce it. The support-versus-accommodation
   conflation was in two. Grep the reasoning, not just the sentence.
+
+  **And grep in a way that can find it.** Most prose here is hard-wrapped, and PDF text keeps its
+  column breaks, so a phrase routinely straddles two lines and a line-based `grep` reports it
+  absent. That cost two findings in one session, both of them real: a false attribution in
+  `docs/foundation.md` split as "the Home Office's own label is the latest" / "recorded outcome",
+  which a second model found and a `grep` appeared to refute; and a £22.9m figure whose own line
+  read only "Atrium Hotel in Hounslow, London was", the money being three lines down in the
+  next column. Join the lines before concluding absence. Absence of a hit is not absence.
 
 - **Beware a rule that reaches inside a utility class.** `.prelaunch p` outranks `.wrap`, so a
   shorthand `margin: 0` there silently undid the auto-centring `.wrap` was applied for. Set the
@@ -604,7 +623,7 @@ enumeration of what is mine. It carries four things and nothing else:
 | --- | --- |
 | What to read, in what order | It is the instruction that makes every pointer work |
 | The `[me]` / `[you]` mapping | It **inverts** against the prompt's own pronouns. A session that gets it backwards does the editorial work rather than bringing it, which is the worst outcome available, and it is not discoverable by reading carefully |
-| Which list is live, and to flag a disagreement | Two lists exist only while the audit is open, and this is the window in which they can diverge |
+| Which list is live, and to flag a disagreement | Two frozen records in `docs/` still READ like work lists, with findings, severities and recommendations. A session that takes work from one is doing work the backlog may already have closed, and neither document says so on the line being read |
 | Which commands must pass, and branch-and-PR | Cheap to state, expensive to omit, and neither changes |
 
 Everything else is a pointer at a heading in this document. **The table above is short by design**:
@@ -663,9 +682,11 @@ three. When a critique pass is mostly finding mistakes this session
 introduced rather than defects in the work, stop and tell me.
 
 Everything must pass, and run these rather than assume: npm run validate,
-npm run build, npm run a11y, and npm run check-evidence if a figure
-changed. check-releases and check-sources are network checks that gate
-nothing, so run them by hand before opening a pull request.
+npm run build, npm run a11y and npm run check-evidence. All four every
+time. check-evidence fires only on a changed or new VALUE, so silence
+from it is information rather than a reason not to run it: re-sourcing a
+figure is invisible to it. check-releases and check-sources are network
+checks that gate nothing, so run them by hand before opening a PR.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
