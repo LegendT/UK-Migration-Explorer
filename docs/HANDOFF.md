@@ -96,7 +96,9 @@ correction slip inside its own PDF. **All three are now corrected**, the first t
 and 31 July 2026, but the gap they came through is not: nothing still verifies that a source contains
 the figure citing it, and the backlog carries that as A1. `£2.1 billion` was the clearest case. It is
 real and official, it lives in the Home Office Annual Report and Accounts, and it named an NAO report
-that does not contain it for over a year while every check passed.
+that does not contain it from this site's first research pass until 1 August 2026, while every check
+passed. An earlier version of this sentence said "for over a year", which is not possible: the NAO
+report it wrongly named was published in December 2025.
 
 **The audit committed the project's own signature defect four times while auditing for it**, and
 each is recorded in `docs/PRE-LAUNCH-AUDIT.md` at its own finding rather than summarised here. That

@@ -333,20 +333,22 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   against their source's cycle before publication, and every page carries the date it was
   last reviewed, but a static build cannot know how late it is at the moment someone reads
   it. Foundation section 13 says so rather than implying otherwise.
-- **23 of the 75 metric records cannot be aged**, because their sources publish irregularly:
-  the Migration Observatory (11), the Commons Library (5), the NAO (4), the ICIBI (2) and the
-  OBR (1). The validator names them on every run rather than counting them as covered. The
+- **Some metric records cannot be aged at all**, because their sources publish irregularly:
+  the Migration Observatory, the Commons Library, the NAO, the ICIBI and the OBR. The
+  validator names them and counts them on every run rather than counting them as covered, and
+  the count is deliberately not repeated here, because this one was wrong within a day of a
+  record changing publisher. The
   timeseries points cannot be aged either, because they carry no `retrieved_date`.
 - **Five source URLs cannot be checked automatically**, four Commons Library pages and one
   parliamentary research PDF. The host returns 403 to every request, including deliberately
   invalid paths, with or without a browser user-agent, so an automated check cannot tell a
   live page from a dead one there. `scripts/check-sources.mjs` reports them as uncheckable
-  rather than broken. Verify by hand. 43 of 48 resolve.
+  rather than broken. Verify by hand; the run prints how many of the total resolve.
 - **One source URL redirects**, which usually means a newer release has superseded the
   figure: the Home Office data tables anchor.
 - **A correction is only seen where the publisher is watched at all.** `check-releases.mjs`
-  watches three gov.uk collections. Eight of the twelve cited publishers have no corrections
-  route of any kind, and the run says so on every invocation. The NAO is one of them: it
+  watches three gov.uk collections. Most of the cited sources have no corrections route of any
+  kind, and the run names them and counts them on every invocation. The NAO is one of them: it
   corrected HC 874 by a slip inside the PDF on 1 July 2025, and this site carried the retracted
   wording in a record's notes until 31 July 2026 with every check green. Within the publishers
   that are watched, 17 records and 2 series files declare a `table_reference`, and the change

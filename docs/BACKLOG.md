@@ -52,16 +52,8 @@ about its own work:
    which correction 1b retired from the two claim pages that link to it, both of which carry a notice
    saying they no longer do this. Two paragraphs, not four words. **[you]**, wording.
 3. **`fiscal/home-office-spending-on-asylum-hotel-accommodation` cited the wrong source.
-   DONE (PR #73, 1 August 2026).** Re-sourced to the Home Office Annual Report and Accounts 2024-25,
-   HC 1133, page 75, which was fetched and read rather than taken from the audit. The NAO report was
-   downloaded too and searched in full: it contains no "2.1 billion", no "5.77", and no line where
-   "hotel" meets "billion", so the audit's finding is confirmed at first hand. The two neighbouring
-   figures, £4.9bn and £3.4bn, **are** verbatim in the NAO report, so nothing cascaded. What made
-   this **[you]**, adding a publisher to `sources.json`, is done: `ho-ara`, and the derived count of
-   irregular publishers on `/sources-and-method/` moved from six to seven, where the names beside it
-   are hand-written, so the seventh name went in with it. **The next annual report will not update
-   this figure**: the 2025-26 edition, HC 440, publishes hotel headcounts and no hotel spending at
-   all. Recorded in the record's notes so the next reader is not surprised.
+   DONE (PR #73, 1 August 2026),** and under *Completed*, where what it found is recorded. The
+   number is kept so that the two gates above are not silently renumbered.
 
 **And one that is not a gate but changes what the review's sign-off means.** Both glossary blockers
 sit on a page `verification.txt` never opened. The review read ten of sixteen. Recording it as passed
@@ -335,7 +327,7 @@ this is the only place the sequence is stated.
 **Not takeable by a session, and they are the launch gates**: the two glossary rewrites, named at
 the top of this file. The £2.1bn re-source was the third and is done. Bring them; do not start
 them. If a session's first
-act is to ask about those three rather than to take item 1 above, that is the right first act.
+act is to ask about those two rather than to take item 1 above, that is the right first act.
 
 If you reorder, or complete something, **move the sections and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -676,11 +668,20 @@ check green, which is this item's own defect reintroduced by the fix for it.
   above.
 
 **What is still hand-maintained on that page**, and it is smaller than it was: the sentence
-naming the six irregular publishers lists them in prose. The count beside it is derived, so a
-seventh publisher would move the number and leave the list naming six. Deriving the list means
+naming the irregular publishers lists them in prose while the count beside it is derived.
+**The failure this bullet predicted happened on 1 August 2026 and was caught.** Adding `ho-ara`
+in PR #73 moved the derived count from six to seven, and the prose would have said seven above
+six names with every check green. It was caught by the comment in `lib/published.mjs` that
+predicted it, not by anything that runs. Deriving the list means
 either changing the wording to `sources.json`'s names, which read as catalogue entries rather
-than prose, or adding a display name to six records, which is the same hand-maintenance moved.
-**[you]** if it is worth the wording. The release table's cadence column and "the most recent
+than prose, or adding a display name to seven records, which is the same hand-maintenance moved.
+**[you]** if it is worth the wording.
+
+**A second thing on that page is now slightly false, and it is wording rather than a count.** The
+sentence introducing that list says those publishers "release irregularly rather than on a cycle",
+and two of the seven are annual: ONS population estimates, which predates this, and the Home Office
+annual accounts, which PR #73 added. Reframing it around the three-release cycle above rather than
+around irregularity would fix both. **[you]**. The release table's cadence column and "the most recent
 full cycle took twenty-seven days" are untouched and still nobody's to verify.
 
 ### 7. The robots.txt prose says the review has not happened
@@ -848,6 +849,36 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The £2.1bn hotel figure, re-sourced to the publication that contains it**, 1 August 2026.
+  PR #73. Pre-launch audit finding 0-ZERO, and the third of the three launch gates.
+
+  Both publications were fetched and read rather than the audit's quotation of them trusted. The
+  figure is in the **Home Office Annual Report and Accounts 2024-25, HC 1133, page 75**, confirmed
+  as the printed folio. The NAO's *An analysis of the asylum system* was downloaded in full and
+  contains no "2.1 billion", no "5.77", and no line where "hotel" meets "billion". **The two
+  neighbouring figures are correctly sourced**, £4.9bn and £3.4bn both verbatim in the NAO report,
+  so nothing cascaded.
+
+  **What made this the owner's**, adding a publisher, is done: `ho-ara`, catalogued Annual and
+  deliberately kept out of `CADENCED_SOURCES`, so the published one-month commitment still names
+  three releases.
+
+  **The trap it walked into was predicted in a code comment and not by any check.** Adding a
+  seventh source moved a derived count on `/sources-and-method/` from six to seven beside a list of
+  names written by hand. The page would have said seven and named six, with every check green.
+
+  **The next annual report will not update this figure.** HC 440 gives hotel headcounts and no
+  hotel spending total, per-day rate or unit cost. The record says so, and says what clears the
+  annual staleness prompt, because the answer is not a new number.
+
+  **A second model found four false claims in the first version of this work**, all of them written
+  while fixing a misattribution: that HC 440 published no hotel money at all, when it carries a
+  £22.9m constructive loss on one contract; that the NAO report has 57 pages, when it has 56; that
+  the HC 1133 correction slip corrects "a heading", when it corrects audited exit-package figures;
+  and that the record had named the wrong report "for over a year", when the report it named was
+  published eight months before. It also found that the home page card still put the figure above a
+  source line naming the NAO, which is the defect being fixed at the most visible point on the site.
 
 - **The grant-rate record, corrected against the publisher's own words**, 31 July 2026. PR #72.
   Pre-launch audit item A2.

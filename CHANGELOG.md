@@ -13,7 +13,7 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 **The value did not change. The source was wrong.** £2.1 billion of spending on asylum hotels in
 2024-25 was attributed to the National Audit Office's *An analysis of the asylum system*. That
-report does not contain it: all 57 pages were downloaded and searched, and there is no "2.1
+report does not contain it: all 56 pages were downloaded and searched, and there is no "2.1
 billion", no "5.77", and no line where "hotel" appears with "billion". The figure is real and
 official and is in the **Home Office Annual Report and Accounts 2024-25, HC 1133, page 75**,
 printed 17 July 2025. PR #73.
@@ -31,9 +31,10 @@ appears in no NAO document.
 and the £3.4 billion accommodation and support figure are both verbatim in the NAO report, so
 nothing cascaded.
 
-**The next annual report will not update this figure.** The 2025-26 edition, HC 440, publishes no
-hotel spending figure at all, only hotel headcounts. The report is annual; this figure is not, and
-the record says so.
+**The next annual report will not update this figure.** The 2025-26 edition, HC 440, gives hotel
+headcounts and no hotel spending total, no per-day rate and no unit cost. The only hotel money in
+it is a £22.9 million constructive loss on a single contract. The report is annual; this figure is
+not, and the record says so.
 
 Adding the Home Office's annual accounts to the source catalogue moved a derived count on
 `/sources-and-method/` from six irregular publishers to seven, where the names beside it are
