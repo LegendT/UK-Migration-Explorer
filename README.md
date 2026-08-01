@@ -28,7 +28,7 @@ outcome was a corrections list rather than an approval: four claim pages carried
 publish as written" or "substantial revision required". Those became corrections 1a to 1i,
 all of which were completed by 28 July 2026.
 
-**A whole-project pre-launch audit ran on 30 and 31 July 2026**, open as PR #70 and written up in
+**A whole-project pre-launch audit ran on 30 and 31 July 2026**, merged as PR #70 and written up in
 `docs/PRE-LAUNCH-AUDIT.md`. Like the review before it, its outcome is a findings list rather than an
 approval. It applied the mechanical half and left every editorial and sourcing call. **Two blockers
 are outstanding, both in `content/glossary.md`**, and the finding underneath them is that the
