@@ -11,6 +11,15 @@
       "confidence_level": "official"
     },
     {
+      "id": "ho-ara",
+      "name": "Home Office: Annual Report and Accounts",
+      "publisher": "Home Office",
+      "url": "https://www.gov.uk/government/collections/ho-annual-reports-and-accounts",
+      "covers": "Departmental outturn, including asylum support spend and how much of it went on hotels. The report is annual; the hotel figure is not, and the 2025-26 edition drops it.",
+      "updateFrequency": "Annual (latest: 2025-26, HC 440, July 2026)",
+      "confidence_level": "official"
+    },
+    {
       "id": "ons-ltim",
       "name": "ONS: Long-term international migration",
       "publisher": "Office for National Statistics",

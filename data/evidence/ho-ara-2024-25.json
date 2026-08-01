@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/home-office-spending-on-asylum-hotel-accommodation",
+      "previous_value": 2.1,
+      "value": 2.1,
+      "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+      "fetched_at": "2026-08-01",
+      "quote": "Asylum support spend was £4.0 billion compared to £4.7 billion in 2023-24. Of this, £2.1 billion was spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion spent on hotels in 2023-24 at an average of £8.3 million per day."
+    }
+  ]
+}

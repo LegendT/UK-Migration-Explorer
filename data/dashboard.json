@@ -40,7 +40,7 @@
       "id": "asylum-system-cost",
       "ref": "fiscal/government-spending-on-the-asylum-system",
       "shortLabel": "Asylum system cost",
-      "whatThisMeans": "Most of this was accommodation and support (£{{fiscal/home-office-spending-on-asylum-accommodation-and-support}} billion), of which hotels were £{{fiscal/home-office-spending-on-asylum-hotel-accommodation}} billion. The NAO notes this does not capture all costs, particularly those falling on local authorities, so it understates the true system-wide cost."
+      "whatThisMeans": "The NAO notes this total does not capture all costs, particularly those falling on local authorities, so it understates the true system-wide cost. Most of it was accommodation and support (£{{fiscal/home-office-spending-on-asylum-accommodation-and-support}} billion), of which hotels were £{{fiscal/home-office-spending-on-asylum-hotel-accommodation}} billion, that last figure from the Home Office's own annual accounts rather than from the NAO."
     },
     {
       "id": "citizenship-grants",
