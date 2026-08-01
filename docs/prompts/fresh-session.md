@@ -7,7 +7,7 @@ editing here.
 It recites almost nothing, because the two times it and the handoff drifted the prompt was the stale
 copy. The handoff explains which few things it still carries and why each cannot be a pointer.
 
-Generated 31 July 2026, after the pre-launch audit closed.
+Generated 1 August 2026, after the second and third launch gates closed.
 
 ---
 
@@ -59,9 +59,11 @@ three. When a critique pass is mostly finding mistakes this session
 introduced rather than defects in the work, stop and tell me.
 
 Everything must pass, and run these rather than assume: npm run validate,
-npm run build, npm run a11y, and npm run check-evidence if a figure
-changed. check-releases and check-sources are network checks that gate
-nothing, so run them by hand before opening a pull request.
+npm run build, npm run a11y and npm run check-evidence. All four every
+time. check-evidence fires only on a changed or new VALUE, so silence
+from it is information rather than a reason not to run it: re-sourcing a
+figure is invisible to it. check-releases and check-sources are network
+checks that gate nothing, so run them by hand before opening a PR.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
