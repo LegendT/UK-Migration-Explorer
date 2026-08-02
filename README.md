@@ -12,12 +12,14 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. 17 pages from a governed data layer of **75 metric records** and
-four timeseries carrying 100 dated points, on Eleventy 3, with charts rendered as inline SVG
-at build time and no client-side JavaScript anywhere. `validate-data.mjs` counts both and
-reports 175. **46 of the 75 reach a reader**; the other 29 are unpublished reserve. Those two
-numbers are derived by `lib/published.mjs` and printed by `npm run build`, so trust the run
-over this sentence: they are typed here and nothing checks that they still agree. The site is
+Built and not yet launched. 17 pages from a governed data layer of metric records and four
+timeseries of dated points, on Eleventy 3, with charts rendered as inline SVG at build time and
+no client-side JavaScript anywhere. **How many of each, and how many of the records reach a
+reader rather than being held as unpublished reserve, is what `npm run validate` and
+`npm run build` print.** They were typed into this paragraph until 2 August 2026, under a
+sentence admitting that nothing checked them, and they were wrong by then: the counts are
+derived by `lib/published.mjs` and every record added moves them. A number in prose beside a
+run that computes it is the defect this project spends most of its checks on. The site is
 deployed behind a `robots.txt` that disallows all crawlers, and every page carries a notice
 saying it is unfinished. **That rule governs indexing, not access:** the site is reachable now
 by anyone with the URL, which is why the notice on every page is the thing doing the work.
@@ -30,9 +32,11 @@ all of which were completed by 28 July 2026.
 
 **A whole-project pre-launch audit ran on 30 and 31 July 2026**, merged as PR #70 and written up in
 `docs/PRE-LAUNCH-AUDIT.md`. Like the review before it, its outcome is a findings list rather than an
-approval. It applied the mechanical half and left every editorial and sourcing call. **Two blockers
-are outstanding, both in `content/glossary.md`**, and the finding underneath them is that the
-pre-publication review read ten of the site's pages and neither of them was on one it opened.
+approval. It applied the mechanical half and left every editorial and sourcing call. **Its two
+blockers were both in `content/glossary.md` and both closed on 2 August 2026, PR #83.** The finding
+underneath them outlasts them: the pre-publication review read ten of the site's pages, and neither
+blocker was on one it opened. The other six were put through the same evidence method on 2 August,
+in `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md`.
 
 It also found, by reading sources rather than the repository, that a headline figure on the home
 page cited a publication that does not contain it. **Corrected on 1 August 2026, PR #73**: the
@@ -50,6 +54,15 @@ landed with the PR that opened it, including two reader-facing blockers: every l
 clipped its y-axis labels into different plausible numbers, and a label a correction had
 retired survived in four places. Everything editorial from it is in `docs/BACKLOG.md`, which
 now opens with **The order**, the single ordered list of all outstanding work.
+
+**Five independent critiques then read the whole open stack**, one per pull request, each told to
+verify against the repository rather than trust the pull request body. Nineteen findings, sixteen
+upheld and three rejected on evidence. Two were live suppressions in checks: a duplicate guard that
+skipped on a premise it never tested, silencing a declared figure in every branch at once, and a
+`series_ref` guard comparing three attributes and no identity field, so a reference naming the
+wrong year passed wherever two years share a value. Both are closed and negative-tested in both
+directions. **Seven of the nineteen were a comment or a message asserting a property the code beside
+it did not have**, which is this project's signature defect, committed while fixing instances of it.
 
 **The corrections landing is not the review passing.** Of the three closing steps, two are
 settled: `last_reviewed` now carries 27 July on the ten pages the review actually read, and the
@@ -98,6 +111,7 @@ docs/BACKLOG.md         The durable list of outstanding work; every other doc po
 docs/HANDOFF.md         How the project works, and what earlier sessions cost
 docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026 worked through
 docs/LAUNCH-READINESS-REVIEW.md The verified whole-project critique of 2 August 2026, a findings record
+docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md  The evidence pass over the six pages the review never opened
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
 docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; four of five phases built
 docs/UPDATING-DATA.md           The by-hand runbook for moving the site onto a new release
@@ -161,9 +175,10 @@ timeseries therefore draws from a single publication, and the validator rejects 
 whose points carry more than one `published_date`. Refresh the whole array each release;
 never append. Mixing vintages is what made the first net migration series unpublishable.
 
-**Which table a figure came from.** 17 records and 2 series files carry `table_reference`, an
-array naming the publisher tables behind the figure: `Vis_01`, `Asy_00a`, `Ret_01` and nine
-others. It exists so that a correction *inside* an edition can be matched to the figures it
+**Which table a figure came from.** Records and series files carry `table_reference`, an array
+naming the publisher tables behind the figure: `Vis_01`, `Asy_00a`, `Cit_01`, `Se_02`, `Ret_01`
+and others. How many is what `npm run validate` prints, for the reason the Status section
+above gives. It exists so that a correction *inside* an edition can be matched to the figures it
 touches, which is the one channel through which a wrong number can sit here indefinitely, and
 `check-releases.mjs` is what reads it. The validator holds it to the prose both ways. Every
 table named in a record's `source_name` or `notes` must be declared, or the corrections watch
@@ -213,8 +228,8 @@ Seven checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, **a citation's `source_url` and `source_id` naming the same publisher**, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **No planning document other than the backlog may carry work state**, meaning a table row marked done, withdrawn or struck, because a second list has to be kept true in two places and this project watched two diverge twice in one day. **A review date that has passed fails the build**, not merely one that was never declared, and a Nunjucks page must carry one like every other. **The language rules and the glossary-link check reach the `data/` prose that renders to a page**, which they did not until 31 July 2026. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, under a ratchet whose count may not grow |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, **a citation's `source_url` and `source_id` naming the same publisher**, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names on value, unit, confidence level and year**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, a theme file's `lastUpdated` present and a real date, **every point in a series block carrying one confidence level**, `ons_marker` drawn from a fixed vocabulary, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **No planning document other than the backlog may carry work state**, meaning a table row marked done, withdrawn or struck, because a second list has to be kept true in two places and this project watched two diverge twice in one day. **A review date that has passed fails the build**, not merely one that was never declared, and a Nunjucks page must carry one like every other. **The language rules and the glossary-link check reach the `data/` prose that renders to a page**, which they did not until 31 July 2026. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, under a ratchet whose count may not grow, and **names every declared literal that does equal a live value**, because the exemption is granted on trust and the success message asserted it did not exist |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. The quote match is boundary-anchored, so one figure's digits sitting inside another do not satisfy it. Gates the build in CI, **not the Netlify deploy**, which runs only `npm test` and `npm run build` |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |

@@ -62,15 +62,22 @@ If the branch is renamed or the history is grafted back on, correct this paragra
 that `main` starts at a parentless commit is checkable in one command and does not go stale:
 `git rev-list --max-parents=0 main`.
 
-17 pages build from a governed data layer of **75 metric records** in four theme files, plus
-**four time series carrying 100 dated points**. `validate-data.mjs` counts both and reports
-175. **46 of the 75 reach a reader**, and the other 29 are unpublished reserve. Reaching a reader
+17 pages build from a governed data layer of metric records in four theme files, plus **four time
+series** whose points are carried in blocks: a primary array, and companion `emigration` and
+`historical` blocks nested one level deeper. **How many records, how many points, and how many of
+the records reach a reader is what the run prints**, and this paragraph carried those numbers until
+2 August 2026, when it was wrong about all three. Reaching a reader
 means **rendering**: a token, a chart bar's `ref`, a `| metric` summary, a dashboard card or a
 caveat in `data/`. A `figures:` front-matter entry is NOT a route, because nothing renders that
 list, and counting it was the error that made the sources page's Home Office row wrong. **The
 definition is code, not a paragraph:** `lib/published.mjs` holds those five routes, the sources
-page renders from it, and `npm run build` prints the split, so do not hand-roll a query for it
-and do not trust the two numbers in this sentence over the run. Eleventy 3, no client-side JavaScript,
+page renders from it, and `npm run build` prints the split, so do not hand-roll a query for it.
+
+**And if you do query the series, go through `lib/series.mjs`.** A hand-rolled query that walks
+only the primary array misses the companions and under-counts by a third. That happened three times
+on 2 August: once recording a decision, once "verifying" the number afterwards with a grep whose
+indentation was hard-coded to the shallower nesting, and once in a reviewer's own count. The second
+of those would have corrected a right number to a wrong one. Eleventy 3, no client-side JavaScript,
 charts rendered as inline SVG at build time. What is on each page is in `README.md`
 under *Layout*, and was duplicated here line for line until 30 July, in a project whose first
 rule is one figure, one home.
@@ -92,6 +99,21 @@ y-axis labels into different plausible numbers, and a label a correction had ret
 at four sites. Everything editorial went to the backlog, which the same PR consolidated:
 **`docs/BACKLOG.md` now opens with *The order***, the single numbered list of everything
 outstanding, and that list is the only place the sequence is stated.
+
+**Then five independent critiques read the whole open stack on 2 August**, one per pull request,
+each briefed on this section and told to verify against the repository rather than trust the pull
+request body. Nineteen findings: sixteen upheld after checking each, **three rejected on evidence**,
+which is the qualification worth carrying. A second model finding the most serious defect every
+time is not the same claim as every finding being right, and reporting a defect that does not exist
+makes every other finding worth re-checking. Two of the sixteen were live suppressions in checks
+and both are closed. **Seven were a comment or a message asserting a property the code beside it did
+not have**, written while fixing instances of exactly that.
+
+**Both glossary launch gates closed on 2 August 2026, PR #83**, on wording the owner decided. The
+Grant rate entry stopped quoting the cohort range altogether, which was what removed the fifth site
+of a sentence corrected at four others; the option of correcting it in place would have left the
+fifth site standing. Two launch gates remain and neither is a defect: recording the review as
+passed, scoped to all sixteen pages, and deleting the robots rule.
 
 Three things from it belong in this document because they change how the project should be read.
 
@@ -180,8 +202,8 @@ Seven checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, under a ratchet whose count may not grow |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names on value, unit, confidence level and year, every point in a series block carrying one confidence level, `ons_marker` drawn from a fixed vocabulary, a theme file's `lastUpdated` present and a real date, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, under a ratchet whose count may not grow, and names every declared literal that does equal a live value |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |
@@ -358,6 +380,14 @@ is already here to adding a neighbour beside it.
   something that was not there. Strip comments at every end that compares, or the agreement
   between them means nothing.
 
+- **A guard may only skip work another branch has ACTUALLY done, so it must ask that branch's
+  question too.** The scale-word scan skipped a figure on the premise that the unit scan above had
+  already reported the sentence. That scan reports only where the value is NOT declared, and the
+  guard never consulted the exemption list, so a declared value written with a scale word vanished
+  from every branch at once. Two rounds of work on that guard, including one that widened it, read
+  the premise as true because it is written in the comment beside it. **Write a suppression's
+  premise down, then test each clause of it separately.**
+
 - **A suppression is the most dangerous code in a check, and it needs a test of its own.** The
   scale-word scan's duplicate guard was three lines, written so one figure could not be reported
   twice, and it silenced every figure written with no currency sign: not an error, not a
@@ -412,7 +442,11 @@ is already here to adding a neighbour beside it.
 - **Never truncate the thing you are checking for absence.** A finding that three claim cards
   were missing `period` and `source` was wrong: the check piped each front matter through
   `head -20` and those fields sit below the cut. Reporting a defect that does not exist costs
-  more than missing one, because it makes every other finding worth re-checking.
+  more than missing one, because it makes every other finding worth re-checking. **The same rule
+  reversed on 2 August 2026**: a series note was declared free of a restated marker after reading
+  its last 200 characters, and the marker was earlier in it, so a PR shipped saying it had made a
+  field the single home of something while a prose copy survived. Truncating to check for PRESENCE
+  fails the same way, and a second model found it.
 
 - **A denylist needs a review pass, not a sweep.** Four of seven sub-100 matches were
   coincidences. Tokenising all of them would have cited the wrong record four times.
@@ -434,7 +468,7 @@ is already here to adding a neighbour beside it.
   - *The other side.* A change-history entry with no timestamp gives an empty string, which
     compares as earlier than every date and would have silently cleared every figure behind it.
 
-- **A second model has found the most serious defect in every piece of work it has read here, eight times now, and every time it was in the part the author was surest of.** **The two readings on 31 July and 1 August are the sharpest evidence yet, because both pieces were corrections of a misattribution and both had committed one.** In the grant-rate work it found that widening a cohort window to the publisher's own 2007 had made the record attribute that range to `Asy_04`, a table titled "2010 to 2024" which cannot show a 2007 cohort: the project's signature defect, committed by the fix for it, and invisible to every check. In the hotel re-source it found four false claims, including an absolute negative ("publishes no hotel spending figure at all") defeated by a single £22.9m disclosure, a page count off by one, a correction slip described as touching a heading when it changed audited figures, and "for over a year" about a report published eight months earlier. In both it found the same structural miss: the fix had been applied at the site named and not at its siblings, leaving a false attribution in `docs/foundation.md` and `CHANGELOG.md` the first time, and the home page card still pointing at the wrong publisher the second. On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
+- **A second model has found the most serious defect in every piece of work it has read here, and every time it was in the part the author was surest of. It is also wrong about roughly one finding in six, so verify each before acting.** Of nineteen findings across five reviewers on 2 August 2026, sixteen survived checking and three did not, and one of the three was a record note called unsourced whose sentence is near-verbatim on the publisher's page. **The two readings on 31 July and 1 August are the sharpest evidence yet, because both pieces were corrections of a misattribution and both had committed one.** In the grant-rate work it found that widening a cohort window to the publisher's own 2007 had made the record attribute that range to `Asy_04`, a table titled "2010 to 2024" which cannot show a 2007 cohort: the project's signature defect, committed by the fix for it, and invisible to every check. In the hotel re-source it found four false claims, including an absolute negative ("publishes no hotel spending figure at all") defeated by a single £22.9m disclosure, a page count off by one, a correction slip described as touching a heading when it changed audited figures, and "for over a year" about a report published eight months earlier. In both it found the same structural miss: the fix had been applied at the site named and not at its siblings, leaving a false attribution in `docs/foundation.md` and `CHANGELOG.md` the first time, and the home page card still pointing at the wrong publisher the second. On 30 July it found that a commit fixing an overclaim had shipped a wider one, that a fix documented as covering both directions covered one, that a runbook instruction would have let a wrong number sit permanently by naming a date bump as the job, that a paragraph whose declared purpose was stating a cost understated it by half, and that the scale-word scan's duplicate guard, three lines written to stop one figure being reported twice, silenced any figure carrying no currency sign at all, including the "£ dropped from £4.9 billion" slip this site has already shipped once. Two self-critiques had read that guard and seen only its precision. Budget for this rather than treating it as a last check.
 
   **The sixth reading is recorded rather than rounded up, because it changed the argument
   slightly.** The author had found its worst finding independently an hour earlier, the first
@@ -490,7 +524,11 @@ is already here to adding a neighbour beside it.
 ### Changing something without breaking something else
 
 - **Do not fix by bulk substitution.** It caused an earlier round of defects, in prose and in
-  CSS alike. Sentence by sentence, in view.
+  CSS alike. Sentence by sentence, in view. **Including renumbering:** collapsing two completed
+  items in the backlog's order on 2 August was done with one regex over every line starting with
+  a numeral, which silently renumbered two unrelated numbered lists in the same file and produced
+  duplicate entries in both. A list is not a safe target for a pattern that cannot see which list
+  it is in.
 
 - **A defect named on one page usually has siblings.** The invalid cohort comparison was in three
   places, only one of which the review names, and one of those was a record's `notes`, where it
