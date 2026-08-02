@@ -120,10 +120,22 @@ const isRealDate = (value) => {
 // it: "total rose to 24.9 billion" answered for 4.9, and "1,313 applications" answered for 313. The
 // guard is the same shape validate-content.mjs uses on longhand literals, and it is what makes the
 // success message's "a quote containing its value" mean the value rather than its digits.
+//
+// The trailing side asks whether the punctuation SEPARATES or CONTINUES the number, and it used to
+// reject both. `(?![\d,.])` refuses a comma or a full stop whatever follows it, so a quote ending
+// "Registration grants: 71,083." failed and "71,083, and the total" failed, while the same text
+// with a word after the value passed. That is the remedy this check's own message points at,
+// "quote the row and column labels with the value", producing a quote the check then rejects: the
+// fourth time here that a check was sound and the thing it pointed at was not.
+//
+// So a digit is still refused, and a comma or full stop is refused only where a digit follows it,
+// which is what makes it a thousands separator or a decimal point rather than punctuation. The
+// leading side is deliberately unchanged: a comma or full stop immediately before the digits is a
+// separator in every real case, and loosening it would let 1,313 answer for 313 again.
 const carries = (text, value) =>
   [...new Set([format(value), String(value)])].some((form) => {
     const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return new RegExp(`(?<![\\d,.])${escaped}(?![\\d,.])`).test(String(text));
+    return new RegExp(`(?<![\\d,.])${escaped}(?!\\d)(?![,.]\\d)`).test(String(text));
   });
 
 // --- the evidence on file ------------------------------------------------------------
