@@ -166,6 +166,77 @@ Each is one call. None blocks anything.
 
 ---
 
+## From the launch readiness review, 2 August 2026
+
+**The review is written up in `docs/LAUNCH-READINESS-REVIEW.md`**, a findings record carrying
+no work state, on the same terms as the audit's. Seven review dimensions plus a far-end source
+trace; 44 findings confirmed by an adversarial verification pass and three refuted by it. The
+mechanical half landed with the PR that opened it, including both blockers, and all seven
+checks were green after. **All eight home page figures were verified against their live
+sources with verbatim quotes.** What is left is below. None of it gates launch on this
+project's own definition; each item is cheaper before the site has readers.
+
+### R1. Reader-facing wording and grading, all of it yours
+
+Each is **[you]** because it is wording, a grade or a sourcing call.
+
+- **The costs page presents the £2.1bn hotel figure inside the NAO's £3.4bn** ("These figures
+  are nested, not parallel") while the record's own notes say the nesting is this site's
+  construction and neither publisher places one figure inside the other. Say so on the page,
+  or un-nest the table.
+- **The Born abroad card grades a Migration Observatory briefing figure `official`**, a grade
+  the sources page defines as "taken directly from an official published release". The
+  underlying figure is the 2021/22 Census; the cited source is a university briefing. Regrade,
+  or re-source the record to the census release it summarises.
+- **Returns are an unstated scope silence.** The data layer holds five returns records,
+  including the 39,007 enforced-plus-voluntary total, and no reader-facing page shows any of
+  them except port refusals inside a caveat, while *What this site does not cover* does not
+  name the omission. The site's own published principle is that scope silence is
+  indistinguishable from bias. Surface them or declare them; the current state is the one
+  option that principle rules out.
+- **Every claim page h1 is the bare false claim**, so a screen reader user navigating by
+  headings, or hearing the claims index read as a links list, meets the site asserting the
+  sentence it corrects. The browser tab already says "Claim checked:"; whether the same
+  qualifier belongs in the visible heading or the accessible name is a design call about the
+  card.
+- **The 404 page says the glossary "defines every term the site uses"**, and non-EU+ has no
+  entry while appearing on four pages. The entry is the better fix than softening the
+  sentence: the definition already exists word for word on three pages and wants one anchor.
+- **The two fee records assert `period_label` "2024"** while the costs page beside them says
+  the cited briefing does not state which twelve months it covers. This is the record half of
+  audit finding K4, whose prose half landed with the review.
+- **`docs/PRE-PUBLICATION-REVIEW.md` section 3 still instructs a reviewer** that the
+  unit-qualified warnings were all reviewed as coincidences, a judgement the handoff records
+  as refuted: three were live values restated longhand. It is the template future reviews work
+  through, so correcting the instruction is a change to a document the owner signs.
+
+### R2. From the far-end trace, three source observations
+
+- `asylum/small-boat-arrivals-calendar-year-2025` is graded `official` and its notes call it a
+  finalised calendar-year total, while the publisher prints the year only as four quarterly
+  cells to be summed and states no calendar-year total. The site's own convention for a summed
+  figure is `calculated` with the components quoted. **[you]** whether the grade or the note
+  moves.
+- Two figures in the citizenship card's prose, 269,178 and 312,063, are not on the page the
+  record cites; the first is arithmetically consistent with the page's "12% decrease" and both
+  presumably live in the prior release or a summary table. Confirm and cite their source, or
+  reword. **[you]** for scope; the fetching is **[me]**.
+- The NAO's landing page prints £4.0 billion, its direct-support figure, and the £4.9 billion
+  this site cites is inside the PDF it links. A reader who follows the source link and does
+  not open the report meets a different number first. Whether the record's notes should say so
+  is **[you]**.
+
+### R3. Small build work, none urgent, all [me]
+
+- The three metric value maps in `validate-content.mjs` are last-write-wins where two records
+  share a value form, so an error's remedy can tell the author to cite the wrong record. The
+  same file already solves the same problem for another of its maps.
+- The two ONS series files encode the publisher's revision markers differently, a
+  machine-readable `ons_marker` in one and prose in the other. Pick one, after the A6
+  confidence convention is settled, since the two questions touch.
+
+---
+
 ## Blocking launch
 
 ### 1. The pre-publication review: corrections all landed 28 July 2026, closing steps outstanding
@@ -319,7 +390,8 @@ this is the only place the sequence is stated.
 
 **Take, in this order:**
 
-1. **A3, the checks worth hardening**, and **A5's two `[me]` items**. Small, independent, no gates.
+1. **A3, the checks worth hardening**, **A5's two `[me]` items**, and **R3 from the launch
+   readiness review**. Small, independent, no gates.
 2. **Item 4 below, the figures the data layer never recorded.** This was the first item before the
    audit and is now behind it. Item 3's only remaining phase needs the owner's sign-off rather than a
    build, so it is not work a session can take.
@@ -516,7 +588,8 @@ matcher and neither called the thing reading its output.
 
 **`UNRECORDED_BASELINE` went UP, 22 to 33, and this is the only step up it should ever take.**
 Eleven report lines became *visible*, ten distinct figures with the visitor-visa one on two
-pages; none arrived. What the ratchet forbids is unchanged and the count may not grow from 33.
+pages; none arrived. What the ratchet forbids is unchanged; the baseline is the
+`UNRECORDED_BASELINE` constant, 33 at the time of that step, and it has since come down.
 
 **Two live record values are written out in words, in `data/` prose that renders to a page.**
 `dashboard.json`'s foreign-born card and `meta.json`'s key caveat on foreign-born vintages both

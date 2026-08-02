@@ -120,8 +120,9 @@ The data model is the trust model. Every published figure carries its own metada
 `id` `metric_name` `value` `unit` `date` `period_label` `geography` `source_name`
 `source_id` `source_url` `published_date` `retrieved_date` `notes` `confidence_level`
 
-plus `table_reference` where the publisher names a table, and `series_ref` on the four figures
-held twice.
+plus `table_reference` where the publisher names a table, and `series_ref` on a figure that is
+also a series point. How many declare one is printed by `npm run validate`, not typed here: this
+sentence said "four" while the data layer held five.
 
 `date` is the **end of the period covered**, never the publication date. `source_id` names
 the entry in `sources.json` the figure came from, because a hostname cannot: `www.gov.uk`
@@ -137,9 +138,9 @@ metric by `theme/id`. Previously the same figure existed in two files, and a qua
 that missed one would have published two different official values for the same measure.
 
 That was fixed between the dashboard and the theme files and left standing between the theme
-files and the timeseries, because nothing connected the two. Four figures are published both
-ways, as a headline metric and as a point in a series. Each now declares `series_ref`, naming
-its own duplicate, and `validate-data.mjs` refuses a mismatch. The declaration sits on the
+files and the timeseries, because nothing connected the two. A figure can be published both
+ways, as a headline metric and as a point in a series. Each such metric declares `series_ref`,
+naming its own duplicate, and `validate-data.mjs` refuses a mismatch. The declaration sits on the
 metric rather than the series because `net-migration-2` pairs with the second-to-last point:
 it is the revised prior-year estimate the site publishes precisely to show that revisions
 happen, so a rule keyed on "the latest point" would have left it unguarded.
@@ -217,9 +218,7 @@ figure whose cited source does not contain it. **The count is deliberately no lo
 It was eight for a while, then nine, and a number that only ever goes up is one more thing to keep
 correct. `docs/HANDOFF.md` holds the incidents. Every one had the same shape: the check verified a property of the
 *source or the declaration* rather than the property a reader depends on, and the success
-message claimed the latter. The messages now state only what they verify. The count is
-maintained in `docs/HANDOFF.md`, which is where the incidents are; it is here because a reader
-of this file should not have to go and look before deciding how much a green run is worth.
+message claimed the latter. The messages now state only what they verify.
 
 **pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
 believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
@@ -342,7 +341,8 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   validator names them and counts them on every run rather than counting them as covered, and
   the count is deliberately not repeated here, because this one was wrong within a day of a
   record changing publisher. The
-  timeseries points cannot be aged either, because they carry no `retrieved_date`.
+  timeseries points are not aged either: they carry a `retrieved_date`, but nothing compares
+  it against a cycle, because the whole array is refreshed per release.
 - **Five source URLs cannot be checked automatically**, four Commons Library pages and one
   parliamentary research PDF. The host returns 403 to every request, including deliberately
   invalid paths, with or without a browser user-agent, so an automated check cannot tell a
@@ -351,7 +351,8 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 - **One source URL redirects**, which usually means a newer release has superseded the
   figure: the Home Office data tables anchor.
 - **A correction is only seen where the publisher is watched at all.** `check-releases.mjs`
-  watches three gov.uk collections. Most of the cited sources have no corrections route of any
+  watches three publisher routes, two gov.uk collections and one ONS bulletin. Most of the
+  cited sources have no corrections route of any
   kind, and the run names them and counts them on every invocation. The NAO is one of them: it
   corrected HC 874 by a slip inside the PDF on 1 July 2025, and this site carried the retracted
   wording in a record's notes until 31 July 2026 with every check green. Within the publishers

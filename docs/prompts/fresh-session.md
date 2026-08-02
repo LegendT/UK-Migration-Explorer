@@ -7,7 +7,9 @@ editing here.
 It recites almost nothing, because the two times it and the handoff drifted the prompt was the stale
 copy. The handoff explains which few things it still carries and why each cannot be a pointer.
 
-Generated 1 August 2026, after the second and third launch gates closed.
+Generated 1 August 2026; wrapper corrected 2 August 2026. This line once said which launch
+gates had closed, and was wrong within the day: which gates are open is the backlog's to say,
+not this file's.
 
 ---
 

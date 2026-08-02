@@ -204,7 +204,7 @@ The project should use official statistics as the primary source and selected in
 The first eight rows were the June 2026 list. Five publishers the site now cites were absent
 from it altogether, most of them arriving with the costs and labour-market material, and the
 National Audit Office was listed as deferred while its figures were being built into the MVP.
-`data/sources.json` is the catalogue of record: thirteen entries across twelve publishers, and
+`data/sources.json` is the catalogue of record: fourteen entries across twelve publishers, and
 `scripts/validate-data.mjs` rejects any figure whose source host is not one of them. Update
 this table from that file, not from memory.
 
