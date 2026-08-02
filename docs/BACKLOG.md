@@ -50,7 +50,11 @@ first act.
 3. **The six pages the pre-publication review never opened**, put through
    `docs/PRE-PUBLICATION-REVIEW.md`. Recommended before signing the review as passed, because
    both glossary gates sit on one of the six and two independent passes reached it separately.
-   Running the template is **[me]**; the verdicts are **[you]**.
+   **The [me] half is done, 2 August 2026**: the evidence is in
+   `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md`, which sets every figure and every claim about a
+   figure on those six pages beside what the data layer holds, and leaves the checkboxes
+   unticked. It carries no findings and no severities, deliberately. **The verdicts are [you]**,
+   and are all that is left of this item.
 4. **The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
    below, plus the two sources-page wording bullets at the end of item 6. All **[you]** calls;
    applying what is decided is **[me]**. None gates launch, and every one is cheaper before
