@@ -345,6 +345,46 @@ for (const [ref, metric] of registry) {
   }
 }
 
+// --- one figure, one home: the third boundary -------------------------------------
+// "One figure, one home" was enforced at two boundaries and not at the third. `dashboard.json`
+// was emptied of values so a card references a metric, and `series_ref` stops a metric held twice
+// drifting from its own point. Both are checked above. Nothing checked a record's `notes` for
+// another record's value, and the pre-launch audit found 26 restatements across 14 records: when
+// `asylum-refusals` next moves, several other notes go on saying the old figure with every check
+// green. The project has already been bitten by this shape twice, in PR #58 and PR #67, and fixed
+// it one figure at a time both times.
+//
+// Reported, never failed, on the precedent the sub-100 warnings and the unrecorded-literal report
+// already set. Several matches are coincidence rather than restatement, and a check whose only
+// remedy is an exemption list teaches authors to stuff it. What it buys is that an updater moving
+// a value is TOLD which notes now need re-reading, by name, instead of being asked to remember.
+//
+// Same value forms and the same threshold as the longhand scan in validate-content.mjs, so the two
+// agree about what counts as writing a figure out. Word-bounded, or 48,581 would be found inside
+// 148,581 and the report would name a restatement that is not there.
+//
+// What it does NOT establish: that a named pair disagrees, since it matches on EQUAL values and so
+// can only ever see agreement. That is the point. It also asks nothing of a note restating a series
+// point, or of `range_min` and `range_max`, whose only bounds today are under the threshold anyway.
+const restated = [];
+const owners = new Map();
+for (const [ref, metric] of registry) {
+  if (typeof metric.value !== 'number') continue;
+  for (const form of new Set([metric.value.toLocaleString('en-GB'), String(metric.value)])) {
+    if (/\d,\d/.test(form) || Math.abs(metric.value) >= 100) {
+      owners.set(form, [...(owners.get(form) ?? []), ref]);
+    }
+  }
+}
+for (const [ref, metric] of registry) {
+  for (const [form, refs] of owners) {
+    const others = refs.filter((owner) => owner !== ref);
+    if (!others.length) continue;
+    if (!new RegExp(`(?<![\\d,.])${form.replace('.', '\\.')}(?![\\d,.])`).test(metric.notes ?? '')) continue;
+    restated.push(`${ref}: its notes write ${form}, which is the value of ${others.join(' and ')}`);
+  }
+}
+
 // --- source catalogue -----------------------------------------------------------
 const sourceIds = new Set();
 for (const [i, source] of read('sources.json').sources.entries()) {
@@ -443,6 +483,14 @@ if (undeclared.length) {
   console.log('If it is the same measure, add series_ref to the metric so the two cannot drift apart.');
   console.log('If two different measures happen to share a value, leave it.');
 }
+
+// Printed every run, including empty, for the reason the staleness block below gives: a check that
+// speaks only when it fires cannot be told from one that has stopped working.
+console.log(`\nValues restated in another record's notes: ${restated.length}. Nothing keeps these in step, so when one of the named records moves, re-read the notes listed here.`);
+for (const item of restated) console.log(`  ${item}`);
+console.log('Not established: that any pair disagrees. This matches on EQUAL values, so it can only');
+console.log('ever see agreement, and what it cannot see is the moment they stop agreeing. Some are');
+console.log('coincidence rather than restatement, which is why it reports and never fails.');
 
 // Publisher tables. Reported rather than left silent, because the corrections watch is only as
 // complete as this declaration is, and nothing else would say how far that reaches.

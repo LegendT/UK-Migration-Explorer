@@ -119,6 +119,11 @@ const warnings = [];
 // the heading over a pooled list would have to describe both, which is how a success message
 // starts claiming more than its check verifies.
 const unrecorded = [];
+// The exemptions that are load-bearing, kept apart from both lists above for the same reason they
+// are kept apart from each other. These are not defects and are not reported as ones: a declared
+// literal that the data layer also holds is the case the success message below has to exclude, so
+// it is counted where the message can name it rather than described in a sentence nobody re-derives.
+const declaredLive = [];
 
 // The ratchet, and the reason this check does not become wallpaper. Report level is right for
 // the figures already here, because erroring on day one would force three dozen exemptions and
@@ -651,9 +656,18 @@ const unitScale = (unit) => SCALE_WORDS[String(unit).match(/\b(million|billion)\
 // `describe` names WHICH number of the record this is, because a range has no `value` and a
 // message saying "the current value of" about a bound is the overclaim this file has been
 // caught making before. It travels with the ref so the message cannot drift from the map.
+//
+// All three maps hold a LIST per value, the way `seriesValues` below already does, and they held
+// one entry until 2 August 2026. A bare `set` is last-write-wins, so where two records share a
+// value form the map kept whichever theme file was read last and the message named it alone. That
+// is not a latent shape here, it is live: `10%` is both the Pakistan share of asylum claims and
+// the non-British share of the population, and the warning on the home page card whose own
+// sentence says "Pakistan" named the population record. An error's remedy would have told the
+// author to cite the wrong record, which is worse than no message.
+const push = (map, key, entry) => map.set(key, [...(map.get(key) ?? []), entry]);
 const registerValue = (number, unit, ref, describe) => {
   for (const form of new Set([number.toLocaleString('en-GB'), String(number)])) {
-    if (/\d,\d/.test(form) || Math.abs(number) >= 100) liveValues.set(form, { ref, describe });
+    if (/\d,\d/.test(form) || Math.abs(number) >= 100) push(liveValues, form, { ref, describe });
   }
   // Rates and money are mostly under 100, where a bare number is too common in prose to
   // match on, "39" appears in dates, counts and ordinary sentences. Matched WITH their
@@ -664,10 +678,13 @@ const registerValue = (number, unit, ref, describe) => {
   // claim pages declare that record under `figures:` and then write "1% of GDP" in prose four
   // times without citing it, which no check could see. "% of GDP" is the only unit here that
   // starts with the sign without being it, so this widens the scan by exactly one record.
-  if (String(unit).startsWith('%')) unitedValues.set(`${number}%`, { ref, describe });
-  if (String(unit).includes('£')) unitedValues.set(`£${number}`, { ref, describe });
-  scaledValues.set(Math.round(number * unitScale(unit)), { ref, describe });
+  if (String(unit).startsWith('%')) push(unitedValues, `${number}%`, { ref, describe });
+  if (String(unit).includes('£')) push(unitedValues, `£${number}`, { ref, describe });
+  push(scaledValues, Math.round(number * unitScale(unit)), { ref, describe });
 };
+// One phrasing for all three, so a two-record message cannot read as one record in one branch and
+// as two in another.
+const nameAll = (matches) => matches.map((m) => `${m.describe} of ${m.ref}`).join(' and ');
 
 for (const [ref, metric] of registry) {
   if (typeof metric.value === 'number') {
@@ -806,9 +823,9 @@ function checkLiterals(file, prose, allowed) {
   // an error here would be silenced by stuffing historical_literals, which is worse than
   // no check at all. The comma-grouped check below stays an error; its collision rate is low.
   for (const united of new Set(withoutTokens.match(/£\d+(?:\.\d+)?|\d+(?:\.\d+)?%/g) ?? [])) {
-    const match = unitedValues.get(united);
-    if (match && !allowed.has(united)) {
-      warnings.push(`${file}: ${united} equals ${match.describe} of ${match.ref}, check whether it should be cited`);
+    const matches = unitedValues.get(united);
+    if (matches && !allowed.has(united)) {
+      warnings.push(`${file}: ${united} equals ${nameAll(matches)}, check whether it should be cited`);
     }
   }
 
@@ -834,8 +851,14 @@ function checkLiterals(file, prose, allowed) {
     // load-bearing. Without the first, "3 billion" of anything is answered by a £ record and
     // silenced. Without the third, a record of 20 £ per night silences "£20 billion", a
     // different number by a factor of a billion.
+    //
+    // `some` rather than the one surviving entry, and that is the list change earning its keep in
+    // the most dangerous three lines in this file. The guard's premise is that the unit scan above
+    // has already reported this sentence, and that scan reports every record sharing the key. Asked
+    // of a single last-written entry, the premise was true only by the order the theme files happen
+    // to be read; asked of all of them, it is the thing it claims.
     const united = currency && unitedValues.get(`£${number}`);
-    if (united && unitScale(registry.get(united.ref)?.unit) === scale) continue;
+    if (united && united.some((m) => unitScale(registry.get(m.ref)?.unit) === scale)) continue;
 
     const held = scaledValues.get(value);
     const inSeries = seriesValues.get(String(value));
@@ -845,7 +868,7 @@ function checkLiterals(file, prose, allowed) {
       // "10,700,000" on the page: the wording changes, and choosing between that and a
       // reword is an editorial call. The comma-grouped branch can error precisely because
       // there the citation renders the same characters the page already shows.
-      const what = held ? `${held.describe} of ${held.ref}` : `the value at ${inSeries.join(' and ')}`;
+      const what = held ? nameAll(held) : `the value at ${inSeries.join(' and ')}`;
       warnings.push(`${file}: ${text} equals ${what}, which a citation would render "${value.toLocaleString('en-GB')}". Cite it and let the page carry that form, or reword it, but do not leave a live value written out here`);
       continue;
     }
@@ -859,10 +882,29 @@ function checkLiterals(file, prose, allowed) {
   // no token could ever equal, so writing it out longhand was invisible.
   const candidates = withoutTokens.match(/\b\d{1,3}(?:,\d{3})+(?:\.\d+)?\b|\b\d+(?:\.\d+)?\b/g) ?? [];
   for (const literal of new Set(candidates)) {
-    if (allowed.has(literal)) continue;
-    const match = liveValues.get(literal);
-    if (match) {
-      errors.push(`${file}: writes ${literal} longhand, which is ${match.describe} of ${match.ref}, cite {{${match.ref}}} so it cannot go stale, or list it under ${declareIn} if it is deliberately frozen`);
+    // The exemption is tested BEFORE the live-value lookup, so what the two branches below verify
+    // is that no page writes an UNDECLARED longhand value the data layer holds. The success message
+    // used to drop that qualifier and assert the unrestricted property, which is the ninth instance
+    // of this project's signature defect and was found in the check the README points readers at.
+    //
+    // The exemption itself is not the defect: `meta.json`'s frozen reconciliation is right to be
+    // frozen, and freezing a figure the data layer also holds is a legitimate thing to want. What
+    // was wrong was claiming otherwise. So the declared-and-held ones are counted and named, the
+    // message says what it means, and the exemption cannot grow without the run saying so. The
+    // count is deliberately not written into any comment or document: it is what the run prints.
+    if (allowed.has(literal)) {
+      const heldBy = liveValues.get(literal)?.map((m) => `${m.describe} of ${m.ref}`)
+        ?? seriesValues.get(literal)?.map((ref) => `the value at ${ref}`);
+      if (heldBy) declaredLive.push(`${file}: ${literal} is declared frozen and is also ${heldBy.join(' and ')}`);
+      continue;
+    }
+    const matches = liveValues.get(literal);
+    if (matches) {
+      // The remedy names every candidate for the same reason the series branch below already does.
+      // Naming one of two is worse than naming both: an author does what the message says, and the
+      // message would have been sending them to whichever theme file was read last.
+      const cite = matches.map((m) => `{{${m.ref}}}`).join(' or ');
+      errors.push(`${file}: writes ${literal} longhand, which is ${nameAll(matches)}, cite ${cite} so it cannot go stale, or list it under ${declareIn} if it is deliberately frozen`);
       // Four figures are held as a metric AND as a series point. The metric message is the
       // more useful of the two, and reporting the same literal twice would read as two
       // defects. validate-data.mjs is what keeps those two copies in step.
@@ -1011,7 +1053,14 @@ if (unrecorded.length) {
   for (const entry of unrecorded) console.log(`  ${entry}`);
   console.log('Some are frozen history and belong longhand; some are current-edition figures that go wrong at the next release. The list cannot tell them apart, which is why it is printed for review. Printing is not reviewing, and nothing here checks that anyone read it.');
 }
-console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes longhand a comma-grouped value, or a bare value of 100 or more, that a record or one of the ${points.size} series points holds. Unit-qualified matches under 100 are the warnings above, because at that size a value collides with unrelated figures, and so is a scale-word figure equal to a record value, because a citation there renders "10,700,000" and not "10.7 million". Neither is part of this claim.`);
+console.log(`${cited.size} cited figures resolve to a record, chart bars and chart summaries included. No page writes longhand an UNDECLARED comma-grouped value, or an undeclared bare value of 100 or more, that a record or one of the ${points.size} series points holds. Unit-qualified matches under 100 are the warnings above, because at that size a value collides with unrelated figures, and so is a scale-word figure equal to a record value, because a citation there renders "10,700,000" and not "10.7 million". Neither is part of this claim.`);
+if (declaredLive.length) {
+  console.log(`Undeclared is the load-bearing word: ${declaredLive.length} declared literal(s) DO equal a value the data layer holds, and are exempt rather than absent.`);
+  for (const entry of declaredLive) console.log(`  ${entry}`);
+  console.log('Each is a deliberate freeze and none is a defect here. They are printed because the exemption is granted on trust, nothing re-checks that it is still deserved, and the sentence above claimed they did not exist until 2 August 2026.');
+} else {
+  console.log('No declared literal equals a value the data layer holds, so the exemption list and the claim above do not overlap on this run.');
+}
 console.log(`Not covered: a longhand figure the data layer never recorded, which the value scans above are blind to by construction, because they match prose against values the site holds. ${unrecorded.length ? `${unrecorded.length} comma-grouped or scale-word ones are listed above rather than counted as clean` : 'None on this run'}. A figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand" is not scanned at all, and neither is front matter, where one claim's short answer carries a rounded figure this scan would otherwise see.`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
