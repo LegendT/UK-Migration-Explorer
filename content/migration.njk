@@ -23,11 +23,14 @@ figures:
   - migration/asylum-related-immigration
   - migration/net-migration
   - migration/net-migration-2
+  - migration/net-migration-peak
   - migration/study-related-immigration
   - migration/total-long-term-emigration
   - migration/total-long-term-immigration
+  - migration/total-long-term-immigration-peak
   - migration/non-eu-plus-long-term-immigration
   - migration/work-related-immigration
+  - migration/work-related-immigration-previous-year
   - migration/visitor-visas-granted
 ---
 <p>Long-term international migration counts moves intended to last <strong>12 months or
@@ -44,6 +47,7 @@ arrivals</a>.</p>
 
 {% set nm = series.netMigration %}
 {% set netMigration = "migration/net-migration" | metric %}
+{%- set netMigrationPeak = "migration/net-migration-peak" | metric %}
 {% lineChart {
   id: 'net-migration-over-time',
   series: [{ name: 'Net migration', points: nm.data | points }],
@@ -53,7 +57,7 @@ arrivals</a>.</p>
   source: 'ONS, long-term international migration, provisional: year ending December 2025',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
   breakAfter: 2020,
-  note: 'ONS advises that estimates before and after June 2021 should be compared with caution, because the methods used to produce them differ. The break is marked on the chart. Every point comes from a single ONS release, and figures from different releases must not be mixed. The 2022 estimate has moved across revisions, from 606,000 when first published in May 2023 to ' ~ (nm.data | at(2022) | number) ~ ' in the current series. The highest twelve-month net migration estimate ONS publishes is 944,000, in the year ending March 2023, a window a calendar-year series cannot show.'
+  note: 'ONS advises that estimates before and after June 2021 should be compared with caution, because the methods used to produce them differ. The break is marked on the chart. Every point comes from a single ONS release, and figures from different releases must not be mixed. The 2022 estimate has moved across revisions, from 606,000 when first published in May 2023 to ' ~ (nm.data | at(2022) | number) ~ ' in the current series. The highest twelve-month net migration estimate ONS publishes is ' ~ (netMigrationPeak.value | number) ~ ', in the ' ~ netMigrationPeak.period_label ~ ', a window a calendar-year series cannot show.'
 } %}
 
 <h2>The two flows behind that number</h2>
@@ -63,6 +67,7 @@ only way to see which is to look at the flows separately.</p>
 
 {% set fl = series.flows %}
 {% set emigrationTotal = "migration/total-long-term-emigration" | metric %}
+{%- set immigrationPeak = "migration/total-long-term-immigration-peak" | metric %}
 {% lineChart {
   id: 'flows-over-time',
   series: [
@@ -75,7 +80,7 @@ only way to see which is to look at the flows separately.</p>
   source: 'ONS, long-term international immigration, emigration and net migration flows, provisional',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional',
   breakAfter: 2020,
-  note: 'Between 2023 and 2024, net migration fell by around 517,000 while immigration fell by around 429,000. The difference is emigration rising by roughly 87,000 over the same period, more people leaving, not only fewer arriving. These are calendar years. The highest twelve-month immigration estimate ONS publishes is 1,469,000, in the year ending March 2023, a window a calendar-year series cannot show.'
+  note: 'Between 2023 and 2024, net migration fell by around 517,000 while immigration fell by around 429,000. The difference is emigration rising by roughly 87,000 over the same period, more people leaving, not only fewer arriving. These are calendar years. The highest twelve-month immigration estimate ONS publishes is ' ~ (immigrationPeak.value | number) ~ ', in the ' ~ immigrationPeak.period_label ~ ', a window a calendar-year series cannot show.'
 } %}
 
 <h2>Why people came</h2>
@@ -89,6 +94,7 @@ year's arrivals would set two different cohorts against each other.</p>
 {% set study = "migration/study-related-immigration" | metric %}
 {% set work = "migration/work-related-immigration" | metric %}
 {% set asylumRoute = "migration/asylum-related-immigration" | metric %}
+{%- set workPreviousYear = "migration/work-related-immigration-previous-year" | metric %}
 {% barChart {
   id: 'reason-for-migration',
   bars: [
@@ -101,7 +107,7 @@ year's arrivals would set two different cohorts against each other.</p>
   unit: 'people',
   source: 'ONS, long-term international migration, provisional: year ending December 2025',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
-  note: 'These are reasons for coming as ONS classifies them, not routes of arrival, and the three shown are not all of them. Humanitarian is separate, about 6% of non-EU+ arrivals, and family about 7%; neither is inside the asylum bar. Work-related immigration fell by 47% from 272,000 the previous year, and ONS identifies it as the largest single contributor to the fall in net migration.'
+  note: 'These are reasons for coming as ONS classifies them, not routes of arrival, and the three shown are not all of them. Humanitarian is separate, about 6% of non-EU+ arrivals, and family about 7%; neither is inside the asylum bar. Work-related immigration fell by 47% from ' ~ (workPreviousYear.value | number) ~ ' the previous year, and ONS identifies it as the largest single contributor to the fall in net migration.'
 } %}
 
 <h2>Why the ONS and Home Office figures never match</h2>

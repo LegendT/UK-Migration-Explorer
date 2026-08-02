@@ -145,12 +145,14 @@ const unrecorded = [];
 // 31 once visitor visas got a record, which took two of the eleven off in one go: one figure,
 // written on two pages, and the first of the scale-word set to come down. 28 once the citizenship
 // card's three got records read from table Cit_01, the first time three came down together and the
-// first taken on the standing rule rather than as a per-figure decision.
+// first taken on the standing rule rather than as a per-figure decision. 25 once the migration
+// page's two ONS peaks and its work-related comparison year got records read from Tables 1 and 4b
+// of the year ending December 2025 dataset.
 //
 // This ledger is the only place a step is recorded, so a step taken without adding a line here
 // leaves it ending at a number the constant no longer holds. That happened on the 31-to-28 step
 // and was found by a second model rather than by anything that runs.
-const UNRECORDED_BASELINE = 28;
+const UNRECORDED_BASELINE = 25;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
