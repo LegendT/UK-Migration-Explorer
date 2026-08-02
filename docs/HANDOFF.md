@@ -121,6 +121,11 @@ independent passes. It found nothing that gates launch, and what it did find is 
 not here. One item touches a gate: the review argues the launch `robots.txt` should be WRITTEN
 rather than only deleted, with a sitemap beside it, and the gate as worded says delete.
 
+**The sitemap half of that is built, PR #86**, so what is left of it is the `robots.txt` file
+itself and the `Sitemap:` line inside it, and what that file SAYS waits on the AI-crawler
+decision the backlog carries as U4. The same pull request gave every heading on every page an
+id, which two pages of seventeen had before it.
+
 Three things from it belong in this document because they change how the project should be read.
 
 **The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
@@ -328,6 +333,14 @@ is already here to adding a neighbour beside it.
   tables FIA_3 and T_3 give 40% and 67 weeks for asylum and protection. Believing the bulletin
   would have introduced two errors while "correcting" them. The `.ods` and `.xlsx` files are zip
   archives; unzip and parse the sheet XML directly.
+
+  **And a superlative is a claim about a whole column, so read the column.** On 2 August 2026 the
+  ONS bulletin called two figures a "peak" and both site sentences say "the highest twelve-month
+  estimate ONS publishes". Those are different claims: the first is the publisher describing its
+  own release, the second is a maximum. Table 1 settled it, each being the largest of 55
+  year-ending periods and uniquely so, and the bulletin could not have. This is the same shape as
+  the absolute negative below, in the other direction: a superlative and an absolute are both
+  claims about everything you did not look at.
 
 - **An absolute negative about a publication is a claim, and it needs a search designed to refute
   it.** "The 2025-26 annual report publishes no hotel spending figure at all" was written into a
@@ -573,6 +586,15 @@ is already here to adding a neighbour beside it.
   the restore with `;` rather than `&&`, because a failing `grep` in the middle will otherwise
   skip it. If checkout is ever the tool, run `git diff` on the file first and confirm the probe
   is the only change in it.
+
+- **Print the branch you are on before cutting one from it.** `git checkout -b` says nothing about
+  where it started. On 2 August 2026 a session read a stated starting branch, ran `git status` for
+  cleanliness, and cut a branch from a different one still checked out from earlier work, which
+  made its pull request quietly stacked. It was harmless that time and only because the work
+  genuinely belonged on top of the other branch. What made it invisible is that every later signal
+  agreed with itself: `git fetch origin main` and `git log origin/main` both answered about `main`
+  while the tree was somewhere else. `git branch --show-current` is one command and answers the
+  question none of those do.
 
 ### Working with this project's own documents and rules
 
