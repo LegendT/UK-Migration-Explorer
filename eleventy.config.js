@@ -230,12 +230,64 @@ export default function (eleventyConfig) {
     return html;
   });
 
+  // A heading that declares no {#id} gets one derived from its own text. Doing it here rather
+  // than by hand at each heading is the same reasoning scrollable-regions and table-captions
+  // already use: a page added later cannot arrive without it, and the alternative was editing
+  // fourteen pages to fix a defect the transform can close in one. Before this, two pages of
+  // seventeen carried any heading id at all, so no section of a theme page could be linked to
+  // by a reader composing a URL by hand, which is what the site asks journalists to do.
+  //
+  // And on the three theme pages, which is where the UX review found it, {#id} was never
+  // available: `{#` opens a Nunjucks COMMENT, so writing an anchor the markdown way into a .njk
+  // heading fails the build with "expected end of comment, got end of file". Confirmed by doing
+  // it. The choice on those pages was a derived id or an id= attribute typed onto every heading.
+  //
+  // What it deliberately does not do, and the ceiling it has:
+  //
+  // The h1 is skipped. The page URL is already the link to the page.
+  //
+  // A heading inside a <figcaption> is skipped, because the <figure> around it already carries
+  // an author-chosen id and that is the anchor a chart is linked by. Those titles also name a
+  // period ("year ending March 2026"), so deriving an id from one would put a date that moves
+  // on every release into a URL.
+  //
+  // A derived id that is already taken is not disambiguated with a suffix and the heading is
+  // left without one. The single case on the site today is migration.njk's "Net migration over
+  // time", whose slug is the id of the chart directly beneath it: /migration/#net-migration-
+  // over-time therefore lands on the chart in the section the heading introduces, which is
+  // where a reader linking to that heading wanted to go. A "-2" suffix would be a URL nobody
+  // could guess and would renumber if a heading were added above it.
+  //
+  // The ceiling, and it is the reason {#id} still wins where it is declared: a derived id
+  // changes if the heading is reworded, and nothing outside this repository can be told. A
+  // link that has to survive rewording declares its own id, as the glossary and the sources
+  // page do for every anchor another page links to. check-build.mjs catches the internal half,
+  // because every same-page fragment and internal link is resolved against the built output.
   eleventyConfig.addTransform('heading-anchors', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
-    return content.replace(
+    const declared = content.replace(
       /<h([1-6])>(.*?)\s*\{#([a-z0-9-]+)\}<\/h\1>/g,
       (_, level, text, id) => `<h${level} id="${id}">${text}</h${level}>`,
     );
+
+    // Collected after the declared pass, so a hand-written anchor is never overwritten by a
+    // derived one, and against every id in the document rather than only the headings': the
+    // ids that collide here belong to charts and to <main>, not to other headings.
+    const taken = new Set([...declared.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+    const captions = [...declared.matchAll(/<figcaption[\s\S]*?<\/figcaption>/g)]
+      .map((m) => [m.index, m.index + m[0].length]);
+
+    // stripTags is declared below this transform and decodes entities before stripping tags.
+    // Both matter: a heading arrives here after resolve-citations, so it can hold markup, and
+    // an entity left in place would put "quot" or "amp" inside a URL.
+    return declared.replace(/<h([2-6])([^>]*)>([\s\S]*?)<\/h\1>/g, (whole, level, attrs, text, offset) => {
+      if (/\sid=/.test(attrs)) return whole;
+      if (captions.some(([from, to]) => offset >= from && offset < to)) return whole;
+      const id = stripTags(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      if (!id || taken.has(id)) return whole;
+      taken.add(id);
+      return `<h${level}${attrs} id="${id}">${text}</h${level}>`;
+    });
   });
 
   // Markdown has no caption syntax, so the four markdown tables on this site had none while

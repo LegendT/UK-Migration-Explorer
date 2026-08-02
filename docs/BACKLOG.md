@@ -77,12 +77,17 @@ first act.
    reviewer's criterion. **[you]**.
 7. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
    `scripts/check-build.mjs`. **The UX review says write that file rather than only delete it**,
-   with a sitemap beside it, which is U1 below and is the one place that review touches a gate. Then set up Search Console, which costs nothing, needs no
-   JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's word.
-8. **The UX review, U1 to U5 below.** None of it gates launch. U1 is three cheap **[me]** jobs,
-   U2 is the citation handover and is the one worth arguing for, U3 is five trust items, and U4
-   is two **[you]** decisions that block any work on them. U5 records what was considered and
-   cut, so it is not proposed again.
+   which is the one place that review touches a gate, and it is now the only part of U1 left.
+   **The sitemap it wanted beside it is built** (PR #85), so what is outstanding is the file
+   itself plus the `Sitemap:` line pointing at it, and **what it says is gated on U4's
+   AI-crawler decision**, which is **[you]**. Then set up Search Console, which costs nothing,
+   needs no JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's
+   word.
+8. **The UX review, U2 to U5 below.** None of it gates launch. **U1 is done** (PR #85,
+   2 August 2026) apart from the `robots.txt` half, which is in the gate above. U2 is the
+   citation handover and is the one worth arguing for, U3 is five trust items, and U4
+   is two **[you]** decisions that block any work on them, one of which the gate above now
+   waits on. U5 records what was considered and cut, so it is not proposed again.
 9. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
    and write the `data/evidence/` entries **[me]**; then land the reverted regrade check, in
    that order, fetch first, because the other way round forces a fabricated quote. And re-read
@@ -397,18 +402,24 @@ something was ABSENT from the site after checking a single page, and it was pres
 Nothing here duplicates the backlog. That was checked in both directions, and the UX items already
 tracked stay where they are, under A5, A6 and R1.
 
-### U1. Cheap, uncontested, all [me]
+### U1. Cheap, uncontested, all [me]. DONE (PR #85, 2 August 2026), except the half that is the gate
 
-- **No `sitemap.xml`**, and the launch `robots.txt` needs writing rather than only deleting. This
-  is a **divergence from the launch gate as written**, which says delete the file. Search Console,
-  which the same gate sets up, is materially more useful with a sitemap.
-- **No heading carries an id on a theme page**, 0 of 6 on the asylum page, so no section can be
-  deep-linked by anyone, including a journalist composing a link by hand. The `{#anchor}` idiom and
-  the transform behind it already exist and are used on the glossary. **Chart figures already carry
-  ids**; it is headings that do not.
-- **`theme-color` is absent** while the CSS honours `prefers-color-scheme: dark`, and the **404
-  description is not unique**: it falls back to the site strapline and is identical to the home
-  page's. Those two are the only duplicated description among the 17 pages.
+Nothing is left of it but the `robots.txt` sentence in the first bullet, which is inside launch
+gate 7 and stays there. What was built is under *Completed*, where the two things it found are
+recorded.
+
+- **No `sitemap.xml`. DONE.** `content/sitemap.njk` renders every built page but the 404 from
+  `collections.all`, and `check-build.mjs` compares it against the pages the build wrote, in both
+  directions. **The launch `robots.txt` still needs writing rather than only deleting**, which is a
+  **divergence from the launch gate as written**: the gate says delete the file, and the line that
+  points at the sitemap has to be written into it. That half is not taken here, because what
+  `robots.txt` says is gated on the AI-crawler decision in U4 and because writing it is launch.
+- **No heading carries an id on a theme page. DONE**, and it was 14 pages of 17 rather than the
+  three the finding named. `heading-anchors` derives an id from the heading's own text where none
+  is declared, so a page added later cannot arrive without one.
+- **`theme-color` is absent, and the 404 description is not unique. DONE.** Two `theme-color`
+  metas, one per scheme, and a `description` front-matter field the 404 uses so it no longer falls
+  through to the site strapline.
 
 ### U2. The citation handover, and it is one item rather than two
 
@@ -1165,6 +1176,41 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **U1, the three cheap UX items**, 2 August 2026. PR #85. A `sitemap.xml`, an id on every
+  heading, `theme-color`, and a 404 description that is not the home page's. The
+  `robots.txt` half of the first bullet is not here: it is inside launch gate 7 and its
+  content waits on U4.
+
+  **The heading finding was 14 pages of 17, not the three theme pages it named.** Only the
+  glossary and the sources page carried any heading id, because both are markdown and use the
+  `{#id}` idiom. **That idiom was never available on the pages the finding was about**: `{#`
+  opens a Nunjucks comment, so writing an anchor into a theme page heading fails the build with
+  "expected end of comment, got end of file", which is what a probe returned. So
+  `heading-anchors` derives an id from the heading's own text where none is declared, in one
+  place, the way `scrollable-regions` and `table-captions` already close their own defects for
+  every page at once. A declared `{#id}` still wins; the `h1` is skipped, its link being the
+  page URL; and a heading inside a `<figcaption>` is skipped because the `<figure>` already
+  carries an author-chosen id and those titles name a period that moves on every release.
+
+  **The sitemap found something that was doing nothing and was hiding five pages.** All five
+  Nunjucks pages carried `eleventyExcludeFromCollections: true`, so the overview, the three
+  theme pages and the claims index were invisible to `collections.all`, which nothing else in
+  the repository reads. The flag is removed from all five. **The check caught it rather than a
+  reading of the template**, on its first run, which is the argument for the check: the sitemap
+  is derived from Eleventy's collections and compared against the files the build actually
+  wrote, so the two sides come from different places and the comparison is not the same query
+  asked twice. It runs in both directions, a page missing from the sitemap and a URL the build
+  does not serve, and the message names the flag as the usual cause.
+
+  **A duplicate-id check landed with it**, because deriving ids from text makes two
+  identically worded headings the reachable case. The transform skips the second; the check is
+  what says so if it ever stops. The `anchors` map in `check-build.mjs` is a Set, so every
+  check reading it was blind to a duplicate. Both were negative-tested, and so were both
+  directions of the sitemap comparison.
+
+  **Nothing else in the built site changed**, proved by diff: every changed line is a heading
+  gaining an id or one of the two head metas.
 
 - **Both glossary launch gates**, 2 August 2026. PR #83. The wording was the owner's and is
   recorded here because a decision that lives only in a conversation is a decision that gets lost.

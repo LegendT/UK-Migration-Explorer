@@ -1,0 +1,37 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+{#-
+  The URL list a search engine reads. Generated from collections.all rather than typed, on the
+  same principle as the published-figure counts on /sources-and-method/: a hand-kept list of
+  this site's own pages is a second home for something the build already knows, and it goes
+  stale the first time a page is added.
+
+  404.html is not here because it excludes itself from collections, which is correct twice
+  over: a sitemap lists pages a reader should be able to find.
+
+  The five Nunjucks pages carried eleventyExcludeFromCollections until this file existed, and
+  it has been removed from them. Nothing else in the repository reads collections.all, and the
+  claims collection is a glob over content/claims, so the flag was doing nothing except hiding
+  the overview, the three theme pages and the claims index from the only list that needed them.
+  A page that carries it again drops out of the sitemap in silence, so check-build.mjs compares
+  this file against the pages the build wrote, in both directions, and names the flag.
+
+  No <lastmod>, deliberately. The only per-page date this site holds is last_reviewed, which
+  records what a review READ, not when the file changed, and publishing it as a modification
+  date would assert something the site does not know. A sitemap with no lastmod is valid and
+  is still a complete list of URLs, which is the part Search Console uses.
+
+  robots.txt does not point at this file yet. Writing that line is part of the launch gate in
+  docs/BACKLOG.md, whose content is gated on the AI-crawler decision under U4; until then
+  robots.txt disallows everything and this file is inert.
+-#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all %}
+{%- if item.outputPath and item.outputPath.endsWith(".html") %}
+  <url><loc>{{ site.url }}{{ item.url }}</loc></url>
+{%- endif %}
+{%- endfor %}
+</urlset>
