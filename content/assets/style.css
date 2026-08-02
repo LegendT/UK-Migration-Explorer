@@ -479,12 +479,19 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
   .skip-link,
   .site-header nav { display: none; }
 
-  /* Open every chart's figures. UA styles hide a closed details' children, so both the
-     element and its contents are forced back. Verify in a real print preview rather than by
-     reading this: browsers implement the closed-details rule differently. */
+  /* Open every chart's figures. Chrome hides a closed details' contents through an internal
+     slot that child display rules cannot reach, so forcing the children back to display:block
+     opened nothing there, and hiding the summary as well printed an empty gap where the
+     figures should be, in the browser most people print from. The ::details-content
+     pseudo-element is the supported way in, the child rule stays for engines that still hide
+     by display, and the summary is hidden only where the contents provably open. Verify in a
+     real print preview rather than by reading this. */
   details { display: block; }
+  details::details-content { content-visibility: visible !important; }
   details > *:not(summary) { display: block !important; }
-  .chart-data summary { display: none; }
+  @supports selector(details::details-content) {
+    .chart-data summary { display: none; }
+  }
 
   /* A link with no destination is not a citation. Internal links get the site's own domain
      so a printed page can be typed back in; external ones print their href. */
