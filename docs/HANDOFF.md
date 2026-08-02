@@ -42,29 +42,43 @@ Deliberately not recorded here: which branches exist, what CI last did, what is 
 That is operational state, it is discoverable in seconds, and a previous version of this
 section was wrong within the hour because branches were tidied after it was written.
 
-**One exception, because it is structural rather than operational.** `main`'s history is
-truncated. Its root commit is `126a40a`, "Merge pull request #42", and that commit has no
-parent, so `main` begins in the middle of the project. Everything before it, from the first
-commit through PR #41, is a **separate history with no common ancestor**:
-`git merge-base main history-to-pr-41` exits 1. That is the 37-defect audit, the design and
-accessibility rounds, the costs page, the nine pre-publication review corrections in PRs #33
-to #38 and the series citations in PR #41. The content all reached `main`; the commits did not.
+**One exception, and it is a trap rather than a fact about the project.** This working copy is a
+**shallow clone**. Inside one, `git log` stops at a boundary commit, `git merge-base` can exit 1
+between branches that do share history, and the whole thing reads as a truncated project with a
+detached past. It is not. **The remote history is intact and `main` contains all of it.**
 
-It survives on the branch `history-to-pr-41`, which is the fullest copy and contains six of the
-seven other pre-#42 branches. `design-and-a11y-rounds` is the seventh and is contained in
-nothing else: it holds one further commit, `62d9dba`, a superseded handoff rewrite that also
-touches `lib/charts.mjs`. Why the truncation happened is not known here.
+This document asserted the opposite for days, at length, and called it "structural rather than
+operational". It said `main`'s root commit is `126a40a` with no parent, that everything through
+PR #41 was a separate history with no common ancestor, and that it survived only on the branch
+`history-to-pr-41`, which therefore must not be tidied away. Every part of that is the shallow
+boundary seen from inside.
 
-The branch name is the part of this that can go stale, and naming it breaks the rule above on
-purpose: a reader who does not know the history is detached will read `git log` as the whole
-project and a branch list as clutter, which is how the record gets deleted by someone tidying.
-If the branch is renamed or the history is grafted back on, correct this paragraph. The fact
-that `main` starts at a parentless commit is checkable in one command and does not go stale:
-`git rev-list --max-parents=0 main`.
+Four commands settle it, and the last needs the network because that is the point:
+
+```
+git rev-parse --is-shallow-repository      # true
+cat .git/shallow                           # the boundary commits, whatever they are today
+git cat-file -p 126a40a | grep ^parent     # two parents, in the local object
+gh api repos/LegendT/UK-Migration-Explorer/compare/history-to-pr-41...main --jq .status
+                                           # "ahead": main contains that branch
+```
+
+**The tell that should have caught it earlier is in the claim itself.** The paragraph named
+`126a40a` as the parentless root and called that "checkable in one command and does not go stale".
+It went stale: `git rev-list --max-parents=0 main` now answers `7598c83`, because a later fetch
+moved the shallow boundary. A fact that moves when nothing about the project moved is a fact about
+the observer.
+
+**So: `git fetch --unshallow` before drawing any conclusion from git history here**, and treat
+every merge base, "first commit" and branch-containment claim made inside a shallow clone as
+unverified. Nothing needs preserving and no branch needs guarding.
 
 17 pages build from a governed data layer of metric records in four theme files, plus **four time
-series** whose points are carried in blocks: a primary array, and companion `emigration` and
-`historical` blocks nested one level deeper. **How many records, how many points, and how many of
+series** whose points are carried in blocks: a primary array, and companion blocks nested one
+level deeper. **Which companions exist is `COMPANION_BLOCKS` in `lib/series.mjs` and not this
+sentence**, which named two of the three until 2 August 2026 and so omitted the sixteen points in
+`asylumBacklogTimeseries.json`'s `alternate_basis`, which is the undercount the paragraph below
+warns about. **How many records, how many points, and how many of
 the records reach a reader is what the run prints**, and this paragraph carried those numbers until
 2 August 2026, when it was wrong about all three. Reaching a reader
 means **rendering**: a token, a chart bar's `ref`, a `| metric` summary, a dashboard card or a
@@ -123,13 +137,29 @@ rather than only deleted, with a sitemap beside it, and the gate as worded says 
 
 **The sitemap half of that is built, PR #86**, so what is left of it is the `robots.txt` file
 itself and the `Sitemap:` line inside it, and what that file SAYS waits on the AI-crawler
-decision the backlog carries as U4. The same pull request gave every heading on every page an
-id, which two pages of seventeen had before it.
+decision the backlog carries as U4. The same pull request gave every linkable section heading an
+id, where two pages of seventeen had any before it. **Not every heading**, deliberately: the
+transform skips the page `h1`, whose link is the URL, a heading inside a `<figcaption>`, whose
+`<figure>` already carries an author-chosen id, and a derived id already taken on that page.
 
-Three things from it belong in this document because they change how the project should be read.
+**That review left the site's navigation undecided, and the backlog carries a second round for
+it.** Its only nav bullet is filed under *considered and cut* and concerns a horizontally
+scrolling nav; in its own words the wrapping was worked out "by calculation, unrendered". The site
+has no mobile navigation pattern, and a candidate one was sitting in this document's own *Sibling
+projects* section the whole time. **The lesson is about the method rather than the nav**: a review
+that reads markup and calculates can miss what opening the page would show, which is the same
+shape as the six absent-claims it already records against itself.
+
+**Backlog item 4 is closed, which changes what a session may assume.** Every figure written
+longhand anywhere on this site is now held by a record or a series point, or declared as frozen
+with its reason beside it, and the branch that used to report the exceptions refuses them. There
+is no baseline constant any more. A new figure typed into a page fails the build.
+
+Three things from the audit belong in this document because they change how the project should be read.
 
 **The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
-outstanding blockers are in `content/glossary.md`, one of the six the review never opened. Two
+blockers were in `content/glossary.md`, one of the six the review never opened, and both are
+closed now. Two
 independent passes reached it separately. That is not a fact about the glossary; it is what an
 unreviewed page looks like when someone finally reads it.
 
@@ -224,7 +254,7 @@ paragraph into the `<caption>` of the table below it, and throws when a marker m
 because markdown has no caption syntax and a stray marker would ship as visible text.
 `scrollable-regions` then wraps any
 unwrapped table and gives every scrolling box a `tabindex`, a role and a name taken from its
-caption or the heading above it. Run the last before the second and a heading still carrying
+caption or the heading above it. Run the last before `heading-anchors` and a heading still carrying
 its `{#id}` names the region, shipping raw syntax inside an `aria-label`, where nothing on the
 page shows it. `check-build` caught exactly that.
 
@@ -779,7 +809,9 @@ if it grows past four rows, the prompt has started reciting again and the fix is
 extend the table.
 
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
-from the code block below. If you edit the block, regenerate the file and confirm the two match; if
+from the code block below, which is the LAST fenced block in this document and no longer the only
+one: a second was added on 2 August 2026 under *Where things stand*, so anything extracting "the
+code block" must take the last, not the first. If you edit the block, regenerate the file and confirm the two match; if
 you edit the file, you have edited the copy and it will be overwritten.
 
 ```
