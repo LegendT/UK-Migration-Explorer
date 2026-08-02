@@ -9,6 +9,21 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Four frozen figures on the costs page are declared as history, 2 August 2026
+
+**Nothing a reader sees changed**, and the built site is byte-identical to before, proved by diff.
+This is a change to what the checks are told, not to the page.
+
+`£1.3 billion`, `£1.7 billion`, `£4.5 billion` and `£8 million` are declared under
+`historical_literals`. Each is fixed by the period or the publication it belongs to, so no release
+will restate it and a record would hold a number that can never move: two are the NAO's figures for
+a closed seven-month period, one is the original 2019 contract estimate, and one is the circulating
+claim the section exists to examine rather than a government figure at all.
+
+**The reason for each is written into the page's own front matter**, above the declaration, because
+an exemption is permanent and nothing re-checks that it is still deserved. Anyone withdrawing one
+later needs to know why it was granted.
+
 ### The hotel daily rates turn out to be the Home Office's own, 2 August 2026
 
 **No published figure value changed. One sentence did.** The costs page gave three daily spending

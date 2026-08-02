@@ -104,11 +104,11 @@ first act.
     The citizenship card's three landed as PR #78, the migration page's two ONS peaks and its
     work comparison year as PR #87, its four applicant and dependant splits as PR #89, and the
     owner's rewording of the three year-on-year falls as PR #90, and the asylum page with its
-    accommodation claim page as PR #91, and the costs page's daily rates as PR #92. **Four pages
-    are finished**, and the costs page holds nothing but figures its own prose calls history.
-    **What is left is seven figures and all of them are [you]**: four the prose calls history on
-    `costs.njk`, two on the born-abroad claim page, and one dashboard card. They are itemised
-    under item 4 below and need decisions rather than sources.
+    accommodation claim page as PR #91, the costs page's daily rates as PR #92, and its four
+    frozen figures as PR #93. **Five pages are finished.** **What is left is three figures and
+    all of them are [you]**: two on the born-abroad claim page and one dashboard card. They are
+    itemised under item 4 below, need decisions rather than sources, and are the last of this
+    item. At zero the report becomes an error and `UNRECORDED_BASELINE` goes.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -942,12 +942,20 @@ already says.
   "3" inside "3.4". So the data layer cannot hold a published figure's PRECISION, only its value,
   and "about £3 billion" stays as prose. It is not in the unrecorded count: it collides with the
   fee-income record and is reported as a sub-100 coincidence instead.
-- **Frozen history on the face of the prose**, so declarable if you agree: "£1.3 billion" and
-  "£1.7 billion" (NAO, HC 874, the first seven months of 2024-25), "£4.5 billion" (the original
-  contract estimate) and "£8 million a day" (the circulating claim the page exists to examine).
-  Deliberately **not** declared here: an exemption is permanent, nothing re-checks that it is
-  still deserved, and the branch reports rather than fails so that nobody is ever forced to
-  stuff the exemption list. **[you]**.
+- **Frozen history on the face of the prose. DECLARED on the owner's decision (PR #93, 2 August
+  2026)**: "£1.3 billion" and "£1.7 billion" (NAO, HC 874, the first seven months of 2024-25),
+  "£4.5 billion" (the original contract estimate) and "£8 million a day" (the circulating claim
+  the page exists to examine). Each is fixed by the period or the publication it belongs to, so
+  no release will restate it and a record would hold a number that can never move. **The reason
+  for each is written in `costs.njk`'s own front matter**, above the declaration, which is what a
+  future reader needs in order to withdraw one.
+
+  **The cost was known before the decision and is recorded rather than dropped**: an exemption is
+  permanent and nothing re-checks that it is still deserved, which is why this entry had said
+  deliberately not declared. Two things reduce it. The run names every declared literal that DOES
+  equal a live value, so an exemption cannot silently start covering a figure that moved, and none
+  of these four does today. And the branch stays at report level for everything else, so nobody is
+  forced to stuff the list.
 - **Genuinely ambiguous, so brought back as the rule says**: "about 10.6 million" on the
   born-abroad claim is an ONS ad hoc release on a different population base, published on no
   cadence, and the page's point is that it does **not** reconcile. A record would give a figure
@@ -1247,6 +1255,27 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The costs page's four frozen figures are declared**, 2 August 2026. PR #93. The owner's
+  decision, on the one category of item 4 whose remedy is an exemption rather than a record.
+  `£1.3 billion`, `£1.7 billion`, `£4.5 billion` and `£8 million`.
+
+  **The reasons live in `costs.njk`'s front matter, above the declaration**, not here, because
+  that is where someone deciding whether to withdraw one will be standing. In short: two are the
+  NAO's figures for a closed seven-month period in a report it has already corrected once, one is
+  a first-published contract estimate from 2019, and one is not a government figure at all but the
+  circulating claim the section exists to examine.
+
+  **The cost was known before the decision was taken.** This entry had read "deliberately not
+  declared", because an exemption is permanent and nothing re-checks that it is still deserved.
+  What makes it acceptable now is narrower than "we decided": the run names every declared literal
+  that DOES equal a live value, so an exemption cannot silently start covering a figure that moved,
+  and **none of these four does today** (the four the run names are all `meta.json`'s and predate
+  this). The report level stays for everything else, so nobody is ever forced to stuff the list.
+
+  **Baseline 7 to 3, and this is the first step down taken by exemption** rather than by recording
+  a figure or dropping it. The built site is byte-identical to `main`, proved by diff: front matter
+  renders nothing.
 
 - **The costs page's daily rates, two of which were never this site's arithmetic**, 2 August 2026.
   PR #92. Part of item 4, and the entry that sent this one was wrong.
