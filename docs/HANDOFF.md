@@ -1,4 +1,4 @@
-# Handoff, 1 August 2026
+# Handoff, 2 August 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -81,6 +81,18 @@ before it. It applied the mechanical half and left every editorial and sourcing 
 outstanding from it is in `docs/BACKLOG.md`, not here and not in the audit: that document is a
 frozen findings record as of 31 July, for the same reason `verification.txt` is.
 
+**A launch readiness review ran on 2 August 2026**, PR #75, written up in
+`docs/LAUNCH-READINESS-REVIEW.md`, a frozen findings record on the same terms as the two above.
+Seven review dimensions ran in parallel and every finding was adversarially verified by an
+independent pass told to refute it, which killed three of forty-seven; a far-end trace verified
+all eight home page figures against their live sources with verbatim quotes; and a visual pass
+measured the rendered pages rather than reading their markup. Its mechanical half landed with
+the PR, including two reader-facing blockers no check could see: every line chart clipped its
+y-axis labels into different plausible numbers, and a label a correction had retired survived
+at four sites. Everything editorial went to the backlog, which the same PR consolidated:
+**`docs/BACKLOG.md` now opens with *The order***, the single numbered list of everything
+outstanding, and that list is the only place the sequence is stated.
+
 Three things from it belong in this document because they change how the project should be read.
 
 **The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
@@ -93,8 +105,9 @@ Nothing verifies the source contains the figure. Reading five publications durin
 three defects: a record citing an NAO report that does not contain its value, a phrase attributed to
 the Home Office that it does not use, and a note reproducing wording the NAO formally retracted by a
 correction slip inside its own PDF. **All three are now corrected, and the gap they came through is
-not**: nothing still verifies that a source contains the figure citing it, and the backlog carries
-that as A1. `£2.1 billion` was the clearest case. It is
+not**: no automated check verifies that a source contains the figure citing it. The launch
+readiness review verified the eight home page figures at the far end by hand, with fetched
+quotes; the other reader-facing records have not been asked, and the backlog carries that as A1. `£2.1 billion` was the clearest case. It is
 real and official, it lives in the Home Office Annual Report and Accounts, and it named an NAO report
 that does not contain it from this site's first research pass until 1 August 2026, while every check
 passed. An earlier version of this sentence said "for over a year", which is not possible: the NAO
@@ -167,11 +180,11 @@ Seven checks, all in CI, all negative-tested.
 
 | Script | What it establishes |
 | --- | --- |
-| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
+| `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, under a ratchet whose count may not grow |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
-| `check-sources.mjs` | Every source URL still resolves (network; runs in CI with `continue-on-error`) |
+| `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
 | `npm run a11y` | pa11y at WCAG2AA over every URL in `.pa11yci.json`. Fails the build |
 
@@ -238,6 +251,34 @@ landing it turns the branch red until that record has an evidence entry, and the
 quotes from a pivot nobody had opened. **The ordering is the lesson: fetch the source, write the
 entry, then land the check.** The other way round forces a fabricated quote, which is the one thing
 the evidence contract exists to prevent.
+
+**What the launch readiness review changed in the apparatus, 2 August 2026.** Each addition
+negative-tested at the thing that decides, not only the thing that parses:
+
+- **A citation's `source_url` and `source_id` must resolve to the same publisher host**, on
+  records and on every series point against its envelope. Each half was checked against the
+  catalogue alone, so a record pairing one publisher's id with another's URL passed both, and
+  `check-releases.mjs` would have filed that URL's edition under the wrong publisher's watch.
+  Host equality is the strongest tie available; same-host gov.uk mismatches stay invisible to
+  it by construction, and the check does not claim otherwise.
+- **A theme file's `lastUpdated` may not predate the newest `retrieved_date` inside it.** The
+  check caught `fiscal.json` four days behind on the day it was written, the same slip the
+  audit had fixed by hand the week before, which is what a fix without its check half does.
+- **The `number` filter throws on null, undefined and NaN** rather than rendering an invisible
+  blank: a range record's deliberate null or a typoed property in a chart summary shipped as an
+  empty gap in a sentence with every check green, because a blank is not NaN and leaves no
+  literal behind for any scan to find.
+- **`check-sources` reads external links written in page prose**, markdown links and raw hrefs,
+  recursively through `content/`. Nothing collected them while `check-build`'s closing line
+  pointed at this script as the external-link answer, on a site whose trust model is "click the
+  source".
+- **The theme-file list has one home in `lib/series.mjs`**, imported by all seven consumers. It
+  was defined identically in seven files and only `validate-data.mjs` enforced registration,
+  against its own copy, so a fifth theme file would have shipped past the evidence gate silently.
+- **Four scans were corrected to match what they model**: the `at()` gate accepts a quoted year
+  the way the filter does, the stray-syntax scan catches a malformed anchor the transform cannot
+  resolve, the chart `sourceUrl` collector accepts both quote styles, and `published-counts`
+  renders an honest zero for a cadenced source instead of misdiagnosing the key as illegal.
 
 ## Working practices that earned their place
 
@@ -468,9 +509,15 @@ is already here to adding a neighbour beside it.
   shorthand `margin: 0` there silently undid the auto-centring `.wrap` was applied for. Set the
   longhand you mean.
 
-- **Never `git checkout -- .` to undo a test.** It reverts everything. This cost an hour.
-  Snapshot to a scratch directory and restore from there, and chain the restore with `;` rather
-  than `&&`, because a failing `grep` in the middle will otherwise skip it.
+- **Never `git checkout` to undo a test, on the tree or on a file.** `git checkout -- .`
+  reverts everything and cost an hour. The single-file form has the same failure whenever the
+  file carries the session's own uncommitted edits: it restores the last commit, not the
+  pre-probe state, and on 2 August 2026 it silently took two of a session's fixes with the
+  probe, recovered only because the harness reported the file changed on disk. Reverse the
+  exact edit instead, or snapshot to a scratch directory first and restore from there, chaining
+  the restore with `;` rather than `&&`, because a failing `grep` in the middle will otherwise
+  skip it. If checkout is ever the tool, run `git diff` on the file first and confirm the probe
+  is the only change in it.
 
 ### Working with this project's own documents and rules
 
@@ -639,18 +686,19 @@ Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
 READ FIRST, in this order, and do not re-derive what they already settle:
-  1. docs/BACKLOG.md. The one list of outstanding work, ordered, and it
-     names the launch gates that are mine. There is no second list.
+  1. docs/BACKLOG.md, starting with The order at its top: the single
+     numbered list of everything outstanding, gates marked, each entry
+     tagged [me] or [you]. There is no second list.
   2. docs/HANDOFF.md. How the project works, and what earlier sessions
      cost. Its "Working practices that earned their place" section is
      rules this project has paid for, each with the incident behind it.
      Read it before deciding a rule does not apply to what you are doing.
   3. The scope document for whatever you pick up.
 
-docs/PRE-LAUNCH-AUDIT.md and verification.txt are FROZEN RECORDS, not
-work lists. Read either for the reasoning behind an item. Do not edit
-them and do not take work from them: whatever is still outstanding is in
-the backlog.
+docs/PRE-LAUNCH-AUDIT.md, docs/LAUNCH-READINESS-REVIEW.md and
+verification.txt are FROZEN RECORDS, not work lists. Read them for the
+reasoning behind an item. Do not edit them and do not take work from
+them: whatever is still outstanding is in the backlog.
 
 This project has no CLAUDE.md. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
@@ -666,11 +714,11 @@ the owner's decision [you]. On a list mixing both, do all the [me] work
 first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question is.
 
-TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
-told you otherwise in this message. Unfinished, not unstarted: an item
-can have phases built and still be first. Do not infer it from document
-order, because the earlier items are mine or are launch; the backlog's
-own preamble names which to take, and that sentence is the instruction.
+TASK: take the first UNFINISHED [me] item or [me] half in The order,
+the numbered list at the top of docs/BACKLOG.md, unless I have told you
+otherwise in this message. Unfinished, not unstarted: an item can have
+phases built and still be first. The earliest entries are mine or are
+launch: bring those, do not take them.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
