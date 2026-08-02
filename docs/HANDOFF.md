@@ -205,16 +205,32 @@ Nunjucks string built with `~` concatenation, so a shortcode cannot go inside on
 `(series.netMigration.data | at(2022) | number)` is the citation. It throws on a year the
 series does not hold, and the `| number` is not optional, because `at` returns the raw value
 and a page that omits it ships `45537`. A series value written longhand fails the build. The
-five figures held both as a metric and as a series point declare `series_ref`, so a release
+figures held both as a metric and as a series point declare `series_ref`, so a release
 cannot revise one and leave the other, and `lib/series.mjs` is the single home for the series
 names, so a template's `series.flows` and a record's `flows@2025` cannot come to mean
-different things. Reasoning in `docs/SERIES-CITATIONS.md`.
+different things. **How many declare it is what the data layer says**, and this sentence carried
+the number until 2 August 2026, when six more were added in one day and it read "five".
+Reasoning in `docs/SERIES-CITATIONS.md`.
+
+**Which means the same remedy costs differently depending on where the sentence lives, and that
+is worth knowing before choosing it.** A Nunjucks chart note or summary can cite a series point
+directly through `at()`, so replacing typed figures there is free. **A markdown page cannot cite
+a series point at all**, so every figure needs a metric declaring `series_ref` first: on 2 August
+one rewritten sentence on a claim page cost five new records, and the identical sentence on a
+theme page cost none.
 
 **Charts cite records too.** A bar carries `ref`, not `value`, and the shortcode throws on a
 literal value or an unknown ref.
 
 **A token renders the formatted value only.** Units are prose: `%` attaches, `£` prefixes,
 `people` follows. The validator checks the author supplied them, in both syntaxes.
+
+**A record holds a figure's VALUE and not its PRECISION**, which is a real limit of the contract
+and not a detail. The Home Office prints hotel spending for 2023-24 as "£3.0 billion". A record
+can only hold `3`, and `check-evidence` refuses a quote saying "3.0" as evidence for `3`, because
+it cannot tell that from "3" inside "3.4" and the same guard is what stops `1,313` answering for
+`313`. So a published trailing zero cannot be recorded without either losing what the publisher
+chose to convey or writing a quote the source does not contain. That figure stays as prose.
 
 **Chart rules** live in `lib/charts.mjs`. Four are enforced in code rather than left to the
 author: the y-axis always starts at zero, the gridline interval is chosen from the intervals
@@ -626,6 +642,15 @@ is already here to adding a neighbour beside it.
   question none of those do.
 
 ### Working with this project's own documents and rules
+
+- **A tag in `docs/BACKLOG.md` is a claim about a source, and it ages exactly like a figure
+  does.** That file classified three daily rates on the costs page as "the cited spending divided
+  by 365" and tagged them editorial. Two of the three are the Home Office's own averages, printed
+  in its accounts in the same sentence as the annual totals, and acting on the tag would have
+  deleted two official published figures as though they were this site's arithmetic. **The page
+  had been contradicting the tag all along**, in the words "in the accounts' own terms", and
+  nothing surfaced that, because a backlog entry is prose and no check reads it. Open the source
+  before acting on a classification, including one this project wrote itself.
 
 - **Read the site's own published policy before adopting a reviewer's recommendation.** The
   review asked for attributable circulation examples. The style guide says, on a live page, that
