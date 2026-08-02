@@ -157,12 +157,14 @@ const unrecorded = [];
 // end-2019 queue, the appeals backlog a year earlier, and a sentence about appeals decided per
 // quarter that had gone false three quarters before anything asked. 7 once two of the costs
 // page's three daily rates turned out to be published Home Office figures rather than this
-// site's division, and the third was dropped because nobody publishes one.
+// site's division, and the third was dropped because nobody publishes one. 3 once the owner
+// declared the costs page's four frozen figures, which is the first step down taken by exemption
+// rather than by recording or dropping, and each carries its reason in the front matter above it.
 //
 // This ledger is the only place a step is recorded, so a step taken without adding a line here
 // leaves it ending at a number the constant no longer holds. That happened on the 31-to-28 step
 // and was found by a second model rather than by anything that runs.
-const UNRECORDED_BASELINE = 7;
+const UNRECORDED_BASELINE = 3;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
