@@ -12,7 +12,7 @@ marked done, withdrawn or struck. That rule exists because the pre-launch audit 
 list, the two diverged twice in a day, and this file was briefly edited to say the other one was
 live. The resolution did not hold, so it is a build failure now.
 
-Last updated 1 August 2026. The pull request count that sat on this line was stale and is deleted
+Last updated 2 August 2026. The pull request count that sat on this line was stale and is deleted
 rather than corrected, which is this project's rule for a count about its own work.
 
 **A whole-project pre-launch audit was written up in `docs/PRE-LAUNCH-AUDIT.md`** and merged as
@@ -31,15 +31,73 @@ handoff, so it can be copied without opening a long document. The handoff remain
 of truth. It sat between the two paragraphs above until 31 July, so "It closed" read as though the
 prompt had.
 
-**What to take, and in what order, is one sentence and it is not this one.** It lives under
-*Scoped, not built* below, beginning "This sentence governs the whole file". It is the only place
-the sequence is stated, deliberately, so that finishing something cannot leave a stale instruction
-somewhere else. Read it before starting anything.
+## The order
 
-**What from it gates launch, and it is all mine**, named here because this file is where a launch
-gate belongs and a session reading only the backlog must not miss them. The count that stood at the
-head of this sentence is deleted rather than decremented, which is this project's rule for a count
-about its own work:
+**The single list of everything outstanding, in the order it needs doing.** Consolidated on
+2 August 2026 from the section ordering and the sentence that lived under *Scoped, not built*;
+this is now the only place the sequence is stated, so that finishing something cannot leave a
+stale instruction somewhere else. The lettered and numbered sections below hold the detail and
+the reasoning each entry points at. Items marked **GATE** block launch; nothing else does. A
+session takes the first unfinished **[me]** item or **[me]** half; **[you]** items are the
+owner's, and a session brings those to him batched rather than starting them. If a session's
+first act is to bring the gates rather than to take the first **[me]** item, that is the right
+first act.
+
+1. **GATE. The glossary's Grant rate entry**, rebuilt on the corrected record. **[you]**,
+   wording. Detail under *The launch gates, in detail* below.
+2. **GATE. The glossary's Net fiscal impact entry**, two paragraphs still making the
+   "range spans zero" argument correction 1b retired. **[you]**, wording. Detail below.
+3. **The six pages the pre-publication review never opened**, put through
+   `docs/PRE-PUBLICATION-REVIEW.md`. Recommended before signing the review as passed, because
+   both glossary gates sit on one of the six and two independent passes reached it separately.
+   Running the template is **[me]**; the verdicts are **[you]**.
+4. **The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
+   below, plus the two sources-page wording bullets at the end of item 6. All **[you]** calls;
+   applying what is decided is **[me]**. None gates launch, and every one is cheaper before
+   the site has readers.
+5. **The decisions that change what launch publishes**: whether `.netlify.app` is the launch
+   domain, the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
+   route that is not a GitHub account, whether a fourth limit is published and which, whether
+   the success measure goes on `/about/`, and the rest of A6. All **[you]**; the applying is
+   **[me]**. The domain comes first among them, because it changes the URL anyone cites.
+6. **Talk to five target users.** A week, in parallel with everything above, and the one
+   acceptance criterion foundation section 18 says can save the whole build. The two
+   comprehension criteria are tested by this and by nothing else. **[you]**.
+7. **GATE. Record the review as passed in `CHANGELOG.md`**, after items 1 to 3. Worth knowing
+   before signing: the review's own selection criteria failed 2.6 and 2.7, and both were kept
+   on the site's published no-attribution policy, so signing backs that policy over the
+   reviewer's criterion. **[you]**.
+8. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
+   `scripts/check-build.mjs`. Then set up Search Console, which costs nothing, needs no
+   JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's word.
+9. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
+   and write the `data/evidence/` entries **[me]**; then land the reverted regrade check, in
+   that order, fetch first, because the other way round forces a fabricated quote. And re-read
+   or drop `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing
+   it unchecked. **[you]**.
+10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
+    scope; the fetching is **[me]**.
+11. **The small build work**: A3, A5's claim-list heading item, and R3. All **[me]**, small,
+    independent, none urgent.
+12. **Item 4 below, the figures the data layer never recorded**: which of the remaining
+    literals deserve records is **[you]**; minting each with a fetched quote is **[me]**.
+    Several sessions, not one.
+13. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
+    sign-off, no build behind it.
+14. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
+    come to the owner before merge. Only the pro-migration draft moves the direction split off
+    its floor.
+15. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
+    that is gated on it **[me]**. It is also the published limit most worth closing.
+
+If you reorder, or complete something, **move the entries and renumber** rather than adding a
+sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
+and a fresh session following the instruction would have taken the wrong item.
+
+### The launch gates, in detail
+
+**All of them are mine.** The count that stood at the head of this sentence is deleted rather
+than decremented, which is this project's rule for a count about its own work:
 
 1. **`content/glossary.md`, the Grant rate entry.** It applies a cohort uplift its own record says
    `do not add`, calls the later figure "final outcome" where the Home Office says "latest outcome",
@@ -382,28 +440,11 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This sentence governs the whole file, not only the section below it, and it went stale the moment
-the audit section was added above without touching it.** It says so here because that is exactly the
-failure it warns about two paragraphs down. The order lives here rather than in the handoff's prompt,
-so that finishing something does not leave a stale instruction somewhere else. Re-order it freely;
-this is the only place the sequence is stated.
-
-**Take, in this order:**
-
-1. **A3, the checks worth hardening**, **A5's two `[me]` items**, and **R3 from the launch
-   readiness review**. Small, independent, no gates.
-2. **Item 4 below, the figures the data layer never recorded.** This was the first item before the
-   audit and is now behind it. Item 3's only remaining phase needs the owner's sign-off rather than a
-   build, so it is not work a session can take.
-
-**Not takeable by a session, and they are the launch gates**: the two glossary rewrites, named at
-the top of this file. The £2.1bn re-source was the third and is done. Bring them; do not start
-them. If a session's first
-act is to ask about those two rather than to take item 1 above, that is the right first act.
-
-If you reorder, or complete something, **move the sections and renumber** rather than adding a
-sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
-and a fresh session following the instruction would have taken the wrong item.
+**The order lives under *The order* at the top of this file**, as the one sequence, and it
+governed from here until 2 August 2026, when the sections had multiplied past what a sentence
+in the middle of the file could order. This section now holds only the detail the order's
+later entries point at. Read the scope document for whatever you pick up, and do not
+re-derive it.
 
 ### 3. Release notifier and evidence check: four phases built, phase 4 left
 
