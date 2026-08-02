@@ -56,10 +56,6 @@ you start. If it is larger than a session, propose a split. If it is
 wholly gated on a decision of mine, do not stall and do not take the
 decision: bring it to me and start the next ungated item, saying which.
 
-ONE DELIVERABLE PER SESSION. Audit, then fix, then critique the fix is
-three. When a critique pass is mostly finding mistakes this session
-introduced rather than defects in the work, stop and tell me.
-
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
 time. check-evidence fires only on a changed or new VALUE, so silence
