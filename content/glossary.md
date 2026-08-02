@@ -222,12 +222,19 @@ of appeals succeed.
 The share of initial decisions resulting in a grant of protection or other leave:
 {{asylum/asylum-initial-decision-grant-rate}}% in the year ending March 2026.
 
-**Why it matters.** The published rate is calculated on main applicants and excludes
-withdrawals. The rate measured at final outcome, after appeals, has historically run 17 to
-29 percentage points higher, so the initial rate understates eventual protection rates.
+**Why it matters.** The published rate is calculated on main applicants, and excludes
+withdrawals and administrative outcomes. It describes decisions made in a period, not the
+eventual outcome of the claims behind them.
 
-**The common mistake.** Recomputing it from people-based figures, which gives a different
-answer, or quoting the initial rate as though it were the final one.
+**A later rate exists, and it is a different measure.** The Home Office also publishes, for
+each year of claim, the share granted at the latest outcome, following appeals and
+reconsiderations. It is materially higher. It counts a different group of people over a
+different period, so the two cannot be added together, and the
+[refused-asylum check](/common-claims/refused-asylum-seekers-are-eventually-recognised/)
+sets out what it does and does not show.
+
+**The common mistake.** Recomputing the rate from people-based figures, which gives a
+different answer, or quoting the initial rate as though it were the later one.
 
 ### Refugee {#refugee}
 
@@ -360,12 +367,14 @@ generally.
 Whether migration adds to or subtracts from the public finances overall, once taxes paid
 and services used are both counted.
 
-**Why it matters.** There is no agreed figure. Across studies the estimate falls within
-roughly plus or minus 1% of GDP, a range that spans zero. The answer depends on method,
-on assumptions about who leaves and when, and on which collective spending is attributed
-to migrants.
+**Why it matters.** There is no agreed figure. Across the pre-Brexit static studies
+summarised by the Migration Observatory, the estimated net fiscal impact of the migrant
+population is small in magnitude, under 1% of GDP, and comes out positive in some studies
+and negative in others. Those are separate studies of different groups, periods and
+methods, not one estimate with a margin of error, and no equivalent analysis covers the
+whole post-Brexit immigration system.
 
-**The common mistake.** Quoting one end of the range as the answer. Both "immigrants pay
+**The common mistake.** Quoting one study's result as the answer. Both "immigrants pay
 more in than they take out" and "immigrants are a drain" fail this test equally, and
 each is checked on its own page:
 [whether immigrants pay more than they cost](/common-claims/immigrants-pay-far-more-than-they-cost/)
