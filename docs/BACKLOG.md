@@ -654,6 +654,17 @@ sentences**, and three of the four groups moved:
   same characters the card already showed, which is what distinguishes these from the
   `10.7 million` case that cannot be cited without rewording. Baseline 31 to 28.
 
+  **The card's two percentages, settled 2 August 2026 after a second model found the first one.**
+  "Applications rose 18%" was a figure no reader could check: Cit_01 does publish that 18%, so it
+  was not invented, but the card's source link goes to the bulletin, which carries no application
+  figure at all, and no record held 18, so every scan here was blind to it. **DONE (PR #81)**: the
+  two application totals get records and the card gives both ends instead, which is the settled
+  pattern for a figure computed against live values. **"Down 12%" is left alone deliberately**, on
+  the one distinction that mattered: the bulletin states it in prose, so following the card's own
+  link finds it. Minting a record for a published percentage change was the option not taken, and
+  the reason is worth keeping: it would hold a third figure that must stay in step with two others,
+  and this project has no mechanism for that.
+
   **Still outstanding, and each needs a fetched quote:** the study and work main-applicant and
   dependant splits in the chart bar notes, and `944,000`,
   `1,469,000`, `517,000`, `429,000`, `87,000` and `272,000`, **which read as history and are
