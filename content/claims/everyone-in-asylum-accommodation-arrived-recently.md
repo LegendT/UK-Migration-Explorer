@@ -14,6 +14,8 @@ figures:
   - asylum/people-in-asylum-accommodation
   - asylum/people-in-asylum-hotel-accommodation
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
+  - asylum/asylum-backlog-peak
+  - asylum/asylum-backlog-2019
 layout: claim.njk
 permalink: /common-claims/everyone-in-asylum-accommodation-arrived-recently/
 order: 4
@@ -55,8 +57,8 @@ first, if they are receiving support. Someone who claimed and was granted status
 may appear in the first and not the second.
 
 The history of the initial decision queue shows how people accumulate. The number waiting
-for an initial decision rose from around 51,000 at the end of 2019 to a peak of 175,457
-in June 2023, and has since fallen to
+for an initial decision rose from {{asylum/asylum-backlog-2019}} at the end of 2019 to a peak of
+{{asylum/asylum-backlog-peak}} in June 2023, and has since fallen to
 {{asylum/asylum-backlog-people-awaiting-an-initial-decision}}. Anyone still waiting from
 the peak period has been in the system for years, and could be counted in today's support
 figure if they remain eligible for support.

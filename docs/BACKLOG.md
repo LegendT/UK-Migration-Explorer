@@ -103,9 +103,13 @@ first act.
     would have stopped a session taking work that was never gated. Several sessions, not one.
     The citizenship card's three landed as PR #78, the migration page's two ONS peaks and its
     work comparison year as PR #87, its four applicant and dependant splits as PR #89, and the
-    owner's rewording of the three year-on-year falls as PR #90. **The migration page and the
-    net-migration-is-arrivals claim page are both finished**: neither now writes a figure the
-    data layer does not hold. What is left of this item is on other pages, under item 4 below.
+    owner's rewording of the three year-on-year falls as PR #90, and the asylum page with its
+    accommodation claim page as PR #91. **Four pages are finished**: none of them now writes a
+    figure the data layer does not hold. **What is left is ten figures and all of them are
+    [you]**, on `costs.njk`, the born-abroad claim page and one dashboard card: three daily rates
+    divided from live values, four figures the prose itself calls history, two restatements of a
+    live value at a different rounding, and one peak. They are itemised under item 4 below and
+    need decisions rather than sources.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -852,6 +856,22 @@ sentences**, and three of the four groups moved:
   is not frozen history, so declaring it would have been a lie that silenced it for ever. If one
   appears again, dropping it and giving the reader both ends is the pattern.
 
+**The asylum page and its accommodation claim page. DONE (PR #91, 2 August 2026)**, and this is
+the one that found a live defect rather than an unrecorded figure. Five sites, four records: the
+June 2023 backlog peak `175,457`, the end-2019 queue `51,228`, the appeals backlog a year earlier
+`50,976`, and appeals disposed of in the quarter `7,799`. **`51,000` was two different queues
+rounded to the same number**, which the paragraph below predicted and which is why value-keyed
+sorting could not have done it.
+
+**The defect: `/asylum/` said "fewer than 7,000 appeals are decided per quarter", and it had been
+false for three quarters.** Asylum and protection disposals passed 7,000 in July to September 2025
+and reached 7,799 here. It was true when written. Nothing could see it go stale, because the
+sentence held no figure any record or series point holds, which is exactly what this whole item is
+about. **The word was ambiguous as well as stale**: disposals were 7,799 and appeals determined at
+a hearing or on the papers were 4,088, so "decided" was answered by two figures on either side of
+the claim. The sentence now gives appeals lodged against appeals disposed of, both cited, which is
+the comparison that actually explains why the queue grows.
+
 **Value-keyed sorting cannot finish this job**, which is worth knowing before anyone tries.
 `51,000` is the end-2019 initial-decision backlog in one file and the appeals backlog a year
 before the live March 2026 figure in another. `100,000` is three different figures. And the
@@ -1210,6 +1230,39 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The asylum page's four figures, and a sentence that had gone false**, 2 August 2026. PR #91.
+  Part of item 4, and the first batch of it to find a defect rather than a gap.
+
+  **`/asylum/` said "fewer than 7,000 appeals are decided per quarter" and it had been false for
+  three quarters.** Asylum and protection disposals passed 7,000 in the July to September 2025
+  quarter and reached 7,799 in January to March 2026. The sentence was true when it was written,
+  and **nothing on this site could have noticed**: it held no figure any record or series point
+  holds, so every scan was blind to it by construction, which is the property this whole item
+  exists to remove. It was found by opening table FIA_2 to source a different number.
+
+  **"Decided" was ambiguous as well as stale**, and that is the part worth carrying. Disposals were
+  7,799 and appeals determined at a hearing or on the papers were 4,088, one either side of the
+  claim, so the sentence was unfalsifiable until someone chose a meaning. The page now gives
+  appeals lodged against appeals disposed of, both cited, which is the comparison that explains why
+  the appeal queue grows while the decision queue shrinks.
+
+  **`51,000` was two different queues rounded to the same number**, which this item's own paragraph
+  on value-keyed sorting predicted: the end-2019 initial-decision backlog, 51,228, on the claim
+  page, and the appeals backlog a year before the current one, 50,976, on the theme page. Both now
+  render exactly.
+
+  **The peak, `175,457`, is stated by the Home Office in its own words** on the release page, which
+  is why the record cites that page rather than the summary table: Asy_00a publishes year-end
+  columns only and cannot show a June figure at all. Same shape as the ONS peaks in PR #87, and the
+  record carries the same instruction in capitals to re-derive it rather than carry it forward.
+  The 72% fall beside it is the Home Office's own figure and stays as prose, on the rule the
+  citizenship card's 12% set.
+
+  **The end-2019 queue needed a record with `series_ref`**, because the claim page is markdown and
+  cannot cite a series point, which is the cost PR #90 recorded for this remedy.
+
+  **Baseline 15 to 10**, and every one of the ten left is a decision rather than a source.
 
 - **The net migration fall gives the reader both ends**, 2 August 2026. PR #90. The owner's
   wording, on the last **[you]** item under *The figures the data layer never recorded*. Two

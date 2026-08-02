@@ -1,0 +1,22 @@
+{
+  "figures": [
+    {
+      "ref": "asylum/asylum-appeals-backlog-previous-year",
+      "previous_value": null,
+      "value": 50976,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
+      "fetched_at": "2026-08-02",
+      "table_reference": "FIA_4",
+      "quote": "Table_FIA_4 - First-tier Tribunal (Immigration and Asylum Chamber) - Total open caseload by case type. 2024/25 Q4: Total 90,389; Asylum/Protection/Revocation of Protection 50,976; Human Rights 21,962; EEA Free Movement 17,192"
+    },
+    {
+      "ref": "asylum/asylum-appeals-disposed-of",
+      "previous_value": null,
+      "value": 7799,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
+      "fetched_at": "2026-08-02",
+      "table_reference": "FIA_2",
+      "quote": "Table_FIA_2 - First-tier Tribunal (Immigration and Asylum Chamber) - Number of appeals disposed of by category and by case type. 2025/26 Q4 [p], Asylum/Protection/Revocation of Protection: Disposals 7,799; Determined 52%; Withdrawn 35%; Invalid/Out of Time 6%; Struck Out 6%"
+    }
+  ]
+}

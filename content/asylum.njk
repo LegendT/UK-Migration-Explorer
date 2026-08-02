@@ -11,10 +11,14 @@ figures:
   - asylum/asylum-administrative-outcomes
   - asylum/asylum-appeal-success-rate
   - asylum/asylum-appeals-backlog
+  - asylum/asylum-appeals-backlog-previous-year
+  - asylum/asylum-appeals-disposed-of
+  - asylum/asylum-appeals-lodged
   - asylum/asylum-applications
   - asylum/asylum-initial-decision-grant-rate
   - asylum/asylum-applications-main-applicants
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
+  - asylum/asylum-backlog-peak
   - asylum/asylum-initial-decisions-total
   - asylum/asylum-refusals
   - asylum/asylum-withdrawals
@@ -104,6 +108,7 @@ refusals are overturned"</a> nor "a refusal settles it" survives contact with th
 
 <h2>The queue for a first decision</h2>
 {% set ab = series.asylumBacklog %}
+{%- set backlogPeak = "asylum/asylum-backlog-peak" | metric %}
 {% lineChart {
   id: 'asylum-backlog-over-time',
   series: [
@@ -115,7 +120,7 @@ refusals are overturned"</a> nor "a refusal settles it" survives contact with th
   unit: 'waiting at 31 December',
   source: 'Home Office, immigration system statistics, asylum summary tables',
   sourceUrl: 'https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026',
-  note: 'Both lines describe the same people. The upper counts people including dependants; the lower counts main-applicant cases. Quoting one and comparing it with the other is the most common error made with this figure. Growth through the 2010s was substantial but not uniform: the people line fell between the end of 2014 and the end of 2015, from ' ~ (ab.data | at(2014) | number) ~ ' to ' ~ (ab.data | at(2015) | number) ~ ', while the cases line rose in every year of the decade. The within-year peak was higher than either line shows: 175,457 people in June 2023.'
+  note: 'Both lines describe the same people. The upper counts people including dependants; the lower counts main-applicant cases. Quoting one and comparing it with the other is the most common error made with this figure. Growth through the 2010s was substantial but not uniform: the people line fell between the end of 2014 and the end of 2015, from ' ~ (ab.data | at(2014) | number) ~ ' to ' ~ (ab.data | at(2015) | number) ~ ', while the cases line rose in every year of the decade. The within-year peak was higher than either line shows: ' ~ (backlogPeak.value | number) ~ ' people in ' ~ backlogPeak.period_label ~ '.'
 } %}
 
 <h2>There is no such thing as the backlog</h2>
@@ -129,15 +134,17 @@ they are counted differently, and they have been moving in opposite directions.<
   <thead><tr><th scope="col">Queue</th><th scope="col">Latest</th><th scope="col">Direction</th></tr></thead>
   <tbody>
     <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people, 31 March 2026</td><td>Down 55% on the year, and 72% below the June 2023 peak</td></tr>
-    <tr><th scope="row">Awaiting an appeal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases, 31 March 2026</td><td>A record high, up from about 51,000 a year earlier</td></tr>
+    <tr><th scope="row">Awaiting an appeal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases, 31 March 2026</td><td>A record high, up from {% figure "asylum/asylum-appeals-backlog-previous-year" %} a year earlier</td></tr>
     <tr><th scope="row">Total casework in progress</th><td>{% figure "asylum/total-asylum-cases-in-the-casework-system" %} cases, June 2024</td><td><strong>Not current.</strong> The breakdown was suspended and no later complete figure exists</td></tr>
   </tbody>
 </table>
 </div>
 
 <p>Someone saying "the backlog has halved" and someone saying "the backlog is at a record
-high" can both be right, about different queues. Fewer than 7,000 appeals are decided per
-quarter, and the mean age of an asylum appeal at conclusion is 67 weeks.</p>
+high" can both be right, about different queues. In the January to March 2026 quarter
+{% figure "asylum/asylum-appeals-lodged" %} asylum appeals were lodged and
+{% figure "asylum/asylum-appeals-disposed-of" %} were disposed of, so the appeal queue grows
+while the decision queue shrinks. The mean age of an asylum appeal at conclusion is 67 weeks.</p>
 
 <h2>Support and accommodation</h2>
 
