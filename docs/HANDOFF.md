@@ -808,6 +808,16 @@ Everything else is a pointer at a heading in this document. **The table above is
 if it grows past four rows, the prompt has started reciting again and the fix is to cut it, not to
 extend the table.
 
+**That fix was applied on 2 August 2026, and this is the record so it is not undone by someone
+being helpful.** The block carried a fifth thing, a paragraph beginning "ONE DELIVERABLE PER
+SESSION" that paraphrased the rule of the same name in `~/.claude/CLAUDE.md`. It was none of the
+four rows and it was not a pointer: it was recited rule text with an independent copy to drift
+against, in a prompt that tells the reader fifteen lines earlier that those global instructions
+load automatically. A second model found it by reading the block against this section's own
+contract. Cutting it also restores the truth of the block's own words **"ONE THING RECITED HERE"**,
+which had been false for as long as there were two. If it is ever missed, the answer is not to
+paste it back but to ask why the global rule did not fire.
+
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
 one: a second was added on 2 August 2026 under *Where things stand*, so anything extracting "the
@@ -857,10 +867,6 @@ Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
 wholly gated on a decision of mine, do not stall and do not take the
 decision: bring it to me and start the next ungated item, saying which.
-
-ONE DELIVERABLE PER SESSION. Audit, then fix, then critique the fix is
-three. When a critique pass is mostly finding mistakes this session
-introduced rather than defects in the work, stop and tell me.
 
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
