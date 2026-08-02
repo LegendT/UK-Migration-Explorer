@@ -20,12 +20,11 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { SERIES_FILES } from '../lib/series.mjs';
+import { SERIES_FILES, THEME_FILES } from '../lib/series.mjs';
 import { sameTable, tablesIn } from '../lib/tables.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
-const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
 const TIMEOUT_MS = 20000;
 
 // One route per watched source. `editionPrefix` matters more than it looks: the Home Office

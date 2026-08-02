@@ -2,11 +2,10 @@ import { readFileSync, readdirSync } from 'node:fs';
 
 import { barChart, lineChart } from './lib/charts.mjs';
 import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
-import { readSeries } from './lib/series.mjs';
+import { THEME_FILES, readSeries } from './lib/series.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`./data/${file}`, import.meta.url), 'utf8'));
 
-const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
 
 // One registry, keyed theme/id, matching what scripts/validate-content.mjs enforces.
 const registry = new Map();
@@ -123,8 +122,17 @@ export default function (eleventyConfig) {
     return metric;
   });
 
-  eleventyConfig.addFilter('number', (value) =>
-    value === null || value === undefined ? '' : Number(value).toLocaleString('en-GB'));
+  // Throws rather than rendering an empty string. A range record's value is deliberately
+  // null and a typoed property in a chart summary is undefined; either would otherwise ship
+  // as an invisible blank in a sentence, which is the quiet failure renderFigure and the
+  // `at` filter already refuse. The blank survived every check because it is not NaN and
+  // leaves no literal behind for the longhand scan to find.
+  eleventyConfig.addFilter('number', (value) => {
+    if (value === null || value === undefined || Number.isNaN(Number(value))) {
+      throw new Error(`The number filter received ${value}. A summary citing a missing, misspelt or range value must fail the build, not render a blank.`);
+    }
+    return Number(value).toLocaleString('en-GB');
+  });
 
   // Front matter dates arrive as Date objects from the YAML parser; data-layer dates arrive
   // as ISO strings. Both are formatted in UTC so a date never shifts by a day.
@@ -195,9 +203,14 @@ export default function (eleventyConfig) {
       // renders a plausible wrong number beside a row naming a different one, and nothing on
       // the page or in any check would disagree. That is not hypothetical, it is what the
       // negative test for this branch did by accident.
+      // A cadenced source with no published figures is a legal key whose count is zero, not
+      // an illegal key: bySource holds only sources with at least one published ref, so
+      // get() alone returned undefined the day a source's last figure was retired, and the
+      // error below would have told the maintainer the key was not allowed, which is the
+      // wrong diagnosis. The honest zero renders instead, where the commitment table shows it.
       const value = key === 'other-figures' ? counts.otherFigures
         : key === 'other-publishers' ? counts.otherPublishers
-        : CADENCED_SOURCES.includes(key) ? counts.bySource.get(key)
+        : CADENCED_SOURCES.includes(key) ? (counts.bySource.get(key) ?? 0)
         : undefined;
       if (value === undefined) {
         throw new Error(`${this.page.inputPath}: {count:${key}} is not a key this page can ask for. Use one of ${CADENCED_SOURCES.join(', ')}, which are the releases the update commitment covers, or other-figures or other-publishers. A publisher outside that list is inside "the other N" and has no row of its own.`);
@@ -267,8 +280,14 @@ export default function (eleventyConfig) {
   // screen reader reads out as the entity. Nothing on the page shows it, which is how the
   // {#anchor} version of this same fault survived until check-build caught it. Latent until
   // the first caption with a quote, an apostrophe or an ampersand, which is now on the site.
+  // Numeric entities are decoded too: the five named ones cover everything markdown-it emits
+  // for plain text, but a hand-authored caption can carry &#8217; or &#x2019;, and anything
+  // outside the decoded set went back out through escape() double-escaped, the exact fault
+  // this function exists to close. &amp; is decoded last so it cannot manufacture entities.
   const decodeEntities = (text) => text
-    .replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'")
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
+    .replace(/&quot;/g, '"').replace(/&apos;/g, "'")
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     .replace(/&amp;/g, '&');
   const stripTags = (html) => decodeEntities(html.replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim();

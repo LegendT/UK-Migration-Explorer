@@ -53,7 +53,11 @@ for (const file of pages) {
   // transform passes over in silence and a reader meets as visible text. A `{% %}` tag is here
   // for the same reason, in the other direction: it is a citation that works in Nunjucks and
   // ships as junk from a markdown page, where the engine is deliberately off.
-  for (const stray of html.match(/\{\{[^}]*\}\}|\{#[a-z0-9-]+\}|\{caption\}|\{ *[Cc]ount[^}]*\}|\{%[^%]*%\}/g) ?? []) {
+  // The anchor marker is matched loosely too, `{#` and anything to the next brace, because a
+  // mistyped anchor such as {#Foo} or {# section} fails the transform's exact charset and
+  // shipped as visible heading text with nothing firing: the scan was exactly as narrow as
+  // the transform it backstops, so the two failed together on the same input.
+  for (const stray of html.match(/\{\{[^}]*\}\}|\{ *#[^}]*\}|\{caption\}|\{ *[Cc]ount[^}]*\}|\{%[^%]*%\}/g) ?? []) {
     errors.push(`${where}: unrendered template syntax in output, ${stray}`);
   }
 
