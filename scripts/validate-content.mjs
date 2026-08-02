@@ -155,12 +155,14 @@ const unrecorded = [];
 // down and the first taken by dropping arithmetic rather than by minting a record for it. 10 once
 // the asylum page and its accommodation claim page were cleared: the June 2023 backlog peak, the
 // end-2019 queue, the appeals backlog a year earlier, and a sentence about appeals decided per
-// quarter that had gone false three quarters before anything asked.
+// quarter that had gone false three quarters before anything asked. 7 once two of the costs
+// page's three daily rates turned out to be published Home Office figures rather than this
+// site's division, and the third was dropped because nobody publishes one.
 //
 // This ledger is the only place a step is recorded, so a step taken without adding a line here
 // leaves it ending at a number the constant no longer holds. That happened on the 31-to-28 step
 // and was found by a second model rather than by anything that runs.
-const UNRECORDED_BASELINE = 10;
+const UNRECORDED_BASELINE = 7;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {

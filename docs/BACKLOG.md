@@ -104,12 +104,11 @@ first act.
     The citizenship card's three landed as PR #78, the migration page's two ONS peaks and its
     work comparison year as PR #87, its four applicant and dependant splits as PR #89, and the
     owner's rewording of the three year-on-year falls as PR #90, and the asylum page with its
-    accommodation claim page as PR #91. **Four pages are finished**: none of them now writes a
-    figure the data layer does not hold. **What is left is ten figures and all of them are
-    [you]**, on `costs.njk`, the born-abroad claim page and one dashboard card: three daily rates
-    divided from live values, four figures the prose itself calls history, two restatements of a
-    live value at a different rounding, and one peak. They are itemised under item 4 below and
-    need decisions rather than sources.
+    accommodation claim page as PR #91, and the costs page's daily rates as PR #92. **Four pages
+    are finished**, and the costs page holds nothing but figures its own prose calls history.
+    **What is left is seven figures and all of them are [you]**: four the prose calls history on
+    `costs.njk`, two on the born-abroad claim page, and one dashboard card. They are itemised
+    under item 4 below and need decisions rather than sources.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -920,11 +919,29 @@ already says.
   born-abroad claim is `population/total-uk-population`, 69,281,400. Cite it exactly or reword,
   which is the choice the rounded-restatement category above ends on. **[you]**, with the two
   "10.7 million" warnings, which are the same question.
-- **Arithmetic against a live value, three more sites of it**: "£5.8 million a day", "£8.2
-  million a day" and "£13 million a day" on the costs page are the cited hotel and system
-  spending divided by 365, in the same sentences as the tokens. PR #55 emptied the
-  **comma-grouped** half of that category, not the category. Same remedy, drop it and give the
-  reader both ends. **[you]**.
+- **The costs page's three daily rates. DONE (PR #92, 2 August 2026), and this entry was wrong
+  about two of them.** It said all three were "the cited hotel and system spending divided by 365",
+  which made them **[you]**. Reading page 75 of the Home Office accounts showed the publisher
+  states both hotel averages itself, in the same sentence as the annual totals: "£2.1 billion was
+  spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion
+  spent on hotels in 2023-24 at an average of £8.3 million per day." Two published figures, so
+  **[me]** under the standing rule, and both now have records. The page had said so all along, in
+  the words "in the accounts' own terms" and "again the accounts' figure rather than ours", which
+  is a caution about this file rather than about that page: **an entry here classified two official
+  figures as this site's arithmetic and would have had them deleted.**
+
+  **Only "£13 million a day" was this site's division**, of the NAO system total. It is gone, and
+  the sentence now says the system costs its annual figure and that no publisher states a daily
+  average for it, so any per-day version is somebody's division. **"Roughly 40% above the current
+  figure" went with it**, being arithmetic against what is now a live record and reported as a
+  sub-100 warning; the page gives both figures and lets the reader compare.
+
+  **One record was attempted and abandoned, and the reason is worth keeping.** The accounts print
+  the 2023-24 hotel total as "£3.0 billion". A record can only hold `3`, and `check-evidence`
+  correctly refuses a quote saying "3.0" as evidence for `3`, because it cannot tell that from
+  "3" inside "3.4". So the data layer cannot hold a published figure's PRECISION, only its value,
+  and "about £3 billion" stays as prose. It is not in the unrecorded count: it collides with the
+  fee-income record and is reported as a sub-100 coincidence instead.
 - **Frozen history on the face of the prose**, so declarable if you agree: "£1.3 billion" and
   "£1.7 billion" (NAO, HC 874, the first seven months of 2024-25), "£4.5 billion" (the original
   contract estimate) and "£8 million a day" (the circulating claim the page exists to examine).
@@ -1230,6 +1247,37 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The costs page's daily rates, two of which were never this site's arithmetic**, 2 August 2026.
+  PR #92. Part of item 4, and the entry that sent this one was wrong.
+
+  **The backlog said all three were the annual spending divided by 365, and tagged them [you].**
+  Page 75 of the Home Office Annual Report and Accounts 2024-25 says otherwise: "£2.1 billion was
+  spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion
+  spent on hotels in 2023-24 at an average of £8.3 million per day." The publisher states both
+  averages. So two of the three were published figures owed a record, not wording owed a decision,
+  and deleting them as arithmetic would have thrown away two official numbers.
+
+  **The page had been saying so all along.** It calls them "the accounts' own terms" and "the
+  accounts' figure rather than ours". The classification in this file contradicted the sentence it
+  was classifying, and nothing surfaced that, because a backlog entry is prose and no check reads
+  it. That is the lesson: **a tag in this file is a claim about a source, and it ages exactly like
+  any other.**
+
+  **The third was genuine and is gone.** "£13 million a day" was the NAO system total divided by
+  365. The sentence now gives the annual figure and says no publisher states a daily average for
+  the system, so any per-day version is somebody's division. "Roughly 40% above the current figure"
+  went with it, being the same shape one sentence later.
+
+  **A record was attempted and abandoned, and this is the durable finding.** The accounts print the
+  2023-24 hotel total as "£3.0 billion". A record can hold only `3`, and `check-evidence` refuses a
+  quote saying "3.0" as evidence for `3`, correctly, because it cannot distinguish that from "3"
+  inside "3.4". **The data layer holds a figure's value and not its precision.** So "about £3
+  billion" stays as prose. It costs nothing in the count, colliding with the fee-income record and
+  reported as a sub-100 coincidence, but the next person to meet a published trailing zero should
+  know the contract cannot express it.
+
+  **Baseline 10 to 7.**
 
 - **The asylum page's four figures, and a sentence that had gone false**, 2 August 2026. PR #91.
   Part of item 4, and the first batch of it to find a defect rather than a gap.
