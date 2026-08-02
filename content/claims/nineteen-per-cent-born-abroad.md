@@ -16,6 +16,16 @@ correction: >-
 corrected_on: 2026-07-27
 last_reviewed: 2026-07-27
 review_due: 2027-07-27
+# 10.6 million is declared rather than recorded, decided 2 August 2026, and the reason is the
+# opposite of the usual one: a record is a figure this site publishes, and this page exists to
+# tell readers NOT to use this one. It comes from a separate ONS ad hoc release built on the
+# Annual Population Survey, on a different population base, and it does not reconcile with the
+# mid-2024 estimate. The number stays in the sentence because a reader who meets it elsewhere
+# needs to recognise it; recording it would have put it in the published count beside the figure
+# it contradicts. Same shape as "£8 million a day" on /costs/: a circulating number a page names
+# in order to warn about it. If ONS publishes another ad hoc estimate, this sentence is rewritten
+# rather than the declaration updated.
+historical_literals: 10.6 million
 figures:
   - population/foreign-born-share-mid-2024
   - population/foreign-born-population-mid-2024
@@ -41,7 +51,8 @@ Two things about that figure matter as much as its size. It is an **official sta
 development** and provisional, which means ONS expects to revise it. And ONS publishes no
 percentage at all: the {{population/foreign-born-share-mid-2024}}% is calculated by dividing the
 {{population/foreign-born-population-mid-2024}} estimate by the accredited mid-2024 UK population
-of 69.28 million. The percentage is ours, not ONS's.
+of {{population/total-uk-population}}. The percentage is ours, not ONS's, and both figures it is
+taken from are on this page so anyone can repeat the division.
 
 The last **accredited** figure is older: {{population/foreign-born-share-of-total-uk-population}}%
 at the 2021/22 Census, or {{population/foreign-born-population-of-the-uk}} people. The mid-2024

@@ -191,8 +191,27 @@
       "source_url": "https://www.gov.uk/government/statistical-data-sets/immigration-system-statistics-data-tables#illegal-entry-routes",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
-      "notes": "Second-highest annual total on record (peak 45,774 in 2022); 13% higher than 2024. Finalised calendar-year total. The dataset was titled 'Irregular migration to the UK detailed dataset (illegal entry routes)' until the year ending December 2025 edition; the edition used here carries the current title.",
+      "notes": "Second-highest annual total on record; 13% higher than 2024. The peak it is second to is held as its own record rather than restated here. Finalised calendar-year total. The dataset was titled 'Irregular migration to the UK detailed dataset (illegal entry routes)' until the year ending December 2025 edition; the edition used here carries the current title.",
       "confidence_level": "official"
+    },
+    {
+      "id": "small-boat-arrivals-peak",
+      "metric_name": "Small boat arrivals, highest calendar year on record",
+      "value": 45774,
+      "unit": "people",
+      "date": "2022-12-31",
+      "period_label": "calendar year 2022",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, Illegal entry routes dataset, table IER_D01, row-level sheet",
+      "table_reference": [
+        "IER_D01"
+      ],
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-08-02",
+      "notes": "THIS IS A MAXIMUM, SO RE-DERIVE IT AT EVERY RELEASE RATHER THAN CARRYING IT FORWARD, on the same terms as the two ONS peaks and the asylum backlog peak. Summed from the four quarters of 2022 because the Home Office publishes this dataset by quarter and states no calendar-year total, so it is CALCULATED where the 2025 record beside it is graded official for the identical construction. That inconsistency is real and is not settled here: the backlog carries it as an open sourcing question about the 2025 record's grade, and grading this one by the site's own stated convention rather than matching its neighbour is the option that does not pre-empt that decision. Verified as a maximum by summing every complete year in the sheet, and the 2025 sum reproduces the record beside it exactly.",
+      "confidence_level": "calculated"
     },
     {
       "id": "small-boat-arrivals-year-ending-march-2026",

@@ -28,7 +28,7 @@
       "id": "small-boats",
       "ref": "asylum/small-boat-arrivals-calendar-year-2025",
       "shortLabel": "Small boat arrivals",
-      "whatThisMeans": "This was the second-highest annual total on record (the peak was 45,774 in 2022) and 13% higher than 2024. It is a calendar-year count, so it does not line up with the year-ending-March figures elsewhere on this site, which give a different number for the same route."
+      "whatThisMeans": "This was the second-highest annual total on record (the peak was {{asylum/small-boat-arrivals-peak}} in 2022) and 13% higher than 2024. It is a calendar-year count, so it does not line up with the year-ending-March figures elsewhere on this site, which give a different number for the same route."
     },
     {
       "id": "foreign-born-share",

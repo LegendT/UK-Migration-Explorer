@@ -219,7 +219,7 @@ Seven checks, all in CI, all negative-tested.
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names on value, unit, confidence level and year, every point in a series block carrying one confidence level, `ons_marker` drawn from a fixed vocabulary, a theme file's `lastUpdated` present and a real date, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, under a ratchet whose count may not grow, and names every declared literal that does equal a live value |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, since 2 August 2026, having run at report level under a ratchet from 38 down to zero, and names every declared literal that does equal a live value |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |
@@ -257,14 +257,13 @@ value took it to 0/16. It flagged none of the five accessibility defects found b
 which is the point: it is a floor.
 
 **Three known gaps are published** on the sources page under *What the checks do not establish*:
-the prose one, the sub-100 review and the screen reader. Three more are candidates for a fourth
-and none is on the page: that a figure the data layer never recorded is reported and never
-refused, that a `historical_literals` exemption is granted on trust and nothing re-checks it, and
-that a correction inside an edition is seen only where the publisher names its table by
-identifier. The first is the one a reader is most affected by. Which, if any, earns the space is
-an editorial decision in `docs/BACKLOG.md`, where the candidates are listed. Do not take the
-count from here: this sentence said "four" while the backlog listed three candidates and the page
-published three limits.
+the prose one, the sub-100 review and the screen reader. Candidates for a fourth are in
+`docs/BACKLOG.md`, and which, if any, earns the space is an editorial decision there. Do not take
+a count from here: this sentence said "four" while the backlog listed three candidates and the
+page published three limits. **One candidate was withdrawn on 2 August 2026 by being fixed rather
+than disclosed**: that a figure the data layer never recorded is reported and never refused. It is
+refused now, so there is no limit to publish. What is left unscanned is narrower and the backlog
+says what it is.
 
 **What the audit changed in the apparatus, 31 July 2026.** Five checks were hardened, each
 negative-tested in both directions:
