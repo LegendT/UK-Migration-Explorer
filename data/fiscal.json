@@ -1,6 +1,6 @@
 {
   "theme": "Economic and fiscal impact",
-  "lastUpdated": "2026-08-01",
+  "lastUpdated": "2026-08-02",
   "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across the pre-Brexit static studies summarised by the Migration Observatory, the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP; none of those studies covers the current post-Brexit system. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
   "metrics": [
     {
@@ -48,7 +48,39 @@
       "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
       "published_date": "2025-07-17",
       "retrieved_date": "2026-08-01",
-      "notes": "A Home Office figure from its own accounts, not an NAO one: £2.1bn of the £4.0bn asylum support spend in 2024-25, at an average of £5.77m per day, down from £3.0bn and £8.3m per day in 2023-24. It was attributed to the NAO's An analysis of the asylum system until 1 August 2026, and that report does not contain it; the £5.77m per day sitting in this note was the clue that found the real source. The site presents the figure inside the NAO's £3.4bn accommodation and support total, which is a different aggregate from the accounts' £4.0bn asylum support spend. That nesting is this site's own: the NAO's £3.4bn includes about £2.7bn of direct spending on asylum accommodation and £2.1bn fits inside it, but neither publisher places one figure inside the other, and the NAO total excludes unaccompanied asylum-seeking children while the accounts do not say whether this figure does. DO NOT expect to update this from the next annual report. The 2025-26 edition, HC 440, gives hotel headcounts and no hotel spending total, no per-day rate and no unit cost; the only hotel money in it is a £22.9m constructive loss on a single contract, at page 218. So the report is annual and this figure is not, and the annual staleness prompt on this record is cleared by re-reading the newest edition and confirming it still carries nothing comparable, not by finding a new number. HC 1133 carries a correction slip, read on 1 August 2026: it corrects a graph axis on page 42, a name on page 140 and the audited exit-package cost figures on page 170, and touches nothing on asylum. Hotels were about 76% of the cost of asylum accommodation contracts, £1.3bn of an estimated £1.7bn in the FIRST SEVEN MONTHS of 2024-25 (NAO, HC 874, paragraphs 8 and 1.18), and housed about 35% of people in asylum accommodation as at 1 January 2025 (paragraph 1.14, which is where that date comes from; this note cited only 8 and 1.18 until 1 August 2026, and neither of those carries a date). Not an annual share: the NAO issued a correction slip dated 1 July 2025 for 'a misrepresentation of 2024-25 spending on asylum accommodation' affecting paragraphs 4, 8 and 1.18. It struck 'annual' from 'the annual cost of the contracts' in 8 and 1.18, and re-dated the period to the first seven months in all three; paragraph 4 never contained the word 'annual', which this note implied until 1 August 2026. This note carried the retracted wording until 31 July 2026. Note also that the 76% is a seven-month cost share and the 35% a point-in-time headcount, so they are different kinds of measure.",
+      "notes": "A Home Office figure from its own accounts, not an NAO one: £2.1bn of the £4.0bn asylum support spend in 2024-25. The per-day average the accounts state beside it, and the prior year's pair, are held as records of their own rather than restated here. It was attributed to the NAO's An analysis of the asylum system until 1 August 2026, and that report does not contain it; the £5.77m per day sitting in this note was the clue that found the real source. The site presents the figure inside the NAO's £3.4bn accommodation and support total, which is a different aggregate from the accounts' £4.0bn asylum support spend. That nesting is this site's own: the NAO's £3.4bn includes about £2.7bn of direct spending on asylum accommodation and £2.1bn fits inside it, but neither publisher places one figure inside the other, and the NAO total excludes unaccompanied asylum-seeking children while the accounts do not say whether this figure does. DO NOT expect to update this from the next annual report. The 2025-26 edition, HC 440, gives hotel headcounts and no hotel spending total, no per-day rate and no unit cost; the only hotel money in it is a £22.9m constructive loss on a single contract, at page 218. So the report is annual and this figure is not, and the annual staleness prompt on this record is cleared by re-reading the newest edition and confirming it still carries nothing comparable, not by finding a new number. HC 1133 carries a correction slip, read on 1 August 2026: it corrects a graph axis on page 42, a name on page 140 and the audited exit-package cost figures on page 170, and touches nothing on asylum. Hotels were about 76% of the cost of asylum accommodation contracts, £1.3bn of an estimated £1.7bn in the FIRST SEVEN MONTHS of 2024-25 (NAO, HC 874, paragraphs 8 and 1.18), and housed about 35% of people in asylum accommodation as at 1 January 2025 (paragraph 1.14, which is where that date comes from; this note cited only 8 and 1.18 until 1 August 2026, and neither of those carries a date). Not an annual share: the NAO issued a correction slip dated 1 July 2025 for 'a misrepresentation of 2024-25 spending on asylum accommodation' affecting paragraphs 4, 8 and 1.18. It struck 'annual' from 'the annual cost of the contracts' in 8 and 1.18, and re-dated the period to the first seven months in all three; paragraph 4 never contained the word 'annual', which this note implied until 1 August 2026. This note carried the retracted wording until 31 July 2026. Note also that the 76% is a seven-month cost share and the 35% a point-in-time headcount, so they are different kinds of measure.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "home-office-spending-on-asylum-hotels-per-day",
+      "metric_name": "Home Office spending on asylum hotels, average per day",
+      "value": 5.77,
+      "unit": "£ million",
+      "date": "2025-03-31",
+      "period_label": "financial year 2024-25",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Annual Report and Accounts 2024-25, HC 1133, page 75",
+      "source_id": "ho-ara",
+      "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+      "published_date": "2025-07-17",
+      "retrieved_date": "2026-08-02",
+      "notes": "THE ACCOUNTS PUBLISH THIS, THIS SITE DOES NOT DIVIDE ANYTHING TO GET IT. That distinction is the whole reason the record exists: docs/BACKLOG.md listed this figure and the prior year's as the annual spend divided by 365, and reading page 75 showed the Home Office states both averages itself, in the same sentence as the annual totals. It does not reproduce exactly from the rounded annual figure either, £2.1bn over 365 days being about £5.75m, because the accounts divide the unrounded spend. No comparable figure exists for the asylum system as a whole: no publisher states a per-day rate for it, which is why /costs/ gives the system total per year and leaves any daily version to whoever wants to do the division.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "home-office-spending-on-asylum-hotels-per-day-previous-year",
+      "metric_name": "Home Office spending on asylum hotels, average per day, previous year",
+      "value": 8.3,
+      "unit": "£ million",
+      "date": "2024-03-31",
+      "period_label": "financial year 2023-24",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Annual Report and Accounts 2024-25, HC 1133, page 75",
+      "source_id": "ho-ara",
+      "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+      "published_date": "2025-07-17",
+      "retrieved_date": "2026-08-02",
+      "notes": "Also the accounts' own average rather than this site's arithmetic. It is the figure the circulating claim of about £8 million a day is closest to, and it belongs to 2023-24 rather than to now, which is the point /costs/ makes with it: the claim was roughly right for a year that has ended.",
       "confidence_level": "official"
     },
     {
@@ -233,7 +265,7 @@
     {
       "id": "home-office-visa-and-immigration-fee-income",
       "metric_name": "Home Office visa and immigration fee income",
-      "value": 3.0,
+      "value": 3,
       "unit": "£ billion",
       "date": "2024-12-31",
       "period_label": "2024",

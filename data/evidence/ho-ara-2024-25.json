@@ -7,6 +7,22 @@
       "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
       "fetched_at": "2026-08-01",
       "quote": "Asylum support spend was £4.0 billion compared to £4.7 billion in 2023-24. Of this, £2.1 billion was spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion spent on hotels in 2023-24 at an average of £8.3 million per day."
+    },
+    {
+      "ref": "fiscal/home-office-spending-on-asylum-hotels-per-day",
+      "previous_value": null,
+      "value": 5.77,
+      "source_url": "https://assets.publishing.service.gov.uk/media/688c9785a34b939141463e37/HO_ARA_2024-25_Book_WEB_Final_v3+CorrSlip.pdf",
+      "fetched_at": "2026-08-02",
+      "quote": "Home Office Annual Report and Accounts 2024-25, HC 1133, printed page 75: Of this, £2.1 billion was spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion spent on hotels in 2023-24 at an average of £8.3 million per day."
+    },
+    {
+      "ref": "fiscal/home-office-spending-on-asylum-hotels-per-day-previous-year",
+      "previous_value": null,
+      "value": 8.3,
+      "source_url": "https://assets.publishing.service.gov.uk/media/688c9785a34b939141463e37/HO_ARA_2024-25_Book_WEB_Final_v3+CorrSlip.pdf",
+      "fetched_at": "2026-08-02",
+      "quote": "Home Office Annual Report and Accounts 2024-25, HC 1133, printed page 75: Of this, £2.1 billion was spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion spent on hotels in 2023-24 at an average of £8.3 million per day."
     }
   ]
 }

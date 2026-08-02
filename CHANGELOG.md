@@ -9,6 +9,28 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The hotel daily rates turn out to be the Home Office's own, 2 August 2026
+
+**No published figure value changed. One sentence did.** The costs page gave three daily spending
+figures. This site's own backlog had recorded all three as its arithmetic, the annual spending
+divided by 365. Reading page 75 of the Home Office Annual Report and Accounts 2024-25 showed that
+two of them are the Home Office's, stated in the same sentence as the annual totals: "£2.1 billion
+was spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion
+spent on hotels in 2023-24 at an average of £8.3 million per day."
+
+Both now have records, so a later edition moves the page. The page had been saying they were the
+publisher's all along, in the words "the accounts' own terms".
+
+**The third was this site's division and is gone.** "The whole system at £4.9 billion is closer to
+£13 million a day" is replaced: the system costs £4.9 billion a year, and no publisher states a
+daily average for it, so any per-day figure for the whole system is somebody's division. "Roughly
+40% above the current figure" goes with it, for the same reason one sentence later.
+
+**One figure could not be recorded and stays as prose.** The accounts print the 2023-24 hotel
+total as "£3.0 billion". A record holds a number, so it would hold 3, and the evidence check
+refuses a quote saying "3.0" as evidence for 3, because it cannot tell that from "3" inside "3.4".
+The data layer holds a figure's value and not its precision.
+
 ### A stale claim about asylum appeals is corrected, 2 August 2026
 
 **One sentence on `/asylum/` was false and is replaced.** It said "fewer than 7,000 appeals are
