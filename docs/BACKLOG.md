@@ -78,12 +78,12 @@ first act.
 7. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
    `scripts/check-build.mjs`. **The UX review says write that file rather than only delete it**,
    which is the one place that review touches a gate, and it is now the only part of U1 left.
-   **The sitemap it wanted beside it is built** (PR #85), so what is outstanding is the file
+   **The sitemap it wanted beside it is built** (PR #86), so what is outstanding is the file
    itself plus the `Sitemap:` line pointing at it, and **what it says is gated on U4's
    AI-crawler decision**, which is **[you]**. Then set up Search Console, which costs nothing,
    needs no JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's
    word.
-8. **The UX review, U2 to U5 below.** None of it gates launch. **U1 is done** (PR #85,
+8. **The UX review, U2 to U5 below.** None of it gates launch. **U1 is done** (PR #86,
    2 August 2026) apart from the `robots.txt` half, which is in the gate above. U2 is the
    citation handover and is the one worth arguing for, U3 is five trust items, and U4
    is two **[you]** decisions that block any work on them, one of which the gate above now
@@ -402,7 +402,7 @@ something was ABSENT from the site after checking a single page, and it was pres
 Nothing here duplicates the backlog. That was checked in both directions, and the UX items already
 tracked stay where they are, under A5, A6 and R1.
 
-### U1. Cheap, uncontested, all [me]. DONE (PR #85, 2 August 2026), except the half that is the gate
+### U1. Cheap, uncontested, all [me]. DONE (PR #86, 2 August 2026), except the half that is the gate
 
 Nothing is left of it but the `robots.txt` sentence in the first bullet, which is inside launch
 gate 7 and stays there. What was built is under *Completed*, where the two things it found are
@@ -1177,7 +1177,7 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
 
-- **U1, the three cheap UX items**, 2 August 2026. PR #85. A `sitemap.xml`, an id on every
+- **U1, the three cheap UX items**, 2 August 2026. PR #86. A `sitemap.xml`, an id on every
   heading, `theme-color`, and a 404 description that is not the home page's. The
   `robots.txt` half of the first bullet is not here: it is inside launch gate 7 and its
   content waits on U4.
