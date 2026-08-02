@@ -12,6 +12,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import site from '../content/_data/site.js';
 import { publishedCounts } from '../lib/published.mjs';
 
 const siteDir = fileURLToPath(new URL('../_site/', import.meta.url));
@@ -115,6 +116,17 @@ for (const file of pages) {
     if (!/tabindex="0"/.test(attrs)) errors.push(`${where}: a .scroll-x region is not focusable, so it cannot be scrolled from the keyboard`);
     if (!/role="region"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no role, so focus lands on an anonymous box`);
     if (!/aria-label="[^"]+"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no accessible name`);
+  }
+
+  // Two elements answering to the same id. The anchors map above is a Set, so a duplicate is
+  // invisible to every check that reads it: a fragment link resolves, an aria reference
+  // resolves, and a browser silently takes the first element while the author meant the
+  // second. Heading ids are derived from heading text now, so two headings worded the same
+  // way on one page are the reachable case; the transform skips the second, and this is the
+  // end that says so if it ever stops.
+  const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+  for (const id of new Set(ids.filter((value, i) => ids.indexOf(value) !== i))) {
+    errors.push(`${where}: id "${id}" is on more than one element, so a link to #${id} and any aria reference to it land on whichever comes first`);
   }
 
   // An aria-labelledby pointing at an id that does not exist produces no name at all, and
@@ -237,6 +249,38 @@ if (counts) {
   }
 }
 
+// --- the sitemap, checked against the pages the build actually produced -----------------
+// A generated list is only worth having if something asks whether it still matches. Compared
+// BOTH ways, which is this project's rule for comparing two sets: one direction finds a page
+// missing from the sitemap and no search engine is told the page exists, the other finds a URL
+// in the sitemap that the build does not serve, which is a 404 offered to a crawler. The
+// template filters on outputPath, so either could arrive from a template change alone.
+//
+// The base URL is imported rather than typed here. It is site.url in content/_data/site.js, the
+// same value the template and every canonical link use, so this compares the sitemap against the
+// build and not against a second opinion about where the site lives.
+//
+// 404.html is excluded on this side too. It excludes itself from collections in Eleventy, so the
+// exclusion exists in two places by construction and this is the end that can see it.
+let sitemapUrls = 0;
+const sitemap = built.find((f) => f.endsWith('sitemap.xml'));
+if (!sitemap) {
+  errors.push('sitemap.xml: missing from the build, so no search engine is given the list of pages.');
+} else {
+  const listed = new Set([...readFileSync(sitemap, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+  const shouldList = new Set(pages.filter((f) => !f.endsWith('404.html')).map((f) =>
+    `${site.url}/${relative(siteDir, f).replace(/index\.html$/, '').replace(/\\/g, '/')}`));
+  sitemapUrls = listed.size;
+  const unlisted = [...shouldList].filter((url) => !listed.has(url));
+  const phantom = [...listed].filter((url) => !shouldList.has(url));
+  if (unlisted.length) {
+    errors.push(`sitemap.xml: does not list ${unlisted.join(', ')}, which the build serves. A page missing from the sitemap is a page a search engine is never told about. The usual cause is eleventyExcludeFromCollections in that page's front matter, which the sitemap template reads through collections.all and which is invisible from the page itself.`);
+  }
+  if (phantom.length) {
+    errors.push(`sitemap.xml: lists ${phantom.join(', ')}, which the build does not serve. A crawler following that URL meets a 404.`);
+  }
+}
+
 // robots.txt is deliberately present until launch. If it goes missing the site becomes
 // crawlable again with no other signal, so its absence is treated as a build failure until
 // someone removes this check on purpose.
@@ -261,7 +305,8 @@ if (errors.length) {
 }
 
 const internal = pages.reduce((n, f) => n + (readFileSync(f, 'utf8').match(/href="\/[^"]*"/g) ?? []).length, 0);
-console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; robots.txt disallows all crawlers.`);
+console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt disallows all crawlers.`);
+console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
 console.log(`Of those, ${counts.tokenRefs.size} match the refs in the built HTML exactly, in both directions, outside comments. Not established: that the other ${counts.published - counts.tokenRefs.size}, reaching a reader through a chart bar or a dashboard card, render at all, because those routes put a value on the page with no ref beside it to match.`);
 console.log('External source URLs are not checked here, run npm run check-sources.');

@@ -115,6 +115,12 @@ of a sentence corrected at four others; the option of correcting it in place wou
 fifth site standing. Two launch gates remain and neither is a defect: recording the review as
 passed, scoped to all sixteen pages, and deleting the robots rule.
 
+**A UX, SEO and trust review of the built site followed on 2 August 2026**, critiqued by two
+independent passes. It found nothing that gates launch, and what it did find is in
+`docs/BACKLOG.md` under *From the UX review*, entry 8 in the order, in that file the format and
+not here. One item touches a gate: the review argues the launch `robots.txt` should be WRITTEN
+rather than only deleted, with a sitemap beside it, and the gate as worded says delete.
+
 Three things from it belong in this document because they change how the project should be read.
 
 **The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
@@ -187,7 +193,12 @@ real table, and no series is distinguished by colour alone.
 publisher, because markdown templating is off site-wide and a markdown page cannot call a
 filter the way `common-claims.njk` calls `countWhere` for its direction split. That is the
 marker-and-transform idiom the two below already use, and it is what stopped those counts
-being typed. `heading-anchors` turns `{#id}` syntax into real ids. `table-captions` lifts a `{caption}`
+being typed. `heading-anchors` turns `{#id}` syntax into real ids, and derives one from the
+heading's own text where none is declared, skipping the `h1` and any heading inside a
+`<figcaption>`. **That syntax was never available on a Nunjucks page**, which is why the theme
+pages had no anchors at all: `{#` opens a Nunjucks comment, so an anchor written the markdown
+way into a theme page fails the build with "expected end of comment, got end of file".
+`table-captions` lifts a `{caption}`
 paragraph into the `<caption>` of the table below it, and throws when a marker matches no table,
 because markdown has no caption syntax and a stray marker would ship as visible text.
 `scrollable-regions` then wraps any
@@ -205,7 +216,7 @@ Seven checks, all in CI, all negative-tested.
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names on value, unit, confidence level and year, every point in a series block carrying one confidence level, `ons_marker` drawn from a fixed vocabulary, a theme file's `lastUpdated` present and a real date, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, under a ratchet whose count may not grow, and names every declared literal that does equal a live value |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote containing that value. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
 | `npm run a11y` | pa11y at WCAG2AA over every URL in `.pa11yci.json`. Fails the build |
@@ -428,6 +439,12 @@ is already here to adding a neighbour beside it.
   it was. The corrected answer was 45, but the per-publisher rows under it were still wrong, and the
   total agreed only because a missed renderer and a counted non-renderer cancelled. Agreement on
   a total is not agreement on its parts.
+
+- **A property checked on one page is a claim about that page.** A UX review on 2 August asserted
+  six things absent from the site, and most were present on pages it had not opened: a per-page
+  currency line in every footer, ids on every chart figure, a checked date on the claims index.
+  The site builds 17 pages and the scan that answers a question about all of them has to read all
+  of them. This is the same error as truncating a file, one level up.
 
 - **Find things the way that can show you are wrong, and compare two sets in BOTH directions.**
   Four figures held twice were found by matching equal values, which by construction can only
