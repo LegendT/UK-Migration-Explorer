@@ -115,6 +115,12 @@ of a sentence corrected at four others; the option of correcting it in place wou
 fifth site standing. Two launch gates remain and neither is a defect: recording the review as
 passed, scoped to all sixteen pages, and deleting the robots rule.
 
+**A UX, SEO and trust review of the built site followed on 2 August 2026**, critiqued by two
+independent passes. It found nothing that gates launch, and what it did find is in
+`docs/BACKLOG.md` under *From the UX review*, entry 8 in the order, in that file the format and
+not here. One item touches a gate: the review argues the launch `robots.txt` should be WRITTEN
+rather than only deleted, with a sitemap beside it, and the gate as worded says delete.
+
 Three things from it belong in this document because they change how the project should be read.
 
 **The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
@@ -428,6 +434,12 @@ is already here to adding a neighbour beside it.
   it was. The corrected answer was 45, but the per-publisher rows under it were still wrong, and the
   total agreed only because a missed renderer and a counted non-renderer cancelled. Agreement on
   a total is not agreement on its parts.
+
+- **A property checked on one page is a claim about that page.** A UX review on 2 August asserted
+  six things absent from the site, and most were present on pages it had not opened: a per-page
+  currency line in every footer, ids on every chart figure, a checked date on the claims index.
+  The site builds 17 pages and the scan that answers a question about all of them has to read all
+  of them. This is the same error as truncating a file, one level up.
 
 - **Find things the way that can show you are wrong, and compare two sets in BOTH directions.**
   Four figures held twice were found by matching equal values, which by construction can only

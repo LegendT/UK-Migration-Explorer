@@ -76,28 +76,33 @@ first act.
    on the site's published no-attribution policy, so signing backs that policy over the
    reviewer's criterion. **[you]**.
 7. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
-   `scripts/check-build.mjs`. Then set up Search Console, which costs nothing, needs no
+   `scripts/check-build.mjs`. **The UX review says write that file rather than only delete it**,
+   with a sitemap beside it, which is U1 below and is the one place that review touches a gate. Then set up Search Console, which costs nothing, needs no
    JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's word.
-8. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
+8. **The UX review, U1 to U5 below.** None of it gates launch. U1 is three cheap **[me]** jobs,
+   U2 is the citation handover and is the one worth arguing for, U3 is five trust items, and U4
+   is two **[you]** decisions that block any work on them. U5 records what was considered and
+   cut, so it is not proposed again.
+9. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
    and write the `data/evidence/` entries **[me]**; then land the reverted regrade check, in
    that order, fetch first, because the other way round forces a fabricated quote. And re-read
    or drop `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing
    it unchecked. **[you]**.
-9. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
+10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
     scope; the fetching is **[me]**.
-10. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
+11. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
     30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
     per-figure call: a figure that changes when its publisher next publishes gets a record and a
     fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
     was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
     would have stopped a session taking work that was never gated. Several sessions, not one.
     The citizenship card's three landed as PR #78.
-11. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
+12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
-12. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
+13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
     come to the owner before merge. Only the pro-migration draft moves the direction split off
     its floor.
-13. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
+14. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
     that is gated on it **[me]**. It is also the published limit most worth closing.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
@@ -378,6 +383,92 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   the file sentence is deleted. The remaining revision prose in netMigration's note is **kept**: it
   says the November 2025 method change revised the whole pre-2024 series, which is context rather
   than a restatement of a marker.
+
+---
+
+## From the UX review, 2 August 2026
+
+**A UX, SEO and trust review of the built site**, critiqued by two independent passes, with every
+factual claim verified against the repository and the built output before landing here. It found
+nothing that gates launch. **Six claims in the review's first draft were wrong and are recorded as
+corrections rather than quietly dropped**, because the shape recurs: most of the six asserted that
+something was ABSENT from the site after checking a single page, and it was present on the others.
+
+Nothing here duplicates the backlog. That was checked in both directions, and the UX items already
+tracked stay where they are, under A5, A6 and R1.
+
+### U1. Cheap, uncontested, all [me]
+
+- **No `sitemap.xml`**, and the launch `robots.txt` needs writing rather than only deleting. This
+  is a **divergence from the launch gate as written**, which says delete the file. Search Console,
+  which the same gate sets up, is materially more useful with a sitemap.
+- **No heading carries an id on a theme page**, 0 of 6 on the asylum page, so no section can be
+  deep-linked by anyone, including a journalist composing a link by hand. The `{#anchor}` idiom and
+  the transform behind it already exist and are used on the glossary. **Chart figures already carry
+  ids**; it is headings that do not.
+- **`theme-color` is absent** while the CSS honours `prefers-color-scheme: dark`, and the **404
+  description is not unique**: it falls back to the site strapline and is identical to the home
+  page's. Those two are the only duplicated description among the 17 pages.
+
+### U2. The citation handover, and it is one item rather than two
+
+The chosen success measure is citation by a named outlet within six months, and the audience
+statement is professionals who need a citation quickly. **The citation such a reader needs is to
+the Home Office or ONS publication, not to this site**, which is what makes this worth building
+rather than a nicety.
+
+There is no citation string anywhere on the site, and **no rendered link points at the figure ids
+that already exist**. Of 180 `source_url` values, 62 are spreadsheets and 38 are dataset pages, but
+**zero spreadsheet links render**, because those URLs sit on series points that emit no link.
+
+Shape, with no JavaScript and nothing new in the data layer: a `details` block under each chart's
+existing source line, rendered at build time from fields the records already hold, giving
+publisher, edition, table, the spreadsheet link labelled as a download, "via UK Migration Explorer,
+checked [date]" and the anchor URL. Select-and-copy needs no script once the text exists. On a
+claim page it belongs inside the card boundary, so that a screenshot carries it. **[me]** to build,
+**[you]** for the citation format.
+
+### U3. Trust, in the order they are worth doing
+
+- **The confidence grade renders only on home page cards.** The three theme pages, where most
+  figures live, show neither a grade nor any per-figure date. **Sequence this after the open grade
+  questions in R2 and A6**: surfacing grades more widely amplifies a wrong one.
+- **There is no withdrawn-claim state.** `/sources-and-method/` promises that a claim unreviewed
+  for twelve months is taken down until it has been. On a static site, deleting the file turns a
+  URL built to be screenshotted into a generic 404, which reads as scrubbing. A stub at the same
+  URL, saying what it said and why it is paused, is the missing state. **[you]** for the wording.
+- **A reader-facing `/changes/`.** The changelog IS linked from the corrections section, so the
+  promise is kept; the destination is a raw markdown file on GitHub.
+- **No visible door to the data layer**, which foundation 4.1 names as the differentiator. The
+  Reuse section says the data files are public and links none of them.
+- **Theme-to-claim links.** Pages declare `figures:` in front matter, so which claims misuse a
+  given figure is computable at build time.
+
+### U4. Two decisions, both [you], both needed before any work
+
+- **AI crawlers, and it is not binary.** Retrieval bots that emit linked citations serve discovery;
+  pure training bots serve neither success measure. A `robots.txt` can allow one and refuse the
+  other. **Blocking now keeps the option open; allowing and then blocking does not.**
+- **Structured data.** `Dataset` plus `Organization` and `WebSite` are the candidates.
+  **`ClaimReview` was proposed and then downgraded on a claim this session could not verify**: that
+  Google deprecated fact-check rich results in June 2025 and dropped Search Console reporting that
+  September, with eligibility restricted to established fact-checkers before that. If it holds, the
+  channel is dead and the no-attribution tension the first draft was built around was never the
+  blocker. **Confirm before acting either way.**
+
+### U5. Considered and cut, with the reasoning, so they are not re-proposed
+
+- **Site search.** Seventeen pages, nine nav items, a glossary. A hand-maintained index is a second
+  list that rots, which this project has been bitten by twice.
+- **A horizontally scrolling nav.** It has the same invisible-scroll defect the review flagged for
+  chart regions two items later, and with no JavaScript there is no scroll-state styling to rescue
+  it. Nine flat items wrap to about four rows at 320px by calculation, unrendered; measure before
+  deciding, and the likely answer is tighter padding rather than a new pattern.
+- **Converging the varying `last_reviewed` dates.** The variance is the trust model working, and
+  the only honest way to converge them is to re-review the pages.
+- **A per-page "every figure checked on X" line.** Figures on one page carry different checked
+  dates, so X is either stale-looking or false. Every page footer already prints a review date.
+- **`llms.txt`.** Nothing consumes it reliably and it is a second statement of what the site is.
 
 ---
 
