@@ -46,7 +46,7 @@
       "id": "citizenship-grants",
       "ref": "population/british-citizenship-grants",
       "shortLabel": "Citizenship grants",
-      "whatThisMeans": "Down 12% on the previous year, from 269,178. Naturalisation accounted for 165,429 of the grants and registration for 71,083. Applications rose 18% over the same period, so grants and demand are moving in opposite directions."
+      "whatThisMeans": "Down 12% on the previous year, from {{population/british-citizenship-grants-previous-year}}. Naturalisation accounted for {{population/british-citizenship-grants-by-naturalisation}} of the grants and registration for {{population/british-citizenship-grants-by-registration}}. Applications rose 18% over the same period, so grants and demand are moving in opposite directions."
     }
   ]
 }

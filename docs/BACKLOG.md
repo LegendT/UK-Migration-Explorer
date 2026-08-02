@@ -85,9 +85,13 @@ first act.
     landed (PR #77, 2 August 2026)**; the two left are both gated on the A6 confidence
     convention, which is **[you]**, and are marked under A3 and R3 below. Nothing else in this
     entry is outstanding.
-12. **Item 4 below, the figures the data layer never recorded**: which of the remaining
-    literals deserve records is **[you]**; minting each with a fetched quote is **[me]**.
-    Several sessions, not one.
+12. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
+    30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
+    per-figure call: a figure that changes when its publisher next publishes gets a record and a
+    fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
+    was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
+    would have stopped a session taking work that was never gated. Several sessions, not one.
+    The citizenship card's three landed as PR #78.
 13. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 14. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -175,10 +179,19 @@ All **[me]**, all small, each with its reasoning in the audit.
   coincidence. **The count the audit gave is deliberately not repeated here**, for this project's
   own rule about counts: the run prints a different number, the scan is word-bounded where the
   audit's was not, and correcting a count in a second place is how two lists start.
-- Extend the `series_ref` comparison beyond `value`, once the confidence convention below is
-  settled. **Still outstanding, and gated on that [you] decision**, which is why it did not land
-  with the two above. The audit's F0-3 has the reasoning: a metric and the point it names carry
-  two different `confidence_level` values today, and nothing compares them.
+- **`check-evidence.mjs` cannot accept a quote that ends on its value.** Found 2 August 2026 by
+  writing one. The boundary guard rejects a following digit, comma or full stop, so
+  `"Registration grants: 71,083."` fails while the same quote with a word after it passes. The
+  guard is right to exist, it is what stops `1,313` answering for `313`, and the remedy the
+  message gives does work, so this fails safe and is small. But a table cell at the end of a
+  sentence is the most natural quote an author writes, and the fix is to reject a following digit
+  or comma, and a full stop only where a digit follows it. **[me]**, with a negative test in both
+  directions.
+- Extend the `series_ref` comparison beyond `value`. **Ungated since 2 August 2026**, the
+  convention having been decided under A6: regrade the ONS points first, then the comparison can
+  ask for `confidence_level` and stay satisfied. The audit's F0-3 has the reasoning, and it is a
+  live instance of the documented pattern where a check keyed on the one field that happens to
+  agree is permanently satisfied. **[me]**, with the regrade.
 
 ### A4. Reader-facing wording, all of it yours
 
@@ -229,8 +242,19 @@ Each is a sentence, and each is **[you]** because it is wording.
 
 Each is one call. None blocks anything.
 
-- Which confidence convention wins between the metrics and the series: the metrics grade all ONS LTIM
-  figures `provisional`, the series grades per ONS marker, and nothing reconciles them.
+- **The confidence convention. DECIDED 2 August 2026: the metrics win, and the grade follows the
+  source rather than the vintage.** Every ONS LTIM series point becomes `provisional`, matching the
+  eight metrics and `meta.json`'s own definition, which names ONS net migration as its example of
+  `provisional`. `ons_marker` becomes the single home for the publisher's per-vintage marker and
+  goes onto both ONS series; the prose that duplicates it goes. **Reasons, in the order they
+  weighed:** grading the vintage would make `confidence_level` and `ons_marker` carry the same
+  information in two fields, which is the one-figure-one-home problem in a different guise;
+  `official` is defined as provenance, so using it to mean "not provisional" is a meaning its
+  definition does not carry, and the discontinued IPS block already grades by source character at
+  `estimated`; and under this convention the grade stops moving on every release. **Nothing a
+  reader sees changes either way**: a point's `confidence_level` renders nowhere, the only render
+  site being the dashboard card, which reads a metric. **Applying it is [me]** and is the two
+  bullets below. 26 points move.
 - Whether `og:` tags should exist, and whether a claim page's `og:title` leads with the claim or the
   correction. Foundation 8.5.4's rejection of a share image is not reopened by this.
 - Whether `.netlify.app` is the launch domain, given the success measure is citation by a named
@@ -297,10 +321,21 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   cells to be summed and states no calendar-year total. The site's own convention for a summed
   figure is `calculated` with the components quoted. **[you]** whether the grade or the note
   moves.
-- Two figures in the citizenship card's prose, 269,178 and 312,063, are not on the page the
-  record cites; the first is arithmetically consistent with the page's "12% decrease" and both
-  presumably live in the prior release or a summary table. Confirm and cite their source, or
-  reword. **[you]** for scope; the fetching is **[me]**.
+- **Two figures in the citizenship card's prose, 269,178 and 312,063. The [me] fetching half is
+  DONE (PR #78, 2 August 2026), and this observation was right.** Neither is on the page the
+  record cites, which states only the percentage changes. Both are in **table Cit_01 of the Home
+  Office citizenship summary tables**: 269,178 is total grants for the year ending March 2025 and
+  312,063 is total applications for the year ending March 2026. 269,178 now has a record and the
+  card cites it. **312,063 has none deliberately**: no page publishes it, so the rule below gives
+  it a note naming its table rather than a record. **The fetch found two more of the same shape**,
+  the superseded year ending December 2025 values in the citizenship and settlement notes, and the
+  current edition revises that period rather than reproducing them. **Both notes now say so, and
+  this bullet is closed.** The settlement half was tagged **[you]** for a day only because the
+  settlement tables had not been fetched: once they were, the parallel turned out to be exact and
+  the change became a factual one against a cited source. **Decided 2 August 2026: a superseded
+  figure keeps its sentence and gains the current edition's revised value**, because the sentence
+  exists to say the old figure is no longer re-derivable and only the revised value shows that.
+  `CHANGELOG.md` remains the home for what the site used to publish; the note is about the source.
 - The NAO's landing page prints £4.0 billion, its direct-support figure, and the £4.9 billion
   this site cites is inside the PDF it links. A reader who follows the source link and does
   not open the report meets a different number first. Whether the record's notes should say so
@@ -315,10 +350,13 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   instead, because that theme file is read last. Two warnings now name two records each.
   Negative-tested by giving two records one value and writing it out on a page: the error names
   both and offers both citations, where before it offered one and the choice was read order.
-- The two ONS series files encode the publisher's revision markers differently, a
-  machine-readable `ons_marker` in one and prose in the other. Pick one, after the A6
-  confidence convention is settled, since the two questions touch. **Still outstanding, and
-  gated on that [you] decision.**
+- The two ONS series files encode the publisher's revision markers differently. **Ungated since
+  2 August 2026: A6 picked `ons_marker`**, which is the machine-readable one and which the
+  regrade makes the only home for the vintage. **It is in three places, not the two this bullet
+  said**: `ons_marker` on netMigration's last two points, a per-point prose note "Flagged R
+  (revised) by ONS." on every migrationFlows point, and a file-level sentence in migrationFlows'
+  note saying which years are marked. The prose goes; none of it renders. **[me]**, with the
+  regrade.
 
 ---
 
@@ -588,8 +626,16 @@ sentences**, and three of the four groups moved:
   history. Bring back only what is genuinely ambiguous. Twenty-two remain and each needs its own
   source fetched, so this is several sessions rather than one.
 
+  **The citizenship card's three. DONE (PR #78, 2 August 2026)**, on the standing rule and
+  without a per-figure decision: all three change at the next Home Office quarterly, so all three
+  got a record and a fetched quote from table Cit_01. `269,178` is a prior-year comparison figure
+  and takes a record for the same reason `migration/net-migration-2` does, which is the precedent
+  that settled it. The card's rendered text is unchanged, proved by diff: a citation renders the
+  same characters the card already showed, which is what distinguishes these from the
+  `10.7 million` case that cannot be cited without rewording. Baseline 31 to 28.
+
   **Still outstanding, and each needs a fetched quote:** the study and work main-applicant and
-  dependant splits in the chart bar notes, the citizenship card's three, and `944,000`,
+  dependant splits in the chart bar notes, and `944,000`,
   `1,469,000`, `517,000`, `429,000`, `87,000` and `272,000`, **which read as history and are
   not**: "the highest twelve-month estimate ONS publishes" is a claim about the *current*
   publication, and the year-on-year changes are recomputed every release under the site's own
