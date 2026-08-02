@@ -43,8 +43,10 @@ withdrawn, 6% struck out and 6% invalid or out of time.
 
 Separately, for claims made between 2007 and 2020, the Home Office's cohort analysis puts
 the grant rate at the latest outcome 17 to 29 percentage points above the initial rate
-for the same cohort. That gap is not appeals alone. It also takes in reconsiderations, and
-claims reinstated after a withdrawal or an administrative outcome.
+for the same cohort, a gap the publisher attributes to appeals and reconsiderations, so it
+is not appeals alone. Claims reinstated after a withdrawal or an administrative outcome may
+also feed the later figure; that reading is this site's inference, not a link the publisher
+draws.
 
 So the direction of the claim is right, and the size of the effect is not trivial. A
 refusal at initial decision is genuinely not the end of the matter, and a substantial
@@ -93,7 +95,7 @@ claim, so it is corrected here rather than on a page of its own.
 
 ## What follows from the delay
 
-The [appeals backlog](/what-the-words-mean#backlog) stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 31
+The [appeals backlog](/what-the-words-mean/#backlog) stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 31
 March 2026, a record high, and the mean age of an asylum appeal at conclusion was 67
 weeks. That means a large number of people whose final outcome is not yet known, and it
 means any figure for "eventual" recognition is provisional in a fairly deep sense, because
@@ -110,8 +112,8 @@ a large tranche of the relevant cases has not concluded.
 ## Source notes
 
 Initial decisions and grant rate: Home Office, immigration system statistics, year ending
-March 2026, published 21 May 2026. The published [grant rate](/what-the-words-mean#grant-rate) is calculated on main
-applicants; the refusal count above is on the [people basis](/what-the-words-mean#people-and-cases),
+March 2026, published 21 May 2026. The published [grant rate](/what-the-words-mean/#grant-rate) is calculated on main
+applicants; the refusal count above is on the [people basis](/what-the-words-mean/#people-and-cases),
 including dependants. The two
 bases are not interchangeable, which is why the rate and the count are cited separately
 here rather than divided into one another.

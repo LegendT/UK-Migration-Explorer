@@ -84,8 +84,8 @@ reconcile with the mid-2024 population estimate and should not be used for this 
 - Is this an accredited statistic, or an official statistic still in development?
 - What date does it describe? The latest estimate is for mid-2024, not now.
 - Does ONS publish the percentage, or is it calculated from two separate figures?
-- Does it count [people born abroad](/what-the-words-mean#foreign-born), or [people without
-  British citizenship](/what-the-words-mean#foreign-national)? They are different groups and
+- Does it count [people born abroad](/what-the-words-mean/#foreign-born), or [people without
+  British citizenship](/what-the-words-mean/#foreign-national)? They are different groups and
   different numbers.
 
 ## Source notes
@@ -103,4 +103,4 @@ Scotland) gives the accredited {{population/foreign-born-share-of-total-uk-popul
 Foreign-born and foreign-citizen are distinct measures. A person born abroad may hold British
 citizenship; a person born in the UK may not. Figures for the two are not interchangeable, and the
 non-British citizenship share is lower than the foreign-born share. Foreign-born population is a
-[stock](/what-the-words-mean#flow-and-stock), not a measure of current immigration.
+[stock](/what-the-words-mean/#flow-and-stock), not a measure of current immigration.

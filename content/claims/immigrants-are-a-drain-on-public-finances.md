@@ -31,7 +31,7 @@ figures:
 ## What the data says
 
 Across the pre-Brexit static studies summarised by the Migration Observatory, the estimated
-[net fiscal impact](/what-the-words-mean#fiscal-impact) of the migrant population is **small
+[net fiscal impact](/what-the-words-mean/#fiscal-impact) of the migrant population is **small
 in magnitude, under 1% of GDP**, and comes out positive in some studies and negative in
 others.
 
@@ -73,7 +73,7 @@ quoted here for its spread rather than its size.
 Two real things get folded into it, and separating them is most of the work.
 
 **Asylum spending is real and large.** The
-[asylum system cost](/what-the-words-mean#asylum-cost) an estimated
+[asylum system cost](/what-the-words-mean/#asylum-cost) an estimated
 £{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25, on the
 National Audit Office's analysis of actual costs, and the NAO says even that understates it.
 Someone pointing at that figure is pointing at something true.

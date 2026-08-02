@@ -163,6 +163,14 @@ and `validate-data.mjs` runs the rule **both ways**: a table named in the record
 edition renames or splits a table, that array moves with it. Get it wrong and the corrections
 watch either cannot see a correction to that table, or matches a string nobody can check.
 
+**And a tenth, on the file rather than the record.** The theme file's own `lastUpdated`, on its
+envelope, must move with the update: since 2 August 2026 `validate-data.mjs` fails a file whose
+`lastUpdated` predates the newest `retrieved_date` inside it, because one file fell four days
+behind its own records within a week of the first such slip being fixed by hand. Two further
+fields the same review tied together: `source_url` and `source_id` must name the same publisher,
+so pasting a new edition's URL against the wrong catalogue id now fails instead of silently
+filing the record under the wrong release watch.
+
 ### 6. Re-read the notes, and leave every page alone
 
 **Record `notes` are re-read against the release every time.** They are prose the site wrote, not

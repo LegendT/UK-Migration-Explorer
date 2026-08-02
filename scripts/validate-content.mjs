@@ -8,13 +8,12 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { seriesPoints } from '../lib/series.mjs';
+import { THEME_FILES, seriesPoints } from '../lib/series.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const claimsDir = fileURLToPath(new URL('../content/claims/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
-const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
 // period and source are here because claim.njk renders them behind `{% if %}`, so a claim
 // that omitted them lost them from the card silently, with nothing on the page to show it.
 // Foundation 8.5.4 requires both inside the card's visual boundary: a card is going to be
@@ -584,7 +583,10 @@ for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f
   // one and watching an unformatted figure reach the built HTML through both gates. This is
   // to a series citation what the unit check is to a {{ }} one.
   if (isNunjucks) {
-    for (const match of prose.matchAll(/\|\s*at\(\s*\d+\s*\)\s*(\|\s*[a-z]+)?/gi)) {
+    // The year may be quoted: the `at` filter coerces with Number(), so at("2025") renders
+    // the same raw value at(2025) does, and a scan requiring bare digits was stricter than
+    // the renderer it models, which is how a scan silently disagrees about what ships.
+    for (const match of prose.matchAll(/\|\s*at\(\s*["']?\d+["']?\s*\)\s*(\|\s*[a-z]+)?/gi)) {
       if ((match[1] ?? '').replace(/\s+/g, '') !== '|number') {
         errors.push(`${file}: "${match[0].trim()}" does not pass through | number, so it would render an unformatted figure`);
       }

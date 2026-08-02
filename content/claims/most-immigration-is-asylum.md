@@ -60,7 +60,7 @@ interchangeably in this argument:
   ending December 2025. Humanitarian routes are a separate category and are not in it.
 - **Asylum applications**, {{asylum/asylum-applications}}, a Home Office count of people
   claiming asylum in the year ending **March 2026**.
-- **Small boat arrivals**, [a count of one route of arrival](/what-the-words-mean#small-boat-arrivals), which overlaps with both of
+- **Small boat arrivals**, [a count of one route of arrival](/what-the-words-mean/#small-boat-arrivals), which overlaps with both of
   the above without being either.
 
 Those are different measures, from different publishers, over different periods, counting
@@ -82,7 +82,7 @@ back further.
 
 - What share of arrivals came on each route, over which twelve months?
 - Is this figure counting arrivals, applications, or grants?
-- Does it count [people, or main applicants only](/what-the-words-mean#people-and-cases)?
+- Does it count [people, or main applicants only](/what-the-words-mean/#people-and-cases)?
 
 ## Source notes
 
@@ -97,5 +97,5 @@ reason they originally came, from this year's arrivals would set two different c
 against each other, and the result would not be the net effect of this year's routes.
 
 Asylum-related immigration includes people who claimed asylum after arriving through a
-regular route as well as those who arrived irregularly. [Route of arrival](/what-the-words-mean#irregular-arrival) and [asylum claim](/what-the-words-mean#asylum-application)
+regular route as well as those who arrived irregularly. [Route of arrival](/what-the-words-mean/#irregular-arrival) and [asylum claim](/what-the-words-mean/#asylum-application)
 are distinct concepts.

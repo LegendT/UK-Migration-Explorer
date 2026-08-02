@@ -9,6 +9,47 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The launch readiness review lands its mechanical half, 2 August 2026
+
+**No published figure value changed.** A whole-project review ran ahead of launch, seven
+dimensions with every finding adversarially verified, written up in
+`docs/LAUNCH-READINESS-REVIEW.md` with the remainder in `docs/BACKLOG.md`. All eight home page
+figures were verified against their live sources with verbatim quotes. What landed:
+
+- **Every line chart's y-axis labels were clipped at the chart's left edge**, and the clipped
+  remainders read as different, plausible numbers: 1,500,000 rendered as "500,000". The
+  margins are now measured from the text, as the right margin already was, and the width
+  estimate carries the calibration it was missing.
+- **Three owner-approved corrections reached their unapplied siblings.** The "audited" label
+  correction 1b retired for the NAO's £4.9 billion estimate survived in four reader-facing
+  places and is gone; correction 1i's retired revision reasoning survived on three pages and
+  is replaced with the corrected form; the PR #72 cohort correction now holds on the two pages
+  that still attributed this site's reinstated-claims inference to the Home Office.
+- **The asylum page's appeal rate carries its basis and period**: around 40% of asylum appeals
+  determined in the quarter to March 2026, beside an annual refusal count, rather than an
+  unqualified "40% of appeals".
+- **Three tribunals records are regraded `official` to `provisional`**, as the publisher flags
+  the quarter and as the same file already grades the returns records. Values unchanged.
+- **The fiscal caveats in `data/` prose adopt correction 1b's framing**: the plus or minus 1%
+  range is the pre-Brexit static studies summarised by the Migration Observatory, not "across
+  studies".
+- **A printed page gets its chart tables back.** Chrome hides a closed details element's
+  contents beyond the reach of child display rules, and the print stylesheet then hid the
+  summary too, so printing lost both. The supported `::details-content` route opens them, and
+  where it does not exist the summary now stays visible.
+- **The validator ties a record's `source_url` to its `source_id`**: the two were checked
+  against the catalogue separately, so a record pairing one publisher's id with another's URL
+  passed, and the release watch would have filed it under the wrong publisher. All 75 records
+  and every series point pass; negative-tested in both directions.
+- **The link check now reads page prose**, collecting external links written in sentences
+  alongside the data-layer URLs, 56 distinct URLs against 50. The theme-file list has one home
+  in `lib/series.mjs` instead of seven private copies, the `number` filter fails the build on
+  a missing value instead of rendering an invisible blank, and a file's `lastUpdated` may no
+  longer lag the newest record inside it.
+- Nineteen glossary links gain the site's canonical trailing slash, the pre-launch banner
+  becomes a named landmark, and the documents that had drifted from the code, the four-held-
+  twice count, the three-collections claim, the series ageing sentence, agree with it again.
+
 ### The hotel figure is re-sourced to the publication that contains it, 1 August 2026
 
 **The value did not change. The source was wrong.** £2.1 billion of spending on asylum hotels in

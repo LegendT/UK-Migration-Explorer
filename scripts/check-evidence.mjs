@@ -18,11 +18,10 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { COMPANION_BLOCKS, SERIES_FILES } from '../lib/series.mjs';
+import { COMPANION_BLOCKS, SERIES_FILES, THEME_FILES } from '../lib/series.mjs';
 
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 const evidenceDir = `${repoRoot}data/evidence/`;
-const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
 
 // A figure a source states outright is quoted directly. A figure nobody publishes, because
 // this site worked it out, cannot be: its evidence is a quote for each input and a sentence
@@ -391,7 +390,7 @@ if (errors.length) {
 if (changed === 0) {
   console.log(`Evidence check passed against ${base}: no metric changed value and none is new, so there is nothing to evidence.`);
 } else {
-  console.log(`Evidence check passed against ${base}: ${changed} metric(s) changed or new, each declared in data/evidence/ with a quote containing its value.`);
+  console.log(`Evidence check passed against ${base}: ${changed} metric(s) changed or new, each declared in data/evidence/${derived ? `; ${changed - derived} carry a quote containing the value and ${derived} derived figure(s) carry a quote per component instead` : ' with a quote containing its value'}.`);
 }
 console.log('Not established: that the quote is on the page it names, that anyone fetched it, or that');
 console.log('the URL belongs to a catalogued publisher, which validate-data.mjs requires of a record');

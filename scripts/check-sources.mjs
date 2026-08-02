@@ -12,10 +12,11 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
+import { COMPANION_BLOCKS, SERIES_FILES, THEME_FILES } from '../lib/series.mjs';
+
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
-const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
 const TIMEOUT_MS = 15000;
 const CONCURRENCY = 6;
 
@@ -29,23 +30,42 @@ const cite = (url, where) => {
 for (const file of THEME_FILES) {
   for (const metric of read(file).metrics ?? []) cite(metric.source_url, `${file}: ${metric.id}`);
 }
-// Three timeseries and every chart sourceUrl were previously checked by nothing.
-const TIMESERIES = ['netMigrationTimeseries.json', 'asylumApplicationsTimeseries.json',
-  'asylumBacklogTimeseries.json', 'migrationFlowsTimeseries.json'];
-for (const file of TIMESERIES) {
+// Three timeseries and every chart sourceUrl were previously checked by nothing. The file
+// and block lists come from lib/series.mjs: this script kept private copies of both, which
+// is the duplicated-map bug that module exists to prevent, in the one script that gates
+// nothing and so would have drifted longest unnoticed.
+for (const file of Object.values(SERIES_FILES)) {
   const series = read(file);
-  for (const name of ['', 'historical', 'alternate_basis', 'emigration']) {
+  for (const name of ['', ...COMPANION_BLOCKS]) {
     const block = name ? series[name] : series;
     for (const point of block?.data ?? []) cite(point.source_url, `${file} ${name}${point.date}`);
   }
 }
 
 const contentDir = fileURLToPath(new URL('../content/', import.meta.url));
+// Both quote styles: a chart config written with double quotes is equally valid Nunjucks,
+// and the single-quote-only pattern silently dropped it from the check with no signal.
 for (const file of readdirSync(contentDir).filter((f) => f.endsWith('.njk'))) {
-  for (const [, url] of readFileSync(contentDir + file, 'utf8').matchAll(/sourceUrl:\s*'([^']+)'/g)) {
+  for (const [, , url] of readFileSync(contentDir + file, 'utf8').matchAll(/sourceUrl:\s*(['"])([^'"]+)\1/g)) {
     cite(url, `${file} chart`);
   }
 }
+
+// External links written in page prose. The data-layer URLs above are the citations, but a
+// markdown page can also link a source in a sentence, and those rotted with every check
+// green: nothing collected them, while check-build's closing line pointed at this script as
+// the external-link answer. Markdown link syntax and raw hrefs, recursively, so the claim
+// pages are included.
+const walk = (dir, prefix = '') =>
+  readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
+    entry.isDirectory() ? walk(`${dir}${entry.name}/`, `${prefix}${entry.name}/`)
+      : (entry.name.endsWith('.md') || entry.name.endsWith('.njk')) ? [`${prefix}${entry.name}`] : []);
+for (const file of walk(contentDir)) {
+  const body = readFileSync(contentDir + file, 'utf8');
+  for (const [, url] of body.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)) cite(url, `${file} prose`);
+  for (const [, url] of body.matchAll(/href="(https?:[^"]+)"/g)) cite(url, `${file} prose`);
+}
+
 for (const source of read('sources.json').sources) cite(source.url, `sources.json: ${source.id}`);
 
 // Hosts whose CDN refuses automated requests outright. Verified 22 July 2026: these

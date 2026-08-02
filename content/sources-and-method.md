@@ -134,8 +134,9 @@ one basis with a figure on the other, produces answers wrong by roughly a fifth,
 
 **Estimates get revised, sometimes heavily.** Net migration for the year ending December
 2024 was first published at 431,000, then about 345,000, and now stands at
-{{migration/net-migration-2}}. Nobody's movements changed; the estimate did. When you see a
-revision, that is usually the statistics system working rather than failing.
+{{migration/net-migration-2}}. The estimate changed because ONS brought in new data and
+methods, not because the period itself did. When you see a revision, that is usually the
+statistics system working rather than failing.
 
 ---
 

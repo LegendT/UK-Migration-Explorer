@@ -112,7 +112,7 @@ migration estimates.
 
 **Why it matters.** These are not decorative labels. Net migration for the year ending
 December 2024 was first published as 431,000, revised to about 345,000, and now stands at
-{{migration/net-migration-2}}, without anybody's movement changing. Anyone who quoted the
+{{migration/net-migration-2}}, as ONS brought in new data and methods. Anyone who quoted the
 first figure was quoting the best available number, and was also going to be wrong within
 a year.
 
@@ -347,9 +347,9 @@ What the government spends running the asylum system:
 £{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25,
 covering the Home Office and Ministry of Justice.
 
-**Why it matters.** This is audited spending, and it is reasonably firm. The National Audit
-Office notes it does not capture costs falling on local authorities, so it understates the
-full figure.
+**Why it matters.** This is an NAO estimate based on actual costs, and it is reasonably
+firm. The National Audit Office notes it does not capture costs falling on local
+authorities, so it understates the full figure.
 
 **The common mistake.** Treating it as the fiscal impact of immigration. It is the running
 cost of one part of one system, and tells you nothing about taxes paid by migrants

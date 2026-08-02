@@ -7,7 +7,8 @@ editing here.
 It recites almost nothing, because the two times it and the handoff drifted the prompt was the stale
 copy. The handoff explains which few things it still carries and why each cannot be a pointer.
 
-Generated 1 August 2026, after the second and third launch gates closed.
+Regenerated 2 August 2026, mechanically from the handoff's block. This line once said which launch
+gates had closed, and was wrong within the day: which gates are open is the backlog's to say.
 
 ---
 
@@ -16,18 +17,19 @@ Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
 READ FIRST, in this order, and do not re-derive what they already settle:
-  1. docs/BACKLOG.md. The one list of outstanding work, ordered, and it
-     names the launch gates that are mine. There is no second list.
+  1. docs/BACKLOG.md, starting with The order at its top: the single
+     numbered list of everything outstanding, gates marked, each entry
+     tagged [me] or [you]. There is no second list.
   2. docs/HANDOFF.md. How the project works, and what earlier sessions
      cost. Its "Working practices that earned their place" section is
      rules this project has paid for, each with the incident behind it.
      Read it before deciding a rule does not apply to what you are doing.
   3. The scope document for whatever you pick up.
 
-docs/PRE-LAUNCH-AUDIT.md and verification.txt are FROZEN RECORDS, not
-work lists. Read either for the reasoning behind an item. Do not edit
-them and do not take work from them: whatever is still outstanding is in
-the backlog.
+docs/PRE-LAUNCH-AUDIT.md, docs/LAUNCH-READINESS-REVIEW.md and
+verification.txt are FROZEN RECORDS, not work lists. Read them for the
+reasoning behind an item. Do not edit them and do not take work from
+them: whatever is still outstanding is in the backlog.
 
 This project has no CLAUDE.md. Your global instructions at
 ~/.claude/CLAUDE.md load automatically.
@@ -43,11 +45,11 @@ the owner's decision [you]. On a list mixing both, do all the [me] work
 first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question is.
 
-TASK: take the first UNFINISHED item in docs/BACKLOG.md, unless I have
-told you otherwise in this message. Unfinished, not unstarted: an item
-can have phases built and still be first. Do not infer it from document
-order, because the earlier items are mine or are launch; the backlog's
-own preamble names which to take, and that sentence is the instruction.
+TASK: take the first UNFINISHED [me] item or [me] half in The order,
+the numbered list at the top of docs/BACKLOG.md, unless I have told you
+otherwise in this message. Unfinished, not unstarted: an item can have
+phases built and still be first. The earliest entries are mine or are
+launch: bring those, do not take them.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is

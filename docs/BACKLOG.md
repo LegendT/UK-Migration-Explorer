@@ -12,7 +12,7 @@ marked done, withdrawn or struck. That rule exists because the pre-launch audit 
 list, the two diverged twice in a day, and this file was briefly edited to say the other one was
 live. The resolution did not hold, so it is a build failure now.
 
-Last updated 1 August 2026. The pull request count that sat on this line was stale and is deleted
+Last updated 2 August 2026. The pull request count that sat on this line was stale and is deleted
 rather than corrected, which is this project's rule for a count about its own work.
 
 **A whole-project pre-launch audit was written up in `docs/PRE-LAUNCH-AUDIT.md`** and merged as
@@ -31,15 +31,73 @@ handoff, so it can be copied without opening a long document. The handoff remain
 of truth. It sat between the two paragraphs above until 31 July, so "It closed" read as though the
 prompt had.
 
-**What to take, and in what order, is one sentence and it is not this one.** It lives under
-*Scoped, not built* below, beginning "This sentence governs the whole file". It is the only place
-the sequence is stated, deliberately, so that finishing something cannot leave a stale instruction
-somewhere else. Read it before starting anything.
+## The order
 
-**What from it gates launch, and it is all mine**, named here because this file is where a launch
-gate belongs and a session reading only the backlog must not miss them. The count that stood at the
-head of this sentence is deleted rather than decremented, which is this project's rule for a count
-about its own work:
+**The single list of everything outstanding, in the order it needs doing.** Consolidated on
+2 August 2026 from the section ordering and the sentence that lived under *Scoped, not built*;
+this is now the only place the sequence is stated, so that finishing something cannot leave a
+stale instruction somewhere else. The lettered and numbered sections below hold the detail and
+the reasoning each entry points at. Items marked **GATE** block launch; nothing else does. A
+session takes the first unfinished **[me]** item or **[me]** half; **[you]** items are the
+owner's, and a session brings those to him batched rather than starting them. If a session's
+first act is to bring the gates rather than to take the first **[me]** item, that is the right
+first act.
+
+1. **GATE. The glossary's Grant rate entry**, rebuilt on the corrected record. **[you]**,
+   wording. Detail under *The launch gates, in detail* below.
+2. **GATE. The glossary's Net fiscal impact entry**, two paragraphs still making the
+   "range spans zero" argument correction 1b retired. **[you]**, wording. Detail below.
+3. **The six pages the pre-publication review never opened**, put through
+   `docs/PRE-PUBLICATION-REVIEW.md`. Recommended before signing the review as passed, because
+   both glossary gates sit on one of the six and two independent passes reached it separately.
+   Running the template is **[me]**; the verdicts are **[you]**.
+4. **The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
+   below, plus the two sources-page wording bullets at the end of item 6. All **[you]** calls;
+   applying what is decided is **[me]**. None gates launch, and every one is cheaper before
+   the site has readers.
+5. **The decisions that change what launch publishes**: whether `.netlify.app` is the launch
+   domain, the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
+   route that is not a GitHub account, whether a fourth limit is published and which, whether
+   the success measure goes on `/about/`, and the rest of A6. All **[you]**; the applying is
+   **[me]**. The domain comes first among them, because it changes the URL anyone cites.
+6. **Talk to five target users.** A week, in parallel with everything above, and the one
+   acceptance criterion foundation section 18 says can save the whole build. The two
+   comprehension criteria are tested by this and by nothing else. **[you]**.
+7. **GATE. Record the review as passed in `CHANGELOG.md`**, after items 1 to 3. Worth knowing
+   before signing: the review's own selection criteria failed 2.6 and 2.7, and both were kept
+   on the site's published no-attribution policy, so signing backs that policy over the
+   reviewer's criterion. **[you]**.
+8. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
+   `scripts/check-build.mjs`. Then set up Search Console, which costs nothing, needs no
+   JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's word.
+9. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
+   and write the `data/evidence/` entries **[me]**; then land the reverted regrade check, in
+   that order, fetch first, because the other way round forces a fabricated quote. And re-read
+   or drop `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing
+   it unchecked. **[you]**.
+10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
+    scope; the fetching is **[me]**.
+11. **The small build work**: A3, A5's claim-list heading item, and R3. All **[me]**, small,
+    independent, none urgent.
+12. **Item 4 below, the figures the data layer never recorded**: which of the remaining
+    literals deserve records is **[you]**; minting each with a fetched quote is **[me]**.
+    Several sessions, not one.
+13. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
+    sign-off, no build behind it.
+14. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
+    come to the owner before merge. Only the pro-migration draft moves the direction split off
+    its floor.
+15. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
+    that is gated on it **[me]**. It is also the published limit most worth closing.
+
+If you reorder, or complete something, **move the entries and renumber** rather than adding a
+sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
+and a fresh session following the instruction would have taken the wrong item.
+
+### The launch gates, in detail
+
+**All of them are mine.** The count that stood at the head of this sentence is deleted rather
+than decremented, which is this project's rule for a count about its own work:
 
 1. **`content/glossary.md`, the Grant rate entry.** It applies a cohort uplift its own record says
    `do not add`, calls the later figure "final outcome" where the Home Office says "latest outcome",
@@ -163,6 +221,77 @@ Each is one call. None blocks anything.
   is a point-in-time headcount.
 - Two OWNER-VERIFY residues: whether the Asy_D02 pivot prints a year-ending total, and the `date`
   field on the fiscal-impact record plus the 47% in the work-immigration notes.
+
+---
+
+## From the launch readiness review, 2 August 2026
+
+**The review is written up in `docs/LAUNCH-READINESS-REVIEW.md`**, a findings record carrying
+no work state, on the same terms as the audit's. Seven review dimensions plus a far-end source
+trace; 44 findings confirmed by an adversarial verification pass and three refuted by it. The
+mechanical half landed with the PR that opened it, including both blockers, and all seven
+checks were green after. **All eight home page figures were verified against their live
+sources with verbatim quotes.** What is left is below. None of it gates launch on this
+project's own definition; each item is cheaper before the site has readers.
+
+### R1. Reader-facing wording and grading, all of it yours
+
+Each is **[you]** because it is wording, a grade or a sourcing call.
+
+- **The costs page presents the £2.1bn hotel figure inside the NAO's £3.4bn** ("These figures
+  are nested, not parallel") while the record's own notes say the nesting is this site's
+  construction and neither publisher places one figure inside the other. Say so on the page,
+  or un-nest the table.
+- **The Born abroad card grades a Migration Observatory briefing figure `official`**, a grade
+  the sources page defines as "taken directly from an official published release". The
+  underlying figure is the 2021/22 Census; the cited source is a university briefing. Regrade,
+  or re-source the record to the census release it summarises.
+- **Returns are an unstated scope silence.** The data layer holds five returns records,
+  including the 39,007 enforced-plus-voluntary total, and no reader-facing page shows any of
+  them except port refusals inside a caveat, while *What this site does not cover* does not
+  name the omission. The site's own published principle is that scope silence is
+  indistinguishable from bias. Surface them or declare them; the current state is the one
+  option that principle rules out.
+- **Every claim page h1 is the bare false claim**, so a screen reader user navigating by
+  headings, or hearing the claims index read as a links list, meets the site asserting the
+  sentence it corrects. The browser tab already says "Claim checked:"; whether the same
+  qualifier belongs in the visible heading or the accessible name is a design call about the
+  card.
+- **The 404 page says the glossary "defines every term the site uses"**, and non-EU+ has no
+  entry while appearing on four pages. The entry is the better fix than softening the
+  sentence: the definition already exists word for word on three pages and wants one anchor.
+- **The two fee records assert `period_label` "2024"** while the costs page beside them says
+  the cited briefing does not state which twelve months it covers. This is the record half of
+  audit finding K4, whose prose half landed with the review.
+- **`docs/PRE-PUBLICATION-REVIEW.md` section 3 still instructs a reviewer** that the
+  unit-qualified warnings were all reviewed as coincidences, a judgement the handoff records
+  as refuted: three were live values restated longhand. It is the template future reviews work
+  through, so correcting the instruction is a change to a document the owner signs.
+
+### R2. From the far-end trace, three source observations
+
+- `asylum/small-boat-arrivals-calendar-year-2025` is graded `official` and its notes call it a
+  finalised calendar-year total, while the publisher prints the year only as four quarterly
+  cells to be summed and states no calendar-year total. The site's own convention for a summed
+  figure is `calculated` with the components quoted. **[you]** whether the grade or the note
+  moves.
+- Two figures in the citizenship card's prose, 269,178 and 312,063, are not on the page the
+  record cites; the first is arithmetically consistent with the page's "12% decrease" and both
+  presumably live in the prior release or a summary table. Confirm and cite their source, or
+  reword. **[you]** for scope; the fetching is **[me]**.
+- The NAO's landing page prints £4.0 billion, its direct-support figure, and the £4.9 billion
+  this site cites is inside the PDF it links. A reader who follows the source link and does
+  not open the report meets a different number first. Whether the record's notes should say so
+  is **[you]**.
+
+### R3. Small build work, none urgent, all [me]
+
+- The three metric value maps in `validate-content.mjs` are last-write-wins where two records
+  share a value form, so an error's remedy can tell the author to cite the wrong record. The
+  same file already solves the same problem for another of its maps.
+- The two ONS series files encode the publisher's revision markers differently, a
+  machine-readable `ons_marker` in one and prose in the other. Pick one, after the A6
+  confidence convention is settled, since the two questions touch.
 
 ---
 
@@ -311,27 +440,11 @@ comes last. That is launch.
 
 None of this blocks launch. Each has a scope document; read it before starting.
 
-**This sentence governs the whole file, not only the section below it, and it went stale the moment
-the audit section was added above without touching it.** It says so here because that is exactly the
-failure it warns about two paragraphs down. The order lives here rather than in the handoff's prompt,
-so that finishing something does not leave a stale instruction somewhere else. Re-order it freely;
-this is the only place the sequence is stated.
-
-**Take, in this order:**
-
-1. **A3, the checks worth hardening**, and **A5's two `[me]` items**. Small, independent, no gates.
-2. **Item 4 below, the figures the data layer never recorded.** This was the first item before the
-   audit and is now behind it. Item 3's only remaining phase needs the owner's sign-off rather than a
-   build, so it is not work a session can take.
-
-**Not takeable by a session, and they are the launch gates**: the two glossary rewrites, named at
-the top of this file. The £2.1bn re-source was the third and is done. Bring them; do not start
-them. If a session's first
-act is to ask about those two rather than to take item 1 above, that is the right first act.
-
-If you reorder, or complete something, **move the sections and renumber** rather than adding a
-sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
-and a fresh session following the instruction would have taken the wrong item.
+**The order lives under *The order* at the top of this file**, as the one sequence, and it
+governed from here until 2 August 2026, when the sections had multiplied past what a sentence
+in the middle of the file could order. This section now holds only the detail the order's
+later entries point at. Read the scope document for whatever you pick up, and do not
+re-derive it.
 
 ### 3. Release notifier and evidence check: four phases built, phase 4 left
 
@@ -516,7 +629,8 @@ matcher and neither called the thing reading its output.
 
 **`UNRECORDED_BASELINE` went UP, 22 to 33, and this is the only step up it should ever take.**
 Eleven report lines became *visible*, ten distinct figures with the visitor-visa one on two
-pages; none arrived. What the ratchet forbids is unchanged and the count may not grow from 33.
+pages; none arrived. What the ratchet forbids is unchanged; the baseline is the
+`UNRECORDED_BASELINE` constant, 33 at the time of that step, and it has since come down.
 
 **Two live record values are written out in words, in `data/` prose that renders to a page.**
 `dashboard.json`'s foreign-born card and `meta.json`'s key caveat on foreign-born vintages both

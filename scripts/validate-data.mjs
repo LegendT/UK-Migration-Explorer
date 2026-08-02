@@ -6,13 +6,12 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { COMPANION_BLOCKS, SERIES_FILES, seriesPoints } from '../lib/series.mjs';
+import { COMPANION_BLOCKS, SERIES_FILES, THEME_FILES, seriesPoints } from '../lib/series.mjs';
 import { sameTable, tablesIn } from '../lib/tables.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
 
-const THEME_FILES = ['migration.json', 'asylum.json', 'population.json', 'fiscal.json'];
 const TIMESERIES_FILES = Object.values(SERIES_FILES);
 const SPECIAL_FILES = ['dashboard.json', 'sources.json', 'meta.json', ...TIMESERIES_FILES];
 
@@ -44,7 +43,15 @@ const HOST_ALIASES = {
 };
 
 const sourceById = new Map(read('sources.json').sources.map((s) => [s.id, s]));
-const catalogued = new Set(read('sources.json').sources.map((s) => new URL(s.url).hostname));
+// Wrapped per entry, because one unparseable catalogue url used to throw here at module level,
+// taking the whole report with it before a single queued error printed: the same
+// take-the-report-with-it failure this script documents fixing for metric URLs below.
+const catalogued = new Set();
+for (const s of read('sources.json').sources) {
+  try { catalogued.add(new URL(s.url).hostname); } catch {
+    errors.push(`sources.json ${s.id}: url is not a parseable URL, ${s.url}`);
+  }
+}
 const resolveHost = (url) => {
   const host = new URL(url).hostname;
   return HOST_ALIASES[host] ?? host;
@@ -101,6 +108,28 @@ function checkFields(where, item, required) {
   // figures cite an assets.publishing.service.gov.uk hash that names no publisher at all.
   if (item.source_id && !sourceById.has(item.source_id)) {
     errors.push(`${where}: source_id "${item.source_id}" is not an id in sources.json`);
+  }
+  checkSourceTie(where, item.source_id, item.source_url);
+}
+
+// The two halves of a citation must name the same publisher. Each was checked alone: the
+// URL's host had to belong to SOME catalogue entry and the id to be SOME catalogue id, so a
+// record pairing one publisher's id with another publisher's URL passed both, and
+// check-releases.mjs would then compare that URL's edition against the wrong publisher's
+// newest. Host equality is the strongest tie available: several gov.uk publishers share a
+// host, which is what source_id exists to distinguish, so a same-host mismatch stays
+// invisible here by construction and this check does not claim otherwise.
+function checkSourceTie(where, sourceId, sourceUrl) {
+  if (!sourceId || !sourceById.has(sourceId) || !sourceUrl) return;
+  let urlHost;
+  let catalogueHost;
+  // Unparseable URLs are reported by the checks above; this one only compares.
+  try {
+    urlHost = resolveHost(sourceUrl);
+    catalogueHost = resolveHost(sourceById.get(sourceId).url);
+  } catch { return; }
+  if (urlHost !== catalogueHost) {
+    errors.push(`${where}: source_url is on ${urlHost} but source_id "${sourceId}" catalogues a publisher on ${catalogueHost}. One of the two names the wrong publisher, and the release watch would file this figure under the wrong one.`);
   }
 }
 
@@ -176,6 +205,15 @@ let counted = 0;
 
 for (const file of THEME_FILES) {
   const theme = file.replace('.json', '');
+  // A file's own lastUpdated must keep up with the records inside it. The audit fixed one
+  // that had fallen behind (F0-4) and the fix had no check half, so the same file was four
+  // days behind its newest record within the week. The date is only a claim about the file;
+  // this makes it one that cannot silently lag the records it summarises.
+  const envelope = read(file);
+  const newest = (envelope.metrics ?? []).map((m) => m.retrieved_date).filter(Boolean).sort().at(-1);
+  if (envelope.lastUpdated && newest && envelope.lastUpdated < newest) {
+    errors.push(`${file}: lastUpdated ${envelope.lastUpdated} predates its newest record's retrieved_date ${newest}. Bump it when a record in the file moves.`);
+  }
   for (const [i, metric] of (read(file).metrics ?? []).entries()) {
     const where = `${file}[${i}] ${metric.metric_name ?? '(unnamed)'}`;
     checkFields(where, metric, METRIC_FIELDS);
@@ -251,6 +289,9 @@ for (const file of TIMESERIES_FILES) {
     for (const [i, point] of (block.data ?? []).entries()) {
       const where = `${file} ${label}[${i}] ${point.date ?? '(undated)'}`;
       checkFields(where, point, POINT_FIELDS);
+      // Points carry no source_id of their own; the envelope's is the publisher they must
+      // all belong to, for the same reason as on a metric above.
+      checkSourceTie(where, series.source_id, point.source_url);
       if (typeof point.value !== 'number') errors.push(`${where}: value must be a number`);
       counted += 1;
     }
@@ -429,5 +470,5 @@ if (overdue.length) {
 if (noFixedCadence.size) {
   const names = [...noFixedCadence.entries()].map(([id, n]) => `${id} (${n})`).join(', ');
   console.log(`Not covered: ${registry.size - checkable} figure(s) from sources with no fixed cadence, ${names}.`);
-  console.log('Also not covered: the timeseries files, whose points carry no retrieved_date to age.');
+  console.log('Also not covered: the timeseries files. Their points carry a retrieved_date, but nothing here ages them against a cycle; the whole array is refreshed per release instead.');
 }
