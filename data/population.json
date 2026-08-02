@@ -131,7 +131,45 @@
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-07-22",
-      "notes": "The bulletin states a 12% decrease against the year ending March 2025, and table Cit_01 gives that year's total and this one's naturalisation and registration components; all three now have their own records rather than living here. Applications rose to 312,063 in the year ending March 2026 from 263,440 the year before, an 18% rise, read from the same table; no page publishes that figure, which is why it is here and not a record. Supersedes the year ending December 2025 figure of 235,782, which was this site's previous value: the current edition revises that period to 236,239, so 235,782 is not re-derivable from it.",
+      "notes": "The bulletin states a 12% decrease against the year ending March 2025, which is the one percentage on the home page card that a reader finds by following this record's own source link; table Cit_01 gives that year's total, this one's naturalisation and registration components, and both application totals, and all five now have their own records rather than living here. Supersedes the year ending December 2025 figure of 235,782, which was this site's previous value: the current edition revises that period to 236,239, so 235,782 is not re-derivable from it.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "british-citizenship-applications",
+      "metric_name": "Applications for British citizenship (all routes)",
+      "value": 312063,
+      "unit": "applications",
+      "date": "2026-03-31",
+      "period_label": "year ending March 2026",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, Citizenship summary tables, table Cit_01",
+      "table_reference": [
+        "Cit_01"
+      ],
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-08-02",
+      "notes": "Applications, not grants: the two move independently and in this period move in opposite directions, which is what the home page card is about. Cit_01 publishes an 18% rise in its own percentage row; the card gives both annual totals instead and lets a reader take the difference, because a percentage computed against two live values goes wrong the moment one of them is revised. Neither this figure nor its comparison year appears on the bulletin page the grants record cites, which states no application figure at all.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "british-citizenship-applications-previous-year",
+      "metric_name": "Applications for British citizenship (all routes), previous year",
+      "value": 263440,
+      "unit": "applications",
+      "date": "2025-03-31",
+      "period_label": "year ending March 2025",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, Citizenship summary tables, table Cit_01",
+      "table_reference": [
+        "Cit_01"
+      ],
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-08-02",
+      "notes": "The comparison year behind the rise in citizenship applications on the home page card, held as a record for the same reason british-citizenship-grants-previous-year is: a prior-year figure written into prose is recomputed at every release and goes stale exactly as fast as the current one. Read from the current edition rather than the previous one, per the single-vintage rule.",
       "confidence_level": "official"
     },
     {

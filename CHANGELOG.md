@@ -9,6 +9,27 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The citizenship card stops publishing a percentage nobody can check, 2 August 2026
+
+**No published figure value changed. Two more figures get records and one derived percentage is
+dropped.** The card said "Applications rose 18% over the same period". Table Cit_01 does publish
+that 18% in its own percentage row, so it was not invented, but it was unreachable: the card's
+source link goes to the bulletin, which carries no application figure and no 18% at all, and no
+record held 18, so every scan on this site was blind to it.
+
+The card now gives both ends and lets a reader take the difference, which is this project's
+settled pattern for a figure computed against live values:
+**"Applications went the other way over the same period, from 263,440 to 312,063."** Both are new
+records, `population/british-citizenship-applications` and `-previous-year`, read from Cit_01 and
+evidenced with the table row.
+
+**Reconciled rather than read**: each year's naturalisation and registration application cells sum
+exactly to that year's total, 218,661 plus 93,402 and 184,039 plus 79,401, which is the same
+independent confirmation the grants records got.
+
+**"Down 12%" is deliberately left alone.** It is the one percentage on the card that a reader finds
+by following the record's own source link, because the bulletin states it in prose.
+
 ### The ONS confidence convention is settled, and the series_ref guard stops trusting one field, 2 August 2026
 
 **No published figure value changed, and the built site is byte-identical, proved by diff.**
