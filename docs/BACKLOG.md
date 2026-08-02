@@ -81,8 +81,10 @@ first act.
    it unchecked. **[you]**.
 10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
     scope; the fetching is **[me]**.
-11. **The small build work**: A3, A5's claim-list heading item, and R3. All **[me]**, small,
-    independent, none urgent.
+11. **The small build work**: A3, A5's claim-list heading item, and R3. **Four of its six parts
+    landed (PR #77, 2 August 2026)**; the two left are both gated on the A6 confidence
+    convention, which is **[you]**, and are marked under A3 and R3 below. Nothing else in this
+    entry is outstanding.
 12. **Item 4 below, the figures the data layer never recorded**: which of the remaining
     literals deserve records is **[you]**; minting each with a fetched quote is **[me]**.
     Several sessions, not one.
@@ -161,11 +163,22 @@ sentence and renumbering five headings to save one line is how a reference goes 
 
 All **[me]**, all small, each with its reasoning in the audit.
 
-- Qualify `validate-content.mjs`'s success message: it claims no page writes a live value longhand
-  while four sit on `/sources-and-method/` under a `historical_literals` exemption.
-- Report every record note restating another record's value, so an update knows which notes to
-  re-read. Twenty-six exist; the scan is written out in the audit.
-- Extend the `series_ref` comparison beyond `value`, once the confidence convention below is settled.
+- **The success message. DONE (PR #77, 2 August 2026).** It claimed no page writes a live value
+  longhand while four sat on `/sources-and-method/` under a `historical_literals` exemption. The
+  word `UNDECLARED` is now in the sentence, and the run names every declared literal that does
+  equal a live value, so the exemption cannot grow in silence. The count is not written here: it
+  is what `npm run validate` prints, and the audit's four were four again on the day this landed
+  only because the run was asked rather than the audit quoted.
+- **Notes restating another record's value. DONE (PR #77, 2 August 2026).** `validate-data.mjs`
+  now reports every one, naming both records, so an updater moving a value is told which notes to
+  re-read instead of being asked to remember. Reported and never failed, because some are
+  coincidence. **The count the audit gave is deliberately not repeated here**, for this project's
+  own rule about counts: the run prints a different number, the scan is word-bounded where the
+  audit's was not, and correcting a count in a second place is how two lists start.
+- Extend the `series_ref` comparison beyond `value`, once the confidence convention below is
+  settled. **Still outstanding, and gated on that [you] decision**, which is why it did not land
+  with the two above. The audit's F0-3 has the reasoning: a metric and the point it names carry
+  two different `confidence_level` values today, and nothing compares them.
 
 ### A4. Reader-facing wording, all of it yours
 
@@ -202,8 +215,13 @@ Each is a sentence, and each is **[you]** because it is wording.
   pipeline each gates. They gate CI only; the README says "gates the build". **[you]**.
 - **Scope the LICENCE** to cover `content/` and `lib/`, or invert it so it covers everything except
   the figures in `data/`. Neither clause currently names the site's own prose. **[you]**.
-- Parameterise the claim-list heading level so home page cards sit at `h3` under the `h2` that
-  introduces them. **[me]**.
+- **The claim-list heading level. DONE (PR #77, 2 August 2026).** Home page cards sit at `h3`
+  under the `h2` that introduces them; the claims index keeps `h2`, where the cards sit directly
+  under the page `h1`. **Nothing was parameterised**, which the wording of this bullet assumed:
+  the two pages inline their own markup and a comment on the claims index says the difference is
+  deliberate, so there is no component to give a level to. The style rules take both levels
+  instead, so the CSS is not what decides the heading. Proved by diff: two built files changed,
+  the home page and the stylesheet, and nothing else.
 - Point `aria-describedby` at the visible chart summary instead of duplicating it into `<desc>`.
   **Gated on a real screen reader**, which this project has never run, so it is **[you]** first.
 
@@ -290,12 +308,17 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
 
 ### R3. Small build work, none urgent, all [me]
 
-- The three metric value maps in `validate-content.mjs` are last-write-wins where two records
-  share a value form, so an error's remedy can tell the author to cite the wrong record. The
-  same file already solves the same problem for another of its maps.
+- **The three metric value maps. DONE (PR #77, 2 August 2026).** They were last-write-wins where
+  two records share a value form; all three now hold a list, the way the series map already did,
+  and every message names every candidate. **It was live rather than latent**: the warning on the
+  home page card whose own sentence says "Pakistan" named the non-British population share
+  instead, because that theme file is read last. Two warnings now name two records each.
+  Negative-tested by giving two records one value and writing it out on a page: the error names
+  both and offers both citations, where before it offered one and the choice was read order.
 - The two ONS series files encode the publisher's revision markers differently, a
   machine-readable `ons_marker` in one and prose in the other. Pick one, after the A6
-  confidence convention is settled, since the two questions touch.
+  confidence convention is settled, since the two questions touch. **Still outstanding, and
+  gated on that [you] decision.**
 
 ---
 

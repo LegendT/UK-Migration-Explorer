@@ -332,11 +332,15 @@ th.nested-2 { padding-left: 2.75rem; }
   border-radius: 6px;
   padding: 1.25rem;
 }
-.claim-list h2 { margin: 0 0 0.5rem; font-size: 1.0625rem; }
+/* Both levels, because the card's heading level follows the page rather than the component: h2
+   on the claims index, under the page h1, and h3 on the home page, under the h2 that introduces
+   the three. A card looks the same either way, so the style must not be the thing that decides
+   the level. Selector list rather than :is(), which nothing else here uses. */
+.claim-list h2, .claim-list h3 { margin: 0 0 0.5rem; font-size: 1.0625rem; }
 /* The 44px target is a box taller than one line of text. Centring the text in it keeps the
    space above and below equal, instead of hanging 22px of empty link box between a
    one-line heading and the answer it belongs to while a two-line heading has none. */
-.claim-list h2 a { display: flex; align-items: center; min-height: 44px; }
+.claim-list h2 a, .claim-list h3 a { display: flex; align-items: center; min-height: 44px; }
 /* The card runs the full width, like every other card grid on the site. Its prose does
    not: the answer is a sentence, and it keeps the reading measure. */
 .claim-list p { margin: 0; max-width: var(--measure); color: var(--ink-soft); font-size: 0.9375rem; }
