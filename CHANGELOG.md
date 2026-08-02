@@ -9,6 +9,30 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### A stale claim about asylum appeals is corrected, 2 August 2026
+
+**One sentence on `/asylum/` was false and is replaced.** It said "fewer than 7,000 appeals are
+decided per quarter". Asylum and protection disposals passed 7,000 in the July to September 2025
+quarter and were 7,799 in January to March 2026, so the sentence had been wrong for three
+quarters. It was true when written.
+
+**Nothing on this site could have caught it.** The sentence held no figure any record or series
+point holds, so every longhand scan was blind to it by construction. It was found by opening
+Ministry of Justice table FIA_2 while sourcing a different number.
+
+**The word was ambiguous as well as stale**, which is why it is not simply updated. Appeals
+disposed of were 7,799 and appeals determined at a hearing or on the papers were 4,088, one on
+either side of "fewer than 7,000", so "decided" was answered by two different figures. The page
+now says that 14,748 asylum appeals were lodged in the quarter and 7,799 were disposed of, both
+cited from records, which is the comparison that explains why the appeal queue grows while the
+decision queue shrinks.
+
+**Three more figures on that page and its accommodation claim page become records.** The June 2023
+backlog peak of 175,457, which the Home Office states as a peak in its own words; the end-2019
+initial-decision queue of 51,228; and the appeals backlog a year before the current one, 50,976.
+The last two were both written as "about 51,000", on different pages, for two entirely different
+queues.
+
 ### The net migration fall gives the reader both ends, 2 August 2026
 
 **No figure value changed. Two sentences did, on purpose.** They stated a difference nobody could

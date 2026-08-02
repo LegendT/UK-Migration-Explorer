@@ -1,6 +1,6 @@
 {
   "theme": "Asylum and refugees",
-  "lastUpdated": "2026-07-30",
+  "lastUpdated": "2026-08-02",
   "note": "Latest Home Office Immigration system statistics release is year ending March 2026 (published 21 May 2026). Asylum appeals come from a separate publisher (HMCTS/Ministry of Justice tribunals statistics, January to March 2026). Reference periods differ between measures, so do not mix calendar-year, year-ending, and point-in-time figures.",
   "metrics": [
     {
@@ -104,7 +104,7 @@
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
-      "notes": "Relates to 35,744 cases. Down 55% on March 2025; lowest since September 2019; down 72% from the June 2023 peak of 175,457. A point-in-time stock figure.",
+      "notes": "Relates to 35,744 cases. Down 55% on March 2025; lowest since September 2019; down 72% from the June 2023 peak, which is held as its own record rather than restated here. Both percentages are the Home Office's own, stated on the release page this record cites. A point-in-time stock figure.",
       "confidence_level": "official"
     },
     {
@@ -121,6 +121,42 @@
       "published_date": "2026-05-21",
       "retrieved_date": "2026-06-17",
       "notes": "Cases are main applicants only. The 48,758 people awaiting an initial decision relate to these 35,744 cases.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "asylum-backlog-peak",
+      "metric_name": "Asylum backlog, highest number of people awaiting an initial decision",
+      "value": 175457,
+      "unit": "people",
+      "date": "2023-06-30",
+      "period_label": "June 2023",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, How many people are in the UK asylum system?",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-08-02",
+      "notes": "THIS IS A MAXIMUM, SO RE-DERIVE IT AT EVERY RELEASE RATHER THAN CARRYING IT FORWARD. The Home Office states it as a peak in its own words on the release page, which is why this record cites that page rather than the summary table: the asylum summary table this site charts from publishes year-end columns only and cannot show a June figure at all. It is deliberately not declared in table_reference here, because this value is not read from it. That is the same shape as the ONS peaks in migration.json, and it is why the chart on /asylum/ says the within-year peak was higher than either line shows.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "asylum-backlog-2019",
+      "metric_name": "Asylum backlog, people awaiting an initial decision, end of 2019",
+      "value": 51228,
+      "series_ref": "asylumBacklog@2019",
+      "unit": "people",
+      "date": "2019-12-31",
+      "period_label": "as at 31 December 2019",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, Asylum summary tables, table Asy_00a",
+      "table_reference": [
+        "Asy_00a"
+      ],
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-08-02",
+      "notes": "The starting point of the rise the everyone-in-asylum-accommodation-arrived-recently claim page describes, and the last year-end before the queue began to climb steeply. Held as a record because that page is markdown and only a Nunjucks chart summary can cite a series point directly; series_ref keeps it in step with the point the chart draws. The page rounded it to about 51,000 until 2 August 2026, which collided with a different figure of the same rounding, the appeals backlog a year before the current one.",
       "confidence_level": "official"
     },
     {
@@ -243,7 +279,48 @@
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
-      "notes": "A record high, up from about 50,976 a year earlier. Fewer than 7,000 appeals are decided per quarter, so the backlog keeps rising. The total immigration appeal caseload (all types) now exceeds 150,000.",
+      "notes": "A record high. The figure a year earlier and the number of appeals disposed of in the quarter are both held as records of their own rather than restated here; between them they are why the backlog rises, because appeals lodged run at roughly twice disposals. The total open caseload of the chamber across all case types is 151,767, table FIA_4. THIS RECORD'S NOTES CLAIMED FEWER THAN 7,000 APPEALS ARE DECIDED PER QUARTER UNTIL 2 AUGUST 2026, and so did /asylum/. It was true when written and had been false for three quarters: asylum and protection disposals passed 7,000 in the July to September 2025 quarter and reached 7,799 in this one.",
+      "confidence_level": "provisional",
+      "table_reference": [
+        "FIA_4"
+      ]
+    },
+    {
+      "id": "asylum-appeals-backlog-previous-year",
+      "metric_name": "Asylum appeals backlog, previous year (First-tier Tribunal, outstanding cases)",
+      "value": 50976,
+      "unit": "cases",
+      "date": "2025-03-31",
+      "period_label": "as at 31 March 2025",
+      "geography": "United Kingdom",
+      "source_name": "HM Courts & Tribunals Service / Ministry of Justice, Tribunals statistics quarterly, January to March 2026, table FIA_4",
+      "table_reference": [
+        "FIA_4"
+      ],
+      "source_id": "hmcts-tribunals",
+      "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
+      "published_date": "2026-06-11",
+      "retrieved_date": "2026-08-02",
+      "notes": "The comparison year behind the record high above, on the precedent net-migration-2 set: a prior-year figure is republished by each release and rounding it into prose freezes a number the publisher may revise. Read from FIA_4 at 2024/25 Q4, which is the quarter ending 31 March 2025. The page rounded this to about 51,000 until 2 August 2026, which is also how the end-2019 initial-decision backlog rounds, so two unrelated queues appeared on this site as the same number.",
+      "confidence_level": "provisional"
+    },
+    {
+      "id": "asylum-appeals-disposed-of",
+      "metric_name": "Asylum appeals disposed of (First-tier Tribunal)",
+      "value": 7799,
+      "unit": "appeals",
+      "date": "2026-03-31",
+      "period_label": "quarter January to March 2026",
+      "geography": "United Kingdom",
+      "source_name": "HM Courts & Tribunals Service / Ministry of Justice, Tribunals statistics quarterly, January to March 2026, table FIA_2",
+      "table_reference": [
+        "FIA_2"
+      ],
+      "source_id": "hmcts-tribunals",
+      "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
+      "published_date": "2026-06-11",
+      "retrieved_date": "2026-08-02",
+      "notes": "Asylum, protection and revocation of protection only, all disposal categories: 52% determined at a hearing or on the papers, 35% withdrawn, 6% struck out and 6% invalid or out of time. DISPOSED OF IS NOT DETERMINED, and the difference is why this record exists: 4,088 were determined, which is the base of the appeal success rate held separately, so quoting one where the other belongs understates the throughput of the tribunal by nearly half. Set beside appeals lodged in the same quarter, this is what makes the backlog rise: roughly two arrive for every one that leaves.",
       "confidence_level": "provisional"
     },
     {
