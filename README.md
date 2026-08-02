@@ -327,6 +327,10 @@ series does not hold. A series value written longhand fails the build on the sam
 record value. Where a metric and a series point are the same measure, the metric declares
 `series_ref` and `validate-data.mjs` refuses to let the two drift apart.
 
+**A markdown page cannot cite a series point at all**, which is why several of those metrics
+exist: the filter above only works inside a Nunjucks string. Replacing a typed figure in a chart
+note is therefore free, and replacing the same figure in a claim page costs a record apiece.
+
 Every glossary term must say what the word does **not** mean, not merely what it means. A
 definition that leaves the misreading intact has not done the job, so the validator rejects
 it. Terms carry stable anchors so claims can link to them.
