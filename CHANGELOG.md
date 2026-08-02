@@ -9,6 +9,30 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The citizenship card's three figures get records, 2 August 2026
+
+**No published figure value changed. Three figures the site published without a record now have
+one**, so nothing on that card is a number the data layer cannot age.
+
+`population/british-citizenship-grants-previous-year` (269,178, year ending March 2025),
+`population/british-citizenship-grants-by-naturalisation` (165,429) and
+`population/british-citizenship-grants-by-registration` (71,083), all read from **table Cit_01 of
+the Home Office citizenship summary tables**, year ending March 2026 edition, fetched 2 August
+2026. The home page card cites them instead of writing them out; the rendered text is unchanged,
+because a citation renders the same characters the card already showed.
+
+**The launch readiness review asked where 269,178 and 312,063 live, and the answer is Cit_01.**
+Neither is on the bulletin page the parent record cites, which states only the percentage changes.
+312,063 gets no record because no page publishes it; it is named in the parent record's notes with
+its table instead. Two more figures in that family are on no current page either, the superseded
+year ending December 2025 values, and the note now says that the current edition revises that
+period rather than reproducing what was published for it.
+
+**Reconciled rather than merely read**: naturalisation plus registration is 236,512 exactly, the
+all-routes total the site already publishes, and the table's own "Change in the latest year" row
+gives the difference between the two annual totals. The whole table row is transcribed in
+`data/evidence/`, so a later reader can see which column each figure came from.
+
 ### The launch readiness review lands its mechanical half, 2 August 2026
 
 **No published figure value changed.** A whole-project review ran ahead of launch, seven

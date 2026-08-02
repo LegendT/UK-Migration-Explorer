@@ -85,9 +85,13 @@ first act.
     landed (PR #77, 2 August 2026)**; the two left are both gated on the A6 confidence
     convention, which is **[you]**, and are marked under A3 and R3 below. Nothing else in this
     entry is outstanding.
-12. **Item 4 below, the figures the data layer never recorded**: which of the remaining
-    literals deserve records is **[you]**; minting each with a fetched quote is **[me]**.
-    Several sessions, not one.
+12. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
+    30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
+    per-figure call: a figure that changes when its publisher next publishes gets a record and a
+    fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
+    was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
+    would have stopped a session taking work that was never gated. Several sessions, not one.
+    The citizenship card's three landed as PR #78.
 13. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 14. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -175,6 +179,14 @@ All **[me]**, all small, each with its reasoning in the audit.
   coincidence. **The count the audit gave is deliberately not repeated here**, for this project's
   own rule about counts: the run prints a different number, the scan is word-bounded where the
   audit's was not, and correcting a count in a second place is how two lists start.
+- **`check-evidence.mjs` cannot accept a quote that ends on its value.** Found 2 August 2026 by
+  writing one. The boundary guard rejects a following digit, comma or full stop, so
+  `"Registration grants: 71,083."` fails while the same quote with a word after it passes. The
+  guard is right to exist, it is what stops `1,313` answering for `313`, and the remedy the
+  message gives does work, so this fails safe and is small. But a table cell at the end of a
+  sentence is the most natural quote an author writes, and the fix is to reject a following digit
+  or comma, and a full stop only where a digit follows it. **[me]**, with a negative test in both
+  directions.
 - Extend the `series_ref` comparison beyond `value`, once the confidence convention below is
   settled. **Still outstanding, and gated on that [you] decision**, which is why it did not land
   with the two above. The audit's F0-3 has the reasoning: a metric and the point it names carry
@@ -297,10 +309,17 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   cells to be summed and states no calendar-year total. The site's own convention for a summed
   figure is `calculated` with the components quoted. **[you]** whether the grade or the note
   moves.
-- Two figures in the citizenship card's prose, 269,178 and 312,063, are not on the page the
-  record cites; the first is arithmetically consistent with the page's "12% decrease" and both
-  presumably live in the prior release or a summary table. Confirm and cite their source, or
-  reword. **[you]** for scope; the fetching is **[me]**.
+- **Two figures in the citizenship card's prose, 269,178 and 312,063. The [me] fetching half is
+  DONE (PR #78, 2 August 2026), and this observation was right.** Neither is on the page the
+  record cites, which states only the percentage changes. Both are in **table Cit_01 of the Home
+  Office citizenship summary tables**: 269,178 is total grants for the year ending March 2025 and
+  312,063 is total applications for the year ending March 2026. 269,178 now has a record and the
+  card cites it. **312,063 has none deliberately**: no page publishes it, so the rule below gives
+  it a note naming its table rather than a record. **The fetch found two more of the same shape**,
+  the superseded year ending December 2025 values in the citizenship and settlement notes, and the
+  current edition revises that period rather than reproducing them, which the citizenship note now
+  says. Whether the settlement note should say the same is **[you]**, and it is the only part of
+  this bullet left.
 - The NAO's landing page prints £4.0 billion, its direct-support figure, and the £4.9 billion
   this site cites is inside the PDF it links. A reader who follows the source link and does
   not open the report meets a different number first. Whether the record's notes should say so
@@ -588,8 +607,16 @@ sentences**, and three of the four groups moved:
   history. Bring back only what is genuinely ambiguous. Twenty-two remain and each needs its own
   source fetched, so this is several sessions rather than one.
 
+  **The citizenship card's three. DONE (PR #78, 2 August 2026)**, on the standing rule and
+  without a per-figure decision: all three change at the next Home Office quarterly, so all three
+  got a record and a fetched quote from table Cit_01. `269,178` is a prior-year comparison figure
+  and takes a record for the same reason `migration/net-migration-2` does, which is the precedent
+  that settled it. The card's rendered text is unchanged, proved by diff: a citation renders the
+  same characters the card already showed, which is what distinguishes these from the
+  `10.7 million` case that cannot be cited without rewording. Baseline 31 to 28.
+
   **Still outstanding, and each needs a fetched quote:** the study and work main-applicant and
-  dependant splits in the chart bar notes, the citizenship card's three, and `944,000`,
+  dependant splits in the chart bar notes, and `944,000`,
   `1,469,000`, `517,000`, `429,000`, `87,000` and `272,000`, **which read as history and are
   not**: "the highest twelve-month estimate ONS publishes" is a claim about the *current*
   publication, and the year-on-year changes are recomputed every release under the site's own

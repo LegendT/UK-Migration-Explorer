@@ -25,6 +25,33 @@
       "fetched_at": "2026-07-30",
       "table_reference": "Vis_01",
       "quote": "Vis_01: Entry clearance visas granted, by type of visa, 2014 to year ending March 2026. Visitor visas, year ending March 2025: 2,157,064; year ending March 2026: 2,241,997; Difference: 84,933"
+    },
+    {
+      "ref": "population/british-citizenship-grants-previous-year",
+      "previous_value": null,
+      "value": 269178,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-02",
+      "table_reference": "Cit_01",
+      "quote": "Cit_01: British citizenship applications, grants, and refusals, 2004 to the year ending March 2026. Columns are Date | Total applications | Naturalisation applications | Registration applications | Total grants | Naturalisation grants | Registration grants | Total refusals. Row: Year ending March 2025 | 263,440 | 184,039 | 79,401 | 269,178 | 192,871 | 76,307 | 9,512"
+    },
+    {
+      "ref": "population/british-citizenship-grants-by-naturalisation",
+      "previous_value": null,
+      "value": 165429,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-02",
+      "table_reference": "Cit_01",
+      "quote": "Cit_01: British citizenship applications, grants, and refusals, 2004 to the year ending March 2026. Columns are Date | Total applications | Naturalisation applications | Registration applications | Total grants | Naturalisation grants | Registration grants | Total refusals. Row: Year ending March 2026 | 312,063 | 218,661 | 93,402 | 236,512 | 165,429 | 71,083 | 11,185"
+    },
+    {
+      "ref": "population/british-citizenship-grants-by-registration",
+      "previous_value": null,
+      "value": 71083,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-02",
+      "table_reference": "Cit_01",
+      "quote": "Cit_01: British citizenship applications, grants, and refusals, 2004 to the year ending March 2026. Columns are Date | Total applications | Naturalisation applications | Registration applications | Total grants | Naturalisation grants | Registration grants | Total refusals. Row: Year ending March 2026 | 312,063 | 218,661 | 93,402 | 236,512 | 165,429 | 71,083 | 11,185. The naturalisation and registration cells sum to the total grants cell beside them, which is the figure this site already publishes for that period"
     }
   ]
 }

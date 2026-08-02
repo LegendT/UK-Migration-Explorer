@@ -149,7 +149,7 @@ const declaredLive = [];
 // unchanged: from here the count may not grow, and these come down as the other sixteen did.
 // 31 once visitor visas got a record, which took two of the eleven off in one go: one figure,
 // written on two pages, and the first of the scale-word set to come down.
-const UNRECORDED_BASELINE = 31;
+const UNRECORDED_BASELINE = 28;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
