@@ -31,6 +31,38 @@
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
       "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 24 R: All reasons 780,000; All Work Related 272,000; Work: Main applicant 115,000; Work: Dependant 157,000"
+    },
+    {
+      "ref": "migration/study-related-immigration-main-applicants",
+      "previous_value": null,
+      "value": 277000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-02",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All Study Related 294,000; Study: Main applicant 277,000; Study: Dependant 17,000"
+    },
+    {
+      "ref": "migration/study-related-immigration-dependants",
+      "previous_value": null,
+      "value": 17000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-02",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All Study Related 294,000; Study: Main applicant 277,000; Study: Dependant 17,000"
+    },
+    {
+      "ref": "migration/work-related-immigration-main-applicants",
+      "previous_value": null,
+      "value": 71000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-02",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All Work Related 146,000; Work: Main applicant 71,000; Work: Dependant 74,000"
+    },
+    {
+      "ref": "migration/work-related-immigration-dependants",
+      "previous_value": null,
+      "value": 74000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-02",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All Work Related 146,000; Work: Main applicant 71,000; Work: Dependant 74,000"
     }
   ]
 }

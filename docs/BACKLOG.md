@@ -101,11 +101,11 @@ first act.
     fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
     was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
     would have stopped a session taking work that was never gated. Several sessions, not one.
-    The citizenship card's three landed as PR #78, and the migration page's two ONS peaks and
-    its work comparison year as PR #87. **What is left of the migration page is four figures and
-    one decision**: the study and work main-applicant and dependant splits, which are **[me]**
-    and whose source is already fetched, and the three year-on-year falls, whose remedy is a
-    rewording on two pages and is therefore **[you]**. Both are under item 4 below.
+    The citizenship card's three landed as PR #78, the migration page's two ONS peaks and its
+    work comparison year as PR #87, and its four applicant and dependant splits as PR #89.
+    **The migration page is finished as [me] work**: what is left on it is the three year-on-year
+    falls, whose remedy is a rewording on two pages and is therefore **[you]**. The rest of this
+    item is on other pages, and is under item 4 below.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -786,11 +786,14 @@ sentences**, and three of the four groups moved:
   text is unchanged, proved by diffing against a build of `main`: the only difference anywhere is
   the derived ONS row on `/sources-and-method/`, 10 to 13. Baseline 28 to 25.
 
-  **Still outstanding on that page, and each needs a fetched quote:** the study and work
-  main-applicant and dependant splits in the chart bar notes, `277,000`, `17,000`, `71,000` and
-  `74,000`. All four are in Table 4b of the release already fetched for the three above, so the
-  sourcing is done and what is left is the citation: a bar's `note` is a plain string that no
-  shortcode can go inside, so citing them means the `~` concatenation the summaries use. **[me]**.
+  **The study and work main-applicant and dependant splits. DONE (PR #89, 2 August 2026).**
+  `277,000`, `17,000`, `71,000` and `74,000`, from Table 4b of the same release, and the bulletin
+  states all four in prose as well. **The mechanism turned out to be the one already in use**: a
+  bar's `note` is an ordinary Nunjucks string, so it takes the `~` concatenation the chart
+  summaries have used since PR #41, and nothing had to be built. Baseline 25 to 21.
+
+  **The migration page now holds no unrecorded figure that a record could fix.** What is left of
+  it is the three year-on-year falls below, whose remedy is a rewording and is therefore yours.
 
   These **read as history and are not**: "the highest twelve-month estimate ONS publishes" is a
   claim about the *current*
@@ -1208,6 +1211,32 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The migration page's four applicant and dependant splits get records**, 2 August 2026. PR #89.
+  The last of that page's unrecorded figures that a record could fix. `277,000` and `17,000` are
+  study main applicants and dependants, `71,000` and `74,000` the work pair, all from Table 4b of
+  the year ending December 2025 release, and the bulletin states all four in prose as well.
+
+  **The mechanism the entry worried about did not exist.** A bar's `note` is an ordinary Nunjucks
+  string, so it takes the same `~` concatenation the chart summaries have used since PR #41.
+  Nothing was built and nothing was parameterised.
+
+  **The two pairs reconcile differently, and that is the finding.** Study sums exactly to its
+  category total; work sums to one thousand below it. That is not a missing category: the release's
+  cover sheet says every estimate is individually rounded to the nearest thousand while the
+  calculations are done on unrounded numbers, so the page's existing note about independent
+  rounding is the publisher's explanation rather than this site's inference. Both records say so.
+
+  **A defect in PR #86 was found by the diff and fixed here.** `sitemap.xml` emitted its URLs in
+  `collections.all` order, which is date order, and a page with no date takes its file's mtime, so
+  a fresh clone produced the same sixteen URLs in a different order. It is sorted by url now.
+  Nothing was ever wrong in the file, which is exactly why it was worth fixing: proving a change by
+  diffing two builds is how this project verifies almost everything, and an artefact that reorders
+  itself puts noise in that signal. `check-build.mjs` compares as sets and was unaffected either
+  way.
+
+  **Nothing a reader sees changed**, proved by diffing against a build of `main`: the only
+  difference outside the sitemap is the derived ONS row on `/sources-and-method/`, 13 to 17.
 
 - **The migration page's two ONS peaks and its work comparison year get records**, 2 August 2026.
   PR #87. Part of item 4, *The figures the data layer never recorded*, which that item's own entry
