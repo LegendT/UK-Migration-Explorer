@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if claim %}Claim checked: {{ claim }} | {{ site.name }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
-<meta name="description" content="{{ short_answer or strapline or site.strapline }}">
+{#- `description` is for a page whose meta description should not be its visible strapline. The
+    404 page is the only one today: it has no strapline, so it fell through to the site's own and
+    was the one duplicated description among the seventeen pages. #}
+<meta name="description" content="{{ description or short_answer or strapline or site.strapline }}">
+{#- The two --paper values from content/assets/style.css, which is where the palette lives. They
+    cannot be read from CSS by markup, so this is the one place a colour is written twice, and it
+    is only the page background: a browser that tints its own chrome otherwise picks white against
+    the dark scheme. #}
+<meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16171a" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css">

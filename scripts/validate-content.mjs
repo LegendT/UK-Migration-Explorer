@@ -546,8 +546,14 @@ try {
 // claim-specific front matter.
 const contentDir = fileURLToPath(new URL('../content/', import.meta.url));
 let pages = 0;
+// glossary.md is checked above, against its own extra rules. sitemap.njk is not a page: it has
+// no layout, so it prints no `last_reviewed` to a reader and carries no prose to cite a figure
+// from, and requiring the front matter of a page would mean inventing a review date for a
+// generated URL list. It is still scanned by the house-style walk above, like every other file
+// under content/.
+const NOT_A_PAGE = new Set(['glossary.md', 'sitemap.njk']);
 // .njk pages carry most of the site's figures and were previously unchecked entirely.
-for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f.endsWith('.njk')) && f !== 'glossary.md')) {
+for (const file of readdirSync(contentDir).filter((f) => (f.endsWith('.md') || f.endsWith('.njk')) && !NOT_A_PAGE.has(f))) {
   const body = readFileSync(contentDir + file, 'utf8');
   const match = body.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) {

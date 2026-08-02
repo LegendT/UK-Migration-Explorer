@@ -9,6 +9,34 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### A sitemap, and an anchor on every heading, 2 August 2026
+
+**No figure changed and no sentence changed.** Every changed line in the built site is a heading
+gaining an id, or one of two new tags in the head, proved by diffing the site before and after.
+
+**Every section of every page can now be linked to.** Two pages of seventeen carried a heading id,
+the glossary and the sources page, both markdown and both using this project's `{#id}` idiom. On
+the three theme pages, where the finding was raised, that idiom was never available: `{#` opens a
+Nunjucks comment, so an anchor written the markdown way fails the build. The `heading-anchors`
+transform now derives an id from the heading's own text where none is declared, which fixes all
+fourteen pages at once and means a page added later cannot arrive without anchors. A declared
+`{#id}` still wins. The page `h1` is skipped, its link being the page URL, and so is a heading
+inside a `<figcaption>`, because the `<figure>` around it already carries an author-chosen id and
+those titles name a period that moves at every release.
+
+**`sitemap.xml` lists every built page but the 404**, generated from Eleventy's own collections
+rather than typed. It found five pages hidden from it: the overview, the three theme pages and the
+claims index all carried `eleventyExcludeFromCollections`, which nothing else in the repository
+reads. `robots.txt` does not point at the sitemap yet, because writing that file is the launch step
+and what it says is not decided.
+
+**Two new build checks, both negative-tested.** The sitemap is compared against the pages the build
+wrote, in both directions, so a page missing from it and a URL the site does not serve are both
+errors. And no id may sit on two elements, which deriving ids from text makes worth asking.
+
+**The 404 page has its own description**, having fallen through to the site strapline and been the
+only page sharing one with the home page, and both schemes now declare a `theme-color`.
+
 ### Both glossary launch gates close, 2 August 2026
 
 **No figure value changed. Two glossary entries are rebuilt, and both were launch blockers.**
