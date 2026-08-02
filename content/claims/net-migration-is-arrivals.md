@@ -38,7 +38,7 @@ So the headline number describes neither group of people. Far more than
 ## Why the claim is misleading
 
 It treats a subtraction as a headcount. Nobody is "a net migrant": the figure is the
-gap between two [flows](/what-the-words-mean#flow-and-stock), and it tells you nothing on its own about the size of either.
+gap between two [flows](/what-the-words-mean/#flow-and-stock), and it tells you nothing on its own about the size of either.
 
 The practical consequence is that net migration can change even when the number arriving
 does not, because emigration moves independently. Between the year ending December 2023 and the year
@@ -68,8 +68,8 @@ Office for National Statistics, long-term international migration, provisional, 
 ending December 2025, published 21 May 2026. Official statistics in development;
 estimates are provisional and have been revised substantially in recent releases.
 
-[Long-term migration](/what-the-words-mean#long-term-migration) counts moves of 12 months or more. It does not count visits, and it
-is not the same as [visas granted](/what-the-words-mean#visa-grant).
+[Long-term migration](/what-the-words-mean/#long-term-migration) counts moves of 12 months or more. It does not count visits, and it
+is not the same as [visas granted](/what-the-words-mean/#visa-grant).
 
 The 2023 and 2024 comparison above uses ONS's current series, in which both years
 appear on the same methodological basis. Figures are rounded by ONS, so the components do not always sum exactly to the

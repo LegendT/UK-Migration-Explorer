@@ -25,13 +25,13 @@ source: Home Office
 ## What the data says
 
 As at 31 March 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
-receipt of [asylum support](/what-the-words-mean#asylum-support): accommodation,
+receipt of [asylum support](/what-the-words-mean/#asylum-support): accommodation,
 subsistence payments, or both. Being supported and being accommodated are not the same
 count. {{asylum/people-in-asylum-accommodation}} people were in accommodation, hotel or
 other, and the rest received subsistence payments only. Hotels held
 {{asylum/people-in-asylum-hotel-accommodation}} people, around 21% of everyone supported.
 
-All three are [point-in-time figures](/what-the-words-mean#flow-and-stock). They count people being supported on that particular
+All three are [point-in-time figures](/what-the-words-mean/#flow-and-stock). They count people being supported on that particular
 day, regardless of when they arrived or how long they have been waiting.
 
 At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people
@@ -91,7 +91,7 @@ section 95 support, and that a caseworker assesses each application against the 
 evidence.
 
 The initial decision backlog is one queue among several. It is not the appeals backlog,
-and it is not the total asylum casework system. See [backlog](/what-the-words-mean#backlog). Treating "the backlog" as a single number
+and it is not the total asylum casework system. See [backlog](/what-the-words-mean/#backlog). Treating "the backlog" as a single number
 is a separate error, covered by its own claim check.
 
 **On selection.** This site checks propositions that circulate rather than quotations

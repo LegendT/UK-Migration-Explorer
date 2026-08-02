@@ -81,9 +81,9 @@ net drain" either.
 
 ## What this is not about
 
-The [net fiscal impact](/what-the-words-mean#fiscal-impact) of immigration is a different
+The [net fiscal impact](/what-the-words-mean/#fiscal-impact) of immigration is a different
 question from what a particular part of the system spends. UK government spending on the
-[asylum system](/what-the-words-mean#asylum-cost) was an estimated
+[asylum system](/what-the-words-mean/#asylum-cost) was an estimated
 £{{fiscal/government-spending-on-the-asylum-system}} billion in financial year 2024-25, on the
 National Audit Office's analysis of actual costs. It is a reasonably firm figure for that
 system, but the NAO notes it excludes some costs, particularly those falling on local

@@ -228,7 +228,7 @@
       "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
       "notes": "A single quarter's inflow, not an annual figure (down from a possible peak of 17,822 the prior quarter).",
-      "confidence_level": "official"
+      "confidence_level": "provisional"
     },
     {
       "id": "asylum-appeals-backlog",
@@ -244,7 +244,7 @@
       "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
       "notes": "A record high, up from about 50,976 a year earlier. Fewer than 7,000 appeals are decided per quarter, so the backlog keeps rising. The total immigration appeal caseload (all types) now exceeds 150,000.",
-      "confidence_level": "official"
+      "confidence_level": "provisional"
     },
     {
       "id": "asylum-appeal-success-rate",
@@ -264,7 +264,7 @@
       "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
       "notes": "Asylum/Protection/Revocation of Protection appeals only, MoJ table FIA_3: 4,088 determined at a hearing or on the papers in the quarter, 40% allowed. NOT a share of all disposals. Of 7,799 asylum and protection appeals disposed of, 52% were determined, 35% withdrawn, 6% struck out and 6% invalid or out of time. The chamber-wide figure across all case types is 39%, so do not mix the two. Mean time to clearance for asylum and protection, MoJ table T_3: 67 weeks; the 61 weeks in the bulletin is the chamber-wide figure. The latest quarter is provisional and the three before it have been revised.",
-      "confidence_level": "official"
+      "confidence_level": "provisional"
     },
     {
       "id": "people-in-receipt-of-asylum-support",

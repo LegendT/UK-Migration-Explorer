@@ -1,7 +1,7 @@
 {
   "theme": "Economic and fiscal impact",
-  "lastUpdated": "2026-07-27",
-  "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across academic studies the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
+  "lastUpdated": "2026-08-01",
+  "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across the pre-Brexit static studies summarised by the Migration Observatory, the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP; none of those studies covers the current post-Brexit system. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
   "metrics": [
     {
       "id": "government-spending-on-the-asylum-system",
