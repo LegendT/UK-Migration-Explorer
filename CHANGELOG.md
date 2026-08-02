@@ -25,8 +25,13 @@ because a citation renders the same characters the card already showed.
 Neither is on the bulletin page the parent record cites, which states only the percentage changes.
 312,063 gets no record because no page publishes it; it is named in the parent record's notes with
 its table instead. Two more figures in that family are on no current page either, the superseded
-year ending December 2025 values, and the note now says that the current edition revises that
-period rather than reproducing what was published for it.
+year ending December 2025 values, and both notes now say that the current edition revises that
+period rather than reproducing what was published for it: citizenship from 235,782 to 236,239, and
+settlement from 146,405 to 146,119.
+
+**`settlement-grants` was re-read against table Se_02 of the settlement summary tables**, which
+carries its value and both figures in its notes, so it declares that table and its `retrieved_date`
+moves to 2 August 2026. Its value is unchanged.
 
 **Reconciled rather than merely read**: naturalisation plus registration is 236,512 exactly, the
 all-routes total the site already publishes, and the table's own "Change in the latest year" row

@@ -187,10 +187,11 @@ All **[me]**, all small, each with its reasoning in the audit.
   sentence is the most natural quote an author writes, and the fix is to reject a following digit
   or comma, and a full stop only where a digit follows it. **[me]**, with a negative test in both
   directions.
-- Extend the `series_ref` comparison beyond `value`, once the confidence convention below is
-  settled. **Still outstanding, and gated on that [you] decision**, which is why it did not land
-  with the two above. The audit's F0-3 has the reasoning: a metric and the point it names carry
-  two different `confidence_level` values today, and nothing compares them.
+- Extend the `series_ref` comparison beyond `value`. **Ungated since 2 August 2026**, the
+  convention having been decided under A6: regrade the ONS points first, then the comparison can
+  ask for `confidence_level` and stay satisfied. The audit's F0-3 has the reasoning, and it is a
+  live instance of the documented pattern where a check keyed on the one field that happens to
+  agree is permanently satisfied. **[me]**, with the regrade.
 
 ### A4. Reader-facing wording, all of it yours
 
@@ -241,8 +242,19 @@ Each is a sentence, and each is **[you]** because it is wording.
 
 Each is one call. None blocks anything.
 
-- Which confidence convention wins between the metrics and the series: the metrics grade all ONS LTIM
-  figures `provisional`, the series grades per ONS marker, and nothing reconciles them.
+- **The confidence convention. DECIDED 2 August 2026: the metrics win, and the grade follows the
+  source rather than the vintage.** Every ONS LTIM series point becomes `provisional`, matching the
+  eight metrics and `meta.json`'s own definition, which names ONS net migration as its example of
+  `provisional`. `ons_marker` becomes the single home for the publisher's per-vintage marker and
+  goes onto both ONS series; the prose that duplicates it goes. **Reasons, in the order they
+  weighed:** grading the vintage would make `confidence_level` and `ons_marker` carry the same
+  information in two fields, which is the one-figure-one-home problem in a different guise;
+  `official` is defined as provenance, so using it to mean "not provisional" is a meaning its
+  definition does not carry, and the discontinued IPS block already grades by source character at
+  `estimated`; and under this convention the grade stops moving on every release. **Nothing a
+  reader sees changes either way**: a point's `confidence_level` renders nowhere, the only render
+  site being the dashboard card, which reads a metric. **Applying it is [me]** and is the two
+  bullets below. 26 points move.
 - Whether `og:` tags should exist, and whether a claim page's `og:title` leads with the claim or the
   correction. Foundation 8.5.4's rejection of a share image is not reopened by this.
 - Whether `.netlify.app` is the launch domain, given the success measure is citation by a named
@@ -317,9 +329,13 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   card cites it. **312,063 has none deliberately**: no page publishes it, so the rule below gives
   it a note naming its table rather than a record. **The fetch found two more of the same shape**,
   the superseded year ending December 2025 values in the citizenship and settlement notes, and the
-  current edition revises that period rather than reproducing them, which the citizenship note now
-  says. Whether the settlement note should say the same is **[you]**, and it is the only part of
-  this bullet left.
+  current edition revises that period rather than reproducing them. **Both notes now say so, and
+  this bullet is closed.** The settlement half was tagged **[you]** for a day only because the
+  settlement tables had not been fetched: once they were, the parallel turned out to be exact and
+  the change became a factual one against a cited source. **Decided 2 August 2026: a superseded
+  figure keeps its sentence and gains the current edition's revised value**, because the sentence
+  exists to say the old figure is no longer re-derivable and only the revised value shows that.
+  `CHANGELOG.md` remains the home for what the site used to publish; the note is about the source.
 - The NAO's landing page prints £4.0 billion, its direct-support figure, and the £4.9 billion
   this site cites is inside the PDF it links. A reader who follows the source link and does
   not open the report meets a different number first. Whether the record's notes should say so
@@ -334,10 +350,13 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   instead, because that theme file is read last. Two warnings now name two records each.
   Negative-tested by giving two records one value and writing it out on a page: the error names
   both and offers both citations, where before it offered one and the choice was read order.
-- The two ONS series files encode the publisher's revision markers differently, a
-  machine-readable `ons_marker` in one and prose in the other. Pick one, after the A6
-  confidence convention is settled, since the two questions touch. **Still outstanding, and
-  gated on that [you] decision.**
+- The two ONS series files encode the publisher's revision markers differently. **Ungated since
+  2 August 2026: A6 picked `ons_marker`**, which is the machine-readable one and which the
+  regrade makes the only home for the vintage. **It is in three places, not the two this bullet
+  said**: `ons_marker` on netMigration's last two points, a per-point prose note "Flagged R
+  (revised) by ONS." on every migrationFlows point, and a file-level sentence in migrationFlows'
+  note saying which years are marked. The prose goes; none of it renders. **[me]**, with the
+  regrade.
 
 ---
 
