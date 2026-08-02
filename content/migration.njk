@@ -25,11 +25,15 @@ figures:
   - migration/net-migration-2
   - migration/net-migration-peak
   - migration/study-related-immigration
+  - migration/study-related-immigration-main-applicants
+  - migration/study-related-immigration-dependants
   - migration/total-long-term-emigration
   - migration/total-long-term-immigration
   - migration/total-long-term-immigration-peak
   - migration/non-eu-plus-long-term-immigration
   - migration/work-related-immigration
+  - migration/work-related-immigration-main-applicants
+  - migration/work-related-immigration-dependants
   - migration/work-related-immigration-previous-year
   - migration/visitor-visas-granted
 ---
@@ -95,11 +99,15 @@ year's arrivals would set two different cohorts against each other.</p>
 {% set work = "migration/work-related-immigration" | metric %}
 {% set asylumRoute = "migration/asylum-related-immigration" | metric %}
 {%- set workPreviousYear = "migration/work-related-immigration-previous-year" | metric %}
+{%- set studyMain = "migration/study-related-immigration-main-applicants" | metric %}
+{%- set studyDependants = "migration/study-related-immigration-dependants" | metric %}
+{%- set workMain = "migration/work-related-immigration-main-applicants" | metric %}
+{%- set workDependants = "migration/work-related-immigration-dependants" | metric %}
 {% barChart {
   id: 'reason-for-migration',
   bars: [
-    { name: 'Study', ref: 'migration/study-related-immigration', note: 'Main applicants 277,000 plus 17,000 dependants' },
-    { name: 'Work', ref: 'migration/work-related-immigration', note: 'Main applicants 71,000 plus 74,000 dependants. ONS rounds each figure independently, so the split does not sum exactly to the total' },
+    { name: 'Study', ref: 'migration/study-related-immigration', note: 'Main applicants ' ~ (studyMain.value | number) ~ ' plus ' ~ (studyDependants.value | number) ~ ' dependants' },
+    { name: 'Work', ref: 'migration/work-related-immigration', note: 'Main applicants ' ~ (workMain.value | number) ~ ' plus ' ~ (workDependants.value | number) ~ ' dependants. ONS rounds each figure independently, so the split does not sum exactly to the total' },
     { name: 'Asylum', ref: 'migration/asylum-related-immigration', note: 'Asylum applicants only. Includes claims made after arriving by a regular route' }
   ],
   title: 'Reason for long-term immigration, non-EU+ arrivals, year ending December 2025',

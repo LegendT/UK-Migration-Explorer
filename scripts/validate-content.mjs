@@ -147,12 +147,15 @@ const unrecorded = [];
 // card's three got records read from table Cit_01, the first time three came down together and the
 // first taken on the standing rule rather than as a per-figure decision. 25 once the migration
 // page's two ONS peaks and its work-related comparison year got records read from Tables 1 and 4b
-// of the year ending December 2025 dataset.
+// of the year ending December 2025 dataset. 21 once the study and work main-applicant and
+// dependant splits got records from Table 4b of the same release, which took four down in one
+// step and left the migration page with nothing but the three year-on-year falls, whose remedy
+// is a rewording rather than a record.
 //
 // This ledger is the only place a step is recorded, so a step taken without adding a line here
 // leaves it ending at a number the constant no longer holds. That happened on the 31-to-28 step
 // and was found by a second model rather than by anything that runs.
-const UNRECORDED_BASELINE = 25;
+const UNRECORDED_BASELINE = 21;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {

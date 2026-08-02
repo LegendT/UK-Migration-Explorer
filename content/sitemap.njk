@@ -26,10 +26,19 @@ eleventyExcludeFromCollections: true
   robots.txt does not point at this file yet. Writing that line is part of the launch gate in
   docs/BACKLOG.md, whose content is gated on the AI-crawler decision under U4; until then
   robots.txt disallows everything and this file is inert.
+
+  Sorted by url, which a sitemap does not require and this project does. Eleventy orders
+  collections.all by date, and a page with no date in its front matter takes its file's mtime, so
+  a fresh clone emits the same 16 URLs in whatever order the checkout happened to write them. The
+  first build of this file in a clean worktree produced a diff of eleven moved lines against a
+  build of the same commit. Nothing was wrong, and that is the problem: proving a change by
+  diffing two builds is how this project verifies almost everything, and an artefact that reorders
+  itself puts noise in the one signal it relies on. check-build.mjs compares as sets and was never
+  affected either way.
 -#}
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{%- for item in collections.all %}
+{%- for item in collections.all | sort(false, false, "url") %}
 {%- if item.outputPath and item.outputPath.endsWith(".html") %}
   <url><loc>{{ site.url }}{{ item.url }}</loc></url>
 {%- endif %}

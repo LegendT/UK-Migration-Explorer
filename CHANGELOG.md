@@ -9,6 +9,29 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The migration page's applicant and dependant splits get records, 2 August 2026
+
+**No published figure value changed and no sentence changed.** The four numbers in the reason
+chart's bar notes, study main applicants and dependants and the work pair, are records the page
+cites rather than text it types. They render the same characters, proved by diffing against a build
+of `main`; the only difference outside the sitemap is the derived publisher count on
+`/sources-and-method/`, where ONS goes from 13 to 17.
+
+All four come from Table 4b of the ONS long-term international migration release for the year
+ending December 2025, and the bulletin states all four in prose as well.
+
+**The two pairs reconcile differently.** Study main applicants and dependants sum exactly to the
+study total. The work pair sums to one thousand below the work total, which is rounding rather than
+a missing category: the release's cover sheet says every estimate is individually rounded to the
+nearest thousand while the calculations are done on unrounded numbers. The note the page already
+carried about independent rounding is therefore the publisher's explanation, not this site's
+inference, and both records now say so.
+
+**`sitemap.xml` is sorted by URL.** It was emitted in Eleventy's collection order, which is date
+order, and a page with no date takes its file's modification time, so a fresh clone produced the
+same sixteen URLs in a different order. Nothing was ever wrong in the file; the order was noise in
+the build-to-build diff this project uses to verify that a change altered nothing else.
+
 ### Three figures on the migration page get records, 2 August 2026
 
 **No published figure value changed and no sentence changed.** Three numbers the page typed
