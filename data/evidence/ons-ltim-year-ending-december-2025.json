@@ -7,6 +7,30 @@
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-07-30",
       "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Immigration, YE Dec 25 P: All Nationalities 813,000; British 110,000; EU+ 76,000; Non-EU+ 627,000"
+    },
+    {
+      "ref": "migration/net-migration-peak",
+      "previous_value": null,
+      "value": 944000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-02",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Net migration, YE Mar 23: All Nationalities 944,000; British -83,000; EU+ -21,000; Non-EU+ 1,047,000"
+    },
+    {
+      "ref": "migration/total-long-term-immigration-peak",
+      "previous_value": null,
+      "value": 1469000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-02",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Immigration, YE Mar 23: All Nationalities 1,469,000; British 166,000; EU+ 133,000; Non-EU+ 1,170,000"
+    },
+    {
+      "ref": "migration/work-related-immigration-previous-year",
+      "previous_value": null,
+      "value": 272000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-02",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 24 R: All reasons 780,000; All Work Related 272,000; Work: Main applicant 115,000; Work: Dependant 157,000"
     }
   ]
 }

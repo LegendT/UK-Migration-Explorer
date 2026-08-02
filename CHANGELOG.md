@@ -9,6 +9,36 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Three figures on the migration page get records, 2 August 2026
+
+**No published figure value changed and no sentence changed.** Three numbers the page typed
+longhand are now records it cites, so a release moving one moves the page. The rendered text is
+identical, proved by diffing against a build of `main`; the only difference anywhere is the
+derived publisher count on `/sources-and-method/`, where ONS goes from 10 to 13.
+
+**`944,000` and `1,469,000`**, the highest twelve-month net migration and immigration estimates
+ONS publishes, both in the year ending March 2023, become
+`migration/net-migration-peak` and `migration/total-long-term-immigration-peak`. The bulletin calls
+each a peak in its own words. That is a claim about the publication, so Table 1 of the accompanying
+dataset was parsed directly instead: each is the largest of its 55 year-ending periods and the
+maximum is unique. Both records say in capitals that a maximum is re-derived at every release
+rather than carried forward.
+
+**`272,000`**, the work-related immigration figure the page's 47% fall is measured from, becomes
+`migration/work-related-immigration-previous-year`. It takes a record for the reason
+`migration/net-migration-2` does: a prior-year figure is revised by the release that publishes it,
+so freezing it in prose would put a superseded number beside a current one. ONS marks this one
+revised in this release.
+
+**The 47% itself is deliberately left as prose.** ONS publishes that percentage and a reader
+following the chart's own source link finds it, which is the distinction that kept "Down 12%" on
+the citizenship card. It does not reproduce from the two rounded ends, which give 46%, because ONS
+computes it on unrounded figures. The record says so.
+
+**Two parent records stopped restating figures that now have a home.**
+`migration/total-long-term-immigration` carried the peak in its notes and
+`migration/work-related-immigration` carried the comparison year.
+
 ### Both glossary launch gates close, 2 August 2026
 
 **No figure value changed. Two glossary entries are rebuilt, and both were launch blockers.**

@@ -91,7 +91,11 @@ first act.
     fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
     was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
     would have stopped a session taking work that was never gated. Several sessions, not one.
-    The citizenship card's three landed as PR #78.
+    The citizenship card's three landed as PR #78, and the migration page's two ONS peaks and
+    its work comparison year as PR #87. **What is left of the migration page is four figures and
+    one decision**: the study and work main-applicant and dependant splits, which are **[me]**
+    and whose source is already fetched, and the three year-on-year falls, whose remedy is a
+    rewording on two pages and is therefore **[you]**. Both are under item 4 below.
 11. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 12. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -666,10 +670,28 @@ sentences**, and three of the four groups moved:
   the reason is worth keeping: it would hold a third figure that must stay in step with two others,
   and this project has no mechanism for that.
 
-  **Still outstanding, and each needs a fetched quote:** the study and work main-applicant and
-  dependant splits in the chart bar notes, and `944,000`,
-  `1,469,000`, `517,000`, `429,000`, `87,000` and `272,000`, **which read as history and are
-  not**: "the highest twelve-month estimate ONS publishes" is a claim about the *current*
+  **The migration page's two ONS peaks and its work comparison year. DONE (PR #87, 2 August
+  2026)**, on the standing rule and without a per-figure decision: `944,000`, `1,469,000` and
+  `272,000` all move at the next ONS release, so all three got a record and a fetched quote from
+  Tables 1 and 4b of the year ending December 2025 dataset. **The peaks were verified as maxima,
+  not read off the bulletin's word "peak"**: each is the largest of the 55 year-ending periods in
+  Table 1 and the maximum is unique, which the bulletin alone could not establish. Both records
+  say in capitals that a maximum is re-derived at every release rather than carried forward.
+  `272,000` takes a record for the reason `net-migration-2` does, a prior-year figure being
+  revised by the release that publishes it; the 47% beside it is deliberately not a record,
+  because ONS publishes that percentage and a reader following the chart's own source link finds
+  it, which is the distinction that kept "Down 12%" on the citizenship card. The page's rendered
+  text is unchanged, proved by diffing against a build of `main`: the only difference anywhere is
+  the derived ONS row on `/sources-and-method/`, 10 to 13. Baseline 28 to 25.
+
+  **Still outstanding on that page, and each needs a fetched quote:** the study and work
+  main-applicant and dependant splits in the chart bar notes, `277,000`, `17,000`, `71,000` and
+  `74,000`. All four are in Table 4b of the release already fetched for the three above, so the
+  sourcing is done and what is left is the citation: a bar's `note` is a plain string that no
+  shortcode can go inside, so citing them means the `~` concatenation the summaries use. **[me]**.
+
+  These **read as history and are not**: "the highest twelve-month estimate ONS publishes" is a
+  claim about the *current*
   publication, and the year-on-year changes are recomputed every release under the site's own
   single-vintage rule. Minting is **[me]**, and so is deciding which deserve a record, under the
   rule three paragraphs above. **This sentence read "which deserve a record rather than a rewording
@@ -679,6 +701,16 @@ sentences**, and three of the four groups moved:
   **[you]** is narrower and worth keeping: a figure whose remedy is a REWORDING rather than a
   record, because the wording is yours. `627,000` set no precedent about which figures qualify; the
   rule of 30 July does that.
+
+  **`517,000`, `429,000` and `87,000` are that [you] case, and they are on two pages.** Each is
+  arithmetic against a live series value: 848,000 minus 331,000, 1,441,000 minus 1,012,000, and
+  680,000 minus 593,000, all from the calendar-year points the site already charts. A record for
+  any of them would be a fake metric and freezing them would guarantee they go wrong at the next
+  revision, which is the reasoning PR #55 settled for the `100,000` and `285,000` of the same
+  shape. So the remedy is the pattern that item set, **drop the difference and give the reader
+  both ends**, and the wording is yours. The sentence is on `migration.njk`'s flows chart note and
+  again in `content/claims/net-migration-is-arrivals.md`, near-identically; a fix at one site
+  only would leave the other saying it. A draft of both is in PR #87's body.
 
   **One pattern worth reusing.** Both records minted on 30 July were verified by reconciling
   against a total the site already published, not by finding the number alone. That is what
@@ -1074,6 +1106,38 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The migration page's two ONS peaks and its work comparison year get records**, 2 August 2026.
+  PR #87. Part of item 4, *The figures the data layer never recorded*, which that item's own entry
+  tracks. `944,000` and `1,469,000` are the highest twelve-month net migration and immigration
+  estimates on the current ONS basis; `272,000` is the work-related immigration figure the page's
+  47% fall is measured from.
+
+  **What the fetch established that the bulletin could not.** The bulletin calls both figures a
+  peak in its own words, which is a claim about the publication rather than a maximum anyone has
+  checked. Table 1 of the accompanying dataset was parsed directly and both are the largest of its
+  55 year-ending periods, uniquely: no other period reaches either. That is the difference between
+  reading a figure and recognising one, and it is why both records carry an instruction in capitals
+  to re-derive the maximum at every release rather than carry it forward.
+
+  **Two reconciliations came free and are the reason the vintage is not in doubt.** Every calendar
+  year the site charts appears in Table 1 as its December row and all nine agree exactly: net
+  migration 848,000, 331,000 and 171,000, immigration 1,441,000, 1,012,000 and 813,000, emigration
+  593,000, 680,000 and 642,000.
+
+  **The 47% is deliberately not a record.** ONS publishes it, and a reader following the chart's
+  own source link finds it stated there, which is the distinction that kept "Down 12%" on the
+  citizenship card. Minting it would leave three figures that must move together with nothing to
+  keep them in step. It does not reproduce from the two rounded ends, 146,000 against 272,000
+  giving 46%, because ONS computes it on unrounded figures; the record says so.
+
+  **The parent records stopped restating what now has a home.** `total-long-term-immigration`
+  carried the peak in its notes and `work-related-immigration` carried the comparison year, the
+  same shape PR #58 found for 627,000 and PR #67 for the visitor-visa total.
+
+  **Nothing a reader sees changed**, proved by diffing this build against a build of `main`: the
+  only difference anywhere is the derived ONS row on `/sources-and-method/`, 10 to 13, which is
+  that page counting itself.
 
 - **Both glossary launch gates**, 2 August 2026. PR #83. The wording was the owner's and is
   recorded here because a decision that lives only in a conversation is a decision that gets lost.
