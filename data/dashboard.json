@@ -46,7 +46,7 @@
       "id": "citizenship-grants",
       "ref": "population/british-citizenship-grants",
       "shortLabel": "Citizenship grants",
-      "whatThisMeans": "Down 12% on the previous year, from {{population/british-citizenship-grants-previous-year}}. Naturalisation accounted for {{population/british-citizenship-grants-by-naturalisation}} of the grants and registration for {{population/british-citizenship-grants-by-registration}}. Applications went the other way over the same period, from {{population/british-citizenship-applications-previous-year}} to {{population/british-citizenship-applications}}, so grants and demand are moving in opposite directions."
+      "whatThisMeans": "Down 12% on the previous year, from {{population/british-citizenship-grants-previous-year}}. Naturalisation accounted for {{population/british-citizenship-grants-by-naturalisation}} of the grants and registration for {{population/british-citizenship-grants-by-registration}}. Applications rose over the same period, from {{population/british-citizenship-applications-previous-year}} to {{population/british-citizenship-applications}}, so grants and demand are moving in opposite directions."
     }
   ]
 }
