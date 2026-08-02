@@ -81,24 +81,19 @@ first act.
    it unchecked. **[you]**.
 10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
     scope; the fetching is **[me]**.
-11. **The small build work**: A3, A5's claim-list heading item, and R3. **Four parts landed as
-    PR #77 and the two that were gated on the A6 confidence convention landed as PR #79**, once
-    that decision was taken on 2 August 2026. **One part is left and it is new**: `check-evidence`
-    rejects a quote whose value is followed by a full stop or a comma, found by writing one. It is
-    **[me]**, ungated and small, and it is under A3 below.
-12. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
+11. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
     30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
     per-figure call: a figure that changes when its publisher next publishes gets a record and a
     fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
     was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
     would have stopped a session taking work that was never gated. Several sessions, not one.
     The citizenship card's three landed as PR #78.
-13. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
+12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
-14. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
+13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
     come to the owner before merge. Only the pro-migration draft moves the direction split off
     its floor.
-15. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
+14. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
     that is gated on it **[me]**. It is also the published limit most worth closing.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
@@ -180,13 +175,16 @@ All **[me]**, all small, each with its reasoning in the audit.
   coincidence. **The count the audit gave is deliberately not repeated here**, for this project's
   own rule about counts: the run prints a different number, the scan is word-bounded where the
   audit's was not, and correcting a count in a second place is how two lists start.
-- **`check-evidence.mjs` rejects a quote whose value is followed by a full stop or a comma.**
-  Found 2 August 2026 by writing one. **This bullet's own headline said "cannot accept a quote that
-  ends on its value" until a second model tested the guard rather than reading the message**: a
-  quote ending ON the bare value passes, because the lookahead succeeds at the end of the string.
-  The boundary guard rejects a following digit, comma or full stop, so
-  `"Registration grants: 71,083."` and `"71,083, and the total"` both fail while
-  `"...: 71,083"` and `"71,083 and the total"` both pass. The
+- **`check-evidence.mjs` rejected a quote whose value is followed by a full stop or a comma.
+  DONE (PR #82, 2 August 2026).** Found by writing one. **This bullet's own headline said "cannot
+  accept a quote that ends on its value" until a second model tested the guard rather than reading
+  the message**: a quote ending ON the bare value always passed, because the lookahead succeeds at
+  the end of the string. The trailing guard now asks whether the punctuation SEPARATES or CONTINUES
+  the number: a digit is refused, and a comma or full stop only where a digit follows it. The
+  leading guard is deliberately untouched, because a comma before the digits is a thousands
+  separator in every real case and loosening it would let `1,313` answer for `313` again. Ten cases
+  tested against the old and new boundary side by side, and the whole check exercised in place with
+  a real changed value, in both directions. The
   guard is right to exist, it is what stops `1,313` answering for `313`, and the remedy the
   message gives does work, so this fails safe and is small. But a table cell at the end of a
   sentence is the most natural quote an author writes, and the fix is to reject a following digit,
@@ -673,7 +671,7 @@ sentences**, and three of the four groups moved:
   single-vintage rule. Minting is **[me]**, and so is deciding which deserve a record, under the
   rule three paragraphs above. **This sentence read "which deserve a record rather than a rewording
   is [you], and 627,000 was taken as the clearest case rather than as a precedent for the rest"
-  until 2 August 2026**, which contradicted that rule, and order item 12 was corrected the same day
+  until 2 August 2026**, which contradicted that rule, and the order entry for it was corrected the same day
   while this was left standing one paragraph from it. A second model found it. What survives as
   **[you]** is narrower and worth keeping: a figure whose remedy is a REWORDING rather than a
   record, because the wording is yours. `627,000` set no precedent about which figures qualify; the
@@ -1073,6 +1071,23 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The small build work: A3, A5's claim-list heading item and R3**, complete 2 August 2026,
+  PRs #77, #79 and #82. Six parts. The three metric value maps stopped being last-write-wins and
+  every message names every candidate record; the longhand success message gained the word
+  UNDECLARED and the run now names each declared literal that does equal a live value;
+  `validate-data.mjs` reports a record whose notes restate another record's value; home page claim
+  cards moved to `h3`; the `series_ref` comparison went beyond `value`; and the ONS revision markers
+  got one home. The last part was found by writing a quote the evidence check refused, and the
+  entry above has it.
+
+  **What this item cost, and it is the reason it took three PRs rather than one.** Two of its six
+  parts were gated on the A6 confidence convention, which was **[you]**, and the gate was real:
+  landing the `series_ref` comparison before the regrade would have turned the branch red and
+  invited whichever regrade made it green, which is the ordering `check-evidence` already taught
+  this project once. **Five of the six parts were later found to carry a defect of their own** by
+  the critique pass under PR #80, four of them a comment or a message claiming a property the code
+  beside it did not have.
 
 - **The £2.1bn hotel figure, re-sourced to the publication that contains it**, 1 August 2026.
   PR #73. Pre-launch audit finding 0-ZERO, and the third of the three launch gates.
