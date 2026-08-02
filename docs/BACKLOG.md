@@ -102,10 +102,10 @@ first act.
     was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
     would have stopped a session taking work that was never gated. Several sessions, not one.
     The citizenship card's three landed as PR #78, the migration page's two ONS peaks and its
-    work comparison year as PR #87, and its four applicant and dependant splits as PR #89.
-    **The migration page is finished as [me] work**: what is left on it is the three year-on-year
-    falls, whose remedy is a rewording on two pages and is therefore **[you]**. The rest of this
-    item is on other pages, and is under item 4 below.
+    work comparison year as PR #87, its four applicant and dependant splits as PR #89, and the
+    owner's rewording of the three year-on-year falls as PR #90. **The migration page and the
+    net-migration-is-arrivals claim page are both finished**: neither now writes a figure the
+    data layer does not hold. What is left of this item is on other pages, under item 4 below.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -807,15 +807,14 @@ sentences**, and three of the four groups moved:
   record, because the wording is yours. `627,000` set no precedent about which figures qualify; the
   rule of 30 July does that.
 
-  **`517,000`, `429,000` and `87,000` are that [you] case, and they are on two pages.** Each is
-  arithmetic against a live series value: 848,000 minus 331,000, 1,441,000 minus 1,012,000, and
-  680,000 minus 593,000, all from the calendar-year points the site already charts. A record for
-  any of them would be a fake metric and freezing them would guarantee they go wrong at the next
-  revision, which is the reasoning PR #55 settled for the `100,000` and `285,000` of the same
-  shape. So the remedy is the pattern that item set, **drop the difference and give the reader
-  both ends**, and the wording is yours. The sentence is on `migration.njk`'s flows chart note and
-  again in `content/claims/net-migration-is-arrivals.md`, near-identically; a fix at one site
-  only would leave the other saying it. A draft of both is in PR #87's body.
+  **`517,000`, `429,000` and `87,000` were that [you] case. DECIDED AND APPLIED (PR #90,
+  2 August 2026): both sentences give the reader both ends.** Each was arithmetic against a live
+  series value, so no record could hold one and freezing one would have guaranteed it went wrong at
+  the next revision, which is the reasoning PR #55 settled for the `100,000` and `285,000` of the
+  same shape. Three differences became six cited ends, on `migration.njk`'s flows chart note and in
+  `content/claims/net-migration-is-arrivals.md`, which carried the same sentence and would have
+  been left saying it. The wording was the owner's, from drafts in PR #87's body, and is recorded
+  under *Completed* with what applying it cost.
 
   **One pattern worth reusing.** Both records minted on 30 July were verified by reconciling
   against a total the site already published, not by finding the number alone. That is what
@@ -1211,6 +1210,32 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The net migration fall gives the reader both ends**, 2 August 2026. PR #90. The owner's
+  wording, on the last **[you]** item under *The figures the data layer never recorded*. Two
+  sentences stopped stating a difference the reader cannot check and now state the two figures it
+  is taken from, on `/migration/` and on the net-migration-is-arrivals claim page, which carried
+  the same sentence.
+
+  **What it cost, and it is the part worth knowing before the next one of these.** The Nunjucks
+  half was free: a chart note can cite a series point through the `at()` filter, so three literals
+  became six citations and no record was needed. **The markdown half needed five records.** A
+  markdown page cannot cite a series point at all, which the validator's own message says, so the
+  established route is a metric declaring `series_ref`, the pattern PR #57 set for `100,625`. Five
+  of the six values had no record: `net-migration-2` already held 331,000. Each new record declares
+  its point, so `validate-data.mjs` refuses any drift between the two, and each was quoted from
+  Table 1 of the release the site already cites.
+
+  **So the rule of thumb is that this remedy is cheap in Nunjucks and costs a record per figure in
+  markdown.** That is worth weighing before choosing it again, not a reason to avoid it: the five
+  records are real published figures with a source, and the alternative was a page stating
+  arithmetic no reader could check.
+
+  **Baseline 21 to 15**, the largest single step the ratchet has taken down, and the first taken by
+  dropping arithmetic rather than by minting a record for it.
+
+  **Three things changed for a reader, deliberately**, which is unusual for this item: the two
+  sentences, and the derived ONS row on `/sources-and-method/`, 17 to 22.
 
 - **The migration page's four applicant and dependant splits get records**, 2 August 2026. PR #89.
   The last of that page's unrecorded figures that a record could fix. `277,000` and `17,000` are

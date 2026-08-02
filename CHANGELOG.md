@@ -9,6 +9,29 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The net migration fall gives the reader both ends, 2 August 2026
+
+**No figure value changed. Two sentences did, on purpose.** They stated a difference nobody could
+check against a source. They now state the two figures the difference is taken from, and the reader
+can subtract.
+
+On `/migration/`, the flows chart note read "net migration fell by around 517,000 while immigration
+fell by around 429,000. The difference is emigration rising by roughly 87,000". It now reads "net
+migration fell from 848,000 to 331,000 while immigration fell from 1,441,000 to 1,012,000.
+Emigration went the other way, from 593,000 to 680,000". The same sentence on the
+net-migration-is-arrivals claim page is rewritten to match; it would otherwise have been left
+saying what the other page had stopped saying.
+
+**Why the old wording could not stay.** Each of the three was arithmetic against a live value, so
+no record could hold one: a record would have been a figure no publisher states, and freezing one
+would have guaranteed it went wrong at the next revision. That is the same reasoning that removed
+the `100,000` and `285,000` of this shape on 30 July.
+
+**Five new records, and only because of where the sentence sits.** A chart note in a Nunjucks page
+can cite a series point directly, so the `/migration/` half needed nothing. A markdown page cannot,
+so the claim page's six values needed records: `migration/net-migration-2` already held one, and
+the other five are new, each declaring the series point it must agree with.
+
 ### The migration page's applicant and dependant splits get records, 2 August 2026
 
 **No published figure value changed and no sentence changed.** The four numbers in the reason

@@ -17,6 +17,11 @@ figures:
   - migration/total-long-term-immigration
   - migration/total-long-term-emigration
   - migration/net-migration-2
+  - migration/net-migration-2023
+  - migration/total-long-term-immigration-2023
+  - migration/total-long-term-immigration-2024
+  - migration/total-long-term-emigration-2023
+  - migration/total-long-term-emigration-2024
 layout: claim.njk
 permalink: /common-claims/net-migration-is-arrivals/
 order: 1
@@ -42,9 +47,11 @@ gap between two [flows](/what-the-words-mean/#flow-and-stock), and it tells you 
 
 The practical consequence is that net migration can change even when the number arriving
 does not, because emigration moves independently. Between the year ending December 2023 and the year
-ending December 2024, net migration fell by around 517,000. Immigration over the same
-period fell by around 429,000. The rest of the drop came from emigration rising by
-roughly 87,000, more people leaving, not fewer arriving.
+ending December 2024, net migration fell from {{migration/net-migration-2023}} to
+{{migration/net-migration-2}}. Immigration over the same period fell from
+{{migration/total-long-term-immigration-2023}} to {{migration/total-long-term-immigration-2024}}.
+Emigration went the other way, rising from {{migration/total-long-term-emigration-2023}} to
+{{migration/total-long-term-emigration-2024}}: more people leaving, not fewer arriving.
 
 A fall in net migration is therefore consistent with arrivals falling, arrivals staying
 flat, or in principle arrivals rising, depending on what emigration does at the same
