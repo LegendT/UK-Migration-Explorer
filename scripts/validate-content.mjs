@@ -119,11 +119,6 @@ const warnings = [];
 // the heading over a pooled list would have to describe both, which is how a success message
 // starts claiming more than its check verifies.
 const unrecorded = [];
-// The exemptions that are load-bearing, kept apart from both lists above for the same reason they
-// are kept apart from each other. These are not defects and are not reported as ones: a declared
-// literal that the data layer also holds is the case the success message below has to exclude, so
-// it is counted where the message can name it rather than described in a sentence nobody re-derives.
-const declaredLive = [];
 
 // The ratchet, and the reason this check does not become wallpaper. Report level is right for
 // the figures already here, because erroring on day one would force three dozen exemptions and
@@ -148,7 +143,13 @@ const declaredLive = [];
 // and nothing on any page changed in the commit that raised it. What the ratchet forbids is
 // unchanged: from here the count may not grow, and these come down as the other sixteen did.
 // 31 once visitor visas got a record, which took two of the eleven off in one go: one figure,
-// written on two pages, and the first of the scale-word set to come down.
+// written on two pages, and the first of the scale-word set to come down. 28 once the citizenship
+// card's three got records read from table Cit_01, the first time three came down together and the
+// first taken on the standing rule rather than as a per-figure decision.
+//
+// This ledger is the only place a step is recorded, so a step taken without adding a line here
+// leaves it ending at a number the constant no longer holds. That happened on the 31-to-28 step
+// and was found by a second model rather than by anything that runs.
 const UNRECORDED_BASELINE = 28;
 const claims = [];
 
@@ -686,6 +687,25 @@ const registerValue = (number, unit, ref, describe) => {
 // as two in another.
 const nameAll = (matches) => matches.map((m) => `${m.describe} of ${m.ref}`).join(' and ');
 
+// A declared literal that the data layer ALSO holds. Recorded from all three exemption points, not
+// from one: the first version instrumented only the comma-grouped branch while the sentence it
+// printed asserted the unrestricted property, which is this project's signature defect committed
+// inside the instrumentation added to close the ninth instance of it. With `10.7 million` declared
+// in meta.json, the live warning vanished and the run still said four, and had the other four not
+// existed it would have said none. Found by a second model.
+//
+// BOTH homes are named where a value has two. The comma-grouped ERROR branch prefers the metric
+// message deliberately and says why; here the whole point is showing what the exemption covers, and
+// naming half of it defeats that.
+const declaredLive = [];
+const noteExemption = (file, written, metricMatches, seriesRefs) => {
+  const held = [
+    ...(metricMatches ?? []).map((m) => `${m.describe} of ${m.ref}`),
+    ...(seriesRefs ?? []).map((ref) => `the value at ${ref}`),
+  ];
+  if (held.length) declaredLive.push(`${file}: ${written} is declared frozen and is also ${held.join(' and ')}`);
+};
+
 for (const [ref, metric] of registry) {
   if (typeof metric.value === 'number') {
     registerValue(metric.value, metric.unit, ref, 'the current value');
@@ -824,9 +844,9 @@ function checkLiterals(file, prose, allowed) {
   // no check at all. The comma-grouped check below stays an error; its collision rate is low.
   for (const united of new Set(withoutTokens.match(/£\d+(?:\.\d+)?|\d+(?:\.\d+)?%/g) ?? [])) {
     const matches = unitedValues.get(united);
-    if (matches && !allowed.has(united)) {
-      warnings.push(`${file}: ${united} equals ${nameAll(matches)}, check whether it should be cited`);
-    }
+    if (!matches) continue;
+    if (allowed.has(united)) { noteExemption(file, united, matches); continue; }
+    warnings.push(`${file}: ${united} equals ${nameAll(matches)}, check whether it should be cited`);
   }
 
   // Where the exemption is written differs by file, and telling an author to use a separator
@@ -843,7 +863,10 @@ function checkLiterals(file, prose, allowed) {
   // sentence under it, which is one decision rather than two.
   const scaled = new Map(scaledFigures(withoutTokens).map((figure) => [figure.text, figure]));
   for (const { text, currency, number, scale, value } of scaled.values()) {
-    if (allowed.has(text)) continue;
+    if (allowed.has(text)) {
+      noteExemption(file, text, scaledValues.get(value), seriesValues.get(String(value)));
+      continue;
+    }
     // Skipped only where the unit scan above has ALREADY reported this same sentence, which
     // takes all three of: the prose wrote a £, that £ and number are a key it matched, and the
     // record behind that key carries the same scale in its own unit. "£3 billion" against a
@@ -852,12 +875,20 @@ function checkLiterals(file, prose, allowed) {
     // silenced. Without the third, a record of 20 £ per night silences "£20 billion", a
     // different number by a factor of a billion.
     //
-    // `some` rather than the one surviving entry, and that is the list change earning its keep in
-    // the most dangerous three lines in this file. The guard's premise is that the unit scan above
-    // has already reported this sentence, and that scan reports every record sharing the key. Asked
-    // of a single last-written entry, the premise was true only by the order the theme files happen
-    // to be read; asked of all of them, it is the thing it claims.
-    const united = currency && unitedValues.get(`£${number}`);
+    // `some` rather than the one surviving entry, because the guard's premise is that the unit scan
+    // above has already reported this sentence and that scan reports every record sharing the key.
+    // Asked of a single last-written entry the premise was true only by the order the theme files
+    // happen to be read.
+    //
+    // **And the premise has a third condition the guard did not test until 2 August 2026**: the
+    // unit scan only reports when the key is NOT declared. With `£20` under `historical_literals`
+    // and "£20 billion" in the prose, that scan stayed silent, this guard skipped anyway, and the
+    // figure vanished from every branch: not an error, not a warning, not a line in the report.
+    // That is the second time a suppression in this exact function has silenced a whole class, and
+    // the first was also three lines that two self-critiques read and saw only the precision of.
+    // Found by a second model. A guard may only skip work another branch has actually done, so it
+    // asks the same question that branch asks.
+    const united = currency && !allowed.has(`£${number}`) && unitedValues.get(`£${number}`);
     if (united && united.some((m) => unitScale(registry.get(m.ref)?.unit) === scale)) continue;
 
     const held = scaledValues.get(value);
@@ -893,9 +924,7 @@ function checkLiterals(file, prose, allowed) {
     // message says what it means, and the exemption cannot grow without the run saying so. The
     // count is deliberately not written into any comment or document: it is what the run prints.
     if (allowed.has(literal)) {
-      const heldBy = liveValues.get(literal)?.map((m) => `${m.describe} of ${m.ref}`)
-        ?? seriesValues.get(literal)?.map((ref) => `the value at ${ref}`);
-      if (heldBy) declaredLive.push(`${file}: ${literal} is declared frozen and is also ${heldBy.join(' and ')}`);
+      noteExemption(file, literal, liveValues.get(literal), seriesValues.get(literal));
       continue;
     }
     const matches = liveValues.get(literal);

@@ -206,10 +206,28 @@ let counted = 0;
 for (const file of THEME_FILES) {
   const theme = file.replace('.json', '');
   // A file's own lastUpdated must keep up with the records inside it. The audit fixed one
-  // that had fallen behind (F0-4) and the fix had no check half, so the same file was four
-  // days behind its newest record within the week. The date is only a claim about the file;
-  // this makes it one that cannot silently lag the records it summarises.
+  // that had fallen behind (F0-4) and the fix had no check half, so the same file was five
+  // days behind its newest record within the week.
+  //
+  // What this establishes is narrow and the comment used to claim more: the date may not predate
+  // the newest `retrieved_date`, which is NOT the same as keeping up with every change to the
+  // file. A regrade moves no `retrieved_date`, so a file can be edited and stay green here. That
+  // is deliberate rather than fixed, because "when did a record last change" is a question about
+  // git and not about the data.
+  //
+  // The other two legs ARE closed, and both were open until 2 August 2026, in the same shape this
+  // project documents for the series equivalent one screen below. ABSENT: the check was written
+  // `envelope.lastUpdated && ...`, and nothing required the field on a theme file, so deleting it
+  // silenced the check for ever with no error anywhere. WRONG SHAPE: the comparison is
+  // lexicographic and the value never passed `isRealDate`, so `"2026-8-1"` sorts above every ISO
+  // date in 2026 and permanently satisfies it. Found by a second model reading the same check the
+  // handoff already records being caught this way on the series side.
   const envelope = read(file);
+  if (!envelope.lastUpdated) {
+    errors.push(`${file}: missing lastUpdated. Without it the staleness comparison below has nothing to compare and passes silently.`);
+  } else if (!isRealDate(envelope.lastUpdated)) {
+    errors.push(`${file}: lastUpdated "${envelope.lastUpdated}" is not a real YYYY-MM-DD date, and the comparison below is lexicographic, so a malformed one sorts above every real date and can never fail.`);
+  }
   const newest = (envelope.metrics ?? []).map((m) => m.retrieved_date).filter(Boolean).sort().at(-1);
   if (envelope.lastUpdated && newest && envelope.lastUpdated < newest) {
     errors.push(`${file}: lastUpdated ${envelope.lastUpdated} predates its newest record's retrieved_date ${newest}. Bump it when a record in the file moves.`);
@@ -333,9 +351,15 @@ const points = seriesPoints();
 // the publisher's per-vintage marker lives in `ons_marker` alone. Landing this check without that
 // decision would have turned the branch red and invited whichever regrade made it green.
 const SERIES_REF_FIELDS = [
-  ['value', 'The same measure for the same period would publish two different values, the card from the metric and the chart from the series.'],
-  ['unit', 'The same measure would be published in two units, so a reader comparing the card with the chart is comparing different quantities.'],
-  ['confidence_level', 'The same measure would carry two grades, and the card prints its grade to a reader while the point does not, so the weaker of the two would be the invisible one.'],
+  ['value', (m) => m.value, 'The same measure for the same period would publish two different values, the card from the metric and the chart from the series.'],
+  ['unit', (m) => m.unit, 'The same measure would be published in two units, so a reader comparing the card with the chart is comparing different quantities.'],
+  ['confidence_level', (m) => m.confidence_level, 'The same measure would carry two grades, and the card prints its grade to a reader while the point does not, so the weaker of the two would be the invisible one.'],
+  // The identity field, and comparing three attributes without it was the same mistake one level
+  // up: a ref names a point by year, and nothing asked whether that year is the metric's own. Two
+  // pairs in the data make it exploitable rather than theoretical, `flows.emigration` holding
+  // 494,000 at both 2014 and 2015 and the historical block holding 313,000 at 2014 and 2019, so a
+  // ref off by a year passes value, unit and grade together. Found by a second model.
+  ['year', (m) => m.date?.slice(0, 4), 'The ref names a different year from the one the metric covers, and where two years share a value the other three comparisons agree anyway.'],
 ];
 for (const [ref, metric] of registry) {
   if (!metric.series_ref) continue;
@@ -344,9 +368,51 @@ for (const [ref, metric] of registry) {
     errors.push(`${ref}: series_ref "${metric.series_ref}" names no point in any series`);
     continue;
   }
-  for (const [field, why] of SERIES_REF_FIELDS) {
-    if (point[field] === metric[field]) continue;
-    errors.push(`${ref}: ${field} ${metric[field]} does not match series point ${metric.series_ref}, which is ${point[field]}. ${why}`);
+  for (const [field, of, why] of SERIES_REF_FIELDS) {
+    const mine = of(metric);
+    const theirs = point[field];
+    // Absent on BOTH sides is the answer that leaves a check asking for nothing: `undefined ===
+    // undefined` passes and the pair is declared to agree about a field neither carries. Every
+    // field here is required on both sides by other rules in this same run, so nothing exploits
+    // it today; it is stated because the next field added to this table may not be.
+    if (mine === undefined || theirs === undefined) {
+      errors.push(`${ref}: series_ref "${metric.series_ref}" cannot be compared on ${field}, which is missing from ${mine === undefined ? 'the metric' : ''}${mine === undefined && theirs === undefined ? ' and ' : ''}${theirs === undefined ? 'the point' : ''}. A comparison against a missing field passes without asking anything.`);
+      continue;
+    }
+    if (theirs === mine) continue;
+    errors.push(`${ref}: ${field} ${mine} does not match series point ${metric.series_ref}, which is ${theirs}. ${why}`);
+  }
+}
+
+// --- a block's points carry one grade ------------------------------------------------
+// The A6 convention says the confidence grade follows the SOURCE rather than the vintage, which
+// makes "every point in a block shares a grade" the convention stated as an invariant rather than
+// as prose. Without it the convention reached only the four points a `series_ref` names, and the
+// other 38 were governed by a paragraph in the backlog: the next release could paste an array back
+// with per-vintage grades and every check would pass. Found by a second model, which counted the
+// enforcement rather than reading the intent.
+//
+// Blocks, not files, because the discontinued IPS series inside netMigrationTimeseries.json is a
+// different source on a non-comparable methodology and is `estimated` throughout, which is the
+// convention holding rather than breaking.
+// `ons_marker` is checked in the same pass, because the convention that empties the grade of the
+// vintage puts the whole weight of the vintage on that one field, and nothing asked anything of it:
+// it is not in POINT_FIELDS, no vocabulary constrained it, and `"revsied"` passed every check on
+// the site. A field promoted to the sole home of something has to be asked about, or the promotion
+// moves the information somewhere less guarded than where it came from.
+const ONS_MARKERS = ['provisional', 'revised'];
+for (const [name, file] of Object.entries(SERIES_FILES)) {
+  const raw = read(file);
+  for (const [block, data] of [[name, raw], ...COMPANION_BLOCKS.filter((c) => raw[c]).map((c) => [`${name}.${c}`, raw[c]])]) {
+    const grades = [...new Set((data.data ?? []).map((p) => p.confidence_level))];
+    if (grades.length > 1) {
+      errors.push(`${file}: block ${block} mixes confidence levels, ${grades.join(' and ')}. The grade follows the source, so a block carries one; the publisher's per-vintage marker belongs in ons_marker.`);
+    }
+    for (const point of data.data ?? []) {
+      if (point.ons_marker !== undefined && !ONS_MARKERS.includes(point.ons_marker)) {
+        errors.push(`${file}: block ${block}, ${point.date ?? '(undated)'} has ons_marker "${point.ons_marker}", which is not one of ${ONS_MARKERS.join(', ')}. It is the only home for the publisher's marker, so a typo there loses the marker silently.`);
+      }
+    }
   }
 }
 
@@ -384,22 +450,34 @@ for (const [ref, metric] of registry) {
 // What it does NOT establish: that a named pair disagrees, since it matches on EQUAL values and so
 // can only ever see agreement. That is the point. It also asks nothing of a note restating a series
 // point, or of `range_min` and `range_max`, whose only bounds today are under the threshold anyway.
+// Keyed on the VALUE and not on each written form of it, which is the difference between one
+// report line per restatement and two. A value has up to two forms, "48,581" and "48581", and a
+// note carrying both would have been two findings about one sentence.
 const restated = [];
 const owners = new Map();
 for (const [ref, metric] of registry) {
   if (typeof metric.value !== 'number') continue;
-  for (const form of new Set([metric.value.toLocaleString('en-GB'), String(metric.value)])) {
-    if (/\d,\d/.test(form) || Math.abs(metric.value) >= 100) {
-      owners.set(form, [...(owners.get(form) ?? []), ref]);
-    }
-  }
+  const forms = [...new Set([metric.value.toLocaleString('en-GB'), String(metric.value)])]
+    .filter((form) => /\d,\d/.test(form) || Math.abs(metric.value) >= 100);
+  if (!forms.length) continue;
+  const entry = owners.get(metric.value) ?? { forms: new Set(), refs: [] };
+  for (const form of forms) entry.forms.add(form);
+  entry.refs.push(ref);
+  owners.set(metric.value, entry);
 }
 for (const [ref, metric] of registry) {
-  for (const [form, refs] of owners) {
+  for (const { forms, refs } of owners.values()) {
     const others = refs.filter((owner) => owner !== ref);
     if (!others.length) continue;
-    if (!new RegExp(`(?<![\\d,.])${form.replace('.', '\\.')}(?![\\d,.])`).test(metric.notes ?? '')) continue;
-    restated.push(`${ref}: its notes write ${form}, which is the value of ${others.join(' and ')}`);
+    const written = [...forms].find((form) =>
+      new RegExp(`(?<![\\d,.])${form.replace('.', '\\.')}(?![\\d,.])`).test(metric.notes ?? ''));
+    if (!written) continue;
+    // A record that holds the value ITSELF is describing its own figure, not restating someone
+    // else's, and saying "which is the value of X" about that reads as an accusation it does not
+    // deserve. It still belongs in the report, because when this record moves those other notes go
+    // stale, but the line has to say which case it is.
+    const own = refs.includes(ref) ? ', its own value, which is also held by' : ', which is the value of';
+    restated.push(`${ref}: its notes write ${written}${own} ${others.join(' and ')}`);
   }
 }
 

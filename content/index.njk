@@ -104,7 +104,8 @@ apply the same test in every direction.</p>
       navigating by heading, or hearing the outline read out, met three claim sentences at the
       same level as the section introducing them, with nothing saying they belonged to it. The
       claims index keeps h2, where the cards sit directly under the page h1 and that IS their
-      level. Nothing checks heading order here, in either direction. -#}
+      level. `check-build.mjs` errors on a SKIPPED level, so h4 here would fail the build; what
+      nothing checks is a level that is merely wrong without skipping, which is what h2 was. -#}
   {%- for claim in collections.claims | limit(3) %}
   <li>
     <article>

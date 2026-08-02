@@ -16,7 +16,9 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 The metrics graded every ONS long-term migration figure `provisional`; the two ONS series graded
 per vintage, `official` up to 2024 and `provisional` for 2025. Two internally consistent
 conventions that nothing reconciled. **The grade now follows the source rather than the vintage**,
-so all 39 ONS series points are `provisional`, matching the eight metrics and this site's own
+so every point on the current ONS basis is `provisional`, 42 of them across three blocks, of which
+39 moved here and 3 already were. The discontinued IPS block stays `estimated`, which is the same
+convention holding rather than an exception to it. That matches the eight metrics and this site's own
 definition of `provisional`, which names ONS net migration as its example. The publisher's
 per-vintage marker lives in `ons_marker` alone: the four prose notes carrying it in
 `migrationFlowsTimeseries.json` became that field, and the file-level sentence repeating it is
@@ -43,7 +45,9 @@ the Home Office citizenship summary tables**, year ending March 2026 edition, fe
 because a citation renders the same characters the card already showed.
 
 **The launch readiness review asked where 269,178 and 312,063 live, and the answer is Cit_01.**
-Neither is on the bulletin page the parent record cites, which states only the percentage changes.
+Neither is on the bulletin page the parent record cites. That page states the 12% decrease behind
+269,178 but carries no applications figure and no 18% at all, so for 312,063 it states neither the
+number nor its change.
 312,063 gets no record because no page publishes it; it is named in the parent record's notes with
 its table instead. Two more figures in that family are on no current page either, the superseded
 year ending December 2025 values, and both notes now say that the current edition revises that

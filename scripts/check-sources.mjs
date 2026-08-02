@@ -63,7 +63,12 @@ const walk = (dir, prefix = '') =>
 for (const file of walk(contentDir)) {
   const body = readFileSync(contentDir + file, 'utf8');
   for (const [, url] of body.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)) cite(url, `${file} prose`);
-  for (const [, url] of body.matchAll(/href="(https?:[^"]+)"/g)) cite(url, `${file} prose`);
+  // Both quote styles, and the double-quote-only version was the mirror image of the defect fixed
+  // twenty lines above in the same pass: that one's own comment says a single-quote-only pattern
+  // "silently dropped it from the check with no signal", and this scan then reintroduced the
+  // blindness the other way round. Nothing in content/ writes a single-quoted href today, so it was
+  // latent, and latent is what the sibling rule exists to catch. Found by a second model.
+  for (const [, url] of body.matchAll(/href=["'](https?:[^"']+)["']/g)) cite(url, `${file} prose`);
 }
 
 for (const source of read('sources.json').sources) cite(source.url, `sources.json: ${source.id}`);
