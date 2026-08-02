@@ -104,11 +104,12 @@ first act.
     The citizenship card's three landed as PR #78, the migration page's two ONS peaks and its
     work comparison year as PR #87, its four applicant and dependant splits as PR #89, and the
     owner's rewording of the three year-on-year falls as PR #90, and the asylum page with its
-    accommodation claim page as PR #91, the costs page's daily rates as PR #92, and its four
-    frozen figures as PR #93. **Five pages are finished.** **What is left is three figures and
-    all of them are [you]**: two on the born-abroad claim page and one dashboard card. They are
-    itemised under item 4 below, need decisions rather than sources, and are the last of this
-    item. At zero the report becomes an error and `UNRECORDED_BASELINE` goes.
+    accommodation claim page as PR #91, the costs page's daily rates as PR #92, its four frozen
+    figures as PR #93, and the last three as PR #94. **THIS ITEM IS CLOSED.** The count reached
+    zero, so the branch that reported it is an error now and `UNRECORDED_BASELINE` is deleted, as
+    it always said it would be. Every figure written longhand on this site is held by a record or
+    a series point, or declared as frozen with its reason beside it. What the check still cannot
+    read is narrower and is recorded under item 4 below.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -741,8 +742,12 @@ sentences**, and three of the four groups moved:
   the same logic that makes the existing `285,000` declaration right. All nine reports of them,
   across four files, are now declared under `historical_literals` with the reason beside them,
   and the baseline fell from 38 to 29. `45,774` was **not** declared: it is frozen as a number
-  but sits under "the peak was", which goes stale if a later year exceeds it, so it stays in the
-  report where a person will see it.
+  but sits under "the peak was", which goes stale if a later year exceeds it, so it stayed in the
+  report where a person would see it. **That was right, and PR #94 settled it a different way
+  (2 August 2026): a peak record**, on the pattern the two ONS peaks and the asylum backlog peak
+  had established by then, whose notes carry the instruction to re-derive it at every release.
+  Declaring it would have frozen the number and left the claim around it unwatched, which is
+  exactly what this sentence was holding out for.
 - **Current-edition figures with no record behind them. Started, not finished.** `627,000` is
   DONE (PR #58, 30 July 2026): it was on two pages and existed nowhere but inside the parent
   record's notes, and it now has `migration/non-eu-plus-long-term-immigration`, read from Table 1
@@ -915,10 +920,14 @@ already says.
   baseline went 33 to 31. **Neither rounding survived**: both pages now say 2,241,997, as
   PR #60 found with the small-boats denominator. The figure had been living inside the
   parent record's notes, which no longer restate it, the same shape PR #58 found for 627,000.
-- **The site already holds the figure and the prose rounds it**: "69.28 million" on the
-  born-abroad claim is `population/total-uk-population`, 69,281,400. Cite it exactly or reword,
-  which is the choice the rounded-restatement category above ends on. **[you]**, with the two
-  "10.7 million" warnings, which are the same question.
+- **The site already holds the figure and the prose rounds it. DONE (PR #94, 2 August 2026), by
+  citing exactly.** "69.28 million" on the born-abroad claim is `population/total-uk-population`
+  and now renders 69,281,400. Exactness earns its keep in that sentence rather than costing
+  something: the sentence exists to say the percentage is this site's own division, so a reader
+  can only repeat the division if both ends are exact. **The two "10.7 million" warnings are the
+  same question and are NOT settled by this**: they are a warning rather than an error precisely
+  because citing there would render "10,700,000" and change the wording, which the exact form
+  here does not. **[you]** still.
 - **The costs page's three daily rates. DONE (PR #92, 2 August 2026), and this entry was wrong
   about two of them.** It said all three were "the cited hotel and system spending divided by 365",
   which made them **[you]**. Reading page 75 of the Home Office accounts showed the publisher
@@ -956,10 +965,16 @@ already says.
   equal a live value, so an exemption cannot silently start covering a figure that moved, and none
   of these four does today. And the branch stays at report level for everything else, so nobody is
   forced to stuff the list.
-- **Genuinely ambiguous, so brought back as the rule says**: "about 10.6 million" on the
-  born-abroad claim is an ONS ad hoc release on a different population base, published on no
-  cadence, and the page's point is that it does **not** reconcile. A record would give a figure
-  the site tells readers not to use. **[you]**.
+- **Genuinely ambiguous, so brought back as the rule says. DECIDED and DECLARED (PR #94,
+  2 August 2026).** "about 10.6 million" on the born-abroad claim is an ONS ad hoc release on a
+  different population base, published on no cadence, and the page's point is that it does
+  **not** reconcile. **The reason it is declared rather than recorded is the opposite of the
+  usual one**: a record is a figure this site publishes, and this page exists to tell readers not
+  to use this one. The number stays in the sentence because a reader who meets it elsewhere needs
+  to recognise it. Same shape as "£8 million a day" on `/costs/`, a circulating number a page
+  names in order to warn about it, and the reason is in that page's own front matter. If ONS
+  publishes another ad hoc estimate the sentence is rewritten rather than the declaration
+  updated.
 
 **What it still cannot see**, and the success message now says so instead of naming this as
 unscanned: a figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand", and **front
@@ -1191,11 +1206,13 @@ Both came out of PR #41 on 28 July 2026.
     that the exemption is still deserved.
   - A correction inside an edition is caught only where the publisher's note names its table by
     identifier, and most name theirs by title.
-  - **A figure the data layer never recorded is reported and never refused**, so the site can
-    carry a number that nothing can tell you has aged. This is the one a reader is most
-    affected by, because it is about the numbers rather than about the checking, and the scan
-    that reads figures written in words made it larger rather than smaller. What the count is
-    on any given day is what `npm run validate` prints.
+  - **A figure the data layer never recorded is reported and never refused. WITHDRAWN as a
+    candidate (PR #94, 2 August 2026), and not by publishing it.** It is refused now, so there is
+    no limit left to disclose. It had been the one a reader was most affected by, being about the
+    numbers rather than about the checking. **What remains unscanned is narrower and is a
+    different candidate if anyone wants one**: a figure written "2 200 000", "two million",
+    "£1.3bn" or "2.2 thousand", and front matter, where one claim's short answer carries a
+    rounded figure. The run names those on every invocation.
 
   Adding a limit to a live page is an editorial call, and so is which of the three earns the
   space.
@@ -1255,6 +1272,45 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **The last three unrecorded figures, and the ratchet reaching zero**, 2 August 2026. PR #94.
+  Item 4 is closed. Three figures, three different remedies, which is the shape of the whole item
+  in miniature.
+
+  **`69.28 million` is cited exactly.** It is `population/total-uk-population`, rounded, in a
+  sentence whose entire job is to say the 18.9% is this site's own division. A reader can only
+  repeat that division if both ends are exact, so exactness earns its keep there rather than
+  costing something.
+
+  **`10.6 million` is declared, for the opposite of the usual reason.** A record is a figure this
+  site publishes, and the born-abroad page exists to tell readers not to use this one: it is an
+  ONS ad hoc release on a different population base that does not reconcile with the mid-2024
+  estimate. The number stays in the sentence because a reader who meets it elsewhere needs to
+  recognise it. Same shape as "£8 million a day" on `/costs/`.
+
+  **`45,774` got a peak record, which is why it was right to leave it out of the frozen group on
+  30 July.** That decision held out for the fact that the number is frozen but "the peak was" is
+  not, and declaring it would have left the claim unwatched. By 2 August there was a pattern for
+  it: three peak records already existed, each carrying an instruction to re-derive rather than
+  carry forward. It is `calculated` and summed from the four quarters of 2022, because the Home
+  Office publishes that dataset by quarter and states no calendar-year total. **Its 2025 sum
+  reproduces the record beside it exactly**, 41,472, which is what establishes the method. It is
+  graded `calculated` where that neighbour is `official` for the identical construction, and that
+  inconsistency is deliberately not resolved here: R2 carries it as an open question about the
+  neighbour's grade, and grading this one by the site's own stated convention is the option that
+  does not pre-empt it.
+
+  **The ratchet is done.** `UNRECORDED_BASELINE` is deleted and the branch fails the build,
+  negative-tested by adding a figure and watching it fail with the list still printed above the
+  failure. It ran at report level from 38 down to zero across eleven steps. The step ledger that
+  lived in a comment above the constant is not reproduced there: every step is in this file under
+  Completed with the pull request that took it, and a second copy beside a deleted constant is the
+  two-lists problem again.
+
+  **One published limit candidate is withdrawn by being fixed rather than disclosed.** "A figure
+  the data layer never recorded is reported and never refused" was the candidate a reader was most
+  affected by. It is refused now, so there is nothing to disclose. What is left unscanned is
+  narrower: `2 200 000`, `two million`, `£1.3bn`, `2.2 thousand` and front matter.
 
 - **The costs page's four frozen figures are declared**, 2 August 2026. PR #93. The owner's
   decision, on the one category of item 4 whose remedy is an exemption rather than a record.

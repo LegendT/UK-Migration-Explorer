@@ -233,7 +233,7 @@ Seven checks, all in CI, all negative-tested.
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, **a citation's `source_url` and `source_id` naming the same publisher**, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names on value, unit, confidence level and year**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, a theme file's `lastUpdated` present and a real date, **every point in a series block carrying one confidence level**, `ons_marker` drawn from a fixed vocabulary, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
-| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **No planning document other than the backlog may carry work state**, meaning a table row marked done, withdrawn or struck, because a second list has to be kept true in two places and this project watched two diverge twice in one day. **A review date that has passed fails the build**, not merely one that was never declared, and a Nunjucks page must carry one like every other. **The language rules and the glossary-link check reach the `data/` prose that renders to a page**, which they did not until 31 July 2026. **Reports rather than fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, under a ratchet whose count may not grow, and **names every declared literal that does equal a live value**, because the exemption is granted on trust and the success message asserted it did not exist |
+| `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **No planning document other than the backlog may carry work state**, meaning a table row marked done, withdrawn or struck, because a second list has to be kept true in two places and this project watched two diverge twice in one day. **A review date that has passed fails the build**, not merely one that was never declared, and a Nunjucks page must carry one like every other. **The language rules and the glossary-link check reach the `data/` prose that renders to a page**, which they did not until 31 July 2026. **Fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, since 2 August 2026, having been a ratchet at report level from 38 down to zero, and **names every declared literal that does equal a live value**, because the exemption is granted on trust and the success message asserted it did not exist |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, and every metric that is new, is declared in `data/evidence/` with a quote from a fetched source containing that value. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. The quote match is boundary-anchored, so one figure's digits sitting inside another do not satisfy it. Gates the build in CI, **not the Netlify deploy**, which runs only `npm test` and `npm run build` |
 | `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |
@@ -271,9 +271,10 @@ Known limits, published on the sources page under *What the checks do not establ
   automated WCAG 2.2 AA audit on every page plus a reading of the accessibility tree that
   assistive technology consumes, which is not the same as someone listening to a page.
 
-One further limit is **not** published there, and whether it should be is an open editorial
-question in the backlog: a figure the data layer never recorded is reported and never refused,
-so the site can carry a number that nothing can tell you has aged.
+That open question about a fourth limit is **closed**, and not by publishing one. It read: a
+figure the data layer never recorded is reported and never refused, so the site can carry a
+number that nothing can tell you has aged. As of 2 August 2026 it is refused, so there is no
+limit left to disclose.
 
 ## Content
 
@@ -312,10 +313,12 @@ reproduce "10.7 million" and citing it changes the wording. Where nothing holds 
 joins the report below. Still unread: `2 200 000`, `two million`, `£1.3bn`, `2.2 thousand` and
 front matter, and the run says so on every invocation.
 
-**A figure the data layer never recorded is reported, never refused**, under a ratchet whose
-count may not grow. Erroring would force a page of exemptions on day one, and a check whose only
-remedy is a blanket exemption teaches authors to stuff the exemption list. The current count is
-what `npm run validate` prints.
+**A figure the data layer never recorded fails the build**, as of 2 August 2026. It began at
+report level under a ratchet whose count could fall and never rise, because erroring on day one
+would have forced three dozen exemptions and a check whose only remedy is a blanket exemption
+teaches authors to stuff the exemption list. The count reached zero, which is the condition the
+ratchet always named for its own removal, so every figure written longhand is now either held by
+a record or a series point or declared as frozen with its reason beside it.
 
 **A series point is cited the same way, with a filter rather than a token.** A chart summary
 is a Nunjucks string built with `~` concatenation, so a shortcode cannot be used inside one:

@@ -9,6 +9,29 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Every figure on the site now has a home, 2 August 2026
+
+**The last three figures written longhand are settled, and the check that reported them now
+refuses them.** Since this branch was written it had run at report level under a count that could
+fall and never rise, from 38 down to zero. It is at zero, so it fails the build.
+
+**`69.28 million` on the born-abroad claim page is cited exactly**, and renders 69,281,400. That
+sentence exists to say the 18.9% is this site's own division rather than an ONS figure, and a
+reader can only repeat the division if both ends are exact.
+
+**"About 10.6 million" on the same page is declared as frozen rather than recorded**, for the
+opposite of the usual reason: a record is a figure this site publishes, and that page exists to
+tell readers not to use this one. It comes from a separate ONS ad hoc release on a different
+population base and does not reconcile with the mid-2024 estimate. The number stays in the
+sentence because a reader who meets it elsewhere needs to recognise it.
+
+**The small boat peak, 45,774 in 2022, becomes a record.** It was deliberately left undeclared on
+30 July because the number is frozen while the words "the peak was" are not. A peak record settles
+both: it carries an instruction to re-derive the maximum at every release. It is summed from the
+four quarters of 2022, because the Home Office publishes that dataset by quarter and states no
+calendar-year total, and the same method applied to 2025 reproduces the figure the site already
+publishes for that year exactly.
+
 ### Four frozen figures on the costs page are declared as history, 2 August 2026
 
 **Nothing a reader sees changed**, and the built site is byte-identical to before, proved by diff.

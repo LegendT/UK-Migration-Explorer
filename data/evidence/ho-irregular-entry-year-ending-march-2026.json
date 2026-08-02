@@ -28,6 +28,35 @@
           "quote": "IER_D01: Recorded detections at UK ports: 2025 Q2 49, 2025 Q3 42, 2025 Q4 54, 2026 Q1 82. These four sum to 227."
         }
       ]
+    },
+    {
+      "ref": "asylum/small-boat-arrivals-peak",
+      "previous_value": null,
+      "value": 45774,
+      "fetched_at": "2026-08-02",
+      "derivation": "Sum of the four quarters of 2022 for the small boat arrivals method of entry, taken from the row-level Data_IER_D01 sheet. The Home Office publishes this dataset by quarter and states no calendar-year total, which is the same construction the 2025 record uses. Verified as the maximum: summing every complete calendar year the sheet holds gives 2018 299, 2019 1,843, 2020 8,466, 2021 28,526, 2022 45,774, 2023 29,437, 2024 36,816 and 2025 41,472, so 2022 is the highest and 2025 the second highest, which is what the dashboard card claims. The 2025 sum reproduces 41,472 exactly, the value this site already publishes for that year from the same source.",
+      "components": [
+        {
+          "value": 4548,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "Data_IER_D01: Number of detected arrivals via illegal routes to the UK, row-level dataset. Method of entry Small boat arrivals, 2022 Q1: 4,548"
+        },
+        {
+          "value": 8199,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "Data_IER_D01: Method of entry Small boat arrivals, 2022 Q2: 8,199"
+        },
+        {
+          "value": 20301,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "Data_IER_D01: Method of entry Small boat arrivals, 2022 Q3: 20,301"
+        },
+        {
+          "value": 12726,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
+          "quote": "Data_IER_D01: Method of entry Small boat arrivals, 2022 Q4: 12,726"
+        }
+      ]
     }
   ]
 }

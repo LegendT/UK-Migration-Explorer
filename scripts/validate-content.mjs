@@ -120,51 +120,18 @@ const warnings = [];
 // starts claiming more than its check verifies.
 const unrecorded = [];
 
-// The ratchet, and the reason this check does not become wallpaper. Report level is right for
-// the figures already here, because erroring on day one would force three dozen exemptions and
-// that is the stuffing the rates scan exists to avoid. But report level with no ceiling asks
-// nothing of anyone ever: the list would sit in a green log and the next figure would join it
-// invisibly. So the count may not GROW. Lower this as figures are given records or declared;
-// when it reaches zero, promote the branch to an error and delete the constant.
+// THE RATCHET IS DONE AND THE BRANCH IS AN ERROR, 2 August 2026. It began at report level with a
+// baseline of 38 that could fall and never rise, because erroring on day one would have forced
+// three dozen exemptions and that stuffing is what the rates scan exists to avoid. The count
+// reached zero, which is the condition the constant always named for its own deletion, so the
+// constant is gone and an unrecorded figure now fails the build.
 //
-// What it does NOT establish, and the failure message says so: that the listed figures are
-// right, or that the set is unchanged. Fixing one figure and adding another keeps the count
-// level and passes. It stops the list growing, which is the thing that was happening silently.
-// 38 when the branch was added, 29 once the nine published-vintage figures were declared, 27
-// once the two revision deltas were dropped, 24 once the two rounded restatements of the 2025
-// asylum applications figure were given a record and cited, 22 once non-EU+ immigration got one. Each step down is the ratchet working as intended
-// rather than a number edited to suit a run, and the line below prints the count and this
-// constant separately so that a gap between them is visible instead of being read as agreement.
+// The step-by-step ledger that lived here is not reproduced. Every step is in docs/BACKLOG.md
+// under Completed with the pull request that took it, and keeping a second copy beside a
+// constant that no longer exists is the two-lists problem this project has been bitten by twice.
 //
-// RAISED ONCE, from 22 to 33, and this is the only entry here that goes up. It is the scan
-// widening rather than the site growing: eleven lines written "2.2 million" or "£1.3 billion",
-// ten distinct figures with the visitor-visa one on two pages, were on these pages the whole
-// time and no scan looked at them. The step up records them becoming VISIBLE, not arriving,
-// and nothing on any page changed in the commit that raised it. What the ratchet forbids is
-// unchanged: from here the count may not grow, and these come down as the other sixteen did.
-// 31 once visitor visas got a record, which took two of the eleven off in one go: one figure,
-// written on two pages, and the first of the scale-word set to come down. 28 once the citizenship
-// card's three got records read from table Cit_01, the first time three came down together and the
-// first taken on the standing rule rather than as a per-figure decision. 25 once the migration
-// page's two ONS peaks and its work-related comparison year got records read from Tables 1 and 4b
-// of the year ending December 2025 dataset. 21 once the study and work main-applicant and
-// dependant splits got records from Table 4b of the same release, which took four down in one
-// step and left the migration page with nothing but the three year-on-year falls, whose remedy
-// is a rewording rather than a record. 15 once the owner took that rewording: the three falls
-// became six cited ends across two pages, which is the largest single step this ratchet has taken
-// down and the first taken by dropping arithmetic rather than by minting a record for it. 10 once
-// the asylum page and its accommodation claim page were cleared: the June 2023 backlog peak, the
-// end-2019 queue, the appeals backlog a year earlier, and a sentence about appeals decided per
-// quarter that had gone false three quarters before anything asked. 7 once two of the costs
-// page's three daily rates turned out to be published Home Office figures rather than this
-// site's division, and the third was dropped because nobody publishes one. 3 once the owner
-// declared the costs page's four frozen figures, which is the first step down taken by exemption
-// rather than by recording or dropping, and each carries its reason in the front matter above it.
-//
-// This ledger is the only place a step is recorded, so a step taken without adding a line here
-// leaves it ending at a number the constant no longer holds. That happened on the 31-to-28 step
-// and was found by a second model rather than by anything that runs.
-const UNRECORDED_BASELINE = 3;
+// What this still does NOT establish, and the failure message says so: that the figures a page
+// DOES write are right. It establishes that every one of them has a home.
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
@@ -1110,27 +1077,18 @@ if (declaredLive.length) {
 } else {
   console.log('No declared literal equals a value the data layer holds, so the exemption list and the claim above do not overlap on this run.');
 }
-console.log(`Not covered: a longhand figure the data layer never recorded, which the value scans above are blind to by construction, because they match prose against values the site holds. ${unrecorded.length ? `${unrecorded.length} comma-grouped or scale-word ones are listed above rather than counted as clean` : 'None on this run'}. A figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand" is not scanned at all, and neither is front matter, where one claim's short answer carries a rounded figure this scan would otherwise see.`);
+console.log(`A longhand figure the data layer never recorded is REFUSED as of 2 August 2026, having been reported under a falling baseline since the branch was written. ${unrecorded.length ? `${unrecorded.length} are listed above and this run fails on them` : 'None on this run'}. Still not covered, and this is what the promotion did not change: a figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand" is not scanned at all, and neither is front matter, where one claim's short answer carries a rounded figure this scan would otherwise see.`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);
 console.log('This counts whose claim is corrected. It is not a measure of fairness; the split is disclosed on the claims page.');
 
-// Last, and after the list has printed, so that a run which fails on the ratchet still shows
-// WHICH figures it is complaining about. Pushing this into `errors` would have exited above,
-// before the block that prints them.
-if (unrecorded.length > UNRECORDED_BASELINE) {
-  console.error(`\nUnrecorded longhand figures have grown from ${UNRECORDED_BASELINE} to ${unrecorded.length}. Give the new one a record and cite it, or declare it. If it is genuinely a new frozen figure, raise UNRECORDED_BASELINE deliberately and say why in the commit; the constant exists to make that a decision rather than a drift.`);
-  console.error('This does not establish that the other figures are right, or that the set is the same one. One fixed and one added keeps the count level and passes here.');
+// Last, and after the list has printed, so that a failing run still shows WHICH figures it is
+// complaining about. Pushing this into `errors` would have exited above, before the block that
+// prints them, which is why it stays a separate exit even now that it is fatal.
+if (unrecorded.length) {
+  console.error(`\n${unrecorded.length} figure(s) above are written longhand and the data layer holds none of them. Give each a record and cite it, or declare it under historical_literals with the reason beside it. There is no baseline to raise: this was a ratchet from 38 down to zero and became an error when it got there.`);
+  console.error('This does not establish that the figures a page DOES write are right. It establishes that every one of them has a home.');
   process.exit(1);
 }
-// Prints the COUNT and the baseline as two numbers, because saying "at the baseline of N" was
-// true only while they were equal, and they stopped being equal the first time figures were
-// removed. A count below the baseline is slack: the ratchet would let that many new figures in
-// before it noticed. Saying so is the difference between a ratchet and a number nobody moves.
-console.log(`Unrecorded longhand figures: ${unrecorded.length}, against a baseline of ${UNRECORDED_BASELINE} which may not be exceeded.`);
-if (unrecorded.length < UNRECORDED_BASELINE) {
-  console.log(`Lower UNRECORDED_BASELINE to ${unrecorded.length}. Until it is lowered, ${UNRECORDED_BASELINE - unrecorded.length} new unrecorded figure(s) could be added without failing anything.`);
-} else {
-  console.log('At zero the report becomes an error and the constant goes.');
-}
+console.log('Every figure written longhand, comma-grouped or with a scale word, is either held by a record or a series point or declared as frozen with its reason. This branch was a ratchet at report level from 38 down to zero and is an error now that it is there.');
