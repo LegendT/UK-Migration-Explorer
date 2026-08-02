@@ -88,28 +88,23 @@ first act.
    citation handover and is the one worth arguing for, U3 is five trust items, and U4
    is two **[you]** decisions that block any work on them, one of which the gate above now
    waits on. U5 records what was considered and cut, so it is not proposed again.
-9. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
-   and write the `data/evidence/` entries **[me]**; then land the reverted regrade check, in
-   that order, fetch first, because the other way round forces a fabricated quote. And re-read
-   or drop `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing
-   it unchecked. **[you]**.
-10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
+9. **A SECOND UX ROUND, U6 below, because the first missed the navigation.** The site has no
+   mobile navigation pattern at all: nine flat items in a list, and the only nav rules in the
+   stylesheet are a `min-width: 60em` gap and a print rule that hides it. The first review's only
+   nav bullet is under *U5, considered and cut*, it is about a horizontally scrolling nav, and it
+   says in its own words "by calculation, unrendered" and "measure before deciding". So nobody has
+   opened this site at a phone width and looked at the header. **The round is scoped by that
+   question rather than by the nav**: what else was decided by calculation instead of by
+   rendering. The rendering and measuring are **[me]**; adopting a navigation pattern is
+   **[you]**.
+10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
+    reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
+    Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
+    reverted regrade check, in that order, fetch first, because the other way round forces a
+    fabricated quote. And re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`, whose
+    own notes forbid publishing it unchecked. **[you]**.
+11. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
     scope; the fetching is **[me]**.
-11. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
-    30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
-    per-figure call: a figure that changes when its publisher next publishes gets a record and a
-    fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
-    was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
-    would have stopped a session taking work that was never gated. Several sessions, not one.
-    The citizenship card's three landed as PR #78, the migration page's two ONS peaks and its
-    work comparison year as PR #87, its four applicant and dependant splits as PR #89, and the
-    owner's rewording of the three year-on-year falls as PR #90, and the asylum page with its
-    accommodation claim page as PR #91, the costs page's daily rates as PR #92, its four frozen
-    figures as PR #93, and the last three as PR #94. **THIS ITEM IS CLOSED.** The count reached
-    zero, so the branch that reported it is an error now and `UNRECORDED_BASELINE` is deleted, as
-    it always said it would be. Every figure written longhand on this site is held by a record or
-    a series point, or declared as frozen with its reason beside it. What the check still cannot
-    read is narrower and is recorded under item 4 below.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -162,10 +157,24 @@ The launch gates it found are named at the top of this file. These are the rest.
 Every check verifies a figure NAMES a source. Nothing verifies the source CONTAINS it. Opening five
 publications during the audit found three defects, one of them a headline figure on the home page.
 
-- **Backfill `data/evidence/` for every reader-facing record**, or accept in writing that
-  traceability is unverified for the records predating the evidence contract. Those never get asked,
-  because `check-evidence.mjs` fires on a value that moved or a figure that is new and most have done
-  neither. **[you]** to decide the scope; the fetching is **[me]**.
+- **Backfill `data/evidence/` for EVERY record, not only the reader-facing ones. SCOPE DECIDED
+  2 August 2026 by the owner: a full validation of all data.** The alternative on the table was to
+  accept in writing that traceability is unverified for the records predating the evidence
+  contract; it was not taken. Those records never get asked, because `check-evidence.mjs` fires on
+  a value that moved or a figure that is new and most have done neither.
+
+  **What the pass has to establish per record**, which is more than the evidence file alone: that
+  the named source CONTAINS the figure, which is the gap this whole section exists for, and that
+  the record's own fields are right, its period label, its `date` as the period end, its unit, its
+  grade and its `table_reference`. The far-end trace is the half no check can do.
+
+  **How big it is: what `npm run build` prints.** The split between records that reach a reader and
+  unpublished reserve is derived by `lib/published.mjs` and moves with every record added, so it is
+  deliberately not written here. It is several dozen either way, plus four series files, so this is
+  many sessions and wants a stable order: reader-facing first, because a defect there is one a
+  reader is meeting today.
+
+  **The fetching is [me]** and needs no further decision now that the scope is set.
 - **Fire `check-evidence.mjs` on a `confidence_level` change into the derived set.** Written and
   tested on 31 July; it correctly failed on `asylum-administrative-outcomes` and was reverted. The
   ordering matters and doing it the other way forces a fabricated quote: **fetch Asy_D02, write the
@@ -410,6 +419,10 @@ something was ABSENT from the site after checking a single page, and it was pres
 Nothing here duplicates the backlog. That was checked in both directions, and the UX items already
 tracked stay where they are, under A5, A6 and R1.
 
+**U6 is not part of that review.** It is a second round, added on 2 August 2026 after the first
+was found to have left the site's navigation undecided and unrendered, and it is scoped by that
+gap rather than by the nav. Everything above it, U1 to U5, is the first review's own record.
+
 ### U1. Cheap, uncontested, all [me]. DONE (PR #86, 2 August 2026), except the half that is the gate
 
 Nothing is left of it but the `robots.txt` sentence in the first bullet, which is inside launch
@@ -474,6 +487,41 @@ claim page it belongs inside the card boundary, so that a screenshot carries it.
   September, with eligibility restricted to established fact-checkers before that. If it holds, the
   channel is dead and the no-attribution tension the first draft was built around was never the
   blocker. **Confirm before acting either way.**
+
+### U6. A second round, scoped by what the first one missed
+
+**The trigger is the navigation, and the reason for the round is the question it raises.** The
+site has no mobile navigation pattern. Nine flat items sit in a `<ul>`, and the only nav rules in
+`content/assets/style.css` are a `min-width: 60em` rule widening the gap and a `@media print` rule
+hiding it. Below that width the nav simply wraps.
+
+**The first review did touch this and did not settle it.** Its only nav bullet is in U5 above,
+under *considered and cut*, and it is about a horizontally scrolling nav rather than about whether
+the header works on a phone. Its own words are "nine flat items wrap to about four rows at 320px
+**by calculation, unrendered**; measure before deciding". Nobody measured, and the item was filed
+as cut.
+
+**A candidate pattern was already written down somewhere else and the review did not reach it.**
+`docs/HANDOFF.md` records under *Sibling projects* that `~/Projects/DEBT` groups its nav items
+under `<details>` rather than listing them flat, and says explicitly that the idea is not taken and
+is worth considering. Two documents held half of this each.
+
+**So the round is scoped by the question rather than by the nav**: what else in that review was
+decided by calculation, by reading markup, or by checking one page, rather than by rendering the
+site and looking at it. The review already records six first-draft claims that were wrong, and
+**most of them asserted that something was ABSENT after checking a single page**. That is a known
+failure mode of the method, not a slur on it, and it is the reason a second pass is worth the time.
+
+**How to do it, and this part is not optional**, because the handoff records the trap: Headless
+Chrome's `--window-size` clamps the layout viewport to 500px, so a screenshot at
+`--window-size=390` is a crop of a 500px layout and proves nothing about a phone. Drive Chrome over
+CDP and set `Emulation.setDeviceMetricsOverride`, check `document.documentElement.clientWidth`
+before believing an overflow either way, and start one Chrome instance and attach to it rather than
+spawning one per capture.
+
+**Tagging.** Rendering every page at real phone widths, measuring, and listing what is wrong is
+**[me]**. Choosing a navigation pattern is **[you]**, and the `<details>` grouping is the
+candidate with a working precedent in a sibling project.
 
 ### U5. Considered and cut, with the reasoning, so they are not re-proposed
 

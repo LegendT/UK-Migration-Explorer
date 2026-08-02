@@ -126,6 +126,19 @@ itself and the `Sitemap:` line inside it, and what that file SAYS waits on the A
 decision the backlog carries as U4. The same pull request gave every heading on every page an
 id, which two pages of seventeen had before it.
 
+**That review left the site's navigation undecided, and the backlog carries a second round for
+it.** Its only nav bullet is filed under *considered and cut* and concerns a horizontally
+scrolling nav; in its own words the wrapping was worked out "by calculation, unrendered". The site
+has no mobile navigation pattern, and a candidate one was sitting in this document's own *Sibling
+projects* section the whole time. **The lesson is about the method rather than the nav**: a review
+that reads markup and calculates can miss what opening the page would show, which is the same
+shape as the six absent-claims it already records against itself.
+
+**Backlog item 4 is closed, which changes what a session may assume.** Every figure written
+longhand anywhere on this site is now held by a record or a series point, or declared as frozen
+with its reason beside it, and the branch that used to report the exceptions refuses them. There
+is no baseline constant any more. A new figure typed into a page fails the build.
+
 Three things from it belong in this document because they change how the project should be read.
 
 **The review covered ten pages of sixteen, and that now has a consequence.** Both of the audit's
