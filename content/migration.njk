@@ -84,7 +84,7 @@ only way to see which is to look at the flows separately.</p>
   source: 'ONS, long-term international immigration, emigration and net migration flows, provisional',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional',
   breakAfter: 2020,
-  note: 'Between 2023 and 2024, net migration fell by around 517,000 while immigration fell by around 429,000. The difference is emigration rising by roughly 87,000 over the same period, more people leaving, not only fewer arriving. These are calendar years. The highest twelve-month immigration estimate ONS publishes is ' ~ (immigrationPeak.value | number) ~ ', in the ' ~ immigrationPeak.period_label ~ ', a window a calendar-year series cannot show.'
+  note: 'Between 2023 and 2024, net migration fell from ' ~ (nm.data | at(2023) | number) ~ ' to ' ~ (nm.data | at(2024) | number) ~ ' while immigration fell from ' ~ (fl.data | at(2023) | number) ~ ' to ' ~ (fl.data | at(2024) | number) ~ '. Emigration went the other way, from ' ~ (fl.emigration.data | at(2023) | number) ~ ' to ' ~ (fl.emigration.data | at(2024) | number) ~ ': more people leaving, not only fewer arriving. These are calendar years. The highest twelve-month immigration estimate ONS publishes is ' ~ (immigrationPeak.value | number) ~ ', in the ' ~ immigrationPeak.period_label ~ ', a window a calendar-year series cannot show.'
 } %}
 
 <h2>Why people came</h2>

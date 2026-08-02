@@ -150,12 +150,14 @@ const unrecorded = [];
 // of the year ending December 2025 dataset. 21 once the study and work main-applicant and
 // dependant splits got records from Table 4b of the same release, which took four down in one
 // step and left the migration page with nothing but the three year-on-year falls, whose remedy
-// is a rewording rather than a record.
+// is a rewording rather than a record. 15 once the owner took that rewording: the three falls
+// became six cited ends across two pages, which is the largest single step this ratchet has taken
+// down and the first taken by dropping arithmetic rather than by minting a record for it.
 //
 // This ledger is the only place a step is recorded, so a step taken without adding a line here
 // leaves it ending at a number the constant no longer holds. That happened on the 31-to-28 step
 // and was found by a second model rather than by anything that runs.
-const UNRECORDED_BASELINE = 21;
+const UNRECORDED_BASELINE = 15;
 const claims = [];
 
 for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
