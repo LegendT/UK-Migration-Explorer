@@ -84,8 +84,8 @@ first act.
 11. **The small build work**: A3, A5's claim-list heading item, and R3. **Four parts landed as
     PR #77 and the two that were gated on the A6 confidence convention landed as PR #79**, once
     that decision was taken on 2 August 2026. **One part is left and it is new**: `check-evidence`
-    cannot accept a quote that ends on its value, found by writing one. It is **[me]**, ungated
-    and small, and it is under A3 below.
+    rejects a quote whose value is followed by a full stop or a comma, found by writing one. It is
+    **[me]**, ungated and small, and it is under A3 below.
 12. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
     30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
     per-figure call: a figure that changes when its publisher next publishes gets a record and a
@@ -180,13 +180,17 @@ All **[me]**, all small, each with its reasoning in the audit.
   coincidence. **The count the audit gave is deliberately not repeated here**, for this project's
   own rule about counts: the run prints a different number, the scan is word-bounded where the
   audit's was not, and correcting a count in a second place is how two lists start.
-- **`check-evidence.mjs` cannot accept a quote that ends on its value.** Found 2 August 2026 by
-  writing one. The boundary guard rejects a following digit, comma or full stop, so
-  `"Registration grants: 71,083."` fails while the same quote with a word after it passes. The
+- **`check-evidence.mjs` rejects a quote whose value is followed by a full stop or a comma.**
+  Found 2 August 2026 by writing one. **This bullet's own headline said "cannot accept a quote that
+  ends on its value" until a second model tested the guard rather than reading the message**: a
+  quote ending ON the bare value passes, because the lookahead succeeds at the end of the string.
+  The boundary guard rejects a following digit, comma or full stop, so
+  `"Registration grants: 71,083."` and `"71,083, and the total"` both fail while
+  `"...: 71,083"` and `"71,083 and the total"` both pass. The
   guard is right to exist, it is what stops `1,313` answering for `313`, and the remedy the
   message gives does work, so this fails safe and is small. But a table cell at the end of a
-  sentence is the most natural quote an author writes, and the fix is to reject a following digit
-  or comma, and a full stop only where a digit follows it. **[me]**, with a negative test in both
+  sentence is the most natural quote an author writes, and the fix is to reject a following digit,
+  and a comma or full stop only where digits follow it, or `"71,083, and"` stays broken too. **[me]**, with a negative test in both
   directions.
 - **The `series_ref` comparison beyond `value`. DONE (PR #79, 2 August 2026).** It compares
   `value`, `unit` and `confidence_level` now, and the run names the fields rather than saying the
@@ -334,7 +338,10 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   moves.
 - **Two figures in the citizenship card's prose, 269,178 and 312,063. The [me] fetching half is
   DONE (PR #78, 2 August 2026), and this observation was right.** Neither is on the page the
-  record cites, which states only the percentage changes. Both are in **table Cit_01 of the Home
+  record cites. That page states the 12% decrease behind 269,178, and for 312,063 it states neither
+  the figure nor its change: it carries no applications figure and no "18%" anywhere, which a
+  second model established and this entry got wrong by generalising from the half it had checked.
+  Both are in **table Cit_01 of the Home
   Office citizenship summary tables**: 269,178 is total grants for the year ending March 2025 and
   312,063 is total applications for the year ending March 2026. 269,178 now has a record and the
   card cites it. **312,063 has none deliberately**: no page publishes it, so the rule below gives
@@ -358,7 +365,7 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   two records share a value form; all three now hold a list, the way the series map already did,
   and every message names every candidate. **It was live rather than latent**: the warning on the
   home page card whose own sentence says "Pakistan" named the non-British population share
-  instead, because that theme file is read last. Two warnings now name two records each.
+  instead, because that theme file is read after the asylum one and the map kept whichever came later. Two warnings now name two records each.
   Negative-tested by giving two records one value and writing it out on a page: the error names
   both and offers both citations, where before it offered one and the choice was read order.
 - **The two ONS series files' revision markers. DONE (PR #79, 2 August 2026).** A6 picked
@@ -652,8 +659,14 @@ sentences**, and three of the four groups moved:
   `1,469,000`, `517,000`, `429,000`, `87,000` and `272,000`, **which read as history and are
   not**: "the highest twelve-month estimate ONS publishes" is a claim about the *current*
   publication, and the year-on-year changes are recomputed every release under the site's own
-  single-vintage rule. Minting is **[me]**; which deserve a record rather than a rewording is
-  **[you]**, and `627,000` was taken as the clearest case rather than as a precedent for the rest.
+  single-vintage rule. Minting is **[me]**, and so is deciding which deserve a record, under the
+  rule three paragraphs above. **This sentence read "which deserve a record rather than a rewording
+  is [you], and 627,000 was taken as the clearest case rather than as a precedent for the rest"
+  until 2 August 2026**, which contradicted that rule, and order item 12 was corrected the same day
+  while this was left standing one paragraph from it. A second model found it. What survives as
+  **[you]** is narrower and worth keeping: a figure whose remedy is a REWORDING rather than a
+  record, because the wording is yours. `627,000` set no precedent about which figures qualify; the
+  rule of 30 July does that.
 
   **One pattern worth reusing.** Both records minted on 30 July were verified by reconciling
   against a total the site already published, not by finding the number alone. That is what

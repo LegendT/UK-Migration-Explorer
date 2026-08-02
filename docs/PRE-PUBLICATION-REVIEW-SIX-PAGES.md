@@ -58,7 +58,8 @@ decision, in asylum support, small boat arrivals), one in `grants` (citizenship 
 
 ### 1.2 The paragraph introducing the cards
 
-> 'Each figure below states what it counts and over what period.'
+> 'Each figure below states what it counts and over what period, because without those two
+> things a number on this subject is not information.'
 
 **What a card renders:** `shortLabel`, `value`, `unit`, `period_label`, `source_name` as a link,
 `published_date`, `retrieved_date`, `confidence_level`, and the hand-written `whatThisMeans`.
@@ -89,9 +90,9 @@ rendered.
 > historical standards. The single largest nationality was Pakistan (about 10%).'
 
 - **'about 10%'** is the current value of `asylum/largest-nationality-claiming-asylum-pakistan`,
-  10%, year ending March 2026, written longhand in the sentence that names it. The build's
-  unit-qualified warning for this card reports the same `10%` against
-  `population/non-british-share-of-uk-population` instead, which is backlog item **R3**.
+  10%, year ending March 2026, written longhand in the sentence that names it. The build's unit-qualified warning for this card named the same `10%` against
+  `population/non-british-share-of-uk-population` INSTEAD of the Pakistan record when this pass was
+  written, which was backlog item **R3**; it now names both.
 - **'down 9% on the previous 12 months'**: no record holds the previous 12 months.
 
 ### 1.5 Awaiting a first decision
@@ -186,8 +187,10 @@ rendered.
 
 - **165,429 plus 71,083 is 236,512**, exactly the cited record.
 - 236,512 against 269,178 is a fall of 12.1%.
-- All three literals are in no record and are on the build's unrecorded-figure report. **269,178**
-  is backlog item **R2**, which records that it is not on the page the record cites.
+- All three literals were in no record and on the build's unrecorded-figure report when this pass
+  was written. **All three now have records**, read from table Cit_01 and cited by the card, and
+  **269,178** was backlog item **R2**, which recorded that it is not on the page the record cites.
+  It is not: that page states the 12% decrease and no applications figure at all.
 - **'Applications rose 18%'**: no record holds applications.
 
 ### Checkboxes
@@ -343,7 +346,7 @@ It declares the same two frozen vintages as the glossary.
 | As written | What the build does |
 | --- | --- |
 | 'Every figure is traceable to a named publication with a date' | Every record names a source and a date. **No check verifies that the source contains the figure.** Backlog item **A1**; the handoff records three defects found by opening five publications, one of them a headline figure |
-| 'Where a number appears in a sentence on this site, it is inserted from the record when the page is built' | Backlog item **A4**. The build's unrecorded-figure report currently prints 31 that are not |
+| 'Where a number appears in a sentence on this site, it is inserted from the record when the page is built' | Backlog item **A4**. The build's unrecorded-figure report prints the ones that are not, and the count is what `npm run validate` prints rather than a number restated here |
 | 'a current value written out longhand anywhere in a page will each stop the site being built' | A comma-grouped value a record holds is an error. A value under 100, and a value written with a scale word that a record holds, are **warnings**. A figure the data layer never recorded is **reported and not refused** |
 | 'A claim unreviewed for twelve months is taken down until it has been' | `review_due` fails the build when the date passes, which stops the site publishing rather than removing a page from a published site |
 
@@ -356,8 +359,7 @@ Three are published. Set beside what the build reports:
   10.7 million, which the same branch reports because a citation there would render '10,700,000'.
 - **'A description of a figure is not checked against the figure.'** Matches the build's own
   closing line.
-- **'No real screen reader has been run over these pages.'** Matches, and the backlog carries
-  running one as the last entry in its order.
+- **'No real screen reader has been run over these pages.'** Matches, and the backlog carries running one.
 
 **A fourth candidate is not published and is backlog item A6**: that a figure the data layer never
 recorded is reported and never refused. It is the one that bears on 4.1's second and third rows.
@@ -409,7 +411,7 @@ contract, and backlog item **A1** is the decision about whether to backfill.
 ### 4.7 The rendered caveats, checked as arithmetic
 
 - The **gross flows** caveat's worked reconciliation: **1,012,000 minus 680,000 is 332,000**
-  against a published 331,000. It comes out, and the four figures are declared frozen with the
+  against a published 331,000, a difference of 1,000. The four figures are declared frozen with the
   reason beside them.
 - The **people and cases** caveat: 93,525 people and 76,714 applications, both cited.
 - The **foreign-born vintages** caveat: '10.7 million' longhand beside the cited 16%, the warning
@@ -439,7 +441,7 @@ No figure, no citation, no literal. What it carries is commitments.
 | 'Every figure on this site carries the publication it came from, the period it covers, what it counts, and when it was last verified' | Every record carries `source_name`, `period_label`, `metric_name` and `retrieved_date`. Same far-end limit as 4.1's first row |
 | 'the record of every change to a published figure is public' | `CHANGELOG.md`, which `/sources-and-method/#corrections` also promises |
 | 'Report an error' links to a GitHub issue | Backlog item **A5**: the corrections policy depends on people reporting errors and the only door is an issue tracker. `check-sources` reports that this URL redirects to a GitHub sign-in page, so the door is shut to a reader without an account |
-| 'Most figures are Crown copyright, published under the Open Government Licence v3.0' | Of 75 records, **58 name a government body**, **5 the House of Commons Library**, and **12 the Migration Observatory or Skills for Care**. Whether that sentence is the right licence framing is part of the LICENCE scope decision |
+| 'Most figures are Crown copyright, published under the Open Government Licence v3.0' | At the time of this pass, **58 of 75 records named a government body**, 5 the House of Commons Library and 12 the Migration Observatory or Skills for Care; the split moves whenever a record is added, so take it from the run rather than from here. Whether that sentence is the right licence framing is part of the LICENCE scope decision |
 | 'The data files and the code are public' | The LICENCE scope is backlog item **A5** |
 | 'If that ever changes, this page changes first' | Nothing checks this. It is a promise about a future edit |
 
@@ -459,8 +461,9 @@ which are values, and two of its statements are checkable against the site.
 
 ### 6.1 The precision table
 
-Four rows, none numeric. The third, 'People who claimed asylum after arriving by an irregular
-route', is the wording the glossary's *Irregular arrival* entry uses.
+Four rows, none numeric. The third row's preferred wording, 'People who claimed asylum after arriving by an irregular
+route', appears only here; the glossary's *Irregular arrival* entry uses the term 'irregular
+arrival' rather than that sentence.
 
 ### 6.2 The source-title promise
 
@@ -469,7 +472,7 @@ route', is the wording the glossary's *Irregular arrival* entry uses.
 > detailed dataset" from the year ending December 2025 edition. We cite whichever title the
 > edition we used actually carries.'
 
-**This holds.** `asylum/small-boat-arrivals-calendar-year-2025` carries the current title in
+Set beside the data: `asylum/small-boat-arrivals-calendar-year-2025` carries the current title in
 `source_name` and records the rename in its notes, and the glossary quotes both titles.
 
 ### 6.3 The direction labels
@@ -515,7 +518,7 @@ backs this page over the reviewer's criterion, and this is where the page says i
   instruction is backlog item **R1**, and this pass does not act on it either way.
 - **Accessibility.** pa11y at WCAG 2.2 AA covers all of these pages. No real screen reader has
   been run.
-- **Whether anyone wants the site.** Five conversations, still not had.
+- **Whether anyone wants the site.** Out of scope here and tracked in the backlog.
 
 ---
 

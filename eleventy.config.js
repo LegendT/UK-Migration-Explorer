@@ -127,11 +127,18 @@ export default function (eleventyConfig) {
   // as an invisible blank in a sentence, which is the quiet failure renderFigure and the
   // `at` filter already refuse. The blank survived every check because it is not NaN and
   // leaves no literal behind for the longhand scan to find.
+  //
+  // `typeof value === 'number'` rather than a NaN test on the coercion, because `Number('')`,
+  // `Number(false)` and `Number([])` are all 0: an empty string reached this filter, coerced, and
+  // shipped a plausible "0" into a sentence, which is the same quiet failure one layer down from
+  // the blank this guard was written for. Found by a second model. Numeric strings are refused
+  // deliberately: everything that legitimately reaches here is a record value or a series point,
+  // and both are numbers in the data layer by contract.
   eleventyConfig.addFilter('number', (value) => {
-    if (value === null || value === undefined || Number.isNaN(Number(value))) {
-      throw new Error(`The number filter received ${value}. A summary citing a missing, misspelt or range value must fail the build, not render a blank.`);
+    if (typeof value !== 'number' || Number.isNaN(value)) {
+      throw new Error(`The number filter received ${JSON.stringify(value)}. A summary citing a missing, misspelt, empty or range value must fail the build, not render a blank or a coerced zero.`);
     }
-    return Number(value).toLocaleString('en-GB');
+    return value.toLocaleString('en-GB');
   });
 
   // Front matter dates arrive as Date objects from the YAML parser; data-layer dates arrive
@@ -283,13 +290,27 @@ export default function (eleventyConfig) {
   // Numeric entities are decoded too: the five named ones cover everything markdown-it emits
   // for plain text, but a hand-authored caption can carry &#8217; or &#x2019;, and anything
   // outside the decoded set went back out through escape() double-escaped, the exact fault
-  // this function exists to close. &amp; is decoded last so it cannot manufacture entities.
+  // this function exists to close.
+  //
+  // ORDER: numeric LAST, and it ran first until 2 August 2026 under a comment claiming the
+  // opposite invariant. `&#38;` IS `&`, so decoding numerics first turned a hand-authored
+  // `&#38;lt;` into `&lt;` and the named pass then turned that into `<`, manufacturing markup by
+  // exactly the route "&amp; is decoded last so it cannot manufacture entities" said was closed.
+  // Decoded last, `&#38;lt;` yields the literal text `&lt;`, which is what it means, and escape()
+  // puts it back correctly. Found by a second model reading the comment against the code.
+  //
+  // A code point outside the Unicode range threw a raw RangeError with no clue which caption
+  // carried it, so an unusable entity is now left as written for escape() to handle.
+  const codePoint = (raw, base) => {
+    const n = parseInt(raw, base);
+    return n >= 0 && n <= 0x10ffff ? String.fromCodePoint(n) : null;
+  };
   const decodeEntities = (text) => text
-    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
-    .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
     .replace(/&quot;/g, '"').replace(/&apos;/g, "'")
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&');
+    .replace(/&amp;/g, '&')
+    .replace(/&#x([0-9a-f]+);/gi, (whole, hex) => codePoint(hex, 16) ?? whole)
+    .replace(/&#(\d+);/g, (whole, dec) => codePoint(dec, 10) ?? whole);
   const stripTags = (html) => decodeEntities(html.replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim();
 
   eleventyConfig.addTransform('scrollable-regions', function (content) {
