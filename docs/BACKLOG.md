@@ -81,10 +81,11 @@ first act.
    it unchecked. **[you]**.
 10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
     scope; the fetching is **[me]**.
-11. **The small build work**: A3, A5's claim-list heading item, and R3. **Four of its six parts
-    landed (PR #77, 2 August 2026)**; the two left are both gated on the A6 confidence
-    convention, which is **[you]**, and are marked under A3 and R3 below. Nothing else in this
-    entry is outstanding.
+11. **The small build work**: A3, A5's claim-list heading item, and R3. **Four parts landed as
+    PR #77 and the two that were gated on the A6 confidence convention landed as PR #79**, once
+    that decision was taken on 2 August 2026. **One part is left and it is new**: `check-evidence`
+    cannot accept a quote that ends on its value, found by writing one. It is **[me]**, ungated
+    and small, and it is under A3 below.
 12. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
     30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
     per-figure call: a figure that changes when its publisher next publishes gets a record and a
@@ -187,11 +188,13 @@ All **[me]**, all small, each with its reasoning in the audit.
   sentence is the most natural quote an author writes, and the fix is to reject a following digit
   or comma, and a full stop only where a digit follows it. **[me]**, with a negative test in both
   directions.
-- Extend the `series_ref` comparison beyond `value`. **Ungated since 2 August 2026**, the
-  convention having been decided under A6: regrade the ONS points first, then the comparison can
-  ask for `confidence_level` and stay satisfied. The audit's F0-3 has the reasoning, and it is a
-  live instance of the documented pattern where a check keyed on the one field that happens to
-  agree is permanently satisfied. **[me]**, with the regrade.
+- **The `series_ref` comparison beyond `value`. DONE (PR #79, 2 August 2026).** It compares
+  `value`, `unit` and `confidence_level` now, and the run names the fields rather than saying the
+  two "agree". `lib/series.mjs` had dropped `confidence_level` when projecting a point, so the
+  check could not have asked even if it had wanted to. **The regrade went first, deliberately**:
+  landing the check against the old grades would have turned the branch red and invited whichever
+  regrade made it green, which is the ordering mistake `check-evidence` already taught this
+  project once. Negative-tested on all three fields and in both directions.
 
 ### A4. Reader-facing wording, all of it yours
 
@@ -253,8 +256,16 @@ Each is one call. None blocks anything.
   definition does not carry, and the discontinued IPS block already grades by source character at
   `estimated`; and under this convention the grade stops moving on every release. **Nothing a
   reader sees changes either way**: a point's `confidence_level` renders nowhere, the only render
-  site being the dashboard card, which reads a metric. **Applying it is [me]** and is the two
-  bullets below. 26 points move.
+  site being the dashboard card, which reads a metric. **APPLIED (PR #79, 2 August 2026)**, with
+  the two bullets it gated, and the built site proved byte-identical by diff.
+
+  **It moved 39 points, not the 26 this entry said when the decision was recorded.** The count was
+  typed from a query that summed the two `data` arrays and never asked about
+  `migrationFlowsTimeseries`'s `emigration` companion, which holds 14 more. It is corrected here
+  rather than deleted, because unlike a count about the project's own work this one is a
+  derivable fact about a finished change, and the miss is the more useful half: **a query over a
+  series file that does not ask about its companion block is under-counting by a third**, and
+  `lib/series.mjs` exists precisely so that nothing has to remember the companions.
 - Whether `og:` tags should exist, and whether a claim page's `og:title` leads with the claim or the
   correction. Foundation 8.5.4's rejection of a share image is not reopened by this.
 - Whether `.netlify.app` is the launch domain, given the success measure is citation by a named
@@ -350,13 +361,15 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   instead, because that theme file is read last. Two warnings now name two records each.
   Negative-tested by giving two records one value and writing it out on a page: the error names
   both and offers both citations, where before it offered one and the choice was read order.
-- The two ONS series files encode the publisher's revision markers differently. **Ungated since
-  2 August 2026: A6 picked `ons_marker`**, which is the machine-readable one and which the
-  regrade makes the only home for the vintage. **It is in three places, not the two this bullet
-  said**: `ons_marker` on netMigration's last two points, a per-point prose note "Flagged R
-  (revised) by ONS." on every migrationFlows point, and a file-level sentence in migrationFlows'
-  note saying which years are marked. The prose goes; none of it renders. **[me]**, with the
-  regrade.
+- **The two ONS series files' revision markers. DONE (PR #79, 2 August 2026).** A6 picked
+  `ons_marker`, the machine-readable one, and the regrade made it the only home for the vintage.
+  **It was in three places, not the two this bullet said**: `ons_marker` on netMigration's marked
+  points, a per-point prose note "Flagged R (revised) by ONS." on the marked migrationFlows points
+  in both its arrays, and a file-level sentence in that file's note naming which years are marked.
+  The four prose notes became `ons_marker`, in the same position netMigration already put it, and
+  the file sentence is deleted. The remaining revision prose in netMigration's note is **kept**: it
+  says the November 2025 method change revised the whole pre-2024 series, which is context rather
+  than a restatement of a marker.
 
 ---
 

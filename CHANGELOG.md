@@ -9,6 +9,27 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The ONS confidence convention is settled, and the series_ref guard stops trusting one field, 2 August 2026
+
+**No published figure value changed, and the built site is byte-identical, proved by diff.**
+
+The metrics graded every ONS long-term migration figure `provisional`; the two ONS series graded
+per vintage, `official` up to 2024 and `provisional` for 2025. Two internally consistent
+conventions that nothing reconciled. **The grade now follows the source rather than the vintage**,
+so all 39 ONS series points are `provisional`, matching the eight metrics and this site's own
+definition of `provisional`, which names ONS net migration as its example. The publisher's
+per-vintage marker lives in `ons_marker` alone: the four prose notes carrying it in
+`migrationFlowsTimeseries.json` became that field, and the file-level sentence repeating it is
+deleted. **Nothing a reader sees was ever affected**: a series point's grade renders nowhere.
+
+**The `series_ref` guard compared `value` and nothing else**, which made it a live instance of the
+pattern this project keeps finding, a check keyed on the one field that happens to agree.
+`migration/net-migration-2` and the point it names held the same value and two different grades,
+invisible to the mechanism built to stop a figure held twice drifting. It compares `value`, `unit`
+and `confidence_level` now, and the run names the fields instead of saying the two "agree".
+`lib/series.mjs` had been dropping `confidence_level` when projecting a point, so the check could
+not have asked.
+
 ### The citizenship card's three figures get records, 2 August 2026
 
 **No published figure value changed. Three figures the site published without a record now have

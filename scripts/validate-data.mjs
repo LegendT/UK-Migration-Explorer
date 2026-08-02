@@ -322,13 +322,31 @@ for (const file of TIMESERIES_FILES) {
 // the one figure whose whole purpose is being a revision unguarded.
 const points = seriesPoints();
 
+// The guard compared `value` and nothing else until 2 August 2026, which made it a live instance
+// of the pattern this project keeps finding: a check keyed on the one field that happens to agree
+// is permanently satisfied. `migration/net-migration-2` and `netMigration@2024` held the same
+// value and two different confidence levels, and the mechanism built to stop a figure held twice
+// drifting could not see it. Every field the two sides both carry is compared now.
+//
+// The grades agree because the convention was settled first, A6 in docs/BACKLOG.md: the grade
+// follows the source, so every ONS point is `provisional` as every ONS metric already was, and
+// the publisher's per-vintage marker lives in `ons_marker` alone. Landing this check without that
+// decision would have turned the branch red and invited whichever regrade made it green.
+const SERIES_REF_FIELDS = [
+  ['value', 'The same measure for the same period would publish two different values, the card from the metric and the chart from the series.'],
+  ['unit', 'The same measure would be published in two units, so a reader comparing the card with the chart is comparing different quantities.'],
+  ['confidence_level', 'The same measure would carry two grades, and the card prints its grade to a reader while the point does not, so the weaker of the two would be the invisible one.'],
+];
 for (const [ref, metric] of registry) {
   if (!metric.series_ref) continue;
   const point = points.get(metric.series_ref);
   if (!point) {
     errors.push(`${ref}: series_ref "${metric.series_ref}" names no point in any series`);
-  } else if (point.value !== metric.value) {
-    errors.push(`${ref}: value ${metric.value} does not match series point ${metric.series_ref}, which is ${point.value}. The same measure for the same period would publish two different values, the card from the metric and the chart from the series.`);
+    continue;
+  }
+  for (const [field, why] of SERIES_REF_FIELDS) {
+    if (point[field] === metric[field]) continue;
+    errors.push(`${ref}: ${field} ${metric[field]} does not match series point ${metric.series_ref}, which is ${point[field]}. ${why}`);
   }
 }
 
@@ -474,7 +492,7 @@ if (warnings.length) {
 
 // Figures held twice. Reported on the same reasoning as staleness below.
 const declaredTwice = [...registry.values()].filter((m) => m.series_ref).length;
-console.log(`\nFigures held twice: ${declaredTwice} metric(s) declare a series_ref, and each agrees with the point it names.`);
+console.log(`\nFigures held twice: ${declaredTwice} metric(s) declare a series_ref, and each agrees with the point it names on ${SERIES_REF_FIELDS.map(([f]) => f).join(', ')}.`);
 console.log('Not established: that every duplicate is declared. The overlap scan matches on equal');
 console.log('values, so a pair that drifted apart before anyone declared it is invisible to both.');
 if (undeclared.length) {
