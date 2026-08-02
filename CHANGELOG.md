@@ -9,6 +9,28 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Both glossary launch gates close, 2 August 2026
+
+**No figure value changed. Two glossary entries are rebuilt, and both were launch blockers.**
+
+**Grant rate.** The entry applied a cohort uplift its own record says not to add, called the later
+figure "final outcome" where the Home Office says "latest outcome", attributed the gap to appeals
+where the publisher says "following appeals and reconsiderations", omitted administrative outcomes
+from the exclusions, and quoted "17 to 29 percentage points" with no window, which made it a fifth
+site of a sentence given the publisher's 2007 to 2020 window at four others in PR #72. It now
+states the basis and both exclusions, says a later rate exists and is a different measure counting
+a different group over a different period, and links to the refused-asylum check rather than
+restating its argument. The cohort range is quoted at four sites now, each with the window.
+
+**Net fiscal impact.** The entry still said the estimate falls within "roughly plus or minus 1% of
+GDP, a range that spans zero", the framing correction 1b retired on 27 July as statistically
+invalid: the bound is the magnitude of separate studies, not an uncertainty interval around one
+estimate. Both claim pages it links to carry a dated correction note saying they no longer do this,
+so the glossary had been contradicting them for six days. It now carries their framing.
+
+`last_reviewed` on the glossary is deliberately unchanged. It records what a review read, not when
+a page was corrected, which is the precedent PR #54 set.
+
 ### The citizenship card stops publishing a percentage nobody can check, 2 August 2026
 
 **No published figure value changed. Two more figures get records and one derived percentage is

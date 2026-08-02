@@ -43,11 +43,13 @@ owner's, and a session brings those to him batched rather than starting them. If
 first act is to bring the gates rather than to take the first **[me]** item, that is the right
 first act.
 
-1. **GATE. The glossary's Grant rate entry**, rebuilt on the corrected record. **[you]**,
-   wording. Detail under *The launch gates, in detail* below.
-2. **GATE. The glossary's Net fiscal impact entry**, two paragraphs still making the
-   "range spans zero" argument correction 1b retired. **[you]**, wording. Detail below.
-3. **The six pages the pre-publication review never opened**, put through
+1. **Both glossary gates are closed (PR #83, 2 August 2026).** The Grant rate entry no longer
+   quotes the cohort range at all, which removed the fifth site of a sentence corrected at four
+   others, and the Net fiscal impact entry carries the framing its two linked claim pages have
+   carried since correction 1b. The numbers 1 and 2 are collapsed into this one entry rather than
+   left as empty rows; *The launch gates, in detail* keeps their numbering so nothing renumbers
+   silently.
+2. **The six pages the pre-publication review never opened**, put through
    `docs/PRE-PUBLICATION-REVIEW.md`. Recommended before signing the review as passed, because
    both glossary gates sit on one of the six and two independent passes reached it separately.
    **The [me] half is done (PR #76, 2 August 2026)**: the evidence is in
@@ -55,45 +57,47 @@ first act.
    figure on those six pages beside what the data layer holds, and leaves the checkboxes
    unticked. It carries no findings and no severities, deliberately. **The verdicts are [you]**,
    and are all that is left of this item.
-4. **The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
+3. **The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
    below, plus the two sources-page wording bullets at the end of item 6. All **[you]** calls;
    applying what is decided is **[me]**. None gates launch, and every one is cheaper before
    the site has readers.
-5. **The decisions that change what launch publishes**: whether `.netlify.app` is the launch
+4. **The decisions that change what launch publishes**: whether `.netlify.app` is the launch
    domain, the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
    route that is not a GitHub account, whether a fourth limit is published and which, whether
    the success measure goes on `/about/`, and the rest of A6. All **[you]**; the applying is
    **[me]**. The domain comes first among them, because it changes the URL anyone cites.
-6. **Talk to five target users.** A week, in parallel with everything above, and the one
+5. **Talk to five target users.** A week, in parallel with everything above, and the one
    acceptance criterion foundation section 18 says can save the whole build. The two
    comprehension criteria are tested by this and by nothing else. **[you]**.
-7. **GATE. Record the review as passed in `CHANGELOG.md`**, after items 1 to 3. Worth knowing
+6. **GATE. Record the review as passed in `CHANGELOG.md`**, after the six-page checkboxes above,
+   the glossary gates behind them now being closed. **Its scope was decided on 2 August 2026: all
+   sixteen pages, not the ten the review read.** Worth knowing
    before signing: the review's own selection criteria failed 2.6 and 2.7, and both were kept
    on the site's published no-attribution policy, so signing backs that policy over the
    reviewer's criterion. **[you]**.
-8. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
+7. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
    `scripts/check-build.mjs`. Then set up Search Console, which costs nothing, needs no
    JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's word.
-9. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
+8. **A1, traceability at the far end**: decide the backfill scope **[you]**; fetch the sources
    and write the `data/evidence/` entries **[me]**; then land the reverted regrade check, in
    that order, fetch first, because the other way round forces a fabricated quote. And re-read
    or drop `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing
    it unchecked. **[you]**.
-10. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
+9. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
     scope; the fetching is **[me]**.
-11. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
+10. **Item 4 below, the figures the data layer never recorded.** The rule for these was set on
     30 July and item 4 states it, so this is **[me]** under that rule rather than gated on a
     per-figure call: a figure that changes when its publisher next publishes gets a record and a
     fetched quote, and only the genuinely ambiguous ones come back. **This line said the scoping
     was [you] until 2 August 2026**, which contradicted the rule four paragraphs below it and
     would have stopped a session taking work that was never gated. Several sessions, not one.
     The citizenship card's three landed as PR #78.
-12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
+11. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
-13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
+12. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
     come to the owner before merge. Only the pro-migration draft moves the direction split off
     its floor.
-14. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
+13. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
     that is gated on it **[me]**. It is also the published limit most worth closing.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
@@ -105,24 +109,23 @@ and a fresh session following the instruction would have taken the wrong item.
 **All of them are mine.** The count that stood at the head of this sentence is deleted rather
 than decremented, which is this project's rule for a count about its own work:
 
-1. **`content/glossary.md`, the Grant rate entry.** It applies a cohort uplift its own record says
-   `do not add`, calls the later figure "final outcome" where the Home Office says "latest outcome",
-   attributes it to appeals when the publisher says "following appeals and reconsiderations", and
-   omits administrative outcomes from the exclusions. The Home Office's own wording is quoted in the
-   audit, fetched 31 July. **[you]**, wording. **Its prerequisite landed on 31 July 2026, PR #72**:
-   the record this entry is meant to be rebuilt on no longer attributes a phrase to the Home Office
-   that the Home Office does not use, so the two now disagree only where the glossary is wrong.
-2. **`content/glossary.md`, the Net fiscal impact entry.** It still says "a range that spans zero",
-   which correction 1b retired from the two claim pages that link to it, both of which carry a notice
-   saying they no longer do this. Two paragraphs, not four words. **[you]**, wording.
+1. **`content/glossary.md`, the Grant rate entry. DONE (PR #83, 2 August 2026)**, and under
+   *Completed*, where the wording decision behind it is recorded. The number is kept so that gate 2
+   is not silently renumbered.
+2. **`content/glossary.md`, the Net fiscal impact entry. DONE (PR #83, 2 August 2026)**, and under
+   *Completed* with gate 1. The number is kept for the same reason.
 3. **`fiscal/home-office-spending-on-asylum-hotel-accommodation` cited the wrong source.
    DONE (PR #73, 1 August 2026),** and under *Completed*, where what it found is recorded. The
    number is kept so that the two gates above are not silently renumbered.
 
 **And one that is not a gate but changes what the review's sign-off means.** Both glossary blockers
-sit on a page `verification.txt` never opened. The review read ten of sixteen. Recording it as passed
-is a judgement about the other six as much as about the ten, and the audit recommends putting those
-six through `docs/PRE-PUBLICATION-REVIEW.md` before signing.
+sat on a page `verification.txt` never opened. The review read ten of sixteen. **The scope of the
+signature was decided on 2 August 2026: it covers all sixteen, and is given after the checkboxes in
+`docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` are worked.** The reasoning is that the promise on
+`/sources-and-method/` does not distinguish ten pages from sixteen, so a signature scoped to ten
+would leave a scope silence about this site's own review, which is the thing it criticises in
+others. Both glossary gates were on one of the six, so resolving them was most of that work; what is
+left of it is the reading.
 
 ---
 
@@ -1071,6 +1074,30 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **Both glossary launch gates**, 2 August 2026. PR #83. The wording was the owner's and is
+  recorded here because a decision that lives only in a conversation is a decision that gets lost.
+
+  **The Grant rate entry stops quoting the cohort range at all.** It had five factual defects
+  against its own record and a sixth of construction: it applied an uplift the record says do not
+  add, said "final outcome" where the Home Office says "latest outcome", said "after appeals" where
+  the publisher says "following appeals and reconsiderations", omitted administrative outcomes from
+  the exclusions, and quoted "17 to 29 percentage points" with no window, making it a **fifth site**
+  of a sentence PR #72 had given the publisher's 2007 to 2020 window at four others. The entry now
+  says a later rate exists, is materially higher, counts a different group over a different period
+  so the two cannot be added, and links to the claim check that argues it. **Not quoting the range
+  is what closed the window defect and the fifth site together**, which is why that option was
+  taken over correcting the sentence in place.
+
+  **The Net fiscal impact entry drops "a range that spans zero"** and carries the framing its two
+  linked claim pages have carried since correction 1b: separate pre-Brexit static studies, small in
+  magnitude, positive in some and negative in others, not one estimate with a margin of error, and
+  none covering the post-Brexit system. Three pages saying the same thing three ways is what this
+  gate existed to end.
+
+  **`last_reviewed` is deliberately not bumped on the glossary.** It records what a review read,
+  not when a page was corrected, which is the precedent PR #54 set; the landing date is here and in
+  `CHANGELOG.md`. Whether it moves is the last checkbox of the six-page pass.
 
 - **The small build work: A3, A5's claim-list heading item and R3**, complete 2 August 2026,
   PRs #77, #79 and #82. Six parts. The three metric value maps stopped being last-write-wins and
