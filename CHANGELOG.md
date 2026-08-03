@@ -27,11 +27,26 @@ Migration Observatory gives the 16% foreign-born and 10% foreign-citizen shares.
 mid-2024 UK population of 69,281,400. The ICIBI gives both accommodation unit costs at paragraph
 5.14, in the Home Office's own words.
 
-**Six figures could not be evidenced, and none of them is wrong.** Five are cases where the record
-holds a figure its cited source does not state: three where the source rounds, and two where the
-source states millions and the record states billions. The sixth is read off an OBR chart whose
-data file sits behind a download gate. Each is now in the backlog under R2 as a decision, with the
-primary table that does state the figure named where one exists.
+**Five figures could not be evidenced, and none of them is wrong.** Each is a record holding a
+figure its cited source does not state: three where the source rounds, and two where the source
+states millions and the record states billions. Each is now in the backlog under R2 as a decision,
+with the primary table that does state the figure named beside it.
+
+**The twelfth is the OBR figure, and tracing it answered a question the record had been carrying
+open.** Its notes said the £341,000 is read off Chart 4.13 and that OBR states no single value and
+names no age. Both remain true of OBR; what nothing recorded is that THIS SITE picks an age. The
+chart's published data gives the average-wage migrant 340.577 at age 80 on an axis labelled
+"Cumulative fiscal impact (£ thousand)", which is the figure exactly. The age is load-bearing: the
+same series peaks at £533,832 at age 66, is £297,297 at age 82, the life expectancy OBR's own text
+gives an average person in 2028, and is -£308,275 at age 100 where the chart ends. So a figure the
+site labels a LIFETIME contribution is negative on the chart's own last point. The record now names
+the age and the three alternatives; which one to publish is in the backlog under R2.
+
+**OBR's own download for that chapter is broken, and that is worth writing down.** The link for
+`charts and tables: Chapter 4` returns "You do not have permission to access this download" to a
+script and to a real browser alike, while chapters 2 and 3 and the whole-report packs all return
+their spreadsheets. The zip of all chapters downloads and contains it, and that is what the
+evidence entry cites.
 
 **Four record corrections came out of the trace**, all against a cited source. The asylum
 accommodation contracts note said "the three contracts": HC 874 states seven regional contracts

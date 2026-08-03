@@ -193,14 +193,13 @@ publications during the audit found three defects, one of them a headline figure
   batched that way rather than by theme: **`ho-immigration-stats` 16, DONE (PR #99, 3 August
   2026)**; then `ons-ltim` 9, with the two ONS series files that move with them; **then the tail of
   17 across `commons-library`, `hmcts-tribunals`, `nao`, `migration-observatory`, `icibi`, `obr`
-  and `ons-population`, ELEVEN OF WHICH ARE DONE (PR #103, 3 August 2026)**: all three HMCTS, all
-  three NAO, two of three Migration Observatory, both ICIBI and the ONS population estimate. **The
-  six that are left are not fetching work and are not [me]**: five are records whose cited source
-  does not state the figure they hold, three because it rounds and two because it states millions
-  where the record states billions, and the sixth is read off an OBR chart whose data file is behind
-  a download gate. All six are under R2 with the primary table that does state each figure, and
-  nothing more can be evidenced there until those calls are made. Then the 27 reserve records last,
-  because no reader meets them today.
+  and `ons-population`, TWELVE OF WHICH ARE DONE (PR #103, 3 August 2026)**: all three HMCTS, all
+  three NAO, two of three Migration Observatory, both ICIBI, the ONS population estimate and the OBR
+  chart reading. **The five that are left are not fetching work and are not [me]**: each is a record
+  whose cited source does not state the figure it holds, three because the source rounds and two
+  because it states millions where the record states billions. All five are under R2 with the
+  primary table that does state each figure, and nothing more can be evidenced there until those
+  calls are made. Then the 27 reserve records last, because no reader meets them today.
 
   **Batch 1 also re-verified the ten entries already on file for that release**, which were
   written by earlier sessions and had never been checked against a primary table by anyone since:
@@ -552,17 +551,40 @@ have made "three" wrong.
   tolerance anywhere. It changes what a reader sees on `/costs/`, so it is **[you]**. **[me]** to
   apply either way.
 
-- **The OBR lifetime contribution cannot be evidenced from a scripted fetch at all.**
-  `fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant` holds 341,000 and is graded
-  `estimated`, so the contract wants a quote per component; its own notes say the figure is read
-  off Chart 4.13 and that "OBR states no single value and singles out no endpoint age". The chart's
-  underlying spreadsheet exists, `September 2024 Fiscal risks and sustainability charts and tables:
-  Chapter 4`, and sits behind a download manager that returns "You do not have permission to access
-  this download" to every request a script can make; the browser route was unavailable this session.
-  **Two ways out and both are yours**: fetch that one file by hand, after which the component is a
-  cell and the entry is mechanical, or accept that this figure is a chart reading and say so as a
-  published limit rather than an evidence entry. Note that deciding the endpoint age is part of the
-  first option, because the chart runs to 100 and the record names no age.
+- **THE OBR FIGURE IS AGE 80, AND NOTHING SAID SO UNTIL 3 AUGUST 2026.**
+  `fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant` holds 341,000, is graded
+  `estimated`, and its notes say the figure is read off Chart 4.13 and that "OBR states no single
+  value and singles out no endpoint age". Both halves of that are still true of OBR. What was
+  missing is that THIS SITE picks an age, and the chart data now says which: the "Average-wage
+  migrant worker" series is 340.577 at age 80 on an axis labelled "Cumulative fiscal impact
+  (£ thousand)", which is the £341,000 published here. **The record is evidenced (PR #103)** and
+  its notes now name the age.
+
+  **The [me] half is done and the question that is left is yours, because the age decides the sign
+  as well as the size.** The same series reads:
+
+  | Age | Average-wage migrant | Why that age |
+  | --- | --- | --- |
+  | 66 | £533,832 | the peak of the curve |
+  | 80 | £341,000 | what this site publishes, chosen by nobody on record |
+  | 82 | £297,297 | the life expectancy OBR's own text gives an average person in 2028 |
+  | 100 | -£308,275 | where OBR's chart ends |
+
+  The record's `metric_name` calls it a LIFETIME contribution, and on the chart's own last point a
+  lifetime is negative. **The recommendation is age 82**, because it is the only one of the four
+  OBR itself states a reason for, and it moves the published figure by about £44,000 rather than
+  reversing it. Publishing the range instead is the honest alternative and costs the site its
+  single headline number. **[you]**; **[me]** to apply, and the entry regenerates from the same
+  cell either way.
+
+  **How it was fetched, because the route matters if this is ever redone**: OBR's own download link
+  for `charts and tables: Chapter 4` returns "You do not have permission to access this download",
+  to a script and to a real browser alike, while chapters 2 and 3 and the whole-report packs all
+  return their spreadsheets. It is that one file's download entry that is broken, not bot-blocking.
+  The zip of all chapters, `September-2024-Fiscal-risks-and-sustainability-charts-and-tables.zip`,
+  downloads and contains it, and that is the URL the evidence entry cites. The units are on neither
+  the sheet nor the page text: they are the axis label of the chart image at
+  `https://obr.uk/docs/Chart-4.13_corrected.png`, which is where "£ thousand" comes from.
 
 ### R3. Small build work, none urgent, all [me]
 
