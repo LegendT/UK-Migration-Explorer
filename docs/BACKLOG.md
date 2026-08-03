@@ -328,9 +328,10 @@ publications during the audit found three defects, one of them a headline figure
   - **The MAC record's notes were sourced to a document carrying none of them.** They assert
     £52,500, "2,900 to 5,100 a year" and "£520m to £710m"; none is in the covering letter the record
     cited, and **none is in the annual report either**, both fetched and searched with controls. All
-    four are Table 2.5 of the salary requirements review, option 5, stated exactly as the notes have
-    them. Re-sourced to the review, which states the £41,700 too, so one document now carries the
-    whole record. Grade unchanged.
+    four are option 5 of Table 2.5 of the salary requirements review, to the digit, though not to the
+    character: it prints them without thousands separators and in millions, and the fiscal pair is in
+    the review's summary prose as well. Re-sourced to the review, which states the £41,700 too, so
+    one document now carries the whole record. Grade unchanged.
   - **`fiscal/non-british-nationals-as-a-share-of-the-adult-social-care-wo` was `provisional` for a
     figure no publisher states.** Skills for Care prints no non-British share, established by a
     search built to refute that rather than confirm it. The 31% is 100 minus the 69% British it gives
@@ -338,11 +339,17 @@ publications during the audit found three defects, one of them a headline figure
     same base reconcile to the same 31%, which is what establishes the base rather than the number
     alone. Regraded `calculated`, crossing the derived boundary and correctly firing
     `check-evidence` in the direction PR #99 added.
-  - **The NHS record needed no re-source and its neighbours were on a different base.** The briefing
-    states "around 21%" and the 325,000 of 1.5 million verbatim. Its notes put the doctors (36%) and
-    nurses (30%) shares beside the 21%, and the briefing states those against **19%**, its all-staff
-    base. The note now says which figure sits on which base, which is what the record's own warning
-    about the denominator was gesturing at.
+  - **The NHS record needed no re-source, and this batch got its note wrong before a second model
+    caught it.** The briefing states "around 21%" and the 325,000 of 1.5 million verbatim, so the
+    figure was never in doubt. **This batch first rewrote the note to say the doctors (36%) and
+    nurses (30%) shares are stated against 19% rather than against the 21%, and that is false**: the
+    full briefing says "Overall, 21.3% of staff report a nationality other than British. For doctors
+    this figure is 36.3%, and for nurses it is 30.0%", one sentence, one base. **The search that
+    missed it looked for "36%" and "30%" in a document that prints "36.3%" and "30.0%"**, which is
+    this project's own rule about proving a search with a control, failed at the point of choosing
+    the string. The 19% is real but is a DIFFERENT DATASET, the supplementary information files, and
+    re-including the 1.3% unknown moves 21.3% to about 21.0% rather than to 19%. The note now says
+    that, and the original note it replaced was right.
 
   **ONE NEW [you] CALL, and it is the same fork as `migrant-share-of-uk-employees` above.** The
   Skills for Care record is named for *the adult social care workforce (England)* and its 31% is the

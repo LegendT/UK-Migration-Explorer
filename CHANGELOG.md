@@ -33,6 +33,35 @@ two drawings apart. The four rules charts are held to are all intact: the axis
 still starts at zero, every chart still carries its figures as a real table, no series is told
 apart by colour alone, and the gridlines still fall on intervals a reader counts in.
 
+### The last three reserve figures are traced, and one was graded wrongly, 3 August 2026
+
+**The three remaining unevidenced records now carry evidence, and all three cited a page that is
+not where their figure lives.** None reaches a reader, and no published figure moves. PR #116.
+
+**One grade changes.** The non-British share of the adult social care workforce was recorded as
+official-but-provisional, and Skills for Care publishes no non-British share at all. It publishes
+the British share, 69% of the local authority and independent sector workforce in 2024/25, so the
+31% held here is this site's own subtraction, and the two components the same report prints for the
+same group, 25% from outside the EU and 6% from inside it, come to the same 31%. The record is now
+marked as calculated by this site, with both the subtraction and the source sentence written down.
+**The figure is on a narrower group than the record's own name suggests**: counting the whole
+workforce, including staff paid through direct payments, the report gives 71% British, so 29%.
+Whether the name or the figure moves is not decided here.
+
+**One record's notes were sourced to a document containing none of them.** The Migration Advisory
+Committee record quotes the committee's costings of a higher salary threshold. Those figures are in
+its review of salary requirements; the covering letter the record cited announces that review and
+carries none of them, and neither does the annual report. The record now cites the review, which
+states the £41,700 threshold as well.
+
+**And one note was corrected twice, the second time because the first correction was wrong.** The
+NHS record's note gives the shares for doctors and nurses beside the overall 21%. This work first
+changed it to say those two shares are stated against a different figure, 19%, and that is not what
+the briefing says: its full report gives 21.3% overall with doctors at 36.3% and nurses at 30.0% in
+the same sentence, on the same basis. The 19% is a real figure from a different dataset. The
+original note was right, and the note now records why the alternative reading is wrong so that
+nobody re-derives it.
+
 ### Three reserve figures are not in the source they cite, 3 August 2026
 
 **Tracing the Migration Observatory reserve records found five that check out and three that do

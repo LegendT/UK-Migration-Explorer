@@ -227,7 +227,7 @@
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-7783/",
       "published_date": "2025-11-26",
       "retrieved_date": "2026-08-03",
-      "notes": "About 325,000 of about 1.5 million staff reported a non-British nationality. England only; the exact share depends on whether 'unknown' nationalities are included in the denominator, and the briefing prints both: 21% of staff with a known nationality, and 19% of all staff. Its doctors (36%) and nurses (30%) figures are stated against the 19%, not against the 21% held here.",
+      "notes": "About 325,000 of about 1.5 million staff reported a non-British nationality. England only, and the base excludes the 1.3% of staff whose nationality is unknown. The full briefing gives 21.3% and states doctors at 36.3% and nurses at 30.0% ON THAT SAME BASE, in one sentence. Its landing page separately prints the rounded 36% and 30% against a 19% for staff overall, and that sentence cites a different dataset, the supplementary information files rather than the staff-in-post tables. Re-including the unknowns does not explain the gap: it moves 21.3% to about 21.0%, nowhere near 19%.",
       "confidence_level": "official"
     },
     {
@@ -291,7 +291,7 @@
       "source_url": "https://www.gov.uk/government/publications/review-of-salary-requirements/review-of-salary-requirements-accessible",
       "published_date": "2025-12-18",
       "retrieved_date": "2026-08-03",
-      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m, illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners. Those option figures are Table 2.5 of the review, option 5, which is where they are printed: the covering letter this record cited until 3 August 2026 announces the review and states £41,700, but carries none of them.",
+      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m, illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners. Those option figures are option 5 of Table 2.5 of the review, which prints them without thousands separators and in millions; the fiscal pair is also in the review's summary prose. The covering letter this record cited until 3 August 2026 announces the review and states £41,700, but carries none of them, and neither does the annual report.",
       "confidence_level": "official"
     }
   ]
