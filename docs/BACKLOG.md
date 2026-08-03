@@ -108,9 +108,15 @@ first act.
    text below the stylesheet's own 11px floor. Wide screens are byte-identical, and a second
   model is why that is now true: the first version anchored the first and last year labels to the
   plot edge on BOTH geometries, which only narrow needed, and on `/asylum/` it closed the gap
-  between "2010" and "2012" to 4px so they read as one token. **U6 IS COMPLETE**,
-   and the item stays here only until the entries below are moved to *Completed*. **[me]** was the
-   building; the pattern and the remedy were both **[you]** and both are taken.
+  between "2010" and "2012" to 4px so they read as one token. **U6 IS NOT COMPLETE, AND THIS ENTRY
+   SAID IT WAS UNTIL 3 AUGUST 2026.** Its seven-table finding carries no resolution and was never
+   addressed; it was re-measured on the day this was corrected and reproduces unchanged, seven
+   tables at 320px and two still at 390. **The remedy is [you]**, because scoping the one stylesheet
+   floor involved is a partial rather than a fix: the worst of them, the Sources table, is 485px in
+   a 280px box, and `style.css:232`'s 224px floor accounts for 99px of the 205px overflow, so
+   scoping it the way PR #113 scoped the chart floor leaves the table still scrolling. Everything
+   that would close it changes what a reader sees. **[me]** was the building and the measuring, and
+   both are done.
 10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
     reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
@@ -1028,7 +1034,9 @@ reveal idiom was already in this stylesheet's print block. **That deletion is ta
 it is a replacement rather than a deletion: the 40em block is where the wide-screen row is now
 restored, so the rule that did nothing at any width became the live one. **The nav findings below
 are addressed there and are marked where they are**; the chart and table findings are untouched by
-it, and the chart remedy is what is left of U6.
+it. **This sentence closed by naming the chart remedy as "what is left of U6", and that dropped the
+table finding**, which is the sentence PR #113 was then measured against, so nothing noticed. Two
+findings were left, not one, and the tables are the one still open.
 
 **How it was measured, so the numbers can be re-derived.** Puppeteer's `setViewport` is
 `Emulation.setDeviceMetricsOverride`, so the trap the section above names does not apply, and
@@ -1114,6 +1122,34 @@ is decided, and committing it would make a transitive dependency a direct one.
 - **Seven tables overflow at 320px.** Worst is the Sources table on `/sources-and-method/` at 42%
   hidden, where the second column is sliced mid-word on every row. Then `/costs/` at 28% and 17%,
   `/style-guide/` 13%, `/migration/` 10% and 6%, `/asylum/` 7%. Two still overflow at 390.
+
+  **STILL OPEN, AND RE-MEASURED 3 AUGUST 2026 rather than carried forward.** Every figure above
+  reproduces exactly: the same seven tables, the same percentages, and `/costs/` at 10% and
+  `/sources-and-method/` at 28% are the two that survive to 390. **It is the only U6 finding that
+  was never addressed**, and it survived because the paragraph introducing this list called the
+  chart remedy "what is left of U6" while the charts were being fixed.
+
+  **There is a mechanical half, and on its own it is not enough.** `style.css:232` sets
+  `.sources th[scope="row"] { min-width: 14rem; }`, an unconditional 224px floor on the first
+  column inside a 280px content box, which is the same shape as the `min-width: 32rem` chart floor
+  PR #113 scoped to the wide rendering rather than deleted. Scoping this one the same way is the
+  candidate. Measured at 320px with the floor overridden in the page: the table goes 485px to
+  386px and the first column 224px to 125px, **still 106px wider than the box**, so 42% hidden
+  becomes 27% hidden and the table still scrolls.
+
+  **What it does NOT cost is worth recording, because the reason to reject it turned out to be
+  false.** This entry first said the narrower column pushed the row taller. It does not: the first
+  data row is 366px tall before and after, so the wrapping the floor prevents is wrapping the row
+  already has room for. The honest objection to scoping it is only that it half-fixes one of seven
+  tables.
+
+  **So the remedy is [you]**, and the options are not exclusive: take the floor scoping as a
+  partial, and beyond it drop or merge a column at narrow widths, restack each row as a definition
+  list below 40em the way the nav now restacks, or shorten what the second column says. Every one
+  of those changes what the page shows a reader, which is what makes them yours rather than mine.
+  **Look at it at 320px before deciding**, because the percentage understates it: 56px of the
+  138px "What it covers" column is visible, so it renders as a vertical ribbon of word fragments
+  rather than as a table that happens to scroll. **[you]**.
 - **The scroll affordance exists and understates what it is hiding.** The gradient and shadow pair
   at `style.css:167` is present and visible at 320px, and it says "there is more that way". Nothing
   says that nearly half the chart is that way, or that the years the sentence names are in it.

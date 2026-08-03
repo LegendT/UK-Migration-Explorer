@@ -155,7 +155,7 @@ off-screen at 320px, and what sits in the hidden strip is the data the chart's o
 describes. A comment in `style.css` says the hidden strip holds the series labels. It was written
 by calculation too.
 
-**U6 IS NOW COMPLETE, and both halves were the owner's call to make.** The navigation is a
+**U6'S TWO COSTLIEST FINDINGS ARE BUILT, and both were the owner's call to make.** The navigation is a
 `details` disclosure below 40em, PR #109, which took the header from 55% of the first screen at
 320px to 19% and put every page's `h1` above the fold for the first time; it opens from a bar icon
 that becomes a cross, so the control keeps the state the browser's triangle used to show. The chart
@@ -164,6 +164,15 @@ because SVG text is in viewBox units and the 32rem floor that keeps it legible o
 same floor that pushed 45% of every chart off a phone. **The wide rendering is byte-identical to
 what it was**, checked by script rather than by box metrics, which is the check that caught the
 claim being false the first time it was made.
+
+**A THIRD FINDING WAS NEVER ADDRESSED, AND BOTH THIS DOCUMENT AND THE BACKLOG RECORDED U6 AS
+COMPLETE.** Seven tables overflow at 320px, worst the Sources table at 42% hidden, and it
+reproduces unchanged when re-measured. It survived because the paragraph introducing that findings
+list named the chart remedy as "what is left of U6", and every later sentence, here and there, was
+written against that summary rather than against the list. **The lesson is not about tables.** A
+findings list where each entry gets a resolution marker as it lands can be audited by reading the
+list; a prose sentence that says what is left cannot, and it is the one that gets believed. Do not
+write "what is left is X" above a list that can answer the question itself.
 
 **Both changes were audited by a second model afterwards and both audits found their worst defect in
 the part that had been asserted most confidently.** The nav's "a right number in a wrong sentence
@@ -177,7 +186,9 @@ value labels inside the plot; the series ran through them, a glyph halo cleared 
 digits and not between them, and the opaque box that did work then hid the 2012 to 2014 data behind
 "200,000". Every gate was green for that version. The owner found it in a screenshot. The labels are
 back outside the plot in PR #114, which removes the collision by construction and costs 90 units of
-width. **PR #114 is open and unmerged at the time of writing**, so `main` still carries the box.
+width. **PR #114 merged on 3 August 2026 and this paragraph did not go with it**, having been
+committed after the merge; it reached `main` a session later, which is the incident under
+*Changing something without breaking something else*.
 
 **And the sibling precedent was not what this document said it was.** The *Sibling projects*
 section below records that `~/Projects/DEBT` groups nav items under `<details>`. Opening it found
@@ -820,6 +831,17 @@ is already here to adding a neighbour beside it.
   `gh pr view <n> --json files` lists only that PR's own files, because a wrong base makes the diff
   look right for the wrong reason. Mergeability reads UNKNOWN for a few seconds after each merge,
   so poll rather than believing the first answer.
+
+  **And a commit made AFTER its pull request merged does not ship either**, which is the same
+  failure with no branch to blame. On 3 August 2026 the documentation recording U6 as complete was
+  committed to `fix-inplot-label-knockout` thirteen minutes after #114 had taken that branch's
+  other commit into `main`. Every local signal was clean: `git status` said nothing to commit, the branch
+  name was the one the work belonged to, and the commit was there in `git log`. It survived only
+  because the next session ran `git merge-base --is-ancestor` before cutting a new branch, and it
+  was the whole record of what the round cost. **The end of a session is where this bites**, because
+  a handoff or backlog edit is naturally written last, after the code has merged. `git log
+  --oneline origin/main..HEAD` before leaving a branch, and treat any answer but silence as work
+  that has not shipped.
 
 ### Working with this project's own documents and rules
 
