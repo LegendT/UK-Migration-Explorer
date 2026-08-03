@@ -186,6 +186,25 @@
           "quote": "The population of the UK continued to grow in the year to mid-2024, reaching an estimated 69.3 million people (69,281,400)."
         }
       ]
+    },
+    {
+      "ref": "population/foreign-born-population-of-the-uk",
+      "previous_value": 10700000,
+      "value": 10700000,
+      "fetched_at": "2026-08-03",
+      "derivation": "10,183,000 for England, Wales and Northern Ireland at Census day 21 March 2021 plus 555,000 for Scotland at Census day 20 March 2022, which is 10,738,000, published here as 10,700,000. NOBODY PRINTS THE COMBINED FIGURE: ONS's Table 9 gives the two census days as separate rows and its UK rows start at 30 June 2022, the census outputs are per-nation, and ONS's own freedom-of-information response calls a UK non-UK-born estimate an ambition in the future tense. The published value is the sum rounded to the nearest hundred thousand, which is the \"10.7 million\" the Migration Observatory and everyone else states. Both components are themselves rounded to the nearest thousand by ONS, so carrying 10,738,000 would be precision the inputs do not have.",
+      "components": [
+        {
+          "value": 10183000,
+          "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+          "quote": "Table 9: Estimates of the non-UK-born population of the United Kingdom by EU+ born and non-EU+ born Census Days 2021 and 2022 to June 2024. Census Day, 21 March 2021, England, Wales, Northern Ireland: EU+ born population 3,784,000; Non-EU+ born population 6,399,000; Total non-UK born population 10,183,000"
+        },
+        {
+          "value": 555000,
+          "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+          "quote": "Table 9: Estimates of the non-UK-born population of the United Kingdom by EU+ born and non-EU+ born Census Days 2021 and 2022 to June 2024. Census Day, 20 March 2022, Scotland: EU+ born population 239,000; Non-EU+ born population 316,000; Total non-UK born population 555,000"
+        }
+      ]
     }
   ],
   "series": [

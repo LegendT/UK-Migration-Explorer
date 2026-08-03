@@ -47,12 +47,19 @@ records now say so. Nothing a reader sees changed, because `content/costs.njk` w
 seven irregular publishers to fifteen across six, because `lib/published.mjs` derives them. The
 Commons Library no longer sources any published figure. Nobody edited that page.
 
-**One thing is deliberately left open.** `foreign-born-population-of-the-uk` holds 10,700,000 and
-its source prints "10.7 million" with no digits anywhere. There is no primary to move to: ONS prints
-no combined UK cell, and its own freedom-of-information response calls producing one an ambition, in
-the future tense. Closing it means either publishing 10,738,000 as a `calculated` sum of two
-census-day cells, which moves a value a reader sees, or leaving it unevidenced. That is a decision
-nobody has taken, so it is in the backlog rather than in this entry.
+**The foreign-born census figure is evidenced too, and nothing a reader sees moved.**
+`foreign-born-population-of-the-uk` holds 10,700,000 against a source printing "10.7 million" and no
+digits anywhere. Nobody publishes the combined UK total: ONS's Table 9 gives the two census days as
+separate rows, its UK rows begin at 30 June 2022, the census outputs are per-nation, and ONS's own
+freedom-of-information response calls a UK non-UK-born estimate an ambition, in the future tense.
+The two options first written down were to publish 10,738,000 as a `calculated` sum, moving a value
+on two pages and the dashboard, or to leave it unevidenced. **Both were worse than reading the
+contract**, which says of derived figures that "the arithmetic is stated and read by a person;
+nothing recomputes it". So the record keeps its value, is regraded `calculated`, and carries a
+derivation naming the rounding with a quote for each census-day cell. It also moved from the
+Migration Observatory to ONS Table 9, where both components sit in one table. Publishing 10,738,000
+would have claimed precision the inputs do not have: ONS rounds both components to the nearest
+thousand.
 
 ### Twelve of the tail's seventeen figures are traced to the far end, and one of them moved, 3 August 2026
 

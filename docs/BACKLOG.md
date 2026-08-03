@@ -583,12 +583,22 @@ have made "three" wrong.
     No publisher prints the figure, so the convention this section's own first bullet states applies.
     Its evidence is IER_02a's twelve printed monthly cells for April 2025 to March 2026, summing to
     39,271, generated from the table rather than typed.
-  - **`foreign-born-population-of-the-uk` IS THE ONE STILL OPEN, and it is open because no
-    recommendation was ever made for it.** There is no primary to move to: ONS prints no combined UK
-    cell and no one else does either. So the choice is `calculated` at 10,738,000 from the two
-    census-day cells, which MOVES A PUBLISHED VALUE, or leaving it unevidenced with the reason here.
-    Rounding it is not a third option, because 10,700,000 already is the rounding and the problem is
-    that the source prints no digits at all. **[you]**, and it is the last thing in R2.
+  - **`foreign-born-population-of-the-uk`: DONE, and the two options put to the owner were both
+    worse than the one nobody had spotted.** They were: publish 10,738,000 as a `calculated` sum,
+    which moves a value on two pages and the dashboard, or leave it unevidenced. The third is that
+    **the derived path never recomputes the sum**, which `data/evidence/README.md` says outright:
+    "The arithmetic is stated and read by a person; nothing recomputes it." So the record keeps
+    10,700,000, is regraded `calculated`, and its evidence is a derivation naming the rounding plus
+    a quote per census-day cell. **Nothing a reader sees changed**, the figure is evidenced, and the
+    source moved to ONS Table 9 where both components are printed in one table rather than to the
+    Migration Observatory briefing, which prints no digits at all.
+
+    **One loose thread, and it is wording rather than data.** `content/claims/nineteen-per-cent-born-abroad.md`
+    calls this "the last accredited figure" and "the accredited ... figures", and the grade is now
+    `calculated`. Both are defensible, because the census is accredited and the grade describes this
+    site's relationship to the number rather than the census's status, and no claim page renders a
+    grade so no reader meets the two side by side. Whether to say so anyway is **[you]**, and it is
+    the only thing left in R2.
 
   The cost of moving any of them is the same and should be weighed once: `source_id` decides the
   publisher counts that `/sources-and-method/` renders from `lib/published.mjs`, so each move
