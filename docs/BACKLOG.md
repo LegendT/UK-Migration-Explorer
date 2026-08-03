@@ -102,8 +102,12 @@ first act.
     reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
     reverted regrade check, in that order, fetch first, because the other way round forces a
-    fabricated quote. And re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`, whose
-    own notes forbid publishing it unchecked. **[you]**.
+    fabricated quote. **The regrade check is landed (PR #99, 3 August 2026)**, ahead of the rest
+    of the item, because the record it was gated on was in the first batch. **Batch 1 of 4 is
+    done**, the sixteen reader-facing Home Office records, and what is left is batched by
+    publisher under A1 below. And re-read or drop
+    `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
+    unchecked. **[you]**.
 11. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
     scope; the fetching is **[me]**.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
@@ -176,10 +180,52 @@ publications during the audit found three defects, one of them a headline figure
   reader is meeting today.
 
   **The fetching is [me]** and needs no further decision now that the scope is set.
-- **Fire `check-evidence.mjs` on a `confidence_level` change into the derived set.** Written and
-  tested on 31 July; it correctly failed on `asylum-administrative-outcomes` and was reverted. The
-  ordering matters and doing it the other way forces a fabricated quote: **fetch Asy_D02, write the
-  evidence entry, then land the one-line change.** **[you]** for the fetch.
+
+  **How big it is, measured rather than estimated, 3 August 2026.** 99 records; 30 carried an
+  evidence entry before this batch and 69 did not, of which 42 reach a reader and 27 are reserve.
+  The 42 concentrate by publisher, and one fetch covers a publisher at once, so the rest is
+  batched that way rather than by theme: **`ho-immigration-stats` 16, DONE (PR #99, 3 August
+  2026)**; then `ons-ltim` 9, with the two ONS series files that move with them; then the tail of
+  17 across `commons-library`, `hmcts-tribunals`, `nao`, `migration-observatory`, `icibi`, `obr`
+  and `ons-population`, which is the fewest records and the most fetches and so should not be
+  bundled with either; then the 27 reserve records last, because no reader meets them today.
+
+  **Batch 1 also re-verified the ten entries already on file for that release**, which were
+  written by earlier sessions and had never been checked against a primary table by anyone since:
+  five Cit_01 figures, two Asy_00a figures, the EUSS and backlog-peak figures on their release
+  pages, and the visitor-visa total in Vis_01. All ten reproduce exactly. So 26 records of this
+  release are traced to a primary source rather than the 16 the batch set out to do. It changes
+  nothing about what is left, since all ten were already evidenced, and it is recorded because
+  "already has an entry" and "someone has checked it" were not the same claim until now.
+
+  **One thing from batch 1 worth repeating rather than rediscovering**: the evidence quotes were
+  extracted from the fetched sources by script rather than typed, so a transcription slip could
+  not enter them, and each was then run through the check's own `carries()` matcher before the
+  file was written. That matters more here than usual, because nothing re-checks a backfilled
+  entry afterwards, which is the gap recorded three bullets down.
+- **Fire `check-evidence.mjs` on a `confidence_level` change into the derived set. DONE (PR #99,
+  3 August 2026), and widened to both directions.** Written and tested on 31 July; it correctly
+  failed on `asylum-administrative-outcomes` and was reverted. The ordering mattered and doing it
+  the other way forces a fabricated quote, so Asy_D02 was fetched and the entry written first, in
+  the same pull request. **A regrade OUT of the derived set is the same defect facing the other
+  way**, a figure newly claimed to be published with only components behind it, and it is the same
+  expression, so it is covered rather than left as a sibling. Negative-tested on all three paths:
+  regraded into the set with a quote entry attached, regraded out with a components entry
+  attached, and regraded with no entry at all, each with the break confirmed applied before the
+  run and reversed from a scratch snapshot after. **This bullet read "[you] for the fetch" until
+  3 August 2026**, contradicting both the order's entry 10 and the bullet above it, which is the
+  tag ageing this file already records as a hazard about itself.
+- **Nothing re-checks a backfilled evidence entry, and A1 will write about 69 of them.**
+  `check-evidence` matches entries against metrics that changed or are new, and says so on every
+  run: it "says nothing about a figure whose value did not change". A backfill changes no value,
+  so all sixteen entries in batch 1, and every entry in the three batches after it, are declared
+  and never asked again. The narrow fix that does not break the audit trail is to check an entry
+  against the record it names **only where that record still holds that value**, so a historical
+  entry whose figure has since moved stays history and fails nothing, which is the rule
+  `data/evidence/README.md` sets. **Not built here, deliberately**: it is a second deliverable, and
+  the right order is the one this project has already paid for, entries first and the check after,
+  so that the check lands against 46 entries it can prove itself on rather than against none.
+  Worth doing before batch 2 rather than after batch 4. **[me]**, on the owner's word about when.
 - **Re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`.** Its own notes say "Do not
   publish without re-checking" and it was 43 days stale. It is unpublished reserve, so no reader sees
   it, which is why this is not a gate. **[you]**.
@@ -309,8 +355,12 @@ Each is one call. None blocks anything.
   foot of `<main>`, and each is individually justified.
 - Whether to be more precise than the NAO about the 76% being a seven-month cost share while the 35%
   is a point-in-time headcount.
-- Two OWNER-VERIFY residues: whether the Asy_D02 pivot prints a year-ending total, and the `date`
-  field on the fiscal-impact record plus the 47% in the work-immigration notes.
+- Two OWNER-VERIFY residues. **The first is settled, 3 August 2026: the Asy_D02 pivot prints no
+  year-ending total.** It carries one label column and eight quarterly columns, 2024 Q2 to
+  2026 Q1, and 5,931 is in no cell of the workbook at all, searched with 3,858 and 19,376 as
+  controls to confirm the search would have found it. So `asylum/asylum-administrative-outcomes`
+  is correctly `calculated` and the caution in its own notes is discharged. The second is open:
+  the `date` field on the fiscal-impact record plus the 47% in the work-immigration notes.
 
 ---
 
@@ -365,6 +415,26 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   cells to be summed and states no calendar-year total. The site's own convention for a summed
   figure is `calculated` with the components quoted. **[you]** whether the grade or the note
   moves.
+
+  **THE PREMISE IS FALSE, established by the A1 fetch on 3 August 2026, so neither moves.** The
+  Home Office does print a calendar-year total: **table IER_01 of the illegal entry routes summary
+  tables** has calendar-year columns 2018 to 2025 plus a January-to-March 2026 column, and its
+  2025 small boats cell is 41,472. The observation was right about the DETAILED dataset the record
+  named, IER_D01, which publishes quarters only, and wrong about the publisher. **The mechanical
+  half is done (PR #99)**: the record cited the data tables index page, which lists spreadsheets
+  and contains no figures at all, and it now cites IER_01 and declares it. Under that source
+  `official` and "finalised calendar-year total" are both correct as they stand. **What is left is
+  yours and is one word: confirm this bullet is closed.**
+
+  **Its sibling is not closed, and the grade there is still yours.**
+  `asylum/small-boat-arrivals-peak`, 45,774 in 2022, is graded `calculated` on the stated reason
+  that "the Home Office publishes this dataset by quarter and states no calendar-year total", and
+  its evidence entry says the same. IER_01 prints 45,774 as a calendar-year cell. **The eight
+  yearly sums that entry derived by hand are identical, number for number, to the row IER_01
+  prints**, which is this project's absolute-negative rule failing in the way the handoff already
+  describes: the search that would have refuted it was never run. Regrading it to `official`
+  against IER_01 is the obvious move and it is a grade, so it is **[you]**; the fetch behind it is
+  done and needs no repeating.
 - **Two figures in the citizenship card's prose, 269,178 and 312,063. The [me] fetching half is
   DONE (PR #78, 2 August 2026), and this observation was right.** Neither is on the page the
   record cites. That page states the 12% decrease behind 269,178, and for 312,063 it states neither
