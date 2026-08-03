@@ -9,6 +9,27 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The data layer has a door, 3 August 2026
+
+**`/sources-and-method/` promised the underlying data files were public and linked none of them.**
+That promise is foundation 4.1's differentiator, and keeping it meant a reader had to find the
+repository. The whole `data/` directory now ships with the site, and the Reuse section lists every
+top-level file with a link and a count of what it holds: figures for a theme file, points for a
+series, sources for the catalogue. PR #105.
+
+**The list is generated from the directory, not typed**, on the same reasoning as the sources
+catalogue above it: a hand-written list of data files is a second copy of the data layer's shape,
+and it goes stale the first time a file is added. The counts come from the files, so a count here
+cannot disagree with the file it describes. `data/evidence/` ships alongside, with its own README
+linked, so the quote behind every evidenced figure is reachable from the page that promises it.
+
+**Two things it caught about itself.** The build refused the new partial by name until
+`validate-content.mjs` was told about it, which is the guarded pair between that check and
+`eleventy.config.js` working as designed rather than drifting. And the longest filename pushed the
+page 54 pixels sideways at a genuine 320-pixel viewport: the second UX round's finding reappearing
+in new work within a day of being recorded. It wraps now, rather than sitting in a scroll
+container, because a filename is text and a reader should not have to scroll to finish one.
+
 ### R2's decisions applied: five records re-sourced, five regraded, no value moved, 3 August 2026
 
 **No published value changed. Five grades did, and five records changed publisher, which is the

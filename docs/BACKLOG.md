@@ -787,7 +787,16 @@ claim page it belongs inside the card boundary, so that a screenshot carries it.
 - **A reader-facing `/changes/`.** The changelog IS linked from the corrections section, so the
   promise is kept; the destination is a raw markdown file on GitHub.
 - **No visible door to the data layer**, which foundation 4.1 names as the differentiator. The
-  Reuse section says the data files are public and links none of them.
+  Reuse section says the data files are public and links none of them. **DONE (PR #105, 3 August
+  2026).** The whole `data/` directory ships with the site, and the Reuse section lists every
+  top-level file with a link and a count of what it holds, generated from the directory rather
+  than typed, on the same reasoning as the sources catalogue: a hand-written list of data files is
+  a second copy of the data layer's shape and goes stale the first time a file is added.
+  `data/evidence/` ships too, with its README linked. **Two things it caught about itself**: the
+  build did not know the partial and said so by name, which is the guarded pair between
+  `eleventy.config.js` and `validate-content.mjs` working rather than drifting; and the longest
+  filename pushed the page 54px sideways at a genuine 320px viewport, which is U6's finding
+  reappearing in new work, fixed by wrapping rather than by a scroll container.
 - **Theme-to-claim links.** Pages declare `figures:` in front matter, so which claims misuse a
   given figure is computable at build time.
 
