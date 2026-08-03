@@ -2,15 +2,15 @@
   "figures": [
     {
       "ref": "fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant",
-      "previous_value": null,
-      "value": 341000,
+      "previous_value": 341000,
+      "value": 297000,
       "fetched_at": "2026-08-03",
-      "derivation": "Read from OBR's published chart data rather than from any sentence, because OBR prints no such number. The \"Average-wage migrant worker\" series of Chart 4.13 is 340.57735300082055 at age 80, on an axis the chart image labels \"Cumulative fiscal impact (£ thousand)\", which is £340,577 and is what this site publishes as £341,000. THE AGE IS THIS SITE'S CHOICE AND OBR NAMES NONE: the same series peaks at £533,832 at age 66, is £297,297 at age 82, the life expectancy OBR's own text gives an average person in 2028, and is -£308,275 at age 100 where the chart ends. So the age decides the sign as well as the size, and until this entry the record did not say which age it used. The representative UK resident OBR compares on the same basis is £12,294 at age 80.",
+      "derivation": "Read from OBR's published chart data rather than from any sentence, because OBR prints no such number. The \"Average-wage migrant worker\" series of Chart 4.13 is 297.29678429890674 at age 82, on an axis the chart image labels \"Cumulative fiscal impact (£ thousand)\", which is £297,297 and is what this site publishes, rounded to the nearest thousand, as £297,000. THE AGE IS THIS SITE'S CHOICE AND OBR NAMES NONE. Age 82 was chosen by the owner on 3 August 2026 because it is the life expectancy OBR's own text gives an average person in 2028, and so is the only one of the candidates OBR states a reason for; the record published age 80, £340,577, until that day. The age decides the sign as well as the size: the same series peaks at £533,832 at age 66 and is -£308,275 at age 100, where the chart ends. The representative UK resident OBR compares on the same basis is -£47,056 at age 82.",
       "components": [
         {
-          "value": 340.57735300082055,
+          "value": 297.29678429890674,
           "source_url": "https://obr.uk/docs/dlm_uploads/September-2024-Fiscal-risks-and-sustainability-charts-and-tables.zip",
-          "quote": "Chart 4.13: Cumulative fiscal impact of representative migrants. Average-wage migrant worker, Age 80: 340.57735300082055"
+          "quote": "Chart 4.13: Cumulative fiscal impact of representative migrants. Average-wage migrant worker, Age 82: 297.29678429890674"
         }
       ]
     }

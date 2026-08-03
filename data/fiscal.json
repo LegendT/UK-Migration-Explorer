@@ -134,7 +134,7 @@
     {
       "id": "illustrative-lifetime-net-fiscal-contribution-of-a-migrant",
       "metric_name": "Illustrative lifetime net fiscal contribution of a migrant (arriving at 25, average earnings)",
-      "value": 341000,
+      "value": 297000,
       "unit": "£ (net present value, lifetime)",
       "date": "2024-09-30",
       "period_label": "OBR projection, September 2024 (chart corrected November 2024)",
@@ -144,7 +144,7 @@
       "source_url": "https://obr.uk/frs/fiscal-risks-and-sustainability-september-2024/",
       "published_date": "2024-09-12",
       "retrieved_date": "2026-06-17",
-      "notes": "A STYLISED ILLUSTRATION read from OBR's Chart 4.13 (corrected 14 November 2024), not a figure OBR prints. It shows the cumulative net fiscal contribution of a representative migrant arriving at 25 on the UK average wage, modelled as an individual with no dependants; OBR compares a UK resident on the same basis and makes no assumption that migrants are childless (real-world dependants average about 0.3 per main applicant). OBR states no single value and singles out no endpoint age; the chart runs to age 100. WHICH POINT OF THE CHART THIS IS WAS ESTABLISHED ON 3 AUGUST 2026 AND IS AGE 80: the chart's own data gives the average-wage migrant 340.577 on an axis labelled 'Cumulative fiscal impact (\u00a3 thousand)' at that age, which is the \u00a3341,000 here. The age is this site's choice, and it decides the sign as well as the size: the same series peaks at \u00a3533,832 at age 66, is \u00a3297,297 at age 82, the life expectancy OBR gives an average person in 2028, and is -\u00a3308,275 at age 100 where the chart ends. Whether age 80 is the right point to publish is an open question in docs/BACKLOG.md under R2. The same analysis finds a low-wage migrant a net cost and a high-wage one a larger positive; the result is highly sensitive to age, earnings and children. Do not present as a typical or average figure.",
+      "notes": "A STYLISED ILLUSTRATION read from OBR's Chart 4.13 (corrected 14 November 2024), not a figure OBR prints. It shows the cumulative net fiscal contribution of a representative migrant arriving at 25 on the UK average wage, modelled as an individual with no dependants; OBR compares a UK resident on the same basis and makes no assumption that migrants are childless (real-world dependants average about 0.3 per main applicant). OBR states no single value and singles out no endpoint age; the chart runs to age 100, so the site has to pick one and does. THE AGE IS 82, CHOSEN BY THE OWNER ON 3 AUGUST 2026 because it is the life expectancy OBR's own text gives an average person in 2028, and so is the only candidate age OBR states a reason for. The chart's own data gives the average-wage migrant 297.297 at age 82 on an axis labelled 'Cumulative fiscal impact (£ thousand)', which is the £297,000 here, rounded to the nearest thousand. THIS RECORD PUBLISHED £341,000 UNTIL THAT DAY, which was the age-80 point and was written down nowhere: the far-end trace found the age, not the figure. The age decides the sign as well as the size, and that is why it is recorded: the same series peaks at £533,832 at age 66 and is -£308,275 at age 100 where the chart ends. The same analysis finds a low-wage migrant a net cost and a high-wage one a larger positive; the result is highly sensitive to age, earnings and children. Do not present as a typical or average figure.",
       "confidence_level": "estimated"
     },
     {

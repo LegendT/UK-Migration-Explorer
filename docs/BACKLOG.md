@@ -551,7 +551,8 @@ have made "three" wrong.
   tolerance anywhere. It changes what a reader sees on `/costs/`, so it is **[you]**. **[me]** to
   apply either way.
 
-- **THE OBR FIGURE IS AGE 80, AND NOTHING SAID SO UNTIL 3 AUGUST 2026.**
+- **THE OBR FIGURE WAS AGE 80, NOTHING SAID SO, AND IT IS NOW AGE 82. DONE (PR #103, 3 August
+  2026), decision and application in the same day.**
   `fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant` holds 341,000, is graded
   `estimated`, and its notes say the figure is read off Chart 4.13 and that "OBR states no single
   value and singles out no endpoint age". Both halves of that are still true of OBR. What was
@@ -560,22 +561,23 @@ have made "three" wrong.
   (£ thousand)", which is the £341,000 published here. **The record is evidenced (PR #103)** and
   its notes now name the age.
 
-  **The [me] half is done and the question that is left is yours, because the age decides the sign
-  as well as the size.** The same series reads:
+  **The owner chose age 82 on 3 August 2026**, and the published figure moved from £341,000 to
+  £297,000. The candidates were:
 
   | Age | Average-wage migrant | Why that age |
   | --- | --- | --- |
   | 66 | £533,832 | the peak of the curve |
-  | 80 | £341,000 | what this site publishes, chosen by nobody on record |
-  | 82 | £297,297 | the life expectancy OBR's own text gives an average person in 2028 |
+  | 80 | £341,000 | what the site published, chosen by nobody on record |
+  | 82 | £297,000 | the life expectancy OBR's own text gives an average person in 2028 |
   | 100 | -£308,275 | where OBR's chart ends |
 
-  The record's `metric_name` calls it a LIFETIME contribution, and on the chart's own last point a
-  lifetime is negative. **The recommendation is age 82**, because it is the only one of the four
-  OBR itself states a reason for, and it moves the published figure by about £44,000 rather than
-  reversing it. Publishing the range instead is the honest alternative and costs the site its
-  single headline number. **[you]**; **[me]** to apply, and the entry regenerates from the same
-  cell either way.
+  **The reason 82 is the one that can be defended is that OBR states a reason for it and states
+  none for the others.** It also makes the record's own `metric_name` true: it calls the figure a
+  LIFETIME contribution, and a lifetime ending at life expectancy is a lifetime, where age 80 was
+  a point on the way and age 100 turns the figure negative. The claim pages needed no rewording,
+  because both describe the migrant as "a lifetime net contributor" and cite the value rather than
+  writing it out. **This is the first value on this site to move because a far-end trace found what
+  a figure actually was**, rather than because a publisher released a new one.
 
   **How it was fetched, because the route matters if this is ever redone**: OBR's own download link
   for `charts and tables: Chapter 4` returns "You do not have permission to access this download",

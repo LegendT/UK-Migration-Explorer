@@ -9,16 +9,19 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
-### Eleven of the tail's seventeen figures are traced to the far end, and six cannot be, 3 August 2026
+### Twelve of the tail's seventeen figures are traced to the far end, and one of them moved, 3 August 2026
 
-**No published value changed.** This is batch 3 of the pass that asks whether a named source
-CONTAINS the figure. It covers the seventeen reader-facing records spread across seven publishers,
-the batch the backlog describes as the fewest records and the most fetches. **Eleven now carry an
-entry in `data/evidence/`. Six do not, and why is the finding.** Every quote was lifted from the
+**One published value changed, and it is the first on this site to move because a trace found what
+a figure actually was rather than because a publisher released a new one.** The OBR illustrative
+lifetime contribution is now £297,000, down from £341,000; every other value here is unchanged.
+This is batch 3 of the pass that asks whether a named source CONTAINS the figure. It covers the
+seventeen reader-facing records spread across seven publishers, the batch the backlog describes as
+the fewest records and the most fetches. **Twelve now carry an entry in `data/evidence/`. Five do
+not, and why is the finding.** Every quote was lifted from the
 fetched source by script, a located table cell with its own row and column labels or a passage
 matched from an opening phrase, with an assertion per figure before the quote was built.
 
-**The eleven reproduce exactly.** MoJ tables FIA_1, FIA_3 and FIA_4 give 14,748 asylum appeals
+**Eleven of the twelve reproduce exactly.** MoJ tables FIA_1, FIA_3 and FIA_4 give 14,748 asylum appeals
 lodged in the quarter, 4,088 determined with 40% allowed, and an asylum backlog of 87,450 inside a
 chamber-wide open caseload of 151,767. The NAO gives £4.9 billion of Home Office and Ministry of
 Justice asylum spending in 2024-25, £3.4 billion of it on accommodation and support, and HC 874
@@ -32,15 +35,21 @@ figure its cited source does not state: three where the source rounds, and two w
 states millions and the record states billions. Each is now in the backlog under R2 as a decision,
 with the primary table that does state the figure named beside it.
 
-**The twelfth is the OBR figure, and tracing it answered a question the record had been carrying
-open.** Its notes said the £341,000 is read off Chart 4.13 and that OBR states no single value and
-names no age. Both remain true of OBR; what nothing recorded is that THIS SITE picks an age. The
-chart's published data gives the average-wage migrant 340.577 at age 80 on an axis labelled
-"Cumulative fiscal impact (£ thousand)", which is the figure exactly. The age is load-bearing: the
-same series peaks at £533,832 at age 66, is £297,297 at age 82, the life expectancy OBR's own text
-gives an average person in 2028, and is -£308,275 at age 100 where the chart ends. So a figure the
-site labels a LIFETIME contribution is negative on the chart's own last point. The record now names
-the age and the three alternatives; which one to publish is in the backlog under R2.
+**The twelfth is the OBR figure, and tracing it changed what the site publishes.** Its notes said
+the £341,000 is read off Chart 4.13 and that OBR states no single value and names no age. Both
+remain true of OBR; what nothing recorded is that THIS SITE picks an age. The chart's published
+data gives the average-wage migrant 340.577 at age 80 on an axis labelled "Cumulative fiscal impact
+(£ thousand)", which was the old figure exactly. The age is load-bearing: the same series peaks at
+£533,832 at age 66 and is -£308,275 at age 100 where the chart ends, so a figure the site labels a
+LIFETIME contribution was negative on the chart's own last point and positive by a third of a
+million two decades earlier.
+
+**The age is now 82 and the figure is £297,000.** OBR's own text gives 82 as the life expectancy of
+an average person in 2028, which makes it the only candidate age OBR states a reason for, and it
+makes the word "lifetime" in the record's name true rather than approximate. Neither claim page
+needed rewording: both describe the migrant as "a lifetime net contributor" and cite the value
+rather than writing it out, which is what citations are for here. The record now carries the age,
+the arithmetic and what it used to say.
 
 **OBR's own download for that chapter is broken, and that is worth writing down.** The link for
 `charts and tables: Chapter 4` returns "You do not have permission to access this download" to a
