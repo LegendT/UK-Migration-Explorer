@@ -95,14 +95,15 @@ first act.
    first review calculated, and the stylesheet's one width-dependent nav rule is dead, being
    identical to the base rule it appears to override. **The costliest finding is not the nav.** It
    is that 45% of every chart is off-screen at 320px and what is hidden is the data its own summary
-   sentence describes, which no review that reads markup could have seen. What is left is
-   **[you]**: adopting a navigation pattern, for which the sibling precedent turned out to need
-   JavaScript, and deciding the chart remedy. **A pattern is now built and measured rather than
-   described, and it is PR #109, 3 August 2026: a `details` disclosure below 40em, no client-side
-   JavaScript, wide screens proved untouched against a build of `main`.** **The decision is that
-   pull request's own outcome**, which is why no status is written here: merged means the disclosure
-   is adopted, closed means the nav stands as it was, and either way the call is **[you]**. The
-   chart remedy is the other half of what is left.
+   sentence describes, which no review that reads markup could have seen. **THE NAVIGATION IS
+   DECIDED AND BUILT (PR #109, 3 August 2026)**: a `details` disclosure below 40em, no client-side
+   JavaScript, which took the header from 55% of the first screen at 320px to 19% and put every
+   page's `h1` above the fold. Wide screens were proved untouched against a build of `main` rather
+   than argued to be. It opens from a bar icon that becomes a cross, so the control keeps the state
+   the browser's own triangle showed. **The sibling precedent was not what settled it**: DEBT's
+   collapse needs JavaScript, and what carries this is that the reveal idiom was already in this
+   stylesheet's print block, guard and all. **WHAT IS LEFT OF THIS ITEM IS THE CHART REMEDY**,
+   which is the costlier finding and is **[you]**, being a design call rather than a defect.
 10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
     reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
@@ -918,10 +919,14 @@ design call rather than a defect. **One [me] fix is deliberately not taken here*
 40em rule, because whoever adopts a nav pattern rewrites that block and a one-line deletion landing
 first would just be a merge conflict with the decision it is waiting on.
 
-**That deletion is taken in PR #109, 3 August 2026, which is the nav pattern**, and it is a
-replacement rather than a deletion: the 40em block is where the wide-screen row is now restored, so
-the rule that did nothing at any width became the live one. **The nav findings below are addressed
-there and are marked where they are**; the chart and table findings are untouched by it.
+**The navigation was decided and built on 3 August 2026, PR #109, so the paragraph above is the
+state it was written in and not the state now.** A `details` disclosure below 40em, which is what
+the two sentences above hoped a `<details>` could carry, and it needed no JavaScript because the
+reveal idiom was already in this stylesheet's print block. **That deletion is taken there too**, and
+it is a replacement rather than a deletion: the 40em block is where the wide-screen row is now
+restored, so the rule that did nothing at any width became the live one. **The nav findings below
+are addressed there and are marked where they are**; the chart and table findings are untouched by
+it, and the chart remedy is what is left of U6.
 
 **How it was measured, so the numbers can be re-derived.** Puppeteer's `setViewport` is
 `Emulation.setDeviceMetricsOverride`, so the trap the section above names does not apply, and
