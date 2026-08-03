@@ -105,7 +105,10 @@ first act.
    stylesheet's print block, guard and all. **THE CHART REMEDY IS DECIDED AND BUILT TOO (PR #113,
    3 August 2026)**: each chart is rendered twice at build time and CSS shows one, so 45% of every
    chart being off-screen at 320px is 0% at every size measured, with no page overflow and no axis
-   text below the stylesheet's own 11px floor. Wide screens are byte-identical. **U6 IS COMPLETE**,
+   text below the stylesheet's own 11px floor. Wide screens are byte-identical, and a second
+  model is why that is now true: the first version anchored the first and last year labels to the
+  plot edge on BOTH geometries, which only narrow needed, and on `/asylum/` it closed the gap
+  between "2010" and "2012" to 4px so they read as one token. **U6 IS COMPLETE**,
    and the item stays here only until the entries below are moved to *Completed*. **[me]** was the
    building; the pattern and the remedy were both **[you]** and both are taken.
 10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the

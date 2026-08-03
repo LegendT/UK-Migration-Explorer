@@ -490,7 +490,25 @@ th.nested-2 { padding-left: 2.75rem; }
 .chart-svg--wide { display: none; }
 .chart-svg--narrow { max-width: 380px; }
 
-@media (min-width: 40em) {
+/* The narrow chart's value labels sit INSIDE the plot, so a series running near that gridline
+   draws straight through them: "200,000" on the net migration chart had the line through its
+   middle and a data marker on top of a digit. The halo knocks the text out of whatever is behind
+   it, which is what map labels do, and it costs a small break in the line rather than a number a
+   reader cannot read. `paint-order` is what makes the stroke paint UNDER the fill; without it the
+   stroke would be drawn over the glyphs and thicken them into mush. */
+.axis-inplot {
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* 34.5em, not the 40em the nav uses, because this breakpoint is a fact about the chart rather
+   than about the page: the wide rendering is floored at 32rem, the wrap adds 1.25rem of padding
+   either side, so 34.5em is the first width at which it fits its column exactly. Switching at
+   40em instead would leave the narrow chart, capped at 380px, sitting in a column up to 600px
+   wide with the difference as dead margin. */
+@media (min-width: 34.5em) {
   /* The wide chart keeps the 32rem floor it has always had, and the floor now sits on the
      rendering it belongs to rather than on both. Below this width it applied to a chart inside a
      280px column, which is what put 45% of every chart off-screen at 320px. */
@@ -530,6 +548,13 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 .bar-value { fill: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums; }
 /* Set inside its own bar, so it reads against the fill rather than the page. */
 .bar-value.inside { fill: var(--paper); font-weight: 600; }
+
+/* Bar text is 14px, which in the narrow chart's 360-unit box renders at 10.9px once scaled into a
+   280px column: just under the roughly 11px this stylesheet sets as its floor a few rules up. The
+   axis text clears it comfortably at 13.2px; only the bar labels did not, and a second model
+   caught the 0.11px. 15px renders at 11.7px. */
+.chart-svg--narrow .bar-label,
+.chart-svg--narrow .bar-value { font-size: 15px; }
 
 /* One supporting size for everything under a chart: note, the control that opens the
    figures, and the source line. Three sizes there plus the summary above made four steps

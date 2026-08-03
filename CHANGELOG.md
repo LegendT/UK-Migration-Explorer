@@ -26,8 +26,10 @@ beside it, the lines are named in a legend above the chart rather than at their 
 and each bar's category name sits above the bar rather than to its left.
 
 **Nothing is hidden at any size now**, measured on all seven charts at five phone and tablet
-widths, and no chart's text falls below the size the stylesheet sets as its floor. Charts on wide
-screens are unchanged, to the pixel. The four rules charts are held to are all intact: the axis
+widths, and no chart's text falls below the size the stylesheet sets as its floor. **Charts on wide
+screens are unchanged**, and that is checked rather than asserted: the wide drawing in the built
+page is byte-for-byte what it was before, apart from the class and the identifiers that tell the
+two drawings apart. The four rules charts are held to are all intact: the axis
 still starts at zero, every chart still carries its figures as a real table, no series is told
 apart by colour alone, and the gridlines still fall on intervals a reader counts in.
 

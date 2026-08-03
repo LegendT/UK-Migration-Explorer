@@ -405,7 +405,7 @@ export default function (eleventyConfig) {
       // match at that div's closing tag, and the captured inner would still begin with
       // <table and pass an opening-only check while the page's nesting was rewritten.
       if (!/^\s*<(table|svg)[\s>]/.test(inner) || !/<\/(table|svg)>\s*$/.test(inner)) {
-        throw new Error(`A .scroll-x region in ${this.page.inputPath} holds something other than one table or one chart. This transform matches to the first closing tag and cannot nest.`);
+        throw new Error(`A .scroll-x region in ${this.page.inputPath} holds something other than a table or chart markup. This transform matches to the first closing tag and cannot nest. A chart region holds TWO sibling svgs, a wide and a narrow rendering, which is why this tests the region's ends rather than counting elements.`);
       }
       const caption = inner.match(/<caption[^>]*>([\s\S]*?)<\/caption>/);
       const heading = [...html.slice(0, offset).matchAll(/<h([23])[^>]*>([\s\S]*?)<\/h\1>/g)].pop();
