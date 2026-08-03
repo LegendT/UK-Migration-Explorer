@@ -365,8 +365,17 @@ All **[me]**, all small, each with its reasoning in the audit.
   check change: confirm a genuinely dead URL still fails after the headers are added, because a
   request that always succeeds is worse than one that always fails.
 
+- **`npm run validate` and the CI workflow are two lists of checks and neither reads the other.**
+  The workflow calls six scripts directly and never invokes that npm script, so a check added to
+  `validate` runs on a laptop and gates nothing on a pull request. That is not hypothetical: it is
+  exactly what happened to `check-backlog.mjs` on 3 August 2026, between it being written and a CI
+  step being added by hand minutes later. The split is deliberate, because CI names each step and
+  marks the network ones `continue-on-error`, so the fix is not simply to call `npm run validate`
+  there. **[me]**, and the shape worth considering is a manifest both sides read, on the same
+  reasoning as `lib/series.mjs` and `lib/tables.mjs`.
+
 - **`scripts/check-backlog.mjs` now reads this file, and it found two live defects on the run that
-  created it. DONE (PR #107, 3 August 2026).** Everything else here is machine-checked and the file
+  created it. DONE (PR #106, 3 August 2026).** Everything else here is machine-checked and the file
   directing all the work was not, which is why it kept rotting. It asserts that every path named
   exists, every `A1`/`R2`/`U3` cross-reference has a heading, The order is contiguously numbered,
   every item carries a tag or says it is closed, and no item in The order writes a count of this

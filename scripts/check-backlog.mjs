@@ -94,6 +94,18 @@ for (const item of items) {
 // --- PR citations ---------------------------------------------------------------------------
 const prs = [...new Set([...raw.matchAll(/PR #(\d+)/g)].map((m) => m[1]))].sort((a, b) => a - b);
 let checkedPrs = 0;
+// The entry recording a piece of work cites the pull request carrying that entry, so at the
+// moment it is written its own PR is open by definition. Requiring MERGED of every citation
+// made this check fail on every branch that used it correctly, which is a check nobody would
+// keep running. This branch's own PR is exempt and named in the output, so the exemption is
+// visible rather than silent, and it lapses the moment the branch is merged.
+let ownPr = null;
+if (online) {
+  try {
+    ownPr = String(JSON.parse(execFileSync('gh', ['pr', 'view', '--json', 'number'],
+      { cwd: repoRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] })).number);
+  } catch { ownPr = null; }
+}
 if (online) {
   for (const n of prs) {
     let state;
@@ -105,7 +117,7 @@ if (online) {
       continue;
     }
     checkedPrs += 1;
-    if (state !== 'MERGED') {
+    if (state !== 'MERGED' && n !== ownPr) {
       errors.push(`${file}: cites PR #${n} as the record of work, and it is ${state} rather than MERGED. An entry marked done against an unmerged pull request describes a branch, not this project.`);
     }
   }
@@ -124,10 +136,13 @@ console.log(`The order is numbered 1 to ${items.length} with every item tagged o
 console.log('writes a count of this project\'s own state where a run should be pointed at instead.');
 console.log('');
 console.log('Not established: that any item is genuinely finished. DONE is a claim by a person and');
-console.log('nothing here can check it. Nor are counts in the detail sections read, because those');
-console.log('carry dated historical measurements where the number is the point.');
+console.log('nothing here can check it. Only paths written in backticks are read, because matching');
+console.log('bare text picks up the tail of a URL, so a path named in plain prose is unchecked.');
+console.log('Nor are counts in the detail sections read, because those carry dated');
+console.log('historical measurements where the number is the point.');
 if (online) {
-  console.log(`${checkedPrs} of ${prs.length} cited pull request(s) confirmed MERGED.`);
+  const exempt = ownPr && prs.includes(ownPr) ? ` One, #${ownPr}, is this branch's own pull request and is exempt until it merges.` : '';
+  console.log(`${checkedPrs} of ${prs.length} cited pull request(s) checked.${exempt}`);
 } else {
   console.log(`Not checked: whether the ${prs.length} cited pull request(s) exist or are merged. That needs the`);
   console.log('network, so it runs only with --online, in keeping with check-releases and check-sources.');
