@@ -54,14 +54,23 @@ for (const path of paths) {
 // Entries point at each other constantly ("the rest of A6", "both are under R2"). A pointer at
 // a section that was renamed or absorbed reads as a live instruction and leads nowhere.
 const headings = new Set([...raw.matchAll(/^### ([ARU]\d+)\./gm)].map((m) => m[1]));
-const referenced = [...new Set([...raw.matchAll(/(?:^|[\s(])([ARU]\d+)\b/gm)].map((m) => m[1]))];
+// Allowed to sit behind bold or a backtick, because the file writes them that way: item 10 opens
+// `**A1,` and that reference was not among those this check claimed all resolved.
+const referenced = [...new Set([...raw.matchAll(/(?:^|[\s(*`])([ARU]\d+)(?![\w])/gm)].map((m) => m[1]))];
 for (const ref of referenced) {
   if (!headings.has(ref)) errors.push(`${file}: refers to section ${ref}, which has no "### ${ref}." heading.`);
 }
 
 // --- The order: numbering, tags, and no bare count of our own state -----------------------
-const items = [...order.matchAll(/^(\d+)\. ([\s\S]*?)(?=^\d+\. |\nIf you reorder)/gm)]
-  .map((m) => ({ n: Number(m[1]), body: m[2] }));
+// Items are found by their own numbering and each runs to the next one or to the end of the
+// section. The first version terminated on the literal sentence "If you reorder", which meant
+// rewording that sentence, or writing the last item as "14)", deleted the final item from every
+// rule below with no error at all.
+const starts = [...order.matchAll(/^(\d+)\. /gm)].map((m) => ({ n: Number(m[1]), at: m.index }));
+const items = starts.map((s, i) => ({
+  n: s.n,
+  body: order.slice(s.at, i + 1 < starts.length ? starts[i + 1].at : order.length),
+}));
 if (items.length === 0) errors.push(`${file}: The order has no numbered items, which cannot be right.`);
 items.forEach((item, i) => {
   if (item.n !== i + 1) {
@@ -70,7 +79,13 @@ items.forEach((item, i) => {
   // An item carries a tag, or says it is closed. Both are self-maintaining: an exemption list
   // naming item numbers would go stale the first time the list is reordered, which is the
   // defect this file already records as having been set once.
-  if (!/\[me\]|\[you\]/.test(item.body) && !/\bclosed\b|\bDONE\b/i.test(item.body)) {
+  // The escape is deliberately narrow. It was `/\bclosed\b|\bDONE\b/i` over the whole body, which
+  // any item saying "the [me] half is done" satisfied, and six items in The order say exactly
+  // that today: their tags were unenforced, and so was "It is not closed". An item is exempt only
+  // if its OPENING says it is closed or done AND cites the pull request that closed it, which is
+  // this project's own convention for a completed entry and cannot be written by accident.
+  const closedAtTheTop = /\b(?:closed|DONE)\b[^.]{0,60}\(PRs? #\d+/i.test(item.body.slice(0, 220));
+  if (!/\[me\]|\[you\]/.test(item.body) && !closedAtTheTop) {
     errors.push(`${file}: The order item ${item.n} carries no [me] or [you] tag and is not marked closed. That mapping is what the fresh-session prompt calls the highest-damage thing to get wrong, and an untagged item leaves a session to guess.`);
   }
 });
@@ -84,7 +99,12 @@ items.forEach((item, i) => {
 // "U5 records what was considered" matched with `records` as a verb. And it required the noun to
 // sit immediately after the number, while the defect read "the 27 unpublished reserve records":
 // two words in between, so the check would have passed the sentence it exists to catch.
-const OWN_STATE = /(?<![\w.,\-/#])(\d{1,3})((?:\s+[a-z]+){0,2}\s+(?:records?|figures?|entries|reserve|sources|publishers|points))\b/g;
+// A third round of bugs, all found by probing rather than reading. Intervening words matched
+// `[a-z]+`, so "27 ONS records" and "27 reader-facing records" both escaped, and those are the
+// likeliest words to sit between a count and its noun in this repository. The noun list had
+// `entries` and no `entry`, so "27 of them lack an evidence entry" escaped, which was live in
+// The order at the time, inside the sentence claiming the count was not written.
+const OWN_STATE = /(?<![\w.,\-/#])(\d{1,3})((?:\s+[\w-]+){0,4}\s+(?:records?|figures?|entry|entries|reserve|sources?|publishers?|points?))\b/g;
 for (const item of items) {
   for (const [, count, noun] of item.body.matchAll(OWN_STATE)) {
     errors.push(`${file}: The order item ${item.n} writes "${count}${noun}". The order is the live list, and a count of our own state belongs in what a run prints, not in prose beside it. Point at the command instead, or move the sentence into a dated measurement in the detail sections.`);
@@ -92,7 +112,9 @@ for (const item of items) {
 }
 
 // --- PR citations ---------------------------------------------------------------------------
-const prs = [...new Set([...raw.matchAll(/PR #(\d+)/g)].map((m) => m[1]))].sort((a, b) => a - b);
+// `PRs #77, #79 and #82` matched nothing under /PR #(\d+)/, so a pull request cited only in the
+// plural form was never checked and never counted.
+const prs = [...new Set([...raw.matchAll(/#(\d+)/g)].map((m) => m[1]))].sort((a, b) => a - b);
 let checkedPrs = 0;
 // The entry recording a piece of work cites the pull request carrying that entry, so at the
 // moment it is written its own PR is open by definition. Requiring MERGED of every citation
@@ -132,14 +154,18 @@ if (errors.length) {
 }
 
 console.log(`Backlog check passed: ${paths.length} path(s) named all exist, ${referenced.length} section reference(s) all resolve,`);
-console.log(`The order is numbered 1 to ${items.length} with every item tagged or marked closed, and none of them`);
-console.log('writes a count of this project\'s own state where a run should be pointed at instead.');
+console.log(`The order is numbered 1 to ${items.length}, and every item carries a tag or opens by saying it is`);
+console.log('closed and citing the pull request that closed it.');
 console.log('');
-console.log('Not established: that any item is genuinely finished. DONE is a claim by a person and');
-console.log('nothing here can check it. Only paths written in backticks are read, because matching');
-console.log('bare text picks up the tail of a URL, so a path named in plain prose is unchecked.');
-console.log('Nor are counts in the detail sections read, because those carry dated');
-console.log('historical measurements where the number is the point.');
+console.log('Not established, and the list is longer than what is: that any item is genuinely');
+console.log('finished, because DONE is a claim by a person. That the count rule caught every count:');
+console.log('it reads digits sitting within four words of what they count, so a number further from');
+console.log('its noun, or written in words, passes. That a path is real unless it is in backticks');
+console.log('under a known directory, because matching bare text picks up the tail of a URL. That an');
+console.log('item removed from the END of The order is missed, since what is left stays contiguous,');
+console.log('and so is one written "14)" rather than "14.", which this does not recognise as an item.');
+console.log('And counts in the detail sections are not read at all: those carry dated measurements');
+console.log('where the number is the point.');
 if (online) {
   const exempt = ownPr && prs.includes(ownPr) ? ` One, #${ownPr}, is this branch's own pull request and is exempt until it merges.` : '';
   console.log(`${checkedPrs} of ${prs.length} cited pull request(s) checked.${exempt}`);

@@ -108,14 +108,14 @@ first act.
     records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done**,
     twelve of the tail's seventeen in PR #103 and the last five in PR #104, which were sourcing
     calls rather than fetching. **SO EVERY RECORD THAT REACHES A READER NOW CARRIES EVIDENCE**, and
-    what is left of A1 is the unpublished reserve records, batched under A1 below. **The count is
-    not written here**: `npm run build` prints how many are reserve and 27 of them lack an
-    evidence entry, which are two different numbers, and this line said 27 for both until
-    3 August 2026. And re-read or
+    what is left of A1 is the unpublished reserve records, batched under A1 below. **No count is
+    written here**: `npm run build` prints how many records are reserve, and how many lack an
+    evidence entry is what `node scripts/check-backlog.mjs` would refuse to let this line say.
+    Those are two different numbers, and this line gave one figure for both until 3 August 2026. And re-read or
     drop
     `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
     unchecked. **[you]**.
-11. **R2 is closed but for one wording call (PR #104, 3 August 2026).** Every source observation
+11. **R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source observation
     the far-end trace produced has been taken: five records re-sourced to the publisher that prints
     their figure, five regraded to say honestly what the figure is, and no published value moved.
     What is left is one sentence of yours, whether `content/claims/nineteen-per-cent-born-abroad.md`
@@ -365,6 +365,13 @@ All **[me]**, all small, each with its reasoning in the audit.
   check change: confirm a genuinely dead URL still fails after the headers are added, because a
   request that always succeeds is worse than one that always fails.
 
+- **`main` has no branch protection and no rulesets, so a red CI job does not block a merge.**
+  Verified 3 August 2026: `gh api repos/{owner}/{repo}/branches/main/protection` returns 404 "Branch
+  not protected" and the rulesets endpoint returns `[]`. Every claim in this file that a check
+  "gates" a pull request is therefore only as strong as the habit of not merging red. Turning on a
+  required status check for the `validate` job is a repository setting rather than a code change,
+  so it is **[you]**, and it would make every check here mean what it says.
+
 - **`npm run validate` and the CI workflow are two lists of checks and neither reads the other.**
   The workflow calls six scripts directly and never invokes that npm script, so a check added to
   `validate` runs on a laptop and gates nothing on a pull request. That is not hypothetical: it is
@@ -376,8 +383,8 @@ All **[me]**, all small, each with its reasoning in the audit.
 
 - **`scripts/check-backlog.mjs` now reads this file, and it found two live defects on the run that
   created it. DONE (PR #106, 3 August 2026).** Everything else here is machine-checked and the file
-  directing all the work was not, which is why it kept rotting. It asserts that every path named
-  exists, every `A1`/`R2`/`U3` cross-reference has a heading, The order is contiguously numbered,
+  directing all the work was not, which is why it kept rotting. It asserts that every backticked path under a
+  known directory exists, every section cross-reference it can see has a heading, The order is contiguously numbered,
   every item carries a tag or says it is closed, and no item in The order writes a count of this
   project's own state. `npm run check-backlog` adds the network half, confirming every cited pull
   request is merged. **What it cannot do is in its own output**: it does not know whether an item

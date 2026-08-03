@@ -47,7 +47,7 @@ nothing here verifies that a named source contains the figure naming it. **That 
 reader-facing half closed on 3 August 2026: every record that reaches a reader now carries an
 entry in `data/evidence/` naming a source and quoting it.** Four batches did it, by publisher.
 The records still without an entry are unpublished reserve, and how many is what
-`npm run check-evidence` prints rather than a number written here.
+`npm run build` prints rather than a number written here.
 
 **It found more of the same defect each time it looked.** A small-boats figure citing an index page
 that carries no figures at all; a record naming table Asy_00a for a figure that table does not
