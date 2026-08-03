@@ -18,14 +18,16 @@ Office immigration system statistics, year ending March 2026. Each now carries a
 `data/evidence/` with a verbatim quote, and the quotes were extracted from the fetched sources
 rather than typed, so a transcription slip could not enter them. PR #99.
 
-**Fifteen were correct as cited**, and so were the year-on-year changes written in their notes:
-table Asy_00a gives 93,525 claims, 128,300 initial decisions, 79,719 refusals, 16,901
-withdrawals, 48,581 grants, a 39% grant rate, 48,758 awaiting a decision, 97,519 supported and
-20,885 in hotels, with the falls and rises the notes state. The two derived figures reconcile in
-both directions: 20,885 plus 72,768 in other accommodation is the 93,653 this site publishes, and
-adding the 3,866 on subsistence-only support returns the Home Office's own 97,519. The 5,931
-administrative outcomes sum from the four quarters of the Asy_D02 pivot, whose Refused, Withdrawn,
-grants and Grand Total columns reproduce four figures the Home Office publishes elsewhere.
+**Fifteen were correct as cited**, and so were the year-on-year changes and the peaks written in
+their notes: table Asy_00a gives 93,525 claims, 128,300 initial decisions, 79,719 refusals,
+16,901 withdrawals, 48,581 grants, 48,758 awaiting a decision, 97,519 supported and 20,885 in
+hotels, with the falls and rises the notes state, and it gives the grant rate as 0.3933, which is
+the 39% the release page states in prose and the record holds. The two derived figures reconcile
+in both directions: 20,885 plus 72,768 in other accommodation is the 93,653 this site publishes,
+and adding the 3,866 on subsistence-only support returns the Home Office's own 97,519. The 5,931
+administrative outcomes sum from four quarters of the Asy_D02 pivot, whose Refused, Withdrawn,
+grants and Grand Total rows, summed across the same four quarterly columns, reproduce four figures
+the Home Office publishes elsewhere.
 
 **One was wrong, and it was the source rather than the number.** Small boat arrivals in calendar
 year 2025, 41,472, cited the immigration system statistics data tables index page. That page lists
