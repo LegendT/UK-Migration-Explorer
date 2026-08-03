@@ -84,8 +84,13 @@ first act.
    needs no JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's
    word.
 8. **The UX review, U2 to U5 below.** None of it gates launch. **U1 is done** (PR #86,
-   2 August 2026) apart from the `robots.txt` half, which is in the gate above. U2 is the
-   citation handover and is the one worth arguing for, U3 is five trust items, and U4
+   2 August 2026) apart from the `robots.txt` half, which is in the gate above. **U2, the
+   citation handover, is built (PR #118, 3 August 2026), and the wording of the citation is all
+   that is left of it: [you].** It is under every chart and inside every claim card, derived from
+   the publications each figure actually draws rather than typed beside them, so a chart cannot
+   cite a source its own data does not name. **Building it found its own first key wrong**: keyed
+   on the URL, one ONS bulletin answered for three records that name it three different ways, and
+   a claim page said a figure was read where it was not. U3 is five trust items, and U4
    is two **[you]** decisions that block any work on them, one of which the gate above now
    waits on. U5 records what was considered and cut, so it is not proposed again.
 9. **A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is done
@@ -967,6 +972,36 @@ publisher, edition, table, the spreadsheet link labelled as a download, "via UK 
 checked [date]" and the anchor URL. Select-and-copy needs no script once the text exists. On a
 claim page it belongs inside the card boundary, so that a screenshot carries it. **[me]** to build,
 **[you]** for the citation format.
+
+**BUILT AS SCOPED (PR #118, 3 August 2026), and the format is what is left.** `lib/citation.mjs`
+renders one block for both places. Nothing in it is typed by an author: the `points` filter carries
+each point's whole record through, so a line chart cites the publications its own points name; a
+bar already resolves to a record for its value and the record travels with it; and a claim page
+reads the `figures:` it declares. It reads those rather than the tokens on the page deliberately,
+because two claim pages declare the net fiscal impact record and then write it as rounded prose, so
+reading tokens would drop that publication from both.
+
+**The deduplication key was wrong first, and measuring the grouping across every page is what found
+it.** Keyed on the URL alone, `/common-claims/nineteen-per-cent-born-abroad/` cited one ONS bulletin
+once, where three records name it as "(Table 3)", as "(Table 9), summed by this project" and as a
+calculation from it and a population estimate: the first answered for all three and the page said a
+figure was read where it was not. Keyed on the name AND the URL, two fields still differed inside a
+group and are merged rather than taken from whichever record came first. Tables, because
+`/common-claims/refused-asylum-seekers-are-eventually-recognised/` cites FIA_4 and FIA_3 with T_3
+under one name. And the checked date, where the EARLIEST wins: three records on
+`/common-claims/everyone-in-asylum-accommodation-arrived-recently/` share a name and a URL and were
+checked on three dates, and the latest would claim a more recent verification than happened.
+
+**Two guards, both probed rather than read.** A table a source names cannot be lost on the way
+through the deduplication, asserted against the rendered text so a change to the key, the merge or
+the printing fails the build. And `check-build.mjs` now resolves a link written with this site's own
+origin: until this block there were none but the canonical tag, and a renamed chart id would have
+broken precisely the URL the block exists to hand over while every other link on the page resolved.
+
+**What is left is the wording, and three questions come with it**: whether a claim page citing one
+publication several ways is right or too much, whether "Via UK Migration Explorer" belongs in a
+citation this site is deliberately not the source of, and whether the block should say which figure
+came from which publication where a page has more than one. **[you]**.
 
 ### U3. Trust, in the order they are worth doing
 
