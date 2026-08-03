@@ -1,6 +1,6 @@
 {
   "theme": "Economic and fiscal impact",
-  "lastUpdated": "2026-08-02",
+  "lastUpdated": "2026-08-03",
   "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across the pre-Brexit static studies summarised by the Migration Observatory, the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP; none of those studies covers the current post-Brexit system. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
   "metrics": [
     {
@@ -16,7 +16,7 @@
       "source_url": "https://www.nao.org.uk/reports/an-analysis-of-the-asylum-system/",
       "published_date": "2025-12-10",
       "retrieved_date": "2026-06-17",
-      "notes": "Home Office plus Ministry of Justice only. The NAO states this does not capture all costs, particularly those incurred by local authorities, so it understates the full system cost. Most recent authoritative figure (published 10 December 2025).",
+      "notes": "Home Office plus Ministry of Justice only. The NAO states this does not capture all costs, particularly those incurred by local authorities, so it understates the full system cost. The NAO's landing page leads with £4.0 billion, its narrower direct-support figure, so a reader who follows the source link and does not open the report meets a different number first. Most recent authoritative figure (published 10 December 2025).",
       "confidence_level": "official"
     },
     {
@@ -254,13 +254,13 @@
       "date": "2025-03-31",
       "period_label": "financial year 2024-25",
       "geography": "United Kingdom",
-      "source_name": "House of Commons Library, UK immigration fees (CBP-9859)",
-      "source_id": "commons-library",
-      "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-9859/",
-      "published_date": "2026-02-13",
-      "retrieved_date": "2026-06-17",
-      "notes": "The surcharge rose 66% in February 2024 (standard rate £624 to £1,035 per year), estimated to raise about £1.1bn extra per year. THE HOME OFFICE'S OWN ACCOUNTS RECONCILE THIS FIGURE AND EXPLAIN A DISCREPANCY A READER WILL MEET, established 3 August 2026. The 2024-25 accounts split the surcharge in two: £2,420,109 thousand retained by the department and £200,769 thousand payable to the Consolidated Fund, which together are £2,620,878 thousand, the £2.6bn here. The Migration Observatory publishes £2.4bn for the same year because it takes the retained half only. Neither is wrong and this site takes the total, which is what the Commons Library also states. THE PERIOD BASIS WAS CONFIRMED ON 3 AUGUST 2026 AND THIS RECORD WAS WRONG: the briefing body gives the figure for financial year 2024/25 (written here in this site's house form, 2024-25), not calendar 2024, and the record said 2024 with a date of 31 December. The briefing summary does say \"in 2024\", so the two halves of the same publication disagree and the body was taken.",
-      "confidence_level": "official"
+      "source_name": "Home Office, Annual Report and Accounts 2024-25, HC 1133, Note 4 (Income), page 248",
+      "source_id": "ho-ara",
+      "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+      "published_date": "2025-07-17",
+      "retrieved_date": "2026-08-03",
+      "notes": "The surcharge rose 66% in February 2024 (standard rate £624 to £1,035 per year), estimated to raise about £1.1bn extra per year. THE HOME OFFICE'S OWN ACCOUNTS RECONCILE THIS FIGURE AND EXPLAIN A DISCREPANCY A READER WILL MEET, established 3 August 2026. The 2024-25 accounts split the surcharge in two: £2,420,109 thousand retained by the department and £200,769 thousand payable to the Consolidated Fund, which together are £2,620,878 thousand, the £2.6bn here. The Migration Observatory publishes £2.4bn for the same year because it takes the retained half only. Neither is wrong and this site takes the total, which is what the Commons Library also states. THE PERIOD BASIS WAS CONFIRMED ON 3 AUGUST 2026 AND THIS RECORD WAS WRONG: the briefing body gives the figure for financial year 2024/25 (written here in this site's house form, 2024-25), not calendar 2024, and the record said 2024 with a date of 31 December. The briefing summary does say \"in 2024\", so the two halves of the same publication disagree and the body was taken. RE-SOURCED FROM THE COMMONS LIBRARY AND REGRADED TO calculated ON 3 AUGUST 2026: the Library rounds the accounts to £2,600 million and no source prints £2.6 billion, so the figure is this site's sum of the two printed cells.",
+      "confidence_level": "calculated"
     },
     {
       "id": "home-office-visa-and-immigration-fee-income",
@@ -270,13 +270,13 @@
       "date": "2025-03-31",
       "period_label": "financial year 2024-25",
       "geography": "United Kingdom",
-      "source_name": "House of Commons Library, UK immigration fees (CBP-9859)",
-      "source_id": "commons-library",
-      "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-9859/",
-      "published_date": "2026-02-13",
-      "retrieved_date": "2026-06-17",
-      "notes": "Separate from the Immigration Health Surcharge (about £2.6bn) and the employer Immigration Skills Charge (about £0.6bn), so total immigration-related revenue exceeds about £6bn. Financial year 2024/25, corrected from calendar 2024 on 3 August 2026 on the same finding as the surcharge record.",
-      "confidence_level": "official"
+      "source_name": "Home Office, Annual Report and Accounts 2024-25, HC 1133, Note 4 (Income), page 248",
+      "source_id": "ho-ara",
+      "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+      "published_date": "2025-07-17",
+      "retrieved_date": "2026-08-03",
+      "notes": "Separate from the Immigration Health Surcharge (about £2.6bn) and the employer Immigration Skills Charge (about £0.6bn), so total immigration-related revenue exceeds about £6bn. RE-SOURCED FROM THE COMMONS LIBRARY AND REGRADED TO calculated ON 3 AUGUST 2026. The accounts print visa and immigration income as £2,978,355 thousand for 2024-25, which is £2.98bn; £3bn is this site rounding it, and the Library's £3,000 million is the same rounding. The Migration Observatory states £3 billion outright for the same year, citing these accounts.",
+      "confidence_level": "calculated"
     },
     {
       "id": "mac-recommended-skilled-worker-general-salary-threshold",

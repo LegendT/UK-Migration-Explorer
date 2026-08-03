@@ -347,12 +347,15 @@ All **[me]**, all small, each with its reasoning in the audit.
   test, and note that it must accept an entry whose figure has since moved, which is history and
   fails nothing.
 
-- **`check-sources.mjs` reports four Commons Library URLs as uncheckable on every run, and they
-  are not.** They 403 because Cloudflare refuses a bare `curl`; adding the four request headers a
-  browser sends, `Sec-Fetch-Dest`, `-Mode`, `-Site` and `-User`, returns 200 from all four plus the
-  briefing PDFs behind them, established while fetching them for A1 batch 3 on 3 August 2026. So
-  five of the "5 need checking by hand" are one header set away from being checked, and a standing
-  manual step exists for no reason. **[me]**, and it wants the same negative test as any other
+- **`check-sources.mjs` reports Commons Library URLs as uncheckable on every run, and they are
+  not.** They 403 because Cloudflare refuses a bare `curl`; adding the four request headers a
+  browser sends, `Sec-Fetch-Dest`, `-Mode`, `-Site` and `-User`, returns 200 from all of them plus
+  the briefing PDFs behind them, established while fetching them for A1 batch 3 on 3 August 2026.
+  **How many is deliberately not written here**: R2's decisions moved three of those records to
+  other publishers the same day and the number fell without anyone touching this bullet, which is
+  what a count about our own work does. Run `npm run check-sources` and read the list; every one
+  of them is one header set away from being checked, and a standing manual step exists for no
+  reason. **[me]**, and it wants the same negative test as any other
   check change: confirm a genuinely dead URL still fails after the headers are added, because a
   request that always succeeds is worse than one that always fails.
 
@@ -499,7 +502,8 @@ have made "three" wrong.
   finalised calendar-year total, while the publisher prints the year only as four quarterly
   cells to be summed and states no calendar-year total. The site's own convention for a summed
   figure is `calculated` with the components quoted. **[you]** whether the grade or the note
-  moves. **Re-checked on 3 August 2026: IER_01's 2025 small boats cell is 41,472, printed.**
+  moves. **CLOSED (PR #104, 3 August 2026).** IER_01's 2025 small boats cell is 41,472, printed, so
+  `official` and "finalised calendar-year total" are both right and neither moves.
 
   **THE PREMISE IS FALSE, established by the A1 fetch on 3 August 2026, so neither moves.** The
   Home Office does print a calendar-year total: **table IER_01 of the illegal entry routes summary
@@ -519,9 +523,10 @@ have made "three" wrong.
   3 August 2026: two printed cells, not one. **The eight
   yearly sums that entry derived by hand are identical, number for number, to the row IER_01
   prints**, which is this project's absolute-negative rule failing in the way the handoff already
-  describes: the search that would have refuted it was never run. Regrading it to `official`
-  against IER_01 is the obvious move and it is a grade, so it is **[you]**; the fetch behind it is
-  done and needs no repeating.
+  describes: the search that would have refuted it was never run. **DONE (PR #104,
+  3 August 2026): regraded to `official`.** Its note now carries the old reason and why it was
+  false, and its evidence entry is a quote of IER_01's whole printed row rather than a hand-derived
+  sum, which is also what establishes 2022 as the maximum of the nine calendar years printed.
 - **Two figures in the citizenship card's prose, 269,178 and 312,063. The [me] fetching half is
   DONE (PR #78, 2 August 2026), and this observation was right.** Neither is on the page the
   record cites. That page states the 12% decrease behind 269,178, and for 312,063 it states neither
@@ -546,7 +551,8 @@ have made "three" wrong.
   is **[you]**. **Re-confirmed by the batch 3 fetch on 3 August 2026**, both halves: the landing
   page's £4.0 billion is "the current direct cost of supporting people seeking asylum", a
   narrower thing than the £4.9 billion of Home Office and Ministry of Justice spending the report
-  states. Nothing about the observation moves; it is still one sentence of yours.
+  states. **DONE (PR #104, 3 August 2026): the record's notes now say so**, in one sentence, so a
+  reader who meets £4.0 billion first can tell which figure is which.
 
 - **THREE FIGURES THEIR CITED SOURCE ROUNDS, so no quote can carry them. From batch 3 of A1,
   3 August 2026. All [you], because each is a sourcing call.** `check-evidence` asks that the
@@ -566,20 +572,23 @@ have made "three" wrong.
   | `asylum/asylum-applications-main-applicants` | 76,714 | "76,700 applications ... relating to 93,500 individuals" | **Home Office table Asy_01a prints 76,714 exactly**, as "Main applicants" for the year ending March 2026, in the same row-block as the 93,525 total people this site already publishes. NOT Asy_00a, which this bullet named and which carries no main-applicant row at all |
   | `asylum/small-boat-arrivals-year-ending-march-2026` | 39,271 | "39,000 people arrived by small boat" | **No printed cell anywhere.** IER_01's columns are calendar years plus a January-to-March 2026 stub, so there is no year-ending-March total. The figure reproduces exactly from IER_02a's twelve printed monthly cells for April 2025 to March 2026, and from IER_D01's four quarters as batch 1 already quotes |
 
-  **So the three are not one decision, they are three, and only one is clean.**
+  **DECIDED AND APPLIED, 3 AUGUST 2026 (PR #104), except the third.** So the three were not one
+  decision, they were three:
 
-  - **`asylum-applications-main-applicants` is clean.** Re-sourcing to the Home Office keeps the
-    value AND the `official` grade, because Asy_01a prints the figure. The record's own note, "76,714
-    applications relating to 93,525 people", is that table's two rows exactly. **Recommended.**
-  - **The other two cannot keep both their value and their grade.** Each figure is a sum the
-    publisher does not print, and this section's own first bullet states the site's convention for
-    that: `calculated`, with the components quoted. So re-sourcing them means value kept, source
-    moved, grade moved to `calculated`, and an evidence entry of components: twelve monthly cells
-    or four quarters for the small boats figure, two census-day cells for the foreign-born one.
-    That is more than "change the source", which is what this bullet implied before it was checked.
-  - **The alternative for those two is to round each to what its own source states**, 10.7 million
-    and 39,000, which keeps the citation exact and loses precision the site currently has.
-  - **Doing nothing is a third choice** and means they stay unevidenced with the reason here.
+  - **`asylum-applications-main-applicants`: DONE, and it was the clean one.** Re-sourced to the
+    Home Office, keeping the value AND the `official` grade, because Asy_01a prints the figure. The
+    record's own note, "76,714 applications relating to 93,525 people", is that table's two rows
+    exactly, and the evidence entry quotes all three.
+  - **`small-boat-arrivals-year-ending-march-2026`: DONE, re-sourced and regraded to `calculated`.**
+    No publisher prints the figure, so the convention this section's own first bullet states applies.
+    Its evidence is IER_02a's twelve printed monthly cells for April 2025 to March 2026, summing to
+    39,271, generated from the table rather than typed.
+  - **`foreign-born-population-of-the-uk` IS THE ONE STILL OPEN, and it is open because no
+    recommendation was ever made for it.** There is no primary to move to: ONS prints no combined UK
+    cell and no one else does either. So the choice is `calculated` at 10,738,000 from the two
+    census-day cells, which MOVES A PUBLISHED VALUE, or leaving it unevidenced with the reason here.
+    Rounding it is not a third option, because 10,700,000 already is the rounding and the problem is
+    that the source prints no digits at all. **[you]**, and it is the last thing in R2.
 
   The cost of moving any of them is the same and should be weighed once: `source_id` decides the
   publisher counts that `/sources-and-method/` renders from `lib/published.mjs`, so each move
@@ -595,8 +604,10 @@ have made "three" wrong.
   to say. **Two readings and the choice is a grade, so it is yours**: `estimated` is right if the
   grade describes the FIGURE, since the publisher hedges both with "around" and "approximately";
   `official` is right if it describes THIS SITE'S relationship to the figure, which is that it
-  copied a published number. Nothing is wrong today either way, and the second reading would make
-  the entries simpler. **[me]** to apply.
+  copied a published number. **DECIDED 3 AUGUST 2026: `estimated` stays**, on the first reading. The
+  publisher hedges both figures with "around" and "approximately", and that is what a reader needs
+  to know about them; the derivation opening by saying nothing was computed is the honest cost of
+  it. No change was made, which is why nothing points at a pull request here.
 
 - **TWO FIGURES WHOSE SOURCE STATES MILLIONS WHERE THE RECORD STATES BILLIONS.** Same batch, same
   day, and a different problem wearing the same clothes. `fiscal/immigration-health-surcharge-revenue`
@@ -626,11 +637,12 @@ have made "three" wrong.
 
   **The choice, and all three keep the page prose exactly as it is:**
 
-  - **Both records to `ho-ara`, grade `calculated`, components from the accounts.** The surcharge
-    genuinely is a sum of two printed cells, so `calculated` is the honest grade and the components
-    are quotable. Fee income would take the same path for what is really a rounding of £2.978bn,
-    which is the one stretch. Both become evidenced, and the publisher already sits in the catalogue.
-    **Recommended.**
+  - **DONE (PR #104, 3 August 2026): both records to `ho-ara`, grade `calculated`, components from
+    the accounts.** The surcharge genuinely is a sum of two printed cells, so `calculated` is the
+    honest grade and both components are quoted. Fee income took the same path for what is really a
+    rounding of £2.978bn, which was the one stretch, and its derivation says so in those words
+    rather than dressing a rounding up as arithmetic. Both are evidenced and the page prose is
+    untouched.
   - **Fee income to `migration-observatory` and the surcharge to `ho-ara`.** The Migration
     Observatory prints "totalled £3 billion" verbatim, so fee income keeps `official` and needs no
     derivation at all. The cost is two sibling figures citing two publishers.

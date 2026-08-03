@@ -9,6 +9,51 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### R2's decisions applied: two re-sourced, four regraded, one left open, 3 August 2026
+
+**No published value changed. Four grades did, and two records changed publisher.** R2 collected
+what the far-end trace found and could not settle without a decision. The decisions were taken and
+applied on the same day, and what follows is what moved and why. PR #104.
+
+**`small-boat-arrivals-peak` is `official` rather than `calculated`, and its old reason was false.**
+It said "the Home Office publishes this dataset by quarter and states no calendar-year total".
+Table IER_01 prints 45,774 as a 2022 calendar-year cell, and IER_02a prints the same figure in its
+Total column: two printed cells, not none. Its evidence is now a quote of IER_01's whole printed
+row, which is also what establishes 2022 as the maximum of the nine years the table carries. The
+hand-derived sum it used to hold was right to the number and wrong about the publisher.
+
+**`asylum-applications-main-applicants` now cites the Home Office rather than the Commons Library.**
+The Library rounds it to "76,700 applications ... relating to 93,500 individuals"; table Asy_01a
+prints 76,714 and 93,525 in one row-block. The value and the `official` grade are unchanged, and
+only the citation moved. **The trace that found this had first named the wrong table**, Asy_00a,
+which carries no main-applicant row at all; the correction came from opening the file rather than
+reasoning about it.
+
+**`small-boat-arrivals-year-ending-march-2026` is re-sourced and regraded to `calculated`.** No
+publisher prints it: IER_01's columns are calendar years plus a January-to-March 2026 stub, so no
+year-ending-March total exists anywhere. It is the sum of IER_02a's twelve printed monthly cells,
+all twelve now quoted, and the same total reproduces from IER_D01's four quarters.
+
+**The two immigration-fee records now cite the Home Office accounts and are `calculated`.** The
+Commons Library was rounding them: the accounts print visa and immigration income as £2,978,355
+thousand, and split the surcharge into £2,420,109 thousand retained and £200,769 thousand payable
+to the Consolidated Fund, summing to £2,620,878 thousand. **That also settles a discrepancy a
+reader can find in seconds**: the Migration Observatory publishes "over £2.4 billion" for the same
+year, which is the retained half alone. Neither is wrong, this site takes the total, and both
+records now say so. Nothing a reader sees changed, because `content/costs.njk` writes the word
+"billion" into its own prose and the values are unchanged.
+
+**The counts on `/sources-and-method/` moved on their own**, from seventeen published figures across
+seven irregular publishers to fifteen across six, because `lib/published.mjs` derives them. The
+Commons Library no longer sources any published figure. Nobody edited that page.
+
+**One thing is deliberately left open.** `foreign-born-population-of-the-uk` holds 10,700,000 and
+its source prints "10.7 million" with no digits anywhere. There is no primary to move to: ONS prints
+no combined UK cell, and its own freedom-of-information response calls producing one an ambition, in
+the future tense. Closing it means either publishing 10,738,000 as a `calculated` sum of two
+census-day cells, which moves a value a reader sees, or leaving it unevidenced. That is a decision
+nobody has taken, so it is in the backlog rather than in this entry.
+
 ### Twelve of the tail's seventeen figures are traced to the far end, and one of them moved, 3 August 2026
 
 **One published value changed, and it is the first on this site to move because a trace found what

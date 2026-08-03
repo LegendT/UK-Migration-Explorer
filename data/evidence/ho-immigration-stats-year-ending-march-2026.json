@@ -244,6 +244,15 @@
           "quote": "Asy_D02, Administrative Outcome, 2026 Q1: 374"
         }
       ]
+    },
+    {
+      "ref": "asylum/asylum-applications-main-applicants",
+      "previous_value": 76714,
+      "value": 76714,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "Asy_01a",
+      "quote": "Asy_01a: Number of people claiming asylum, main applicants, and unaccompanied asylum-seeking children (UASC), by age, year ending December 2010 to the year ending March 2026. Year ending March 2026: Total people 93,525; Main applicants 76,714; Unaccompanied asylum-seeking children (UASC) 3,627"
     }
   ]
 }
