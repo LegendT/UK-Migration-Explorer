@@ -63,7 +63,13 @@ function checkReviewDue(file, lastReviewed, reviewDue) {
 
 // Structural includes the build expands from the data layer, written {{> name }} so they
 // cannot be confused with a metric token. Prose describes; these render the catalogue.
-const PARTIALS = new Set(['sources-catalogue', 'confidence-levels', 'key-caveats']);
+//
+// This list is a second copy of the one in eleventy.config.js, and it is deliberate rather
+// than drift: the pair is guarded in both directions. A partial used here and missing there
+// fails this check by name, which is how `data-files` was caught on the run that added it;
+// a renderer there with no entry here cannot be reached from prose at all, because this scan
+// is what lets a {{> name }} through.
+const PARTIALS = new Set(['sources-catalogue', 'confidence-levels', 'key-caveats', 'data-files']);
 
 // Prose is matched with the front matter removed, so a line number from a scan of it is
 // not a line number in the file. Reporting one that does not open the offending line is

@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 
 import { barChart, lineChart } from './lib/charts.mjs';
 import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
-import { THEME_FILES, readSeries } from './lib/series.mjs';
+import { COMPANION_BLOCKS, THEME_FILES, readSeries } from './lib/series.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`./data/${file}`, import.meta.url), 'utf8'));
 
@@ -43,6 +43,24 @@ const PARTIALS = {
     .map(([level, definition]) => `<dt>${escape(level)}</dt><dd>${escape(definition)}</dd>`).join('')}</dl>`,
 
   'key-caveats': () => `<ol class="caveats">${meta.keyCaveats.map((c) => `<li>${escape(c)}</li>`).join('')}</ol>`,
+
+  // The door to the data layer, which /sources-and-method/ promised was public and linked
+  // nowhere. Generated from the directory rather than typed, for the same reason the sources
+  // catalogue is: a hand-written list of data files is a second copy of the data layer's
+  // shape, and it goes stale the first time a file is added. What each file holds is counted
+  // from the file, so a count here cannot disagree with the file it describes.
+  'data-files': () => `<ul class="data-files">${readdirSync(new URL('./data/', import.meta.url))
+    .filter((name) => name.endsWith('.json')).sort()
+    .map((name) => {
+      const json = read(name);
+      const points = (block) => (block?.data ?? []).length;
+      const held = json.metrics ? `${json.metrics.length} figures`
+        : json.data ? `${points(json) + COMPANION_BLOCKS.reduce((n, b) => n + points(json[b]), 0)} points`
+        : json.sources ? `${json.sources.length} sources`
+        : json.cards ? `${json.cards.length} cards`
+        : null;
+      return `<li><a href="/data/${escape(name)}"><code>${escape(name)}</code></a>${held ? ` <span class="holds">${escape(held)}</span>` : ''}</li>`;
+    }).join('')}</ul>`,
 };
 
 export default function (eleventyConfig) {
@@ -59,6 +77,9 @@ export default function (eleventyConfig) {
   eleventyConfig.setFrontMatterParsingOptions({ excerpt: false });
 
   eleventyConfig.addPassthroughCopy({ 'content/assets': 'assets' });
+  // The data layer ships with the site, so the Reuse section's promise that it is public
+  // does not depend on a reader finding the repository.
+  eleventyConfig.addPassthroughCopy({ data: 'data' });
   eleventyConfig.addPassthroughCopy({ 'content/robots.txt': 'robots.txt' });
 
   eleventyConfig.addGlobalData('metrics', () => Object.fromEntries(registry));

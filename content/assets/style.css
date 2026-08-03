@@ -144,6 +144,15 @@ blockquote > :last-child { margin-bottom: 0; }
 
 code { font-size: 0.9em; background: var(--panel); padding: 0.1em 0.35em; border-radius: 3px; }
 
+/* The data-layer list on /sources-and-method/. Its longest filename is wider than a 320px
+   viewport, and an unbroken code span pushed the whole page 54px sideways when it was first
+   built: the body must never scroll horizontally, so the filename wraps instead. Measured at a
+   genuine 320px layout viewport, not a narrowed window, which is the distinction the second UX
+   round had to learn twice. */
+.data-files { margin: 1.5rem 0; }
+.data-files code { overflow-wrap: anywhere; }
+.data-files .holds { color: var(--ink-soft); }
+
 .reviewed {
   margin-top: 3rem;
   padding-top: 1rem;

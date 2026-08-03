@@ -272,3 +272,13 @@ its basis and its source is the raw material for exactly the confusion this site
 reduce.
 
 The site's code and original writing are openly licensed, and the underlying data files, including the source of every figure, are public.
+
+They are here, and they are the same files this site builds from rather than an export of them.
+Every figure on the site comes from one of these records, and each record carries its own source
+URL, publication date, the date we last checked it and its confidence grade.
+
+{{> data-files }}
+
+Each file is served as JSON at the address shown. `data/evidence/` sits alongside them and holds
+the quote behind every figure that has one, one file per publisher release, with
+[its own README](/data/evidence/README.md) explaining the format.
