@@ -88,15 +88,16 @@ first act.
    citation handover and is the one worth arguing for, U3 is five trust items, and U4
    is two **[you]** decisions that block any work on them, one of which the gate above now
    waits on. U5 records what was considered and cut, so it is not proposed again.
-9. **A SECOND UX ROUND, U6 below, because the first missed the navigation.** The site has no
-   mobile navigation pattern at all: nine flat items in a list, and the only nav rules in the
-   stylesheet are a `min-width: 60em` gap and a print rule that hides it. The first review's only
-   nav bullet is under *U5, considered and cut*, it is about a horizontally scrolling nav, and it
-   says in its own words "by calculation, unrendered" and "measure before deciding". So nobody has
-   opened this site at a phone width and looked at the header. **The round is scoped by that
-   question rather than by the nav**: what else was decided by calculation instead of by
-   rendering. The rendering and measuring are **[me]**; adopting a navigation pattern is
-   **[you]**.
+9. **A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is done
+   (PR #98, 3 August 2026)** and nothing but **[you]** is left of it. All 17 pages were rendered at
+   five real device sizes with a genuine layout viewport. **The round found its own premise wrong
+   twice**, which is the point of it: the nav wraps to five rows at 320px rather than the four the
+   first review calculated, and the stylesheet's one width-dependent nav rule is dead, being
+   identical to the base rule it appears to override. **The costliest finding is not the nav.** It
+   is that 45% of every chart is off-screen at 320px and what is hidden is the data its own summary
+   sentence describes, which no review that reads markup could have seen. What is left is
+   **[you]**: adopting a navigation pattern, for which the sibling precedent turned out to need
+   JavaScript, and deciding the chart remedy.
 10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
     reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
@@ -491,20 +492,40 @@ claim page it belongs inside the card boundary, so that a screenshot carries it.
 ### U6. A second round, scoped by what the first one missed
 
 **The trigger is the navigation, and the reason for the round is the question it raises.** The
-site has no mobile navigation pattern. Nine flat items sit in a `<ul>`, and the only nav rules in
-`content/assets/style.css` are a `min-width: 60em` rule widening the gap and a `@media print` rule
-hiding it. Below that width the nav simply wraps.
+site has no mobile navigation pattern. Nine flat items sit in a `<ul>`, and below the header's one
+media query the nav simply wraps.
+
+**This paragraph said the nav rules were "a `min-width: 60em` rule widening the gap and a
+`@media print` rule hiding it", and the measured answer is neither.** The 60em block touches only
+`.cards`. The gap rule is in the `min-width: 40em` block, `style.css:369`, and it sets
+`gap: 0 1.25rem`, which is character for character what the base rule at `style.css:89` already
+sets: computed `column-gap` is 20px at 320, 639, 640, 768 and 1200. **It is a dead rule**, so the
+only nav rule that does anything at a width is the print rule. The sentence was written by reading
+the stylesheet, which is the failure mode this whole round exists to test for, committed by the
+entry that set the round up.
 
 **The first review did touch this and did not settle it.** Its only nav bullet is in U5 above,
 under *considered and cut*, and it is about a horizontally scrolling nav rather than about whether
 the header works on a phone. Its own words are "nine flat items wrap to about four rows at 320px
-**by calculation, unrendered**; measure before deciding". Nobody measured, and the item was filed
-as cut.
+**by calculation, unrendered**; measure before deciding". Nobody measured, the item was filed as
+cut, and **the calculation was wrong: it is five rows at 320px**, four at 360, three at 390 and
+414, two at 768.
 
 **A candidate pattern was already written down somewhere else and the review did not reach it.**
 `docs/HANDOFF.md` records under *Sibling projects* that `~/Projects/DEBT` groups its nav items
 under `<details>` rather than listing them flat, and says explicitly that the idea is not taken and
 is worth considering. Two documents held half of this each.
+
+**Opening that sibling changed what the precedent is worth, and this is the correction that
+matters most for the decision below.** DEBT's mobile collapse is not `<details>` at all. It is
+`<button class="site-nav__toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>`
+in `src/_includes/layouts/base.njk`, driven by `src/assets/js/nav.js` and revealed only under a
+`.js` class, so **without JavaScript it is hidden and DEBT's nav renders flat, exactly as this site
+does today**. Its `<details>` is a sub-menu device for nav items that declare `children`; this
+site's nine items are flat and have none. So `<details>` and `<summary>` can carry a whole nav with
+no JavaScript, and that is worth doing, but **DEBT is a precedent for grouping a hierarchy rather
+than a working precedent for a no-JavaScript mobile nav**, and this site's no-client-JavaScript
+rule is the constraint DEBT did not have to meet.
 
 **So the round is scoped by the question rather than by the nav**: what else in that review was
 decided by calculation, by reading markup, or by checking one page, rather than by rendering the
@@ -520,8 +541,93 @@ before believing an overflow either way, and start one Chrome instance and attac
 spawning one per capture.
 
 **Tagging.** Rendering every page at real phone widths, measuring, and listing what is wrong is
-**[me]**. Choosing a navigation pattern is **[you]**, and the `<details>` grouping is the
-candidate with a working precedent in a sibling project.
+**[me]**. Choosing a navigation pattern is **[you]**, and `<details>` grouping is the candidate,
+with the qualification recorded four paragraphs above about what the sibling precedent actually
+covers.
+
+#### The measurement. DONE (PR #98, 3 August 2026). All 17 pages, five real device sizes
+
+**The [me] half of U6 is this section and nothing else is left of it.** What is below is what the
+rendering found; adopting a navigation pattern is still **[you]**, and so is every remedy that is a
+design call rather than a defect. **One [me] fix is deliberately not taken here**: deleting the dead
+40em rule, because whoever adopts a nav pattern rewrites that block and a one-line deletion landing
+first would just be a merge conflict with the decision it is waiting on.
+
+**How it was measured, so the numbers can be re-derived.** Puppeteer's `setViewport` is
+`Emulation.setDeviceMetricsOverride`, so the trap the section above names does not apply, and
+puppeteer is already present through `pa11y-ci` rather than being added for this. Pages come from
+`.pa11yci.json` so this is not a second list of pages. **The precondition was checked before
+anything was believed**: `document.documentElement.clientWidth` came back equal to the requested
+width at 320, 360, 390, 414 and 768. Sizes are real devices, because "how much of the screen"
+means nothing without a height: 320x568, 360x640, 390x844, 414x896, 768x1024. The script is in
+PR #98's body rather than in `scripts/`, deliberately: it gates nothing, its job ends when the nav
+is decided, and committing it would make a transitive dependency a direct one.
+
+**What is NOT wrong, recorded so it is not investigated again.**
+- **No page overflows the viewport horizontally at any width.** `documentElement.scrollWidth`
+  equals `clientWidth` on all 17 pages at all five sizes. Everything crossing the right edge is
+  inside a focusable, named scrolling region. The one thing crossing the left edge is the
+  visually-hidden skip link, on every page, which creates no scroll because the direction is left.
+  **The result is not masked**, which is the control that makes it worth anything: nothing in
+  `style.css` sets `overflow-x: hidden` on `html` or `body`, the only `overflow: hidden` being the
+  `.visually-hidden` utility, so a real overflow would have shown as one.
+- **Every nav link is 50px tall**, clearing the 44px rule. Three standalone targets fall under it,
+  and none is listed as a finding, **for two different reasons rather than one**. Two are covered
+  by WCAG 2.2's equivalent-control exception: the brand link at 170x20 on all 17 pages, which the
+  50px `Overview` nav link duplicates, and the `All common claims` link at 142x20 on the home page
+  and the seven claim pages, which the 50px `Common claims` nav link duplicates. **The third has
+  no equivalent and does not need one**: the `Costs` nav link, the shortest label on the bar, is
+  43.78 by 50.23px, so it clears WCAG's 24px minimum on its own and misses this project's stricter
+  44px rule by a fifth of a pixel. Widening the nav's padding closes it, which is a decision for
+  whoever takes the nav.
+- **Inline links in prose measure 18 to 20px tall and are not findings.** WCAG 2.2's target-size
+  inline exception covers them. There are 89 of them at 320px across the 17 pages, 123 at 360,
+  111 at 390 and 133 at 414, and reporting them would be the "defect that does not exist" cost the
+  handoff prices.
+- The dark palette at 390 renders correctly, checked with `prefers-color-scheme` emulated.
+
+**What is wrong, most costly first.**
+
+- **The header takes 55% of the first screen at 320px, and that is the post-launch number.**
+  Measured with the pre-launch banner excluded, since it goes at launch: header 312px on a 568px
+  screen. 41% at 360, 25% at 390, 24% at 414. **With the banner still there, every page's `h1` is
+  below the fold at 320x568**: `main` starts at 520px and the `h1` top is 552 to 598px. Sizing the
+  decision below: the brand line alone is 61px and one nav row is 50px, so a single-summary-row
+  header is about 111px against today's 312px.
+- **The nav's rows are edge to edge.** Link height 50px, row pitch 50 to 51px, computed
+  `row-gap: 0px`. Nine targets stacked with no vertical separation, which is the mis-tap risk that
+  survives every target clearing 44px.
+- **45% of every chart is off-screen at 320px, and what is hidden is the data the sentence above
+  it is about.** Every chart, literally: the built site holds seven `.chart-svg` elements and
+  seven overflow. `.chart-svg` is `min-width: 32rem`, a fixed 512px, inside a 280px box: 232px of
+  512 hidden at 320, 38% at 360, 32% at 390, 27% at 414, nothing at 768. On `/migration/`'s net
+  migration chart the visible x-axis is 2012, 2014, 2016, 2018 and the hidden strip holds 2020,
+  2022 and 2025, while the summary above it reads "reached 891,000 in 2022 ... has fallen in each
+  of the three years since, to 171,000". **None of that is on screen.** The comment at
+  `style.css:161` says "what sits in the hidden strip is the series labels"; at 320px it is the
+  axis labels 2020, 2022 and 2025 and the data under them, and that comment is a second thing in
+  this project written by calculation rather than by looking.
+- **A bar chart fails worse than a line chart, because a bar loses its value label.** On `/costs/`,
+  the "Hotel place" bar runs off the right edge with its 158 label in the hidden strip while
+  "Dispersal accommodation" shows 20, under a sentence reading "roughly eight times the £20 rate".
+  The reader gets one of the two numbers and a bar whose length carries nothing, since it is
+  truncated. The value axis shows 0 with 200 hidden.
+- **Seven tables overflow at 320px.** Worst is the Sources table on `/sources-and-method/` at 42%
+  hidden, where the second column is sliced mid-word on every row. Then `/costs/` at 28% and 17%,
+  `/style-guide/` 13%, `/migration/` 10% and 6%, `/asylum/` 7%. Two still overflow at 390.
+- **The scroll affordance exists and understates what it is hiding.** The gradient and shadow pair
+  at `style.css:167` is present and visible at 320px, and it says "there is more that way". Nothing
+  says that nearly half the chart is that way, or that the years the sentence names are in it.
+  **This is the one finding that is a design call rather than a defect**, so the remedy is
+  **[you]**: the 32rem floor exists because SVG text scales with the chart and the comment at
+  `style.css:415` records what that cost once already.
+
+**What this pass did not establish**, on the same terms every check here states its limits. It
+measured geometry in a rendered layout viewport and nothing else. It did not touch the page: whether
+a reader discovers a horizontal swipe on a chart is a question about behaviour, and it is the same
+gap as the screen reader already published as a limit. It did not test browser zoom or an enlarged
+default text size, and it did not re-open the first review's non-visual claims, which rendering
+cannot settle either way.
 
 ### U5. Considered and cut, with the reasoning, so they are not re-proposed
 
