@@ -1,18 +1,3 @@
-# Prompt for a fresh session
-
-**Generated from `docs/HANDOFF.md`, section *Prompt for a fresh session*, which is the source of
-truth.** If the two disagree, the handoff is right and this file is stale: regenerate rather than
-editing here.
-
-It recites almost nothing, because the two times it and the handoff drifted the prompt was the stale
-copy. The handoff explains which few things it still carries and why each cannot be a pointer.
-
-Regenerated 3 August 2026, mechanically from the handoff's block. This line once said which launch
-gates had closed, and was wrong within the day: which gates are open is the backlog's to say.
-
----
-
-```
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
@@ -39,8 +24,8 @@ SESSION's side, so the tags invert against the pronouns in this message.
 Use the mapping, never the pronoun:
   [me] = a factual or mechanical change against a cited source. YOU do it.
   [you] = an editorial or sourcing call. It is MINE. Propose and stop.
-Check it the first time you use it: correction 1a in the backlog marks
-the owner's decision [you]. On a list mixing both, do all the [me] work
+Check it the first time you use it: open the backlog, find any item
+tagged [you], and confirm it is a decision rather than a task. On a list mixing both, do all the [me] work
 first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question is.
 
@@ -64,4 +49,3 @@ Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
 its PR and a date, and move it to Completed when nothing is left. Do not
 delete it.
-```

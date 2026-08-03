@@ -27,7 +27,18 @@ moved and never asked again, so a bad quote on a figure that then sat still was 
 long as it sat.
 
 **An entry for a figure that has since been renamed, dropped or revised stays as history and
-fails nothing**, which is why the audit turns on the value still matching. These files are the
+fails nothing**, which is why the audit turns on the value still matching.
+
+**A REGRADE IS THE ONE CASE WHERE AN ENTRY IS REPLACED RATHER THAN KEPT.** When a figure crosses
+the derived boundary at an unchanged value, the entry on file is still matched, because matching is
+on ref and value, but it is now the wrong KIND of evidence: a components entry where a quote is
+required, or the reverse. The check says so precisely and there is no way to satisfy it except to
+make that entry the right shape. So the entry is rewritten in place, and what it used to say goes
+into `CHANGELOG.md` and the record's own notes, which is where this project keeps history. This
+happened on 3 August 2026 to `asylum/small-boat-arrivals-peak`, whose components entry asserted that
+the Home Office states no calendar-year total; table IER_01 prints one, so the derivation was right
+to the number and wrong about the publisher, and keeping it would have preserved a false claim as
+"history". These files are the
 audit trail, and a check that failed on an old entry would push someone into deleting the trail
 to get a green run.
 
@@ -52,7 +63,7 @@ to get a green run.
 | Field | |
 | --- | --- |
 | `ref` | `theme/metric-id`, as content cites it |
-| `previous_value` | what the record held on the base branch, `null` if the figure is new |
+| `previous_value` | what the record held on the base branch, `null` if the figure is new. **A backfill for a figure that has not moved is not new**: it takes the value the record already holds. Twenty-eight entries said `null` here until 3 August 2026, and nothing noticed, because the loop that validates this field only runs for a figure that moved |
 | `value` | the new value, which must equal the record's |
 | `source_url` | the page or table the quote was read from, https |
 | `fetched_at` | the day it was read, `YYYY-MM-DD` |

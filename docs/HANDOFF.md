@@ -201,10 +201,24 @@ unreviewed page looks like when someone finally reads it.
 Nothing verifies the source contains the figure. Reading five publications during the audit found
 three defects: a record citing an NAO report that does not contain its value, a phrase attributed to
 the Home Office that it does not use, and a note reproducing wording the NAO formally retracted by a
-correction slip inside its own PDF. **All three are now corrected, and the gap they came through is
-not**: no automated check verifies that a source contains the figure citing it. The launch
-readiness review verified the eight home page figures at the far end by hand, with fetched
-quotes; the other reader-facing records have not been asked, and the backlog carries that as A1. `£2.1 billion` was the clearest case. It is
+correction slip inside its own PDF. **All three are now corrected, and no automated check
+closes the gap they came through**: nothing verifies that a source contains the figure citing it,
+and nothing can, because it is a question about the far end of a link. **What closed it instead is
+a pass done by hand, and it finished for reader-facing records on 3 August 2026**: every record that
+reaches a reader now carries an entry in `data/evidence/` naming a source and quoting it. Four
+batches, by publisher. What is left is unpublished reserve, and how much is what
+`npm run check-evidence` prints.
+
+**Each batch found more of the same defect**, which is the argument for the pass rather than its
+by-product: a small-boats figure citing an index page holding no figures; a record naming a table
+that does not carry its figure; three records rounding to what their source printed while a Home
+Office table printed the figure exactly; and the OBR lifetime contribution, which was the age-80
+point of a chart whose age nobody had written down. **Only that last one moved a published value**,
+to age 82, the life expectancy OBR itself states.
+
+**An entry establishes that a quoted source states the value. It does not establish that the
+sentence around the figure describes it correctly**, which is the pre-publication review's job, and
+`npm run validate` says so on every run. `£2.1 billion` was the clearest case. It is
 real and official, it lives in the Home Office Annual Report and Accounts, and it named an NAO report
 that does not contain it from this site's first research pass until 1 August 2026, while every check
 passed. An earlier version of this sentence said "for over a year", which is not possible: the NAO
@@ -461,9 +475,27 @@ is already here to adding a neighbour beside it.
   or column label throws rather than producing a plausible quote, and run every quote through a
   copy of the check's own `carries()` matcher before writing the file. Sixteen entries were built
   that way on 3 August 2026 and all sixteen passed first time; all twenty quotes were then
-  re-checked by a second independent path and none had drifted. **This matters more than it looks
+  re-checked by a second independent path and none had drifted.
+
+  **Assert the LABEL, not only the value.** A generator that checks "this number appears somewhere
+  in the document" accepts a wrong row silently and produces a quote that reads perfectly. Three
+  quotes from the Home Office accounts were built that way later the same day and had to be rebuilt
+  with the row label lifted off the page and asserted against it. Where a table prints the same
+  figure in two columns, name both rather than picking one without saying so. **This matters more than it looks
   because the check cannot help you here**: it fires on a figure that moved, so a backfilled entry
   for a figure sitting still is validated by nothing at the moment it is written.
+
+- **A source that will not fetch is rarely unfetchable, and three routes are worth trying before
+  writing that down.** Cloudflare refuses a bare `curl` on Parliament's hosts and returns 200 to
+  the four fetch-metadata headers a browser sends: `Sec-Fetch-Dest: document`, `-Mode: navigate`,
+  `-Site: none`, `-User: ?1`, with a browser User-Agent and `--http1.1`. A publisher download that
+  returns "No Access" may be one broken entry rather than a bot filter: OBR's chapter 4 refused a
+  script AND a real browser while chapters 2 and 3 and every whole-report pack returned their
+  spreadsheets, and the zip of all chapters contained the file. And there are two independent
+  browser routes here, which fail separately: `claude-in-chrome` needs a Chrome extension and is
+  not an MCP server, while the `chrome-devtools` MCP server drives its own Chrome and needs none.
+  A file was reported blocked on 3 August 2026 after two failed calls on the first while the second
+  had been connected all along. `claude mcp list` settles which exist.
 
 - **A stored "all reviewed" note is a declaration, not a check, and it ages.** The README
   recorded the fourteen sub-100 warnings as reviewed and all coincidences. Checking each
@@ -640,6 +672,19 @@ is already here to adding a neighbour beside it.
   viewport at any width; `Emulation.setEmulatedMedia` with `prefers-color-scheme` gives the dark
   palette. Check `document.documentElement.clientWidth` before believing an overflow either way.
 
+  **The `chrome-devtools` MCP server does the same thing in one call** and needs no extension:
+  `emulate` with `viewport: "320x568x2,mobile,touch"`. Its `resize_page` is the trap in a new
+  wrapper. On 3 August 2026 `resize_page` to 320 reported a `clientWidth` of 485 and no overflow
+  on a page that had 54 pixels of it, from one long filename in a list added that day. This
+  document already carried the rule and the defect shipped anyway, in new work, on a page nobody
+  thought of as wide, which is why the measurement belongs in the change and not only here.
+
+  **And when a fix looks like it failed, suspect the cache before the fix.** The first
+  re-measurement still said 54 pixels. `getComputedStyle(el).overflowWrap` said `normal` while
+  `fetch('/assets/style.css', {cache:'reload'})` already contained the rule: a stale stylesheet,
+  not a rule that does not apply. Comparing the computed style against the served file is what
+  tells those apart, and nothing else does.
+
 - **Start Chrome once and attach to it; do not spawn one per screenshot.** A script that
   launched a fresh headless Chrome per capture worked twice and then failed for the rest of the
   session, because each spawn raced the previous instance for its `--user-data-dir`. It looks
@@ -655,6 +700,16 @@ is already here to adding a neighbour beside it.
   tab order cost by 60%.
 
 ### Changing something without breaking something else
+
+- **Assert that a scripted edit matched before it writes.** `assert s.count(old) == 1` before every
+  replace, in Python, `sed`, `perl` or anything else. A pattern that misses returns the string
+  unchanged and the script exits 0 with its success line printed. On 3 August 2026 a record's note
+  was patched with a curly apostrophe against a file holding a straight one; the sentence that was
+  meant to say the accounts were now its source never landed, the run was green, and the surrounding
+  text still read coherently. It was found by printing the field back and grepping for a phrase only
+  the new version contains, which is the check to run after any scripted edit to prose. This is the
+  same shape as the unquoted `--include` glob under *Building a check, and trusting it*: a command
+  that did not run reads exactly like one that ran and found nothing to do.
 
 - **Do not fix by bulk substitution.** It caused an earlier round of defects, in prose and in
   CSS alike. Sentence by sentence, in view. **Including renumbering:** collapsing two completed
@@ -919,6 +974,17 @@ when that header is a long way behind, and it cannot rot either. **The test is n
 elsewhere" but "can this go stale".** A duplicate that cannot drift costs a line; a duplicate that
 can drift costs a session.
 
+**A fourth cut, 3 August 2026, and this one was a live defect rather than a redundancy.** The
+mapping's self-test read "correction 1a in the backlog marks the owner's decision [you]". Correction
+1a is marked **DONE (PR #33, 27 July 2026)** and tagged **[you + me, data]**, so a session running
+the test met a completed row with a compound tag, and learned the wrong thing or nothing at all
+about the row whose own justification is that getting it backwards is the worst outcome available
+and is not discoverable by reading carefully. **A self-test that names a specific item is a copy of
+that item**, which is what this section says the prompt must not carry, and it rotted the way every
+other copy here has. It is replaced by a structural test that cannot rot: find any item tagged
+[you] and confirm it is a decision rather than a task. That is true by definition of every such
+item, and it still makes the session open the file and look.
+
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
 one: a second was added on 2 August 2026 under *Where things stand*, so anything extracting "the
@@ -952,8 +1018,8 @@ SESSION's side, so the tags invert against the pronouns in this message.
 Use the mapping, never the pronoun:
   [me] = a factual or mechanical change against a cited source. YOU do it.
   [you] = an editorial or sourcing call. It is MINE. Propose and stop.
-Check it the first time you use it: correction 1a in the backlog marks
-the owner's decision [you]. On a list mixing both, do all the [me] work
+Check it the first time you use it: open the backlog, find any item
+tagged [you], and confirm it is a decision rather than a task. On a list mixing both, do all the [me] work
 first and bring me the [you] decisions in one batch, because the
 mechanical work usually determines what the editorial question is.
 
