@@ -16,7 +16,8 @@ per cent of the first screen and pushed every page's heading below the fold.** T
 979 pixels of line length inside a 280-pixel box, so no amount of tighter padding reached one row
 and the first review's guess that it would was wrong by measurement. The navigation is a
 `details` disclosure below 40em now, which needs no client-side JavaScript, and the header is
-108 pixels. PR #109.
+108 pixels. It opens from a bar icon labelled `Menu`, which becomes a cross while the menu is
+open, so the control still shows its own state the way the browser's own triangle did. PR #109.
 
 **Wide screens are untouched, and that was checked rather than assumed.** Above 40em the summary is
 hidden and the list is revealed while the disclosure stays closed, so the row is the one the site

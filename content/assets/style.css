@@ -87,11 +87,33 @@ a:hover { text-decoration-thickness: 2px; }
    is in the 40em block. */
 .site-header nav summary {
   min-height: 44px;
-  padding: 0.6rem 0;
+  padding: 0.6rem 0 0.6rem 1.75rem;
+  position: relative;
   color: var(--ink-soft);
   font-weight: 600;
   cursor: pointer;
+  list-style: none;              /* the UA triangle, replaced by the bars below */
 }
+.site-header nav summary::-webkit-details-marker { display: none; }   /* older WebKit */
+
+/* Three bars closed, a cross open, drawn from two pseudo-elements rather than three: the middle
+   bar is a box-shadow on the first, so dropping the shadow and rotating the pair is the whole
+   open state. `currentColor` keeps the bars on the label's colour, including on hover.
+   The word Menu stays beside it, so the icon is decorative and no accessible name rests on it. */
+.site-header nav summary::before,
+.site-header nav summary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1.125rem;
+  height: 2px;
+  background: currentColor;
+}
+.site-header nav summary::before { top: calc(50% - 7px); box-shadow: 0 6px currentColor; }
+.site-header nav summary::after { top: calc(50% + 5px); }
+.nav-menu[open] > summary::before { top: calc(50% - 1px); box-shadow: none; transform: rotate(45deg); }
+.nav-menu[open] > summary::after { top: calc(50% - 1px); transform: rotate(-45deg); }
+
 .site-header nav summary:hover { color: var(--accent); }
 
 .site-header nav ul {
