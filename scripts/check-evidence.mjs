@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 // The evidence check. Any figure whose value changed, and any figure that is new, must carry
 // a quote from a fetched source containing that value. It compares the data layer against a
-// base branch, so it sees exactly what a pull request proposes to publish.
+// base branch, so it sees exactly what a pull request proposes to publish. It then re-reads
+// every entry on file that still describes a live figure, because the comparison alone asks
+// only about figures that moved and most of them do not.
 //
 // This is the mechanical half of what content/sources-and-method.md promises a reader: "No
 // figure appears here because a model asserted it." A fabricated value cannot appear in a
@@ -140,9 +142,10 @@ const carries = (text, value) =>
 
 // --- the evidence on file ------------------------------------------------------------
 // Every entry ever written stays here; it is the audit trail that makes a figure's history
-// reconstructible. So entries are matched, never validated wholesale: an entry written for a
-// figure that has since been renamed or dropped is a historical record, not a defect, and a
-// check that failed on it would push someone into deleting the trail to get a green run.
+// reconstructible. So an entry written for a figure that has since been renamed, dropped or
+// revised is a historical record, not a defect, and a check that failed on it would push
+// someone into deleting the trail to get a green run. Entries that still describe a live
+// figure are a different case and are audited on every run: see the second loop below.
 const entries = [];
 const seriesEntries = [];
 if (existsSync(evidenceDir)) {
@@ -212,6 +215,14 @@ function checkEntry(ref, metric, before, entry, where) {
     errors.push(`${where}: previous_value ${claimed} is not what ${ref} holds on ${base}, which is ${held}. Either the evidence was written against a different starting point, or the value moved twice.`);
   }
 
+  checkEvidenceShape(ref, metric, entry, where);
+}
+
+// Everything an entry must be, judged against the record as it stands now. Split out of
+// checkEntry because none of it needs the base branch: checkEntry asks what CHANGED, and
+// this asks whether the evidence is adequate, which is a question that can be put to an
+// entry nobody has touched in months. The audit pass below is the caller that matters.
+function checkEvidenceShape(ref, metric, entry, where) {
   if (!isRealDate(entry.fetched_at)) {
     errors.push(`${where}: fetched_at "${entry.fetched_at}" is not a real YYYY-MM-DD date. It is the day the source was read, which is what dates the quote.`);
   }
@@ -271,6 +282,7 @@ const gradeCrossed = (before, metric) =>
 let changed = 0;
 let derived = 0;
 let regraded = 0;
+const audited = new Set();
 
 for (const [ref, metric] of current) {
   const before = previous.get(ref);
@@ -295,6 +307,32 @@ for (const [ref, metric] of current) {
     continue;
   }
   checkEntry(ref, metric, before, matched.entry, matched.where);
+  audited.add(matched.entry);
+}
+
+// --- and every entry on file that still describes a live figure --------------------------
+// The loop above asks only about figures that MOVED, so an entry written for a figure that
+// then sat still was declared once and never asked again. That is most of them, and the
+// backfill of `data/evidence/` for records predating the contract writes about 69 more: a
+// bad quote in any of them would be invisible for as long as the figure holds. This run's
+// own closing line said so.
+//
+// The rule that makes this safe is the one data/evidence/README.md already sets: entries
+// are the audit trail, so an entry for a figure that has since been renamed, dropped or
+// revised stays as history and fails nothing. So the key is `declares`, the same one the
+// loop above matches on: an entry is audited only where its record still exists AND still
+// holds exactly what the entry says. Asked of both sides, that key cannot be permanently
+// satisfied. Unchanged, the entry is re-asked on every run, which is the point. Absent, the
+// record is gone and the entry is history. Wrong shape, a range entry carries bounds rather
+// than a value, and `declares` already reads both.
+let auditedCount = 0;
+for (const { entry, where } of entries) {
+  const metric = current.get(entry.ref);
+  if (!metric) continue;                    // renamed or dropped: history, not a defect
+  if (!declares(entry, metric)) continue;   // the figure moved on: history, not a defect
+  if (audited.has(entry)) continue;         // already checked above, and twice is two errors
+  auditedCount += 1;
+  checkEvidenceShape(entry.ref, metric, entry, where);
 }
 
 // --- and every series that moved ---------------------------------------------------------
@@ -432,6 +470,21 @@ console.log('the URL belongs to a catalogued publisher, which validate-data.mjs 
 console.log('and nothing requires of a quote. This matches digits against text a person pasted, so it');
 console.log('catches an invented figure and not a misread one, and says nothing about a figure whose');
 console.log('value did not change, unless its grade crossed the derived boundary.');
+
+if (auditedCount) {
+  console.log(`\n${auditedCount} evidence entr${auditedCount === 1 ? 'y' : 'ies'} on file still name a record that holds exactly that value, and`);
+  console.log('each was re-read here: a quote carrying the value, or a derivation and a quote per');
+  console.log('component, a source URL and a real fetch date. That is a claim about the ENTRY, not a');
+  console.log('fresh claim about the figure: it does not re-fetch anything.');
+  console.log('Not established: anything about an entry whose figure has since been renamed, dropped or');
+  console.log('revised. Those are history by design and are skipped rather than failed, because a check');
+  console.log('that failed on them would push someone into deleting the audit trail to get a green run.');
+  console.log('Nor anything about SERIES entries, which have the same gap one level over: only a block');
+  console.log('that moved is asked, so an entry for a block sitting still is not re-read here either.');
+} else {
+  console.log('\nNo evidence entry on file still names a record holding exactly its value, so none was');
+  console.log('re-read. That is unexpected while data/evidence/ has entries, and worth looking at.');
+}
 if (derived) {
   console.log(`Also not established: the arithmetic of ${derived} derived figure(s) in this diff. Each input is quoted; the sum or share is not recomputed.`);
 }
