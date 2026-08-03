@@ -207,7 +207,7 @@ and nothing can, because it is a question about the far end of a link. **What cl
 a pass done by hand, and it finished for reader-facing records on 3 August 2026**: every record that
 reaches a reader now carries an entry in `data/evidence/` naming a source and quoting it. Four
 batches, by publisher. What is left is unpublished reserve, and how much is what
-`npm run check-evidence` prints.
+`npm run build` prints.
 
 **Each batch found more of the same defect**, which is the argument for the pass rather than its
 by-product: a small-boats figure citing an index page holding no figures; a record naming a table
@@ -482,8 +482,11 @@ is already here to adding a neighbour beside it.
   quotes from the Home Office accounts were built that way later the same day and had to be rebuilt
   with the row label lifted off the page and asserted against it. Where a table prints the same
   figure in two columns, name both rather than picking one without saying so. **This matters more than it looks
-  because the check cannot help you here**: it fires on a figure that moved, so a backfilled entry
-  for a figure sitting still is validated by nothing at the moment it is written.
+  because of what the check does NOT do**: since PR #100 it re-reads every entry on file on every
+  run, so a backfilled entry is checked for shape the moment it is written, but nothing re-fetches
+  anything. A quote that is well formed and wrong passes for as long as the figure holds. **This
+  sentence said the entry was "validated by nothing" until 3 August 2026**, which stopped being
+  true earlier the same day, two sections above where it sits.
 
 - **A source that will not fetch is rarely unfetchable, and three routes are worth trying before
   writing that down.** Cloudflare refuses a bare `curl` on Parliament's hosts and returns 200 to
@@ -985,6 +988,21 @@ other copy here has. It is replaced by a structural test that cannot rot: find a
 [you] and confirm it is a decision rather than a task. That is true by definition of every such
 item, and it still makes the session open the file and look.
 
+**A fifth change, 3 August 2026, and the lesson is that the previous entry rotted within the hour.**
+The self-test replacing "correction 1a" read "find any item tagged [you] and confirm it is a decision
+rather than a task", asserted here as true by definition. It is not: The order tags *Talk to five
+target users* and *A real screen reader over the pages* [you], and both are tasks the owner performs
+rather than calls he makes. A session running that test on either would have failed to confirm the
+mapping and might have concluded it was inverted, which is the outcome this row exists to prevent.
+**The gloss was the deeper error**: "[you] = an editorial or sourcing call" is narrower than the
+backlog's own "[you] items are the owner's", so the prompt was carrying a definition that disagreed
+with the file it points at. Both are fixed by pointing at The order's header, which states which
+side takes which in one sentence, instead of restating it. **The TASK paragraph lost its copy of
+that rule for the same reason**, and it was the third copy of a sentence this document already
+records as having drifted once. An outside model found all of it by reading the block against this
+contract, which is the second time that has been worth doing and the second time it found a defect
+introduced by the fix before it.
+
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
 one: a second was added on 2 August 2026 under *Where things stand*, so anything extracting "the
@@ -997,7 +1015,7 @@ Work on UK Migration Explorer at
 
 READ FIRST, in this order, and do not re-derive what they already settle:
   1. docs/BACKLOG.md, starting with The order at its top: the single
-     numbered list of everything outstanding, gates marked, each entry
+     numbered list of everything outstanding, gates marked and work
      tagged [me] or [you]. There is no second list.
   2. docs/HANDOFF.md. How the project works, and what earlier sessions
      cost. Its "Working practices that earned their place" section is
@@ -1017,17 +1035,17 @@ the most damage available. Work is tagged [me] or [you] from the
 SESSION's side, so the tags invert against the pronouns in this message.
 Use the mapping, never the pronoun:
   [me] = a factual or mechanical change against a cited source. YOU do it.
-  [you] = an editorial or sourcing call. It is MINE. Propose and stop.
-Check it the first time you use it: open the backlog, find any item
-tagged [you], and confirm it is a decision rather than a task. On a
-list mixing both, do all the [me] work first and bring me the [you]
-decisions in one batch, because the mechanical work usually determines
-what the editorial question is.
+  [you] = a call or a task that is the owner's. Propose and stop.
+Check it against The order's own header in docs/BACKLOG.md, which says
+in one sentence which side takes which. On a list mixing both, do all
+the [me] work first and bring me the [you] decisions in one batch,
+because the mechanical work usually determines what the editorial
+question is.
 
-TASK: take the first UNFINISHED [me] item or [me] half in The order,
-the numbered list at the top of docs/BACKLOG.md, unless I have told you
-otherwise in this message. Unfinished, not unstarted: an item can have
-phases built and still be first.
+TASK: take the first item The order says a session takes, unless I have
+told you otherwise in this message. Its header defines that in one
+sentence; read it rather than assuming, because the word it turns on
+has been misread before.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is

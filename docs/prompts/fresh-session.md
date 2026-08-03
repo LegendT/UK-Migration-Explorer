@@ -3,7 +3,7 @@ Work on UK Migration Explorer at
 
 READ FIRST, in this order, and do not re-derive what they already settle:
   1. docs/BACKLOG.md, starting with The order at its top: the single
-     numbered list of everything outstanding, gates marked, each entry
+     numbered list of everything outstanding, gates marked and work
      tagged [me] or [you]. There is no second list.
   2. docs/HANDOFF.md. How the project works, and what earlier sessions
      cost. Its "Working practices that earned their place" section is
@@ -23,17 +23,17 @@ the most damage available. Work is tagged [me] or [you] from the
 SESSION's side, so the tags invert against the pronouns in this message.
 Use the mapping, never the pronoun:
   [me] = a factual or mechanical change against a cited source. YOU do it.
-  [you] = an editorial or sourcing call. It is MINE. Propose and stop.
-Check it the first time you use it: open the backlog, find any item
-tagged [you], and confirm it is a decision rather than a task. On a
-list mixing both, do all the [me] work first and bring me the [you]
-decisions in one batch, because the mechanical work usually determines
-what the editorial question is.
+  [you] = a call or a task that is the owner's. Propose and stop.
+Check it against The order's own header in docs/BACKLOG.md, which says
+in one sentence which side takes which. On a list mixing both, do all
+the [me] work first and bring me the [you] decisions in one batch,
+because the mechanical work usually determines what the editorial
+question is.
 
-TASK: take the first UNFINISHED [me] item or [me] half in The order,
-the numbered list at the top of docs/BACKLOG.md, unless I have told you
-otherwise in this message. Unfinished, not unstarted: an item can have
-phases built and still be first.
+TASK: take the first item The order says a session takes, unless I have
+told you otherwise in this message. Its header defines that in one
+sentence; read it rather than assuming, because the word it turns on
+has been misread before.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
