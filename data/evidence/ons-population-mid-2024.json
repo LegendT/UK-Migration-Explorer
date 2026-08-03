@@ -2,7 +2,7 @@
   "figures": [
     {
       "ref": "population/total-uk-population",
-      "previous_value": null,
+      "previous_value": 69281400,
       "value": 69281400,
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2024",
       "fetched_at": "2026-08-03",

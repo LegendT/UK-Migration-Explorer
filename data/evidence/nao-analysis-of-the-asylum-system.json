@@ -2,7 +2,7 @@
   "figures": [
     {
       "ref": "fiscal/government-spending-on-the-asylum-system",
-      "previous_value": null,
+      "previous_value": 4.9,
       "value": 4.9,
       "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/12/an-analysis-of-the-asylum-system.pdf",
       "fetched_at": "2026-08-03",
@@ -10,7 +10,7 @@
     },
     {
       "ref": "fiscal/home-office-spending-on-asylum-accommodation-and-support",
-      "previous_value": null,
+      "previous_value": 3.4,
       "value": 3.4,
       "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/12/an-analysis-of-the-asylum-system.pdf",
       "fetched_at": "2026-08-03",

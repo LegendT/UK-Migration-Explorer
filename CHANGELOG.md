@@ -21,7 +21,15 @@ not, and why is the finding.** Every quote was lifted from the
 fetched source by script, a located table cell with its own row and column labels or a passage
 matched from an opening phrase, with an assertion per figure before the quote was built.
 
-**Eleven of the twelve reproduce exactly.** MoJ tables FIA_1, FIA_3 and FIA_4 give 14,748 asylum appeals
+**`previous_value` was wrong on every backfill written before batch 1, and this corrects its
+share.** The field is defined as what the record held on the base branch, with `null` reserved for
+a figure that is new, and those entries used `null`: they said "new" about figures that had simply
+never been evidenced. Fifteen such entries sit in the nine files this touches and all fifteen are
+now set from what `main` holds; PR #102 does the same for the thirteen in the ONS file, which is
+why the two pull requests do not both edit it. The twenty entries these two batches add are written
+the right way. No check asked, and why it survived is in the backlog under A3.
+
+**All twelve reproduce exactly against their source; eleven needed no decision to do so.** MoJ tables FIA_1, FIA_3 and FIA_4 give 14,748 asylum appeals
 lodged in the quarter, 4,088 determined with 40% allowed, and an asylum backlog of 87,450 inside a
 chamber-wide open caseload of 151,767. The NAO gives £4.9 billion of Home Office and Ministry of
 Justice asylum spending in 2024-25, £3.4 billion of it on accommodation and support, and HC 874

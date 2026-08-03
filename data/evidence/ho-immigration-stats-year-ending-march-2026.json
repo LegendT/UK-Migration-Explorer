@@ -10,7 +10,7 @@
     },
     {
       "ref": "asylum/asylum-applications-2025",
-      "previous_value": null,
+      "previous_value": 100625,
       "value": 100625,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "fetched_at": "2026-07-30",
@@ -19,7 +19,7 @@
     },
     {
       "ref": "migration/visitor-visas-granted",
-      "previous_value": null,
+      "previous_value": 2241997,
       "value": 2241997,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a1d5ab3050971fbebf3bc88/visas-summary-mar-2026-tables.ods",
       "fetched_at": "2026-07-30",
@@ -28,7 +28,7 @@
     },
     {
       "ref": "population/british-citizenship-grants-previous-year",
-      "previous_value": null,
+      "previous_value": 269178,
       "value": 269178,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "fetched_at": "2026-08-02",
@@ -37,7 +37,7 @@
     },
     {
       "ref": "population/british-citizenship-grants-by-naturalisation",
-      "previous_value": null,
+      "previous_value": 165429,
       "value": 165429,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "fetched_at": "2026-08-02",
@@ -46,7 +46,7 @@
     },
     {
       "ref": "population/british-citizenship-grants-by-registration",
-      "previous_value": null,
+      "previous_value": 71083,
       "value": 71083,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "fetched_at": "2026-08-02",
@@ -55,7 +55,7 @@
     },
     {
       "ref": "population/british-citizenship-applications",
-      "previous_value": null,
+      "previous_value": 312063,
       "value": 312063,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "fetched_at": "2026-08-02",
@@ -64,7 +64,7 @@
     },
     {
       "ref": "population/british-citizenship-applications-previous-year",
-      "previous_value": null,
+      "previous_value": 263440,
       "value": 263440,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "fetched_at": "2026-08-02",
@@ -73,7 +73,7 @@
     },
     {
       "ref": "asylum/asylum-backlog-peak",
-      "previous_value": null,
+      "previous_value": 175457,
       "value": 175457,
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "fetched_at": "2026-08-02",
@@ -81,7 +81,7 @@
     },
     {
       "ref": "asylum/asylum-backlog-2019",
-      "previous_value": null,
+      "previous_value": 51228,
       "value": 51228,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "fetched_at": "2026-08-02",

@@ -2,7 +2,7 @@
   "figures": [
     {
       "ref": "asylum/asylum-appeals-backlog-previous-year",
-      "previous_value": null,
+      "previous_value": 50976,
       "value": 50976,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
       "fetched_at": "2026-08-02",
@@ -11,7 +11,7 @@
     },
     {
       "ref": "asylum/asylum-appeals-disposed-of",
-      "previous_value": null,
+      "previous_value": 7799,
       "value": 7799,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
       "fetched_at": "2026-08-02",
@@ -20,7 +20,7 @@
     },
     {
       "ref": "asylum/asylum-appeals-lodged",
-      "previous_value": null,
+      "previous_value": 14748,
       "value": 14748,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
       "fetched_at": "2026-08-03",
@@ -29,7 +29,7 @@
     },
     {
       "ref": "asylum/asylum-appeals-backlog",
-      "previous_value": null,
+      "previous_value": 87450,
       "value": 87450,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
       "fetched_at": "2026-08-03",
@@ -38,7 +38,7 @@
     },
     {
       "ref": "asylum/asylum-appeal-success-rate",
-      "previous_value": null,
+      "previous_value": 40,
       "value": 40,
       "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
       "fetched_at": "2026-08-03",

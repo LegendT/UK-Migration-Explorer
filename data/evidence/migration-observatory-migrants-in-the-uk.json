@@ -2,7 +2,7 @@
   "figures": [
     {
       "ref": "population/foreign-born-share-of-total-uk-population",
-      "previous_value": null,
+      "previous_value": 16,
       "value": 16,
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "fetched_at": "2026-08-03",
@@ -10,7 +10,7 @@
     },
     {
       "ref": "population/non-british-share-of-uk-population",
-      "previous_value": null,
+      "previous_value": 10,
       "value": 10,
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "fetched_at": "2026-08-03",

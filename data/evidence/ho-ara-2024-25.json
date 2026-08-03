@@ -10,7 +10,7 @@
     },
     {
       "ref": "fiscal/home-office-spending-on-asylum-hotels-per-day",
-      "previous_value": null,
+      "previous_value": 5.77,
       "value": 5.77,
       "source_url": "https://assets.publishing.service.gov.uk/media/688c9785a34b939141463e37/HO_ARA_2024-25_Book_WEB_Final_v3+CorrSlip.pdf",
       "fetched_at": "2026-08-02",
@@ -18,7 +18,7 @@
     },
     {
       "ref": "fiscal/home-office-spending-on-asylum-hotels-per-day-previous-year",
-      "previous_value": null,
+      "previous_value": 8.3,
       "value": 8.3,
       "source_url": "https://assets.publishing.service.gov.uk/media/688c9785a34b939141463e37/HO_ARA_2024-25_Book_WEB_Final_v3+CorrSlip.pdf",
       "fetched_at": "2026-08-02",

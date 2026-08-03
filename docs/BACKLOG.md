@@ -106,7 +106,7 @@ first act.
     of the item, because the record it was gated on was in the first batch. **Batch 1 is done**,
     the sixteen reader-facing Home Office records (PR #99); **batch 2 is done**, the nine ONS
     records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done
-    as far as it can go** (PR #103), eleven of the tail's seventeen, and its remaining six are
+    as far as it can go** (PR #103), twelve of the tail's seventeen, and its remaining five are
     sourcing calls under R2 rather than fetching. What is left of the fetching is the 27 reserve
     records, batched under A1 below. And re-read or drop
     `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
@@ -316,6 +316,19 @@ All **[me]**, all small, each with its reasoning in the audit.
   landing the check against the old grades would have turned the branch red and invited whichever
   regrade made it green, which is the ordering mistake `check-evidence` already taught this
   project once. Negative-tested on all three fields and in both directions.
+
+- **`previous_value` said `new` for twenty-eight figures that were not, and no check asks.** Found
+  on 3 August 2026 while critiquing batches 2 and 3. The README defines the field as what the record
+  held on the base branch, with `null` reserved for a figure that is new; every backfilled entry
+  written before batch 1 used `null` instead. **All twenty-eight are corrected**, thirteen in
+  PR #102 and fifteen in PR #103, each set from what `main` actually holds rather than copied from
+  the entry. **What is
+  left here is the reason it survived**, which is that nothing looks: an entry is matched to a
+  changed figure on its ref AND its value, so a backfill entry is never re-matched by the loop that
+  validates `previous_value`, and the audit pass that does re-read every entry ignores the field.
+  Adding it to that pass is small and would have caught this. **[me]**, with the usual negative
+  test, and note that it must accept an entry whose figure has since moved, which is history and
+  fails nothing.
 
 - **`check-sources.mjs` reports four Commons Library URLs as uncheckable on every run, and they
   are not.** They 403 because Cloudflare refuses a bare `curl`; adding the four request headers a
@@ -538,6 +551,19 @@ have made "three" wrong.
   10.7 million, 76,700 and 39,000, which keeps the citation honest and loses precision the site
   has. Doing nothing is also a choice and means these three stay unevidenced with the reason
   written down here.
+
+- **THE TWO ICIBI UNIT COSTS ARE GRADED `estimated` AND THEIR SOURCE STATES THEM.** Found while
+  writing their evidence in batch 3. `data/evidence/README.md` says a `calculated` or `estimated`
+  figure "appears in no source, which is what makes it derived", and so demands a derivation and a
+  quote per input. These two do appear: the ICIBI prints "the 'per person per night' cost of DA is
+  around £20" and "approximately £158 per person per night" at paragraph 5.14. Their entries take
+  the derived path because the grade forces it, and their derivation has to open by saying nothing
+  was computed, which is a fair description of the situation and a strange thing for a derivation
+  to say. **Two readings and the choice is a grade, so it is yours**: `estimated` is right if the
+  grade describes the FIGURE, since the publisher hedges both with "around" and "approximately";
+  `official` is right if it describes THIS SITE'S relationship to the figure, which is that it
+  copied a published number. Nothing is wrong today either way, and the second reading would make
+  the entries simpler. **[me]** to apply.
 
 - **TWO FIGURES WHOSE SOURCE STATES MILLIONS WHERE THE RECORD STATES BILLIONS.** Same batch, same
   day, and a different problem wearing the same clothes. `fiscal/immigration-health-surcharge-revenue`
