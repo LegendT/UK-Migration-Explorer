@@ -1097,6 +1097,11 @@ is decided, and committing it would make a transitive dependency a direct one.
   CSS shows one, because one SVG cannot serve both widths: its text is in viewBox units, so
   scaling 760 units into 280px would render 17px text at 6.3px. The narrow rendering spends its
   width differently rather than shrinking, and all four enforced chart rules survive.
+  **The first narrow layout put the value labels INSIDE the plot and it was withdrawn (PR #114)**:
+  the series ran through them, and the opaque box needed to knock the line out then hid the 2012 to
+  2014 data behind "200,000". Hiding data to rescue a label is the wrong trade on this site. A
+  measured gutter leaves 250 units of plot for fourteen years, and no label and no data point can
+  collide by construction.
 - **A bar chart fails worse than a line chart, because a bar loses its value label.** On `/costs/`,
   the "Hotel place" bar runs off the right edge with its 158 label in the hidden strip while
   "Dispersal accommodation" shows 20, under a sentence reading "roughly eight times the £20 rate".
