@@ -21,9 +21,13 @@ whose length meant nothing. PR #113.
 **Each chart is now drawn twice and the page shows one.** A single drawing cannot serve both
 widths: text inside an SVG is measured in the drawing's own units, so squeezing the wide chart into
 a phone column would have rendered its labels at about six pixels. The narrow drawing spends its
-width differently instead of shrinking. Value labels sit inside the plot rather than in a gutter
-beside it, the lines are named in a legend above the chart rather than at their right-hand ends,
-and each bar's category name sits above the bar rather than to its left.
+width differently instead of shrinking: the lines are named in a legend above the chart rather than
+at their right-hand ends, and each bar's category name sits above the bar rather than to its left.
+**One part of that was tried, shipped and withdrawn within the day.** The narrow chart first put
+its value labels inside the plot to save the width of a gutter. The lines ran through them, and the
+opaque panel needed to keep the labels readable then hid three years of data behind one of them.
+Hiding data to rescue a label is the wrong trade on this site, so the labels are back outside the
+plot, where no label and no data point can overlap at all. PR #114.
 
 **Nothing is hidden at any size now**, measured on all seven charts at five phone and tablet
 widths, and no chart's text falls below the size the stylesheet sets as its floor. **Charts on wide
