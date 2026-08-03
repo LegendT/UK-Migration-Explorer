@@ -320,9 +320,9 @@ All **[me]**, all small, each with its reasoning in the audit.
 - **`previous_value` said `new` for twenty-eight figures that were not, and no check asks.** Found
   on 3 August 2026 while critiquing batches 2 and 3. The README defines the field as what the record
   held on the base branch, with `null` reserved for a figure that is new; every backfilled entry
-  written before batch 1 used `null` instead. **All twenty-eight are corrected**, thirteen in
-  PR #102 and fifteen in PR #103, each set from what `main` actually holds rather than copied from
-  the entry. **What is
+  written before batch 1 used `null` instead. **Every one of them is corrected** across PR #102 and
+  PR #103, which take one set of files each so that neither has to touch the other's, and each entry
+  is set from what `main` actually holds rather than copied from the entry. **What is
   left here is the reason it survived**, which is that nothing looks: an entry is matched to a
   changed figure on its ref AND its value, so a backfill entry is never re-matched by the loop that
   validates `previous_value`, and the audit pass that does re-read every entry ignores the field.

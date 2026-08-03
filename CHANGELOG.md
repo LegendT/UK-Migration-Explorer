@@ -25,9 +25,9 @@ matched from an opening phrase, with an assertion per figure before the quote wa
 share.** The field is defined as what the record held on the base branch, with `null` reserved for
 a figure that is new, and those entries used `null`: they said "new" about figures that had simply
 never been evidenced. Fifteen such entries sit in the nine files this touches and all fifteen are
-now set from what `main` holds; PR #102 does the same for the thirteen in the ONS file, which is
-why the two pull requests do not both edit it. The twenty entries these two batches add are written
-the right way. No check asked, and why it survived is in the backlog under A3.
+now set from what `main` holds. The ONS file is corrected in PR #102 instead, which is why the two
+branches do not both edit it. The entries these two batches add are written the right way. No check
+asked, and why it survived is in the backlog under A3.
 
 **All twelve reproduce exactly against their source; eleven needed no decision to do so.** MoJ tables FIA_1, FIA_3 and FIA_4 give 14,748 asylum appeals
 lodged in the quarter, 4,088 determined with 40% allowed, and an asylum backlog of 87,450 inside a
