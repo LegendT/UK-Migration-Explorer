@@ -80,24 +80,60 @@ a:hover { text-decoration-thickness: 2px; }
 .brand a:hover,
 .brand a:focus-visible { color: var(--accent); }
 
+/* The nav is a disclosure at narrow widths. Nine labels need about 980px of line length, so a
+   flat list wrapped to five 50px rows at 320px, taking 55% of the first screen and putting every
+   page's h1 below the fold. Measured at real device sizes in PR #98, not calculated: the review
+   before it worked the wrapping out on paper and got four rows. Reopening at the wide breakpoint
+   is in the 40em block. */
+.site-header nav summary {
+  min-height: 44px;
+  padding: 0.6rem 0 0.6rem 1.75rem;
+  position: relative;
+  color: var(--ink-soft);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;              /* the UA triangle, replaced by the bars below */
+}
+.site-header nav summary::-webkit-details-marker { display: none; }   /* older WebKit */
+
+/* Three bars closed, a cross open, drawn from two pseudo-elements rather than three: the middle
+   bar is a box-shadow on the first, so dropping the shadow and rotating the pair is the whole
+   open state. `currentColor` keeps the bars on the label's colour, including on hover.
+   The word Menu stays beside it, so the icon is decorative and no accessible name rests on it. */
+.site-header nav summary::before,
+.site-header nav summary::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1.125rem;
+  height: 2px;
+  background: currentColor;
+}
+.site-header nav summary::before { top: calc(50% - 7px); box-shadow: 0 6px currentColor; }
+.site-header nav summary::after { top: calc(50% + 5px); }
+.nav-menu[open] > summary::before { top: calc(50% - 1px); box-shadow: none; transform: rotate(45deg); }
+.nav-menu[open] > summary::after { top: calc(50% - 1px); transform: rotate(-45deg); }
+
+.site-header nav summary:hover { color: var(--accent); }
+
 .site-header nav ul {
   list-style: none;
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.25rem;
+  padding: 0 0 0.5rem;
 }
+/* Nine targets stacked at a 0 row-gap is the mis-tap risk that survives every one of them
+   clearing 44px, so the rows are separated rather than only tall. */
+.site-header nav li + li { border-top: 1px solid var(--rule); }
 .site-header nav a {
-  display: inline-block;
-  padding: 0.6rem 0;             /* with line-height this clears 44px */
+  display: block;
+  padding: 0.6rem 0 0.6rem 0.75rem;   /* with line-height this clears 44px */
   min-height: 44px;
   color: var(--ink-soft);
   text-decoration: none;
-  border-bottom: 3px solid transparent;
+  border-left: 3px solid transparent;
 }
 .site-header nav a:hover { color: var(--accent); }
-.site-header nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+.site-header nav a[aria-current="page"] { color: var(--ink); border-left-color: var(--accent); }
 
 .site-footer {
   margin-top: 3rem;
@@ -375,7 +411,30 @@ th.nested-2 { padding-left: 2.75rem; }
   h2 { font-size: 1.5rem; }
   .panels { grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
   .cards { grid-template-columns: repeat(2, 1fr); }
-  .site-header nav ul { gap: 0 1.25rem; }
+
+  /* The disclosure is for narrow screens. Here the summary goes and the list is revealed while
+     the details stays closed, so a wide screen keeps the flat row it has always had. A closed
+     details is hidden two different ways by different engines and both routes in are covered,
+     which is the reasoning the print block below already spells out: `::details-content` where
+     the contents are hidden by content-visibility, and the `display: flex` on the list rule
+     below where they are hidden by display. The summary is hidden only where that pseudo-element
+     parses, so a browser with neither route keeps the disclosure at every width, which costs a
+     click and never the nav.
+     This block held a `gap: 0 1.25rem` rule that was character for character the base rule it
+     appeared to override, and so did nothing at any width; the gap below is that rule made live. */
+  .nav-menu::details-content { content-visibility: visible; block-size: auto; }
+  @supports selector(details::details-content) {
+    .site-header nav summary { display: none; }
+  }
+  .site-header nav ul { display: flex; flex-wrap: wrap; gap: 0 1.25rem; padding-bottom: 0; }
+  .site-header nav li + li { border-top: 0; }
+  .site-header nav a {
+    display: inline-block;
+    padding: 0.6rem 0;
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+  }
+  .site-header nav a[aria-current="page"] { border-bottom-color: var(--accent); }
 }
 
 @media (min-width: 60em) {
