@@ -1,4 +1,4 @@
-# Handoff, 2 August 2026
+# Handoff, 3 August 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -142,15 +142,49 @@ id, where two pages of seventeen had any before it. **Not every heading**, delib
 transform skips the page `h1`, whose link is the URL, a heading inside a `<figcaption>`, whose
 `<figure>` already carries an author-chosen id, and a derived id already taken on that page.
 
-**That review left the site's navigation undecided, and the backlog carries a second round for
-it.** Its only nav bullet is filed under *considered and cut* and concerns a horizontally
-scrolling nav; in its own words the wrapping was worked out "by calculation, unrendered". The site
-has no mobile navigation pattern, and a candidate one was sitting in this document's own *Sibling
-projects* section the whole time. **The lesson is about the method rather than the nav**: a review
-that reads markup and calculates can miss what opening the page would show, which is the same
-shape as the six absent-claims it already records against itself.
+**That review left the site's navigation undecided, and the second round for it ran on 3 August
+2026, PR #98.** Its only nav bullet had been filed under *considered and cut* and concerned a
+horizontally scrolling nav; in its own words the wrapping was worked out "by calculation,
+unrendered". **The lesson is about the method rather than the nav**: a review that reads markup and
+calculates can miss what opening the page would show, which is the same shape as the six
+absent-claims it already records against itself. Rendering all 17 pages at five real device sizes
+proved the point twice over. The nav wraps to five rows at 320px, not the four that was calculated.
+The stylesheet's one width-dependent nav rule is dead, being character-for-character the base rule
+it appears to override. And **the costliest finding was not the nav at all**: 45% of every chart is
+off-screen at 320px, and what sits in the hidden strip is the data the chart's own summary sentence
+describes. A comment in `style.css` says the hidden strip holds the series labels. It was written
+by calculation too.
 
-**Backlog item 4 is closed, which changes what a session may assume.** Every figure written
+**And the sibling precedent was not what this document said it was.** The *Sibling projects*
+section below records that `~/Projects/DEBT` groups nav items under `<details>`. Opening it found
+that DEBT's mobile collapse is a JavaScript button revealed under a `.js` class, and its
+`<details>` is a sub-menu device for items declaring `children`. Without JavaScript DEBT's nav
+renders flat, exactly as this one does. `<details>` can still carry a whole nav with no
+JavaScript; DEBT is just not the working precedent for it.
+
+**Traceability at the far end is now being closed record by record, and the first batch landed on
+3 August 2026, PR #99.** Sixteen reader-facing Home Office records were traced to primary tables,
+and the ten entries already on file for that release were re-read at the same time, so 26 records
+of that release are traced rather than 16. **It found a second instance of the defect the audit
+found in July**: the small-boats calendar-year figure cited the data-tables index page, which
+lists spreadsheets and contains no figures at all, and that link rendered on the home page. The
+figure is published as a calendar-year total in table IER_01 and the record now cites it. That
+also refuted the premise of an open backlog question about its grade, and left the same false
+premise standing on its sibling peak record, where the grade is the owner's.
+
+**The evidence contract gained two teeth the same day, PR #99 and PR #100.** `check-evidence` now
+fires when a grade crosses the derived boundary in either direction at an unchanged value, which
+was written and reverted on 31 July because landing it needed a fetch first. And **every entry
+already on file that still names a record holding exactly its value is re-read on every run**,
+where before an entry was matched when its figure moved and never asked again. That mattered
+because the backfill writes entries for figures that are not moving: they were being declared once
+and validated by nothing. An entry whose figure has since been renamed, dropped or revised is
+history and is skipped, which is what stops a check forcing the audit trail to be deleted.
+
+**The audit's section 4, the figures the data layer never recorded, is closed, which changes what a
+session may assume.** It is named rather than numbered here because *The order*'s item 4 is a
+different and open thing, the decisions that change what launch publishes, and the prompt sends a
+fresh session to *The order* first. Every figure written
 longhand anywhere on this site is now held by a record or a series point, or declared as frozen
 with its reason beside it, and the branch that used to report the exceptions refuses them. There
 is no baseline constant any more. A new figure typed into a page fails the build.
@@ -327,13 +361,16 @@ negative-tested in both directions:
   Both threw on exactly the malformed input they exist to report, after collecting errors and before
   printing them, so the one run with something useful to say printed a stack trace instead.
 
-**One was written, tested and deliberately reverted**, and it is the most useful of the six.
+**One was written, tested and deliberately reverted**, and it was the most useful of the six.
 Firing `check-evidence` on a regrade **into** the derived set works, and run against `main` it failed
 immediately on the audit's own regrade of `asylum-administrative-outcomes`. It was reverted because
-landing it turns the branch red until that record has an evidence entry, and the entry needs verbatim
-quotes from a pivot nobody had opened. **The ordering is the lesson: fetch the source, write the
-entry, then land the check.** The other way round forces a fabricated quote, which is the one thing
-the evidence contract exists to prevent.
+landing it turned the branch red until that record had an evidence entry, and the entry needed
+verbatim quotes from a pivot nobody had opened. **The ordering is the lesson: fetch the source, write
+the entry, then land the check.** The other way round forces a fabricated quote, which is the one
+thing the evidence contract exists to prevent. **That is exactly what happened on 3 August 2026,
+PR #99**: the Asy_D02 pivot was opened, the entry written, and the check landed in the same pull
+request, widened to both directions. So this paragraph records an ordering that was followed, not a
+gap that is still open.
 
 **What the launch readiness review changed in the apparatus, 2 August 2026.** Each addition
 negative-tested at the thing that decides, not only the thing that parses:
@@ -417,6 +454,17 @@ is already here to adding a neighbour beside it.
   marked UNVERIFIED and is left out. For anything that reaches a record this is now mechanical:
   `check-evidence.mjs` fails the build unless the quote is in `data/evidence/`.
 
+  **Do not type the quote either, generate it.** Writing evidence in bulk, download the sources
+  first and have a script lift each quote out of them: the sentence from the fetched page text,
+  or the cell with its row and column labels as `data/evidence/README.md` asks. Give the script a
+  hard assertion per figure comparing the cell it read against the record's value, so a wrong row
+  or column label throws rather than producing a plausible quote, and run every quote through a
+  copy of the check's own `carries()` matcher before writing the file. Sixteen entries were built
+  that way on 3 August 2026 and all sixteen passed first time; all twenty quotes were then
+  re-checked by a second independent path and none had drifted. **This matters more than it looks
+  because the check cannot help you here**: it fires on a figure that moved, so a backfilled entry
+  for a figure sitting still is validated by nothing at the moment it is written.
+
 - **A stored "all reviewed" note is a declaration, not a check, and it ages.** The README
   recorded the fourteen sub-100 warnings as reviewed and all coincidences. Checking each
   again in context found three that were not: the refused-asylum grant and appeal rates and
@@ -434,6 +482,16 @@ is already here to adding a neighbour beside it.
   untouched while the run it "proved" exited zero. The cheap guard is to grep for the broken
   text and print the count before running anything, and it is what caught the fifth in the same
   minute it was made.
+
+  **The same failure one level down: a SEARCH that never ran.** On 3 August 2026 three greps
+  reported nothing because zsh expands `--include=*.md` before grep sees it and aborts the whole
+  command, printing `no matches found` where a clean search prints nothing at all. Chained after
+  `&&`, or followed by an unconditional "nothing above means clean", the two are
+  indistinguishable, and two of the three were checking for stale references immediately before a
+  commit. The same shape skipped an `unzip`, so a search for a figure "in the workbook" searched an
+  empty directory and returned zero. **Quote the glob, and prove the search with a control**:
+  searching a workbook for `5931` returned zero and so did the control `79719`, which is what
+  showed that the search rather than the file was empty.
 
   **The sixth is the one that guard would have missed**, and it is worth the extra sentence. The
   edit applied, the grep confirmed it, and the test still proved nothing: it spaced one of two
@@ -641,6 +699,16 @@ is already here to adding a neighbour beside it.
   while the tree was somewhere else. `git branch --show-current` is one command and answers the
   question none of those do.
 
+- **A deliberately stacked pull request does not retarget itself.** GitHub moves a stacked PR to
+  `main` only when its base **branch is deleted**, not when the base PR merges. On 3 August 2026,
+  merging #98, #99 and #100 in order, #100 still read `base=a1-far-end-trace-home-office` after
+  #99 had merged; merging it there would have written into an already-merged branch, never reached
+  `main`, and shown as MERGED with every check green. Read `gh pr view <n> --json baseRefName`
+  before merging, `gh pr edit <n> --base main` if it is wrong, and then confirm
+  `gh pr view <n> --json files` lists only that PR's own files, because a wrong base makes the diff
+  look right for the wrong reason. Mergeability reads UNKNOWN for a few seconds after each merge,
+  so poll rather than believing the first answer.
+
 ### Working with this project's own documents and rules
 
 - **A tag in `docs/BACKLOG.md` is a claim about a source, and it ages exactly like a figure
@@ -765,7 +833,15 @@ validator guards.
 - `~/Projects/DEBT` is the UK Public Finances Explorer, Eleventy, same data-contract
   philosophy. Its `.pa11yci.json` and the `tabindex`/`role`/`aria-label` pattern on scrolling
   regions were ported here. Two further ideas from it are not taken and are worth considering:
-  it groups nav items under `<details>` rather than listing them flat, and it scales the root
+  it groups nav items under `<details>`, **though not in the way this section implied until
+  3 August 2026** and not as a solution to the problem this project has. DEBT's mobile collapse is
+  `<button class="site-nav__toggle">` driven by `src/assets/js/nav.js` and shown only under a
+  `.js` class, so without JavaScript it is hidden and DEBT's nav renders flat exactly as this one
+  does; its `<details>` is a sub-menu device for nav items declaring `children`, which this site's
+  nine flat items do not have. `<details>` and `<summary>` can carry a whole nav with no
+  JavaScript and that is still worth doing. **DEBT is a precedent for grouping a hierarchy, not a
+  working precedent for a no-JavaScript mobile nav**, and describing it as one for days is what a
+  sibling idea recorded from memory rather than from the file looks like. It also scales the root
   font size (`html { font-size: 106.25% }`) where this project scales `body`, which is why
   `--measure` and the chart's `min-width` are pinned to 16px and do not grow with the type
   scale. Its `docs/UPDATING-DATA.md` was ported on 30 July 2026 and is now
@@ -801,7 +877,7 @@ enumeration of what is mine. It carries four things and nothing else:
 | --- | --- |
 | What to read, in what order | It is the instruction that makes every pointer work |
 | The `[me]` / `[you]` mapping | It **inverts** against the prompt's own pronouns. A session that gets it backwards does the editorial work rather than bringing it, which is the worst outcome available, and it is not discoverable by reading carefully |
-| Which list is live, and to flag a disagreement | Two frozen records in `docs/` still READ like work lists, with findings, severities and recommendations. A session that takes work from one is doing work the backlog may already have closed, and neither document says so on the line being read |
+| Which list is live | Two frozen records in `docs/` still READ like work lists, with findings, severities and recommendations. A session that takes work from one is doing work the backlog may already have closed, and neither document says so on the line being read. **This cell said "and to flag a disagreement" until 3 August 2026**, describing an instruction the prompt lost on 31 July when the audit's parallel list was deleted: the block resolves a disagreement by fiat instead, saying whatever is outstanding is in the backlog. A contract that overstates what it governs is the same defect as a message overstating what it checks, and an outside reader found it |
 | Which commands must pass, and branch-and-PR | Cheap to state, expensive to omit, and neither changes |
 
 Everything else is a pointer at a heading in this document. **The table above is short by design**:
@@ -817,6 +893,31 @@ load automatically. A second model found it by reading the block against this se
 contract. Cutting it also restores the truth of the block's own words **"ONE THING RECITED HERE"**,
 which had been false for as long as there were two. If it is ever missed, the answer is not to
 paste it back but to ask why the global rule did not fire.
+
+**Three more cuts on 3 August 2026, found by an outside model reading the block against this
+contract, and the reasoning is here for the same reason.**
+
+- **The sentence explaining what `check-evidence` fires on is gone.** It was rule text with an
+  independent copy to drift against, and it had already drifted: it said "fires only on a changed
+  or new VALUE" until the check gained two more triggers earlier the same day. Row four's own
+  justification is that the commands "never change", which that sentence falsified by existing. It
+  is replaced by an instruction that cannot rot, to read what a passing run says it did not
+  establish rather than taking silence as clearance, which is the thing the original sentence was
+  actually for and now has one home: the script's own output.
+- **"The earliest entries are mine or are launch" is gone.** It was a claim about the current head
+  of a list the prompt does not regenerate when that list moves, and the backlog's own header says
+  the live version. The TASK instruction above it already covers the case.
+- **"This project has no CLAUDE.md" is gone.** True today, silently false the day one is added, and
+  the sentence after it does the work by pointing at the global file.
+
+**Two things were left in deliberately, against the same reading, so they are not cut next time.**
+The batching sentence ("do all the [me] work first and bring me the [you] decisions in one batch")
+is not a fifth item: it is how a session acts on the mapping, it sits in the mapping's own
+paragraph, and it cannot rot. The completion protocol at the foot ("mark it done, move it to
+Completed, do not delete") duplicates the backlog's header, but it is read at the end of a session
+when that header is a long way behind, and it cannot rot either. **The test is not "is this stated
+elsewhere" but "can this go stale".** A duplicate that cannot drift costs a line; a duplicate that
+can drift costs a session.
 
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
@@ -843,8 +944,7 @@ verification.txt are FROZEN RECORDS, not work lists. Read them for the
 reasoning behind an item. Do not edit them and do not take work from
 them: whatever is still outstanding is in the backlog.
 
-This project has no CLAUDE.md. Your global instructions at
-~/.claude/CLAUDE.md load automatically.
+Your global instructions at ~/.claude/CLAUDE.md load automatically.
 
 ONE THING RECITED HERE, because it inverts and getting it backwards does
 the most damage available. Work is tagged [me] or [you] from the
@@ -860,8 +960,7 @@ mechanical work usually determines what the editorial question is.
 TASK: take the first UNFINISHED [me] item or [me] half in The order,
 the numbered list at the top of docs/BACKLOG.md, unless I have told you
 otherwise in this message. Unfinished, not unstarted: an item can have
-phases built and still be first. The earliest entries are mine or are
-launch: bring those, do not take them.
+phases built and still be first.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
@@ -870,10 +969,9 @@ decision: bring it to me and start the next ungated item, saying which.
 
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
-time. check-evidence fires on a changed or new VALUE, so silence from it
-is information rather than a reason not to run it: re-sourcing a figure
-is invisible to it. check-releases and check-sources are network
-checks that gate nothing, so run them by hand before opening a PR.
+time. Read what a passing run says it did NOT establish, rather than
+taking silence as clearance. check-releases and check-sources are
+network checks that gate nothing, so run them by hand before a PR.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with

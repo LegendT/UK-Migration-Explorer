@@ -31,8 +31,7 @@ verification.txt are FROZEN RECORDS, not work lists. Read them for the
 reasoning behind an item. Do not edit them and do not take work from
 them: whatever is still outstanding is in the backlog.
 
-This project has no CLAUDE.md. Your global instructions at
-~/.claude/CLAUDE.md load automatically.
+Your global instructions at ~/.claude/CLAUDE.md load automatically.
 
 ONE THING RECITED HERE, because it inverts and getting it backwards does
 the most damage available. Work is tagged [me] or [you] from the
@@ -48,8 +47,7 @@ mechanical work usually determines what the editorial question is.
 TASK: take the first UNFINISHED [me] item or [me] half in The order,
 the numbered list at the top of docs/BACKLOG.md, unless I have told you
 otherwise in this message. Unfinished, not unstarted: an item can have
-phases built and still be first. The earliest entries are mine or are
-launch: bring those, do not take them.
+phases built and still be first.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
@@ -58,10 +56,9 @@ decision: bring it to me and start the next ungated item, saying which.
 
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
-time. check-evidence fires on a changed or new VALUE, so silence from it
-is information rather than a reason not to run it: re-sourcing a figure
-is invisible to it. check-releases and check-sources are network
-checks that gate nothing, so run them by hand before opening a PR.
+time. Read what a passing run says it did NOT establish, rather than
+taking silence as clearance. check-releases and check-sources are
+network checks that gate nothing, so run them by hand before a PR.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
