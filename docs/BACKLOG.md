@@ -569,11 +569,14 @@ is decided, and committing it would make a transitive dependency a direct one.
   inside a focusable, named scrolling region. The one thing crossing the left edge is the
   visually-hidden skip link, on every page, which creates no scroll because the direction is left.
 - **Every nav link is 50px tall**, clearing the 44px rule. Three standalone targets fall under it,
-  and all three have an equivalent that clears it, which is why none is listed as a finding: the
-  brand link at 170x20 on all 17 pages, which the 50px `Overview` nav link duplicates; the
-  `All common claims` link at 142x20 on the home page and the seven claim pages, which the 50px
-  `Common claims` nav link duplicates; and the `Costs` nav link, the shortest label on the bar, at
-  43.78 by 50.23px.
+  and none is listed as a finding, **for two different reasons rather than one**. Two are covered
+  by WCAG 2.2's equivalent-control exception: the brand link at 170x20 on all 17 pages, which the
+  50px `Overview` nav link duplicates, and the `All common claims` link at 142x20 on the home page
+  and the seven claim pages, which the 50px `Common claims` nav link duplicates. **The third has
+  no equivalent and does not need one**: the `Costs` nav link, the shortest label on the bar, is
+  43.78 by 50.23px, so it clears WCAG's 24px minimum on its own and misses this project's stricter
+  44px rule by a fifth of a pixel. Widening the nav's padding closes it, which is a decision for
+  whoever takes the nav.
 - **Inline links in prose measure 18 to 20px tall and are not findings.** WCAG 2.2's target-size
   inline exception covers them. There are 89 of them at 320px across the 17 pages, 123 at 360,
   111 at 390 and 133 at 414, and reporting them would be the "defect that does not exist" cost the
