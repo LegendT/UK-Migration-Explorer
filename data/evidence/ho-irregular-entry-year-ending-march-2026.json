@@ -33,30 +33,10 @@
       "ref": "asylum/small-boat-arrivals-peak",
       "previous_value": 45774,
       "value": 45774,
-      "fetched_at": "2026-08-02",
-      "derivation": "Sum of the four quarters of 2022 for the small boat arrivals method of entry, taken from the row-level Data_IER_D01 sheet. The Home Office publishes this dataset by quarter and states no calendar-year total, which is the same construction the 2025 record uses. Verified as the maximum: summing every complete calendar year the sheet holds gives 2018 299, 2019 1,843, 2020 8,466, 2021 28,526, 2022 45,774, 2023 29,437, 2024 36,816 and 2025 41,472, so 2022 is the highest and 2025 the second highest, which is what the dashboard card claims. The 2025 sum reproduces 41,472 exactly, the value this site already publishes for that year from the same source.",
-      "components": [
-        {
-          "value": 4548,
-          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
-          "quote": "Data_IER_D01: Number of detected arrivals via illegal routes to the UK, row-level dataset. Method of entry Small boat arrivals, 2022 Q1: 4,548"
-        },
-        {
-          "value": 8199,
-          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
-          "quote": "Data_IER_D01: Method of entry Small boat arrivals, 2022 Q2: 8,199"
-        },
-        {
-          "value": 20301,
-          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
-          "quote": "Data_IER_D01: Method of entry Small boat arrivals, 2022 Q3: 20,301"
-        },
-        {
-          "value": 12726,
-          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
-          "quote": "Data_IER_D01: Method of entry Small boat arrivals, 2022 Q4: 12,726"
-        }
-      ]
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "IER_01",
+      "quote": "IER_01: Number of detected arrivals via illegal routes to the UK, by method of entry, January 2018 to March 2026. Small boat arrivals: 2018 299; 2019 1,843; 2020 8,466; 2021 28,526; 2022 45,774; 2023 29,437; 2024 36,816; 2025 41,472; 2026 (January-March) 4,441"
     },
     {
       "ref": "asylum/small-boat-arrivals-calendar-year-2025",
@@ -66,6 +46,75 @@
       "fetched_at": "2026-08-03",
       "table_reference": "IER_01",
       "quote": "IER_01, Small boat arrivals, 2025: 41,472"
+    },
+    {
+      "ref": "asylum/small-boat-arrivals-year-ending-march-2026",
+      "previous_value": 39271,
+      "value": 39271,
+      "fetched_at": "2026-08-03",
+      "derivation": "Sum of IER_02a's twelve printed monthly cells for April 2025 to March 2026, which is 39,271. The Home Office prints no year-ending-March total: IER_01's columns are calendar years plus a January-to-March 2026 stub. The same figure reproduces from IER_D01's four quarters, which this file already quotes for a different record.",
+      "components": [
+        {
+          "value": 4432,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, April: 4,432"
+        },
+        {
+          "value": 3738,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, May: 3,738"
+        },
+        {
+          "value": 5170,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, June: 5,170"
+        },
+        {
+          "value": 5454,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, July: 5,454"
+        },
+        {
+          "value": 3567,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, August: 3,567"
+        },
+        {
+          "value": 5084,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, September: 5,084"
+        },
+        {
+          "value": 2867,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, October: 2,867"
+        },
+        {
+          "value": 2338,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, November: 2,338"
+        },
+        {
+          "value": 2180,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2025 arrivals, December: 2,180"
+        },
+        {
+          "value": 933,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2026 arrivals, January: 933"
+        },
+        {
+          "value": 1276,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2026 arrivals, February: 1,276"
+        },
+        {
+          "value": 2232,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+          "quote": "IER_02a: Small boat arrivals and total boats, by month, January 2018 to March 2026. 2026 arrivals, March: 2,232"
+        }
+      ]
     }
   ]
 }

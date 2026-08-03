@@ -23,6 +23,39 @@
       "source_url": "https://assets.publishing.service.gov.uk/media/688c9785a34b939141463e37/HO_ARA_2024-25_Book_WEB_Final_v3+CorrSlip.pdf",
       "fetched_at": "2026-08-02",
       "quote": "Home Office Annual Report and Accounts 2024-25, HC 1133, printed page 75: Of this, £2.1 billion was spent on hotels in 2024-25, at an average of £5.77 million per day, compared to £3.0 billion spent on hotels in 2023-24 at an average of £8.3 million per day."
+    },
+    {
+      "ref": "fiscal/immigration-health-surcharge-revenue",
+      "previous_value": 2.6,
+      "value": 2.6,
+      "fetched_at": "2026-08-03",
+      "derivation": "The accounts split the surcharge in two and print no total: 2,420,109 thousand retained by the department and 200,769 thousand payable to the Consolidated Fund, which sum to 2,620,878 thousand, £2.62 billion, published here as £2.6 billion. The Migration Observatory's £2.4 billion for the same year is the retained half alone.",
+      "components": [
+        {
+          "value": 2420109,
+          "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+          "quote": "Home Office Annual Report and Accounts 2024-25, page 248, Note 4 Income. Other operating income Immigration Health Surcharge: 2024-25 Core & Agencies 2,420,109, Group 2,420,109; 2023-24 1,691,477, 1,691,477 (£000)"
+        },
+        {
+          "value": 200769,
+          "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+          "quote": "Home Office Annual Report and Accounts 2024-25, page 248, Note 4 Income. Other operating income - payable to Consolidated Fund Immigration Health Surcharge: 2024-25 Core & Agencies 200,769, Group 200,769; 2023-24 90,333, 90,333 (£000)"
+        }
+      ]
+    },
+    {
+      "ref": "fiscal/home-office-visa-and-immigration-fee-income",
+      "previous_value": 3,
+      "value": 3,
+      "fetched_at": "2026-08-03",
+      "derivation": "The accounts print 2,978,355 thousand, £2.98 billion, and this site rounds it to £3 billion. Nothing is summed; the rounding is the whole of the derivation, and it is recorded here because a rounded figure appears in no source exactly and so cannot be quoted.",
+      "components": [
+        {
+          "value": 2978355,
+          "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
+          "quote": "Home Office Annual Report and Accounts 2024-25, page 248, Note 4 Income. Visa and immigration income: 2024-25 Core & Agencies 2,978,355, Group 2,978,355; 2023-24 2,635,103, 2,635,103 (£000)"
+        }
+      ]
     }
   ]
 }
