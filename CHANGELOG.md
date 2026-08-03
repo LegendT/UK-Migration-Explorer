@@ -9,6 +9,54 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Nine ONS figures and three series arrays are traced to the far end, 3 August 2026
+
+**No published value changed.** This is batch 2 of the pass that asks whether a named source
+CONTAINS the figure, rather than whether a figure names a source. It covers the nine
+reader-facing records drawn from ONS long-term international migration, year ending December
+2025, and the three moving blocks of the two ONS series files that come from the same release.
+Every quote was lifted out of the fetched spreadsheet by script rather than typed, with a hard
+assertion per figure comparing the located cell against the record's value, so a wrong row or
+column label would have thrown instead of producing a plausible quote.
+
+**All nine reproduce exactly** against the May 2026 publication spreadsheet: Table 1 gives net
+migration of 171,000 for the year ending December 2025 and 331,000 for the updated year ending
+December 2024, immigration of 813,000 and emigration of 642,000; Table 4b gives 294,000
+study-related, 146,000 work-related and 88,000 asylum arrivals among non-EU+ nationals; Table 9
+gives 13,115,000 non-UK-born residents at 30 June 2024, split 3,871,000 EU+ born and 9,244,000
+non-EU+ born as the record's own notes state. The one derived figure, the foreign-born share of
+the population, carries a quote for each input: 13,115,000 over the accredited mid-2024 UK
+population of 69,281,400 is 18.93%, published as 18.9%. **Each record's own fields were read
+against the source as well as its value**: every `date` is the end of the period its
+`period_label` names, both units are right, and the grades match what ONS says of these
+estimates, which is that they are official statistics in development and provisional.
+
+**Every point of all three series arrays was checked, not the two ends the evidence contract
+asks for.** That is 42 points across the net migration array, the immigration array and the
+emigration array, each matched against its own row of Table 1 by the period label its
+`ons_marker` implies, so a point marked provisional was compared with the P row and a point
+marked revised with the R row. All 42 hold.
+
+**One record looked wrong against the spreadsheet and is right.** The mid-2024 foreign-born
+record cites "Table 3"; the spreadsheet numbers that table 9. The bulletin, which is what the
+record's `source_url` points at, calls it Table 3. Correcting it to match the spreadsheet would
+have introduced an error, which is the same trap the review corrections hit in the other
+direction.
+
+**The sentences beside the figures were checked too**, since a citation protects the value and
+never the verb around it. The bulletin states the 47% fall in work-related immigration, the near
+halving of net migration and the shares the notes give, and reading the whole net migration
+column confirms that 171,000 is the lowest of every period after the year ending March 2021,
+which is itself lower at 132,000.
+
+**What this does not establish, and it is not silence.** The three series entries are not re-read
+by `check-evidence.mjs` on any run: only a block that MOVED is asked, so an entry for a block
+sitting still is validated by nothing, which is exactly the gap PR #100 closed one level up for
+figures. It is now live rather than hypothetical, and it is in the backlog under A3. Separately,
+no ONS record carries a `table_reference` and none can: ONS numbers its sheets "Table 1", which
+is not an identifier the corrections watch could declare or match, as `check-releases.mjs`
+already says on every run.
+
 ### Every evidence entry is re-read on every run, 3 August 2026
 
 **A declaration nobody re-checks is the shape this project keeps finding, and `data/evidence/`
