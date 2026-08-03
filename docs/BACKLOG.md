@@ -191,7 +191,8 @@ publications during the audit found three defects, one of them a headline figure
   evidence entry before this batch and 69 did not, of which 42 reach a reader and 27 are reserve.
   The 42 concentrate by publisher, and one fetch covers a publisher at once, so the rest is
   batched that way rather than by theme: **`ho-immigration-stats` 16, DONE (PR #99, 3 August
-  2026)**; then `ons-ltim` 9, with the two ONS series files that move with them; **then the tail of
+  2026)**; **`ons-ltim` 9 with the three moving blocks of the two ONS series files, DONE (PR #102,
+  3 August 2026)**; **then the tail of
   17 across `commons-library`, `hmcts-tribunals`, `nao`, `migration-observatory`, `icibi`, `obr`
   and `ons-population`, TWELVE OF WHICH ARE DONE (PR #103, 3 August 2026)**: all three HMCTS, all
   three NAO, two of three Migration Observatory, both ICIBI, the ONS population estimate and the OBR
@@ -200,6 +201,17 @@ publications during the audit found three defects, one of them a headline figure
   because it states millions where the record states billions. All five are under R2 with the
   primary table that does state each figure, and nothing more can be evidenced there until those
   calls are made. Then the 27 reserve records last, because no reader meets them today.
+
+  **Batch 2 checked every point of the three series arrays, not the two ends the evidence
+  contract asks for**: 42 points matched against their own rows of Table 1, each by the period
+  label its `ons_marker` implies, and all 42 hold. **It also found a record that looks wrong
+  against the primary table and is right**: the mid-2024 foreign-born record cites "Table 3" and
+  the spreadsheet numbers that table 9, because the bulletin its `source_url` points at calls it
+  Table 3. **What batch 2 did NOT cover, and it is in one of the two series files**: the frozen
+  `historical` block of `netMigrationTimeseries.json`, ten points from a discontinued ONS dataset
+  published 26 November 2020, whose only download is a legacy `.xls` that nothing here can parse.
+  It is a different release from the one this batch fetched, so it belongs with the tail rather
+  than here, and it is named so that "the two ONS series files" cannot later read as covering it.
 
   **Batch 1 also re-verified the ten entries already on file for that release**, which were
   written by earlier sessions and had never been checked against a primary table by anyone since:
@@ -252,11 +264,16 @@ publications during the audit found three defects, one of them a headline figure
   work that closes an instance of it. The header no longer names a base, and the errors that do
   concern one name it in their own text.
 
-  **Series entries have the same gap one level over and are deliberately not covered**, which the
-  run now says on every invocation: only a block that MOVED is asked, so an entry for a block
+  **Series entries have the same gap one level over**, which the
+  run says on every invocation: only a block that MOVED is asked, so an entry for a block
   sitting still is not re-read either. It is the same shape and a smaller surface, four files
-  rather than 99 records, and nothing is backfilling it, so it is named here rather than built.
-  **[me]** if it is ever wanted. The original text of this bullet follows, because the reasoning
+  rather than 99 records. **This paragraph said "nothing is backfilling it" until 3 August 2026,
+  and batch 2 then wrote three such entries**, so the gap is live rather than hypothetical: the
+  quotes for all three ONS arrays are validated by nothing at the moment they are written, and
+  they were generated from the fetched table with a per-point assertion for that reason. Still
+  named here rather than built, because the surface is three entries and one deliverable a
+  session is this project's rule, but the argument for waiting is now weaker than it was.
+  **[me]**. The original text of this bullet follows, because the reasoning
   is why it was built:
   `check-evidence` matches entries against metrics that changed or are new, and says so on every
   run: it "says nothing about a figure whose value did not change". A backfill changes no value,
