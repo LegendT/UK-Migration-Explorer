@@ -48,6 +48,12 @@ jobs:
 
       - name: Content contract
         run: node scripts/validate-content.mjs
+      - name: Backlog contract
+        # Runs here as its own step rather than through `npm run validate`, because this workflow
+        # calls each script directly and never invokes that npm script. A check added only to
+        # `validate` runs on a laptop and gates nothing on a pull request, which is what happened
+        # to this one on 3 August 2026 between it being written and this step being added.
+        run: node scripts/check-backlog.mjs
       - name: Build and check the built site
         run: npm run build
       - name: Accessibility, WCAG 2.2 AA on every URL in .pa11yci.json

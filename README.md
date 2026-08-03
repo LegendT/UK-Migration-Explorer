@@ -43,11 +43,24 @@ page cited a publication that does not contain it. **Corrected on 1 August 2026,
 £2.1 billion of spending on asylum hotels was always real and official, and is in the Home Office
 Annual Report and Accounts 2024-25 at page 75. The NAO report it named does not carry it. The
 figure had rendered in three places, including the home page, with every check green, because
-nothing here verifies that a named source contains the figure naming it. **That gap is still open,
-and closing it is backlog item A1.** Its first batch landed on 3 August 2026, tracing the 16
-reader-facing Home Office records to primary tables and re-verifying the 10 already evidenced; it
-found a second instance of the same defect, a small-boats figure citing an index page that carries
-no figures at all.
+nothing here verifies that a named source contains the figure naming it. **That gap is backlog item A1, and its
+reader-facing half closed on 3 August 2026: every record that reaches a reader now carries an
+entry in `data/evidence/` naming a source and quoting it.** Four batches did it, by publisher.
+The records still without an entry are unpublished reserve, and how many is what
+`npm run build` prints rather than a number written here.
+
+**It found more of the same defect each time it looked.** A small-boats figure citing an index page
+that carries no figures at all; a record naming table Asy_00a for a figure that table does not
+carry; three records rounding to what their source printed while a Home Office table printed the
+exact figure; and the OBR lifetime contribution, which turned out to be the age-80 point of a chart
+whose age nobody had written down, and which is now published at 82, the life expectancy OBR itself
+states. **No published value moved except that one**, and it moved because a trace found what the
+figure actually was rather than because a publisher released a new one.
+
+**What an entry does and does not establish** is worth keeping straight: it establishes that a
+quoted source states the value. It does not establish that the sentence around the figure describes
+it correctly, which is what the pre-publication review covers, and `npm run validate` says so on
+every run.
 
 **A launch readiness review ran on 2 August 2026**, written up in
 `docs/LAUNCH-READINESS-REVIEW.md`: seven review dimensions with every finding adversarially
@@ -140,6 +153,11 @@ LICENCE                 MIT for code, Open Government Licence v3.0 attribution f
 | `dashboard.json` | Home page cards. References only; it holds no values and no unrendered prose |
 | `sources.json` | Catalogue of the publications figures are cited from. More entries than publishers: the Home Office has two, its statistics collection and its annual accounts, and ONS has two, migration and population estimates. That is why a figure names its source by id and not by hostname, and why neither count is written down here |
 | `meta.json` | Confidence-level definitions, cross-cutting caveats, footer note |
+| `evidence/` | One file per publisher release, holding the quote behind every evidenced figure and its own README. Not read by the site; read by `check-evidence.mjs` |
+
+**The whole of `data/` ships with the built site** and is listed with a link per file in the Reuse
+section of `/sources-and-method/`, generated from the directory rather than typed. That page had
+promised the files were public and linked none of them.
 
 ## Data contract
 

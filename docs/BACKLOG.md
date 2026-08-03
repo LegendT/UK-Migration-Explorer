@@ -12,7 +12,7 @@ marked done, withdrawn or struck. That rule exists because the pre-launch audit 
 list, the two diverged twice in a day, and this file was briefly edited to say the other one was
 live. The resolution did not hold, so it is a build failure now.
 
-Last updated 2 August 2026. The pull request count that sat on this line was stale and is deleted
+Last updated 3 August 2026. The pull request count that sat on this line was stale and is deleted
 rather than corrected, which is this project's rule for a count about its own work.
 
 **A whole-project pre-launch audit was written up in `docs/PRE-LAUNCH-AUDIT.md`** and merged as
@@ -108,19 +108,22 @@ first act.
     records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done**,
     twelve of the tail's seventeen in PR #103 and the last five in PR #104, which were sourcing
     calls rather than fetching. **SO EVERY RECORD THAT REACHES A READER NOW CARRIES EVIDENCE**, and
-    what is left of A1 is the 27 unpublished reserve records, batched under A1 below. And re-read or
+    what is left of A1 is the unpublished reserve records, batched under A1 below. **No count is
+    written here**: `npm run build` prints how many records are reserve, and how many lack an
+    evidence entry is what `node scripts/check-backlog.mjs` would refuse to let this line say.
+    Those are two different numbers, and this line gave one figure for both until 3 August 2026. And re-read or
     drop
     `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
     unchecked. **[you]**.
-11. **R2 is closed but for one wording call (PR #104, 3 August 2026).** Every source observation
+11. **R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source observation
     the far-end trace produced has been taken: five records re-sourced to the publisher that prints
     their figure, five regraded to say honestly what the figure is, and no published value moved.
     What is left is one sentence of yours, whether `content/claims/nineteen-per-cent-born-abroad.md`
     should stop calling a now-`calculated` figure "accredited".
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
-13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
-    come to the owner before merge. Only the pro-migration draft moves the direction split off
+13. **Item 5, the eight undrafted claims**: a session drafts **[me]**, and the verdict and short
+    answer come to the owner before merge **[you]**. Only the pro-migration draft moves the direction split off
     its floor.
 14. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
     that is gated on it **[me]**. It is also the published limit most worth closing.
@@ -361,6 +364,40 @@ All **[me]**, all small, each with its reasoning in the audit.
   reason. **[me]**, and it wants the same negative test as any other
   check change: confirm a genuinely dead URL still fails after the headers are added, because a
   request that always succeeds is worse than one that always fails.
+
+- **`main` has no branch protection and no rulesets, so a red CI job does not block a merge.**
+  Verified 3 August 2026: `gh api repos/{owner}/{repo}/branches/main/protection` returns 404 "Branch
+  not protected" and the rulesets endpoint returns `[]`. Every claim in this file that a check
+  "gates" a pull request is therefore only as strong as the habit of not merging red. Turning on a
+  required status check for the `validate` job is a repository setting rather than a code change,
+  so it is **[you]**, and it would make every check here mean what it says.
+
+- **`npm run validate` and the CI workflow are two lists of checks and neither reads the other.**
+  The workflow calls six scripts directly and never invokes that npm script, so a check added to
+  `validate` runs on a laptop and gates nothing on a pull request. That is not hypothetical: it is
+  exactly what happened to `check-backlog.mjs` on 3 August 2026, between it being written and a CI
+  step being added by hand minutes later. The split is deliberate, because CI names each step and
+  marks the network ones `continue-on-error`, so the fix is not simply to call `npm run validate`
+  there. **[me]**, and the shape worth considering is a manifest both sides read, on the same
+  reasoning as `lib/series.mjs` and `lib/tables.mjs`.
+
+- **`scripts/check-backlog.mjs` now reads this file, and it found two live defects on the run that
+  created it. DONE (PR #106, 3 August 2026).** Everything else here is machine-checked and the file
+  directing all the work was not, which is why it kept rotting. It asserts that every backticked path under a
+  known directory exists, every section cross-reference it can see has a heading, The order is contiguously numbered,
+  every item carries a tag or says it is closed, and no item in The order writes a count of this
+  project's own state. `npm run check-backlog` adds the network half, confirming every cited pull
+  request is merged. **What it cannot do is in its own output**: it does not know whether an item
+  is genuinely finished, because DONE is a claim by a person.
+
+  **Two bugs in the count rule, both found by testing the expression against the defect it was
+  written for rather than by reading it.** It excluded a preceding digit and not a preceding
+  letter, so "U5 records what was considered" matched with `records` as a verb; and it required the
+  noun to sit next to the number, while the defect read "the 27 unpublished reserve records", two
+  words apart, **so the check as first written would have passed the sentence it exists to catch**.
+  Eight boundary cases are asserted in the PR. All five rules were negative-tested with the break
+  confirmed applied, and the one that appeared not to fire was a bad probe rather than a bad rule:
+  it removed one of the item's two tags.
 
 ### A4. Reader-facing wording, all of it yours
 
