@@ -109,7 +109,7 @@ first act.
   model is why that is now true: the first version anchored the first and last year labels to the
   plot edge on BOTH geometries, which only narrow needed, and on `/asylum/` it closed the gap
   between "2010" and "2012" to 4px so they read as one token. **U6 IS NOT COMPLETE, AND THIS ENTRY
-   SAID IT WAS UNTIL 3 AUGUST 2026.** Its seven-table finding carries no resolution and was never
+   SAID IT WAS UNTIL 3 AUGUST 2026 (PR #115).** Its seven-table finding carries no resolution and was never
    addressed; it was re-measured on the day this was corrected and reproduces unchanged, seven
    tables at 320px and two still at 390. **The remedy is [you]**, because scoping the one stylesheet
    floor involved is a partial rather than a fix: the worst of them, the Sources table, is 485px in
@@ -1123,7 +1123,7 @@ is decided, and committing it would make a transitive dependency a direct one.
   hidden, where the second column is sliced mid-word on every row. Then `/costs/` at 28% and 17%,
   `/style-guide/` 13%, `/migration/` 10% and 6%, `/asylum/` 7%. Two still overflow at 390.
 
-  **STILL OPEN, AND RE-MEASURED 3 AUGUST 2026 rather than carried forward.** Every figure above
+  **STILL OPEN, AND RE-MEASURED 3 AUGUST 2026 (PR #115) rather than carried forward.** Every figure above
   reproduces exactly: the same seven tables, the same percentages, and `/costs/` at 10% and
   `/sources-and-method/` at 28% are the two that survive to 390. **It is the only U6 finding that
   was never addressed**, and it survived because the paragraph introducing this list called the
