@@ -108,7 +108,10 @@ first act.
     records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done**,
     twelve of the tail's seventeen in PR #103 and the last five in PR #104, which were sourcing
     calls rather than fetching. **SO EVERY RECORD THAT REACHES A READER NOW CARRIES EVIDENCE**, and
-    what is left of A1 is the 27 unpublished reserve records, batched under A1 below. And re-read or
+    what is left of A1 is the unpublished reserve records, batched under A1 below. **The count is
+    not written here**: `npm run build` prints how many are reserve and 27 of them lack an
+    evidence entry, which are two different numbers, and this line said 27 for both until
+    3 August 2026. And re-read or
     drop
     `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
     unchecked. **[you]**.
@@ -119,8 +122,8 @@ first act.
     should stop calling a now-`calculated` figure "accredited".
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
-13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
-    come to the owner before merge. Only the pro-migration draft moves the direction split off
+13. **Item 5, the eight undrafted claims**: a session drafts **[me]**, and the verdict and short
+    answer come to the owner before merge **[you]**. Only the pro-migration draft moves the direction split off
     its floor.
 14. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
     that is gated on it **[me]**. It is also the published limit most worth closing.
@@ -361,6 +364,24 @@ All **[me]**, all small, each with its reasoning in the audit.
   reason. **[me]**, and it wants the same negative test as any other
   check change: confirm a genuinely dead URL still fails after the headers are added, because a
   request that always succeeds is worse than one that always fails.
+
+- **`scripts/check-backlog.mjs` now reads this file, and it found two live defects on the run that
+  created it. DONE (PR #107, 3 August 2026).** Everything else here is machine-checked and the file
+  directing all the work was not, which is why it kept rotting. It asserts that every path named
+  exists, every `A1`/`R2`/`U3` cross-reference has a heading, The order is contiguously numbered,
+  every item carries a tag or says it is closed, and no item in The order writes a count of this
+  project's own state. `npm run check-backlog` adds the network half, confirming every cited pull
+  request is merged. **What it cannot do is in its own output**: it does not know whether an item
+  is genuinely finished, because DONE is a claim by a person.
+
+  **Two bugs in the count rule, both found by testing the expression against the defect it was
+  written for rather than by reading it.** It excluded a preceding digit and not a preceding
+  letter, so "U5 records what was considered" matched with `records` as a verb; and it required the
+  noun to sit next to the number, while the defect read "the 27 unpublished reserve records", two
+  words apart, **so the check as first written would have passed the sentence it exists to catch**.
+  Eight boundary cases are asserted in the PR. All five rules were negative-tested with the break
+  confirmed applied, and the one that appeared not to fire was a bad probe rather than a bad rule:
+  it removed one of the item's two tags.
 
 ### A4. Reader-facing wording, all of it yours
 
