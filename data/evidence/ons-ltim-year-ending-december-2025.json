@@ -2,7 +2,7 @@
   "figures": [
     {
       "ref": "migration/non-eu-plus-long-term-immigration",
-      "previous_value": null,
+      "previous_value": 627000,
       "value": 627000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-07-30",
@@ -10,7 +10,7 @@
     },
     {
       "ref": "migration/net-migration-peak",
-      "previous_value": null,
+      "previous_value": 944000,
       "value": 944000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -18,7 +18,7 @@
     },
     {
       "ref": "migration/total-long-term-immigration-peak",
-      "previous_value": null,
+      "previous_value": 1469000,
       "value": 1469000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -26,7 +26,7 @@
     },
     {
       "ref": "migration/work-related-immigration-previous-year",
-      "previous_value": null,
+      "previous_value": 272000,
       "value": 272000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -34,7 +34,7 @@
     },
     {
       "ref": "migration/study-related-immigration-main-applicants",
-      "previous_value": null,
+      "previous_value": 277000,
       "value": 277000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -42,7 +42,7 @@
     },
     {
       "ref": "migration/study-related-immigration-dependants",
-      "previous_value": null,
+      "previous_value": 17000,
       "value": 17000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -50,7 +50,7 @@
     },
     {
       "ref": "migration/work-related-immigration-main-applicants",
-      "previous_value": null,
+      "previous_value": 71000,
       "value": 71000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -58,7 +58,7 @@
     },
     {
       "ref": "migration/work-related-immigration-dependants",
-      "previous_value": null,
+      "previous_value": 74000,
       "value": 74000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -66,7 +66,7 @@
     },
     {
       "ref": "migration/net-migration-2023",
-      "previous_value": null,
+      "previous_value": 848000,
       "value": 848000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -74,7 +74,7 @@
     },
     {
       "ref": "migration/total-long-term-immigration-2023",
-      "previous_value": null,
+      "previous_value": 1441000,
       "value": 1441000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -82,7 +82,7 @@
     },
     {
       "ref": "migration/total-long-term-immigration-2024",
-      "previous_value": null,
+      "previous_value": 1012000,
       "value": 1012000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -90,7 +90,7 @@
     },
     {
       "ref": "migration/total-long-term-emigration-2023",
-      "previous_value": null,
+      "previous_value": 593000,
       "value": 593000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
@@ -98,11 +98,126 @@
     },
     {
       "ref": "migration/total-long-term-emigration-2024",
-      "previous_value": null,
+      "previous_value": 680000,
       "value": 680000,
       "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
       "fetched_at": "2026-08-02",
       "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Emigration, YE Dec 24 R: All Nationalities 680,000; British 257,000; EU+ 155,000; Non-EU+ 269,000"
+    },
+    {
+      "ref": "migration/net-migration",
+      "previous_value": 171000,
+      "value": 171000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Net migration, YE Dec 25 P: All Nationalities 171,000; British -136,000; EU+ -42,000; Non-EU+ 350,000"
+    },
+    {
+      "ref": "migration/net-migration-2",
+      "previous_value": 331000,
+      "value": 331000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Net migration, YE Dec 24 R: All Nationalities 331,000; British -117,000; EU+ -63,000; Non-EU+ 511,000"
+    },
+    {
+      "ref": "migration/total-long-term-immigration",
+      "previous_value": 813000,
+      "value": 813000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Immigration, YE Dec 25 P: All Nationalities 813,000; British 110,000; EU+ 76,000; Non-EU+ 627,000"
+    },
+    {
+      "ref": "migration/total-long-term-emigration",
+      "previous_value": 642000,
+      "value": 642000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Emigration, YE Dec 25 P: All Nationalities 642,000; British 246,000; EU+ 118,000; Non-EU+ 278,000"
+    },
+    {
+      "ref": "migration/study-related-immigration",
+      "previous_value": 294000,
+      "value": 294000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All reasons 627,000; All Study Related 294,000; Study: Main applicant 277,000; Study: Dependant 17,000"
+    },
+    {
+      "ref": "migration/work-related-immigration",
+      "previous_value": 146000,
+      "value": 146000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All reasons 627,000; All Work Related 146,000; Work: Main applicant 71,000; Work: Dependant 74,000"
+    },
+    {
+      "ref": "migration/asylum-related-immigration",
+      "previous_value": 88000,
+      "value": 88000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All reasons 627,000; Family 47,000; All Humanitarian 35,000; Asylum 88,000"
+    },
+    {
+      "ref": "population/foreign-born-population-mid-2024",
+      "previous_value": 13115000,
+      "value": 13115000,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 9: Estimates of the non-UK-born population of the United Kingdom by EU+ born and non-EU+ born Census Days 2021 and 2022 to June 2024. 30 June 2024, UK: EU+ born population 3,871,000; Non-EU+ born population 9,244,000; Total non-UK born population 13,115,000"
+    },
+    {
+      "ref": "population/foreign-born-share-mid-2024",
+      "previous_value": 18.9,
+      "value": 18.9,
+      "fetched_at": "2026-08-03",
+      "derivation": "13,115,000 non-UK-born at 30 June 2024, Table 9 of the ONS long-term international migration spreadsheet and Table 3 of the bulletin it accompanies, divided by the accredited mid-2024 UK population of 69,281,400 is 18.93%, shown as 18.9%. ONS publishes no such share.",
+      "components": [
+        {
+          "value": 13115000,
+          "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+          "quote": "Table 9: Estimates of the non-UK-born population of the United Kingdom by EU+ born and non-EU+ born Census Days 2021 and 2022 to June 2024. 30 June 2024, UK: EU+ born population 3,871,000; Non-EU+ born population 9,244,000; Total non-UK born population 13,115,000"
+        },
+        {
+          "value": 69281400,
+          "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2024",
+          "quote": "The population of the UK continued to grow in the year to mid-2024, reaching an estimated 69.3 million people (69,281,400)."
+        }
+      ]
+    }
+  ],
+  "series": [
+    {
+      "file": "netMigrationTimeseries.json",
+      "block": "primary",
+      "previous_vintage": "2026-05-21",
+      "vintage": "2026-05-21",
+      "points": 14,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Net migration, All Nationalities: YE Dec 12 195,000 ... YE Dec 25 P 171,000 (14 year-ending-December periods read from this column, every one of them checked against this table)"
+    },
+    {
+      "file": "migrationFlowsTimeseries.json",
+      "block": "primary",
+      "previous_vintage": "2026-05-21",
+      "vintage": "2026-05-21",
+      "points": 14,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Immigration, All Nationalities: YE Dec 12 643,000 ... YE Dec 25 P 813,000 (14 year-ending-December periods read from this column, every one of them checked against this table)"
+    },
+    {
+      "file": "migrationFlowsTimeseries.json",
+      "block": "emigration",
+      "previous_vintage": "2026-05-21",
+      "vintage": "2026-05-21",
+      "points": 14,
+      "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+      "fetched_at": "2026-08-03",
+      "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Emigration, All Nationalities: YE Dec 12 448,000 ... YE Dec 25 P 642,000 (14 year-ending-December periods read from this column, every one of them checked against this table)"
     }
   ]
 }
