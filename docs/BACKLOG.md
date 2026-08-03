@@ -99,9 +99,10 @@ first act.
    **[you]**: adopting a navigation pattern, for which the sibling precedent turned out to need
    JavaScript, and deciding the chart remedy. **A pattern is now built and measured rather than
    described, and it is PR #109, 3 August 2026: a `details` disclosure below 40em, no client-side
-   JavaScript, wide screens proved untouched against a build of `main`.** Merging it adopts the
-   disclosure and closing it leaves the nav as it stands, so the decision is still **[you]** and
-   the pull request is where it is made. If it is adopted, the chart remedy is what is left here.
+   JavaScript, wide screens proved untouched against a build of `main`.** **The decision is that
+   pull request's own outcome**, which is why no status is written here: merged means the disclosure
+   is adopted, closed means the nav stands as it was, and either way the call is **[you]**. The
+   chart remedy is the other half of what is left.
 10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
     reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the

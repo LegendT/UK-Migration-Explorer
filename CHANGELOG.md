@@ -9,6 +9,26 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The header stops taking half the phone screen, 3 August 2026
+
+**Nine flat navigation links wrapped to five rows at 320 pixels, a 312-pixel header that took 55
+per cent of the first screen and pushed every page's heading below the fold.** The nine labels need
+979 pixels of line length inside a 280-pixel box, so no amount of tighter padding reached one row
+and the first review's guess that it would was wrong by measurement. The navigation is a
+`details` disclosure below 40em now, which needs no client-side JavaScript, and the header is
+108 pixels. PR #109.
+
+**Wide screens are untouched, and that was checked rather than assumed.** Above 40em the summary is
+hidden and the list is revealed while the disclosure stays closed, so the row is the one the site
+has always had: header height, wrap, every link width and the current-page colour are identical to
+the previous build at 768 and 1200 pixels. Where that reveal is unsupported the summary stays and
+the disclosure applies at every width, which costs a click and never the navigation.
+
+**Two smaller defects from the same measurement close with it.** The nine stacked targets had no
+vertical separation at all and now carry a rule between them, and the shortest label, `Costs`, was
+43.78 pixels against this project's 44-pixel floor at every width below 40em. It is a full-width
+row there now.
+
 ### The backlog is checked, 3 August 2026
 
 **Every other claim in this repository is machine-checked. The file that directs all the work was
