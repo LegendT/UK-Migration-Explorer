@@ -9,6 +9,30 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Charts fit the phone they are read on, 3 August 2026
+
+**Forty-five per cent of every chart on this site was off the right-hand edge at 320 pixels, and
+what sat in the hidden strip was the data the sentence above the chart was about.** On the
+migration page the visible years were 2012 to 2018 while the summary named the 2022 peak and the
+2025 fall. On the costs page the hotel bar ran off the edge carrying its own £158 label, under a
+sentence comparing it to the £20 rate beside it, so a reader got one of the two numbers and a bar
+whose length meant nothing. PR #113.
+
+**Each chart is now drawn twice and the page shows one.** A single drawing cannot serve both
+widths: text inside an SVG is measured in the drawing's own units, so squeezing the wide chart into
+a phone column would have rendered its labels at about six pixels. The narrow drawing spends its
+width differently instead of shrinking. Value labels sit inside the plot rather than in a gutter
+beside it, the lines are named in a legend above the chart rather than at their right-hand ends,
+and each bar's category name sits above the bar rather than to its left.
+
+**Nothing is hidden at any size now**, measured on all seven charts at five phone and tablet
+widths, and no chart's text falls below the size the stylesheet sets as its floor. **Charts on wide
+screens are unchanged**, and that is checked rather than asserted: the wide drawing in the built
+page is byte-for-byte what it was before, apart from the class and the identifiers that tell the
+two drawings apart. The four rules charts are held to are all intact: the axis
+still starts at zero, every chart still carries its figures as a real table, no series is told
+apart by colour alone, and the gridlines still fall on intervals a reader counts in.
+
 ### Three reserve figures are not in the source they cite, 3 August 2026
 
 **Tracing the Migration Observatory reserve records found five that check out and three that do

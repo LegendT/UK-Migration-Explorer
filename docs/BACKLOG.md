@@ -102,8 +102,15 @@ first act.
    than argued to be. It opens from a bar icon that becomes a cross, so the control keeps the state
    the browser's own triangle showed. **The sibling precedent was not what settled it**: DEBT's
    collapse needs JavaScript, and what carries this is that the reveal idiom was already in this
-   stylesheet's print block, guard and all. **WHAT IS LEFT OF THIS ITEM IS THE CHART REMEDY**,
-   which is the costlier finding and is **[you]**, being a design call rather than a defect.
+   stylesheet's print block, guard and all. **THE CHART REMEDY IS DECIDED AND BUILT TOO (PR #113,
+   3 August 2026)**: each chart is rendered twice at build time and CSS shows one, so 45% of every
+   chart being off-screen at 320px is 0% at every size measured, with no page overflow and no axis
+   text below the stylesheet's own 11px floor. Wide screens are byte-identical, and a second
+  model is why that is now true: the first version anchored the first and last year labels to the
+  plot edge on BOTH geometries, which only narrow needed, and on `/asylum/` it closed the gap
+  between "2010" and "2012" to 4px so they read as one token. **U6 IS COMPLETE**,
+   and the item stays here only until the entries below are moved to *Completed*. **[me]** was the
+   building; the pattern and the remedy were both **[you]** and both are taken.
 10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
     reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
@@ -1084,11 +1091,21 @@ is decided, and committing it would make a transitive dependency a direct one.
   `style.css:161` says "what sits in the hidden strip is the series labels"; at 320px it is the
   axis labels 2020, 2022 and 2025 and the data under them, and that comment is a second thing in
   this project written by calculation rather than by looking.
+  **FIXED IN PR #113, 3 August 2026, and measured the same way it was found**: 0% hidden on all
+  seven charts at 320, 360, 390, 414 and 768, no page overflow, and axis text between 13.2 and
+  17.7px against the stylesheet's own 11px floor. Each chart is rendered TWICE at build time and
+  CSS shows one, because one SVG cannot serve both widths: its text is in viewBox units, so
+  scaling 760 units into 280px would render 17px text at 6.3px. The narrow rendering spends its
+  width differently rather than shrinking, and all four enforced chart rules survive.
 - **A bar chart fails worse than a line chart, because a bar loses its value label.** On `/costs/`,
   the "Hotel place" bar runs off the right edge with its 158 label in the hidden strip while
   "Dispersal accommodation" shows 20, under a sentence reading "roughly eight times the £20 rate".
   The reader gets one of the two numbers and a bar whose length carries nothing, since it is
   truncated. The value axis shows 0 with 200 hidden.
+  **FIXED IN PR #113.** The narrow bar chart has no left gutter: a 210px one inside a 360px box
+  left 60px of bar, so the longest and the shortest would have looked alike. Each category name
+  goes above its own bar instead, which costs height rather than the width the comparison depends
+  on. Both values, both bars and the whole 0 to 200 axis are on screen at 320px.
 - **Seven tables overflow at 320px.** Worst is the Sources table on `/sources-and-method/` at 42%
   hidden, where the second column is sliced mid-word on every row. Then `/costs/` at 28% and 17%,
   `/style-guide/` 13%, `/migration/` 10% and 6%, `/asylum/` 7%. Two still overflow at 390.
@@ -1098,6 +1115,10 @@ is decided, and committing it would make a transitive dependency a direct one.
   **This is the one finding that is a design call rather than a defect**, so the remedy is
   **[you]**: the 32rem floor exists because SVG text scales with the chart and the comment at
   `style.css:415` records what that cost once already.
+  **MOOT SINCE PR #113**, which is the better outcome than a stronger affordance: there is nothing
+  hidden for it to understate, because no chart scrolls at any measured width. The 32rem floor was
+  not dropped, which is what that comment warned against. It moved onto the wide rendering, which
+  is the only one it was ever true of.
 
 **What this pass did not establish**, on the same terms every check here states its limits. It
 measured geometry in a rendered layout viewport and nothing else. It did not touch the page: whether

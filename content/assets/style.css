@@ -478,7 +478,43 @@ th.nested-2 { padding-left: 2.75rem; }
 .chart { margin: 2.5rem 0 3rem; }
 .chart figcaption h3 { margin: 0 0 0.35rem; }
 .chart-summary { margin: 0 0 1rem; color: var(--ink-soft); max-width: var(--measure); }
-.chart-svg { width: 100%; min-width: 32rem; height: auto; display: block; }
+.chart-svg { width: 100%; height: auto; display: block; }
+
+/* Two renderings per chart, one shown at a time; lib/charts.mjs says why one SVG cannot serve
+   both widths. Narrow is the default because this stylesheet is mobile first, and it is capped
+   at 380px so that between about 380 and 640 it stops growing rather than scaling its 17px text
+   up to something absurd: SVG text is in viewBox units and grows with the box. Hiding by
+   `display: none` is deliberate rather than `visibility` or a clip, because it is the only one
+   that takes the hidden chart out of the accessibility tree, so a screen reader meets one image
+   and not two identically titled ones. */
+.chart-svg--wide { display: none; }
+.chart-svg--narrow { max-width: 380px; }
+
+/* The narrow chart's value labels sit INSIDE the plot, so a series running near that gridline
+   draws straight through them: "200,000" on the net migration chart had the line through its
+   middle and a data marker on top of a digit. The halo knocks the text out of whatever is behind
+   it, which is what map labels do, and it costs a small break in the line rather than a number a
+   reader cannot read. `paint-order` is what makes the stroke paint UNDER the fill; without it the
+   stroke would be drawn over the glyphs and thicken them into mush. */
+.axis-inplot {
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* 34.5em, not the 40em the nav uses, because this breakpoint is a fact about the chart rather
+   than about the page: the wide rendering is floored at 32rem, the wrap adds 1.25rem of padding
+   either side, so 34.5em is the first width at which it fits its column exactly. Switching at
+   40em instead would leave the narrow chart, capped at 380px, sitting in a column up to 600px
+   wide with the difference as dead margin. */
+@media (min-width: 34.5em) {
+  /* The wide chart keeps the 32rem floor it has always had, and the floor now sits on the
+     rendering it belongs to rather than on both. Below this width it applied to a chart inside a
+     280px column, which is what put 45% of every chart off-screen at 320px. */
+  .chart-svg--wide { display: block; min-width: 32rem; }
+  .chart-svg--narrow { display: none; }
+}
 
 /* SVG text is in viewBox units, so it scales with the chart. At the 32rem minimum width the
    factor is 512/760, about 0.674, which rendered 13px axis labels at 8.8px and the 11px break
@@ -512,6 +548,13 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 .bar-value { fill: var(--ink-soft); font-size: 14px; font-variant-numeric: tabular-nums; }
 /* Set inside its own bar, so it reads against the fill rather than the page. */
 .bar-value.inside { fill: var(--paper); font-weight: 600; }
+
+/* Bar text is 14px, which in the narrow chart's 360-unit box renders at 10.9px once scaled into a
+   280px column: just under the roughly 11px this stylesheet sets as its floor a few rules up. The
+   axis text clears it comfortably at 13.2px; only the bar labels did not, and a second model
+   caught the 0.11px. 15px renders at 11.7px. */
+.chart-svg--narrow .bar-label,
+.chart-svg--narrow .bar-value { font-size: 15px; }
 
 /* One supporting size for everything under a chart: note, the control that opens the
    figures, and the source line. Three sizes there plus the summary above made four steps
