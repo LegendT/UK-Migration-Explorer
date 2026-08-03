@@ -35,11 +35,19 @@
   <div class="wrap">
     <p class="brand"><a href="/">{{ site.name }}</a></p>
     <nav aria-label="Main">
-      <ul>
-        {%- for item in site.nav %}
-        <li><a href="{{ item.href }}"{% if page.url == item.href %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
-        {%- endfor %}
-      </ul>
+      {#- A disclosure rather than a flat list. The nine labels need about 980px of line length,
+          so at 320px they wrapped to five 50px rows and put every page's h1 below the fold.
+          `details` carries this with no client-side JavaScript; above 40em the summary is hidden
+          and the list is revealed, so wide screens keep the row they have always had. The
+          stylesheet's nav block says how, and what happens where the reveal is unsupported. #}
+      <details class="nav-menu">
+        <summary>Menu</summary>
+        <ul>
+          {%- for item in site.nav %}
+          <li><a href="{{ item.href }}"{% if page.url == item.href %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </details>
     </nav>
   </div>
 </header>
