@@ -39,6 +39,20 @@ for (const file of pages) {
   anchors.set(url, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
 }
 
+// Every link this build is answerable for, as a path.
+//
+// A link written with this site's own origin is an internal link too, and it was not checked
+// because until the citation blocks nothing wrote one but the canonical tag. The citation exists
+// to hand a reader a URL they paste somewhere else, so a chart id renamed under it breaks
+// precisely the thing the block is for, on a page where every other link still resolves.
+//
+// One function rather than a second pattern at each site, because the count printed at the end
+// of this file was derived from its own copy of the relative pattern and would have gone on
+// reporting the smaller number while the larger set was being checked.
+const ORIGIN = new RegExp(`href="${site.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^"]*)"`, 'g');
+const internalHrefs = (html) => [...html.matchAll(/href="(\/[^"]*)"/g)].map((m) => m[1])
+  .concat([...html.matchAll(ORIGIN)].map((m) => m[1] || '/'));
+
 for (const file of pages) {
   const where = relative(siteDir, file);
   const html = readFileSync(file, 'utf8');
@@ -88,7 +102,7 @@ for (const file of pages) {
   }
 
   // Internal links must resolve, both the page and the fragment.
-  for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
+  for (const href of internalHrefs(html)) {
     const [path, fragment] = href.split('#');
     const target = path === '' ? url : (path.endsWith('/') ? path : `${path}/`);
     if (!served.has(target) && !served.has(path)) {
@@ -304,7 +318,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-const internal = pages.reduce((n, f) => n + (readFileSync(f, 'utf8').match(/href="\/[^"]*"/g) ?? []).length, 0);
+const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt disallows all crawlers.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
