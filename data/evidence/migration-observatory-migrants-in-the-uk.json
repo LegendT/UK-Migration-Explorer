@@ -15,6 +15,30 @@
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "fetched_at": "2026-08-03",
       "quote": "The foreign-born population made up 9% of the UK's total population in 2004. At the time of the 2021/22 Census, this had risen to 16%. The share of foreign citizens rose from 5% to 10% in the same period (Figure 2)."
+    },
+    {
+      "ref": "population/largest-country-of-birth-among-foreign-born-india",
+      "previous_value": 9,
+      "value": 9,
+      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+      "fetched_at": "2026-08-03",
+      "quote": "According to the 2021/22 Census, an estimated 32% of all foreign-born residents in the UK came from five countries – India (9%), Poland (8%), Pakistan (6%), Romania (5%), and Ireland (4%)."
+    },
+    {
+      "ref": "population/share-of-foreign-born-residents-living-in-london-and-the-sou",
+      "previous_value": 47,
+      "value": 47,
+      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+      "fetched_at": "2026-08-03",
+      "quote": "Around 47% of all foreign-born residents in the UK lived in London and the South East at the time of the 2021/22 Census."
+    },
+    {
+      "ref": "population/share-of-london-residents-born-abroad",
+      "previous_value": 40,
+      "value": 40,
+      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+      "fetched_at": "2026-08-03",
+      "quote": "London stands out among all other regions in the UK. More than 40% of its residents had been born abroad, according to the 2021 Census. The national average was 16%, and percentages were below this average in all other regions of the country (Figure 4). The North East (7%), Wales (7%), and Northern Ireland (9%) had the lowest shares of foreign-born residents (for more details at the local authority level, see the Migration Observatory’s Local Data Guide )."
     }
   ]
 }
