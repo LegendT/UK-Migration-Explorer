@@ -562,7 +562,7 @@ have made "three" wrong.
 
   | Record | Holds | Its cited source states | What the primary actually holds |
   | --- | --- | --- | --- |
-  | `population/foreign-born-population-of-the-uk` | 10,700,000 | "10.7 million", twice, and no digits anywhere | ONS Table 9 prints 10,183,000 for England, Wales and Northern Ireland at Census day 2021 and 555,000 for Scotland at Census day 2022. **It prints no combined UK cell**; 10,738,000 is a sum |
+  | `population/foreign-born-population-of-the-uk` | 10,700,000 | "10.7 million", twice, and no digits anywhere | ONS Table 9 prints 10,183,000 for England, Wales and Northern Ireland at Census day 2021 and 555,000 for Scotland at Census day 2022. **It prints no combined UK cell**; 10,738,000 is a sum. **Nor does anyone else**, searched 3 August 2026: ONS's own FOI response says "our ambition is to produce a UK estimate of the non-UK-born population", future tense, and the census outputs are per-nation. The England and Wales bulletin prints "10 million (16.8%)" for that pair alone |
   | `asylum/asylum-applications-main-applicants` | 76,714 | "76,700 applications ... relating to 93,500 individuals" | **Home Office table Asy_01a prints 76,714 exactly**, as "Main applicants" for the year ending March 2026, in the same row-block as the 93,525 total people this site already publishes. NOT Asy_00a, which this bullet named and which carries no main-applicant row at all |
   | `asylum/small-boat-arrivals-year-ending-march-2026` | 39,271 | "39,000 people arrived by small boat" | **No printed cell anywhere.** IER_01's columns are calendar years plus a January-to-March 2026 stub, so there is no year-ending-March total. The figure reproduces exactly from IER_02a's twelve printed monthly cells for April 2025 to March 2026, and from IER_D01's four quarters as batch 1 already quotes |
 
@@ -605,10 +605,38 @@ have made "three" wrong.
   further £2,600 million was collected in health surcharge and £600 million in skills charge". Those
   are the same amounts exactly, not roundings, but "£2,600 million" does not contain "2.6" and
   `carries()` is right to refuse it, since loosening the matcher to scale units is how a check
-  starts passing things it never read. **The recommendation is to hold the source and change the
-  records to £ million, 2600 and 3000**, which is what the briefing states and needs no new
-  tolerance anywhere. It changes what a reader sees on `/costs/`, so it is **[you]**. **[me]** to
-  apply either way.
+  starts passing things it never read.
+
+  **THE FIRST RECOMMENDATION HERE WAS TO CHANGE THE RECORDS TO £ MILLION, AND IT IS WITHDRAWN.**
+  The unit a reader sees is not the record's `unit` field: `content/costs.njk` writes the word
+  "billion" into its own prose either side of the citation, so a record changed to 2600 would render
+  "£2,600 billion" until that page was edited too. A one-field change is a two-place change, and
+  half of it is a wrong number on a live page.
+
+  **What the primary holds, fetched 3 August 2026.** The Home Office Annual Report and Accounts
+  2024-25 is what the Library is citing, and it splits the surcharge in two: **£2,420,109 thousand
+  retained and £200,769 thousand payable to the Consolidated Fund**, which sum to £2,620,878
+  thousand. Visa and immigration income is **£2,978,355 thousand**. So the Library's £2,600 million
+  and £3,000 million are roundings of those, and this site's 2.6 and 3 are right.
+
+  **It also explains a discrepancy a reader can find in ten seconds.** The Migration Observatory
+  publishes "In 2024/25, IHS payments totalled over £2.4 billion", which is the retained half alone,
+  against this site's £2.6bn. Neither is wrong. **That reconciliation is now in the record's notes**
+  regardless of what is decided below, because it is a fact about the source rather than a choice.
+
+  **The choice, and all three keep the page prose exactly as it is:**
+
+  - **Both records to `ho-ara`, grade `calculated`, components from the accounts.** The surcharge
+    genuinely is a sum of two printed cells, so `calculated` is the honest grade and the components
+    are quotable. Fee income would take the same path for what is really a rounding of £2.978bn,
+    which is the one stretch. Both become evidenced, and the publisher already sits in the catalogue.
+    **Recommended.**
+  - **Fee income to `migration-observatory` and the surcharge to `ho-ara`.** The Migration
+    Observatory prints "totalled £3 billion" verbatim, so fee income keeps `official` and needs no
+    derivation at all. The cost is two sibling figures citing two publishers.
+  - **Leave both**, unevidenced, with the reason written here.
+
+  **[you]**; **[me]** to apply.
 
 - **THE OBR FIGURE WAS AGE 80, NOTHING SAID SO, AND IT IS NOW AGE 82. DONE (PR #103, 3 August
   2026), decision and application in the same day.**
