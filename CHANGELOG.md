@@ -9,17 +9,20 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
-### R2's decisions applied: two re-sourced, four regraded, one left open, 3 August 2026
+### R2's decisions applied: five records re-sourced, five regraded, no value moved, 3 August 2026
 
-**No published value changed. Four grades did, and two records changed publisher.** R2 collected
-what the far-end trace found and could not settle without a decision. The decisions were taken and
-applied on the same day, and what follows is what moved and why. PR #104.
+**No published value changed. Five grades did, and five records changed publisher, which is the
+same five: every record R2 touched moved to the publisher that actually prints its figure, and four
+of them had to change grade to say honestly what the figure is.** R2 collected what the far-end
+trace found and could not settle without a decision. The decisions were taken and applied on the
+same day, and what follows is what moved and why. PR #104.
 
 **`small-boat-arrivals-peak` is `official` rather than `calculated`, and its old reason was false.**
 It said "the Home Office publishes this dataset by quarter and states no calendar-year total".
 Table IER_01 prints 45,774 as a 2022 calendar-year cell, and IER_02a prints the same figure in its
 Total column: two printed cells, not none. Its evidence is now a quote of IER_01's whole printed
-row, which is also what establishes 2022 as the maximum of the nine years the table carries. The
+row, which is also what establishes 2022 as the maximum: eight complete calendar years and a
+January-to-March 2026 stub, which this entry first miscounted as nine years. The
 hand-derived sum it used to hold was right to the number and wrong about the publisher.
 
 **`asylum-applications-main-applicants` now cites the Home Office rather than the Commons Library.**
@@ -42,6 +45,13 @@ reader can find in seconds**: the Migration Observatory publishes "over £2.4 bi
 year, which is the retained half alone. Neither is wrong, this site takes the total, and both
 records now say so. Nothing a reader sees changed, because `content/costs.njk` writes the word
 "billion" into its own prose and the values are unchanged.
+
+**With this, every record that reaches a reader carries evidence.** A1 set out to ask whether a
+named source contains the figure it is named for, one record at a time, and the answer is now on
+file for all 71 published records. The 27 still without an entry are unpublished reserve. That is
+not the same as saying every figure is right: an entry establishes that a quoted source states the
+value, which is the question this project could not answer at all a week ago, and not that the
+sentence around it describes it correctly.
 
 **The counts on `/sources-and-method/` moved on their own**, from seventeen published figures across
 seven irregular publishers to fifteen across six, because `lib/published.mjs` derives them. The

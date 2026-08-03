@@ -105,17 +105,18 @@ first act.
     fabricated quote. **The regrade check is landed (PR #99, 3 August 2026)**, ahead of the rest
     of the item, because the record it was gated on was in the first batch. **Batch 1 is done**,
     the sixteen reader-facing Home Office records (PR #99); **batch 2 is done**, the nine ONS
-    records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done
-    as far as it can go** (PR #103), twelve of the tail's seventeen, and its remaining five are
-    sourcing calls under R2 rather than fetching. What is left of the fetching is the 27 reserve
-    records, batched under A1 below. And re-read or drop
+    records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done**,
+    twelve of the tail's seventeen in PR #103 and the last five in PR #104, which were sourcing
+    calls rather than fetching. **SO EVERY RECORD THAT REACHES A READER NOW CARRIES EVIDENCE**, and
+    what is left of A1 is the 27 unpublished reserve records, batched under A1 below. And re-read or
+    drop
     `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
     unchecked. **[you]**.
-11. **R2, the source observations from the far-end trace, and it grew on 3 August 2026.**
-    **[you]** for the grades and scope; the fetching is **[me]** and is now done for all of them.
-    Six of A1's tail records are blocked here rather than in A1: five whose cited source does not
-    state the figure the record holds, and the OBR chart reading. Taking these unblocks the last
-    reader-facing work in A1.
+11. **R2 is closed but for one wording call (PR #104, 3 August 2026).** Every source observation
+    the far-end trace produced has been taken: five records re-sourced to the publisher that prints
+    their figure, five regraded to say honestly what the figure is, and no published value moved.
+    What is left is one sentence of yours, whether `content/claims/nineteen-per-cent-born-abroad.md`
+    should stop calling a now-`calculated` figure "accredited".
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -196,11 +197,13 @@ publications during the audit found three defects, one of them a headline figure
   17 across `commons-library`, `hmcts-tribunals`, `nao`, `migration-observatory`, `icibi`, `obr`
   and `ons-population`, TWELVE OF WHICH ARE DONE (PR #103, 3 August 2026)**: all three HMCTS, all
   three NAO, two of three Migration Observatory, both ICIBI, the ONS population estimate and the OBR
-  chart reading. **The five that are left are not fetching work and are not [me]**: each is a record
+  chart reading. **THE LAST FIVE WERE NOT FETCHING WORK AND ARE DONE IN PR #104**: each was a record
   whose cited source does not state the figure it holds, three because the source rounds and two
-  because it states millions where the record states billions. All five are under R2 with the
-  primary table that does state each figure, and nothing more can be evidenced there until those
-  calls are made. Then the 27 reserve records last, because no reader meets them today.
+  because it states millions where the record states billions. Every one is now sourced to the
+  publisher that prints it, or, where nobody prints it, regraded to `calculated` with its components
+  quoted. **So the reader-facing half of A1 is complete: all 71 published records carry evidence,
+  and the 27 records still without it are unpublished reserve that no reader meets today.** Those
+  are what is left.
 
   **Batch 2 checked every point of the three series arrays, not the two ends the evidence
   contract asks for**: 42 points matched against their own rows of Table 1, each by the period
@@ -526,7 +529,9 @@ have made "three" wrong.
   describes: the search that would have refuted it was never run. **DONE (PR #104,
   3 August 2026): regraded to `official`.** Its note now carries the old reason and why it was
   false, and its evidence entry is a quote of IER_01's whole printed row rather than a hand-derived
-  sum, which is also what establishes 2022 as the maximum of the nine calendar years printed.
+  sum, which is also what establishes 2022 as the maximum. The row prints eight complete calendar
+  years and a January-to-March 2026 stub, not nine years, and the stub is 4,441 so it changes
+  nothing; the count is corrected here because a superlative is a claim about the whole column.
 - **Two figures in the citizenship card's prose, 269,178 and 312,063. The [me] fetching half is
   DONE (PR #78, 2 August 2026), and this observation was right.** Neither is on the page the
   record cites. That page states the 12% decrease behind 269,178, and for 312,063 it states neither
