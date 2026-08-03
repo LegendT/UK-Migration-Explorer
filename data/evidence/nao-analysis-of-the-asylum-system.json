@@ -1,0 +1,20 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/government-spending-on-the-asylum-system",
+      "previous_value": 4.9,
+      "value": 4.9,
+      "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/12/an-analysis-of-the-asylum-system.pdf",
+      "fetched_at": "2026-08-03",
+      "quote": "Based on actual costs, we estimate that the total Home Office and MoJ spending on asylum is around £4.9 billion for 2024-25. This includes key areas of spend as shown in Figure 5 on page 22. This figure does not fully capture all costs associated with the asylum system, particularly those incurred by local authorities which are difficult to calculate."
+    },
+    {
+      "ref": "fiscal/home-office-spending-on-asylum-accommodation-and-support",
+      "previous_value": 3.4,
+      "value": 3.4,
+      "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/12/an-analysis-of-the-asylum-system.pdf",
+      "fetched_at": "2026-08-03",
+      "quote": "Accommodation and support: In 2024-25, the Home Office spent around £3.4 billion on asylum accommodation and support (excluding on unaccompanied asylum-seeking children (UASC))."
+    }
+  ]
+}

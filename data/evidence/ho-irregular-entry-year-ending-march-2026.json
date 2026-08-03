@@ -2,7 +2,7 @@
   "figures": [
     {
       "ref": "asylum/detected-unauthorised-arrivals-year-ending-march-2026",
-      "previous_value": null,
+      "previous_value": 43806,
       "value": 43806,
       "fetched_at": "2026-07-30",
       "derivation": "Sum of the four methods of entry over the four quarters 2025 Q2 to 2026 Q1, taken from the IER_D01 pivot: small boats 39,271, inadequately documented air arrivals 2,621, recorded detections in the UK 1,687, recorded detections at UK ports 227. The Home Office publishes this table by quarter and by calendar year, and no published cell states a year-ending-March total. Two checks on the arithmetic: the same sum computed from the row-level Data_IER_D01 sheet gives 43,806 independently, and the small boats component reproduces 39,271, which is the value this site already publishes for the same period from a different source.",
@@ -31,7 +31,7 @@
     },
     {
       "ref": "asylum/small-boat-arrivals-peak",
-      "previous_value": null,
+      "previous_value": 45774,
       "value": 45774,
       "fetched_at": "2026-08-02",
       "derivation": "Sum of the four quarters of 2022 for the small boat arrivals method of entry, taken from the row-level Data_IER_D01 sheet. The Home Office publishes this dataset by quarter and states no calendar-year total, which is the same construction the 2025 record uses. Verified as the maximum: summing every complete calendar year the sheet holds gives 2018 299, 2019 1,843, 2020 8,466, 2021 28,526, 2022 45,774, 2023 29,437, 2024 36,816 and 2025 41,472, so 2022 is the highest and 2025 the second highest, which is what the dashboard card claims. The 2025 sum reproduces 41,472 exactly, the value this site already publishes for that year from the same source.",

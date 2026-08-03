@@ -103,15 +103,19 @@ first act.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
     reverted regrade check, in that order, fetch first, because the other way round forces a
     fabricated quote. **The regrade check is landed (PR #99, 3 August 2026)**, ahead of the rest
-    of the item, because the record it was gated on was in the first batch. **Batches 1 and 2 of
-    4 are done**, the sixteen reader-facing Home Office records (PR #99) and the nine ONS ones
-    with the three moving blocks of the two ONS series files (PR #102). What is left is the tail
-    of 17 records across seven publishers, then the 27 reserve records, batched
-    under A1 below. And re-read or drop
+    of the item, because the record it was gated on was in the first batch. **Batch 1 is done**,
+    the sixteen reader-facing Home Office records (PR #99); **batch 2 is done**, the nine ONS
+    records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done
+    as far as it can go** (PR #103), twelve of the tail's seventeen, and its remaining five are
+    sourcing calls under R2 rather than fetching. What is left of the fetching is the 27 reserve
+    records, batched under A1 below. And re-read or drop
     `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
     unchecked. **[you]**.
-11. **R2, the three source observations from the far-end trace.** **[you]** for the grades and
-    scope; the fetching is **[me]**.
+11. **R2, the source observations from the far-end trace, and it grew on 3 August 2026.**
+    **[you]** for the grades and scope; the fetching is **[me]** and is now done for all of them.
+    Six of A1's tail records are blocked here rather than in A1: five whose cited source does not
+    state the figure the record holds, and the OBR chart reading. Taking these unblocks the last
+    reader-facing work in A1.
 12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
     sign-off, no build behind it.
 13. **Item 5, the eight undrafted claims**: a session drafts, and the verdict and short answer
@@ -188,10 +192,15 @@ publications during the audit found three defects, one of them a headline figure
   The 42 concentrate by publisher, and one fetch covers a publisher at once, so the rest is
   batched that way rather than by theme: **`ho-immigration-stats` 16, DONE (PR #99, 3 August
   2026)**; **`ons-ltim` 9 with the three moving blocks of the two ONS series files, DONE (PR #102,
-  3 August 2026)**; then the tail of
+  3 August 2026)**; **then the tail of
   17 across `commons-library`, `hmcts-tribunals`, `nao`, `migration-observatory`, `icibi`, `obr`
-  and `ons-population`, which is the fewest records and the most fetches and so should not be
-  bundled with either; then the 27 reserve records last, because no reader meets them today.
+  and `ons-population`, TWELVE OF WHICH ARE DONE (PR #103, 3 August 2026)**: all three HMCTS, all
+  three NAO, two of three Migration Observatory, both ICIBI, the ONS population estimate and the OBR
+  chart reading. **The five that are left are not fetching work and are not [me]**: each is a record
+  whose cited source does not state the figure it holds, three because the source rounds and two
+  because it states millions where the record states billions. All five are under R2 with the
+  primary table that does state each figure, and nothing more can be evidenced there until those
+  calls are made. Then the 27 reserve records last, because no reader meets them today.
 
   **Batch 2 checked every point of the three series arrays, not the two ends the evidence
   contract asks for**: 42 points matched against their own rows of Table 1, each by the period
@@ -324,6 +333,28 @@ All **[me]**, all small, each with its reasoning in the audit.
   landing the check against the old grades would have turned the branch red and invited whichever
   regrade made it green, which is the ordering mistake `check-evidence` already taught this
   project once. Negative-tested on all three fields and in both directions.
+
+- **`previous_value` said `new` for twenty-eight figures that were not, and no check asks.** Found
+  on 3 August 2026 while critiquing batches 2 and 3. The README defines the field as what the record
+  held on the base branch, with `null` reserved for a figure that is new; every backfilled entry
+  written before batch 1 used `null` instead. **Every one of them is corrected** across PR #102 and
+  PR #103, which take one set of files each so that neither has to touch the other's, and each entry
+  is set from what `main` actually holds rather than copied from the entry. **What is
+  left here is the reason it survived**, which is that nothing looks: an entry is matched to a
+  changed figure on its ref AND its value, so a backfill entry is never re-matched by the loop that
+  validates `previous_value`, and the audit pass that does re-read every entry ignores the field.
+  Adding it to that pass is small and would have caught this. **[me]**, with the usual negative
+  test, and note that it must accept an entry whose figure has since moved, which is history and
+  fails nothing.
+
+- **`check-sources.mjs` reports four Commons Library URLs as uncheckable on every run, and they
+  are not.** They 403 because Cloudflare refuses a bare `curl`; adding the four request headers a
+  browser sends, `Sec-Fetch-Dest`, `-Mode`, `-Site` and `-User`, returns 200 from all four plus the
+  briefing PDFs behind them, established while fetching them for A1 batch 3 on 3 August 2026. So
+  five of the "5 need checking by hand" are one header set away from being checked, and a standing
+  manual step exists for no reason. **[me]**, and it wants the same negative test as any other
+  check change: confirm a genuinely dead URL still fails after the headers are added, because a
+  request that always succeeds is worse than one that always fails.
 
 ### A4. Reader-facing wording, all of it yours
 
@@ -458,7 +489,11 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   as refuted: three were live values restated longhand. It is the template future reviews work
   through, so correcting the instruction is a change to a document the owner signs.
 
-### R2. From the far-end trace, three source observations
+### R2. From the far-end trace, source observations
+
+**The count that stood in this heading is deleted rather than corrected**, which is this project's
+rule for a count about its own work: batch 3 of A1 added to this list on 3 August 2026 and would
+have made "three" wrong.
 
 - `asylum/small-boat-arrivals-calendar-year-2025` is graded `official` and its notes call it a
   finalised calendar-year total, while the publisher prints the year only as four quarterly
@@ -506,7 +541,95 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
 - The NAO's landing page prints £4.0 billion, its direct-support figure, and the £4.9 billion
   this site cites is inside the PDF it links. A reader who follows the source link and does
   not open the report meets a different number first. Whether the record's notes should say so
-  is **[you]**.
+  is **[you]**. **Re-confirmed by the batch 3 fetch on 3 August 2026**, both halves: the landing
+  page's £4.0 billion is "the current direct cost of supporting people seeking asylum", a
+  narrower thing than the £4.9 billion of Home Office and Ministry of Justice spending the report
+  states. Nothing about the observation moves; it is still one sentence of yours.
+
+- **THREE FIGURES THEIR CITED SOURCE ROUNDS, so no quote can carry them. From batch 3 of A1,
+  3 August 2026. All [you], because each is a sourcing call.** `check-evidence` asks that the
+  quote contain the digits, deliberately: `data/evidence/README.md` says a source giving only
+  "around 97 thousand" has not stated the figure and the remedy is the data table rather than a
+  looser check. These three met exactly that, and in all three the primary table has already been
+  fetched by this project and states the figure exactly:
+
+  | Record | Holds | Its cited source states | The primary that states it exactly |
+  | --- | --- | --- | --- |
+  | `population/foreign-born-population-of-the-uk` | 10,700,000 | "10.7 million", twice, and no digits anywhere | ONS Table 9: 10,183,000 at Census day 2021 for England, Wales and Northern Ireland plus 555,000 at Census day 2022 for Scotland, which is 10,738,000 |
+  | `asylum/asylum-applications-main-applicants` | 76,714 | "76,700 applications ... relating to 93,500 individuals" | Home Office Asy_00a, whose 93,525 this site already publishes and evidenced in batch 1 |
+  | `asylum/small-boat-arrivals-year-ending-march-2026` | 39,271 | "39,000 people arrived by small boat" | Home Office IER_D01, whose four quarters batch 1 already quotes as summing to 39,271 |
+
+  **The recommendation is to re-source all three to the primary and keep the value**, because a
+  primary table is what the rest of this site cites and in every case it is already fetched, once
+  already quoted. The cost is real and should be weighed: `source_id` decides the publisher counts
+  that `/sources-and-method/` renders from `lib/published.mjs`, so moving three records moves that
+  page, and the Migration Observatory one would become an ONS figure whose own briefing is the
+  better read for a person. **The alternative is to round each record to what its source states**,
+  10.7 million, 76,700 and 39,000, which keeps the citation honest and loses precision the site
+  has. Doing nothing is also a choice and means these three stay unevidenced with the reason
+  written down here.
+
+- **THE TWO ICIBI UNIT COSTS ARE GRADED `estimated` AND THEIR SOURCE STATES THEM.** Found while
+  writing their evidence in batch 3. `data/evidence/README.md` says a `calculated` or `estimated`
+  figure "appears in no source, which is what makes it derived", and so demands a derivation and a
+  quote per input. These two do appear: the ICIBI prints "the 'per person per night' cost of DA is
+  around £20" and "approximately £158 per person per night" at paragraph 5.14. Their entries take
+  the derived path because the grade forces it, and their derivation has to open by saying nothing
+  was computed, which is a fair description of the situation and a strange thing for a derivation
+  to say. **Two readings and the choice is a grade, so it is yours**: `estimated` is right if the
+  grade describes the FIGURE, since the publisher hedges both with "around" and "approximately";
+  `official` is right if it describes THIS SITE'S relationship to the figure, which is that it
+  copied a published number. Nothing is wrong today either way, and the second reading would make
+  the entries simpler. **[me]** to apply.
+
+- **TWO FIGURES WHOSE SOURCE STATES MILLIONS WHERE THE RECORD STATES BILLIONS.** Same batch, same
+  day, and a different problem wearing the same clothes. `fiscal/immigration-health-surcharge-revenue`
+  holds 2.6 with unit `£ billion` and `fiscal/home-office-visa-and-immigration-fee-income` holds 3;
+  the Commons Library briefing CBP-9859 says "combined fee income in 2024/25 was £3,000 million. A
+  further £2,600 million was collected in health surcharge and £600 million in skills charge". Those
+  are the same amounts exactly, not roundings, but "£2,600 million" does not contain "2.6" and
+  `carries()` is right to refuse it, since loosening the matcher to scale units is how a check
+  starts passing things it never read. **The recommendation is to hold the source and change the
+  records to £ million, 2600 and 3000**, which is what the briefing states and needs no new
+  tolerance anywhere. It changes what a reader sees on `/costs/`, so it is **[you]**. **[me]** to
+  apply either way.
+
+- **THE OBR FIGURE WAS AGE 80, NOTHING SAID SO, AND IT IS NOW AGE 82. DONE (PR #103, 3 August
+  2026), decision and application in the same day.**
+  `fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant` holds 341,000, is graded
+  `estimated`, and its notes say the figure is read off Chart 4.13 and that "OBR states no single
+  value and singles out no endpoint age". Both halves of that are still true of OBR. What was
+  missing is that THIS SITE picks an age, and the chart data now says which: the "Average-wage
+  migrant worker" series is 340.577 at age 80 on an axis labelled "Cumulative fiscal impact
+  (£ thousand)", which is the £341,000 published here. **The record is evidenced (PR #103)** and
+  its notes now name the age.
+
+  **The owner chose age 82 on 3 August 2026**, and the published figure moved from £341,000 to
+  £297,000. The candidates were:
+
+  | Age | Average-wage migrant | Why that age |
+  | --- | --- | --- |
+  | 66 | £533,832 | the peak of the curve |
+  | 80 | £341,000 | what the site published, chosen by nobody on record |
+  | 82 | £297,000 | the life expectancy OBR's own text gives an average person in 2028 |
+  | 100 | -£308,275 | where OBR's chart ends |
+
+  **The reason 82 is the one that can be defended is that OBR states a reason for it and states
+  none for the others.** It also makes the record's own `metric_name` true: it calls the figure a
+  LIFETIME contribution, and a lifetime ending at life expectancy is a lifetime, where age 80 was
+  a point on the way and age 100 turns the figure negative. The claim pages needed no rewording,
+  because both describe the migrant as "a lifetime net contributor" and cite the value rather than
+  writing it out. **This is the first value on this site to move because a far-end trace found what
+  a figure actually was**, rather than because a publisher released a new one.
+
+  **How it was fetched, because the route matters if this is ever redone**: OBR's own download link
+  for `charts and tables: Chapter 4` returns "You do not have permission to access this download",
+  to a script and to a real browser alike, while chapters 2 and 3 and the whole-report packs all
+  return their spreadsheets. It is that one file's download entry that is broken, not bot-blocking.
+  The zip of all chapters, `September-2024-Fiscal-risks-and-sustainability-charts-and-tables.zip`,
+  downloads and contains it, and that is the URL the evidence entry cites. The units are on neither
+  the sheet nor the page text: they are the axis label of the chart image at
+  `https://obr.uk/docs/Chart-4.13_corrected.png`, which is where "£ thousand" comes from.
 
 ### R3. Small build work, none urgent, all [me]
 

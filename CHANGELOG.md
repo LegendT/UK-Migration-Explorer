@@ -9,6 +9,75 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Twelve of the tail's seventeen figures are traced to the far end, and one of them moved, 3 August 2026
+
+**One published value changed, and it is the first on this site to move because a trace found what
+a figure actually was rather than because a publisher released a new one.** The OBR illustrative
+lifetime contribution is now £297,000, down from £341,000; every other value here is unchanged.
+This is batch 3 of the pass that asks whether a named source CONTAINS the figure. It covers the
+seventeen reader-facing records spread across seven publishers, the batch the backlog describes as
+the fewest records and the most fetches. **Twelve now carry an entry in `data/evidence/`. Five do
+not, and why is the finding.** Every quote was lifted from the
+fetched source by script, a located table cell with its own row and column labels or a passage
+matched from an opening phrase, with an assertion per figure before the quote was built.
+
+**`previous_value` was wrong on every backfill written before batch 1, and this corrects its
+share.** The field is defined as what the record held on the base branch, with `null` reserved for
+a figure that is new, and those entries used `null`: they said "new" about figures that had simply
+never been evidenced. Fifteen such entries sit in the nine files this touches and all fifteen are
+now set from what `main` holds. The ONS file is corrected in PR #102 instead, which is why the two
+branches do not both edit it. The entries these two batches add are written the right way. No check
+asked, and why it survived is in the backlog under A3.
+
+**All twelve reproduce exactly against their source; eleven needed no decision to do so.** MoJ tables FIA_1, FIA_3 and FIA_4 give 14,748 asylum appeals
+lodged in the quarter, 4,088 determined with 40% allowed, and an asylum backlog of 87,450 inside a
+chamber-wide open caseload of 151,767. The NAO gives £4.9 billion of Home Office and Ministry of
+Justice asylum spending in 2024-25, £3.4 billion of it on accommodation and support, and HC 874
+gives the £15.3 billion ten-year contract projection against an original £4.5 billion. The
+Migration Observatory gives the 16% foreign-born and 10% foreign-citizen shares. ONS gives the
+mid-2024 UK population of 69,281,400. The ICIBI gives both accommodation unit costs at paragraph
+5.14, in the Home Office's own words.
+
+**Five figures could not be evidenced, and none of them is wrong.** Each is a record holding a
+figure its cited source does not state: three where the source rounds, and two where the source
+states millions and the record states billions. Each is now in the backlog under R2 as a decision,
+with the primary table that does state the figure named beside it.
+
+**The twelfth is the OBR figure, and tracing it changed what the site publishes.** Its notes said
+the £341,000 is read off Chart 4.13 and that OBR states no single value and names no age. Both
+remain true of OBR; what nothing recorded is that THIS SITE picks an age. The chart's published
+data gives the average-wage migrant 340.577 at age 80 on an axis labelled "Cumulative fiscal impact
+(£ thousand)", which was the old figure exactly. The age is load-bearing: the same series peaks at
+£533,832 at age 66 and is -£308,275 at age 100 where the chart ends, so a figure the site labels a
+LIFETIME contribution was negative on the chart's own last point and positive by a third of a
+million two decades earlier.
+
+**The age is now 82 and the figure is £297,000.** OBR's own text gives 82 as the life expectancy of
+an average person in 2028, which makes it the only candidate age OBR states a reason for, and it
+makes the word "lifetime" in the record's name true rather than approximate. Neither claim page
+needed rewording: both describe the migrant as "a lifetime net contributor" and cite the value
+rather than writing it out, which is what citations are for here. The record now carries the age,
+the arithmetic and what it used to say.
+
+**OBR's own download for that chapter is broken, and that is worth writing down.** The link for
+`charts and tables: Chapter 4` returns "You do not have permission to access this download" to a
+script and to a real browser alike, while chapters 2 and 3 and the whole-report packs all return
+their spreadsheets. The zip of all chapters downloads and contains it, and that is what the
+evidence entry cites.
+
+**Four record corrections came out of the trace**, all against a cited source. The asylum
+accommodation contracts note said "the three contracts": HC 874 states seven regional contracts
+held by three suppliers, and the note conflated them. The two immigration-fee records were dated
+to calendar 2024 with a note asking for the period basis to be confirmed; the briefing body gives
+financial year 2024-25, so both records are re-dated and the note now records that the briefing's
+own summary says "in 2024" while its body says 2024/25. The appeals-lodged record hedged its
+prior-quarter comparison as "a possible peak", and reading all 76 quarters of FIA_1 shows 17,822
+is the highest of them; it also now declares table FIA_1, which its evidence entry names.
+
+**One earlier observation was re-confirmed rather than re-found.** The NAO landing page prints
+£4.0 billion where the report prints £4.9 billion, which R2 already records as a reader-facing
+question.
+
 ### Nine ONS figures and three series arrays are traced to the far end, 3 August 2026
 
 **No published value changed.** This is batch 2 of the pass that asks whether a named source

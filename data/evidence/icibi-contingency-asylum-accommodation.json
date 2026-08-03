@@ -1,0 +1,32 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night",
+      "previous_value": 158,
+      "value": 158,
+      "fetched_at": "2026-08-03",
+      "derivation": "Nothing is computed. The ICIBI quotes the Home Office's own April 2024 business case at paragraph 5.14, which states each rate as an approximation, and that approximation is what this record's \"estimated\" grade records. The quoted component is the figure itself as the source words it.",
+      "components": [
+        {
+          "value": 158,
+          "source_url": "https://assets.publishing.service.gov.uk/media/671a1b0cf7c956b7d065a417/An_inspection_of_contingency_asylum_accommodation_November_2023___June_2024.pdf",
+          "quote": "In addition, the Home Office notes, in its April 2024 business case, that “hotels are significantly more costly than DA”, as “the ‘per person per night’ cost of DA is around £20”, while the average cost of a hotel (in the three months to June 2023) was “approximately £158 per person per night”."
+        }
+      ]
+    },
+    {
+      "ref": "fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night",
+      "previous_value": 20,
+      "value": 20,
+      "fetched_at": "2026-08-03",
+      "derivation": "Nothing is computed. The ICIBI quotes the Home Office's own April 2024 business case at paragraph 5.14, which states each rate as an approximation, and that approximation is what this record's \"estimated\" grade records. The quoted component is the figure itself as the source words it.",
+      "components": [
+        {
+          "value": 20,
+          "source_url": "https://assets.publishing.service.gov.uk/media/671a1b0cf7c956b7d065a417/An_inspection_of_contingency_asylum_accommodation_November_2023___June_2024.pdf",
+          "quote": "In addition, the Home Office notes, in its April 2024 business case, that “hotels are significantly more costly than DA”, as “the ‘per person per night’ cost of DA is around £20”, while the average cost of a hotel (in the three months to June 2023) was “approximately £158 per person per night”."
+        }
+      ]
+    }
+  ]
+}

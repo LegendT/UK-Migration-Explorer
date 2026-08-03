@@ -285,8 +285,11 @@
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
       "retrieved_date": "2026-06-17",
-      "notes": "A single quarter's inflow, not an annual figure (down from a possible peak of 17,822 the prior quarter).",
-      "confidence_level": "provisional"
+      "notes": "A single quarter's inflow, not an annual figure. MoJ table FIA_1, asylum, protection and revocation of protection receipts: 14,748 of the chamber's 27,689 in the quarter. Down from 17,822 the prior quarter, and that IS the peak rather than a possible one: 17,822 is the highest of all 76 quarters the table holds, read on 3 August 2026.",
+      "confidence_level": "provisional",
+      "table_reference": [
+        "FIA_1"
+      ]
     },
     {
       "id": "asylum-appeals-backlog",
