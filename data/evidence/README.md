@@ -19,8 +19,17 @@ the same on both sides, so nothing else here would notice.
 A file may hold either array or both, because a release moves records and series together and
 one file covers one release.
 
-Entries are matched, never validated wholesale. An entry for a figure that has since been
-renamed or dropped stays as history and fails nothing.
+**Every entry that still describes a live figure is re-read on every run**, not only the ones a
+pull request moved. An entry whose record still exists and still holds exactly that value must
+carry a quote containing it, a source URL and a real fetch date, or a derivation and a quote per
+component where the figure is derived. Before 3 August 2026 an entry was matched when its figure
+moved and never asked again, so a bad quote on a figure that then sat still was invisible for as
+long as it sat.
+
+**An entry for a figure that has since been renamed, dropped or revised stays as history and
+fails nothing**, which is why the audit turns on the value still matching. These files are the
+audit trail, and a check that failed on an old entry would push someone into deleting the trail
+to get a green run.
 
 ## The shape
 

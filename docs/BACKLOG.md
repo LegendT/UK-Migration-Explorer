@@ -215,17 +215,48 @@ publications during the audit found three defects, one of them a headline figure
   run and reversed from a scratch snapshot after. **This bullet read "[you] for the fetch" until
   3 August 2026**, contradicting both the order's entry 10 and the bullet above it, which is the
   tag ageing this file already records as a hazard about itself.
-- **Nothing re-checks a backfilled evidence entry, and A1 will write about 69 of them.**
+- **Nothing re-checks a backfilled evidence entry, and A1 will write about 69 of them.
+  DONE (PR #100, 3 August 2026), before batch 2 on the owner's decision.** `check-evidence`
+  now re-reads every entry on file that still names a record holding exactly its value: 46 of
+  46 today, each asked for a quote carrying the value, a source URL, a real fetch date, and a
+  derivation with a quote per component where the figure is derived. **The key is `declares`,
+  the same one the changed-figure loop matches on**, so an entry whose figure has since been
+  renamed, dropped or revised is history and is skipped rather than failed, which is the rule
+  `data/evidence/README.md` sets and the reason a check here cannot force the trail to be
+  deleted. Asked of both sides it cannot be permanently satisfied: unchanged, the entry is
+  re-asked every run; absent, the record is gone; wrong shape, `declares` already reads a
+  range's bounds as well as a value. **Six probes, and the two that matter most are the ones
+  that must NOT fire**: breaking a quote, deleting a `source_url`, an impossible `fetched_at`
+  and breaking a component quote each fail with a precise message, while an entry whose value
+  no longer matches its record and an entry naming no record both pass **and drop the audited
+  count from 46 to 45**, which is what distinguishes skipped-as-history from checked-and-wrongly-
+  passed. **A seventh probe runs both halves at once**, a moved figure and an unrelated broken
+  entry together, because the six ran with nothing changed and so never showed the two passes
+  composing. They do, reporting one problem each, and the moved figure's own entry is correctly
+  treated as history rather than reported twice.
+
+  **It also found the failure header lying.** It read "Evidence check failed against origin/main",
+  and an entry that is inadequate for the record it names has nothing to do with the base branch.
+  Two comparisons, one attribution: this project's signature defect, in the message added by the
+  work that closes an instance of it. The header no longer names a base, and the errors that do
+  concern one name it in their own text.
+
+  **Series entries have the same gap one level over and are deliberately not covered**, which the
+  run now says on every invocation: only a block that MOVED is asked, so an entry for a block
+  sitting still is not re-read either. It is the same shape and a smaller surface, four files
+  rather than 99 records, and nothing is backfilling it, so it is named here rather than built.
+  **[me]** if it is ever wanted. The original text of this bullet follows, because the reasoning
+  is why it was built:
   `check-evidence` matches entries against metrics that changed or are new, and says so on every
   run: it "says nothing about a figure whose value did not change". A backfill changes no value,
   so all sixteen entries in batch 1, and every entry in the three batches after it, are declared
   and never asked again. The narrow fix that does not break the audit trail is to check an entry
   against the record it names **only where that record still holds that value**, so a historical
   entry whose figure has since moved stays history and fails nothing, which is the rule
-  `data/evidence/README.md` sets. **Not built here, deliberately**: it is a second deliverable, and
-  the right order is the one this project has already paid for, entries first and the check after,
-  so that the check lands against 46 entries it can prove itself on rather than against none.
-  Worth doing before batch 2 rather than after batch 4. **[me]**, on the owner's word about when.
+  `data/evidence/README.md` sets. **The ordering was the argument for waiting a pull request**,
+  and it is the one this project has already paid for twice: entries first and the check after,
+  so it lands against entries it can prove itself on rather than against none. It predicted 46
+  and there were 46.
 - **Re-read or drop `asylum/small-boat-arrivals-2026-year-to-date`.** Its own notes say "Do not
   publish without re-checking" and it was 43 days stale. It is unpublished reserve, so no reader sees
   it, which is why this is not a gate. **[you]**.

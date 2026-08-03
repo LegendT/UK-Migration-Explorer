@@ -9,6 +9,32 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Every evidence entry is re-read on every run, 3 August 2026
+
+**A declaration nobody re-checks is the shape this project keeps finding, and `data/evidence/`
+had it.** The check matched an entry when a figure's value moved and never asked again, so an
+entry written for a figure that then sat still was never looked at a second time. Its own closing
+line said as much: it "says nothing about a figure whose value did not change". That mattered
+little while entries were written only as figures changed. It matters now, because the far-end
+backfill will write about 69 entries for figures that are not moving, and a wrong quote in any of
+them would have been invisible for as long as the figure held. PR #100.
+
+**It now re-reads every entry that still describes a live figure**, 46 of 46 today: a quote
+carrying the value, a source URL, a real fetch date, and a derivation with a quote per component
+where the figure is derived. Nothing is re-fetched, so this is a claim about the entry rather than
+a fresh claim about the figure.
+
+**An entry whose figure has since been renamed, dropped or revised is skipped**, which is not a
+softening but the point. These files are the audit trail that makes a figure's history
+reconstructible, and a check that failed on an old entry would push someone into deleting the
+trail to get a green run.
+
+**The two probes that matter most are the ones that must not fire.** Breaking a quote, deleting a
+source URL, an impossible date and breaking a component quote each fail with a precise message.
+An entry whose value no longer matches its record, and an entry naming a record that does not
+exist, both pass **and drop the audited count from 46 to 45**, which is what distinguishes an
+entry skipped as history from one checked and wrongly passed.
+
 ### Sixteen Home Office figures are traced to the far end, 3 August 2026
 
 **No published value changed.** Every check on this site verifies that a figure names a source;
