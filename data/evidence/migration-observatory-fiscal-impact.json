@@ -2,8 +2,7 @@
   "figures": [
     {
       "ref": "fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp",
-      "previous_range_min": -1,
-      "previous_range_max": 1,
+      "previous_value": null,
       "range_min": -1,
       "range_max": 1,
       "fetched_at": "2026-08-03",

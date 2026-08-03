@@ -273,7 +273,7 @@ publications during the audit found three defects, one of them a headline figure
     74.7% are in no edition of the briefing they cite**, which prints no decimal percentage anywhere
     and gives employment rates only by gender. **Both values are right**: ONS table EMP06, Country of
     birth rates, Oct-Dec 2025 gives 80.3937 for the EU-born and 74.6847 for the UK-born, and 75.1246
-    for the non-EU rate the first record's notes also carry. **Re-sourcing them means adding an ONS
+    for the non-EU rate the SECOND record's notes carry, `employment-rate-uk-born-population`, not the first. **Re-sourcing them means adding an ONS
     labour-market publisher to `data/sources.json`**, which no record uses today, and the rounding
     forces the derived path, so it is a catalogue change plus a grade change rather than a fix.
 
@@ -281,6 +281,33 @@ publications during the audit found three defects, one of them a headline figure
   `population/share-of-london-residents-born-abroad` holds 40 as a point value where the briefing
   says "More than 40%", a floor. The entry quotes the hedge in full so nobody reading the evidence
   meets the figure without it, and whether the record should say so too is wording.
+
+  **THREE MORE FROM A SECOND-MODEL AUDIT OF THIS BATCH, 3 August 2026, all [you].** Each was
+  verified against the source before being written here, and none changes a figure:
+
+  - **`fiscal/migrant-share-of-uk-employees` is named for a measure its source does not use, and
+    this batch passed it.** The record is "Migrant (FOREIGN-BORN) share of UK employees"; the
+    briefing sentence beside the quoted figure reads "the share of employees who were adult non-UK
+    citizens in December 2025 - 19%, or 5.9 million", and defines that group by the nationality
+    someone held when they first registered for a national insurance number. Foreign-born and
+    non-UK-citizen-at-registration are different populations, and the record's own notes already
+    say definitions vary while the name picks one. **Rename it, or re-source it to a foreign-born
+    measure**, which is the fork that makes it yours. The evidence entry is unaffected: its quote
+    is the right sentence for 19%.
+  - **`migration/largest-nationality-for-immigration-india` has a third option, and it is better
+    than both the ones written above.** Its `published_date` is 2026-05-27, which is the edition
+    stating 17%, so the record has never cited an edition containing its own 16%. The 18 December
+    2025 edition does state it, and is recoverable from the Internet Archive. **Re-dating the
+    citation to that edition moves no value and changes nothing a reader sees**, where updating to
+    17% moves a value and retiring it removes a record.
+  - **The evidence contract's definition of the derived set and this batch's own derivation cannot
+    both be true.** `data/evidence/README.md` says a `calculated` or `estimated` figure "appears in
+    no source, which is what makes it derived". The fiscal-impact band is `estimated`, so the
+    checker forces the derived path, and its derivation says plainly that the band is read off the
+    briefing rather than computed. The entry is the only shape that passes and `estimated` is
+    defensible on `meta.json`'s own wording, so nothing is broken; but PR #111 treated exactly this
+    shape, a premise contradicted by the source, as a defect to rewrite. **Whether the README
+    sentence should soften is yours.**
 
   **Batch 2 checked every point of the three series arrays, not the two ends the evidence
   contract asks for**: 42 points matched against their own rows of Table 1, each by the period

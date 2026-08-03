@@ -28,6 +28,14 @@ immigration for the year ending June 2025. Its briefing has since moved to the y
 2025 and now says 17%. The two are not in conflict; they are different periods, and the record's
 period is one the current edition no longer covers.
 
+**A returns figure was regraded twice in one day, and the first destination was wrong.**
+`asylum/returns-enforced-plus-voluntary` was `calculated` on a false claim that the Home Office
+publishes no exact combined figure. It does, so `calculated` was wrong; but `official` was the wrong
+destination, because this site defines `provisional` as official and flagged by the publisher as
+subject to revision, and the release says its latest seven quarters are revised each time. Its four
+sibling returns figures were `provisional` throughout. It is `provisional` now. No published figure
+moves either way: the record is unpublished reserve.
+
 ### Two reserve figures were graded wrongly, in opposite directions, 3 August 2026
 
 **Tracing the Home Office reserve records to their sources found two whose grade did not match what
