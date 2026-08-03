@@ -9,6 +9,41 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The backlog is checked, 3 August 2026
+
+**Every other claim in this repository is machine-checked. The file that directs all the work was
+not, and it is the one that kept rotting.** `scripts/check-backlog.mjs` now reads
+`docs/BACKLOG.md` on every run of `npm run validate` and as its own CI step. PR #106.
+
+**It found two live defects on the run that created it.** The order said "the 27 unpublished
+reserve records"; there are 28 reserve records and 27 of them lack an evidence entry, two numbers
+collapsed into the sentence that tells the next session what its job is. And one numbered item
+carried no `[me]`/`[you]` tag, which the fresh-session prompt calls the highest-damage thing to get
+wrong.
+
+**It asserts** that every backticked path under a known directory exists, that every section
+cross-reference it can see has a heading, that The order is contiguously numbered, that every item
+carries a tag or opens by saying it is closed and citing the pull request that closed it, and that
+no item in The order writes a count of this project's own state. `npm run check-backlog` adds the
+network half, confirming every cited pull request is merged.
+
+**Eight defects were found in the check itself, all by probing rather than reading, and the first
+two matter most: as first written it would have passed the exact sentence it exists to catch.**
+The lookbehind excluded a preceding digit and not a preceding letter, so "U5 records what was
+considered" matched with `records` as a verb; and the noun had to sit next to the number, while the
+defect had two words in between. An outside model then found six more, including an escape clause
+that any item saying "the [me] half is done" satisfied, which six items in The order do.
+
+**What it does not establish is longer than what it does, and the run prints all of it**: whether
+an item is genuinely finished, because DONE is a claim by a person; whether the count rule caught
+every count, since it reads digits within four words of what they count; whether a path named
+outside backticks is real; and whether an item was removed from the end of the list, since what
+remains stays contiguous.
+
+**One finding it cannot fix.** `main` has no branch protection and no rulesets, so a red job blocks
+no merge. Every claim in the backlog that a check "gates" a pull request is worth the habit of not
+merging red and no more. That is a repository setting, and it is in the backlog as the owner's.
+
 ### The data layer has a door, 3 August 2026
 
 **`/sources-and-method/` promised the underlying data files were public and linked none of them.**

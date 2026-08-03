@@ -510,6 +510,27 @@ is already here to adding a neighbour beside it.
 
 ### Building a check, and trusting it
 
+- **Probe a check; never trust reading it.** Before wiring one in, write the strings it MUST catch
+  and the strings it must IGNORE, and assert them. On 3 August 2026 `check-backlog.mjs` was written
+  to catch a count of this project's own state in the backlog's live list, and **as first written it
+  would have passed the exact sentence it exists to catch**: its lookbehind excluded a preceding
+  digit and not a preceding letter, so "U5 records what was considered" matched with `records` as a
+  verb, and its noun had to sit beside the number while the defect had two words in between. An
+  outside model then found six more by probing, including an escape clause, `/\bclosed\b|\bDONE\b/i`
+  over a whole item, that any item saying "the [me] half is done" satisfied. Six items said exactly
+  that, so their tags were unenforced. **Take the must-ignore cases from the real file**: verbs
+  sharing a noun's spelling, table identifiers, years, pull request numbers. **And give an escape
+  clause the same treatment as the rule**, because ordinary prose will trigger a loose one.
+
+- **"In `npm run validate`" and "in CI" are different claims here, and "blocks a merge" is a third.**
+  `.github/workflows/validate-data.yml` invokes six scripts directly and never runs that npm script,
+  so a check added only to `validate` runs on a laptop. That happened to `check-backlog.mjs` between
+  it being written and a CI step being added minutes later. Confirm a step from the run log rather
+  than the file: `gh run view <id> --job <id> --log | grep <step name>`. **And `main` has no branch
+  protection and no rulesets**, verified by `gh api repos/{owner}/{repo}/branches/main/protection`
+  returning 404 and the rulesets endpoint returning `[]`, so a red job blocks no merge at all. Every
+  "this gates a pull request" in `docs/BACKLOG.md` is worth the habit of not merging red and no more.
+
 - **Negative-test every new check**, and confirm the break actually applied before concluding
   anything. Six "failures" here were tests that never fired: two in an earlier session, a
   `perl` edit on 28 July whose pattern missed so a check "passed" against a file nobody had
@@ -1055,8 +1076,9 @@ decision: bring it to me and start the next ungated item, saying which.
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
-taking silence as clearance. check-releases and check-sources are
-network checks that gate nothing, so run them by hand before a PR.
+taking silence as clearance. check-releases, check-sources and
+check-backlog are network checks that gate nothing, so run them by
+hand before a PR.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
