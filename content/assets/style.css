@@ -478,7 +478,25 @@ th.nested-2 { padding-left: 2.75rem; }
 .chart { margin: 2.5rem 0 3rem; }
 .chart figcaption h3 { margin: 0 0 0.35rem; }
 .chart-summary { margin: 0 0 1rem; color: var(--ink-soft); max-width: var(--measure); }
-.chart-svg { width: 100%; min-width: 32rem; height: auto; display: block; }
+.chart-svg { width: 100%; height: auto; display: block; }
+
+/* Two renderings per chart, one shown at a time; lib/charts.mjs says why one SVG cannot serve
+   both widths. Narrow is the default because this stylesheet is mobile first, and it is capped
+   at 380px so that between about 380 and 640 it stops growing rather than scaling its 17px text
+   up to something absurd: SVG text is in viewBox units and grows with the box. Hiding by
+   `display: none` is deliberate rather than `visibility` or a clip, because it is the only one
+   that takes the hidden chart out of the accessibility tree, so a screen reader meets one image
+   and not two identically titled ones. */
+.chart-svg--wide { display: none; }
+.chart-svg--narrow { max-width: 380px; }
+
+@media (min-width: 40em) {
+  /* The wide chart keeps the 32rem floor it has always had, and the floor now sits on the
+     rendering it belongs to rather than on both. Below this width it applied to a chart inside a
+     280px column, which is what put 45% of every chart off-screen at 320px. */
+  .chart-svg--wide { display: block; min-width: 32rem; }
+  .chart-svg--narrow { display: none; }
+}
 
 /* SVG text is in viewBox units, so it scales with the chart. At the 32rem minimum width the
    factor is 512/760, about 0.674, which rendered 13px axis labels at 8.8px and the 11px break
