@@ -568,6 +568,9 @@ is decided, and committing it would make a transitive dependency a direct one.
   equals `clientWidth` on all 17 pages at all five sizes. Everything crossing the right edge is
   inside a focusable, named scrolling region. The one thing crossing the left edge is the
   visually-hidden skip link, on every page, which creates no scroll because the direction is left.
+  **The result is not masked**, which is the control that makes it worth anything: nothing in
+  `style.css` sets `overflow-x: hidden` on `html` or `body`, the only `overflow: hidden` being the
+  `.visually-hidden` utility, so a real overflow would have shown as one.
 - **Every nav link is 50px tall**, clearing the 44px rule. Three standalone targets fall under it,
   and none is listed as a finding, **for two different reasons rather than one**. Two are covered
   by WCAG 2.2's equivalent-control exception: the brand link at 170x20 on all 17 pages, which the
@@ -595,7 +598,8 @@ is decided, and committing it would make a transitive dependency a direct one.
   `row-gap: 0px`. Nine targets stacked with no vertical separation, which is the mis-tap risk that
   survives every target clearing 44px.
 - **45% of every chart is off-screen at 320px, and what is hidden is the data the sentence above
-  it is about.** `.chart-svg` is `min-width: 32rem`, a fixed 512px, inside a 280px box: 232px of
+  it is about.** Every chart, literally: the built site holds seven `.chart-svg` elements and
+  seven overflow. `.chart-svg` is `min-width: 32rem`, a fixed 512px, inside a 280px box: 232px of
   512 hidden at 320, 38% at 360, 32% at 390, 27% at 414, nothing at 768. On `/migration/`'s net
   migration chart the visible x-axis is 2012, 2014, 2016, 2018 and the hidden strip holds 2020,
   2022 and 2025, while the summary above it reads "reached 891,000 in 2022 ... has fallen in each
