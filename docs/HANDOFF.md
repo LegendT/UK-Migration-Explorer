@@ -187,8 +187,10 @@ digits and not between them, and the opaque box that did work then hid the 2012 
 "200,000". Every gate was green for that version. The owner found it in a screenshot. The labels are
 back outside the plot in PR #114, which removes the collision by construction and costs 90 units of
 width. **PR #114 merged on 3 August 2026 and this paragraph did not go with it**, having been
-committed after the merge; it reached `main` a session later, which is the incident under
-*Changing something without breaking something else*.
+committed after the merge, so it is landing a session late in the pull request that carries this
+sentence. That is the incident under *Changing something without breaking something else*, and the
+tense matters: written as "it reached `main`" this sentence asserted its own arrival while sitting
+unmerged, which is the property the bullet there tells you to check rather than assume.
 
 **And the sibling precedent was not what this document said it was.** The *Sibling projects*
 section below records that `~/Projects/DEBT` groups nav items under `<details>`. Opening it found

@@ -159,15 +159,18 @@ LICENCE                 MIT for code, Open Government Licence v3.0 attribution f
 section of `/sources-and-method/`, generated from the directory rather than typed. That page had
 promised the files were public and linked none of them.
 
-**Two things render twice, and both are because one rendering cannot serve a phone and a desktop.**
-The navigation is nine flat items that needed about 980px of line length, so below 40em they are a
-`details` disclosure and above it the flat row they have always been. Each chart is drawn twice at
-build time, wide and narrow, and CSS shows one: SVG text is in viewBox units, so squeezing the
-760-unit chart into a 280px column would render its 17px labels at 6.3px, and the 32rem floor that
-prevents that is what put 45% of every chart off-screen at 320px. The hidden one in each pair is
-`display: none` rather than clipped, which is the only form that takes it out of the accessibility
-tree, so a screen reader meets one nav and one image per chart. Both were measured at real device
-sizes rather than calculated; `docs/BACKLOG.md` under *U6* records what the measuring found.
+**Two things change shape below 40em, and they do it in opposite ways.** The navigation is the
+same nine items at every width, in one `<nav>` and one `<details>`: below 40em the `<summary>` is
+the control that opens them, and above it the summary is `display: none` and the items lay out as
+the flat row they have always been. Nine flat items needed about 980px of line length, which is
+what a 280px column could not give them. **The charts are the case that really does render twice.**
+Each is drawn wide and narrow at build time and CSS shows one, because SVG text is in viewBox
+units, so squeezing the 760-unit chart into a 280px column would render its 17px labels at 6.3px,
+and the 32rem floor that prevents that is what put 45% of every chart off-screen at 320px. The
+hidden member of each chart pair is `display: none` rather than clipped, which is the only form
+that takes it out of the accessibility tree, so a screen reader meets one image per chart. Both
+were measured at real device sizes rather than calculated; `docs/BACKLOG.md` under *U6* records
+what the measuring found, and what it found and nobody has yet fixed.
 
 ## Data contract
 
