@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/mac-recommended-skilled-worker-general-salary-threshold",
+      "previous_value": 41700,
+      "value": 41700,
+      "source_url": "https://www.gov.uk/government/publications/review-of-salary-requirements/review-of-salary-requirements-accessible",
+      "fetched_at": "2026-08-03",
+      "quote": "We recommend maintaining the general threshold at £41,700 as this would maximise the fiscal gain among the options we present, help ensure that Industrial Strategy sectors could recruit the workers they are likely to need over the coming years (given the long training periods often involved for such workers) and reflect the variation in wages across the UK."
+    }
+  ]
+}

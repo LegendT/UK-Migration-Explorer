@@ -226,8 +226,8 @@
       "source_id": "commons-library",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-7783/",
       "published_date": "2025-11-26",
-      "retrieved_date": "2026-06-17",
-      "notes": "About 325,000 of about 1.5 million staff reported a non-British nationality. Higher for doctors (about 36%) and nurses (about 30%). England only; the exact share depends on whether 'unknown' nationalities are included in the denominator.",
+      "retrieved_date": "2026-08-03",
+      "notes": "About 325,000 of about 1.5 million staff reported a non-British nationality. England only; the exact share depends on whether 'unknown' nationalities are included in the denominator, and the briefing prints both: 21% of staff with a known nationality, and 19% of all staff. Its doctors (36%) and nurses (30%) figures are stated against the 19%, not against the 21% held here.",
       "confidence_level": "official"
     },
     {
@@ -240,11 +240,11 @@
       "geography": "England",
       "source_name": "Skills for Care, The state of the adult social care sector and workforce in England 2025",
       "source_id": "skills-for-care",
-      "source_url": "https://www.skillsforcare.org.uk/Adult-Social-Care-Workforce-Data/workforceintelligence/Reports-and-visualisations/National-information/The-State-of-report.aspx",
+      "source_url": "https://www.skillsforcare.org.uk/Adult-Social-Care-Workforce-Data/workforceintelligence/resources/Reports/National/The-state-of-the-adult-social-care-sector-and-workforce-in-England-2025.pdf",
       "published_date": "2025-09-30",
-      "retrieved_date": "2026-06-17",
-      "notes": "Approximate; non-EU share has risen from about 10% to about 25% since 2021-22. Some summaries cite about 19% non-UK depending on year and definition; treat the exact figure as approximate. Overseas arrivals to care roles fell from about 105,000 (2023-24) to about 50,000 (2024-25).",
-      "confidence_level": "provisional"
+      "retrieved_date": "2026-08-03",
+      "notes": "Skills for Care prints no non-British share. It states that 69% of the local authority and independent sector workforce had a British nationality in 2024/25, so 31% is 100 minus that, and the two components it publishes for the same base, 25% non-EU and 6% EU, reconcile to the same 31%. THE BASE IS NARROWER THAN THIS RECORD'S NAME: for the whole workforce, including direct payment recipients, the report gives 71% British, which is 29% non-British. Non-EU share has risen from 10% to 25% since 2021-22, around 245,000 filled posts. Overseas arrivals to care roles fell from 105,000 (2023-24) to 50,000 (2024-25).",
+      "confidence_level": "calculated"
     },
     {
       "id": "immigration-health-surcharge-revenue",
@@ -286,12 +286,12 @@
       "date": "2025-12-31",
       "period_label": "December 2025 review",
       "geography": "United Kingdom",
-      "source_name": "Migration Advisory Committee, Annual Report 2025 and review of salary requirements",
+      "source_name": "Migration Advisory Committee, Review of salary requirements",
       "source_id": "mac",
-      "source_url": "https://www.gov.uk/government/publications/migration-advisory-committee-annual-report-2025/mac-letter-to-the-home-secretary-on-the-2025-annual-report-and-salary-requirements-report-accessible",
-      "published_date": "2025-12-17",
-      "retrieved_date": "2026-06-17",
-      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m, illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners.",
+      "source_url": "https://www.gov.uk/government/publications/review-of-salary-requirements/review-of-salary-requirements-accessible",
+      "published_date": "2025-12-18",
+      "retrieved_date": "2026-08-03",
+      "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m, illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners. Those option figures are Table 2.5 of the review, option 5, which is where they are printed: the covering letter this record cited until 3 August 2026 announces the review and states £41,700, but carries none of them.",
       "confidence_level": "official"
     }
   ]
