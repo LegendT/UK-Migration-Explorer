@@ -43,8 +43,11 @@ page cited a publication that does not contain it. **Corrected on 1 August 2026,
 £2.1 billion of spending on asylum hotels was always real and official, and is in the Home Office
 Annual Report and Accounts 2024-25 at page 75. The NAO report it named does not carry it. The
 figure had rendered in three places, including the home page, with every check green, because
-nothing here verifies that a named source contains the figure naming it. That gap is still open
-and is the first item under *From the pre-launch audit* in `docs/BACKLOG.md`.
+nothing here verifies that a named source contains the figure naming it. **That gap is still open,
+and closing it is backlog item A1.** Its first batch landed on 3 August 2026, tracing the 16
+reader-facing Home Office records to primary tables and re-verifying the 10 already evidenced; it
+found a second instance of the same defect, a small-boats figure citing an index page that carries
+no figures at all.
 
 **A launch readiness review ran on 2 August 2026**, written up in
 `docs/LAUNCH-READINESS-REVIEW.md`: seven review dimensions with every finding adversarially
@@ -104,7 +107,7 @@ lib/charts.mjs          Build-time SVG charts, four rules enforced in code
 lib/series.mjs          The four timeseries and the names everything else calls them by
 lib/tables.mjs          What a publisher's table identifier looks like, for the two checks that must agree
 data/                   Governed data layer, one file per theme, plus four timeseries
-data/evidence/          One file per release: the quote behind every figure that moved
+data/evidence/          One file per release: the quote behind every figure, re-read on every run
 scripts/                Six scripts, seven checks, all in CI, all negative-tested
 docs/prompts/           Versioned prompts. update-from-release.md drives an assisted update
 docs/foundation.md      Positioning, editorial principles, IA, data governance, risk register
@@ -404,15 +407,17 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and it is what was read, but it is not VoiceOver or NVDA reading a page
   aloud.
-- **Traceability at the far end is spot-checked, not established.** Every check verifies that a
-  figure names a source; no automated check verifies that the source contains the figure, and the
-  July 2026 audit found one record where it did not. The launch readiness review of 2 August 2026
-  fetched the live source behind each of the eight home page figures and verified all eight with
-  verbatim quotes, which is eight records of the 46 that reach a reader, done once, by hand.
-  Records predating the evidence contract have never been asked, because
-  `check-evidence.mjs` fires on a value that moved or a figure that is new, and most have done
-  neither. Backfilling `data/evidence/` for every published record is the only way to know whether
-  that is one record or several.
+- **Traceability at the far end is being established by hand, record by record, and is not
+  finished.** Every check verifies that a figure names a source; **no automated check verifies that
+  the source contains the figure**, and that gap has produced two real defects: a headline figure
+  citing an NAO report that does not carry it, found by the July 2026 audit, and a small-boats
+  figure citing a data-tables index page that contains no figures at all, found on 3 August 2026.
+  How many records reach a reader is what `npm run build` prints; it is deliberately not written
+  here. Of them, the eight home page figures were verified with verbatim quotes by the launch
+  readiness review, and the 26 belonging to the Home Office year-ending-March-2026 release were
+  traced to primary tables on 3 August 2026. The rest have not been asked. Backfilling
+  `data/evidence/` for every record is backlog item A1, batched by publisher, and it is several
+  more sessions.
 - **Print was unstyled until 31 July 2026**, so a printed page lost every chart's figures, which sit
   inside a closed disclosure, and every source link's destination. The first fix did not survive
   contact with Chrome, which hides a closed disclosure's contents beyond the reach of child display
