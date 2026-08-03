@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/non-british-nationals-as-a-share-of-nhs-staff",
+      "previous_value": 21,
+      "value": 21,
+      "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-7783/",
+      "fetched_at": "2026-08-03",
+      "quote": "Most NHS staff in England are British, but around 21% are not. Around 325,000 out of 1.5 million staff reported a non-British nationality in June 2025, up from around 305,000 a year earlier."
+    }
+  ]
+}

@@ -132,8 +132,12 @@ first act.
     wrongly in opposite directions and corrected both. **Batch 5 is half done (PR #112, 3 August
     2026)**: five of the Migration Observatory records are evidenced and **three are [you]**, one
     superseded by a new edition of its briefing and two whose figures are in ONS EMP06 rather than
-    the briefing they cite, which would need a new catalogued publisher. What remains after that is
-    three single records, under A1. **No count is
+    the briefing they cite, which would need a new catalogued publisher. **BATCH 6 IS DONE (PR #116,
+    3 August 2026), AND IT WAS THE LAST OF THE [me] WORK IN A1**: the Commons Library NHS share, the
+    Skills for Care adult social care share and the MAC salary threshold. All three cited a page that
+    is not where their figure lives. **So every record in the data layer now carries evidence except
+    the ones the batches above left as [you]**, which are named under A1 below and are all that is
+    left of this item. Batch 6 added one to them, and it is the Skills for Care base. **No count is
     written here**: `npm run build` prints how many records are reserve, and how many lack an
     evidence entry is what `node scripts/check-backlog.mjs` would refuse to let this line say.
     Those are two different numbers, and this line gave one figure for both until 3 August 2026. And re-read or
@@ -321,6 +325,44 @@ publications during the audit found three defects, one of them a headline figure
     defensible on `meta.json`'s own wording, so nothing is broken; but PR #111 treated exactly this
     shape, a premise contradicted by the source, as a defect to rewrite. **Whether the README
     sentence should soften is yours.**
+
+  **BATCH 6 IS DONE (PR #116, 3 August 2026) AND IS THE LAST OF THE [me] WORK IN A1**: the three
+  single-publisher reserve records, one each from `commons-library`, `skills-for-care` and `mac`.
+  **All three cited a page that is not where their figure lives**, which is the fourth batch running
+  to find that, and two needed more than a re-source.
+
+  - **The MAC record's notes were sourced to a document carrying none of them.** They assert
+    £52,500, "2,900 to 5,100 a year" and "£520m to £710m"; none is in the covering letter the record
+    cited, and **none is in the annual report either**, both fetched and searched with controls. All
+    four are option 5 of Table 2.5 of the salary requirements review, to the digit, though not to the
+    character: it prints them without thousands separators and in millions, and the fiscal pair is in
+    the review's summary prose as well. Re-sourced to the review, which states the £41,700 too, so
+    one document now carries the whole record. Grade unchanged.
+  - **`fiscal/non-british-nationals-as-a-share-of-the-adult-social-care-wo` was `provisional` for a
+    figure no publisher states.** Skills for Care prints no non-British share, established by a
+    search built to refute that rather than confirm it. The 31% is 100 minus the 69% British it gives
+    for the local authority and independent sectors, and the 25% non-EU and 6% EU it prints for the
+    same base reconcile to the same 31%, which is what establishes the base rather than the number
+    alone. Regraded `calculated`, crossing the derived boundary and correctly firing
+    `check-evidence` in the direction PR #99 added.
+  - **The NHS record needed no re-source, and this batch got its note wrong before a second model
+    caught it.** The briefing states "around 21%" and the 325,000 of 1.5 million verbatim, so the
+    figure was never in doubt. **This batch first rewrote the note to say the doctors (36%) and
+    nurses (30%) shares are stated against 19% rather than against the 21%, and that is false**: the
+    full briefing says "Overall, 21.3% of staff report a nationality other than British. For doctors
+    this figure is 36.3%, and for nurses it is 30.0%", one sentence, one base. **The search that
+    missed it looked for "36%" and "30%" in a document that prints "36.3%" and "30.0%"**, which is
+    this project's own rule about proving a search with a control, failed at the point of choosing
+    the string. The 19% is real but is a DIFFERENT DATASET, the supplementary information files, and
+    re-including the 1.3% unknown moves 21.3% to about 21.0% rather than to 19%. The note now says
+    that, and the original note it replaced was right.
+
+  **ONE NEW [you] CALL, and it is the same fork as `migrant-share-of-uk-employees` above.** The
+  Skills for Care record is named for *the adult social care workforce (England)* and its 31% is the
+  narrower base. For the whole workforce, including direct payment recipients, the report gives 71%
+  British, so 29% non-British. **Rename it to the base it holds, or move it to the whole-workforce
+  figure**, which moves a value. Nothing a reader sees is affected either way: it is unpublished
+  reserve, and the built site differed from `main` only in the data files that ship with it.
 
   **Batch 2 checked every point of the three series arrays, not the two ends the evidence
   contract asks for**: 42 points matched against their own rows of Table 1, each by the period
