@@ -499,7 +499,7 @@ have made "three" wrong.
   finalised calendar-year total, while the publisher prints the year only as four quarterly
   cells to be summed and states no calendar-year total. The site's own convention for a summed
   figure is `calculated` with the components quoted. **[you]** whether the grade or the note
-  moves.
+  moves. **Re-checked on 3 August 2026: IER_01's 2025 small boats cell is 41,472, printed.**
 
   **THE PREMISE IS FALSE, established by the A1 fetch on 3 August 2026, so neither moves.** The
   Home Office does print a calendar-year total: **table IER_01 of the illegal entry routes summary
@@ -514,7 +514,9 @@ have made "three" wrong.
   **Its sibling is not closed, and the grade there is still yours.**
   `asylum/small-boat-arrivals-peak`, 45,774 in 2022, is graded `calculated` on the stated reason
   that "the Home Office publishes this dataset by quarter and states no calendar-year total", and
-  its evidence entry says the same. IER_01 prints 45,774 as a calendar-year cell. **The eight
+  its evidence entry says the same. IER_01 prints 45,774 as a calendar-year cell, **and so does
+  IER_02a, whose 2022 monthly row totals to the same 45,774 in a printed Total column**, checked on
+  3 August 2026: two printed cells, not one. **The eight
   yearly sums that entry derived by hand are identical, number for number, to the row IER_01
   prints**, which is this project's absolute-negative rule failing in the way the handoff already
   describes: the search that would have refuted it was never run. Regrading it to `official`
@@ -553,21 +555,35 @@ have made "three" wrong.
   looser check. These three met exactly that, and in all three the primary table has already been
   fetched by this project and states the figure exactly:
 
-  | Record | Holds | Its cited source states | The primary that states it exactly |
-  | --- | --- | --- | --- |
-  | `population/foreign-born-population-of-the-uk` | 10,700,000 | "10.7 million", twice, and no digits anywhere | ONS Table 9: 10,183,000 at Census day 2021 for England, Wales and Northern Ireland plus 555,000 at Census day 2022 for Scotland, which is 10,738,000 |
-  | `asylum/asylum-applications-main-applicants` | 76,714 | "76,700 applications ... relating to 93,500 individuals" | Home Office Asy_00a, whose 93,525 this site already publishes and evidenced in batch 1 |
-  | `asylum/small-boat-arrivals-year-ending-march-2026` | 39,271 | "39,000 people arrived by small boat" | Home Office IER_D01, whose four quarters batch 1 already quotes as summing to 39,271 |
+  **THIS TABLE WAS WRITTEN FROM INFERENCE ON 3 AUGUST 2026 AND TWO OF ITS THREE RIGHT-HAND CELLS
+  WERE WRONG.** They were corrected the same day by fetching the tables rather than reasoning about
+  them, which is the rule this section exists to enforce and which its own author skipped. What the
+  primaries actually hold:
 
-  **The recommendation is to re-source all three to the primary and keep the value**, because a
-  primary table is what the rest of this site cites and in every case it is already fetched, once
-  already quoted. The cost is real and should be weighed: `source_id` decides the publisher counts
-  that `/sources-and-method/` renders from `lib/published.mjs`, so moving three records moves that
-  page, and the Migration Observatory one would become an ONS figure whose own briefing is the
-  better read for a person. **The alternative is to round each record to what its source states**,
-  10.7 million, 76,700 and 39,000, which keeps the citation honest and loses precision the site
-  has. Doing nothing is also a choice and means these three stay unevidenced with the reason
-  written down here.
+  | Record | Holds | Its cited source states | What the primary actually holds |
+  | --- | --- | --- | --- |
+  | `population/foreign-born-population-of-the-uk` | 10,700,000 | "10.7 million", twice, and no digits anywhere | ONS Table 9 prints 10,183,000 for England, Wales and Northern Ireland at Census day 2021 and 555,000 for Scotland at Census day 2022. **It prints no combined UK cell**; 10,738,000 is a sum |
+  | `asylum/asylum-applications-main-applicants` | 76,714 | "76,700 applications ... relating to 93,500 individuals" | **Home Office table Asy_01a prints 76,714 exactly**, as "Main applicants" for the year ending March 2026, in the same row-block as the 93,525 total people this site already publishes. NOT Asy_00a, which this bullet named and which carries no main-applicant row at all |
+  | `asylum/small-boat-arrivals-year-ending-march-2026` | 39,271 | "39,000 people arrived by small boat" | **No printed cell anywhere.** IER_01's columns are calendar years plus a January-to-March 2026 stub, so there is no year-ending-March total. The figure reproduces exactly from IER_02a's twelve printed monthly cells for April 2025 to March 2026, and from IER_D01's four quarters as batch 1 already quotes |
+
+  **So the three are not one decision, they are three, and only one is clean.**
+
+  - **`asylum-applications-main-applicants` is clean.** Re-sourcing to the Home Office keeps the
+    value AND the `official` grade, because Asy_01a prints the figure. The record's own note, "76,714
+    applications relating to 93,525 people", is that table's two rows exactly. **Recommended.**
+  - **The other two cannot keep both their value and their grade.** Each figure is a sum the
+    publisher does not print, and this section's own first bullet states the site's convention for
+    that: `calculated`, with the components quoted. So re-sourcing them means value kept, source
+    moved, grade moved to `calculated`, and an evidence entry of components: twelve monthly cells
+    or four quarters for the small boats figure, two census-day cells for the foreign-born one.
+    That is more than "change the source", which is what this bullet implied before it was checked.
+  - **The alternative for those two is to round each to what its own source states**, 10.7 million
+    and 39,000, which keeps the citation exact and loses precision the site currently has.
+  - **Doing nothing is a third choice** and means they stay unevidenced with the reason here.
+
+  The cost of moving any of them is the same and should be weighed once: `source_id` decides the
+  publisher counts that `/sources-and-method/` renders from `lib/published.mjs`, so each move
+  changes that page.
 
 - **THE TWO ICIBI UNIT COSTS ARE GRADED `estimated` AND THEIR SOURCE STATES THEM.** Found while
   writing their evidence in batch 3. `data/evidence/README.md` says a `calculated` or `estimated`
