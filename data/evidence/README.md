@@ -10,6 +10,12 @@ branch, and any metric that is new, must be declared here, and the value must ap
 quote. A fabricated figure cannot appear in a quote taken from a real page. **Any series block
 that moved must be declared too**, in a `series` array rather than a `figures` one.
 
+**And any metric whose `confidence_level` crosses the derived boundary**, in either
+direction, even at an unchanged value. A regrade into `calculated` or `estimated` says the
+figure appears in no source, so a quote is no longer the right evidence for it; a regrade out
+says it is published, so components are no longer the right evidence either. The value is
+the same on both sides, so nothing else here would notice.
+
 A file may hold either array or both, because a release moves records and series together and
 one file covers one release.
 

@@ -9,6 +9,50 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Sixteen Home Office figures are traced to the far end, 3 August 2026
+
+**No published value changed.** Every check on this site verifies that a figure names a source;
+none verifies that the source contains the figure. This is the first batch of the pass that asks
+the second question by hand, covering the sixteen reader-facing records drawn from the Home
+Office immigration system statistics, year ending March 2026. Each now carries an entry in
+`data/evidence/` with a verbatim quote, and the quotes were extracted from the fetched sources
+rather than typed, so a transcription slip could not enter them. PR #99.
+
+**Fifteen were correct as cited**, and so were the year-on-year changes written in their notes:
+table Asy_00a gives 93,525 claims, 128,300 initial decisions, 79,719 refusals, 16,901
+withdrawals, 48,581 grants, a 39% grant rate, 48,758 awaiting a decision, 97,519 supported and
+20,885 in hotels, with the falls and rises the notes state. The two derived figures reconcile in
+both directions: 20,885 plus 72,768 in other accommodation is the 93,653 this site publishes, and
+adding the 3,866 on subsistence-only support returns the Home Office's own 97,519. The 5,931
+administrative outcomes sum from the four quarters of the Asy_D02 pivot, whose Refused, Withdrawn,
+grants and Grand Total columns reproduce four figures the Home Office publishes elsewhere.
+
+**One was wrong, and it was the source rather than the number.** Small boat arrivals in calendar
+year 2025, 41,472, cited the immigration system statistics data tables index page. That page lists
+spreadsheets and contains no figures at all, and **that link renders on the home page**, so a
+reader checking this site's headline small-boats figure met a list of files rather than the
+number. The record also named the detailed dataset, which publishes quarters only. The figure is
+published as a calendar-year total, in **table IER_01 of the illegal entry routes summary
+tables**, and the record now cites it. The home page source line is the only rendered change on
+the site, proved by diffing a build of this branch against a build of `main`.
+
+> "IER_01: Number of detected arrivals via illegal routes to the UK, by method of entry,
+> January 2018 to March 2026. Small boat arrivals, 2025: 41,472"
+
+**That table also prints the 2022 peak, 45,774**, as a calendar-year cell. Two places in this
+repository say the Home Office states no calendar-year total for small boats and derives the year
+by summing quarters. The eight yearly sums derived by hand on 2 August are identical, number for
+number, to the row IER_01 prints. The 2025 record is corrected here; the peak record's grade is a
+sourcing decision and is left open.
+
+**The evidence check now fires on a regrade.** It compared values alone, so moving a figure into
+`calculated` or `estimated`, which asserts that it appears in no source, passed with a quote-based
+entry still attached to it, and moving one out passed with only components. It now fires in either
+direction at an unchanged value. This was written and reverted on 31 July because landing it turned
+the branch red until `asylum-administrative-outcomes` had an entry, and that entry needed quotes
+from a pivot nobody had opened. The pivot was opened first, which is the ordering that stops a
+check forcing a fabricated quote.
+
 ### Every figure on the site now has a home, 2 August 2026
 
 **The last three figures written longhand are settled, and the check that reported them now

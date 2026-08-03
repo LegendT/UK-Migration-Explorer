@@ -1,6 +1,6 @@
 {
   "theme": "Asylum and refugees",
-  "lastUpdated": "2026-08-02",
+  "lastUpdated": "2026-08-03",
   "note": "Latest Home Office Immigration system statistics release is year ending March 2026 (published 21 May 2026). Asylum appeals come from a separate publisher (HMCTS/Ministry of Justice tribunals statistics, January to March 2026). Reference periods differ between measures, so do not mix calendar-year, year-ending, and point-in-time figures.",
   "metrics": [
     {
@@ -186,12 +186,15 @@
       "date": "2025-12-31",
       "period_label": "calendar year 2025",
       "geography": "United Kingdom",
-      "source_name": "Home Office, Illegal entry routes to the UK detailed dataset",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, Illegal entry routes summary tables, table IER_01",
       "source_id": "ho-immigration-stats",
-      "source_url": "https://www.gov.uk/government/statistical-data-sets/immigration-system-statistics-data-tables#illegal-entry-routes",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
-      "notes": "Second-highest annual total on record; 13% higher than 2024. The peak it is second to is held as its own record rather than restated here. Finalised calendar-year total. The dataset was titled 'Irregular migration to the UK detailed dataset (illegal entry routes)' until the year ending December 2025 edition; the edition used here carries the current title.",
+      "retrieved_date": "2026-08-03",
+      "notes": "Second-highest annual total on record; 13% higher than 2024. The peak it is second to is held as its own record rather than restated here. Finalised calendar-year total, and the Home Office states it as one: table IER_01 of the summary tables prints small boat arrivals by calendar year, 2018 to 2025, and its 2025 cell is this figure. RE-SOURCED 3 August 2026: this record previously cited the data tables index page, which lists spreadsheets and contains no figures at all, and named the detailed dataset, which publishes quarters only. The dataset was titled 'Irregular migration to the UK detailed dataset (illegal entry routes)' until the year ending December 2025 edition; the edition used here carries the current title.",
+      "table_reference": [
+        "IER_01"
+      ],
       "confidence_level": "official"
     },
     {
@@ -243,13 +246,13 @@
       "geography": "United Kingdom",
       "source_name": "Home Office, Illegal entry routes to the UK detailed dataset, table IER_D01",
       "source_id": "ho-immigration-stats",
-      "source_url": "https://www.gov.uk/government/statistical-data-sets/immigration-system-statistics-data-tables#illegal-entry-routes",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-07-30",
       "table_reference": [
         "IER_D01"
       ],
-      "notes": "CALCULATED, not published: the Home Office publishes this table by quarter and by calendar year and states no year-ending-March total. Summed over 2025 Q2 to 2026 Q1 across all four methods of entry: small boats 39,271, inadequately documented air arrivals 2,621, detections in the UK 1,687, detections at UK ports 227. Small boats are 89.6% of it. Detected means detected: it cannot count arrivals nobody detected, so it is a floor rather than a total.",
+      "notes": "CALCULATED, not published: the Home Office publishes this table by quarter and by calendar year and states no year-ending-March total. Summed over 2025 Q2 to 2026 Q1 across all four methods of entry: small boats 39,271, inadequately documented air arrivals 2,621, detections in the UK 1,687, detections at UK ports 227. Small boats are 89.6% of it. Detected means detected: it cannot count arrivals nobody detected, so it is a floor rather than a total. URL CORRECTED 3 August 2026: this record named the right dataset in its source name and linked the data tables index page, which lists spreadsheets and contains no figures at all. It now links the dataset itself, which is the file its evidence entry already quoted. The figure was re-derived from it on the same day and every component above reproduces exactly, so retrieved_date is left at the day it was read rather than moved.",
       "confidence_level": "calculated"
     },
     {

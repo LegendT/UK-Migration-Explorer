@@ -253,23 +253,45 @@ function checkEntry(ref, metric, before, entry, where) {
 }
 
 // --- every changed or new figure needs one -------------------------------------------
+// And every figure whose grade CROSSES the derived boundary, because that changes which
+// kind of evidence is adequate rather than what the figure says. A figure regraded into
+// the derived set is claimed to appear in no source, so a quote is no longer the right
+// evidence for it; one regraded out is claimed to be published, and its components are no
+// longer the right evidence either. `shape` compares values alone, so neither move was
+// visible here: this fired correctly on the audit's own regrade of
+// asylum-administrative-outcomes on 31 July 2026 and was reverted that day, because
+// landing it turned the branch red until that record had an entry and the entry needed
+// quotes from a pivot nobody had opened. Asy_D02 was opened on 3 August and the entry
+// written, which is the ordering that keeps a check from forcing a fabricated quote.
+// The backlog scoped this to the inward direction; the outward one is the same expression
+// and the same defect facing the other way, so it is covered rather than left as a sibling.
+const gradeCrossed = (before, metric) =>
+  DERIVED.has(before.confidence_level) !== DERIVED.has(metric.confidence_level);
+
 let changed = 0;
 let derived = 0;
+let regraded = 0;
 
 for (const [ref, metric] of current) {
   const before = previous.get(ref);
-  if (before && shape(before) === shape(metric)) continue;
+  const moved = !before || shape(before) !== shape(metric);
+  if (!moved && !gradeCrossed(before, metric)) continue;
+  if (!moved) regraded += 1;
   changed += 1;
   if (DERIVED.has(metric.confidence_level)) derived += 1;
 
   const named = entries.filter(({ entry }) => entry.ref === ref);
   const matched = named.find(({ entry }) => declares(entry, metric));
   if (!matched) {
-    const moved = before ? `changed from ${describe(before)} to ${describe(metric)}` : 'is new';
+    // "changed from 5,931 to 5,931" is what a regrade produces otherwise, which reads as a
+    // bug in the check rather than as the thing it is reporting.
+    const what = !before ? 'is new'
+      : shape(before) !== shape(metric) ? `changed from ${describe(before)} to ${describe(metric)}`
+      : `was regraded from ${before.confidence_level} to ${metric.confidence_level}, which changes what counts as evidence for it`;
     const stale = named.length
       ? ` ${named.length} entr${named.length === 1 ? 'y names' : 'ies name'} ${ref} at a different value, which is what a figure moving again after its evidence was written looks like.`
       : '';
-    errors.push(`${ref}: ${moved}, and no evidence entry declares it.${stale} Add to the "figures" array of a file in data/evidence/:\n      ${skeleton(ref, metric, before)}\n      ${SHAPE}`);
+    errors.push(`${ref}: ${what}, and no evidence entry declares it.${stale} Add to the "figures" array of a file in data/evidence/:\n      ${skeleton(ref, metric, before)}\n      ${SHAPE}`);
     continue;
   }
   checkEntry(ref, metric, before, matched.entry, matched.where);
@@ -400,15 +422,16 @@ if (errors.length) {
 }
 
 if (changed === 0) {
-  console.log(`Evidence check passed against ${base}: no metric changed value and none is new, so there is nothing to evidence.`);
+  console.log(`Evidence check passed against ${base}: no metric changed value, none is new, and none was regraded across the derived boundary, so there is nothing to evidence.`);
 } else {
-  console.log(`Evidence check passed against ${base}: ${changed} metric(s) changed or new, each declared in data/evidence/${derived ? `; ${changed - derived} carry a quote containing the value and ${derived} derived figure(s) carry a quote per component instead` : ' with a quote containing its value'}.`);
+  const why = regraded ? `${changed} metric(s) changed, new, or regraded across the derived boundary (${regraded} of them regraded at an unchanged value)` : `${changed} metric(s) changed or new`;
+  console.log(`Evidence check passed against ${base}: ${why}, each declared in data/evidence/${derived ? `; ${changed - derived} carry a quote containing the value and ${derived} derived figure(s) carry a quote per component instead` : ' with a quote containing its value'}.`);
 }
 console.log('Not established: that the quote is on the page it names, that anyone fetched it, or that');
 console.log('the URL belongs to a catalogued publisher, which validate-data.mjs requires of a record');
 console.log('and nothing requires of a quote. This matches digits against text a person pasted, so it');
-console.log('catches an invented figure and not a misread one, and says nothing about figures that');
-console.log('did not change.');
+console.log('catches an invented figure and not a misread one, and says nothing about a figure whose');
+console.log('value did not change, unless its grade crossed the derived boundary.');
 if (derived) {
   console.log(`Also not established: the arithmetic of ${derived} derived figure(s) in this diff. Each input is quoted; the sum or share is not recomputed.`);
 }

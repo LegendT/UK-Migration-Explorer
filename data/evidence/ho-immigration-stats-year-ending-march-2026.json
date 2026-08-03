@@ -87,6 +87,163 @@
       "fetched_at": "2026-08-02",
       "table_reference": "Asy_00a",
       "quote": "Asy_00a: Asylum claims, initial decisions, awaiting an initial decision, appeals, support and returns, by date of event. People awaiting an initial decision, as at the end of 2019: 51,228"
+    },
+    {
+      "ref": "asylum/asylum-applications",
+      "previous_value": 93525,
+      "value": 93525,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-claim-asylum-in-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "A total of 93,525 people claimed asylum in the UK in the YE March 2026."
+    },
+    {
+      "ref": "asylum/people-granted-protection-or-other-leave-at-initial-decision",
+      "previous_value": 48581,
+      "value": 48581,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-granted-asylum-in-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "In the YE March 2026, 48,581 people were granted refugee protection or other leave at initial decision, an increase of 5% on the previous year."
+    },
+    {
+      "ref": "asylum/asylum-initial-decision-grant-rate",
+      "previous_value": 39,
+      "value": 39,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-granted-asylum-in-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "Figure 2 shows that the grant rate was 39% in YE March 2026."
+    },
+    {
+      "ref": "asylum/asylum-backlog-people-awaiting-an-initial-decision",
+      "previous_value": 48758,
+      "value": 48758,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "fetched_at": "2026-08-03",
+      "quote": "At the end of March 2026 there were 48,758 people (relating to 35,744 cases) awaiting an initial decision, 55% less than at the end of March 2025 and the lowest level since September 2019."
+    },
+    {
+      "ref": "asylum/people-in-receipt-of-asylum-support",
+      "previous_value": 97519,
+      "value": 97519,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "fetched_at": "2026-08-03",
+      "quote": "At the end of March 2026, there were 97,519 individuals in receipt of asylum support."
+    },
+    {
+      "ref": "asylum/people-in-asylum-hotel-accommodation",
+      "previous_value": 20885,
+      "value": 20885,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "fetched_at": "2026-08-03",
+      "quote": "20,885 (21%) were in hotel accommodation, 35% lower than at the end of March 2025, and 63% lower than the peak of 56,018 at the end of September 2023"
+    },
+    {
+      "ref": "asylum/total-asylum-cases-in-the-casework-system",
+      "previous_value": 224742,
+      "value": 224742,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "fetched_at": "2026-08-03",
+      "table_reference": "ASY_03",
+      "quote": "The number of cases in the asylum system increased more than fourfold over the decade to June 2024, from 55,814 at the end of June 2014 to 224,742 at the end of June 2024 (as shown in Figure 1)."
+    },
+    {
+      "ref": "population/british-citizenship-grants",
+      "previous_value": 236512,
+      "value": 236512,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "In the YE March 2026, there were 236,512 grants of British citizenship, representing a 12% decrease compared with the YE March 2025."
+    },
+    {
+      "ref": "population/settlement-grants",
+      "previous_value": 152306,
+      "value": 152306,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "In the YE March 2026, there were 152,306 settlement grants, an 11% decrease from the YE March 2025."
+    },
+    {
+      "ref": "asylum/asylum-initial-decisions-total",
+      "previous_value": 128300,
+      "value": 128300,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "Asy_00a",
+      "quote": "Asy_00a, People receiving initial decisions, Year ending March 2026: 128,300"
+    },
+    {
+      "ref": "asylum/asylum-refusals",
+      "previous_value": 79719,
+      "value": 79719,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "Asy_00a",
+      "quote": "Asy_00a, Refusals, Year ending March 2026: 79,719"
+    },
+    {
+      "ref": "asylum/asylum-withdrawals",
+      "previous_value": 16901,
+      "value": 16901,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "Asy_00a",
+      "quote": "Asy_00a, Withdrawals, Year ending March 2026: 16,901"
+    },
+    {
+      "ref": "asylum/returns-refused-entry-at-port",
+      "previous_value": 17623,
+      "value": 17623,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e54b22977ebc82cb3fb8/returns-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "Ret_01",
+      "quote": "Ret_01, year ending March 2026 [p], Refused entry at port and subsequently departed, total: 17,623"
+    },
+    {
+      "ref": "asylum/people-in-asylum-accommodation",
+      "previous_value": 93653,
+      "value": 93653,
+      "fetched_at": "2026-08-03",
+      "derivation": "20,885 in hotel accommodation plus 72,768 in other accommodation, both stated on the release page as counts and percentages of the supported population. Reconciles in both directions: 20,885 plus 72,768 is 93,653, and 93,653 plus the 3,866 on subsistence-only support is the published 97,519. The sum itself is not published: 93,653 appears nowhere on the release page and in no cell of the asylum summary tables, searched with 97,519 and 20,885 as controls to confirm the search would have found it.",
+      "components": [
+        {
+          "value": 20885,
+          "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+          "quote": "20,885 (21%) were in hotel accommodation, 35% lower than at the end of March 2025, and 63% lower than the peak of 56,018 at the end of September 2023"
+        },
+        {
+          "value": 72768,
+          "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+          "quote": "72,768 (75%) were in other accommodation, including initial, contingency and dispersal accommodation, 2% higher than at the end of March 2025"
+        }
+      ]
+    },
+    {
+      "ref": "asylum/asylum-administrative-outcomes",
+      "previous_value": 5931,
+      "value": 5931,
+      "fetched_at": "2026-08-03",
+      "derivation": "Sum of the Administrative Outcome row of the Asy_D02 pivot over the four quarters 2025 Q2 to 2026 Q1: 3,858 plus 855 plus 844 plus 374 is 5,931. The pivot carries one label column and eight quarterly columns, 2024 Q2 to 2026 Q1, with no year-ending column, and 5,931 is in no cell of the workbook at all, searched with 3,858 and 19,376 as controls to confirm the search would have found it. This settles what the record notes left open, that the pivot does not print a year-ending-March total. Basis and period confirmed by reconciling the same four quarters against figures the Home Office does publish: Refused gives 79,719, Withdrawn 16,901, Grant of Protection plus Grant of Other Leave 48,581, and Grand Total 151,132, each matching table Asy_00a or a record this site already holds. The same four quarters split the category into void 4,896, suspended 642, other 387 and deceased 6.",
+      "components": [
+        {
+          "value": 3858,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
+          "quote": "Asy_D02, Administrative Outcome, 2025 Q2: 3,858"
+        },
+        {
+          "value": 855,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
+          "quote": "Asy_D02, Administrative Outcome, 2025 Q3: 855"
+        },
+        {
+          "value": 844,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
+          "quote": "Asy_D02, Administrative Outcome, 2025 Q4: 844"
+        },
+        {
+          "value": 374,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
+          "quote": "Asy_D02, Administrative Outcome, 2026 Q1: 374"
+        }
+      ]
     }
   ]
 }

@@ -57,6 +57,15 @@
           "quote": "Data_IER_D01: Method of entry Small boat arrivals, 2022 Q4: 12,726"
         }
       ]
+    },
+    {
+      "ref": "asylum/small-boat-arrivals-calendar-year-2025",
+      "previous_value": 41472,
+      "value": 41472,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "IER_01",
+      "quote": "IER_01, Small boat arrivals, 2025: 41,472"
     }
   ]
 }
