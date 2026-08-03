@@ -49,6 +49,17 @@ halving of net migration and the shares the notes give, and reading the whole ne
 column confirms that 171,000 is the lowest of every period after the year ending March 2021,
 which is itself lower at 132,000.
 
+**One correction to the entries after they were written.** All twenty-two figure entries in this
+file, the nine new and the thirteen an earlier session left, carried `previous_value: null`.
+`data/evidence/README.md` defines that field as what the record held on the base branch, with
+`null` reserved for a figure that is new, and none of these is new: each names a record `main`
+holds at exactly that value. So the audit trail said "new" twenty-two times about figures that had
+simply never been evidenced. Each is now set to what `main` holds, checked against `main` rather
+than copied from the entry, and batch 1 had already done it this way. **Nothing in the build
+noticed, and would not have**: an entry is matched to a changed figure on its ref AND its value, so
+a backfill entry is never re-matched, and the audit pass that does re-read every entry does not
+look at `previous_value` at all.
+
 **What this does not establish, and it is not silence.** The three series entries are not re-read
 by `check-evidence.mjs` on any run: only a block that MOVED is asked, so an entry for a block
 sitting still is validated by nothing, which is exactly the gap PR #100 closed one level up for
