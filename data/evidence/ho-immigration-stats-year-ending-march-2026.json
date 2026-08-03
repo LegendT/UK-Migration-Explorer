@@ -253,6 +253,138 @@
       "fetched_at": "2026-08-03",
       "table_reference": "Asy_01a",
       "quote": "Asy_01a: Number of people claiming asylum, main applicants, and unaccompanied asylum-seeking children (UASC), by age, year ending December 2010 to the year ending March 2026. Year ending March 2026: Total people 93,525; Main applicants 76,714; Unaccompanied asylum-seeking children (UASC) 3,627"
+    },
+    {
+      "ref": "migration/sponsored-study-visas-granted",
+      "previous_value": 409954,
+      "value": 409954,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/why-do-people-come-to-the-uk-study",
+      "fetched_at": "2026-08-03",
+      "quote": "In the YE March 2026, there were 409,954 Sponsored Study visas grants, 3% less than the previous year, and 37% fewer than the peak in YE June 2023. This included 391,572 main applicants – 3% less than YE March 2025 – and 18,382 dependants – at a similar level to the previous year. The number of Sponsored Study visas granted to dependants have been lower since January 2024. This follows policy changes restricting the ability of students to bring dependants, with grants 88% lower in the latest year compared to the peak in the YE June 2023 before the policy changes were introduced. However, numbers have settled over the last 2 years."
+    },
+    {
+      "ref": "migration/work-visas-granted",
+      "previous_value": 252775,
+      "value": 252775,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/why-do-people-come-to-the-uk-work",
+      "fetched_at": "2026-08-03",
+      "quote": "There were 252,775 visas issued (including dependants) in all work categories in the YE March 2026, of which 166,576 were to main applicants and 86,199 were to dependants. This represents a fall of 17% compared to the previous year and 59% fewer than the YE December 2023 when the number of work visas peaked."
+    },
+    {
+      "ref": "migration/health-and-care-worker-visas-granted",
+      "previous_value": 10509,
+      "value": 10509,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/why-do-people-come-to-the-uk-work",
+      "fetched_at": "2026-08-03",
+      "quote": "Compared to the previous year, the number of Health and Care Worker visas issued has fallen by 38% to 42,658 in the YE March 2026, of which main applicants and dependants fell to 10,509 (-53%) and 32,149 (-30%) respectively."
+    },
+    {
+      "ref": "migration/total-entry-clearance-visas-granted",
+      "previous_value": 778625,
+      "value": 778625,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-each-year",
+      "fetched_at": "2026-08-03",
+      "quote": "There were 778,625 non-Visitor or Transit visas granted in the YE March 2026, 11% fewer than the previous year. The total is made up of Study (412,825), Work (252,775), Family (62,470) and Other (50,555) visas."
+    },
+    {
+      "ref": "asylum/asylum-backlog-cases-awaiting-an-initial-decision",
+      "previous_value": 35744,
+      "value": 35744,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
+      "fetched_at": "2026-08-03",
+      "quote": "At the end of March 2026 there were 48,758 people (relating to 35,744 cases) awaiting an initial decision, 55% less than at the end of March 2025 and the lowest level since September 2019."
+    },
+    {
+      "ref": "asylum/ukraine-schemes-cumulative-out-of-country-visas-granted",
+      "previous_value": 286143,
+      "value": 286143,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-03",
+      "quote": "There were 14,725 grants of out-of-country visas under the Ukraine Schemes in the YE March 2026, bringing the total grants to 286,143 visas since the schemes opened in March 2022."
+    },
+    {
+      "ref": "asylum/hong-kong-bn-visas-cumulative-grants-since-january-2021",
+      "previous_value": 186319,
+      "value": 186319,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-03",
+      "quote": "There were 7,214 grants of BN(O) visas in the YE March 2026, bringing the total number of grants to 186,319 since the scheme opened."
+    },
+    {
+      "ref": "asylum/afghan-resettlement-programme-cumulative-arrivals",
+      "previous_value": 38617,
+      "value": 38617,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-03",
+      "quote": "Since the first arrivals in 2021, the Afghan Resettlement Programme has resettled a total of 38,617 people."
+    },
+    {
+      "ref": "asylum/total-people-resettled-latest-year",
+      "previous_value": 4894,
+      "value": 4894,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-03",
+      "quote": "There were 4,894 people resettled in the YE March 2026. This is 37% fewer than the YE March 2025. Of those resettled in the YE March 2026:"
+    },
+    {
+      "ref": "asylum/returns-enforced",
+      "previous_value": 9723,
+      "value": 9723,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "There were 9,723 enforced returns recorded in YE March 2026, 13% higher than the previous year (8,595). Figure 1 shows that enforced returns have increased steadily following the low number of returns during the COVID-19 pandemic in 2020 and 2021. The increase in enforced returns has been partially driven by increases in asylum-related returns (see Section 6 ). Other factors driving the increase in enforced returns include returns agreements with countries outside the UK, schemes to remove foreign offenders (see Section 5 ) and schemes to return small boat arrivals (see Section 6.1 ). More generally, 1,000 staff were reallocated to immigration enforcement in 2024 to strengthen the government’s Plan for Change , aiming to ‘secure borders’ through increasing the number of returns. For more information on these, please see the policy timeline document ."
+    },
+    {
+      "ref": "asylum/returns-voluntary",
+      "previous_value": 29284,
+      "value": 29284,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "In YE March 2026, there were 29,284 voluntary returns, an increase of 5% compared with the YE March 2025. This was partly driven by an increase in asylum-related voluntary returns (up 14%). As shown in Figure 1 , voluntary return numbers have risen substantially since the end of the COVID-19 pandemic and now exceed pre-pandemic levels, although are still below the levels in the first half of the previous decade."
+    },
+    {
+      "ref": "asylum/returns-asylum-related",
+      "previous_value": 11918,
+      "value": 11918,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "In the YE March 2026, there were 11,918 asylum-related returns, 17% more than in YE March 2025. Nearly a third (31%) of total enforced and voluntary returns were asylum-related – a proportion that has risen steadily from 15% in 2021. Asylum-related returns in the YE March 2026 are the highest volume in this statistical series (starting YE December 2010)."
+    },
+    {
+      "ref": "asylum/returns-enforced-plus-voluntary",
+      "previous_value": 39007,
+      "value": 39007,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
+      "fetched_at": "2026-08-03",
+      "quote": "Of the 39,007 returns from the UK in the latest year, three-quarters returned voluntarily and one-quarter were enforced by the Home Office. In addition to those returned from the UK, 17,623 were refused entry on arrival and subsequently departed (see Section 4 )."
+    },
+    {
+      "ref": "migration/family-visas-granted",
+      "previous_value": 62470,
+      "value": 62470,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a1d5ab3050971fbebf3bc88/visas-summary-mar-2026-tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "Vis_01",
+      "quote": "Vis_01 - Family visas, Year ending March 2026: 62,470"
+    },
+    {
+      "ref": "asylum/largest-nationality-claiming-asylum-pakistan",
+      "previous_value": 10,
+      "value": 10,
+      "fetched_at": "2026-08-03",
+      "derivation": "Pakistan 9,438 people claiming asylum divided by the 93,525 total, both printed in the Year ending March 2026 column of table Asy_01b: 10.0914%, which the record rounds to 10%. The Home Office states no share for any single nationality in that period. Its claim page gives only the top six combined, \"together represented 46% of claimants in the YE March 2026\", which the same column reproduces exactly at 43,020 of 93,525, and a \"Pakistan (11%)\" cell that belongs to Table 2 and is the year ending DECEMBER 2025, a different period. Pakistan is the largest named nationality in the column, ahead of Eritrea at 8,212; the larger \"Other\" cell at 17,378 is a residual category rather than a nationality. The Asy_01b total reconciles with the 93,525 people this site already publishes for the period.",
+      "components": [
+        {
+          "value": 9438,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+          "quote": "Asy_01b - Pakistan, Year ending March 2026: 9,438"
+        },
+        {
+          "value": 93525,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
+          "quote": "Asy_01b - Total, Year ending March 2026: 93,525"
+        }
+      ]
     }
   ]
 }

@@ -428,13 +428,16 @@
       "date": "2026-03-31",
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
-      "source_name": "Home Office, Immigration system statistics, year ending March 2026, How many people claim asylum in the UK?",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, table Asy_01b",
+      "table_reference": [
+        "Asy_01b"
+      ],
       "source_id": "ho-immigration-stats",
-      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-claim-asylum-in-the-uk",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
-      "notes": "Pakistan was the single largest nationality (about 10%). Top six (Pakistan, Eritrea, Iran, Afghanistan, Bangladesh, Sudan) together about 46% of claimants. Notable changes: Somali claims up 151%, Eritrean up 46%, Sudanese up 20%; Syrian down 72% (after the fall of the Assad regime in December 2024), Vietnamese down 56%.",
-      "confidence_level": "official"
+      "retrieved_date": "2026-08-03",
+      "notes": "THE SHARE IS THIS SITE'S ARITHMETIC AND NO PUBLISHER STATES IT: Pakistan 9,438 of the 93,525 total is 10.09%, both cells printed in the Year ending March 2026 column of Asy_01b. Graded official until 3 August 2026, when the fetch found the Home Office states no share for any single nationality in this period. Pakistan is the largest named nationality, ahead of Eritrea at 8,212; the larger Other cell is a residual category rather than a nationality. Top six (Pakistan, Eritrea, Iran, Afghanistan, Bangladesh, Sudan) together about 46% of claimants. Notable changes: Somali claims up 151%, Eritrean up 46%, Sudanese up 20%; Syrian down 72% (after the fall of the Assad regime in December 2024), Vietnamese down 56%.",
+      "confidence_level": "calculated"
     },
     {
       "id": "ukraine-schemes-cumulative-out-of-country-visas-granted",
@@ -511,16 +514,16 @@
       "date": "2026-03-31",
       "period_label": "year ending March 2026",
       "geography": "United Kingdom",
-      "source_name": "Home Office, Immigration system statistics year ending March 2026, How many people are returned from the UK? (derived from table Ret_01)",
+      "source_name": "Home Office, Immigration system statistics year ending March 2026, How many people are returned from the UK?",
       "table_reference": [
         "Ret_01"
       ],
       "source_id": "ho-immigration-stats",
-      "source_url": "https://assets.publishing.service.gov.uk/media/6a05e54b22977ebc82cb3fb8/returns-summary-mar-2026-tables.ods",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
-      "notes": "Sum of 9,723 enforced plus 29,284 voluntary returns; the Home Office topic page rounds this to 'a total of 39,000 returns' and publishes no exact combined figure. COUNTS RETURN EVENTS, NOT PEOPLE: one individual returned more than once is counted more than once. EXCLUDES 17,623 refused-entry-at-port departures, which the Home Office counts separately, adding them to this total is a common error. Both components are flagged provisional by the Home Office.",
-      "confidence_level": "calculated"
+      "retrieved_date": "2026-08-03",
+      "notes": "The Home Office states this figure: 'Of the 39,007 returns from the UK in the latest year, three-quarters returned voluntarily and one-quarter were enforced'. It ALSO prints a rounded 'A total of 39,000 returns' earlier on the same page, and until 3 August 2026 this record was graded calculated on a note saying that page 'publishes no exact combined figure', which was false. It equals 9,723 enforced plus 29,284 voluntary, both printed in table Ret_01, which is a reconciliation rather than the origin of the figure; Ret_01 stays declared so that a correction to either component is still watched. COUNTS RETURN EVENTS, NOT PEOPLE: one individual returned more than once is counted more than once. EXCLUDES 17,623 refused-entry-at-port departures, which the Home Office counts separately, adding them to this total is a common error. Both components are flagged provisional by the Home Office.",
+      "confidence_level": "official"
     },
     {
       "id": "returns-enforced",

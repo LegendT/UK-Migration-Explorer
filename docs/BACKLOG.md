@@ -114,7 +114,10 @@ first act.
     records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done**,
     twelve of the tail's seventeen in PR #103 and the last five in PR #104, which were sourcing
     calls rather than fetching. **SO EVERY RECORD THAT REACHES A READER NOW CARRIES EVIDENCE**, and
-    what is left of A1 is the unpublished reserve records, batched under A1 below. **No count is
+    what is left of A1 is the unpublished reserve records, batched under A1 below. **Batch 4 is done
+    (PR #111, 3 August 2026)**, the Home Office reserve records, which found two records graded
+    wrongly in opposite directions and corrected both; what remains is the Migration Observatory
+    batch and three single records, under A1. **No count is
     written here**: `npm run build` prints how many records are reserve, and how many lack an
     evidence entry is what `node scripts/check-backlog.mjs` would refuse to let this line say.
     Those are two different numbers, and this line gave one figure for both until 3 August 2026. And re-read or
@@ -213,6 +216,43 @@ publications during the audit found three defects, one of them a headline figure
   quoted. **So the reader-facing half of A1 is complete: all 71 published records carry evidence,
   and the 27 records still without it are unpublished reserve that no reader meets today.** Those
   are what is left.
+
+  **Batch 4 is done (PR #111, 3 August 2026): the reserve records of `ho-immigration-stats`**, the
+  same release batch 1 traced, so the entries extend the file that already existed rather than
+  opening a new one. Fifteen of its sixteen; the sixteenth is
+  `asylum/small-boat-arrivals-2026-year-to-date`, which is **[you]** in the order's item 10 and was
+  deliberately left there. The rest is batched by publisher on the same rule: `migration-observatory`
+  8, then one each from `commons-library`, `skills-for-care` and `mac`.
+
+  **Only three of the fifteen named a table, and twelve cited an HTML summary page**, which is the
+  shape every earlier batch found defects in. Thirteen turned out to be stated verbatim on the page
+  they cite, including all three cumulative figures, which the arithmetic had suggested were sums:
+  the Ukraine 286,143, the BN(O) 186,319 and the Afghan 38,617 are each printed as a total in a
+  sentence, and each ALSO reconciles against the calendar cells of `Ukr_01`, `BNO_01` and `Res_01`.
+  Two were wrong, in opposite directions, and both are corrected here:
+
+  - **`asylum/returns-enforced-plus-voluntary` was `calculated` on a false absolute negative.** Its
+    note said the topic page "rounds this to 'a total of 39,000 returns' and publishes no exact
+    combined figure". The rounding half is true and the negative half is false: the same page prints
+    "Of the 39,007 returns from the UK in the latest year". Regraded `official`, re-sourced to that
+    page, note corrected. `Ret_01` stays declared, so a correction to either component is still
+    watched, and the sum is now recorded as a reconciliation rather than as the origin of the figure.
+  - **`asylum/largest-nationality-claiming-asylum-pakistan` was `official` for a share nobody
+    publishes.** The Home Office states no share for any single nationality in the period; the claim
+    page gives only the top six combined at 46%. The 10% is 9,438 of 93,525, both printed in
+    `Asy_01b`, so it is regraded `calculated` with a quote per component, which is the path the
+    foreign-born record took in PR #104. **A "Pakistan (11%)" cell on that page is NOT a
+    contradiction**: it belongs to Table 2 and is the year ending December 2025, a different period,
+    and it is recorded here because it looks like one.
+
+  **The superlative in that record's own name was tested rather than assumed**, on the rule that a
+  superlative is a claim about a whole column: Pakistan is the largest named nationality at 9,438,
+  ahead of Eritrea at 8,212, and the larger `Other` cell at 17,378 is a residual category rather
+  than a nationality. `Asy_01b`'s total reconciles exactly with the 93,525 people this site already
+  publishes, and its top six sum to 43,020, which is the 46% the page states.
+
+  **Nothing a reader sees changed, proved by diff**: the built site differs from `main` only in the
+  two data files themselves, which ship with the site since PR #105, and in no HTML, XML or CSS file.
 
   **Batch 2 checked every point of the three series arrays, not the two ends the evidence
   contract asks for**: 42 points matched against their own rows of Table 1, each by the period

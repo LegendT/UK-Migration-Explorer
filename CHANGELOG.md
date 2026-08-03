@@ -9,6 +9,33 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Two reserve figures were graded wrongly, in opposite directions, 3 August 2026
+
+**Tracing the Home Office reserve records to their sources found two whose grade did not match what
+the publisher actually prints.** Neither reaches a reader: both are unpublished reserve, and the
+built site is unchanged. PR #111.
+
+**`asylum/returns-enforced-plus-voluntary` was graded `calculated` on a claim that was false.** Its
+note said the Home Office topic page "rounds this to 'a total of 39,000 returns' and publishes no
+exact combined figure". The rounded sentence is real, and so is another one further down the same
+page: "Of the 39,007 returns from the UK in the latest year". The figure is published, so the record
+is now `official`, sourced to that page, and its note says what the old note got wrong. The sum of
+9,723 enforced and 29,284 voluntary is kept as a reconciliation rather than as the origin of the
+figure, and table Ret_01 stays declared so a correction to either component is still watched.
+
+**`asylum/largest-nationality-claiming-asylum-pakistan` was graded `official` for a share nobody
+publishes.** The Home Office states no share for any single nationality in the period, only the top
+six combined at 46%. The 10% is this site's own arithmetic, 9,438 of 93,525, both printed in table
+Asy_01b, so the record is regraded `calculated` and its evidence quotes each component, which is the
+path the foreign-born figure took in PR #104. A "Pakistan (11%)" cell does appear on the page the
+record used to cite; it belongs to a table covering the year ending December 2025, a different
+period, and it is recorded here because it reads like a contradiction and is not one.
+
+**Thirteen other figures were confirmed exactly as they stand**, including three cumulative totals
+the arithmetic suggested were sums this site had made: the Ukraine schemes' 286,143, the BN(O)
+route's 186,319 and the Afghan Resettlement Programme's 38,617 are each printed as a total in the
+Home Office's own sentence, and each also reconciles against the calendar-year cells behind it.
+
 ### The header stops taking half the phone screen, 3 August 2026
 
 **Nine flat navigation links wrapped to five rows at 320 pixels, a 312-pixel header that took 55
