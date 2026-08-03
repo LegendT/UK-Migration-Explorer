@@ -17,6 +17,33 @@
       "fetched_at": "2026-08-02",
       "table_reference": "FIA_2",
       "quote": "Table_FIA_2 - First-tier Tribunal (Immigration and Asylum Chamber) - Number of appeals disposed of by category and by case type. 2025/26 Q4 [p], Asylum/Protection/Revocation of Protection: Disposals 7,799; Determined 52%; Withdrawn 35%; Invalid/Out of Time 6%; Struck Out 6%"
+    },
+    {
+      "ref": "asylum/asylum-appeals-lodged",
+      "previous_value": null,
+      "value": 14748,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "FIA_1",
+      "quote": "Table_FIA_1 - First-tier Tribunal (Immigration and Asylum Chamber) - Total number of receipts by case type. 2025/26 Q4 [p]: Total 27,689; Asylum/Protection/Revocation of Protection 14,748; Human Rights 4,713; EEA Free Movement 8,185"
+    },
+    {
+      "ref": "asylum/asylum-appeals-backlog",
+      "previous_value": null,
+      "value": 87450,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "FIA_4",
+      "quote": "Table_FIA_4 - First-tier Tribunal (Immigration and Asylum Chamber) - Total open caseload by case type. 2025/26 Q4: Total 151,767; Asylum/Protection/Revocation of Protection 87,450; Human Rights 30,867; EEA Free Movement 33,149"
+    },
+    {
+      "ref": "asylum/asylum-appeal-success-rate",
+      "previous_value": null,
+      "value": 40,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a5f9bbb47af652afa0c899e/Tribunals_Statistics_Quarterly_Q4_2025_26_accessible_tables.ods",
+      "fetched_at": "2026-08-03",
+      "table_reference": "FIA_3",
+      "quote": "Table_FIA_3 - First-tier Tribunal (Immigration and Asylum Chamber) - Number of appeals determined at hearing or on paper, by outcome category and case type. 2025/26 Q4 [p], Asylum/Protection/Revocation of Protection: Number of Cases Determined at hearing / papers 4,088; Percentage of Cases Allowed/Granted 40%; Percentage of Cases Dismissed/Refused 60%"
     }
   ]
 }

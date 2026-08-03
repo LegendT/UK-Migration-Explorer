@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "population/total-uk-population",
+      "previous_value": null,
+      "value": 69281400,
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2024",
+      "fetched_at": "2026-08-03",
+      "quote": "The population of the UK continued to grow in the year to mid-2024, reaching an estimated 69.3 million people (69,281,400)."
+    }
+  ]
+}

@@ -128,7 +128,7 @@
       "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/05/home-offices-asylum-accommodation-contracts.pdf",
       "published_date": "2025-05-07",
       "retrieved_date": "2026-06-17",
-      "notes": "Lifetime cost of the three contracts now projected at £15.3bn, more than triple the original estimate of about £4.5bn. This is a projection over the contract life, NOT an annual figure.",
+      "notes": "Lifetime cost of the seven regional Asylum Accommodation and Support Contracts, held by three suppliers, now projected at £15.3bn, more than triple the original estimate of £4.5bn. THIS NOTE SAID 'the three contracts' UNTIL 3 AUGUST 2026, which conflated the seven contracts with the three suppliers holding them; HC 874 states both. This is a projection over the contract life, NOT an annual figure.",
       "confidence_level": "official"
     },
     {
@@ -251,15 +251,15 @@
       "metric_name": "Immigration Health Surcharge revenue",
       "value": 2.6,
       "unit": "£ billion",
-      "date": "2024-12-31",
-      "period_label": "2024",
+      "date": "2025-03-31",
+      "period_label": "financial year 2024-25",
       "geography": "United Kingdom",
       "source_name": "House of Commons Library, UK immigration fees (CBP-9859)",
       "source_id": "commons-library",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-9859/",
       "published_date": "2026-02-13",
       "retrieved_date": "2026-06-17",
-      "notes": "The surcharge rose 66% in February 2024 (standard rate £624 to £1,035 per year), estimated to raise about £1.1bn extra per year. Period basis should be confirmed against the primary briefing.",
+      "notes": "The surcharge rose 66% in February 2024 (standard rate £624 to £1,035 per year), estimated to raise about £1.1bn extra per year. THE PERIOD BASIS WAS CONFIRMED ON 3 AUGUST 2026 AND THIS RECORD WAS WRONG: the briefing body gives the figure for financial year 2024/25 (written here in this site's house form, 2024-25), not calendar 2024, and the record said 2024 with a date of 31 December. The briefing summary does say \"in 2024\", so the two halves of the same publication disagree and the body was taken.",
       "confidence_level": "official"
     },
     {
@@ -267,15 +267,15 @@
       "metric_name": "Home Office visa and immigration fee income",
       "value": 3,
       "unit": "£ billion",
-      "date": "2024-12-31",
-      "period_label": "2024",
+      "date": "2025-03-31",
+      "period_label": "financial year 2024-25",
       "geography": "United Kingdom",
       "source_name": "House of Commons Library, UK immigration fees (CBP-9859)",
       "source_id": "commons-library",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-9859/",
       "published_date": "2026-02-13",
       "retrieved_date": "2026-06-17",
-      "notes": "Separate from the Immigration Health Surcharge (about £2.6bn) and the employer Immigration Skills Charge (about £0.6bn), so total immigration-related revenue exceeds about £6bn.",
+      "notes": "Separate from the Immigration Health Surcharge (about £2.6bn) and the employer Immigration Skills Charge (about £0.6bn), so total immigration-related revenue exceeds about £6bn. Financial year 2024/25, corrected from calendar 2024 on 3 August 2026 on the same finding as the surcharge record.",
       "confidence_level": "official"
     },
     {

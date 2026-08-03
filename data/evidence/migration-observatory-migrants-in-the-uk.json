@@ -1,0 +1,20 @@
+{
+  "figures": [
+    {
+      "ref": "population/foreign-born-share-of-total-uk-population",
+      "previous_value": null,
+      "value": 16,
+      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+      "fetched_at": "2026-08-03",
+      "quote": "According to data from the latest Census – which combines 2021 data from England, Wales, and Northern Ireland with 2022 data for Scotland – it stood at 10.7 million. That means that 16% of people in the UK, which had a total estimated population of 66.9 million, had been born abroad."
+    },
+    {
+      "ref": "population/non-british-share-of-uk-population",
+      "previous_value": null,
+      "value": 10,
+      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+      "fetched_at": "2026-08-03",
+      "quote": "The foreign-born population made up 9% of the UK's total population in 2004. At the time of the 2021/22 Census, this had risen to 16%. The share of foreign citizens rose from 5% to 10% in the same period (Figure 2)."
+    }
+  ]
+}
