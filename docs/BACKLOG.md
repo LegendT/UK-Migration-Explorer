@@ -189,6 +189,14 @@ publications during the audit found three defects, one of them a headline figure
   and `ons-population`, which is the fewest records and the most fetches and so should not be
   bundled with either; then the 27 reserve records last, because no reader meets them today.
 
+  **Batch 1 also re-verified the ten entries already on file for that release**, which were
+  written by earlier sessions and had never been checked against a primary table by anyone since:
+  five Cit_01 figures, two Asy_00a figures, the EUSS and backlog-peak figures on their release
+  pages, and the visitor-visa total in Vis_01. All ten reproduce exactly. So 26 records of this
+  release are traced to a primary source rather than the 16 the batch set out to do. It changes
+  nothing about what is left, since all ten were already evidenced, and it is recorded because
+  "already has an entry" and "someone has checked it" were not the same claim until now.
+
   **One thing from batch 1 worth repeating rather than rediscovering**: the evidence quotes were
   extracted from the fetched sources by script rather than typed, so a transcription slip could
   not enter them, and each was then run through the check's own `carries()` matcher before the

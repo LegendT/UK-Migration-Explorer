@@ -21,8 +21,10 @@ rather than typed, so a transcription slip could not enter them. PR #99.
 **Fifteen were correct as cited**, and so were the year-on-year changes and the peaks written in
 their notes: table Asy_00a gives 93,525 claims, 128,300 initial decisions, 79,719 refusals,
 16,901 withdrawals, 48,581 grants, 48,758 awaiting a decision, 97,519 supported and 20,885 in
-hotels, with the falls and rises the notes state, and it gives the grant rate as 0.3933, which is
-the 39% the release page states in prose and the record holds. The two derived figures reconcile
+hotels, with the falls and rises the notes state, and it gives the grant rate as a decimal that
+rounds to the 39% the release page states in prose and the record holds. The peaks in the notes
+were read too, and both are the publisher's own words: 110,051 for the year ending September 2025
+and the June 2024 record high. The two derived figures reconcile
 in both directions: 20,885 plus 72,768 in other accommodation is the 93,653 this site publishes,
 and adding the 3,866 on subsistence-only support returns the Home Office's own 97,519. The 5,931
 administrative outcomes sum from four quarters of the Asy_D02 pivot, whose Refused, Withdrawn,
