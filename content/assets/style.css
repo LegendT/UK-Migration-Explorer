@@ -490,18 +490,6 @@ th.nested-2 { padding-left: 2.75rem; }
 .chart-svg--wide { display: none; }
 .chart-svg--narrow { max-width: 380px; }
 
-/* The narrow chart's value labels sit INSIDE the plot, so a series running near that gridline
-   draws straight through them: "200,000" on the net migration chart had the line through its
-   middle and a data marker on top of a digit. The halo knocks the text out of whatever is behind
-   it, which is what map labels do, and it costs a small break in the line rather than a number a
-   reader cannot read. `paint-order` is what makes the stroke paint UNDER the fill; without it the
-   stroke would be drawn over the glyphs and thicken them into mush. */
-.axis-inplot {
-  paint-order: stroke;
-  stroke: var(--paper);
-  stroke-width: 3px;
-  stroke-linejoin: round;
-}
 
 /* 34.5em, not the 40em the nav uses, because this breakpoint is a fact about the chart rather
    than about the page: the wide rendering is floored at 32rem, the wrap adds 1.25rem of padding
