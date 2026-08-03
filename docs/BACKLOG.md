@@ -97,7 +97,11 @@ first act.
    is that 45% of every chart is off-screen at 320px and what is hidden is the data its own summary
    sentence describes, which no review that reads markup could have seen. What is left is
    **[you]**: adopting a navigation pattern, for which the sibling precedent turned out to need
-   JavaScript, and deciding the chart remedy.
+   JavaScript, and deciding the chart remedy. **A pattern is now built and measured rather than
+   described, and it is PR #109, 3 August 2026: a `details` disclosure below 40em, no client-side
+   JavaScript, wide screens proved untouched against a build of `main`.** Merging it adopts the
+   disclosure and closing it leaves the nav as it stands, so the decision is still **[you]** and
+   the pull request is where it is made. If it is adopted, the chart remedy is what is left here.
 10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
     reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
     Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
@@ -913,6 +917,11 @@ design call rather than a defect. **One [me] fix is deliberately not taken here*
 40em rule, because whoever adopts a nav pattern rewrites that block and a one-line deletion landing
 first would just be a merge conflict with the decision it is waiting on.
 
+**That deletion is taken in PR #109, 3 August 2026, which is the nav pattern**, and it is a
+replacement rather than a deletion: the 40em block is where the wide-screen row is now restored, so
+the rule that did nothing at any width became the live one. **The nav findings below are addressed
+there and are marked where they are**; the chart and table findings are untouched by it.
+
 **How it was measured, so the numbers can be re-derived.** Puppeteer's `setViewport` is
 `Emulation.setDeviceMetricsOverride`, so the trap the section above names does not apply, and
 puppeteer is already present through `pa11y-ci` rather than being added for this. Pages come from
@@ -939,7 +948,10 @@ is decided, and committing it would make a transitive dependency a direct one.
   no equivalent and does not need one**: the `Costs` nav link, the shortest label on the bar, is
   43.78 by 50.23px, so it clears WCAG's 24px minimum on its own and misses this project's stricter
   44px rule by a fifth of a pixel. Widening the nav's padding closes it, which is a decision for
-  whoever takes the nav.
+  whoever takes the nav. **CLOSED BY PR #109 without touching the padding**, and the padding would
+  have been the wrong fix: below 40em the link is a full-width row and above it the larger type
+  already makes the label 46.23px, so the shortfall only ever existed in the wrapped inline row that
+  the disclosure replaces. No width is left where it is short.
 - **Inline links in prose measure 18 to 20px tall and are not findings.** WCAG 2.2's target-size
   inline exception covers them. There are 89 of them at 320px across the 17 pages, 123 at 360,
   111 at 390 and 133 at 414, and reporting them would be the "defect that does not exist" cost the
@@ -953,10 +965,14 @@ is decided, and committing it would make a transitive dependency a direct one.
   screen. 41% at 360, 25% at 390, 24% at 414. **With the banner still there, every page's `h1` is
   below the fold at 320x568**: `main` starts at 520px and the `h1` top is 552 to 598px. Sizing the
   decision below: the brand line alone is 61px and one nav row is 50px, so a single-summary-row
-  header is about 111px against today's 312px.
+  header is about 111px against today's 312px. **ADDRESSED IN PR #109, 3 August 2026**, and the
+  estimate in the sentence before this one held: header 108.28px, so 19% at 320, 17% at 360, 13% at
+  390 and 12% at 414, and no page's `h1` is below the fold at any of the five sizes. 768px is
+  byte-identical to `main`.
 - **The nav's rows are edge to edge.** Link height 50px, row pitch 50 to 51px, computed
   `row-gap: 0px`. Nine targets stacked with no vertical separation, which is the mis-tap risk that
-  survives every target clearing 44px.
+  survives every target clearing 44px. **ADDRESSED IN PR #109**: the rows carry a rule between them,
+  and the same change makes each one a full-width 280px target rather than a text-width one.
 - **45% of every chart is off-screen at 320px, and what is hidden is the data the sentence above
   it is about.** Every chart, literally: the built site holds seven `.chart-svg` elements and
   seven overflow. `.chart-svg` is `min-width: 32rem`, a fixed 512px, inside a 280px box: 232px of
@@ -996,7 +1012,12 @@ cannot settle either way.
 - **A horizontally scrolling nav.** It has the same invisible-scroll defect the review flagged for
   chart regions two items later, and with no JavaScript there is no scroll-state styling to rescue
   it. Nine flat items wrap to about four rows at 320px by calculation, unrendered; measure before
-  deciding, and the likely answer is tighter padding rather than a new pattern.
+  deciding, and the likely answer is tighter padding rather than a new pattern. **THE LAST CLAUSE IS
+  FALSE and is left standing with its refutation beside it, because this bullet exists so the
+  reasoning is not re-proposed.** The nine labels measure 819px of text and need 979px of line
+  length inside a 280px box, so four rows is the floor under perfect packing and no padding or
+  shorter label reaches one row. The cut of a scrolling nav stands on its own reasoning; only the
+  guess about the remedy was wrong, and a new pattern is what PR #109 proposes.
 - **Converging the varying `last_reviewed` dates.** The variance is the trust model working, and
   the only honest way to converge them is to re-review the pages.
 - **A per-page "every figure checked on X" line.** Figures on one page carry different checked
