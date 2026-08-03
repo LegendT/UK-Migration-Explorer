@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/migrant-share-of-uk-employees",
+      "previous_value": 19,
+      "value": 19,
+      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
+      "fetched_at": "2026-08-03",
+      "quote": "In December 2025, 19% (or 5.9 million) of UK employees were adult migrants."
+    }
+  ]
+}

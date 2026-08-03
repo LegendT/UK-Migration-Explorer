@@ -9,6 +9,33 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Three reserve figures are not in the source they cite, 3 August 2026
+
+**Tracing the Migration Observatory reserve records found five that check out and three that do
+not.** None reaches a reader, and no published figure moves. PR #112.
+
+**Two employment rates cite a briefing that states neither.** The record for the EU-born employment
+rate holds 80.4% and the UK-born rate holds 74.7%; the briefing they cite prints no decimal
+percentage anywhere and gives employment rates only by gender. **Both values are right.** ONS table
+EMP06, Country of birth rates, October to December 2025, gives 80.3937% for the EU-born and 74.6847%
+for the UK-born, which round to exactly what the records hold, along with the 75.1% non-EU rate one
+of the notes carries. Correcting the citation means adding an ONS labour-market source to the
+published catalogue, which is a decision about what this site declares rather than a repair, so it
+is recorded and not yet made.
+
+**One nationality share was overtaken by a new edition.** The record holds India at 16% of overall
+immigration for the year ending June 2025. Its briefing has since moved to the year ending December
+2025 and now says 17%. The two are not in conflict; they are different periods, and the record's
+period is one the current edition no longer covers.
+
+**A returns figure was regraded twice in one day, and the first destination was wrong.**
+`asylum/returns-enforced-plus-voluntary` was `calculated` on a false claim that the Home Office
+publishes no exact combined figure. It does, so `calculated` was wrong; but `official` was the wrong
+destination, because this site defines `provisional` as official and flagged by the publisher as
+subject to revision, and the release says its latest seven quarters are revised each time. Its four
+sibling returns figures were `provisional` throughout. It is `provisional` now. No published figure
+moves either way: the record is unpublished reserve.
+
 ### Two reserve figures were graded wrongly, in opposite directions, 3 August 2026
 
 **Tracing the Home Office reserve records to their sources found two whose grade did not match what

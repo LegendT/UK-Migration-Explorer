@@ -1,0 +1,24 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp",
+      "previous_value": null,
+      "range_min": -1,
+      "range_max": 1,
+      "fetched_at": "2026-08-03",
+      "derivation": "A band rather than an estimate, and it is read straight off the briefing rather than computed: it summarises Table 1 of the pre-Brexit static studies as finding impacts of \"less than +1% or -1% of GDP\" in every case. The record holds those two bounds as range_min and range_max. Nothing is recomputed here; the arithmetic is the briefing's.",
+      "components": [
+        {
+          "value": -1,
+          "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/the-fiscal-impact-of-immigration-in-the-uk/",
+          "quote": "Table 1 summarises the results of these static studies. Despite differences in methods, some key points emerge consistently. First, in all cases, the impacts were found to be less than +1% or -1% of GDP. Second, recent migrants made a more positive impact than those who had been in the UK for longer. This is to be expected given that people cost the state more as they age and retire. Third, EEA migrants had a more positive impact than non-EEA migrants."
+        },
+        {
+          "value": 1,
+          "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/the-fiscal-impact-of-immigration-in-the-uk/",
+          "quote": "Table 1 summarises the results of these static studies. Despite differences in methods, some key points emerge consistently. First, in all cases, the impacts were found to be less than +1% or -1% of GDP. Second, recent migrants made a more positive impact than those who had been in the UK for longer. This is to be expected given that people cost the state more as they age and retire. Third, EEA migrants had a more positive impact than non-EEA migrants."
+        }
+      ]
+    }
+  ]
+}
