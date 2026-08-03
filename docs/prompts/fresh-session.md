@@ -25,9 +25,10 @@ Use the mapping, never the pronoun:
   [me] = a factual or mechanical change against a cited source. YOU do it.
   [you] = an editorial or sourcing call. It is MINE. Propose and stop.
 Check it the first time you use it: open the backlog, find any item
-tagged [you], and confirm it is a decision rather than a task. On a list mixing both, do all the [me] work
-first and bring me the [you] decisions in one batch, because the
-mechanical work usually determines what the editorial question is.
+tagged [you], and confirm it is a decision rather than a task. On a
+list mixing both, do all the [me] work first and bring me the [you]
+decisions in one batch, because the mechanical work usually determines
+what the editorial question is.
 
 TASK: take the first UNFINISHED [me] item or [me] half in The order,
 the numbered list at the top of docs/BACKLOG.md, unless I have told you
