@@ -110,13 +110,13 @@ content/                Eleventy input
   about.md                Who runs it, who pays, what it is not
   claims/                 Seven claim checks, citing live figures by token
   _includes/              base.njk, and claim.njk for claim pages
-  _data/site.js           Name, strapline, navigation
+  _data/site.js           Name, strapline, navigation, nine items rendered as a disclosure below 40em
   assets/style.css        One stylesheet, including the print rules
   assets/favicon.svg      Inline SVG, no binary asset
   404.md                  Served by Netlify when a link into the site goes stale
   robots.txt              Disallows all crawlers until launch
   sitemap.njk             Every built page but the 404, generated from collections.all
-lib/charts.mjs          Build-time SVG charts, four rules enforced in code
+lib/charts.mjs          Build-time SVG charts, four rules enforced in code, two renderings per chart
 lib/series.mjs          The four timeseries and the names everything else calls them by
 lib/tables.mjs          What a publisher's table identifier looks like, for the two checks that must agree
 data/                   Governed data layer, one file per theme, plus four timeseries
@@ -158,6 +158,16 @@ LICENCE                 MIT for code, Open Government Licence v3.0 attribution f
 **The whole of `data/` ships with the built site** and is listed with a link per file in the Reuse
 section of `/sources-and-method/`, generated from the directory rather than typed. That page had
 promised the files were public and linked none of them.
+
+**Two things render twice, and both are because one rendering cannot serve a phone and a desktop.**
+The navigation is nine flat items that needed about 980px of line length, so below 40em they are a
+`details` disclosure and above it the flat row they have always been. Each chart is drawn twice at
+build time, wide and narrow, and CSS shows one: SVG text is in viewBox units, so squeezing the
+760-unit chart into a 280px column would render its 17px labels at 6.3px, and the 32rem floor that
+prevents that is what put 45% of every chart off-screen at 320px. The hidden one in each pair is
+`display: none` rather than clipped, which is the only form that takes it out of the accessibility
+tree, so a screen reader meets one nav and one image per chart. Both were measured at real device
+sizes rather than calculated; `docs/BACKLOG.md` under *U6* records what the measuring found.
 
 ## Data contract
 
