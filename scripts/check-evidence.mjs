@@ -452,7 +452,12 @@ for (const file of Object.values(SERIES_FILES)) {
 
 // --- report ----------------------------------------------------------------------------
 if (errors.length) {
-  console.error(`Evidence check failed against ${base}, ${errors.length} problem(s):\n`);
+  // Deliberately NOT "failed against <base>". Two different comparisons produce these: what a
+  // pull request moves, judged against the base branch, and whether an entry on file is still
+  // adequate for the record it names, which the base branch has nothing to do with. Attributing
+  // both to the base is this project's signature defect, a message claiming a property the code
+  // beside it does not have. The errors that DO concern the base name it in their own text.
+  console.error(`Evidence check failed, ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
   console.error('\nNothing here is fixable by editing the check. A figure with no quote is a figure');
   console.error('nobody has seen in a source, which is the one thing this site promises never to publish.');

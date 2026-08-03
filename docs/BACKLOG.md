@@ -221,7 +221,16 @@ publications during the audit found three defects, one of them a headline figure
   and breaking a component quote each fail with a precise message, while an entry whose value
   no longer matches its record and an entry naming no record both pass **and drop the audited
   count from 46 to 45**, which is what distinguishes skipped-as-history from checked-and-wrongly-
-  passed.
+  passed. **A seventh probe runs both halves at once**, a moved figure and an unrelated broken
+  entry together, because the six ran with nothing changed and so never showed the two passes
+  composing. They do, reporting one problem each, and the moved figure's own entry is correctly
+  treated as history rather than reported twice.
+
+  **It also found the failure header lying.** It read "Evidence check failed against origin/main",
+  and an entry that is inadequate for the record it names has nothing to do with the base branch.
+  Two comparisons, one attribution: this project's signature defect, in the message added by the
+  work that closes an instance of it. The header no longer names a base, and the errors that do
+  concern one name it in their own text.
 
   **Series entries have the same gap one level over and are deliberately not covered**, which the
   run now says on every invocation: only a block that MOVED is asked, so an entry for a block
