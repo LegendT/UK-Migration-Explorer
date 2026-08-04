@@ -295,6 +295,26 @@ if (!sitemap) {
   }
 }
 
+// --- the domain, which the print stylesheet writes by hand ------------------------------
+// CSS cannot read content/_data/site.js, and content/assets is copied rather than templated, so
+// the print rule that appends this site's own domain to an internal link is the one place the
+// domain is written twice. That is a second home for a fact, which this project refuses wherever
+// it can, so the two are compared instead. It is not hypothetical: the domain moved on 4 August
+// 2026, and a stale literal here would put the old address on every printed page, on the artefact
+// a researcher files a citation from, with nothing on screen showing it.
+// Anchored to the internal-link rule's own selector, not to the shape of its content string. The
+// first version matched on the content alone, so deleting the rule fell through to the
+// external-link rule one line below it, captured its empty prefix, and reported that the domain
+// was wrong rather than that the rule was gone. Found by deleting it, not by reading this.
+const printed = readFileSync(join(siteDir, 'assets/style.css'), 'utf8')
+  .match(/main a\[href\^="\/"\]::after \{ content: " \(([^"]*)" attr\(href\)/);
+const host = site.url.replace(/^https?:\/\//, '');
+if (!printed) {
+  errors.push('assets/style.css: the print rule that appends this site\'s domain to an internal link is gone, so a printed page gives no way to type its links back in.');
+} else if (printed[1] !== host) {
+  errors.push(`assets/style.css: the print rule prints "${printed[1]}" and site.url is "${host}". A printed page would send a reader to the wrong domain, and nothing on screen would show it.`);
+}
+
 // robots.txt is deliberately present until launch. If it goes missing the site becomes
 // crawlable again with no other signal, so its absence is treated as a build failure until
 // someone removes this check on purpose.

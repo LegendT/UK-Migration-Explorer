@@ -621,7 +621,7 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 
   /* A link with no destination is not a citation. Internal links get the site's own domain
      so a printed page can be typed back in; external ones print their href. */
-  main a[href^="/"]::after { content: " (ukmigrationexplorer.netlify.app" attr(href) ")"; }
+  main a[href^="/"]::after { content: " (ukmigrationexplorer.org" attr(href) ")"; }
   main a[href^="http"]::after { content: " (" attr(href) ")"; }
   main a::after { font-size: 0.85em; word-break: break-all; }
   /* A citation's links already print their URL as their own link text, which is what makes the

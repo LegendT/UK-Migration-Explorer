@@ -72,11 +72,13 @@ first act.
    below, plus the two sources-page wording bullets at the end of *Scoped, not built* section 6.
    All **[you]** calls; applying what is decided is **[me]**. Every one is cheaper before the
    site has readers, and since 4 August 2026 every one blocks launch.
-4. **GATE. The decisions that change what launch publishes**: whether `.netlify.app` is the
-   launch domain, the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
+4. **GATE. The decisions that change what launch publishes. THE DOMAIN IS DECIDED (4 August
+   2026): `ukmigrationexplorer.org`**, applied in PR #118, and it came first among these because
+   it changes the URL anyone cites, which the citation blocks now print as copyable text on every
+   chart and claim. What is left is the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
    route that is not a GitHub account, whether a fourth limit is published and which, whether the
    success measure goes on `/about/`, and the rest of A6. All **[you]**; the applying is
-   **[me]**. The domain comes first among them, because it changes the URL anyone cites.
+   **[me]**.
 5. **GATE. R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source
    observation the far-end trace produced has been taken: five records re-sourced to the
    publisher that prints their figure, five regraded to say honestly what the figure is, and no
@@ -662,7 +664,9 @@ Each is one call. None blocks anything.
 - Whether `og:` tags should exist, and whether a claim page's `og:title` leads with the claim or the
   correction. Foundation 8.5.4's rejection of a share image is not reopened by this.
 - Whether `.netlify.app` is the launch domain, given the success measure is citation by a named
-  outlet.
+  outlet. **DECIDED 4 August 2026: `ukmigrationexplorer.org`.** Applied in PR #118, which is also
+  what made it urgent: the citation block prints the site's own URL as copyable text, so a domain
+  moved after launch invalidates citations already taken.
 - Whether `/sources-and-method/` publishes a fourth limit, and which of the three candidates.
 - Whether the emigration sentence names the 2019 peak or lets the chart carry it.
 - Whether the claim card's duplicated review date stays: it prints once in the card and once at the
