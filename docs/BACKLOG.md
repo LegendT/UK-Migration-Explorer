@@ -164,8 +164,8 @@ first act.
     figure that moved; the Commons Library URLs are checked rather than reported uncheckable, so
     the standing manual step is gone; and `scripts/check-pipeline.mjs` measures `npm run
     validate` and the CI workflow against one manifest, so a check added to one and not the other
-    fails rather than passing quietly on a laptop. Two of those three were not what A3 said they
-    were, and the section below records what they turned out to be.
+    fails rather than passing quietly on a laptop. Two of those three closed differently from how
+    A3 described them, and A3's own bullets record what they turned out to be.
 12. **GATE. Record the review as passed in `CHANGELOG.md`**, after the six-page checkboxes above,
     the glossary gates behind them now being closed. **Its scope was decided on 2 August 2026:
     all sixteen pages, not the ten the review read.** Worth knowing before signing: the review's
@@ -496,7 +496,9 @@ sentence and renumbering five headings to save one line is how a reference goes 
 This section was headed "Checks worth hardening, none of them urgent" until 4 August 2026, and
 what changed is not the checks but what is being claimed on top of them: they gate launch now, and
 they are how this file's own assertions about what is checked stop being only as strong as habit.
-Most are **[me]**, all are small, each with its reasoning in the audit.
+Each bullet carries its reasoning. **What is left open here is the branch-protection one, and it is
+[you]**; everything else closed on 4 August 2026, and two of those three closed differently from
+how the bullet describing them said they would, which each of them now records.
 
 - **The success message. DONE (PR #77, 2 August 2026).** It claimed no page writes a live value
   longhand while four sat on `/sources-and-method/` under a `historical_literals` exemption. The
@@ -534,8 +536,7 @@ Most are **[me]**, all are small, each with its reasoning in the audit.
   project once. Negative-tested on all three fields and in both directions.
 
 - **`previous_value` said `new` for twenty-eight figures that were not, and no check asks. DONE
-  (PR #121, 4 August 2026).** Found
-  on 3 August 2026 while critiquing batches 2 and 3. The README defines the field as what the record
+  (PR #121, 4 August 2026).** Found on 3 August 2026 while critiquing batches 2 and 3. The README defines the field as what the record
   held on the base branch, with `null` reserved for a figure that is new; every backfilled entry
   written before batch 1 used `null` instead. **Every one of them is corrected** across PR #102 and
   PR #103, which take one set of files each so that neither has to touch the other's, and each entry
@@ -555,9 +556,9 @@ Most are **[me]**, all are small, each with its reasoning in the audit.
 
 - **`check-sources.mjs` reports Commons Library URLs as uncheckable on every run, and they are
   not. DONE (PR #121, 4 August 2026).** They 403 because Cloudflare refuses a bare `curl`; adding
-  the four request headers a
-  browser sends, `Sec-Fetch-Dest`, `-Mode`, `-Site` and `-User`, returns 200 from all of them plus
-  the briefing PDFs behind them, established while fetching them for A1 batch 3 on 3 August 2026.
+  the four request headers a browser sends, `Sec-Fetch-Dest`, `-Mode`, `-Site` and `-User`, returns
+  200 from all of them plus the briefing PDFs behind them, established while fetching them for A1
+  batch 3 on 3 August 2026.
   **The headers were not the variable, and this bullet as written would have changed nothing.**
   Measured again on 4 August: those four headers, a browser user-agent, and a full Chrome header
   set all return 403 over Node's own `fetch`, on HEAD and on GET. The same four over HTTP/1.1

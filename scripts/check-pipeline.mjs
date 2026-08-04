@@ -27,20 +27,20 @@ const errors = [];
 // local: invoked by `npm run validate`. ci: invoked by the workflow, directly or through an npm
 // script it calls. gates: that CI step fails the job, rather than carrying continue-on-error.
 //
-// Network checks gate nothing by this project's convention, because a transient outage must not
-// turn a pull request red over a figure nobody touched. That is why three of these are ci-only:
-// they need the network, so they cannot run inside an offline `validate`, and they report rather
-// than block. check-evidence is the odd one: it is offline and it gates, and it is still not in
-// `validate`, because it compares against a base branch a laptop may not have fetched.
+// Every ci-only entry carries `why`, and the run prints it. A reason written here and nowhere else
+// is a reason nobody reads; a reason written here AND in this comment is two lists, which is the
+// habit this project keeps having to break. So the comment states the rule and the entries state
+// the exceptions, and how many of each is whatever the run says rather than a number typed above
+// it that was wrong twice in this file before it was first committed.
 const CHECKS = [
   { script: 'validate-data.mjs', local: true, ci: true, gates: true },
   { script: 'validate-content.mjs', local: true, ci: true, gates: true },
   { script: 'check-backlog.mjs', local: true, ci: true, gates: true },
   { script: 'check-pipeline.mjs', local: true, ci: true, gates: true },
   { script: 'check-build.mjs', local: false, ci: true, gates: true, why: 'runs inside `npm run build`, which needs a built site' },
-  { script: 'check-evidence.mjs', local: false, ci: true, gates: true, why: 'needs the base branch fetched, which `npm run validate` cannot assume' },
-  { script: 'check-sources.mjs', local: false, ci: true, gates: false, why: 'network' },
-  { script: 'check-releases.mjs', local: false, ci: true, gates: false, why: 'network' },
+  { script: 'check-evidence.mjs', local: false, ci: true, gates: true, why: 'compares against a base branch a laptop may not have fetched' },
+  { script: 'check-sources.mjs', local: false, ci: true, gates: false, why: 'network, and a transient outage must not redden a pull request' },
+  { script: 'check-releases.mjs', local: false, ci: true, gates: false, why: 'network, and a newer edition is not a defect in the diff' },
 ];
 
 const declared = new Map(CHECKS.map((check) => [check.script, check]));
@@ -58,10 +58,13 @@ for (const { script } of CHECKS) {
   if (!onDisk.includes(script)) errors.push(`CHECKS declares scripts/${script}, which does not exist.`);
 }
 
-// --- a check that runs locally must run in CI ----------------------------------------------
-for (const { script, local, ci } of CHECKS) {
+// --- a check that runs locally must run in CI, and one that does not must say why ------------
+for (const { script, local, ci, why } of CHECKS) {
   if (local && !ci) {
     errors.push(`CHECKS declares scripts/${script} as local: true, ci: false. A check that runs only on a laptop gates nothing on a pull request, which is the split this file exists to close.`);
+  }
+  if (!local && !why) {
+    errors.push(`CHECKS declares scripts/${script} as ci-only and gives no "why". Staying out of \`npm run validate\` is the exception here, so it takes a reason someone can argue with.`);
   }
 }
 
@@ -159,6 +162,8 @@ const gating = CHECKS.filter((check) => check.gates);
 console.log(`Pipeline check passed: ${CHECKS.length} check scripts, each declared, each where it says it is.`);
 console.log(`${inValidate.size} run in \`npm run validate\`, ${inCi.size} run in ${workflowPath}, and ${gating.length} of those fail the job:`);
 console.log(`  ${gating.map((check) => check.script).join(', ')}`);
+console.log('Out of `npm run validate` on purpose, each with the reason it is declared with:');
+for (const { script, why } of CHECKS.filter((check) => !check.local)) console.log(`  ${script}: ${why}`);
 console.log('Not established: that a failing job blocks a merge. main has no branch protection and no');
 console.log('rulesets, so "gates" here means the job goes red, and merging red is a habit rather than a');
 console.log('rule. Nor that a11y:serve and a11y:ci run what they should: they are passed as bare names to');
