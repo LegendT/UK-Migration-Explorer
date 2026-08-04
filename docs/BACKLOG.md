@@ -83,16 +83,15 @@ first act.
    AI-crawler decision**, which is **[you]**. Then set up Search Console, which costs nothing,
    needs no JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's
    word.
-8. **The UX review, U2 to U5 below.** None of it gates launch. **U1 is done** (PR #86,
-   2 August 2026) apart from the `robots.txt` half, which is in the gate above. **U2, the
-   citation handover, is built (PR #118, 3 August 2026), and the wording of the citation is all
-   that is left of it: [you].** It is under every chart and inside every claim card, derived from
-   the publications each figure actually draws rather than typed beside them, so a chart cannot
-   cite a source its own data does not name. **Building it found its own first key wrong**: keyed
-   on the URL, one ONS bulletin answered for every record that names it, however differently they
-   name it, and a claim page said a figure was read where it was not. U3 is five trust items, and U4
+8. **The UX review, U3 to U5 below.** None of it gates launch. **U1 is done** (PR #86,
+   2 August 2026) apart from the `robots.txt` half, which is in the gate above. **U2 is closed
+   (PR #118, 4 August 2026), built and its format decided**, and what it is and what building it
+   found are under U2 and *Completed*. U3 is five trust items, and U4
    is two **[you]** decisions that block any work on them, one of which the gate above now
-   waits on. U5 records what was considered and cut, so it is not proposed again.
+   waits on. U5 records what was considered and cut, so it is not proposed again. **What is left of
+   this item now begins at U3**, whose first bullet, and the thing that now waits beside it, are
+   gated on the open grade questions in R2 and A6, and whose withdrawn-claim stub needs wording
+   from you. Its remaining bullets carry no tag and neither does this sentence.
 9. **A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is done
    (PR #98, 3 August 2026)** and nothing but **[you]** is left of it. All 17 pages were rendered at
    five real device sizes with a genuine layout viewport. **The round found its own premise wrong
@@ -955,7 +954,7 @@ recorded.
   metas, one per scheme, and a `description` front-matter field the 404 uses so it no longer falls
   through to the site strapline.
 
-### U2. The citation handover, and it is one item rather than two
+### U2. The citation handover, and it is one item rather than two. DONE (PR #118, 4 August 2026)
 
 The chosen success measure is citation by a named outlet within six months, and the audience
 statement is professionals who need a citation quickly. **The citation such a reader needs is to
@@ -1027,16 +1026,45 @@ comma that the other records citing the same spreadsheet and the same table do n
 `/common-claims/everyone-in-asylum-accommodation-arrived-recently/` printed that spreadsheet twice
 with two different checked dates. No value moved.
 
-**What is left is the wording, and three questions come with it**: whether a claim page citing one
-publication several ways is right or too much, whether "Via UK Migration Explorer" belongs in a
-citation this site is deliberately not the source of, and whether the block should say which figure
-came from which publication where a page has more than one. **[you]**.
+**THE FORMAT WAS DECIDED ON 4 AUGUST 2026 AND U2 IS CLOSED.** Three questions went to the owner
+with the rendered alternatives beside them rather than described, and the decision on all three was
+to keep what is built:
+
+- **A claim page cites one publication as many times as it names it differently**, so
+  `/common-claims/nineteen-per-cent-born-abroad/` carries five lines, three of them one ONS
+  bulletin. Kept, because those three are this site's own calculation, a table it reads directly
+  and a table it sums, and collapsing them is the defect the deduplication key was corrected for.
+  The alternative considered and refused was one entry per publication with the namings nested
+  under it: it leads with a URL rather than with a publication, which is the wrong way round for a
+  citation.
+- **"Via UK Migration Explorer" stays**, subordinate to the publication lines above it. It is the
+  established formula for "found through", and the anchor it carries is the one thing this site can
+  give a reader that the publisher cannot. Considered and refused: a neutral "This page:", which
+  reads as navigation rather than as citation, and dropping the line, which loses the anchor.
+- **The block does not say which figure came from which publication, and that one is deferred
+  rather than refused.** It is the option that would most help a reader of the born-abroad page,
+  where the site's own calculation and the Migration Observatory's figure sit side by side and
+  nothing says which produced the 19%. It is not available yet: it would render `metric_name`,
+  which appears nowhere in the built site today, and those names carry the grade vocabulary. That
+  is a wider surfacing of grades, which U3's first bullet sequences behind the open grade questions
+  in R2 and A6. It is recorded there rather than here, so that it is found when those close.
 
 ### U3. Trust, in the order they are worth doing
 
 - **The confidence grade renders only on home page cards.** The three theme pages, where most
   figures live, show neither a grade nor any per-figure date. **Sequence this after the open grade
   questions in R2 and A6**: surfacing grades more widely amplifies a wrong one.
+
+  **A second thing waits on the same gate, added 4 August 2026 when U2 closed.** The citation block
+  does not say which figure each publication was cited for, and the field that would say it is
+  `metric_name`, which appears nowhere in the built site today and carries the grade vocabulary in
+  its own text: "Foreign-born share of total UK population, mid-2024 (calculated, provisional)".
+  Rendering it is a wider surfacing of grades arriving by a side door, which is why U2 deferred it
+  here rather than building it. **It is worth doing when this bullet is**, and the place it earns
+  most is `/common-claims/nineteen-per-cent-born-abroad/`, where this site's own calculation and
+  the Migration Observatory's figure sit in one citation block with nothing saying which produced
+  the 19%. The mechanism already resolves the records, so it is small. **[me]**, gated on the same
+  **[you]** decisions as the bullet above.
 - **There is no withdrawn-claim state.** `/sources-and-method/` promises that a claim unreviewed
   for twelve months is taken down until it has been. On a static site, deleting the file turns a
   URL built to be screenshotted into a generic 404, which reads as scrubbing. A stub at the same
@@ -2076,6 +2104,24 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **U2, the citation handover**, 4 August 2026. PR #118. A "How to cite this" block under every
+  chart and inside every claim card, giving the publication, its edition, its tables, the URL as
+  its own link text so that select-and-copy needs no script, the spreadsheet ones labelled as
+  downloads, when the figure was checked, and this site's anchor last. Derived from the
+  publications each figure draws, never typed beside them, so a chart cannot cite a source its own
+  data does not name and correcting a record corrects its citation in the same edit.
+
+  **The format was the owner's and was decided on 4 August 2026 by keeping what was built**, with
+  the alternatives rendered from real data rather than described. What was refused, and why, is
+  under U2. The one option deferred rather than refused is recorded under U3, behind the same
+  grade decisions its first bullet waits on.
+
+  **What building it cost is the part worth keeping.** The deduplication key was wrong first and
+  a claim page said a figure was read where it was not; two fable critics then found five more
+  defects, including a literal NUL byte that made git treat the pull request's central file as
+  binary and left it with no reviewable diff, and one false sentence inherited from the UX
+  review's own text and repeated in three places without anyone opening the built page.
 
 - **The last three unrecorded figures, and the ratchet reaching zero**, 2 August 2026. PR #94.
   Item 4 is closed. Three figures, three different remedies, which is the shape of the whole item
