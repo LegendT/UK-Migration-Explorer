@@ -155,16 +155,17 @@ first act.
 10. **GATE. The eight undrafted claims**, which are *Scoped, not built* section 5: a session
     drafts **[me]**, and the verdict and short answer come to the owner before merge **[you]**.
     Only the pro-migration draft moves the direction split off its floor.
-11. **GATE. A3, the checks that do not do what the documents say they do.** It was not in this
-    list until 4 August 2026, in a file whose order calls itself the single list of everything
-    outstanding. Three of its bullets are **[me]**: adding `previous_value` to the audit pass
-    that re-reads every evidence entry, which nothing looks at today; giving `check-sources.mjs`
-    the four browser headers that turn a Commons Library 403 into a 200, which retires a standing
-    manual step; and closing the split where `npm run validate` and the CI workflow are two lists
-    of checks that never read each other, so a check added to one gates nothing on a pull
-    request. One is **[you]**: `main` has no branch protection and no rulesets, so every claim in
-    this file that a check gates a pull request is only as strong as the habit of not merging
-    red.
+11. **GATE. A3's last bullet, and it is a repository setting rather than a change to anything in
+    this repository.** `main` has no branch protection and no rulesets, so every claim in this
+    file that a check gates a pull request is only as strong as the habit of not merging red.
+    Turning on a required status check for the `validate` job would make every one of them mean
+    what it says. **[you]**. What was **[me]** here is closed (PR #121, 4 August 2026):
+    `previous_value` is now asked of every evidence entry a branch adds rather than only of a
+    figure that moved; the Commons Library URLs are checked rather than reported uncheckable, so
+    the standing manual step is gone; and `scripts/check-pipeline.mjs` measures `npm run
+    validate` and the CI workflow against one manifest, so a check added to one and not the other
+    fails rather than passing quietly on a laptop. Two of those three were not what A3 said they
+    were, and the section below records what they turned out to be.
 12. **GATE. Record the review as passed in `CHANGELOG.md`**, after the six-page checkboxes above,
     the glossary gates behind them now being closed. **Its scope was decided on 2 August 2026:
     all sixteen pages, not the ten the review read.** Worth knowing before signing: the review's
@@ -532,7 +533,8 @@ Most are **[me]**, all are small, each with its reasoning in the audit.
   regrade made it green, which is the ordering mistake `check-evidence` already taught this
   project once. Negative-tested on all three fields and in both directions.
 
-- **`previous_value` said `new` for twenty-eight figures that were not, and no check asks.** Found
+- **`previous_value` said `new` for twenty-eight figures that were not, and no check asks. DONE
+  (PR #121, 4 August 2026).** Found
   on 3 August 2026 while critiquing batches 2 and 3. The README defines the field as what the record
   held on the base branch, with `null` reserved for a figure that is new; every backfilled entry
   written before batch 1 used `null` instead. **Every one of them is corrected** across PR #102 and
@@ -541,14 +543,29 @@ Most are **[me]**, all are small, each with its reasoning in the audit.
   left here is the reason it survived**, which is that nothing looks: an entry is matched to a
   changed figure on its ref AND its value, so a backfill entry is never re-matched by the loop that
   validates `previous_value`, and the audit pass that does re-read every entry ignores the field.
-  Adding it to that pass is small and would have caught this. **[me]**, with the usual negative
-  test, and note that it must accept an entry whose figure has since moved, which is history and
-  fails nothing.
+  **Adding it to that pass, as this said, does not work**, and the reason is worth keeping:
+  forbidding `null` there fails the next genuinely new figure the moment its own pull request
+  merges, because a merged new figure exists on the base branch and is indistinguishable from a
+  backfill when read from there. So the question is asked of a CLAIM rather than of a figure.
+  Every entry a branch adds is checked against the base branch, keyed on ref with
+  `previous_value` and the published value, so fixing a typo in a quote does not re-open a merged
+  claim and editing the field does. An entry already merged is skipped, on the rule the audit
+  pass already runs on: failing one pushes someone into editing the audit trail to get a green
+  run. Negative-tested both ways, and the check as it stood was silent on all three breaks.
 
 - **`check-sources.mjs` reports Commons Library URLs as uncheckable on every run, and they are
-  not.** They 403 because Cloudflare refuses a bare `curl`; adding the four request headers a
+  not. DONE (PR #121, 4 August 2026).** They 403 because Cloudflare refuses a bare `curl`; adding
+  the four request headers a
   browser sends, `Sec-Fetch-Dest`, `-Mode`, `-Site` and `-User`, returns 200 from all of them plus
   the briefing PDFs behind them, established while fetching them for A1 batch 3 on 3 August 2026.
+  **The headers were not the variable, and this bullet as written would have changed nothing.**
+  Measured again on 4 August: those four headers, a browser user-agent, and a full Chrome header
+  set all return 403 over Node's own `fetch`, on HEAD and on GET. The same four over HTTP/1.1
+  from `curl` return 200, which is the protocol and not the header set, and is what the project's
+  own note of the technique records. So the check shells out to `curl` for those two hosts. The
+  negative test is the whole point of it: a deliberately invalid path under each returns 404 and
+  is reported broken, and if `curl` is absent or cannot complete they go back to being reported
+  as uncheckable rather than passing quietly.
   **How many is deliberately not written here**: R2's decisions moved three of those records to
   other publishers the same day and the number fell without anyone touching this bullet, which is
   what a count about our own work does. Run `npm run check-sources` and read the list; every one
@@ -564,14 +581,22 @@ Most are **[me]**, all are small, each with its reasoning in the audit.
   required status check for the `validate` job is a repository setting rather than a code change,
   so it is **[you]**, and it would make every check here mean what it says.
 
-- **`npm run validate` and the CI workflow are two lists of checks and neither reads the other.**
+- **`npm run validate` and the CI workflow are two lists of checks and neither reads the other.
+  DONE (PR #121, 4 August 2026).**
   The workflow calls six scripts directly and never invokes that npm script, so a check added to
   `validate` runs on a laptop and gates nothing on a pull request. That is not hypothetical: it is
   exactly what happened to `check-backlog.mjs` on 3 August 2026, between it being written and a CI
   step being added by hand minutes later. The split is deliberate, because CI names each step and
   marks the network ones `continue-on-error`, so the fix is not simply to call `npm run validate`
-  there. **[me]**, and the shape worth considering is a manifest both sides read, on the same
-  reasoning as `lib/series.mjs` and `lib/tables.mjs`.
+  there. **A manifest both sides read is not available either**: package.json is JSON and a
+  workflow is YAML, and neither can import anything, while generating the workflow would flatten
+  the named steps, the base-branch fetch and the per-step `continue-on-error` that CI needs it to
+  keep. So `scripts/check-pipeline.mjs` holds the manifest and measures all three against it,
+  `scripts/`, package.json and the workflow, and refuses a check declared to run on a laptop and
+  not in CI. **Found by probing rather than reading, again**: reading a whole step instead of its
+  `run:` blocks, it followed the commands that workflow quotes in its comments and in one step's
+  own name, and two of the ten breaks passed. That step's name is left as it was, as a standing
+  probe that names are not read.
 
 - **`scripts/check-backlog.mjs` now reads this file, and it found two live defects on the run that
   created it. DONE (PR #106, 3 August 2026).** Everything else here is machine-checked and the file

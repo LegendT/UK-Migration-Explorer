@@ -726,11 +726,14 @@ partials in `_includes/`, shortcodes and filters registered in `eleventy.config.
 structural blocks rendered from the data layer by the `PARTIALS` map there. The nearest thing
 to a MetricCard is the loop over `dashboard.cards` in `index.njk`.
 
-The link checker is built and has already earned its place: it found that five Commons
-Library URLs cannot be verified automatically at all, because the host returns 403 to every
-request including deliberately invalid ones. It reports those as uncheckable rather than
-broken. Calling a live link dead would train the reader to ignore the checker, which is
-worse than having none.
+The link checker is built and has already earned its place twice. It found that Commons
+Library URLs return 403 to every request including deliberately invalid ones, and reported
+those as uncheckable rather than broken, because calling a live link dead would train the
+reader to ignore the checker, which is worse than having none. Then on 4 August 2026 it
+turned out they are checkable after all: the same browser headers over HTTP/1.1 from `curl`
+return 200, and 404 from an invalid path, so those hosts go through `curl` and every source
+URL the site cites is now checked. Uncheckable remains the answer where `curl` cannot run,
+on the same reasoning as before.
 
 # 12. Accessibility and usability requirements
 
