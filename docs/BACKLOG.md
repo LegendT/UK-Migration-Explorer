@@ -162,11 +162,13 @@ first act.
 10. **GATE. The eight undrafted claims**, which are *Scoped, not built* section 5: a session
     drafts **[me]**, and the verdict and short answer come to the owner before merge **[you]**.
     Only the pro-migration draft moves the direction split off its floor.
-11. **GATE. A3's last bullet, and it is a repository setting rather than a change to anything in
-    this repository.** `main` has no branch protection and no rulesets, so every claim in this
-    file that a check gates a pull request is only as strong as the habit of not merging red.
-    Turning on a required status check for the `validate` job would make every one of them mean
-    what it says. **[you]**. What was **[me]** here is closed (PR #121, 4 August 2026):
+11. **CLOSED 4 August 2026, and A3 is closed with it (PR #121 and #124).** `main` is protected:
+    the `validate` job is a required status check, `enforce_admins` is on so it binds the owner
+    too, and force pushes and deletions are off. **Probed rather than read**: a direct push to
+    `main` is refused with `GH006, Required status check "validate" is expected`. So every claim
+    in this file that a check gates a pull request now means what it says, where before it was
+    worth the habit of not merging red and no more. What was **[me]** here closed earlier the same
+    day (PR #121):
     `previous_value` is now asked of every evidence entry a branch adds rather than only of a
     figure that moved; the Commons Library URLs are checked rather than reported uncheckable, so
     the standing manual step is gone; and `scripts/check-pipeline.mjs` measures `npm run
@@ -588,8 +590,10 @@ how the bullet describing them said they would, which each of them now records.
   check change: confirm a genuinely dead URL still fails after the headers are added, because a
   request that always succeeds is worse than one that always fails.
 
-- **`main` has no branch protection and no rulesets, so a red CI job does not block a merge.**
-  Verified 3 August 2026: `gh api repos/{owner}/{repo}/branches/main/protection` returns 404 "Branch
+- **`main` has no branch protection and no rulesets, so a red CI job does not block a merge. DONE
+  (PR #124, 4 August 2026): protected, with the `validate` job required and `enforce_admins` on, so
+  it binds the owner too. Probed rather than read: a direct push to `main` is refused with `GH006,
+  Required status check "validate" is expected`.** As it stood, verified 3 August 2026: `gh api repos/{owner}/{repo}/branches/main/protection` returns 404 "Branch
   not protected" and the rulesets endpoint returns `[]`. Every claim in this file that a check
   "gates" a pull request is therefore only as strong as the habit of not merging red. Turning on a
   required status check for the `validate` job is a repository setting rather than a code change,
