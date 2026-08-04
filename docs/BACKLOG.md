@@ -80,9 +80,10 @@ first act.
    Call 8 was reproduced and handed back (PR #126)**: its premise does not hold, and the search
    that killed it turned up an ONS UK-level release nobody here knew about, so the remedy is
    yours. **Call 5 is applied too (PR #128)**, as a record and an evidence entry rather than a
-   sentence, since nothing in the data layer held the figure it states. **What is left is calls 8
-   and 10, and both are yours**: call 8 by the paragraph above, call 10 by the last clause of its
-   own decision, which sends it behind The order's item 15. **So there is no [me] work left in
+   sentence, since nothing in the data layer held the figure it states. **Call 8 is applied too (PR #129)**, by a
+   different mechanism from the one recommended, that recommendation having been wrong about what
+   could be evidenced. **Every call in this item is now applied or needs no change except call
+   10**, which waits behind The order's item 15 by the last clause of its own decision. **So there is no [me] work left in
    this item, and the next item a session takes is The order's item 10**, the eight undrafted
    claims.
 4. **GATE. The decisions that change what launch publishes. THE DOMAIN IS DECIDED (4 August
@@ -92,8 +93,9 @@ first act.
    route that is not a GitHub account, whether a fourth limit is published and which, whether the
    success measure goes on `/about/`, and the rest of A6. **Most came back on 4 August 2026**: A5
    and A6's bullets now open DECIDED or STILL **[you]**, the pipeline question is closed (call 17,
-   PR #122), and only the contact address and the fourth limit still need the owner. The applying
-   is **[me]** and has not started.
+   PR #122). **The contact address and the fourth limit are decided and applied too**, calls 16
+   and 20 in PR #130, so what is left of this item is the LICENCE scope, call 18, which is
+   decided and unapplied **[me]** work.
 5. **GATE. R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source
    observation the far-end trace produced has been taken: five records re-sourced to the
    publisher that prints their figure, five regraded to say honestly what the figure is, and no
