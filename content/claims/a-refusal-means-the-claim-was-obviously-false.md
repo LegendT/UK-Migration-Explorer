@@ -47,7 +47,9 @@ Around {{asylum/asylum-appeal-success-rate}}% of asylum and protection appeals d
 a hearing or on the papers at the First-tier Tribunal in the quarter January to March 2026
 were allowed. That is a share of appeals **determined**, not of refusals: of the
 {{asylum/asylum-appeals-disposed-of}} appeals disposed of in that quarter, only about half
-were determined at all, with 35% withdrawn, 6% struck out and 6% invalid or out of time.
+were determined at all, the rest being withdrawn, struck out, or invalid or out of time. The
+[mirror page](/common-claims/refused-asylum-seekers-are-eventually-recognised/) carries that
+breakdown, and it is held in one place rather than two so the two cannot drift apart.
 
 ## Why the claim is misleading
 

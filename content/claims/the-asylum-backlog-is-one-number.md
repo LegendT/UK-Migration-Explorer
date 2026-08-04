@@ -119,6 +119,6 @@ counted by different bodies in different units, so the sentence naming both give
 figure rather than a total or a difference.
 
 **On selection.** This site checks propositions that circulate rather than quotations
-attributed to particular people, as the [style guide](/style-guide/) sets out. The
-[foundation document](/sources-and-method/) marks this claim as one that circulates on both
-sides; it is written up here in the version that circulates more.
+attributed to particular people, as the [style guide](/style-guide/) sets out. This
+misuse circulates on both sides; the [style guide](/style-guide/) sets out the rule that
+follows, which is to write it up under whichever version circulates more and to say so.
