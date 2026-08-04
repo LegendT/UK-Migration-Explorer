@@ -193,8 +193,12 @@ first act.
     records and not series points, so a comparison against a series has to point at the chart
     that shows it; and drafting "A refusal means the original claim was obviously false" means
     editing `content/claims/refused-asylum-seekers-are-eventually-recognised.md`, which
-    currently corrects it as a mirror claim and says no separate check exists. The order the
-    rest are proposed in is in PR #131.
+    currently corrects it as a mirror claim and says no separate check exists. **The second is drafted too (PR #132), "A refusal
+    means the original claim was obviously false"**, taken next because of the dependency
+    above: it is wired to `refused-asylum-seekers-are-eventually-recognised` as a reciprocal
+    `mirror_of` pair, which `validate-content` enforces in both directions, and that page's
+    mirror section now links to it rather than saying no separate check exists. Its verdict is
+    **[you]** as well. **Five are left**, and the order they are proposed in is in PR #132.
 11. **CLOSED 4 August 2026, and A3 is closed with it (PR #121 and #124).** `main` is protected:
     the `validate` job is a required status check, `enforce_admins` is on so it binds the owner
     too, and force pushes and deletions are off. **Probed rather than read**: a direct push to
