@@ -598,13 +598,25 @@ is already here to adding a neighbour beside it.
   two claims are now one**, checked by `scripts/check-pipeline.mjs` on 4 August 2026: the two lists
   and `scripts/` are measured against a manifest, and a check declared local and not CI is refused.
   Confirm a step from the run log rather than the file where it matters:
-  `gh run view <id> --job <id> --log | grep <step name>`. **The third is unchanged. `main` has no
-  branch protection and no rulesets**, verified by `gh api repos/{owner}/{repo}/branches/main/protection`
-  returning 404 and the rulesets endpoint returning `[]`, so a red job blocks no merge at all. Every
-  "this gates a pull request" in `docs/BACKLOG.md` is worth the habit of not merging red and no more.
+  `gh run view <id> --job <id> --log | grep <step name>`. **The third changed on 4 August 2026 and is now true.
+  `main` is protected**: `validate` is a required status check, `enforce_admins` is on so it binds
+  the owner too, and force pushes and deletions are off. Probed rather than read, a direct push
+  being refused with `GH006, Required status check "validate" is expected`. So "this gates a pull
+  request" in `docs/BACKLOG.md` now means what it says. **This paragraph said the opposite until the
+  day the protection landed**, and `scripts/check-pipeline.mjs` printed the same false sentence on
+  every run for hours after it stopped being true, which is what a claim about your own
+  infrastructure does when nothing re-derives it.
   **And read the log of the two continue-on-error steps rather than the green tick**: they report and
   never gate, so a finding there survives until a person reads it, which is how CI called two live
   OBR links dead on every run for weeks.
+
+- **A check driven by a hand-written list passes by omission, and the pass message is the tell.**
+  `.pa11yci.json` holds its URLs by hand and does not follow `sitemap.xml`. On 4 August 2026 a new
+  claim page was added and `npm run a11y` reported `17/17 URLs passed` with that page absent from
+  the list, while `npm run build` said 18 pages in the same run and nothing compared the two. It
+  repeated on the next two pages. **Read the count in the pass line against the count the build
+  printed**, treat a mismatch as a failure, and update the list in the same commit as the page.
+  This is the same family as the two bullets above: the check ran honestly, over the wrong set.
 
 - **Reproduce a backlog bullet's premise before building what it prescribes.** The bullet is usually
   right that something is broken and often wrong about the remedy, and building the remedy ships a
@@ -864,6 +876,13 @@ is already here to adding a neighbour beside it.
   same shape as the unquoted `--include` glob under *Building a check, and trusting it*: a command
   that did not run reads exactly like one that ran and found nothing to do.
 
+  **The assertion does not cover the commit message, and on 4 August 2026 that is what shipped a
+  false one.** A script asserted two replacements, the second failed on a hard-wrapped line, the
+  write never ran, and only half the edit landed. The assertion worked exactly as intended. The
+  commit message had been drafted alongside the script and described both halves, so a working
+  guard produced a lying record, pushed. Write the message from `git diff --cached`, not from what
+  the script was meant to do.
+
 - **Do not fix by bulk substitution.** It caused an earlier round of defects, in prose and in
   CSS alike. Sentence by sentence, in view. **Including renumbering:** collapsing two completed
   items in the backlog's order on 2 August was done with one regex over every line starting with
@@ -916,6 +935,14 @@ is already here to adding a neighbour beside it.
   `gh pr view <n> --json files` lists only that PR's own files, because a wrong base makes the diff
   look right for the wrong reason. Mergeability reads UNKNOWN for a few seconds after each merge,
   so poll rather than believing the first answer.
+
+  **And deleting the base branch does not retarget the upper PR. It CLOSES it.** On 4 August 2026
+  `gh pr merge 125 --merge --delete-branch` closed #126, whose base was the branch just deleted,
+  and GitHub refused to reopen it while that branch was missing. Recovery was to push the branch
+  ref back, `git branch -f <name> $(git rev-parse <merge-commit>^2)` then push, reopen, and
+  retarget. That mattered because `docs/BACKLOG.md` cited #126 by number, so landing the work under
+  a new number would have falsified a document. **Retarget the whole stack to `main` first**, which
+  is one loop, then merge each with plain `--merge` and delete nothing until the last has landed.
 
   **And a commit made AFTER its pull request merged does not ship either**, which is the same
   failure with no branch to blame. On 3 August 2026 the documentation recording U6 as complete was
@@ -1051,6 +1078,16 @@ oldest defect, committed by the fix for it, in two files. Copy the command out o
   string, which was the one thing that could have sunk the approach. It does, but that was
   established afterwards.
 
+  **On 4 August 2026 the same failure reached a decision the owner then took.** A recommendation to
+  re-source a record to ONS table UK05 and grade it `calculated` could not be built: UK05 prints
+  country-of-birth cells by sex and age and NO TOTALS, so numerator and denominator are sums of
+  thirty-six rows, while `check-evidence` requires every component to carry a published value its
+  quote contains. Building it meant writing a quote no source states. The same recommendation
+  called the `estimated` route "mechanically refused" without checking, and two ICIBI records were
+  already `estimated` with their source printing them. **A recommendation is a claim about what can
+  be built**, so before naming an option, parse the source for the field the check demands and grep
+  for a record already in the state you are proposing. Both halves were a minute's work.
+
 - **Scoping is not progress.** Four scope documents were written in one session while the site
   did not change. Each was defensible; together they were a way of feeling productive without
   shipping. Prefer building the smallest real thing.
@@ -1169,6 +1206,22 @@ rule text with a fuller copy in *Working practices*, which is the drift this sec
 and one was written into `docs/prompts/fresh-session.md` rather than the block above, which is the
 copy that gets overwritten. What survives of each is one clause inside a paragraph that was already
 there: the TASK paragraph and the network-checks sentence. Neither adds a row to the table.
+
+**Two more clauses on 4 August 2026, in the same form and for the same reason**, and the same
+mistake was made first: both were written into `docs/prompts/fresh-session.md` rather than into the
+block below, so the source and the copy diverged until they were diffed and synced. **Diff them
+before finishing**, which is four lines of Python and the only thing that proves this section's
+claim about itself.
+
+- **In TASK, that a recommendation is a claim about what can be built.** A recommendation to
+  re-source a record to a table that prints no totals could not be evidenced, and the owner had
+  already taken it. It is a clause on the premise sentence, not a new paragraph.
+- **In the checks paragraph, to read the COUNT in a pass line against what the build printed.**
+  `npm run a11y` reported seventeen of seventeen with a new page absent from `.pa11yci.json`, which
+  is hand-maintained and does not follow the sitemap. It happened three times in one session.
+
+Both name a dated incident rather than reciting a rule, which is the test this section sets: a
+duplicate that cannot drift costs a line, a duplicate that can drift costs a session.
 
 **That fix was applied on 2 August 2026, and this is the record so it is not undone by someone
 being helpful.** The block carried a fifth thing, a paragraph beginning "ONE DELIVERABLE PER
@@ -1293,7 +1346,9 @@ TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
 has been misread before. Reproduce the item's premise before building what
-it prescribes.
+it prescribes, and test the mechanism of any option before you recommend
+it: a recommendation is a claim about what can be built, and one taken on
+trust cost a reversal on 4 August 2026.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
@@ -1304,10 +1359,12 @@ on me, saying which.
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
-taking silence as clearance. check-releases, check-sources and the
-ONLINE half of check-backlog are network checks that gate nothing, so
-run them by hand before a PR, and read their step logs in CI rather than
-the green tick: they report and never gate.
+taking silence as clearance, and read the COUNT in a pass line against
+what the build printed: a11y takes its URLs from a hand-written list and
+reported 17 of 17 with a new page missing from it. check-releases,
+check-sources and the ONLINE half of check-backlog are network checks
+that gate nothing, so run them by hand before a PR, and read their step
+logs in CI rather than the green tick: they report and never gate.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with

@@ -509,8 +509,9 @@ not a value the front matter can hold. Drafting either of those two claims means
 of the two labels; the assignments above are a starting position, not a finding.
 
 Eleven of the fifteen correct a restrictionist claim. The representation floor sets no
-ceiling on that, and this table is the candidate list rather than the published set, which
-runs five to two. Restrictionist claims are easier for us to find because they are more
+ceiling on that, and this table is the candidate list rather than the published set.
+No count of the published set is written here: `npm run validate` prints the split on every run,
+and it moved three times on 4 August 2026 alone. Restrictionist claims are easier for us to find because they are more
 numerous in circulation, which is itself a finding worth stating on the page rather than
 quietly compensating for. The claims page states it.
 
@@ -835,8 +836,10 @@ open invited an indefinite planning loop.
 - ~~Create risk register.~~ Done (section 13), with corrections policy.
 - ~~Glossary.~~ Done: `content/glossary.md`, 23 terms in five groups. See section 8.2 for why
   it grew past the eight in the original table.
-- ~~Draft the claims.~~ Partly done: seven are written to the template in section 16.2, and
-  eight of the candidates in section 8.5.3 remain undrafted. See section 15.
+- ~~Draft the claims.~~ Partly done, and no count is written here because it
+  moves: `content/claims/` holds the drafted set and section 8.5.3 is the candidate list. One
+  candidate, "Local areas all carry the same pressure", cannot be drafted at all, needing
+  per-capita local authority figures the data layer does not hold. See section 15.
 - ~~Homepage wireframe.~~ Superseded. The homepage was built directly and has since been
   through a design round; a wireframe for a page that exists would be drawn from the page.
 - ~~Methodology page outline.~~ Done, and built: `content/sources-and-method.md`.
@@ -986,7 +989,7 @@ finances", the seventh claim and the correction a pro-migration reader would mos
 see, would have breached the same two-thirds cap, because `direction` records whose claim is
 corrected and that claim is a restrictionist one. The cap was removed and a representation
 floor put in its place; the reasoning is in section 8.5.2 and in the script. The published
-set now runs five to two, which clears the floor and would have failed the cap.
+set clears the floor and would have failed the cap.
 
 Both halves of that episode point the same way. The constraint caught what review missed,
 which is the argument for making constraints mechanical. Then the constraint blocked a

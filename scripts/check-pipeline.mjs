@@ -171,8 +171,9 @@ console.log(`${inValidate.size} run in \`npm run validate\`, ${inCi.size} run in
 console.log(`  ${gating.map((check) => check.script).join(', ')}`);
 console.log('Out of `npm run validate` on purpose, each with the reason it is declared with:');
 for (const { script, why } of CHECKS.filter((check) => !check.local)) console.log(`  ${script}: ${why}`);
-console.log('Not established: that a failing job blocks a merge. main has no branch protection and no');
-console.log('rulesets, so "gates" here means the job goes red, and merging red is a habit rather than a');
-console.log('rule. Nor that a11y:serve and a11y:ci run what they should: they are passed as bare names to');
-console.log('start-server-and-test rather than through npm run, so this does not follow them, and neither');
-console.log('runs anything in scripts/. Nor that any check is correct, only that it runs on both sides.');
+console.log('Established since 4 August 2026, and probed rather than read: a failing job DOES block a');
+console.log('merge. main requires the validate check, enforce_admins is on, and a direct push is refused');
+console.log('with GH006. Not established: that a11y:serve and a11y:ci run what they should, being passed');
+console.log('to start-server-and-test as bare names rather than through npm run, so this does not follow');
+console.log('them, and neither runs anything in scripts/. Nor that any check is correct, only that it');
+console.log('runs on both sides.');
