@@ -1,6 +1,25 @@
 {
   "figures": [
     {
+      "ref": "migration/asylum-related-share-of-all-immigration",
+      "previous_value": null,
+      "value": 10.8,
+      "fetched_at": "2026-08-04",
+      "derivation": "88,000 asylum-related long-term immigration, Table 4b, divided by 813,000 total long-term immigration, Table 1, both year ending December 2025 provisional, is 10.82%, shown as 10.8%. ONS publishes the reason breakdown against non-EU+ arrivals only and states no share of all immigration. Both inputs are rounded to the nearest thousand and the share rounds to 10.8% across the whole rounding interval, 10.76% to 10.89%. Both quotes were lifted from the workbook by script, asserting the column label and the value against the record before writing.",
+      "components": [
+        {
+          "value": 88000,
+          "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+          "quote": "Table 4b: Long-term international immigration, emigration and net migration of non-EU+ nationals by reason. Immigration, YE Dec 25 P: All reasons 627,000; All Work Related 146,000; Work: Main applicant 71,000; Work: Dependant 74,000; All Study Related 294,000; Study: Main applicant 277,000; Study: Dependant 17,000; Family 47,000; All Humanitarian 35,000; Humanitarian: BNO 12,000; Humanitarian:  Resettlement 6,000; Humanitarian:  Ukraine 16,000; Asylum 88,000; Other 18,000"
+        },
+        {
+          "value": 813000,
+          "source_url": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx",
+          "quote": "Table 1: Long-term international migration into and out of the United Kingdom by nationality. Immigration, YE Dec 25 P: All Nationalities 813,000; British 110,000; EU+ 76,000; Non-EU+ 627,000"
+        }
+      ]
+    },
+    {
       "ref": "migration/non-eu-plus-long-term-immigration",
       "previous_value": 627000,
       "value": 627000,

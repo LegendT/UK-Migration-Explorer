@@ -16,6 +16,7 @@ figures:
   - migration/study-related-immigration
   - migration/work-related-immigration
   - migration/asylum-related-immigration
+  - migration/asylum-related-share-of-all-immigration
   - asylum/asylum-applications
 layout: claim.njk
 permalink: /common-claims/most-immigration-is-asylum/
@@ -44,6 +45,13 @@ Those are ONS reason categories, and they are not the whole of the non-EU+ total
 Humanitarian routes are counted separately, at about 6%, and family at about 7%. The 14%
 above is asylum applicants only, so treating it as "asylum and humanitarian" would
 understate the combined category while misstating the asylum one.
+
+**And all of those shares are of non-EU+ arrivals, not of all immigration.** Measured
+against the whole {{migration/total-long-term-immigration}}, asylum applicants were
+{{migration/asylum-related-share-of-all-immigration}}%. Both are right and they answer
+different questions, but the claim this page checks is about immigration as a whole, so the
+smaller figure is the one it has to be set against. ONS states no such share, so it is this
+site's own division rather than a published figure.
 
 ## Why the claim is misleading
 
