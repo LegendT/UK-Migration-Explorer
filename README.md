@@ -21,8 +21,11 @@ sentence admitting that nothing checked them, and they were wrong by then: the c
 derived by `lib/published.mjs` and every record added moves them. A number in prose beside a
 run that computes it is the defect this project spends most of its checks on. The site is
 deployed behind a `robots.txt` that disallows all crawlers, and every page carries a notice
-saying it is unfinished. **That rule governs indexing, not access:** the site is reachable now
-by anyone with the URL, which is why the notice on every page is the thing doing the work.
+saying it is unfinished. **The launch domain was decided on 4 August 2026 and is
+`ukmigrationexplorer.org`**, which is what `content/_data/site.js` holds, so canonical links,
+the sitemap and every citation block print it; the Netlify address remains the deploy URL.
+**That rule governs indexing, not access:** the site is reachable now by anyone with the URL,
+which is why the notice on every page is the thing doing the work.
 
 **The pre-publication review has been conducted, and its corrections have landed.** It ran
 on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its
@@ -118,11 +121,13 @@ content/                Eleventy input
   robots.txt              Disallows all crawlers until launch
   sitemap.njk             Every built page but the 404, generated from collections.all
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code, two renderings per chart
+lib/citation.mjs        The "How to cite this" block, derived from the records each figure draws
+lib/published.mjs       Which records reach a reader, and the counts /sources-and-method/ renders
 lib/series.mjs          The four timeseries and the names everything else calls them by
 lib/tables.mjs          What a publisher's table identifier looks like, for the two checks that must agree
 data/                   Governed data layer, one file per theme, plus four timeseries
 data/evidence/          One file per release: the quote behind every figure, re-read on every run
-scripts/                Six scripts, seven checks, all in CI, all negative-tested
+scripts/                Every check that is a script; `ls` counts them. pa11y is the exception
 docs/prompts/           Versioned prompts. update-from-release.md drives an assisted update
 docs/foundation.md      Positioning, editorial principles, IA, data governance, risk register
 docs/BACKLOG.md         The durable list of outstanding work; every other doc points here
@@ -263,14 +268,20 @@ citing a metric that no longer exists, fails the deploy rather than reaching any
 
 ## The checking apparatus, and its limits
 
-Seven checks, all in CI, all negative-tested.
+Every one of these runs in CI and every one was negative-tested, with one exception named in its
+own row: the half of `check-backlog.mjs` that asks whether a cited pull request is merged needs
+the network and runs in no workflow, in any mode. The number of them is not written here: it
+was wrong in the layout block above until 4 August 2026, having said six
+scripts when there were seven, and a count of our own work is the defect this file spends most
+of its paragraphs on.
 
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, **a citation's `source_url` and `source_id` naming the same publisher**, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names on value, unit, confidence level and year**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, a theme file's `lastUpdated` present and a real date, **every point in a series block carrying one confidence level**, `ons_marker` drawn from a fixed vocabulary, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **No planning document other than the backlog may carry work state**, meaning a table row marked done, withdrawn or struck, because a second list has to be kept true in two places and this project watched two diverge twice in one day. **A review date that has passed fails the build**, not merely one that was never declared, and a Nunjucks page must carry one like every other. **The language rules and the glossary-link check reach the `data/` prose that renders to a page**, which they did not until 31 July 2026. **Fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, since 2 August 2026, having been a ratchet at report level from 38 down to zero, and **names every declared literal that does equal a live value**, because the exemption is granted on trust and the success message asserted it did not exist |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, every metric that is new, and every metric whose `confidence_level` crosses the derived boundary in either direction even at an unchanged value, is declared in `data/evidence/` with a quote from a fetched source containing that value. **And every entry already on file that still names a record holding exactly its value is re-read on every run**, so a backfilled entry is not declared once and never asked again; an entry whose figure has since been renamed, dropped or revised is history and is skipped. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. The quote match is boundary-anchored, so one figure's digits sitting inside another do not satisfy it. Gates the build in CI, **not the Netlify deploy**, which runs only `npm test` and `npm run build` |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`** |
+| `check-backlog.mjs` | `docs/BACKLOG.md` itself, which directed all the work and was the one thing nothing read: every backticked path exists, every section cross-reference has a heading, The order is contiguously numbered, every item carries a tag or says it is closed, and no item in The order writes a count of this project's own state. `npm run check-backlog` adds the network half, that every cited pull request is merged |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two questions. Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. And whether a table the site declares in `table_reference` was corrected *inside* the edition it cites, matched against the Home Office change history and reported only where the figure has not been re-read since. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
 | `npm run a11y` | pa11y at WCAG2AA over every URL listed in `.pa11yci.json`. Fails the build. Pinned rather than fetched at run time, so two runs a month apart test against the same code |
@@ -316,6 +327,16 @@ limit left to disclose.
 `content/claims/` holds the claim checks and `content/glossary.md` the definitions. Seven
 claims are drafted; the candidate set of fifteen is specified in `docs/foundation.md`
 section 8.5.3.
+
+**Every chart and every claim card carries a "How to cite this" block**, added on 4 August 2026.
+It gives the publication, its edition, its tables, the URL as its own link text so that
+select-and-copy needs no script, spreadsheet URLs labelled as downloads, when the figure was
+checked, and this site's anchor last, as the route rather than the source. Nothing in it is
+typed by an author: it is derived from the records or the series points each figure actually
+draws, so a chart cannot cite a publication its own data does not name. `lib/citation.mjs`.
+
+**"Citation" means two things in this repository and they are unrelated.** The block above is a
+citation a reader copies. The token below is how content cites the data layer.
 
 Content never hard-codes a figure that will change. It cites the data layer by token,
 `{{theme/metric-id}}`, so updating a figure in `data/` updates everywhere it is cited, and

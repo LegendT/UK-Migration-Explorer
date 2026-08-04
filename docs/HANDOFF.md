@@ -1,4 +1,4 @@
-# Handoff, 3 August 2026
+# Handoff, 4 August 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -367,16 +367,23 @@ page shows it. `check-build` caught exactly that.
 
 ## The checking apparatus, and its limits
 
-Seven checks, all in CI, all negative-tested.
+Every one runs in CI and every one was negative-tested, with one exception named in its own row:
+the half of `check-backlog.mjs` that asks whether a cited pull request is merged needs the network
+and runs in no workflow, in any mode. **The number of them is deliberately not written here.**
+It said seven while there were eight, and the README was wrong twice over, saying six scripts
+where there were seven and seven checks where there were eight, all until 4 August 2026: a
+count of our own work, in two files, going stale in the
+section about checking.
 
 | Script | What it establishes |
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names on value, unit, confidence level and year, every point in a series block carrying one confidence level, `ons_marker` drawn from a fixed vocabulary, a theme file's `lastUpdated` present and a real date, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, since 2 August 2026, having run at report level under a ratchet from 38 down to zero, and names every declared literal that does equal a live value |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, every metric that is new, and since 3 August 2026 every metric whose `confidence_level` crosses the derived boundary in either direction at an unchanged value, is declared in `data/evidence/` with a quote containing that value. **Also since 3 August 2026, every entry on file naming a record that still holds exactly its value is re-read on every run**, because the base-branch comparison asks only about figures that moved; an entry whose figure has since moved is history and is skipped, which is what stops a check forcing the audit trail to be deleted. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`** |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike (network; runs in CI with `continue-on-error`) |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
+| `check-backlog.mjs` | `docs/BACKLOG.md` itself, which directed all the work and was the one thing nothing read: paths exist, cross-references resolve, The order is contiguously numbered, every item carries a tag or says it is closed, and no item in The order writes a count of this project's own state. `npm run check-backlog` adds the network half |
 | `npm run a11y` | pa11y at WCAG2AA over every URL in `.pa11yci.json`. Fails the build |
 
 CI also runs a **weekly cron**, because the time-based rules, the twelve-month claim expiry and
@@ -744,6 +751,22 @@ is already here to adding a neighbour beside it.
   the author's model of the design is the thing at fault, which is where every one of these has
   been.
 
+- **A search can lie a fourth way: the file is binary.** `lib/citation.mjs` was written with a
+  literal NUL byte as a deduplication key's separator. Git called the file binary and printed
+  `Bin 0 -> 7710 bytes`, so the central file of a pull request had **no reviewable diff at all**,
+  and `grep` for a string that is in it exited 1 with no output, which reads exactly like a clean
+  search. A full round of checks passed over it. Write control characters as escape sequences, and
+  when a diff says `Bin` on something you wrote as text, that is the signal. It happened three
+  times in one day: in the file, in the commit message describing the fix, and in the memory
+  written about it.
+
+- **Probe a check by DELETING what it guards, not only by corrupting it.** A new check compared
+  the domain in the print stylesheet against `site.url`. Corrupting the domain fired correctly.
+  Deleting the rule fired too, and said the wrong thing: the pattern fell through to the
+  external-link rule one line below, captured its empty prefix, and reported that the domain was
+  wrong rather than that the rule was gone. A real failure with a misleading diagnosis is worse
+  than a plain one, and only the delete case shows it.
+
 ### Looking at the built page
 
 - **Look at the built page, and measure the thing you are claiming.** Run `npm run build`,
@@ -913,6 +936,30 @@ is already here to adding a neighbour beside it.
   would have reverted the owner's own merged work. The edit tool caught it by reporting the file
   had changed on disk. Rebase before writing the durable documents, not after.
 
+- **A finding in this project's own review is a claim, and it can be false.** The UX review said
+  no spreadsheet link renders anywhere on the site. One does, on the home page, where a dashboard
+  card links its record's `source_url` and one card's record is an `.ods`. The review's reasoning
+  was that those URLs sit on series points, which emit no link, and 20 of the 68 sat on metric
+  records instead, measured on the day. That sentence was repeated in a code comment, a commit
+  message and a pull
+  request body before a second model opened the built page. **Reading a scope document is not
+  verifying it**, and the same rule already written here for a backlog tag applies to a review's
+  own findings.
+
+- **Reordering a list falsifies every reference inside it that points by position or by number.**
+  Renumbering *The order* on 4 August 2026 left two items pointing at the launch gate as "the gate
+  above" when it had moved below them, and two documents pointing into the list by number went
+  stale twice in one day, once at the renumbering and once at a later move. Grep the block for
+  `above`, `below` and `item \d` after any reorder, and prefer pointing at a name over a position.
+
+- **Fix the generator, not the line it generated.** The same reorder was done by a script that
+  rewraps each item, and one wrapped line began "390.", which GitHub renders as a nested ordered
+  list swallowing the rest of the entry. Moving the word by hand did not survive: the next rewrap
+  recomputed the break and put it straight back. The rule went into the wrapper, which refused to
+  start a line with anything markdown reads as a list marker. **That wrapper was a session script
+  and is not in this repository**, so the rule has to be re-imposed by whoever rewraps the list
+  next. Nothing checks for it, which is the honest state rather than the tidy one.
+
 ### Auditing, and auditing your own audit
 
 Four practices the July 2026 audit paid for, all of them by getting it wrong first.
@@ -953,6 +1000,15 @@ oldest defect, committed by the fix for it, in two files. Copy the command out o
 - **Scoping is not progress.** Four scope documents were written in one session while the site
   did not change. Each was defensible; together they were a way of feeling productive without
   shipping. Prefer building the smallest real thing.
+
+- **Print the groups before trusting a deduplication key.** When records are collapsed into one
+  line for a reader, the key decides what disappears and nothing downstream can tell you it went.
+  Keyed on `source_url` alone, the citation block on `/common-claims/nineteen-per-cent-born-abroad/`
+  cited one ONS bulletin once where three records name it three different ways, so the page said a
+  figure was read where it was not. Re-keying on name and URL was not the end of it: the same
+  script then showed two fields still differing inside a group, tables and the checked date, each
+  needing a rule rather than first-wins. Group the real data and print every field that differs
+  inside a group, before writing the key.
 
 ## House style
 
@@ -1114,6 +1170,25 @@ records as having drifted once. An outside model found all of it by reading the 
 contract, which is the second time that has been worth doing and the second time it found a defect
 introduced by the fix before it.
 
+**One correction and one refusal, 4 August 2026.**
+
+The correction: the block said check-releases, check-sources and check-backlog are network checks
+to run by hand. `check-backlog.mjs` has two halves and its OFFLINE half runs inside
+`npm run validate`, which the same paragraph tells the session to run every time. A reader could
+take the sentence to mean the backlog is not checked by the four, and it is. Only the `--online`
+half is a network check. The added word cannot rot, because it names a fact about the script's own
+two modes.
+
+The refusal: a command was considered for row four and left out. A file written this session
+carried a literal NUL byte, so git called it binary, the pull request's central file had no
+reviewable diff, and `grep` for a string that is in it exited 1 with no output. That is the same
+shape as the stranded-commit defect the `git log` command was added for, a local signal that reads
+clean. It is NOT in the prompt, because a command earns row four by being cheap to state and
+expensive to omit on EVERY session, and this one guards a rare accident that the diff already
+announces by printing `Bin`. It is in *Building a check, and trusting it* instead, with the
+incident. **The test the table applies is not "did this cost us once" but "will a session need it
+every time".** Recorded here so the next reading does not add it as an oversight.
+
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
 one: a second was added on 2 August 2026 under *Where things stand*, so anything extracting "the
@@ -1161,14 +1236,15 @@ has been misread before.
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
 wholly gated on a decision of mine, do not stall and do not take the
-decision: bring it to me and start the next ungated item, saying which.
+decision: bring it to me and start the next item that is not waiting
+on me, saying which.
 
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
-taking silence as clearance. check-releases, check-sources and
-check-backlog are network checks that gate nothing, so run them by
-hand before a PR.
+taking silence as clearance. check-releases, check-sources and the
+ONLINE half of check-backlog are network checks that gate nothing, so
+run them by hand before a PR.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
