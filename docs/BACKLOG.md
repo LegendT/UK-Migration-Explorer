@@ -707,7 +707,7 @@ Each is a sentence, and each is **[you]** because it is wording.
 
 ### A5. Site-level decisions and small build work
 
-- **STILL [you], call 16: the address itself is yours. Recommended shape, 4 August 2026: a dedicated address on the launch domain, so it survives a change of email provider.** Add a contact route that is not a GitHub account. The corrections policy depends on people
+- **DECIDED 4 August 2026, call 16: a dedicated address on the launch domain, so it survives a change of email provider. APPLIED (PR #130) as `corrections@ukmigrationexplorer.org`, in all three places the issue tracker was the only door: the footer on every page, `/about/` and the corrections policy. THE MAILBOX MUST EXIST BEFORE LAUNCH and nothing checks that it does.** Add a contact route that is not a GitHub account. The corrections policy depends on people
   reporting errors, and the only door is an issue tracker. Cheapest item on this list. **[you]** for
   the address.
 - **DECIDED 4 August 2026, call 17: state which pipeline gates what rather than add them to the deploy. APPLIED (PR #122).** The option not taken: make `check-evidence` and `npm run a11y` gate the Netlify deploy, or state in the README which
@@ -755,7 +755,7 @@ Each is one call. None blocks anything.
   outlet. **DECIDED 4 August 2026: `ukmigrationexplorer.org`.** Applied in PR #118, which is also
   what made it urgent: the citation block prints the site's own URL as copyable text, so a domain
   moved after launch invalidates citations already taken.
-- **STILL [you], call 20: bring the three candidates and each will be drafted. No recommendation is possible without them.** Whether `/sources-and-method/` publishes a fourth limit, and which of the three candidates.
+- **DECIDED 4 August 2026, call 20: publish the corrections candidate. APPLIED (PR #130), and written from `check-releases`'s own output rather than from the summary of it below, which understated the gap: one publisher's corrections page is watched at all, and the identifier mismatch is the second problem rather than the first. The `historical_literals` candidate stays available and unpublished.** Whether `/sources-and-method/` publishes a fourth limit, and which of the three candidates.
 - **DECIDED 4 August 2026, call 21: let the chart carry it, one fewer live value in prose. NOT YET APPLIED.** Whether the emigration sentence names the 2019 peak or lets the chart carry it.
 - **DECIDED 4 August 2026, call 22: it stays. Each is individually justified and the duplication costs nothing. NO CHANGE NEEDED.** Whether the claim card's duplicated review date stays: it prints once in the card and once at the
   foot of `<main>`, and each is individually justified.
@@ -792,7 +792,8 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
 - **DECIDED 4 August 2026, call 8: re-source to the census release rather than regrade, so the grade becomes true as defined. MOVES A SOURCE, so it needs an evidence entry. NOT YET APPLIED.** The Born abroad card grades a Migration Observatory briefing figure `official`, a grade
   the sources page defines as "taken directly from an official published release". The
   underlying figure is the 2021/22 Census; the cited source is a university briefing. Regrade,
-  or re-source the record to the census release it summarises. **THE PREMISE WAS REPRODUCED ON
+  or re-source the record to the census release it summarises. **APPLIED (PR #129, 4 August 2026), BY A DIFFERENT MECHANISM FROM THE ONE RECOMMENDED, AND THE
+  RECOMMENDATION WAS WRONG. THE PREMISE WAS REPRODUCED ON
   4 August 2026 (PR #126) AND IT DOES NOT HOLD, AND THE SEARCH THAT KILLED IT FOUND A REAL
   SOURCE INSTEAD.** There is no census release the briefing summarises. The briefing builds the
   figure itself and says so, combining "2021 data from England, Wales, and Northern Ireland
@@ -810,12 +811,17 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   its own note advises against comparing it with cross-UK datasets built by aggregation, which
   is how the figure this site publishes was built. UK05 prints neither the total nor the share,
   so the grade becomes `calculated` on every path, which is the limb this decision refused. **No
-  printed digit moves on any option**, 16.03% showing as 16. **Recommended: re-source to UK05,
-  grade `calculated`, and say on the page that the basis is census-based rather than census.**
-  The alternative is to leave it on the briefing and grade it honestly, which
-  `scripts/check-evidence.mjs` refuses today, `estimated` sitting inside its derived set and
-  demanding components for a figure that is printed in its source. Leaving it as it is stays the
-  one option the grade definition rules out.
+  printed digit moves on any option**, 16.03% showing as 16. **That recommendation could not be built, and the reason was never tested before it was made.**
+  UK05 prints country-of-birth cells by sex and age and NO TOTALS, so a numerator and a
+  denominator taken from it are sums of thirty-six rows rather than published values, and
+  `check-evidence` requires each component to carry a value its quote contains. Re-sourcing meant
+  writing a quote no source states. **And the option the same bullet called mechanically refused
+  is not**: the two ICIBI unit costs are `estimated`, their source prints them, and they satisfy
+  the check with a derivation reading "Nothing is computed" and one component holding the figure.
+  That precedent was in the repository and went unchecked. **So the record keeps the source that
+  prints its figure and is regraded to `estimated`**, true as `meta.json` defines it, not a current
+  published official figure; the ONS corroboration at 16.03% is recorded in the record's notes
+  instead of becoming its source.
 - **DECIDED 4 August 2026, call 9: declare rather than surface. Adding five returns records is a content project; one sentence in *What this site does not cover* closes the principle now and surfacing stays available. APPLIED (PR #125, 4 August 2026)**, as a *Returns and removals* paragraph in the shape of its neighbours, saying the figures are held rather than absent and that showing them means a page rather than a number. Returns are an unstated scope silence. The data layer holds five returns records,
   including the 39,007 enforced-plus-voluntary total, and no reader-facing page shows any of
   them except port refusals inside a caveat, while *What this site does not cover* does not
@@ -949,7 +955,7 @@ have made "three" wrong.
     source moved to ONS Table 9 where both components are printed in one table rather than to the
     Migration Observatory briefing, which prints no digits at all.
 
-    **One loose thread, and it is wording rather than data. **DECIDED 4 August 2026, call 25: leave it. Both readings are defensible, no claim page renders a grade, and no reader meets the two side by side. NO CHANGE.** `content/claims/nineteen-per-cent-born-abroad.md`
+    **One loose thread, and it is wording rather than data. **DECIDED 4 August 2026, call 25: leave it. REVERSED THE SAME DAY ON REFUTED EVIDENCE AND APPLIED (PR #129): ONS accredits the England and Wales and Northern Ireland statistics in its census-based UK release and states that the Scotland, Great Britain and UK ones have "just Official Statistics status, without accreditation", so the premise that the census is accredited does not hold for the UK figure this site publishes. Corrected in seven rendered places, one more than the six first reported, the missed one being the glossary's foreign-born entry. Three other uses are correct and were left: the ONS mid-2024 population and the Home Office immigration statistics are accredited.** `content/claims/nineteen-per-cent-born-abroad.md`
     calls this "the last accredited figure" and "the accredited ... figures", and the grade is now
     `calculated`. Both are defensible, because the census is accredited and the grade describes this
     site's relationship to the number rather than the census's status, and no claim page renders a
