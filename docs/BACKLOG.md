@@ -68,37 +68,43 @@ first act.
    figure on those six pages beside what the data layer holds, and leaves the checkboxes
    unticked. It carries no findings and no severities, deliberately. **The verdicts are [you]**,
    and are all that is left of this item.
-3. **GATE. The reader-facing wording batch, taken in one sitting**: everything under A4 and R1 below,
-   plus the two sources-page wording bullets at the end of *Scoped, not built* section 6. All
-   **[you]** calls; applying what is decided is **[me]**. Every one is cheaper before the site has
-   readers, and since 4 August 2026 every one blocks launch.
-4. **GATE. The decisions that change what launch publishes**: whether `.netlify.app` is the launch
-   domain, the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact route
-   that is not a GitHub account, whether a fourth limit is published and which, whether the
+3. **GATE. The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
+   below, plus the two sources-page wording bullets at the end of *Scoped, not built* section 6.
+   All **[you]** calls; applying what is decided is **[me]**. Every one is cheaper before the
+   site has readers, and since 4 August 2026 every one blocks launch.
+4. **GATE. The decisions that change what launch publishes**: whether `.netlify.app` is the
+   launch domain, the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
+   route that is not a GitHub account, whether a fourth limit is published and which, whether the
    success measure goes on `/about/`, and the rest of A6. All **[you]**; the applying is
    **[me]**. The domain comes first among them, because it changes the URL anyone cites.
-5. **GATE. The UX review, U3 to U5 below.** **U1 is done** (PR #86, 2 August
-   2026) apart from the `robots.txt` half, which is in the gate above. **U2 is closed (PR #118, 4
-   August 2026), built and its format decided**, and what it is and what building it found are
-   under U2 and *Completed*. U3 is five trust items, and U4 is two **[you]** decisions that block
-   any work on them, one of which the gate above now waits on. U5 records what was considered and
-   cut, so it is not proposed again. **What is left of this item now begins at U3**, whose first
-   bullet, and the thing that now waits beside it, are gated on the open grade questions in R2
-   and A6, and whose withdrawn-claim stub needs wording from you. Its remaining bullets carry no
-   tag and neither does this sentence.
-6. **GATE. A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is done
-   (PR #98, 3 August 2026)** and nothing but **[you]** is left of it. All 17 pages were rendered
-   at five real device sizes with a genuine layout viewport. **The round found its own premise
-   wrong twice**, which is the point of it: the nav wraps to five rows at 320px rather than the
-   four the first review calculated, and the stylesheet's one width-dependent nav rule is dead,
-   being identical to the base rule it appears to override. **The costliest finding is not the
-   nav.** It is that 45% of every chart is off-screen at 320px and what is hidden is the data its
-   own summary sentence describes, which no review that reads markup could have seen. **THE
-   NAVIGATION IS DECIDED AND BUILT (PR #109, 3 August 2026)**: a `details` disclosure below 40em,
-   no client-side JavaScript, which took the header from 55% of the first screen at 320px to 19%
-   and put every page's `h1` above the fold. Wide screens were proved untouched against a build
-   of `main` rather than argued to be. It opens from a bar icon that becomes a cross, so the
-   control keeps the state the browser's own triangle showed. **The sibling precedent was not
+5. **GATE. R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source
+   observation the far-end trace produced has been taken: five records re-sourced to the
+   publisher that prints their figure, five regraded to say honestly what the figure is, and no
+   published value moved. What is left is one sentence of yours, whether
+   `content/claims/nineteen-per-cent-born-abroad.md` should stop calling a now-`calculated`
+   figure "accredited".
+6. **GATE. The UX review, U3 to U5 below.** **U1 is done** (PR #86, 2 August 2026) apart from the
+   `robots.txt` half, which is in the launch gate at the end. **U2 is closed (PR #118, 4 August
+   2026), built and its format decided**, and what it is and what building it found are under U2
+   and *Completed*. U3 is five trust items, and U4 is two **[you]** decisions that block any work
+   on them, one of which the launch gate at the end now waits on. U5 records what was considered
+   and cut, so it is not proposed again. **What is left of this item now begins at U3**, whose
+   first bullet, and the thing that now waits beside it, are gated on the open grade questions in
+   R2 and A6, and whose withdrawn-claim stub needs wording from you. Its remaining bullets carry
+   no tag and neither does this sentence.
+7. **GATE. A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is
+   done (PR #98, 3 August 2026)** and nothing but **[you]** is left of it. All 17 pages were
+   rendered at five real device sizes with a genuine layout viewport. **The round found its own
+   premise wrong twice**, which is the point of it: the nav wraps to five rows at 320px rather
+   than the four the first review calculated, and the stylesheet's one width-dependent nav rule
+   is dead, being identical to the base rule it appears to override. **The costliest finding is
+   not the nav.** It is that 45% of every chart is off-screen at 320px and what is hidden is the
+   data its own summary sentence describes, which no review that reads markup could have seen.
+   **THE NAVIGATION IS DECIDED AND BUILT (PR #109, 3 August 2026)**: a `details` disclosure below
+   40em, no client-side JavaScript, which took the header from 55% of the first screen at 320px
+   to 19% and put every page's `h1` above the fold. Wide screens were proved untouched against a
+   build of `main` rather than argued to be. It opens from a bar icon that becomes a cross, so
+   the control keeps the state the browser's own triangle showed. **The sibling precedent was not
    what settled it**: DEBT's collapse needs JavaScript, and what carries this is that the reveal
    idiom was already in this stylesheet's print block, guard and all. **THE CHART REMEDY IS
    DECIDED AND BUILT TOO (PR #113, 3 August 2026)**: each chart is rendered twice at build time
@@ -109,14 +115,14 @@ first act.
    needed, and on `/asylum/` it closed the gap between "2010" and "2012" to 4px so they read as
    one token. **U6 IS NOT COMPLETE, AND THIS ENTRY SAID IT WAS UNTIL 3 AUGUST 2026 (PR #115).**
    Its seven-table finding carries no resolution and was never addressed; it was re-measured on
-   the day this was corrected and reproduces unchanged, seven tables at 320px and two still at
-   390. **The remedy is [you]**, because scoping the one stylesheet floor involved is a partial
+   the day this was corrected and reproduces unchanged, seven tables at 320px and two still
+   at 390. **The remedy is [you]**, because scoping the one stylesheet floor involved is a partial
    rather than a fix: the worst of them, the Sources table, is 485px in a 280px box, and
    `style.css:232`'s 224px floor accounts for 99px of the 205px overflow, so scoping it the way
    PR #113 scoped the chart floor leaves the table still scrolling. Everything that would close
    it changes what a reader sees. **[me]** was the building and the measuring, and both are done.
-7. **GATE. A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
-   reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
+8. **GATE. A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only
+   the reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
    Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
    reverted regrade check, in that order, fetch first, because the other way round forces a
    fabricated quote. **The regrade check is landed (PR #99, 3 August 2026)**, ahead of the rest
@@ -142,19 +148,11 @@ first act.
    figure for both until 3 August 2026. And re-read or drop
    `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
    unchecked. **[you]**.
-8. **GATE. R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source
-   observation the far-end trace produced has been taken: five records re-sourced to the
-   publisher that prints their figure, five regraded to say honestly what the figure is, and no
-   published value moved. What is left is one sentence of yours, whether
-   `content/claims/nineteen-per-cent-born-abroad.md` should stop calling a now-`calculated`
-   figure "accredited".
-9. **GATE. The release notifier's last phase**, which is *Scoped, not built* section 3:
-   rewriting what the sources page says about automation. **[you]**
-   sign-off, no build behind it.
+9. **GATE. The release notifier's last phase**, which is *Scoped, not built* section 3: rewriting
+   what the sources page says about automation. **[you]** sign-off, no build behind it.
 10. **GATE. The eight undrafted claims**, which are *Scoped, not built* section 5: a session
-    drafts **[me]**, and the verdict and short
-    answer come to the owner before merge **[you]**. Only the pro-migration draft moves the
-    direction split off its floor.
+    drafts **[me]**, and the verdict and short answer come to the owner before merge **[you]**.
+    Only the pro-migration draft moves the direction split off its floor.
 11. **GATE. A3, the checks that do not do what the documents say they do.** It was not in this
     list until 4 August 2026, in a file whose order calls itself the single list of everything
     outstanding. Three of its bullets are **[me]**: adding `previous_value` to the audit pass
@@ -170,19 +168,21 @@ first act.
     all sixteen pages, not the ten the review read.** Worth knowing before signing: the review's
     own selection criteria failed 2.6 and 2.7, and both were kept on the site's published
     no-attribution policy, so signing backs that policy over the reviewer's criterion. **[you]**.
-13. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its guard in
-    `scripts/check-build.mjs`. **The UX review says write that file rather than only delete it**,
-    which is the one place that review touches a gate, and it is now the only part of U1 left.
-    **The sitemap it wanted beside it is built** (PR #86), so what is outstanding is the file
-    itself plus the `Sitemap:` line pointing at it, and **what it says is gated on U4's
+13. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
+    guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
+    delete it**, which is the one place that review touches a gate, and it is now the only part
+    of U1 left. **The sitemap it wanted beside it is built** (PR #86), so what is outstanding is
+    the file itself plus the `Sitemap:` line pointing at it, and **what it says is gated on U4's
     AI-crawler decision**, which is **[you]**. Then set up Search Console, which costs nothing,
     needs no JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's
     word.
-14. **Talk to five target users.** A week, in parallel with everything above, and the one
-    acceptance criterion foundation section 18 says can save the whole build. The two
-    comprehension criteria are tested by this and by nothing else. **[you]**.
-15. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change that
-    is gated on it **[me]**. It is also the published limit most worth closing.
+14. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
+    week, in parallel with everything above, and the one acceptance criterion foundation section
+    18 says can save the whole build. The two comprehension criteria are tested by this and by
+    nothing else. **[you]**.
+15. **NOT A GATE, on the same decision. A real screen reader over the pages** **[you]**, then
+    A5's `aria-describedby` change that is gated on it **[me]**. It is also the published limit
+    most worth closing.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -271,7 +271,7 @@ publications during the audit found three defects, one of them a headline figure
   **Batch 4 is done (PR #111, 3 August 2026): the reserve records of `ho-immigration-stats`**, the
   same release batch 1 traced, so the entries extend the file that already existed rather than
   opening a new one. Fifteen of its sixteen; the sixteenth is
-  `asylum/small-boat-arrivals-2026-year-to-date`, which is **[you]** in the order's item 7 and was
+  `asylum/small-boat-arrivals-2026-year-to-date`, which is **[you]** in the order's item 8 and was
   deliberately left there. The rest is batched by publisher on the same rule: `migration-observatory`
   8, then one each from `commons-library`, `skills-for-care` and `mac`.
 

@@ -132,7 +132,7 @@ passed, scoped to all sixteen pages, and deleting the robots rule.
 **A UX, SEO and trust review of the built site followed on 2 August 2026**, critiqued by two
 independent passes. It found nothing that gated launch under the gate set of the day, and the
 owner widened that set on 4 August 2026, so it does now. What it found is in
-`docs/BACKLOG.md` under *From the UX review*, entry 5 in the order, in that file the format and
+`docs/BACKLOG.md` under *From the UX review*, entry 6 in the order, in that file the format and
 not here. One item touches a gate: the review argues the launch `robots.txt` should be WRITTEN
 rather than only deleted, with a sitemap beside it, and the gate as worded says delete.
 
