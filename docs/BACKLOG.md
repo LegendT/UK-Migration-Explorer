@@ -16,9 +16,11 @@ count of this project's own state.
 
 **Consolidated 4 August 2026, from 2,729 lines.** A closed entry keeps what it was, what was
 decided, the date and the pull request; its reasoning is in that pull request, which is durable
-and does not have to be maintained here. An open entry keeps everything. The working practices
-an entry taught are in `docs/HANDOFF.md` under *Working practices that earned their place*,
-which is their one home. Nothing was deleted from The order and nothing was renumbered.
+and does not have to be maintained here. An open entry keeps everything. Nothing was deleted from
+The order and nothing was renumbered. **Nothing was moved into `docs/HANDOFF.md` either**, which
+matters when you go looking: working practices are that document's subject and many of these
+entries taught one, but a lesson that lived only in a closed entry here is now only in that
+entry's pull request. Checked, not assumed, and it is not all of them.
 
 **The frozen records, read for reasoning and never edited**: `docs/PRE-LAUNCH-AUDIT.md`,
 `docs/LAUNCH-READINESS-REVIEW.md`, `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` and
@@ -70,7 +72,9 @@ below.
    unapplied [me] work.**
 5. **CLOSED 4 August 2026 (PR #129).** R2 is closed. Every source observation the far-end trace
    produced has been taken: five records re-sourced to the publisher that prints their figure,
-   five regraded to say honestly what the figure is, and no published value moved. Its last
+   five regraded to say honestly what the figure is, and **one published value moved**, the OBR
+   lifetime contribution, from £341,000 to £297,000 when the owner chose age 82 over an age
+   nobody had chosen on record. Its last
    **[you]** question, whether `content/claims/nineteen-per-cent-born-abroad.md` should stop
    calling a now-`calculated` figure "accredited", was decided as call 25 and applied in seven
    rendered places. **The reason was stronger than a grade change**: ONS grants accreditation to
@@ -80,10 +84,10 @@ below.
    page was grepped rather than the entry believed.
 6. **GATE. The UX review, U3 to U5 below.** U1 is done (PR #86) apart from the `robots.txt`
    half, which is in the launch gate at the end. U2 is closed (PR #118), built and its format
-   decided. **What is left begins at U3**, whose first bullet, and the thing that now waits
-   beside it, are gated on the open grade questions in A6, and whose withdrawn-claim stub is
-   decided as call 28 and unapplied **[me]** work. Its remaining bullets carry no tag and
-   neither does this sentence.
+   decided. **What is left begins at U3**, whose withdrawn-claim stub is decided as call 28 and
+   unapplied **[me]** work. **Its first bullet, and the thing that waits beside it, were gated on
+   grade questions that have since closed**, so whether that gate still holds is **[you]** and is
+   stated at U3. Its remaining bullets carry no tag and neither does this sentence.
 7. **GATE. A second UX round, U6 below. The [me] half is done (PR #98, 3 August 2026)** and
    nothing but **[you]** is left of it. All 17 pages were rendered at five real device sizes with
    a genuine layout viewport. The navigation is decided and built (PR #109) and the chart remedy
@@ -103,11 +107,12 @@ below.
     **[me]**, and the verdict and short answer come to the owner before merge **[you]**. **Three
     are drafted and merged** (PRs #131, #132 and #133) with all three verdicts and short answers
     given on 4 August 2026. **Seven were draftable, not eight**: "Local areas all carry the same
-    pressure" needs per-capita local authority figures and `data/` holds none. **Four are left**,
-    and the order they are proposed in is in PR #132. **Worth deciding before they are written**:
-    the split stands at seven restrictionist to three pro-migration and only one of the four
-    remaining corrects a pro-migration claim, so the finished set lands near ten to four, above
-    the floor and disclosed on the claims page but further apart than it has been.
+    pressure" needs per-capita local authority figures and `data/` holds none. The order the rest
+    are proposed in is in PR #132. **No count is written here, in digits or in words**: `npm run
+    validate` prints the direction split, and how far the finished set would carry it is under
+    section 5, which is where a dated measurement belongs. **Worth reading that before drafting
+    another**, because only one of those remaining corrects a pro-migration claim and the split
+    is already off the floor.
 11. **CLOSED 4 August 2026 (PRs #121 and #124), and A3 is closed with it.** `main` is protected:
     the `validate` job is a required status check, `enforce_admins` is on so it binds the owner
     too, and force pushes and deletions are off. Probed rather than read: a direct push to `main`
@@ -353,8 +358,12 @@ grade decisions its first bullet waits on.
 ### U3. Trust, in the order they are worth doing
 
 - **The confidence grade renders only on home page cards.** The three theme pages, where most
-  figures live, show neither a grade nor any per-figure date. **Sequence this after the open grade
-  questions in A6**: surfacing grades more widely amplifies a wrong one.
+  figures live, show neither a grade nor any per-figure date. It was sequenced behind the open
+  grade questions in R2 and A6, on the reasoning that surfacing grades more widely amplifies a
+  wrong one. **Both of those have since closed**, A6's confidence convention in PR #79 and R2's
+  accreditation question in PR #129, and the only grade work still open is A1's call 31, a grade
+  change on two records no reader meets. **So the gate may simply have lapsed, and saying so is
+  [you]**: released, this bullet and the one below it become **[me]** work.
 
   **A second thing waits on the same gate.** The citation block does not say which figure each
   publication was cited for, and the field that would say it is `metric_name`, which appears
