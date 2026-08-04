@@ -174,8 +174,9 @@ Most of this site is driven by three releases, and the commitment is to update w
 | Ministry of Justice, tribunals statistics | Quarterly | {count:hmcts-tribunals} |
 
 The other {count-in-words:other-figures} published figures come from
-{count-in-words:other-publishers} publishers that release irregularly
-rather than on a cycle: the National Audit Office, the House of Commons Library, the
+{count-in-words:other-publishers} publishers outside those three cycles.
+Some publish annually and some publish when they publish, and none of them carries a
+promised update schedule here: the National Audit Office, the House of Commons Library, the
 Migration Observatory, the Office for Budget Responsibility, the Independent Chief Inspector
 of Borders and Immigration, ONS population estimates, and the Home Office's annual report and
 accounts. Those are re-checked when they publish, and no
