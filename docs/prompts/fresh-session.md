@@ -38,14 +38,15 @@ has been misread before.
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
 wholly gated on a decision of mine, do not stall and do not take the
-decision: bring it to me and start the next ungated item, saying which.
+decision: bring it to me and start the next item that is not waiting
+on me, saying which.
 
 Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
-taking silence as clearance. check-releases, check-sources and
-check-backlog are network checks that gate nothing, so run them by
-hand before a PR.
+taking silence as clearance. check-releases, check-sources and the
+ONLINE half of check-backlog are network checks that gate nothing, so
+run them by hand before a PR.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
