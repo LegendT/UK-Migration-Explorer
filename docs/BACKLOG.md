@@ -84,10 +84,12 @@ below.
    page was grepped rather than the entry believed.
 6. **GATE. The UX review, U3 to U5 below.** U1 is done (PR #86) apart from the `robots.txt`
    half, which is in the launch gate at the end. U2 is closed (PR #118), built and its format
-   decided. **What is left begins at U3**, whose withdrawn-claim stub is decided as call 28 and
-   unapplied **[me]** work. **Its first bullet, and the thing that waits beside it, were gated on
-   grade questions that have since closed**, so whether that gate still holds is **[you]** and is
-   stated at U3. Its remaining bullets carry no tag and neither does this sentence.
+   decided. **What is left begins at U3**, and none of it waits on another section any more. Its
+   first bullet, surfacing the confidence grade on the three theme pages, was released on 4 August
+   2026 once the grade questions it was sequenced behind had closed, and is **[me]**; its
+   withdrawn-claim stub is decided as call 28 and is **[me]**. The `metric_name` bullet beside them
+   was deliberately not released with the first and stays **[you]**. Its remaining bullets carry no
+   tag and neither does this sentence.
 7. **GATE. A second UX round, U6 below. The [me] half is done (PR #98, 3 August 2026)** and
    nothing but **[you]** is left of it. All 17 pages were rendered at five real device sizes with
    a genuine layout viewport. The navigation is decided and built (PR #109) and the chart remedy
@@ -357,22 +359,30 @@ grade decisions its first bullet waits on.
 
 ### U3. Trust, in the order they are worth doing
 
-- **The confidence grade renders only on home page cards.** The three theme pages, where most
-  figures live, show neither a grade nor any per-figure date. It was sequenced behind the open
-  grade questions in R2 and A6, on the reasoning that surfacing grades more widely amplifies a
-  wrong one. **Both of those have since closed**, A6's confidence convention in PR #79 and R2's
-  accreditation question in PR #129, and the only grade work still open is A1's call 31, a grade
-  change on two records no reader meets. **So the gate may simply have lapsed, and saying so is
-  [you]**: released, this bullet and the one below it become **[me]** work.
-
-  **A second thing waits on the same gate.** The citation block does not say which figure each
-  publication was cited for, and the field that would say it is `metric_name`, which appears
-  nowhere in the built site today and carries the grade vocabulary in its own text. Rendering it is
-  a wider surfacing of grades arriving by a side door, which is why U2 deferred it here rather than
-  building it. The place it earns most is `/common-claims/nineteen-per-cent-born-abroad/`, where
-  this site's own calculation and the Migration Observatory's figure sit in one citation block with
-  nothing saying which produced the 19%. The mechanism already resolves the records, so it is
-  small. **[me]**, gated on the same **[you]** decisions as the bullet above.
+- **The confidence grade renders only on home page cards. THE GATE ON THIS IS RELEASED,
+  4 August 2026, and it is [me] work now.** The three theme pages, where most figures live, show
+  neither a grade nor any per-figure date. It had been sequenced behind the open grade questions in
+  R2 and A6, on the reasoning that surfacing grades more widely amplifies a wrong one, and **both
+  closed without this being released**: A6's confidence convention in PR #79 and R2's accreditation
+  question in PR #129. **Measured before releasing it rather than argued**, 4 August 2026: no theme
+  page renders a grade today, the only render site being the `grade` span on a home page card, and
+  the words that look like grades on `/migration/` are ONS URLs and publication titles. Of the
+  records that reach a reader, 13 carry a derived grade, `calculated` or `estimated`, and those are
+  the ones a reader will ask about. **The one grade change still open, A1's call 31, is on two
+  records that reach no reader**, established through `publishedRefs()` rather than read off an
+  entry. `/sources-and-method/#confidence` already defines all four grades, so a grade printed on a
+  theme page has somewhere to send whoever meets it. **[me]**.
+- **The `metric_name` in the citation block is NOT released with it, and that is deliberate.** The
+  block does not say which figure each publication was cited for, and the field that would say it is
+  `metric_name`, which appears nowhere in the built site today and carries the grade vocabulary in
+  its own text: "Foreign-born share of total UK population, mid-2024 (calculated, provisional)".
+  That prints grade vocabulary inside the block a reader copies, which is a different question from
+  printing a grade beside a figure, and U2 deferred it here rather than building it. **Releasing it
+  as a by-product of the bullet above would be deciding it by omission**, so it stays **[you]**, and
+  it is worth seeing rendered before deciding. The place it earns most is
+  `/common-claims/nineteen-per-cent-born-abroad/`, where this site's own calculation and the
+  Migration Observatory's figure sit in one citation block with nothing saying which produced the
+  19%. The mechanism already resolves the records, so building it is small once it is decided.
 - **Call 28, the withdrawn-claim stub. DECIDED 4 August 2026, NOT YET APPLIED. [me].** The wording
   is settled and drafted in the session record; building it is the work. There is no withdrawn-claim
   state, and `/sources-and-method/` promises that a claim unreviewed for twelve months is taken down
