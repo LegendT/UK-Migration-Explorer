@@ -278,18 +278,26 @@ honest about, and the second short answer below is the test of it.
 
 ---
 
-## 3. The fourteen unit-qualified warnings
+## 3. The unit-qualified warnings
 
 Reported by `validate-content.mjs` on every build, deliberately as warnings rather than
-failures, because many metrics share a small value. All fourteen were reviewed on 22 and 23
-July and judged coincidences. Confirm, do not suppress.
+failures, because many metrics share a small value. **Do not read the stored judgement as a
+check.** They were reviewed on 22 and 23 July 2026 and recorded as all coincidences, and
+re-reading each in context refuted that: the refused-asylum grant and appeal rates and the
+born-abroad Census share were live metric values restated longhand, beside the very tokens
+that already cited them. Re-derive the judgement one warning at a time; do not trust the
+stored summary, least of all one saying everything is fine, and do not suppress.
+
+The count that stood in this heading is deleted rather than corrected, which is this
+project's rule for a count about its own work. It had already moved by 4 August 2026, and
+the run prints how many there are.
 
 
 ```
 Run: npm run validate, and read the warning block.
 ```
 
-- [ ] All fourteen re-confirmed as coincidence, or the real ones now cited
+- [ ] Every warning re-derived in context, as a coincidence or as a live value now cited
 
 
 ---

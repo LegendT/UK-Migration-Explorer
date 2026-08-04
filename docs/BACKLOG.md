@@ -72,9 +72,15 @@ first act.
    below, plus the two sources-page wording bullets at the end of *Scoped, not built* section 6.
    All **[you]** calls; applying what is decided is **[me]**. Every one is cheaper before the
    site has readers, and since 4 August 2026 every one blocks launch. **THE CALLS CAME BACK ON
-   4 August 2026.** Every bullet under A4 and R1 now opens DECIDED or STILL **[you]**, five are
-   applied (PR #122), and applying the rest is **[me]** work that has not started. **That makes
-   this the first item a session takes**, not item 10.
+   4 August 2026**, and every bullet under A4 and R1 now opens DECIDED or STILL **[you]**. Calls
+   2, 4 and 15 were applied with the decisions (PR #122), and calls 3, 6, 7, 9, 11, 12 and 13
+   in PR #125 the same day, where two bullets turned out to be right about the defect and
+   wrong about the remedy and now say what they turned out to be. **What is left is calls 1,
+   5, 8 and 10**, and none of them is a wording change: call 1 wants `Asy_04` recomputed
+   rather than its digits rechecked, call 5 cannot be written until the data layer holds what
+   it would state, call 8 needs a fetch and a premise reproduced before anything is built, and
+   call 10 waits on The order's item 15 by the last clause of its own decision. **That makes
+   this the first item a session takes**, not The order's item 10.
 4. **GATE. The decisions that change what launch publishes. THE DOMAIN IS DECIDED (4 August
    2026): `ukmigrationexplorer.org`**, applied in PR #118, and it came first among these because
    it changes the URL anyone cites, which the citation blocks now print as copyable text on every
@@ -644,14 +650,25 @@ Each is a sentence, and each is **[you]** because it is wording.
 - **DECIDED 4 August 2026, call 2: name the ONS grouping. APPLIED (PR #122).** The dashboard's net-migration card said the fall was "on work and care visas"; the record it cites
   is an ONS reason grouping, and `migration.json`'s own note says the two sources are not
   interchangeable.
-- **DECIDED 4 August 2026, call 3: qualify the promise now rather than wait for item 4, naming frozen historical figures as the exception. NOT YET APPLIED.** `/sources-and-method/` promises every number in a sentence is inserted from a record. The
-  unrecorded-literal report prints 31 that are not. Qualify the promise, or finish item 4 first.
+- **DECIDED 4 August 2026, call 3: qualify the promise now rather than wait for item 4, naming frozen historical figures as the exception. APPLIED (PR #125, 4 August 2026), and the premise did not reproduce.** `/sources-and-method/` promises every number in a sentence is inserted from a record. This
+  bullet said the unrecorded-literal report prints 31 that are not, and **it prints none**:
+  the ratchet reached zero on 2 August 2026 and an undeclared longhand figure is refused
+  rather than counted, so item 4 is not what the promise was waiting on. The decision still
+  held, because declared frozen historical figures are a real exception and the page names
+  them now. **What the reproduction found instead is the honest gap**, and it is on the page
+  too, under *What the checks do not establish*: the scan sees digits, comma groups and a
+  figure followed by "million" or "billion", and is blind to one spaced as "2 200 000",
+  spelled as "two million", abbreviated to "bn" or scaled by any other word, and it does not
+  read front matter at all.
 - **DECIDED 4 August 2026, call 4: cut. APPLIED (PR #122).** Whether to cut "the two longest and most pointed checks on this site both run against the
   pro-migration side" from `common-claims.njk`. **Recommended: cut.** It is true by a twenty-word
   margin, "most pointed" is unfalsifiable, and the page's credibility rests on not doing that.
-- **DECIDED 4 August 2026, call 5: state it. NOT YET APPLIED.** Whether `most-immigration-is-asylum` should state the all-immigration share, 10.8%, beside the
+- **DECIDED 4 August 2026, call 5: state it. NOT YET APPLIED, and it is not the wording change it looks like.** Whether `most-immigration-is-asylum` should state the all-immigration share, 10.8%, beside the
   non-EU+ 14%. The smaller figure strengthens the correction and closes a denominator gap.
-- **DECIDED 4 August 2026, call 6: note 4 only, which is a limit on the figure the page argues from; note 5 stays in the record. NOT YET APPLIED.** Whether `Asy_D04`'s notes 4 and 5 belong on the refused-asylum claim page as well as in the
+  **Checked 4 August 2026: no record in the data layer holds that figure**, and the page's own
+  promise is that a number in a sentence comes from one. So applying this means a record and
+  an evidence entry, and it belongs with call 8 rather than with the sentences.
+- **DECIDED 4 August 2026, call 6: note 4 only, which is a limit on the figure the page argues from; note 5 stays in the record. APPLIED (PR #125, 4 August 2026)**, in Source notes beside the page's other publisher caveats, saying the cohort outcomes are as at January 2026 and that the bulletin's April date is not followed. Note 5 is not on the page and no direction is inferred from it. Whether `Asy_D04`'s notes 4 and 5 belong on the refused-asylum claim page as well as in the
   record.** Audit finding 0A-ter left this **[you]**, calling it a judgement about how much caveat a
   reader can carry rather than a correction, and **it existed only in the frozen audit until
   31 July 2026**, which is the way work falls out that this file exists to stop. The record half
@@ -740,32 +757,47 @@ item is also cheaper before the site has readers, which was always the argument 
 
 Each is **[you]** because it is wording, a grade or a sourcing call.
 
-- **DECIDED 4 August 2026, call 7: say so on the page rather than un-nest, because the table is the clearer presentation and the honesty cost is one clause. NOT YET APPLIED.** The costs page presents the £2.1bn hotel figure inside the NAO's £3.4bn ("These figures
+- **DECIDED 4 August 2026, call 7: say so on the page rather than un-nest, because the table is the clearer presentation and the honesty cost is one clause. APPLIED (PR #125, 4 August 2026)**, as a paragraph above the table saying the nesting is this site's own construction, that the two totals are the NAO's and the hotel figure the Home Office's, and that the hotel figure is lifted out of a larger support total of the accounts' own. The costs page presents the £2.1bn hotel figure inside the NAO's £3.4bn ("These figures
   are nested, not parallel") while the record's own notes say the nesting is this site's
   construction and neither publisher places one figure inside the other. Say so on the page,
   or un-nest the table.
 - **DECIDED 4 August 2026, call 8: re-source to the census release rather than regrade, so the grade becomes true as defined. MOVES A SOURCE, so it needs an evidence entry. NOT YET APPLIED.** The Born abroad card grades a Migration Observatory briefing figure `official`, a grade
   the sources page defines as "taken directly from an official published release". The
   underlying figure is the 2021/22 Census; the cited source is a university briefing. Regrade,
-  or re-source the record to the census release it summarises.
-- **DECIDED 4 August 2026, call 9: declare rather than surface. Adding five returns records is a content project; one sentence in *What this site does not cover* closes the principle now and surfacing stays available. NOT YET APPLIED.** Returns are an unstated scope silence. The data layer holds five returns records,
+  or re-source the record to the census release it summarises. **Reproduce the premise before
+  building this one.** Its sibling `population/foreign-born-population-of-the-uk` records that
+  nobody publishes the UK figure as one number: ONS prints the two census days as separate
+  per-nation rows and its own freedom-of-information response calls a UK non-UK-born estimate
+  an ambition, in the future tense. If the same holds for the share, re-sourcing would point
+  the record at a release that does not contain the figure, which is the defect A1 exists to
+  find. Establish that first, and if it holds, the choice this bullet offers is between
+  regrading and nothing.
+- **DECIDED 4 August 2026, call 9: declare rather than surface. Adding five returns records is a content project; one sentence in *What this site does not cover* closes the principle now and surfacing stays available. APPLIED (PR #125, 4 August 2026)**, as a *Returns and removals* paragraph in the shape of its neighbours, saying the figures are held rather than absent and that showing them means a page rather than a number. Returns are an unstated scope silence. The data layer holds five returns records,
   including the 39,007 enforced-plus-voluntary total, and no reader-facing page shows any of
   them except port refusals inside a caveat, while *What this site does not cover* does not
   name the omission. The site's own published principle is that scope silence is
   indistinguishable from bias. Surface them or declare them; the current state is the one
   option that principle rules out.
-- **DECIDED 4 August 2026, call 10: qualify the accessible name, not the visible heading. The visible bare claim is the design; a screen reader user meeting the site assert it is the defect. Worth testing under the order's item 15 before applying. NOT YET APPLIED.** Every claim page h1 is the bare false claim, so a screen reader user navigating by
+- **DECIDED 4 August 2026, call 10: qualify the accessible name, not the visible heading. The visible bare claim is the design; a screen reader user meeting the site assert it is the defect. Worth testing under the order's item 15 before applying. NOT YET APPLIED, AND DELIBERATELY SO: a session read that last clause on 4 August 2026 as the deferral it is and left the call for after item 15, rather than applying it untested.** Every claim page h1 is the bare false claim, so a screen reader user navigating by
   headings, or hearing the claims index read as a links list, meets the site asserting the
   sentence it corrects. The browser tab already says "Claim checked:"; whether the same
   qualifier belongs in the visible heading or the accessible name is a design call about the
   card.
-- **DECIDED 4 August 2026, call 11: add the non-EU+ entry rather than soften the sentence. The definition already exists word for word on three pages and wants one anchor. NOT YET APPLIED.** The 404 page says the glossary "defines every term the site uses", and non-EU+ has no
+- **DECIDED 4 August 2026, call 11: add the non-EU+ entry rather than soften the sentence. The definition already exists word for word on three pages and wants one anchor. APPLIED (PR #125, 4 August 2026)**, under *How the counting works*, and the two prose pages that use the term link to it. **The "word for word on three pages" is not quite what is there**: the full definition naming the five countries is on the claim page's short answer only, and `migration.njk` and the record's own notes carry the short form, "a nationality grouping, not a route". Three sites, three wordings, and the entry is now the one anchor. The 404 page says the glossary "defines every term the site uses", and non-EU+ has no
   entry while appearing on four pages. The entry is the better fix than softening the
   sentence: the definition already exists word for word on three pages and wants one anchor.
-- **DECIDED 4 August 2026, call 12: change the label to what the briefing supports rather than soften the page. TOUCHES RECORDS. NOT YET APPLIED.** The two fee records assert `period_label` "2024" while the costs page beside them says
-  the cited briefing does not state which twelve months it covers. This is the record half of
-  audit finding K4, whose prose half landed with the review.
-- **DECIDED 4 August 2026, call 13: correct the instruction. Three of those warnings were live values restated longhand, and it is the template future reviews work through. NOT YET APPLIED.** `docs/PRE-PUBLICATION-REVIEW.md` section 3 still instructs a reviewer that the
+- **DECIDED 4 August 2026, call 12: change the label to what the briefing supports rather than soften the page. TOUCHES RECORDS. APPLIED (PR #125, 4 August 2026) AS THE OPPOSITE EDIT, because the premise had inverted.** This bullet says the two fee records assert `period_label` "2024" while the costs page beside them says
+  the cited briefing does not state which twelve months it covers, and it is the record half of
+  audit finding K4, whose prose half landed with the review. **Both records had already been
+  fixed**, on 3 August 2026 in batch 3 of A1 (PR #104): re-sourced from the Commons Library to
+  the Home Office annual accounts and relabelled `financial year 2024-25`. Doing what this
+  bullet prescribes was a no-op that would have read as a fix in the diff. **The live defect
+  was the page**, which still told a reader both figures came from a Commons Library briefing
+  of unstated period, false on both halves, so the page was corrected to the records rather
+  than the records to the page. The period objection is gone with it, the fee figures now
+  covering the same financial year as the spending above; what survives, and is why the page
+  still leaves them out, is that they are immigration-wide rather than asylum figures.
+- **DECIDED 4 August 2026, call 13: correct the instruction. Three of those warnings were live values restated longhand, and it is the template future reviews work through. APPLIED (PR #125, 4 August 2026)**, and the section now tells a reviewer to re-derive the judgement one warning at a time rather than confirm a stored one. Its count went too, deleted rather than corrected, having already moved once. `docs/PRE-PUBLICATION-REVIEW.md` section 3 still instructs a reviewer that the
   unit-qualified warnings were all reviewed as coincidences, a judgement the handoff records
   as refuted: three were live values restated longhand. It is the template future reviews work
   through, so correcting the instruction is a change to a document the owner signs.

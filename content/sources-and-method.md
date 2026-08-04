@@ -81,7 +81,13 @@ Three consequences worth stating plainly:
   data sites to be worth designing against.
 - **Prose cites records, it does not restate them.** Where a number appears in a sentence
   on this site, it is inserted from the record when the page is built. Updating a figure
-  updates every sentence that quotes it, chart summaries included.
+  updates every sentence that quotes it, chart summaries included. **One kind of number is
+  written out instead, and it is declared rather than tolerated:** a figure that was true
+  when it was published and has since been superseded, where the point of the sentence is
+  that it moved. The two earlier net migration estimates under *Estimates get revised* are
+  exactly that. A record holds what a figure is now, so it cannot hold what a figure used to
+  be; each frozen number is listed in its own page's front matter with the reason it is
+  frozen, and the build refuses an undeclared one.
 - **The rules are enforced automatically**, not by remembering them. A figure missing its
   source, a date that does not fall within the period it claims, a range presented as a
   single number, two versions of the same measure, a chart bar with a number typed into it,
@@ -109,6 +115,12 @@ for more than it does is worse than no check at all:
 - **Values under 100 are reported for review rather than refused.** Too many measures share
   a small value for a match to mean much, so those are flagged on every build and looked
   at, not blocked.
+- **The scan for written-out figures reads one set of forms, not every form.** It sees a
+  number in digits, grouped with commas, or followed by the word "million" or "billion". It
+  does not see one spaced as "2 200 000", spelled as "two million", abbreviated to "bn", or
+  scaled by any other word, and it does not read front matter, so a rounded figure in a
+  claim's short answer passes it. The rule above holds for what the scan can see; beyond
+  that it rests on editing.
 - **No real screen reader has been run over these pages.** The accessibility checks here are
   an automated audit against WCAG 2.2 AA on every page, plus reading the accessibility tree
   that assistive technology actually consumes. That is not the same as someone listening to a
@@ -233,6 +245,14 @@ it. We would rather say that than publish a number we cannot stand behind.
 **Local authority figures.** Not yet covered. Local data needs per-capita denominators and
 careful handling, and doing it badly produces something closer to a targeting tool than an
 explainer.
+
+**Returns and removals.** Not yet covered, and the figures are held rather than absent. The
+data layer records enforced, voluntary and asylum-related returns for the year ending March
+2026, and no page shows any of them; the only returns figure a reader meets here is the
+port-refusal count in the caveat warning against adding it to a total this site does not
+print. Showing them means a page setting out what a return counts and why the categories do
+not nest, rather than a number placed beside the asylum figures. Named here because a figure
+held and not shown is the same silence as one not held.
 
 **What immigration policy should be.** Never covered. That is a question about values, and
 this site has no standing to answer it.
