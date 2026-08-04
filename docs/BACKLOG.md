@@ -26,9 +26,12 @@ Everything still outstanding from it is in this file, under *From the pre-launch
 `docs/PRE-LAUNCH-AUDIT.md` is now a findings record like `verification.txt`, read for reasoning and
 never edited.
 
-**The prompt for a fresh session is generated to `docs/prompts/fresh-session.md`** from the
+**The prompt for a fresh session is copied to `docs/prompts/fresh-session.md`** from the
 handoff, so it can be copied without opening a long document. The handoff remains its source
-of truth. It sat between the two paragraphs above until 31 July, so "It closed" read as though the
+of truth. **This paragraph said "generated" until 4 August 2026 and nothing generates it**:
+no script writes that file, `check-backlog.mjs` only confirms the path exists, and the two
+had silently diverged by two clauses when it was checked. Diff the file against the handoff's
+block rather than trusting either. It sat between the two paragraphs above until 31 July, so "It closed" read as though the
 prompt had.
 
 ## The order

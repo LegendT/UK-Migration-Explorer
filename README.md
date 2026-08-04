@@ -112,7 +112,7 @@ content/                Eleventy input
   sources-and-method.md   Catalogue, data contract, limits, caveats, corrections, scope
   style-guide.md          Precision rules separated from value judgements
   about.md                Who runs it, who pays, what it is not
-  claims/                 Seven claim checks, citing live figures by token
+  claims/                 The claim checks, citing live figures by token
   _includes/              base.njk, and claim.njk for claim pages
   _data/site.js           Name, strapline, navigation, nine items rendered as a disclosure below 40em
   assets/style.css        One stylesheet, including the print rules
@@ -325,9 +325,10 @@ limit left to disclose.
 
 ## Content
 
-`content/claims/` holds the claim checks and `content/glossary.md` the definitions. Seven
-claims are drafted; the candidate set of fifteen is specified in `docs/foundation.md`
-section 8.5.3.
+`content/claims/` holds the claim checks and `content/glossary.md` the definitions. The
+candidate set of fifteen is specified in `docs/foundation.md` section 8.5.3; how many of them
+are drafted is what `content/claims/` holds and what `npm run validate` prints as the direction
+split, and it is not written here because it moves.
 
 **Every chart and every claim card carries a "How to cite this" block**, added on 4 August 2026.
 It gives the publication, its edition, its tables, the URL as its own link text so that
