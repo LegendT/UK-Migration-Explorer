@@ -8,6 +8,7 @@ short_answer: >-
   allowed appeal is also not the same as refugee recognition.
 direction: pro-migration
 error_type: appeal success rate generalised to all refusals
+mirror_of: a-refusal-means-the-claim-was-obviously-false
 last_reviewed: 2026-07-27
 review_due: 2027-07-27
 figures:
@@ -96,11 +97,11 @@ period, is not a valid comparison, and it is the comparison the claim implicitly
 
 ## The mirror claim fails too
 
-"A refusal means the claim was obviously false" is wrong for the same underlying reason. A
-substantial share of refused claims later end differently, which is difficult to reconcile
-with the idea that a refusal settles the question. Both claims take a real and partial effect and
-inflate it into a total one. This site does not yet have a separate check for that mirror
-claim, so it is corrected here rather than on a page of its own.
+"[A refusal means the original claim was obviously false](/common-claims/a-refusal-means-the-claim-was-obviously-false/)"
+is wrong for the same underlying reason, and it now has a page of its own. A substantial
+share of refused claims later end differently, which is difficult to reconcile with the idea
+that a refusal settles the question. Both claims take a real and partial effect and inflate
+it into a total one.
 
 ## What follows from the delay
 
