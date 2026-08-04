@@ -1,6 +1,6 @@
 {
   "theme": "Net migration and visas",
-  "lastUpdated": "2026-08-02",
+  "lastUpdated": "2026-08-04",
   "note": "Net migration figures come from ONS Long-term international migration (year ending December 2025, provisional, published 21 May 2026). Visa-grant figures come from Home Office Immigration system statistics (year ending March 2026). The two sources are not interchangeable: ONS counts people staying 12 months or more; the Home Office counts visas granted, which is always higher. ONS reason splits are for non-EU+ arrivals (inflow), not net migration by reason.",
   "metrics": [
     {
@@ -331,6 +331,22 @@
       "retrieved_date": "2026-06-17",
       "notes": "ASYLUM APPLICANTS ONLY, 14% of non-EU+ immigration. Humanitarian is a separate ONS category, about 6%, and is NOT in this figure; family is about 7%. Labelling this bar or row 'asylum and humanitarian' understates the combined category and misstates this one. Includes those who claimed asylum after regular arrival and via illegal entry.",
       "confidence_level": "provisional"
+    },
+    {
+      "id": "asylum-related-share-of-all-immigration",
+      "metric_name": "Asylum applicants as a share of all long-term immigration (calculated)",
+      "value": 10.8,
+      "unit": "%",
+      "date": "2025-12-31",
+      "period_label": "year ending December 2025",
+      "geography": "United Kingdom",
+      "source_name": "Calculated from ONS Long-term international migration, provisional: year ending December 2025 (Tables 1 and 4b)",
+      "source_id": "ons-ltim",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-08-04",
+      "notes": "Calculated by this project: 88,000 asylum-related long-term immigration, ONS Table 4b, divided by 813,000 total long-term immigration, ONS Table 1, both provisional and both year ending December 2025, is 10.82%, shown here as 10.8%. ONS PUBLISHES ITS REASON BREAKDOWN AGAINST NON-EU+ ARRIVALS ONLY and states no share of all immigration, which is why this is derived rather than read off a release. Both inputs are rounded to the nearest thousand by ONS and the share holds at 10.8% across the whole rounding interval, 10.76% to 10.89%, so the rounding does not reach the published digit. ASYLUM APPLICANTS ONLY, on the same basis as the numerator: humanitarian is a separate ONS category and is not in it. The companion figure is the 14% share of non-EU+ arrivals, the same numerator over a smaller denominator, which is the framing ONS itself uses.",
+      "confidence_level": "calculated"
     },
     {
       "id": "sponsored-study-visas-granted",

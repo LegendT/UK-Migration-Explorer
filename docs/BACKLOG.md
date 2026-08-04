@@ -79,10 +79,12 @@ first act.
    #127), recomputed from `Asy_04`'s own rows, which also caught a false superlative beside it.
    Call 8 was reproduced and handed back (PR #126)**: its premise does not hold, and the search
    that killed it turned up an ONS UK-level release nobody here knew about, so the remedy is
-   yours. **What is left is calls 5, 8 and 10.** Call 5 is the only one a session can take, and
-   it cannot be written until the data layer holds what it would state; call 8 is yours; call 10
-   waits on The order's item 15 by the last clause of its own decision. **That makes this the
-   first item a session takes**, not The order's item 10.
+   yours. **Call 5 is applied too (PR #128)**, as a record and an evidence entry rather than a
+   sentence, since nothing in the data layer held the figure it states. **What is left is calls 8
+   and 10, and both are yours**: call 8 by the paragraph above, call 10 by the last clause of its
+   own decision, which sends it behind The order's item 15. **So there is no [me] work left in
+   this item, and the next item a session takes is The order's item 10**, the eight undrafted
+   claims.
 4. **GATE. The decisions that change what launch publishes. THE DOMAIN IS DECIDED (4 August
    2026): `ukmigrationexplorer.org`**, applied in PR #118, and it came first among these because
    it changes the URL anyone cites, which the citation blocks now print as copyable text on every
@@ -683,11 +685,17 @@ Each is a sentence, and each is **[you]** because it is wording.
 - **DECIDED 4 August 2026, call 4: cut. APPLIED (PR #122).** Whether to cut "the two longest and most pointed checks on this site both run against the
   pro-migration side" from `common-claims.njk`. **Recommended: cut.** It is true by a twenty-word
   margin, "most pointed" is unfalsifiable, and the page's credibility rests on not doing that.
-- **DECIDED 4 August 2026, call 5: state it. NOT YET APPLIED, and it is not the wording change it looks like.** Whether `most-immigration-is-asylum` should state the all-immigration share, 10.8%, beside the
+- **DECIDED 4 August 2026, call 5: state it. APPLIED (PR #128, 4 August 2026), and it was not the wording change it looked like.** Whether `most-immigration-is-asylum` should state the all-immigration share, 10.8%, beside the
   non-EU+ 14%. The smaller figure strengthens the correction and closes a denominator gap.
-  **Checked 4 August 2026: no record in the data layer holds that figure**, and the page's own
-  promise is that a number in a sentence comes from one. So applying this means a record and
-  an evidence entry, and it belongs with call 8 rather than with the sentences.
+  **No record held that figure**, and the page's own promise is that a number in a sentence
+  comes from one, so this took a record and an evidence entry rather than a sentence.
+  `migration/asylum-related-share-of-all-immigration` is graded `calculated`, ONS publishing its
+  reason breakdown against non-EU+ arrivals only and stating no share of all immigration, and it
+  sits after the table's own caveats rather than inside them. **The rounding was checked as an
+  interval rather than at a point**: both inputs are rounded to the nearest thousand by ONS, so
+  the true share lies anywhere in 10.756% to 10.892%, all of which rounds to the published digit.
+  Both quotes were lifted from the workbook by script, asserting the column label and the value
+  before writing.
 - **DECIDED 4 August 2026, call 6: note 4 only, which is a limit on the figure the page argues from; note 5 stays in the record. APPLIED (PR #125, 4 August 2026)**, in Source notes beside the page's other publisher caveats, saying the cohort outcomes are as at January 2026 and that the bulletin's April date is not followed. Note 5 is not on the page and no direction is inferred from it. Whether `Asy_D04`'s notes 4 and 5 belong on the refused-asylum claim page as well as in the
   record.** Audit finding 0A-ter left this **[you]**, calling it a judgement about how much caveat a
   reader can carry rather than a correction, and **it existed only in the frozen audit until
