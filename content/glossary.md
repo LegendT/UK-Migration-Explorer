@@ -343,8 +343,11 @@ who arrived in 1975 is counted. It tells you nothing about current immigration l
 
 **A gap now partly filled.** ONS discontinued its annual survey-based country-of-birth series
 in October 2022. It has since published a provisional rolled-forward estimate for mid-2024, an
-official statistic in development rather than an accredited count, so a later figure now exists.
-See the claim check for the number and its caveats.
+official statistic in development, so a later figure now exists. **Neither it nor the
+census-based figure above is accredited at UK level**: ONS accredits the England and Wales and
+Northern Ireland statistics in its census-based UK release and states that the UK ones have
+"just Official Statistics status, without accreditation". See the claim check for the number
+and its caveats.
 
 ### Foreign national, or non-British citizen {#foreign-national}
 

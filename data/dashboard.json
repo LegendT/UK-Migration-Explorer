@@ -34,7 +34,7 @@
       "id": "foreign-born-share",
       "ref": "population/foreign-born-share-of-total-uk-population",
       "shortLabel": "Born abroad",
-      "whatThisMeans": "About 10.7 million people, or roughly one in six residents, were born abroad at the 2021/22 Census, up from about 9% in 2004. ONS's provisional rolled-forward estimate put the share at about {{population/foreign-born-share-mid-2024}}% by mid-2024, but that is a statistic in development, not an accredited count."
+      "whatThisMeans": "About 10.7 million people, or roughly one in six residents, were born abroad at the 2021/22 Census, up from about 9% in 2004. ONS's provisional rolled-forward estimate put the share at about {{population/foreign-born-share-mid-2024}}% by mid-2024, but that is a statistic in development. Neither is accredited: no UK-wide foreign-born figure is."
     },
     {
       "id": "asylum-system-cost",
