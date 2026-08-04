@@ -80,8 +80,8 @@ the observer.
 every merge base, "first commit" and branch-containment claim made inside a shallow clone as
 unverified. Nothing needs preserving and no branch needs guarding.
 
-17 pages build from a governed data layer of metric records in four theme files, plus **four time
-series** whose points are carried in blocks: a primary array, and companion blocks nested one
+The site's pages build from a governed data layer of metric records in theme files, plus time
+series whose points are carried in blocks: a primary array, and companion blocks nested one
 level deeper. **Which companions exist is `COMPANION_BLOCKS` in `lib/series.mjs` and not this
 sentence**, which named two of the three until 2 August 2026 and so omitted the sixteen points in
 `asylumBacklogTimeseries.json`'s `alternate_basis`, which is the undercount the paragraph below
@@ -133,8 +133,7 @@ not have**, written while fixing instances of exactly that.
 **Both glossary launch gates closed on 2 August 2026, PR #83**, on wording the owner decided. The
 Grant rate entry stopped quoting the cohort range altogether, which was what removed the fifth site
 of a sentence corrected at four others; the option of correcting it in place would have left the
-fifth site standing. Two launch gates remain and neither is a defect: recording the review as
-passed, scoped to all sixteen pages, and deleting the robots rule.
+fifth site standing.
 
 **A UX, SEO and trust review of the built site followed on 2 August 2026**, critiqued by two
 independent passes. It found nothing that gated launch under the gate set of the day, and the
@@ -143,9 +142,8 @@ owner widened that set on 4 August 2026, so it does now. What it found is in
 not here. One item touches a gate: the review argues the launch `robots.txt` should be WRITTEN
 rather than only deleted, with a sitemap beside it, and the gate as worded says delete.
 
-**The sitemap half of that is built, PR #86**, so what is left of it is the `robots.txt` file
-itself and the `Sitemap:` line inside it, and what that file SAYS waits on the AI-crawler
-decision the backlog carries as U4. The same pull request gave every linkable section heading an
+**The sitemap half of that is built, PR #86.** What remains of U1, and what the file should say,
+is the backlog's to state, under the launch gate and U4. The same pull request gave every linkable section heading an
 id, where two pages of seventeen had any before it. **Not every heading**, deliberately: the
 transform skips the page `h1`, whose link is the URL, a heading inside a `<figcaption>`, whose
 `<figure>` already carries an author-chosen id, and a derived id already taken on that page.
@@ -419,11 +417,11 @@ believed: an isolated missing `lang` took it to 15/16 and named the rule, a fail
 value took it to 0/16. It flagged none of the five accessibility defects found by hand,
 which is the point: it is a floor.
 
-**Three known gaps are published** on the sources page under *What the checks do not establish*:
-the prose one, the sub-100 review and the screen reader. Candidates for a fourth are in
-`docs/BACKLOG.md`, and which, if any, earns the space is an editorial decision there. Do not take
-a count from here: this sentence said "four" while the backlog listed three candidates and the
-page published three limits. **One candidate was withdrawn on 2 August 2026 by being fixed rather
+**Known gaps are published** on the sources page under *What the checks do not establish*, and
+that page is the list. Candidates for more are in `docs/BACKLOG.md`, and which, if any, earns the
+space is an editorial decision there. Do not take a count or an enumeration from here: this
+sentence has now miscounted the page twice in opposite directions, saying "four" against three
+and then "three" against five, the second time in a session that had itself added two of them. **One candidate was withdrawn on 2 August 2026 by being fixed rather
 than disclosed**: that a figure the data layer never recorded is reported and never refused. It is
 refused now, so there is no limit to publish. What is left unscanned is narrower and the backlog
 says what it is.
@@ -731,8 +729,8 @@ is already here to adding a neighbour beside it.
 - **A property checked on one page is a claim about that page.** A UX review on 2 August asserted
   six things absent from the site, and most were present on pages it had not opened: a per-page
   currency line in every footer, ids on every chart figure, a checked date on the claims index.
-  The site builds 17 pages and the scan that answers a question about all of them has to read all
-  of them. This is the same error as truncating a file, one level up.
+  The build prints how many pages the site has, and the scan that answers a question about all of
+  them has to read all of them. This is the same error as truncating a file, one level up.
 
 - **Find things the way that can show you are wrong, and compare two sets in BOTH directions.**
   Four figures held twice were found by matching equal values, which by construction can only
@@ -1120,7 +1118,7 @@ Each is cheap to reverse.
    two-thirds rule that has been removed and a second reader who does not exist. It now records
    what is real and says plainly that nothing replaced either. Whether to have one is the
    owner's call.
-3. **The MVP cap counts source releases, not figures.** Four releases, currently three.
+3. **The MVP cap counts source releases, not figures.** Four releases.
 4. **No share image.** The claim card already carries period, source and date, and a screenshot
    of it is what people share.
 5. **No abandonment notice.** A static site cannot publish a notice saying it has stopped being
@@ -1154,7 +1152,7 @@ validator guards.
   `<button class="site-nav__toggle">` driven by `src/assets/js/nav.js` and shown only under a
   `.js` class, so without JavaScript it is hidden and DEBT's nav renders flat exactly as this one
   does; its `<details>` is a sub-menu device for nav items declaring `children`, which this site's
-  nine flat items do not have. `<details>` and `<summary>` can carry a whole nav with no
+  flat items do not have. `<details>` and `<summary>` can carry a whole nav with no
   JavaScript and that is still worth doing. **DEBT is a precedent for grouping a hierarchy, not a
   working precedent for a no-JavaScript mobile nav**, and describing it as one for days is what a
   sibling idea recorded from memory rather than from the file looks like. It also scales the root
@@ -1220,8 +1218,21 @@ claim about itself.
   `npm run a11y` reported seventeen of seventeen with a new page absent from `.pa11yci.json`, which
   is hand-maintained and does not follow the sitemap. It happened three times in one session.
 
-Both name a dated incident rather than reciting a rule, which is the test this section sets: a
-duplicate that cannot drift costs a line, a duplicate that can drift costs a session.
+**A second model read both against this contract the same day and cut into both clauses**, which is
+the fourth time an outside reading has trimmed this block and the reason the practice is budgeted
+for rather than treated as a last check. The recommendation clause carried an imperative, "test the
+mechanism of any option before you recommend it", which is a second copy of a bullet under
+*Deciding what to build*; the imperative is gone and the dated claim remains. The a11y clause said
+a11y "takes" its URLs from a hand-written list, a live claim about `.pa11yci.json` that goes
+silently false the day the list is derived from the sitemap, which the handoff's own new bullet
+invites; it now says "took". **And it found a third thing that was not today's**: the same
+paragraph sent a session to read a CI step log for the online half of `check-backlog`, which runs
+in no workflow at all, so there is no log to read. The paragraph now separates the two that do run
+as report-only steps from the one that does not run.
+
+Both surviving clauses name a dated incident rather than reciting a rule, which is the test this
+section sets: a duplicate that cannot drift costs a line, a duplicate that can drift costs a
+session.
 
 **That fix was applied on 2 August 2026, and this is the record so it is not undone by someone
 being helpful.** The block carried a fifth thing, a paragraph beginning "ONE DELIVERABLE PER
@@ -1346,9 +1357,8 @@ TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
 has been misread before. Reproduce the item's premise before building what
-it prescribes, and test the mechanism of any option before you recommend
-it: a recommendation is a claim about what can be built, and one taken on
-trust cost a reversal on 4 August 2026.
+it prescribes: a recommendation is a claim about what can be built, and one
+taken on trust cost a reversal on 4 August 2026.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
@@ -1360,11 +1370,13 @@ Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
 taking silence as clearance, and read the COUNT in a pass line against
-what the build printed: a11y takes its URLs from a hand-written list and
+what the build printed: a11y took its URLs from a hand-written list and
 reported 17 of 17 with a new page missing from it. check-releases,
 check-sources and the ONLINE half of check-backlog are network checks
-that gate nothing, so run them by hand before a PR, and read their step
-logs in CI rather than the green tick: they report and never gate.
+that gate nothing, so run them by hand before a PR. The first two run in
+CI as report-only steps, so read their step logs rather than the green
+tick: they report and never gate. The online half of check-backlog runs
+in no workflow at all.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with

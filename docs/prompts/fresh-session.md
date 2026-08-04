@@ -34,9 +34,8 @@ TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
 has been misread before. Reproduce the item's premise before building what
-it prescribes, and test the mechanism of any option before you recommend
-it: a recommendation is a claim about what can be built, and one taken on
-trust cost a reversal on 4 August 2026.
+it prescribes: a recommendation is a claim about what can be built, and one
+taken on trust cost a reversal on 4 August 2026.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
@@ -48,11 +47,13 @@ Everything must pass, and run these rather than assume: npm run validate,
 npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
 taking silence as clearance, and read the COUNT in a pass line against
-what the build printed: a11y takes its URLs from a hand-written list and
+what the build printed: a11y took its URLs from a hand-written list and
 reported 17 of 17 with a new page missing from it. check-releases,
 check-sources and the ONLINE half of check-backlog are network checks
-that gate nothing, so run them by hand before a PR, and read their step
-logs in CI rather than the green tick: they report and never gate.
+that gate nothing, so run them by hand before a PR. The first two run in
+CI as report-only steps, so read their step logs rather than the green
+tick: they report and never gate. The online half of check-backlog runs
+in no workflow at all.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
