@@ -89,8 +89,8 @@ first act.
    that is left of it: [you].** It is under every chart and inside every claim card, derived from
    the publications each figure actually draws rather than typed beside them, so a chart cannot
    cite a source its own data does not name. **Building it found its own first key wrong**: keyed
-   on the URL, one ONS bulletin answered for three records that name it three different ways, and
-   a claim page said a figure was read where it was not. U3 is five trust items, and U4
+   on the URL, one ONS bulletin answered for every record that names it, however differently they
+   name it, and a claim page said a figure was read where it was not. U3 is five trust items, and U4
    is two **[you]** decisions that block any work on them, one of which the gate above now
    waits on. U5 records what was considered and cut, so it is not proposed again.
 9. **A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is done
@@ -988,15 +988,44 @@ calculation from it and a population estimate: the first answered for all three 
 figure was read where it was not. Keyed on the name AND the URL, two fields still differed inside a
 group and are merged rather than taken from whichever record came first. Tables, because
 `/common-claims/refused-asylum-seekers-are-eventually-recognised/` cites FIA_4 and FIA_3 with T_3
-under one name. And the checked date, where the EARLIEST wins: three records on
+under one name. And the checked date, where the EARLIEST wins: records on
 `/common-claims/everyone-in-asylum-accommodation-arrived-recently/` share a name and a URL and were
-checked on three dates, and the latest would claim a more recent verification than happened.
+checked on different dates, and the latest would claim a more recent verification than happened.
 
-**Two guards, both probed rather than read.** A table a source names cannot be lost on the way
-through the deduplication, asserted against the rendered text so a change to the key, the merge or
-the printing fails the build. And `check-build.mjs` now resolves a link written with this site's own
-origin: until this block there were none but the canonical tag, and a renamed chart id would have
-broken precisely the URL the block exists to hand over while every other link on the page resolved.
+**A second model read this branch and found two false claims, each of which this branch had written
+in three places, and one evasion of this file's own count rule.** Recorded rather than quietly
+corrected, because the shape is this project's oldest defect and the first of them was inherited
+rather than invented:
+
+- **The UX review's finding that no spreadsheet link renders is wrong, and this branch repeated it
+  in a code comment, a commit message and a pull request body.** One does, on the home page, where
+  a dashboard card links its record's `source_url` and the small boat arrivals card's record is an
+  `.ods`. The review's reasoning was that these URLs sit on series points, which emit no link, and
+  20 of the 68 sit on metric records instead. The bullet above is the review's own text and is left
+  as written; this is the correction to it. The defect it describes was real for every spreadsheet
+  but one.
+- **A count of this project's own state, written in words.** The comment on the deduplication said
+  three records on one claim page share a name and a URL. Five do. No count is written in either
+  place now, on this file's own rule, and the count rule in `scripts/check-backlog.mjs` reads digits
+  only, so the word form passed the check that exists to catch it.
+
+**Three guards, all probed rather than read**, two of them added by that review. A table a source
+names cannot be lost through the deduplication, asserted against the rendered text so a change to
+the key, the merge or the printing fails the build, and asked case-insensitively because the filter
+that drops a duplicate table is case-insensitive. A source with no `retrieved_date` is refused
+rather than printed as "Checked Invalid Date": `POINT_FIELDS` in `scripts/validate-data.mjs` does
+not ask a series point for that field, and nothing rendered it until now, so a point without one
+would have passed the data contract, the build check and the failed-value scan alike. And two
+records citing one publication under one name may not disagree about its `published_date`, which
+has no defensible merge rule. `check-build.mjs` also resolves a link written with this site's own
+origin now: until this block there were none but the canonical tag, and a renamed chart id would
+have broken precisely the URL the block exists to hand over while every other link on the page
+resolved.
+
+**One data defect, fixed here.** `asylum/asylum-backlog-2019` spelled its `source_name` with one
+comma that the other records citing the same spreadsheet and the same table do not, so
+`/common-claims/everyone-in-asylum-accommodation-arrived-recently/` printed that spreadsheet twice
+with two different checked dates. No value moved.
 
 **What is left is the wording, and three questions come with it**: whether a claim page citing one
 publication several ways is right or too much, whether "Via UK Migration Explorer" belongs in a
