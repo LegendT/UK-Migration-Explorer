@@ -83,7 +83,9 @@ derived path below instead.
 
 ## Derived figures
 
-A `calculated` or `estimated` figure appears in no source, which is what makes it derived.
+A `calculated` or `estimated` figure is one this site is not simply copying: usually because
+it worked the figure out, sometimes because it read a band off a chart or a range the source
+states loosely.
 Quote its inputs instead, and say what was done to them.
 
 ```json
