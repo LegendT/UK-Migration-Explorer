@@ -200,7 +200,15 @@ first act.
     mirror section now links to it rather than saying no separate check exists. Its verdict is
     **[you]** as well. **The third is drafted (PR #133), "The asylum backlog is one number"**,
     which leads on one queue published as both people and cases rather than on the four queues,
-    and links to the glossary's table rather than repeating it. Verdict **[you]**. **Four are
+    and links to the glossary's table rather than repeating it. Verdict **[you]**. **ALL THREE VERDICTS AND SHORT
+    ANSWERS CAME BACK ON 4 August 2026**, and each took the recommendation, so the sentence
+    that shipped is the one drafted: "No" for the net migration claim, because the two series
+    demonstrably moved in opposite directions and the figures settle it where the softer
+    precedent set for the accommodation claim applied only where they could not; "Not
+    necessarily" for the refusal claim, which is foundation 8.5.3's own wording and the only
+    verdict that does not overclaim in the direction its mirror errs, most refusals having
+    stood in all eleven cohort years; and "No" for the backlog claim, leading on one queue
+    having two right answers rather than on the stale total. **Four are
     left**, and the order they are proposed in is in PR #132. **Worth deciding before they are
     written**: the split stands at seven restrictionist to three pro-migration and only one of
     the four remaining corrects a pro-migration claim, so the finished set lands near ten to
