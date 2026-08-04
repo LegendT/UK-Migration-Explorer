@@ -44,10 +44,11 @@ page cited a publication that does not contain it. **Corrected on 1 August 2026,
 Annual Report and Accounts 2024-25 at page 75. The NAO report it named does not carry it. The
 figure had rendered in three places, including the home page, with every check green, because
 nothing here verifies that a named source contains the figure naming it. **That gap is backlog item A1, and its
-reader-facing half closed on 3 August 2026: every record that reaches a reader now carries an
-entry in `data/evidence/` naming a source and quoting it.** Four batches did it, by publisher.
-The records still without an entry are unpublished reserve, and how many is what
-`npm run build` prints rather than a number written here.
+mechanical half closed on 3 August 2026: every record in the data layer now carries an entry in
+`data/evidence/` naming a source and quoting it**, except a handful referred to the owner because
+the fix is a sourcing or naming call rather than a fetch. Six batches did it, by publisher, and
+every one of them found more of the same defect. What is outstanding is in `docs/BACKLOG.md`
+rather than counted here.
 
 **It found more of the same defect each time it looked.** A small-boats figure citing an index page
 that carries no figures at all; a record naming table Asy_00a for a figure that table does not

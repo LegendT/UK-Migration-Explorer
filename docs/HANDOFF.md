@@ -174,6 +174,22 @@ findings list where each entry gets a resolution marker as it lands can be audit
 list; a prose sentence that says what is left cannot, and it is the one that gets believed. Do not
 write "what is left is X" above a list that can answer the question itself.
 
+**A1'S MECHANICAL HALF IS CLOSED, PR #116.** Batch 6 took the last three reserve records, one each
+from the Commons Library, Skills for Care and the MAC, and all three cited a page that is not where
+their figure lives, which is the fourth batch running to find that. The MAC record's notes quoted
+four figures from a covering letter that carries none of them and an annual report that carries none
+of them either; they are in the salary requirements review it announces. Skills for Care publishes no
+non-British share at all, so a `provisional` grade was standing on a figure no publisher states, and
+it is now `calculated` from the 69% British the report does print, reconciled against the two
+components it prints for the same base.
+
+**Both of this session's pull requests were read by a fable critic, both had a defect in them, and
+the worse one was a correction that was itself false.** The NHS note was rewritten to say the doctors
+and nurses shares are stated against a different base, on the strength of a search for "36%" and
+"30%" in a briefing that prints "36.3%" and "30.0%". The search ran, the controls ran, and neither
+could ever have matched. The note it replaced was right. That is now a practice under *Building a
+check, and trusting it*, and it is the third distinct way a search here has produced a false absence.
+
 **Both changes were audited by a second model afterwards and both audits found their worst defect in
 the part that had been asserted most confidently.** The nav's "a right number in a wrong sentence
 throws" tested co-occurrence, not predication. The chart's "all four enforced rules survive" was
@@ -241,13 +257,13 @@ the Home Office that it does not use, and a note reproducing wording the NAO for
 correction slip inside its own PDF. **All three are now corrected, and no automated check
 closes the gap they came through**: nothing verifies that a source contains the figure citing it,
 and nothing can, because it is a question about the far end of a link. **What closed it instead is
-a pass done by hand, and it finished for reader-facing records on 3 August 2026**: every record that
-reaches a reader now carries an entry in `data/evidence/` naming a source and quoting it. Four
-batches, by publisher. What is left is unpublished reserve, and how much is what
-`npm run build` prints.
+a pass done by hand, and A1's [me] half finished on 3 August 2026**: every record in the data layer
+now carries an entry in `data/evidence/` naming a source and quoting it, except the handful earlier
+batches referred to the owner as sourcing or naming calls. Six batches, by publisher. **What is
+left of A1 is those calls and nothing mechanical**, and which they are is the backlog's to say.
 
-**Each batch found more of the same defect**, which is the argument for the pass rather than its
-by-product: a small-boats figure citing an index page holding no figures; a record naming a table
+**Every batch found more of the same defect, including the last one**, which is the argument for
+the pass rather than its by-product: a small-boats figure citing an index page holding no figures; a record naming a table
 that does not carry its figure; three records rounding to what their source printed while a Home
 Office table printed the figure exactly; and the OBR lifetime contribution, which was the age-80
 point of a chart whose age nobody had written down. **Only that last one moved a published value**,
@@ -585,6 +601,17 @@ is already here to adding a neighbour beside it.
   empty directory and returned zero. **Quote the glob, and prove the search with a control**:
   searching a workbook for `5931` returned zero and so did the control `79719`, which is what
   showed that the search rather than the file was empty.
+
+  **And a control in the same WRONG FORM comes back clean too, which is the third way.** On
+  3 August 2026 a briefing was searched for `36%` and `30%` to check a record's note. Both returned
+  nothing, the absence was believed, and the note was "corrected" into a false claim that reached a
+  pull request. The briefing prints **"Overall, 21.3% of staff report a nationality other than
+  British. For doctors this figure is 36.3%, and for nurses it is 30.0%"**: one sentence, one base,
+  and a form the search was never going to match. Publishers round differently in prose and in
+  tables, and this repository has already met `£520-710 million` for `£520m`, `-2900` for `2,900`
+  and `10.7 million` for `10,738,000`. **Search the stem and read the hits**, `36` rather than
+  `36%`, and take the control from a DIFFERENT figure you have seen with your own eyes in that same
+  document. The rule above proves a search RAN; only this one proves it could have matched.
 
   **The sixth is the one that guard would have missed**, and it is worth the extra sentence. The
   edit applied, the grep confirmed it, and the test still proved nothing: it spaced one of two
@@ -1014,7 +1041,7 @@ enumeration of what is mine. It carries four things and nothing else:
 | What to read, in what order | It is the instruction that makes every pointer work |
 | The `[me]` / `[you]` mapping | It **inverts** against the prompt's own pronouns. A session that gets it backwards does the editorial work rather than bringing it, which is the worst outcome available, and it is not discoverable by reading carefully |
 | Which list is live | Two frozen records in `docs/` still READ like work lists, with findings, severities and recommendations. A session that takes work from one is doing work the backlog may already have closed, and neither document says so on the line being read. **This cell said "and to flag a disagreement" until 3 August 2026**, describing an instruction the prompt lost on 31 July when the audit's parallel list was deleted: the block resolves a disagreement by fiat instead, saying whatever is outstanding is in the backlog. A contract that overstates what it governs is the same defect as a message overstating what it checks, and an outside reader found it |
-| Which commands must pass, and branch-and-PR | Cheap to state, expensive to omit, and neither changes |
+| Which commands must pass, and branch-and-PR | Cheap to state, expensive to omit, and neither changes. **The unmerged-work check joined this row on 3 August 2026 and is row four, not a fifth thing**: it is the completion half of branch-and-PR, it is a command rather than recited rule text, and it has no copy anywhere to drift against. It is here because a session's own documentation commit was stranded on a merged branch that day, and every local signal read clean |
 
 Everything else is a pointer at a heading in this document. **The table above is short by design**:
 if it grows past four rows, the prompt has started reciting again and the fix is to cut it, not to
@@ -1141,5 +1168,10 @@ Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
 its PR and a date, and move it to Completed when nothing is left. Do not
 delete it.
+
+Before you finish, run: git log --oneline origin/main..HEAD
+Any answer but silence is work that has not shipped. A commit made after
+its pull request merged is stranded on a dead branch, and git status,
+git log and the branch name all read clean.
 ```
 

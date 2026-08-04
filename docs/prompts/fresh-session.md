@@ -51,3 +51,8 @@ Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
 its PR and a date, and move it to Completed when nothing is left. Do not
 delete it.
+
+Before you finish, run: git log --oneline origin/main..HEAD
+Any answer but silence is work that has not shipped. A commit made after
+its pull request merged is stranded on a dead branch, and git status,
+git log and the branch name all read clean.
