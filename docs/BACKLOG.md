@@ -68,8 +68,14 @@ below.
 4. **GATE. The decisions that change what launch publishes.** The domain is decided and applied
    (PR #118): `ukmigrationexplorer.org`. The contact address and the fourth published limit are
    decided and applied, calls 16 and 20 in PR #130. The pipeline question is closed, call 17 in
-   PR #122. **What is left is the LICENCE scope, call 18 under A5, which is decided and
-   unapplied [me] work.**
+   PR #122. **What is left is the LICENCE scope, call 18 under A5, and the rest of A6**: calls 19,
+   21 and 23, plus call 24's open residue. All are decided and unapplied **[me]** work, and the
+   LICENCE scope goes first because it is the only one of them a reader could be affected by
+   reusing something. **A6's own header says none of its calls blocks anything**, so they sit
+   inside a gate item for scope rather than because they gate: what gates here is call 18. **This
+   entry said the LICENCE scope was all that was left until 4 August 2026**, which orphaned A6, the
+   sentence enumerating it having been dropped a version before while the conclusion it contradicted
+   was kept.
 5. **CLOSED 4 August 2026 (PR #129).** R2 is closed. Every source observation the far-end trace
    produced has been taken: five records re-sourced to the publisher that prints their figure,
    five regraded to say honestly what the figure is, and **one published value moved**, the OBR
