@@ -815,7 +815,7 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
   are nested, not parallel") while the record's own notes say the nesting is this site's
   construction and neither publisher places one figure inside the other. Say so on the page,
   or un-nest the table.
-- **DECIDED 4 August 2026, call 8: re-source to the census release rather than regrade, so the grade becomes true as defined. MOVES A SOURCE, so it needs an evidence entry. NOT YET APPLIED.** The Born abroad card grades a Migration Observatory briefing figure `official`, a grade
+- **DECIDED 4 August 2026, call 8: re-source to the census release rather than regrade, so the grade becomes true as defined. MOVES A SOURCE, so it needs an evidence entry. THAT IS NOT WHAT IT TOOK, see below.** The Born abroad card grades a Migration Observatory briefing figure `official`, a grade
   the sources page defines as "taken directly from an official published release". The
   underlying figure is the 2021/22 Census; the cited source is a university briefing. Regrade,
   or re-source the record to the census release it summarises. **APPLIED (PR #129, 4 August 2026), BY A DIFFERENT MECHANISM FROM THE ONE RECOMMENDED, AND THE
