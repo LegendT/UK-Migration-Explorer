@@ -1,7 +1,7 @@
 {
   "theme": "Population and integration",
   "lastUpdated": "2026-08-03",
-  "note": "Foreign-born population figures come in two vintages. The accredited baseline is the 2021/22 Census (Census 2021 for England, Wales and Northern Ireland; Census 2022 for Scotland). In May 2026 ONS published a rolled-forward mid-2024 estimate of the non-UK-born population (13,115,000, about 18.9% of the population), an official statistic in development and provisional; ONS produced no June 2025 estimate because 2025 deaths data are not yet available, and it publishes no percentage. Citizenship and settlement figures come from Home Office Immigration system statistics (year ending March 2026).",
+  "note": "Foreign-born population figures come in two vintages. The census-based baseline is the 2021/22 Census (Census 2021 for England, Wales and Northern Ireland; Census 2022 for Scotland). In May 2026 ONS published a rolled-forward mid-2024 estimate of the non-UK-born population (13,115,000, about 18.9% of the population), an official statistic in development and provisional; ONS produced no June 2025 estimate because 2025 deaths data are not yet available, and it publishes no percentage. Citizenship and settlement figures come from Home Office Immigration system statistics (year ending March 2026).",
   "metrics": [
     {
       "id": "foreign-born-population-of-the-uk",
@@ -32,8 +32,8 @@
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
-      "notes": "Roughly one in six residents, of a total population of 66.9 million at the time. Up from about 9% in 2004. This is the accredited 2021/22 Census figure; for the later provisional estimate see foreign-born-share-mid-2024.",
-      "confidence_level": "official"
+      "notes": "Roughly one in six residents, of a total population of 66.9 million at the time. Up from about 9% in 2004. NOT AN ACCREDITED FIGURE AND NOT AN OFFICIAL RELEASE, REGRADED 4 August 2026 under R1 call 8. The Migration Observatory builds this share itself, saying it combines 2021 data for England, Wales and Northern Ireland with 2022 data for Scotland, and no census release carries a UK-wide share. Nor is any UK-level figure accredited: ONS grants accreditation to the England and Wales and Northern Ireland statistics in its census-based UK release and states that the Scotland, Great Britain and UK ones have \"just Official Statistics status, without accreditation\". The source was NOT moved onto that ONS release, and the reason is mechanical: its table UK05 prints country-of-birth cells by sex and age and no totals at all, so a numerator and a denominator taken from it are sums of 36 rows rather than published values, and could not be quoted as components. CHECKED AGAINST IT ANYWAY, 4 August 2026: summing UK05 gives 10,724,293 of 66,912,612 usual residents, 16.03%, and a control against UK01 agrees on the population to twenty-five people. So the published 16% is independently corroborated by ONS even though it is read from the briefing. For the later provisional estimate see foreign-born-share-mid-2024.",
+      "confidence_level": "estimated"
     },
     {
       "id": "foreign-born-population-mid-2024",

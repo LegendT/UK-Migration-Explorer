@@ -54,7 +54,7 @@ percentage at all: the {{population/foreign-born-share-mid-2024}}% is calculated
 of {{population/total-uk-population}}. The percentage is ours, not ONS's, and both figures it is
 taken from are on this page so anyone can repeat the division.
 
-The last **accredited** figure is older: {{population/foreign-born-share-of-total-uk-population}}%
+The last census-based figure is older: {{population/foreign-born-share-of-total-uk-population}}%
 at the 2021/22 Census, or {{population/foreign-born-population-of-the-uk}} people. The mid-2024
 estimate rolls that census baseline forward with deaths and migration.
 
@@ -70,8 +70,11 @@ current, official measurement when it is none of those three.
 - It is **not precise**: a provisional statistic in development carries real uncertainty, and the
   percentage is a calculation ONS does not itself publish.
 - It is **not current**: it describes mid-2024, not 2026, and the share has probably moved since.
-- It is **not accredited**: the accredited figure remains the
-  {{population/foreign-born-share-of-total-uk-population}}% from the 2021/22 Census.
+- It is **not accredited**: and nor is the
+  {{population/foreign-born-share-of-total-uk-population}}% from the 2021/22 Census, because no
+  UK-wide foreign-born figure is. ONS accredits the England and Wales and Northern Ireland
+  statistics in its census-based UK release and states that the UK ones have "just Official
+  Statistics status, without accreditation".
 
 So "about 19% in mid-2024, on a provisional ONS estimate" is a defensible statement. "19% of the
 UK population is foreign-born," offered as a settled official fact, claims a precision and an
@@ -92,7 +95,7 @@ reconcile with the mid-2024 population estimate and should not be used for this 
 
 ## Better questions to ask
 
-- Is this an accredited statistic, or an official statistic still in development?
+- Is this an accredited statistic, an official statistic still in development, or neither?
 - What date does it describe? The latest estimate is for mid-2024, not now.
 - Does ONS publish the percentage, or is it calculated from two separate figures?
 - Does it count [people born abroad](/what-the-words-mean/#foreign-born), or [people without
@@ -108,8 +111,9 @@ ONS, Long-term international migration (provisional), year ending December 2025,
 {{population/foreign-born-share-mid-2024}}%. ONS publishes no such percentage.
 
 The 2021/22 Census baseline (Census 2021 for England, Wales and Northern Ireland; Census 2022 for
-Scotland) gives the accredited {{population/foreign-born-share-of-total-uk-population}}% and
-{{population/foreign-born-population-of-the-uk}} figures.
+Scotland) gives the {{population/foreign-born-share-of-total-uk-population}}% and
+{{population/foreign-born-population-of-the-uk}} figures, neither of which is accredited at UK
+level.
 
 Foreign-born and foreign-citizen are distinct measures. A person born abroad may hold British
 citizenship; a person born in the UK may not. Figures for the two are not interchangeable, and the
