@@ -121,6 +121,14 @@ for more than it does is worse than no check at all:
   scaled by any other word, and it does not read front matter, so a rounded figure in a
   claim's short answer passes it. The rule above holds for what the scan can see; beyond
   that it rests on editing.
+- **A correction made inside an edition can pass unseen.** Where a publisher revises a table
+  but keeps the same release under the same address, nothing here re-reads it. One
+  publisher's corrections page is watched, and the match is made against the table
+  identifiers a record declares, so a note naming a corrected table by its title instead
+  does not match. The other publishers this site cites announce corrections somewhere this
+  site does not look. **This is the limit most likely to leave a wrong number on a page**
+  rather than an unchecked one, and it is why the citation block under each page prints the
+  date every source behind it was last read.
 - **No real screen reader has been run over these pages.** The accessibility checks here are
   an automated audit against WCAG 2.2 AA on every page, plus reading the accessibility tree
   that assistive technology actually consumes. That is not the same as someone listening to a
@@ -228,7 +236,9 @@ are at handling its own mistakes.
   taken down until it has been.
 
 If something here is wrong, please say so. Tell us which figure, and what you think it
-should be.
+should be: email [corrections@ukmigrationexplorer.org](mailto:corrections@ukmigrationexplorer.org), or
+[open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new). A correction should
+not depend on having a GitHub account.
 
 ---
 
