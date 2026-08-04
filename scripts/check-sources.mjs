@@ -9,10 +9,14 @@
 //
 // Run: node scripts/check-sources.mjs
 
+import { execFile as execFileCallback } from 'node:child_process';
+import { promisify } from 'node:util';
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { COMPANION_BLOCKS, SERIES_FILES, THEME_FILES } from '../lib/series.mjs';
+
+const execFile = promisify(execFileCallback);
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
@@ -73,19 +77,78 @@ for (const file of walk(contentDir)) {
 
 for (const source of read('sources.json').sources) cite(source.url, `sources.json: ${source.id}`);
 
-// Hosts whose CDN refuses automated requests outright. Verified 22 July 2026: these
-// return 403 for every path, including deliberately invalid ones, with or without a
-// browser user-agent. A 403 from them therefore says nothing about whether the page
-// exists, so this script must report them as uncheckable rather than broken. Calling a
-// live link dead trains the reader to ignore the checker, which is worse than no checker.
-const BLOCKS_AUTOMATED_CHECKS = new Set([
+// Hosts whose CDN refuses this script and answers a browser. Reported as uncheckable from
+// 22 July 2026, on a measurement that was right about the 403 and wrong about what fixed it:
+// a browser user-agent does nothing, and neither do the four fetch-metadata headers a browser
+// sends, so long as the request goes out over Node's fetch. What clears the challenge is those
+// headers over HTTP/1.1, which is why this shells out to curl rather than adding headers here.
+// Measured 4 August 2026, both hosts, HEAD: the cited page and briefing PDF return 200 and a
+// deliberately invalid path under each returns 404, so the check discriminates rather than
+// always succeeding, which is the failure mode worse than always failing.
+//
+// A request that succeeds whatever it asks for is no check at all, so if curl is absent or
+// cannot run, these go back to being reported as uncheckable rather than passing quietly.
+const NEEDS_BROWSER_HEADERS = new Set([
   'commonslibrary.parliament.uk',
   'researchbriefings.files.parliament.uk',
 ]);
 
+// And a 403 is reported as uncheckable from ANY host, which is a rule rather than a list because
+// the list cannot be written: it depends on where the request comes from. Measured 4 August 2026
+// on the first CI run of the curl route above, obr.uk returns 200 to this laptop over plain fetch
+// and 403 to the GitHub runner, which is an address-reputation block and not something a header
+// or a protocol reaches. CI had been reporting those two OBR URLs as "did not resolve" on every
+// run since before any of this, which is the checker calling a live link dead, the one thing the
+// comment above says trains a reader to ignore it.
+//
+// 429 is the same rule with a different word. It says try again later, which is a refusal to
+// answer rather than an answer, and this script asks 55 URLs six at a time: ONS returned it to
+// four of them while this very change was being tested, and calling those four dead would have
+// been the same defect from the other direction.
+//
+// Nothing is lost by either. A page that is gone answers 404 or 410; a check cannot report what
+// it was refused.
+const REFUSED = {
+  403: 'the host refused the request, which says nothing about whether the page exists',
+  429: 'the host asked for fewer requests, which is not an answer about the page',
+};
+
+const BROWSER_HEADERS = [
+  ['Sec-Fetch-Dest', 'document'],
+  ['Sec-Fetch-Mode', 'navigate'],
+  ['Sec-Fetch-Site', 'none'],
+  ['Sec-Fetch-User', '?1'],
+  ['User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36'],
+];
+
+// Async, not execFileSync: these run inside a batch of six, and a blocking call would stall the
+// AbortController timers of the five fetches beside it into reporting a timeout they did not have.
+async function checkViaCurl(url) {
+  const args = [
+    '-sS', '-I', '-L', '--http1.1', '--max-time', String(TIMEOUT_MS / 1000),
+    '-o', '/dev/null', '-w', '%{http_code} %{url_effective}',
+    ...BROWSER_HEADERS.flatMap(([name, value]) => ['-H', `${name}: ${value}`]),
+    url,
+  ];
+  let written;
+  try {
+    ({ stdout: written } = await execFile('curl', args, { encoding: 'utf8', timeout: TIMEOUT_MS * 2 }));
+  } catch {
+    // No curl, or it could not complete. Uncheckable is the honest answer: this host says 403
+    // to everything over the route Node has, so a failure here is about the tool and not the URL.
+    return { ok: true, uncheckable: true, why: 'curl could not run, and this host refuses every request Node makes' };
+  }
+  const [status, finalUrl] = written.trim().split(' ');
+  const code = Number(status);
+  // 000 is curl's own "no response", not the server's. Same reasoning as above.
+  if (!code) return { ok: true, uncheckable: true, why: 'curl reported no response at all' };
+  if (REFUSED[code]) return { ok: true, uncheckable: true, status: code, why: REFUSED[code] };
+  return { ok: code >= 200 && code < 400, status: code, finalUrl };
+}
+
 async function check(url) {
-  if (BLOCKS_AUTOMATED_CHECKS.has(new URL(url).hostname)) {
-    return { ok: true, uncheckable: true };
+  if (NEEDS_BROWSER_HEADERS.has(new URL(url).hostname)) {
+    return checkViaCurl(url);
   }
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
@@ -94,6 +157,9 @@ async function check(url) {
     let response = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: controller.signal });
     if (response.status === 405 || response.status === 403) {
       response = await fetch(url, { method: 'GET', redirect: 'follow', signal: controller.signal });
+    }
+    if (REFUSED[response.status]) {
+      return { ok: true, uncheckable: true, status: response.status, why: REFUSED[response.status] };
     }
     return { ok: response.ok, status: response.status, finalUrl: response.url };
   } catch (error) {
@@ -125,7 +191,9 @@ const redirected = results.filter((r) => r.ok && r.finalUrl && r.finalUrl !== r.
 console.log('\n');
 if (uncheckable.length) {
   console.log(`${uncheckable.length} URL(s) could not be checked automatically, verify by hand:`);
-  for (const r of uncheckable) console.log(`  ${r.url}\n    cited by: ${r.citations.join(', ')}`);
+  for (const r of uncheckable) {
+    console.log(`  ${r.status ? `[${r.status}] ` : ''}${r.url}\n    ${r.why}\n    cited by: ${r.citations.join(', ')}`);
+  }
   console.log('');
 }
 
@@ -145,4 +213,12 @@ if (broken.length) {
   process.exit(1);
 }
 
-console.log(`${entries.length - uncheckable.length} of ${entries.length} source URLs resolve; ${uncheckable.length} need checking by hand.`);
+console.log(uncheckable.length
+  ? `${entries.length - uncheckable.length} of ${entries.length} source URLs resolve; ${uncheckable.length} need checking by hand.`
+  : `All ${entries.length} source URLs resolve, and none needed checking by hand.`);
+console.log('Not established: that the page still says what it said. This asks for a status code, so a');
+console.log('release replaced in place, or a table corrected under the same URL, resolves exactly as');
+console.log('before. check-releases.mjs is what asks that, and it is a separate run.');
+console.log('Nor anything about a URL whose host answered 403 or 429. Those are refusals to answer, not');
+console.log('dead pages, and which URLs get one depends on where and how often the run happens: this');
+console.log('laptop and a GitHub runner are refused by different hosts.');
