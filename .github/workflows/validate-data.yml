@@ -54,6 +54,13 @@ jobs:
         # `validate` runs on a laptop and gates nothing on a pull request, which is what happened
         # to this one on 3 August 2026 between it being written and this step being added.
         run: node scripts/check-backlog.mjs
+
+      - name: Pipeline contract, that this file and npm run validate agree
+        # The step that makes the comment above mechanical. Adding a check to `npm run validate`
+        # and not here now fails, and so does adding one here and not declaring it, because the
+        # manifest in the script is measured against scripts/, against package.json and against
+        # this file, including which of these steps carry continue-on-error.
+        run: node scripts/check-pipeline.mjs
       - name: Build and check the built site
         run: npm run build
       - name: Accessibility, WCAG 2.2 AA on every URL in .pa11yci.json
