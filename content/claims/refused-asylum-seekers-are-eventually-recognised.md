@@ -3,9 +3,9 @@ id: refused-asylum-seekers-are-eventually-recognised
 claim: Almost all refused asylum seekers are eventually recognised as refugees.
 short_answer: >-
   No. Later decisions, appeals and reconsiderations do raise the grant rate substantially,
-  but not to almost all: for claims made between 2010 and 2020, between a fifth and a half
-  of each cohort ended without a grant. An allowed appeal is also not the same as refugee
-  recognition.
+  but not to almost all: of the claims made between 2010 and 2020 that reached a grant or a
+  refusal, between a fifth and a half stood at a refusal at their latest recorded outcome. An
+  allowed appeal is also not the same as refugee recognition.
 direction: pro-migration
 error_type: appeal success rate generalised to all refusals
 last_reviewed: 2026-07-27
@@ -52,11 +52,20 @@ So the direction of the claim is right, and the size of the effect is not trivia
 refusal at initial decision is genuinely not the end of the matter, and a substantial
 minority of claims end differently from how they started.
 
-Taken on its own terms, though, the cohort measure does not say "almost all". The share of
-each cohort that had ended in a grant by its latest recorded outcome ran from 50% to 75%
-for claims made between 2010 and 2019, and reached 80% for 2020, the highest of any year.
-So between a fifth and a half of each cohort had not ended in a grant. What the
-measure cannot do is arithmetic on the current
+Taken on its own terms, though, the cohort measure does not say "almost all". The Home
+Office's grant rate at the latest outcome ran from 50% for claims made in 2010 to 75% for
+2019, and reached 80% for 2020, the highest of those years. So between a fifth and a half of
+those claims stood at a refusal rather than a grant.
+
+**That rate is not a share of the cohort**, and on a page about denominators the difference
+has to be said out loud. It divides grants by grants plus refusals. It leaves out claims
+that were withdrawn, given an administrative outcome, or had no outcome recorded yet, and
+those together run from about a tenth to about a fifth of a year's claims. So measured
+against every claim made in a year, rather than against the ones settled either way, the
+share that has not ended in a grant is higher than the figures above, not lower. This page
+uses the publisher's own measure, which is the more cautious of the two.
+
+What the measure cannot do is arithmetic on the current
 {{asylum/asylum-initial-decision-grant-rate}}% rate: the Home Office says the two relate to
 different cohorts of initial decisions.
 
