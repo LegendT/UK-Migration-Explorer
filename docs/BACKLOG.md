@@ -180,7 +180,21 @@ first act.
    what the sources page says about automation. **[you]** sign-off, no build behind it.
 10. **GATE. The eight undrafted claims**, which are *Scoped, not built* section 5: a session
     drafts **[me]**, and the verdict and short answer come to the owner before merge **[you]**.
-    Only the pro-migration draft moves the direction split off its floor.
+    **STARTED 4 August 2026 (PR #131), with "Falling net migration means the asylum system is
+    shrinking", and it did what this entry said it would**: `validate-content` now reports the
+    split as five restrictionist to three pro-migration, off the enforced floor for the first
+    time, which reopens the option of dropping claim 2.7 that correction 1g found closed. Its
+    verdict and short answer are **[you]** and have not been given, so the pull request is
+    marked do-not-merge. **Seven are draftable, not eight**: "Local areas all carry the same
+    pressure" needs per-capita local authority figures and `data/` holds none, which section 5
+    already said. **Three things a drafter should know**, found by doing the first one:
+    `.pa11yci.json` is hand-maintained and does not follow the sitemap, so a run passes
+    seventeen of seventeen with a new page missing from it; a markdown claim page resolves
+    records and not series points, so a comparison against a series has to point at the chart
+    that shows it; and drafting "A refusal means the original claim was obviously false" means
+    editing `content/claims/refused-asylum-seekers-are-eventually-recognised.md`, which
+    currently corrects it as a mirror claim and says no separate check exists. The order the
+    rest are proposed in is in PR #131.
 11. **CLOSED 4 August 2026, and A3 is closed with it (PR #121 and #124).** `main` is protected:
     the `validate` job is a required status check, `enforce_admins` is on so it binds the owner
     too, and force pushes and deletions are off. **Probed rather than read**: a direct push to
