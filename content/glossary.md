@@ -81,6 +81,22 @@ visas, none of which appear in migration figures.
 **The common mistake.** Assuming migration statistics count everyone who crosses the
 border. They count a specific and much smaller group.
 
+### Non-EU+ {#non-eu-plus}
+
+A **nationality grouping**, not a route and not a visa type: people who are not British and
+not nationals of the EU, Norway, Iceland, Liechtenstein or Switzerland. ONS sorts long-term
+arrivals into three such groups, British, EU+ and non-EU+, and the three add up to the
+all-nationalities total.
+
+**Why it matters.** ONS publishes its breakdown by reason for coming for non-EU+ arrivals
+only. Every reason share on this site, study, work, asylum and the rest, is a share of that
+group rather than of all immigration, and non-EU+ arrivals are the larger part of the total
+but not the whole of it. There is no published reason breakdown for everyone.
+
+**The common mistake.** Reading a non-EU+ share as a share of all immigration, or hearing
+"non-EU+" as a statement about how someone arrived rather than about which passport they
+hold.
+
 ### People, main applicants and cases {#people-and-cases}
 
 This site's single most important caveat, and the one most often responsible for two

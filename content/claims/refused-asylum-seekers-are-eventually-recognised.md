@@ -136,6 +136,12 @@ initial decisions", and that more recent cohorts are not comparable because more
 cases are still progressing. Its own terms for the later figure are "latest outcome" and
 "latest decision"; it does not call it final.
 
+**And those outcomes are dated.** The cohort table's own note puts them as at January 2026,
+so anything decided after that, on appeal or on reconsideration, is not yet in the later
+figure. The bulletin dates the same outcomes to April 2026 instead; January is followed
+here, being the date the table publishes for itself and the earlier of the two, so this page
+claims no more currency than the publisher's own table does.
+
 **On selection.** This site checks propositions that circulate rather than quotations
 attributed to particular people, as the [style guide](/style-guide/) sets out. For this
 claim we have not located a published example in these exact words. The versions we have

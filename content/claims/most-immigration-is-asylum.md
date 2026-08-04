@@ -28,7 +28,8 @@ source: ONS
 ## What the data says
 
 Total long-term immigration to the UK was {{migration/total-long-term-immigration}} in
-the year ending December 2025. Of that, {{migration/non-eu-plus-long-term-immigration}} people, around 77%, were non-EU+
+the year ending December 2025. Of that, {{migration/non-eu-plus-long-term-immigration}} people, around 77%, were
+[non-EU+](/what-the-words-mean/#non-eu-plus)
 nationals, and ONS publishes a breakdown by reason for that group:
 
 | Reason | People | Share of non-EU+ arrivals |
