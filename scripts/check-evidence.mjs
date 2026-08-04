@@ -200,22 +200,30 @@ function checkSourceUrl(where, what, url) {
 }
 
 function checkEntry(ref, metric, before, entry, where) {
+  checkPreviousValue(ref, before, entry, where);
+  checkEvidenceShape(ref, metric, entry, where);
+}
+
+// previous_value is what the record held on the base branch, so the evidence and the diff can be
+// read against each other rather than one at a time. For a range that is null on both sides; the
+// bounds are matched by `declares`.
+//
+// Split out of checkEntry because it needs no metric: it is a claim about the base branch alone,
+// which is what lets the third pass below ask it of an entry whose figure did not move. That
+// asymmetry is the defect it exists for. Twenty-eight backfilled entries said `null` here, and the
+// only loop that read the field ran for figures that had moved, so none of them was ever asked.
+function checkPreviousValue(ref, before, entry, where) {
   const isNew = !before;
   const claimed = 'previous_value' in entry ? entry.previous_value : undefined;
   const held = before ? (before.value ?? null) : null;
 
-  // previous_value is what the record held on the base branch, so the evidence and the diff
-  // can be read against each other rather than one at a time. For a range that is null on
-  // both sides; the bounds are matched above.
   if (isNew && claimed !== undefined && claimed !== null) {
     errors.push(`${where}: declares previous_value ${claimed}, but ${ref} does not exist on ${base}. A new figure has no previous value: use null.`);
   } else if (!isNew && claimed === undefined) {
     errors.push(`${where}: no previous_value. ${ref} holds ${held} on ${base}; record that, so the evidence names the change and not just the figure.`);
   } else if (!isNew && claimed !== held) {
-    errors.push(`${where}: previous_value ${claimed} is not what ${ref} holds on ${base}, which is ${held}. Either the evidence was written against a different starting point, or the value moved twice.`);
+    errors.push(`${where}: previous_value ${claimed} is not what ${ref} holds on ${base}, which is ${held}. A backfill for a figure that has not moved is not new: it takes the value the record already holds. Either the evidence was written against a different starting point, or the value moved twice.`);
   }
-
-  checkEvidenceShape(ref, metric, entry, where);
 }
 
 // Everything an entry must be, judged against the record as it stands now. Split out of
@@ -333,6 +341,51 @@ for (const { entry, where } of entries) {
   if (audited.has(entry)) continue;         // already checked above, and twice is two errors
   auditedCount += 1;
   checkEvidenceShape(entry.ref, metric, entry, where);
+}
+
+// --- and previous_value on every entry this branch ADDS, whatever its figure did ------------
+// The first loop reads previous_value only for a figure that moved, and matches an entry to that
+// figure on its ref AND its value, so an entry written for a figure sitting still is never
+// reached. The pass above does reach it and asks nothing about the field. Between them sat the
+// twenty-eight backfilled entries that said `null`, meaning new, for figures that were years old.
+//
+// So this asks the question of a claim rather than of a figure. An entry already on the base
+// branch is history and is skipped: not because history is exempt, but because the claim was
+// already merged and failing it now would push someone into editing the audit trail to get a
+// green run, which is the same rule the pass above runs on. What is asked is what this branch
+// proposes to add, which is the only thing a pull request can still change.
+//
+// The key is the claim itself, ref with previous_value and the published value, not the whole
+// entry: fixing a typo in a quote must not re-open a merged previous_value, and moving an entry
+// between files must not either. Editing the field, or the value it is measured against, does
+// re-open it, which is the point.
+const claimKey = (entry) => JSON.stringify([
+  entry.ref,
+  'previous_value' in entry ? entry.previous_value : '<absent>',
+  entry.value ?? null,
+  entry.range_min ?? null,
+  entry.range_max ?? null,
+]);
+
+const baseClaims = new Set();
+for (const file of existsSync(evidenceDir) ? readdirSync(evidenceDir).filter((name) => name.endsWith('.json')) : []) {
+  let json;
+  // Absent from the base branch, or unparseable there, means every claim in it is new here.
+  // Neither is an error about the base: a new evidence file is the ordinary case.
+  try {
+    json = JSON.parse(git('show', `${base}:data/evidence/${file}`));
+  } catch {
+    continue;
+  }
+  for (const entry of json.figures ?? []) baseClaims.add(claimKey(entry));
+}
+
+let newClaims = 0;
+for (const { entry, where } of entries) {
+  if (audited.has(entry)) continue;             // the first loop already asked, and twice is two errors
+  if (baseClaims.has(claimKey(entry))) continue; // already merged: history, and it fails nothing
+  newClaims += 1;
+  checkPreviousValue(entry.ref, previous.get(entry.ref), entry, where);
 }
 
 // --- and every series that moved ---------------------------------------------------------
@@ -489,6 +542,17 @@ if (auditedCount) {
 } else {
   console.log('\nNo evidence entry on file still names a record holding exactly its value, so none was');
   console.log('re-read. That is unexpected while data/evidence/ has entries, and worth looking at.');
+}
+if (newClaims) {
+  console.log(`\n${newClaims} evidence claim(s) are new on this branch, counting an edited previous_value or`);
+  console.log(`value as new, and each declares what its record held on ${base}: a figure absent there says`);
+  console.log('null, and one already there takes the value it holds, which a backfill for a figure that');
+  console.log('has not moved must do.');
+  console.log('Not established: that a claim already merged is right. Those are read once, on the branch');
+  console.log('that adds them, and are history afterwards.');
+} else {
+  console.log(`\nNo evidence claim is new on this branch, so previous_value was asked of none: every entry`);
+  console.log(`on file states the same ref, previous_value and value it states on ${base}.`);
 }
 if (derived) {
   console.log(`Also not established: the arithmetic of ${derived} derived figure(s) in this diff. Each input is quoted; the sum or share is not recomputed.`);
