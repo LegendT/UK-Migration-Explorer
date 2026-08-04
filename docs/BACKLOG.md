@@ -75,12 +75,14 @@ first act.
    4 August 2026**, and every bullet under A4 and R1 now opens DECIDED or STILL **[you]**. Calls
    2, 4 and 15 were applied with the decisions (PR #122), and calls 3, 6, 7, 9, 11, 12 and 13
    in PR #125 the same day, where two bullets turned out to be right about the defect and
-   wrong about the remedy and now say what they turned out to be. **What is left is calls 1,
-   5, 8 and 10**, and none of them is a wording change: call 1 wants `Asy_04` recomputed
-   rather than its digits rechecked, call 5 cannot be written until the data layer holds what
-   it would state, call 8 needs a fetch and a premise reproduced before anything is built, and
-   call 10 waits on The order's item 15 by the last clause of its own decision. **That makes
-   this the first item a session takes**, not The order's item 10.
+   wrong about the remedy and now say what they turned out to be. **Call 1 is applied too (PR
+   #127), recomputed from `Asy_04`'s own rows, which also caught a false superlative beside it.
+   Call 8 was reproduced and handed back (PR #126)**: its premise does not hold, and the search
+   that killed it turned up an ONS UK-level release nobody here knew about, so the remedy is
+   yours. **What is left is calls 5, 8 and 10.** Call 5 is the only one a session can take, and
+   it cannot be written until the data layer holds what it would state; call 8 is yours; call 10
+   waits on The order's item 15 by the last clause of its own decision. **That makes this the
+   first item a session takes**, not The order's item 10.
 4. **GATE. The decisions that change what launch publishes. THE DOMAIN IS DECIDED (4 August
    2026): `ukmigrationexplorer.org`**, applied in PR #118, and it came first among these because
    it changes the URL anyone cites, which the citation blocks now print as copyable text on every
@@ -651,9 +653,20 @@ how the bullet describing them said they would, which each of them now records.
 
 Each is a sentence, and each is **[you]** because it is wording.
 
-- **DECIDED 4 August 2026, call 1: align the short answer to the body, AND fix the denominator both share. Verified against `Asy_04` the same day: the digits are exact, the noun is not. The published latest grant rate is grants over grants-plus-refusals, excluding withdrawals, administrative outcomes and outcomes not yet known, so its complement runs 19.9% to 50.0%, a fifth to a half. Measured against the cohort as a reader hears it, all claims made that year, it runs 35% to 55%. Both the short answer and the body say "of each cohort". NOT YET APPLIED.** The refused-asylum short answer says "ended without a grant" where the page's own body says "had
+- **DECIDED 4 August 2026, call 1: align the short answer to the body, AND fix the denominator both share. Verified against `Asy_04` the same day: the digits are exact, the noun is not. The published latest grant rate is grants over grants-plus-refusals, excluding withdrawals, administrative outcomes and outcomes not yet known, so its complement runs 19.9% to 50.0%, a fifth to a half. Measured against the cohort as a reader hears it, all claims made that year, it runs 35% to 55%. Both the short answer and the body say "of each cohort". APPLIED (PR #127, 4 August 2026).** The refused-asylum short answer says "ended without a grant" where the page's own body says "had
   not ended in a grant by its latest recorded outcome". The short answer makes the move the page
-  criticises.
+  criticises. **Recomputed from `Asy_04`'s own rows rather than rechecked against a bulletin
+  sentence, and this bullet holds.** The published rate is grants over grants plus refusals and
+  reconciles to the table's own cell for every year in the column; the cohort decomposes exactly
+  into grants, refusals, withdrawals, administrative outcomes and outcome-not-yet-known, asserted
+  per year. For 2010 to 2020 the rate runs 50.02% to 80.06%, its complement 19.94% to 49.98%, and
+  the cohort basis 35.48% to 56.69%, **so the upper end recorded here as 55% is nearer 57%**. The
+  page keeps the publisher's measure and now names what it divides by and what it leaves out,
+  because the cohort basis is the one that argues harder and switching to it without saying so is
+  this site's own subject. **And the reproduction found a false superlative the decision did not
+  name**: the body called the 2020 cohort "the highest of any year" and 2021 is higher, 80.1953%
+  against 80.0556%. Both round to 80%, so no printed figure moved; it is now scoped to the years
+  the page uses, which is where it is true.
 - **DECIDED 4 August 2026, call 2: name the ONS grouping. APPLIED (PR #122).** The dashboard's net-migration card said the fall was "on work and care visas"; the record it cites
   is an ONS reason grouping, and `migration.json`'s own note says the two sources are not
   interchangeable.
