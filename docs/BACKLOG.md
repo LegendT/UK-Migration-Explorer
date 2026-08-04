@@ -566,7 +566,13 @@ how the bullet describing them said they would, which each of them now records.
   own note of the technique records. So the check shells out to `curl` for those two hosts. The
   negative test is the whole point of it: a deliberately invalid path under each returns 404 and
   is reported broken, and if `curl` is absent or cannot complete they go back to being reported
-  as uncheckable rather than passing quietly.
+  as uncheckable rather than passing quietly. **The first CI run of that route then found a
+  second defect, older than any of this**: a 403 was being reported as "did not resolve", and
+  which hosts return one depends on where the request comes from. obr.uk answers this laptop and
+  refuses the GitHub runner, so CI had been calling two live OBR links dead on every run, which is
+  the one thing this script's own comment says it must never do. A 403 is now uncheckable from any
+  host, and so is a 429, which four ONS URLs returned while this was being tested. A page that is
+  gone answers 404 or 410; a refusal is not an answer.
   **How many is deliberately not written here**: R2's decisions moved three of those records to
   other publishers the same day and the number fell without anyone touching this bullet, which is
   what a count about our own work does. Run `npm run check-sources` and read the list; every one

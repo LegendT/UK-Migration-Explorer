@@ -93,6 +93,26 @@ const NEEDS_BROWSER_HEADERS = new Set([
   'researchbriefings.files.parliament.uk',
 ]);
 
+// And a 403 is reported as uncheckable from ANY host, which is a rule rather than a list because
+// the list cannot be written: it depends on where the request comes from. Measured 4 August 2026
+// on the first CI run of the curl route above, obr.uk returns 200 to this laptop over plain fetch
+// and 403 to the GitHub runner, which is an address-reputation block and not something a header
+// or a protocol reaches. CI had been reporting those two OBR URLs as "did not resolve" on every
+// run since before any of this, which is the checker calling a live link dead, the one thing the
+// comment above says trains a reader to ignore it.
+//
+// 429 is the same rule with a different word. It says try again later, which is a refusal to
+// answer rather than an answer, and this script asks 55 URLs six at a time: ONS returned it to
+// four of them while this very change was being tested, and calling those four dead would have
+// been the same defect from the other direction.
+//
+// Nothing is lost by either. A page that is gone answers 404 or 410; a check cannot report what
+// it was refused.
+const REFUSED = {
+  403: 'the host refused the request, which says nothing about whether the page exists',
+  429: 'the host asked for fewer requests, which is not an answer about the page',
+};
+
 const BROWSER_HEADERS = [
   ['Sec-Fetch-Dest', 'document'],
   ['Sec-Fetch-Mode', 'navigate'],
@@ -116,12 +136,13 @@ async function checkViaCurl(url) {
   } catch {
     // No curl, or it could not complete. Uncheckable is the honest answer: this host says 403
     // to everything over the route Node has, so a failure here is about the tool and not the URL.
-    return { ok: true, uncheckable: true };
+    return { ok: true, uncheckable: true, why: 'curl could not run, and this host refuses every request Node makes' };
   }
   const [status, finalUrl] = written.trim().split(' ');
   const code = Number(status);
   // 000 is curl's own "no response", not the server's. Same reasoning as above.
-  if (!code) return { ok: true, uncheckable: true };
+  if (!code) return { ok: true, uncheckable: true, why: 'curl reported no response at all' };
+  if (REFUSED[code]) return { ok: true, uncheckable: true, status: code, why: REFUSED[code] };
   return { ok: code >= 200 && code < 400, status: code, finalUrl };
 }
 
@@ -136,6 +157,9 @@ async function check(url) {
     let response = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: controller.signal });
     if (response.status === 405 || response.status === 403) {
       response = await fetch(url, { method: 'GET', redirect: 'follow', signal: controller.signal });
+    }
+    if (REFUSED[response.status]) {
+      return { ok: true, uncheckable: true, status: response.status, why: REFUSED[response.status] };
     }
     return { ok: response.ok, status: response.status, finalUrl: response.url };
   } catch (error) {
@@ -167,7 +191,9 @@ const redirected = results.filter((r) => r.ok && r.finalUrl && r.finalUrl !== r.
 console.log('\n');
 if (uncheckable.length) {
   console.log(`${uncheckable.length} URL(s) could not be checked automatically, verify by hand:`);
-  for (const r of uncheckable) console.log(`  ${r.url}\n    cited by: ${r.citations.join(', ')}`);
+  for (const r of uncheckable) {
+    console.log(`  ${r.status ? `[${r.status}] ` : ''}${r.url}\n    ${r.why}\n    cited by: ${r.citations.join(', ')}`);
+  }
   console.log('');
 }
 
@@ -193,3 +219,6 @@ console.log(uncheckable.length
 console.log('Not established: that the page still says what it said. This asks for a status code, so a');
 console.log('release replaced in place, or a table corrected under the same URL, resolves exactly as');
 console.log('before. check-releases.mjs is what asks that, and it is a separate run.');
+console.log('Nor anything about a URL whose host answered 403 or 429. Those are refusals to answer, not');
+console.log('dead pages, and which URLs get one depends on where and how often the run happens: this');
+console.log('laptop and a GitHub runner are refused by different hosts.');

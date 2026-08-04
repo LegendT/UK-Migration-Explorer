@@ -445,6 +445,10 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   `scripts/check-sources.mjs` shells out to `curl` for those two hosts. Where `curl` is
   absent or cannot complete they are reported as uncheckable rather than passing quietly,
   because a request that succeeds whatever it asks for is worse than one that always fails.
+- **A 403 or a 429 is reported as uncheckable, from any host.** Which hosts return one depends on
+  where the run happens: obr.uk answers a laptop and refuses the GitHub runner, so CI reported two
+  live OBR links as dead on every run until 4 August 2026. A page that is gone answers 404 or 410,
+  and a check cannot report what it was refused.
 - **One source URL redirects**, which usually means a newer release has superseded the
   figure: the Home Office data tables anchor.
 - **A correction is only seen where the publisher is watched at all.** `check-releases.mjs`
