@@ -170,4 +170,6 @@ Part 3 first: it is the only one of the three guarding against a defect that cou
 different numbers for the same measure, and it is independent of the other two. Then 1, then 2,
 because the filter without the check is a convenience rather than a guarantee.
 
-None of it blocks launch, which waits on two decisions this changes neither of.
+This was written when launch waited on two decisions and nothing here was one of them. The owner
+widened the gate set on 4 August 2026; what gates launch is stated once, in *The order* in
+`docs/BACKLOG.md`, and not here.
