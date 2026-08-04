@@ -436,8 +436,8 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   record changing publisher. The
   timeseries points are not aged either: they carry a `retrieved_date`, but nothing compares
   it against a cycle, because the whole array is refreshed per release.
-- **Every source URL is now checked automatically**, and until 4 August 2026 the Commons
-  Library ones were not. That host returns 403 to every request Node's `fetch` makes,
+- **Every source URL is checked from a laptop, and until 4 August 2026 the Commons Library
+  ones were not.** That host returns 403 to every request Node's `fetch` makes,
   including deliberately invalid paths and including one carrying a browser user-agent and
   the four `Sec-Fetch` headers, so this was recorded as a host that cannot be checked. The
   variable turned out to be the protocol: the same headers over HTTP/1.1 from `curl` return
@@ -449,8 +449,10 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   where the run happens: obr.uk answers a laptop and refuses the GitHub runner, so CI reported two
   live OBR links as dead on every run until 4 August 2026. A page that is gone answers 404 or 410,
   and a check cannot report what it was refused.
-- **One source URL redirects**, which usually means a newer release has superseded the
-  figure: the Home Office data tables anchor.
+- **Redirects are reported rather than failed**, because one usually means a newer release has
+  superseded the figure. Which URLs, and how many, is what the run prints: this said one, and
+  named the Home Office data tables anchor, while the run named two others, having gone stale
+  the way every count typed beside a run that computes it does here.
 - **A correction is only seen where the publisher is watched at all.** `check-releases.mjs`
   watches three publisher routes, two gov.uk collections and one ONS bulletin. Most of the
   cited sources have no corrections route of any

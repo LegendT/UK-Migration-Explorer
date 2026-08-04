@@ -534,9 +534,11 @@ if (auditedCount) {
   console.log('each was re-read here: a quote carrying the value, or a derivation and a quote per');
   console.log('component, a source URL and a real fetch date. That is a claim about the ENTRY, not a');
   console.log('fresh claim about the figure: it does not re-fetch anything.');
-  console.log('Not established: anything about an entry whose figure has since been renamed, dropped or');
-  console.log('revised. Those are history by design and are skipped rather than failed, because a check');
-  console.log('that failed on them would push someone into deleting the audit trail to get a green run.');
+  console.log('Not established HERE: anything about an entry whose figure has since been renamed,');
+  console.log('dropped or revised. Those are history by design and are skipped rather than failed,');
+  console.log('because a check that failed on them would push someone into deleting the audit trail to');
+  console.log('get a green run. Its previous_value is still asked if THIS branch is what added it, by');
+  console.log('the pass below, which reads a claim rather than a figure and so does not need one.');
   console.log('Nor anything about SERIES entries, which have the same gap one level over: only a block');
   console.log('that moved is asked, so an entry for a block sitting still is not re-read here either.');
 } else {

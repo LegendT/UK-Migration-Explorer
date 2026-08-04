@@ -120,7 +120,14 @@ const runBlocks = (step) => {
       out.push(inline);
       return;
     }
-    for (let j = i + 1; j < lines.length && (!lines[j].trim() || lines[j].startsWith(`${indent} `)); j += 1) {
+    // A block scalar runs until a line indented no further than its key. The first line of a step
+    // has had "      - " stripped by the split, so its key sits at column 8 whatever it measures
+    // here; without that, a step opening `run: |` would swallow the sibling keys below it, and one
+    // of those is the name that caused this function to exist.
+    const width = indent.length || 8;
+    for (let j = i + 1; j < lines.length; j += 1) {
+      if (!lines[j].trim()) { out.push(lines[j]); continue; }
+      if (lines[j].match(/^ */)[0].length <= width) break;
       out.push(lines[j]);
     }
   });
