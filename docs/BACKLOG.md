@@ -198,7 +198,13 @@ first act.
     above: it is wired to `refused-asylum-seekers-are-eventually-recognised` as a reciprocal
     `mirror_of` pair, which `validate-content` enforces in both directions, and that page's
     mirror section now links to it rather than saying no separate check exists. Its verdict is
-    **[you]** as well. **Five are left**, and the order they are proposed in is in PR #132.
+    **[you]** as well. **The third is drafted (PR #133), "The asylum backlog is one number"**,
+    which leads on one queue published as both people and cases rather than on the four queues,
+    and links to the glossary's table rather than repeating it. Verdict **[you]**. **Four are
+    left**, and the order they are proposed in is in PR #132. **Worth deciding before they are
+    written**: the split stands at seven restrictionist to three pro-migration and only one of
+    the four remaining corrects a pro-migration claim, so the finished set lands near ten to
+    four, above the floor and disclosed on the claims page but further apart than it has been.
 11. **CLOSED 4 August 2026, and A3 is closed with it (PR #121 and #124).** `main` is protected:
     the `validate` job is a required status check, `enforce_admins` is on so it binds the owner
     too, and force pushes and deletions are off. **Probed rather than read**: a direct push to
