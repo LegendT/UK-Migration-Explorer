@@ -11,9 +11,11 @@ or if a planning document exists that the backlog does not reference.
 
 ## Start here
 
-1. Read `docs/BACKLOG.md`. It is ordered; take the first **unfinished** item, which is not
-   always an unstarted one: an item can have phases built and still be the first. Which item
-   that is, and how far it has got, is the backlog's to say and not this document's.
+1. Read `docs/BACKLOG.md`. It is ordered; **take the first item its header says a session takes,
+   and the header states that rule in one sentence.** It is not always an unstarted item: one can
+   have phases built and still be the first, and the header turns on a word that has been misread
+   before. Which item it is, and how far it has got, is the backlog's to say and not this
+   document's.
 2. Read the rest of this document, for how the project works and what not to repeat.
 3. Read the scope document for whatever you pick up, and do not re-derive it.
    `verification.txt` at the repository root is the pre-publication review itself. It is the
@@ -600,6 +602,27 @@ is already here to adding a neighbour beside it.
   branch protection and no rulesets**, verified by `gh api repos/{owner}/{repo}/branches/main/protection`
   returning 404 and the rulesets endpoint returning `[]`, so a red job blocks no merge at all. Every
   "this gates a pull request" in `docs/BACKLOG.md` is worth the habit of not merging red and no more.
+  **And read the log of the two continue-on-error steps rather than the green tick**: they report and
+  never gate, so a finding there survives until a person reads it, which is how CI called two live
+  OBR links dead on every run for weeks.
+
+- **Reproduce a backlog bullet's premise before building what it prescribes.** The bullet is usually
+  right that something is broken and often wrong about the remedy, and building the remedy ships a
+  change that reads as a fix in the diff. Two of A3's three on 4 August 2026: "add `previous_value`
+  to the audit pass" cannot work, because forbidding `null` there fails the next genuinely new
+  figure the moment its own pull request merges; and "add the four `Sec-Fetch` headers" changed
+  nothing, because Node's `fetch` is refused whatever headers it sends and `--http1.1` was the
+  variable. Record what it turned out to be, in the bullet as well as the PR: the next bullet is
+  written by the same hand.
+
+- **A figure can verify to the digit and still name the wrong denominator**, which on this site is
+  the error the site exists to correct. A claim page says "between a fifth and a half of each cohort
+  had not ended in a grant", and still did on 4 August 2026 when this was measured. Every digit checked against `Asy_04`: the latest
+  grant rate runs 50% for 2010 to 80% for 2020, so the complement is 19.9% to 50.0%, a fifth to a
+  half exactly. But that rate is grants over grants-plus-refusals and excludes withdrawals,
+  administrative outcomes and outcomes not yet known; against the cohort as a reader hears it the
+  share runs 35% to 55%. **Recompute the rate from the primary table's own rows and check what the
+  publisher divided by**, rather than checking the digits against a bulletin sentence.
 
 - **Negative-test every new check**, and confirm the break actually applied before concluding
   anything. Six "failures" here were tests that never fired: two in an earlier session, a
@@ -1140,6 +1163,13 @@ Everything else is a pointer at a heading in this document. **The table above is
 if it grows past four rows, the prompt has started reciting again and the fix is to cut it, not to
 extend the table.
 
+**Two paragraphs were added to the copy on 4 August 2026 and cut the same day**, one on
+reproducing a bullet's premise and one on reading the CI log of a continue-on-error step. Both were
+rule text with a fuller copy in *Working practices*, which is the drift this section exists to stop,
+and one was written into `docs/prompts/fresh-session.md` rather than the block above, which is the
+copy that gets overwritten. What survives of each is one clause inside a paragraph that was already
+there: the TASK paragraph and the network-checks sentence. Neither adds a row to the table.
+
 **That fix was applied on 2 August 2026, and this is the record so it is not undone by someone
 being helpful.** The block carried a fifth thing, a paragraph beginning "ONE DELIVERABLE PER
 SESSION" that paraphrased the rule of the same name in `~/.claude/CLAUDE.md`. It was none of the
@@ -1262,7 +1292,8 @@ question is.
 TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
-has been misread before.
+has been misread before. Reproduce the item's premise before building what
+it prescribes.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
@@ -1275,7 +1306,8 @@ npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
 taking silence as clearance. check-releases, check-sources and the
 ONLINE half of check-backlog are network checks that gate nothing, so
-run them by hand before a PR.
+run them by hand before a PR, and read their step logs in CI rather than
+the green tick: they report and never gate.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with

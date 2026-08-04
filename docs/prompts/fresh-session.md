@@ -33,7 +33,8 @@ question is.
 TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
-has been misread before.
+has been misread before. Reproduce the item's premise before building what
+it prescribes.
 
 Tell me which item you are taking and what you expect to change before
 you start. If it is larger than a session, propose a split. If it is
@@ -46,7 +47,8 @@ npm run build, npm run a11y and npm run check-evidence. All four every
 time. Read what a passing run says it did NOT establish, rather than
 taking silence as clearance. check-releases, check-sources and the
 ONLINE half of check-backlog are network checks that gate nothing, so
-run them by hand before a PR.
+run them by hand before a PR, and read their step logs in CI rather than
+the green tick: they report and never gate.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
