@@ -931,6 +931,33 @@ is already here to adding a neighbour beside it.
   once. The exception is a decision that would make the mechanical work wasted if it went the
   other way; ask that one early.
 
+- **Bringing a [you] decision: real options, one recommendation, and the thing itself rather than
+  a description of it.** The bullet above says WHEN to ask. This is how, and it is the form the
+  owner asks for and answers in a word.
+
+  Give two or three options that are actually available, name one as the recommendation, and say
+  what the others cost rather than listing them evenly. A balanced menu with no lead makes him do
+  the analysis twice, and bringing the call rather than taking it is not the same as declining to
+  have a view.
+
+  **Render the alternatives from the real data instead of describing them.** The citation format
+  went to him on 4 August 2026 as three questions, and came back in one line, because the three
+  shapes had been generated from the records of the page they would appear on: five citation lines
+  against three, in the publishers' own words, so the difference was visible rather than argued. A
+  described option is a claim about what something would look like, and the difference between a
+  claim and the thing is this site's entire subject. The same move settled the navigation and the
+  chart remedy earlier: build the smallest real version, measure it, and show that.
+
+  **Check the constraint before offering the choice**, per the validator bullet above; an option a
+  check forbids is not an option, and offering it costs a turn and some trust.
+
+  **When the answer comes back, record what was REFUSED and why, beside what was taken, and keep
+  refused separate from deferred.** Twice an option not taken was what explained the shape of what
+  was built. An unrecorded refusal is reopened by the next session being helpful, and a deferral
+  recorded as a refusal is lost: of the three citation questions, one was deferred behind an open
+  grade decision and is now filed under U3 where that decision lives, rather than under the item
+  that raised it.
+
 - **Check `main` has not moved before rewriting this file or the backlog.** A PR was merged
   mid-session here, so a branch cut an hour earlier carried a superseded handoff, and editing it
   would have reverted the owner's own merged work. The edit tool caught it by reporting the file
