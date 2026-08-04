@@ -95,7 +95,14 @@ first act.
    publisher that prints their figure, five regraded to say honestly what the figure is, and no
    published value moved. What is left is one sentence of yours, whether
    `content/claims/nineteen-per-cent-born-abroad.md` should stop calling a now-`calculated`
-   figure "accredited".
+   figure "accredited". **IT IS WIDER THAN ONE SENTENCE, ESTABLISHED 4 August 2026 (PR #126).**
+   The word attaches to that figure on that page four times, in `data/meta.json`'s key caveats,
+   which render on every page carrying them, in `data/population.json`'s theme note and in the
+   record's own notes, and by implication in the Born abroad card, which calls the later
+   estimate not an accredited count. **And the reason is stronger than a grade change**: ONS
+   grants accreditation to the England and Wales and Northern Ireland statistics in its UK
+   census-based release and withholds it at UK level in terms, so nothing accredited publishes
+   a UK-wide foreign-born figure at all.
 6. **GATE. The UX review, U3 to U5 below.** **U1 is done** (PR #86, 2 August 2026) apart from the
    `robots.txt` half, which is in the launch gate at the end. **U2 is closed (PR #118, 4 August
    2026), built and its format decided**, and what it is and what building it found are under U2
@@ -764,14 +771,30 @@ Each is **[you]** because it is wording, a grade or a sourcing call.
 - **DECIDED 4 August 2026, call 8: re-source to the census release rather than regrade, so the grade becomes true as defined. MOVES A SOURCE, so it needs an evidence entry. NOT YET APPLIED.** The Born abroad card grades a Migration Observatory briefing figure `official`, a grade
   the sources page defines as "taken directly from an official published release". The
   underlying figure is the 2021/22 Census; the cited source is a university briefing. Regrade,
-  or re-source the record to the census release it summarises. **Reproduce the premise before
-  building this one.** Its sibling `population/foreign-born-population-of-the-uk` records that
-  nobody publishes the UK figure as one number: ONS prints the two census days as separate
-  per-nation rows and its own freedom-of-information response calls a UK non-UK-born estimate
-  an ambition, in the future tense. If the same holds for the share, re-sourcing would point
-  the record at a release that does not contain the figure, which is the defect A1 exists to
-  find. Establish that first, and if it holds, the choice this bullet offers is between
-  regrading and nothing.
+  or re-source the record to the census release it summarises. **THE PREMISE WAS REPRODUCED ON
+  4 August 2026 (PR #126) AND IT DOES NOT HOLD, AND THE SEARCH THAT KILLED IT FOUND A REAL
+  SOURCE INSTEAD.** There is no census release the briefing summarises. The briefing builds the
+  figure itself and says so, combining "2021 data from England, Wales, and Northern Ireland
+  with 2022 data for Scotland" and then that "That means that 16% of people in the UK ... had
+  been born abroad". The only UK-level ONS series is survey-based, gives a different total,
+  prints no percentage at all and is discontinued. **What the search did find is ONS's
+  "Census-based statistics UK: 2021", released 27 June 2025**, whose table UK05 gives country
+  of birth for the United Kingdom. Parsed rather than read off a summary page, it puts
+  10,724,293 of 66,912,612 usual residents outside the four UK countries, which is 16.03%; a
+  control against UK01 in the same workbook agrees on the population to twenty-five people, a
+  gap that release's own note on cell-key perturbation predicts. **So it is buildable, and it
+  is a change of construction rather than of citation**, which is why it comes back to you.
+  That release is not accredited at UK level, is "not considered to be census statistics
+  themselves, but rather census-based statistics" with Scotland interpolated to March 2021, and
+  its own note advises against comparing it with cross-UK datasets built by aggregation, which
+  is how the figure this site publishes was built. UK05 prints neither the total nor the share,
+  so the grade becomes `calculated` on every path, which is the limb this decision refused. **No
+  printed digit moves on any option**, 16.03% showing as 16. **Recommended: re-source to UK05,
+  grade `calculated`, and say on the page that the basis is census-based rather than census.**
+  The alternative is to leave it on the briefing and grade it honestly, which
+  `scripts/check-evidence.mjs` refuses today, `estimated` sitting inside its derived set and
+  demanding components for a figure that is printed in its source. Leaving it as it is stays the
+  one option the grade definition rules out.
 - **DECIDED 4 August 2026, call 9: declare rather than surface. Adding five returns records is a content project; one sentence in *What this site does not cover* closes the principle now and surfacing stays available. APPLIED (PR #125, 4 August 2026)**, as a *Returns and removals* paragraph in the shape of its neighbours, saying the figures are held rather than absent and that showing them means a page rather than a number. Returns are an unstated scope silence. The data layer holds five returns records,
   including the 39,007 enforced-plus-voluntary total, and no reader-facing page shows any of
   them except port refusals inside a caveat, while *What this site does not cover* does not
