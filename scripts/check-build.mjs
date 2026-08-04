@@ -39,6 +39,20 @@ for (const file of pages) {
   anchors.set(url, new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1])));
 }
 
+// Every link this build is answerable for, as a path.
+//
+// A link written with this site's own origin is an internal link too, and it was not checked
+// because until the citation blocks nothing wrote one but the canonical tag. The citation exists
+// to hand a reader a URL they paste somewhere else, so a chart id renamed under it breaks
+// precisely the thing the block is for, on a page where every other link still resolves.
+//
+// One function rather than a second pattern at each site, because the count printed at the end
+// of this file was derived from its own copy of the relative pattern and would have gone on
+// reporting the smaller number while the larger set was being checked.
+const ORIGIN = new RegExp(`href="${site.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^"]*)"`, 'g');
+const internalHrefs = (html) => [...html.matchAll(/href="(\/[^"]*)"/g)].map((m) => m[1])
+  .concat([...html.matchAll(ORIGIN)].map((m) => m[1] || '/'));
+
 for (const file of pages) {
   const where = relative(siteDir, file);
   const html = readFileSync(file, 'utf8');
@@ -88,7 +102,7 @@ for (const file of pages) {
   }
 
   // Internal links must resolve, both the page and the fragment.
-  for (const [, href] of html.matchAll(/href="(\/[^"]*)"/g)) {
+  for (const href of internalHrefs(html)) {
     const [path, fragment] = href.split('#');
     const target = path === '' ? url : (path.endsWith('/') ? path : `${path}/`);
     if (!served.has(target) && !served.has(path)) {
@@ -281,6 +295,26 @@ if (!sitemap) {
   }
 }
 
+// --- the domain, which the print stylesheet writes by hand ------------------------------
+// CSS cannot read content/_data/site.js, and content/assets is copied rather than templated, so
+// the print rule that appends this site's own domain to an internal link is the one place the
+// domain is written twice. That is a second home for a fact, which this project refuses wherever
+// it can, so the two are compared instead. It is not hypothetical: the domain moved on 4 August
+// 2026, and a stale literal here would put the old address on every printed page, on the artefact
+// a researcher files a citation from, with nothing on screen showing it.
+// Anchored to the internal-link rule's own selector, not to the shape of its content string. The
+// first version matched on the content alone, so deleting the rule fell through to the
+// external-link rule one line below it, captured its empty prefix, and reported that the domain
+// was wrong rather than that the rule was gone. Found by deleting it, not by reading this.
+const printed = readFileSync(join(siteDir, 'assets/style.css'), 'utf8')
+  .match(/main a\[href\^="\/"\]::after \{ content: " \(([^"]*)" attr\(href\)/);
+const host = site.url.replace(/^https?:\/\//, '');
+if (!printed) {
+  errors.push('assets/style.css: the print rule that appends this site\'s domain to an internal link is gone, so a printed page gives no way to type its links back in.');
+} else if (printed[1] !== host) {
+  errors.push(`assets/style.css: the print rule prints "${printed[1]}" and site.url is "${host}". A printed page would send a reader to the wrong domain, and nothing on screen would show it.`);
+}
+
 // robots.txt is deliberately present until launch. If it goes missing the site becomes
 // crawlable again with no other signal, so its absence is treated as a build failure until
 // someone removes this check on purpose.
@@ -304,7 +338,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-const internal = pages.reduce((n, f) => n + (readFileSync(f, 'utf8').match(/href="\/[^"]*"/g) ?? []).length, 0);
+const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt disallows all crawlers.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);

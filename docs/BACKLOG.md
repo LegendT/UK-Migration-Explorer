@@ -37,8 +37,19 @@ prompt had.
 2 August 2026 from the section ordering and the sentence that lived under *Scoped, not built*;
 this is now the only place the sequence is stated, so that finishing something cannot leave a
 stale instruction somewhere else. The lettered and numbered sections below hold the detail and
-the reasoning each entry points at. Items marked **GATE** block launch; nothing else does. A
-session takes the first unfinished **[me]** item or **[me]** half; **[you]** items are the
+the reasoning each entry points at.
+
+**Items marked GATE block launch, and on 4 August 2026 that became almost all of them.** The
+owner widened it, on the reasoning that a site whose subject is other people's misuse of
+statistics cannot launch with its own trust work outstanding: the wording and grading calls, the
+figures whose provenance is unresolved, the tables a phone reader cannot read, the page that
+describes this site's own method, and the checks that do not do what the documents say they do.
+So the marker no longer earns its keep by naming the gates. **The two items that are NOT gates
+are the information now, and they sit after Launch**: talking to five target users, and running a
+real screen reader. Both are the owner's own time rather than work anyone is waiting on, and both
+stay on this list, because an item leaves it by being completed and never by being dropped.
+
+A session takes the first unfinished **[me]** item or **[me]** half; **[you]** items are the
 owner's, and a session brings those to him batched rather than starting them. If a session's
 first act is to bring the gates rather than to take the first **[me]** item, that is the right
 first act.
@@ -49,7 +60,7 @@ first act.
    carried since correction 1b. The numbers 1 and 2 are collapsed into this one entry rather than
    left as empty rows; *The launch gates, in detail* keeps their numbering so nothing renumbers
    silently.
-2. **The six pages the pre-publication review never opened**, put through
+2. **GATE. The six pages the pre-publication review never opened**, put through
    `docs/PRE-PUBLICATION-REVIEW.md`. Recommended before signing the review as passed, because
    both glossary gates sit on one of the six and two independent passes reached it separately.
    **The [me] half is done (PR #76, 2 August 2026)**: the evidence is in
@@ -57,111 +68,133 @@ first act.
    figure on those six pages beside what the data layer holds, and leaves the checkboxes
    unticked. It carries no findings and no severities, deliberately. **The verdicts are [you]**,
    and are all that is left of this item.
-3. **The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
-   below, plus the two sources-page wording bullets at the end of item 6. All **[you]** calls;
-   applying what is decided is **[me]**. None gates launch, and every one is cheaper before
-   the site has readers.
-4. **The decisions that change what launch publishes**: whether `.netlify.app` is the launch
-   domain, the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
-   route that is not a GitHub account, whether a fourth limit is published and which, whether
-   the success measure goes on `/about/`, and the rest of A6. All **[you]**; the applying is
-   **[me]**. The domain comes first among them, because it changes the URL anyone cites.
-5. **Talk to five target users.** A week, in parallel with everything above, and the one
-   acceptance criterion foundation section 18 says can save the whole build. The two
-   comprehension criteria are tested by this and by nothing else. **[you]**.
-6. **GATE. Record the review as passed in `CHANGELOG.md`**, after the six-page checkboxes above,
-   the glossary gates behind them now being closed. **Its scope was decided on 2 August 2026: all
-   sixteen pages, not the ten the review read.** Worth knowing
-   before signing: the review's own selection criteria failed 2.6 and 2.7, and both were kept
-   on the site's published no-attribution policy, so signing backs that policy over the
-   reviewer's criterion. **[you]**.
-7. **GATE, and deliberately last. Launch**: delete `content/robots.txt` and its guard in
-   `scripts/check-build.mjs`. **The UX review says write that file rather than only delete it**,
-   which is the one place that review touches a gate, and it is now the only part of U1 left.
-   **The sitemap it wanted beside it is built** (PR #86), so what is outstanding is the file
-   itself plus the `Sitemap:` line pointing at it, and **what it says is gated on U4's
-   AI-crawler decision**, which is **[you]**. Then set up Search Console, which costs nothing,
-   needs no JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's
-   word.
-8. **The UX review, U2 to U5 below.** None of it gates launch. **U1 is done** (PR #86,
-   2 August 2026) apart from the `robots.txt` half, which is in the gate above. U2 is the
-   citation handover and is the one worth arguing for, U3 is five trust items, and U4
-   is two **[you]** decisions that block any work on them, one of which the gate above now
-   waits on. U5 records what was considered and cut, so it is not proposed again.
-9. **A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is done
-   (PR #98, 3 August 2026)** and nothing but **[you]** is left of it. All 17 pages were rendered at
-   five real device sizes with a genuine layout viewport. **The round found its own premise wrong
-   twice**, which is the point of it: the nav wraps to five rows at 320px rather than the four the
-   first review calculated, and the stylesheet's one width-dependent nav rule is dead, being
-   identical to the base rule it appears to override. **The costliest finding is not the nav.** It
-   is that 45% of every chart is off-screen at 320px and what is hidden is the data its own summary
-   sentence describes, which no review that reads markup could have seen. **THE NAVIGATION IS
-   DECIDED AND BUILT (PR #109, 3 August 2026)**: a `details` disclosure below 40em, no client-side
-   JavaScript, which took the header from 55% of the first screen at 320px to 19% and put every
-   page's `h1` above the fold. Wide screens were proved untouched against a build of `main` rather
-   than argued to be. It opens from a bar icon that becomes a cross, so the control keeps the state
-   the browser's own triangle showed. **The sibling precedent was not what settled it**: DEBT's
-   collapse needs JavaScript, and what carries this is that the reveal idiom was already in this
-   stylesheet's print block, guard and all. **THE CHART REMEDY IS DECIDED AND BUILT TOO (PR #113,
-   3 August 2026)**: each chart is rendered twice at build time and CSS shows one, so 45% of every
-   chart being off-screen at 320px is 0% at every size measured, with no page overflow and no axis
-   text below the stylesheet's own 11px floor. Wide screens are byte-identical, and a second
-  model is why that is now true: the first version anchored the first and last year labels to the
-  plot edge on BOTH geometries, which only narrow needed, and on `/asylum/` it closed the gap
-  between "2010" and "2012" to 4px so they read as one token. **U6 IS NOT COMPLETE, AND THIS ENTRY
-   SAID IT WAS UNTIL 3 AUGUST 2026 (PR #115).** Its seven-table finding carries no resolution and was never
-   addressed; it was re-measured on the day this was corrected and reproduces unchanged, seven
-   tables at 320px and two still at 390. **The remedy is [you]**, because scoping the one stylesheet
-   floor involved is a partial rather than a fix: the worst of them, the Sources table, is 485px in
-   a 280px box, and `style.css:232`'s 224px floor accounts for 99px of the 205px overflow, so
-   scoping it the way PR #113 scoped the chart floor leaves the table still scrolling. Everything
-   that would close it changes what a reader sees. **[me]** was the building and the measuring, and
-   both are done.
-10. **A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only the
-    reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
-    Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
-    reverted regrade check, in that order, fetch first, because the other way round forces a
-    fabricated quote. **The regrade check is landed (PR #99, 3 August 2026)**, ahead of the rest
-    of the item, because the record it was gated on was in the first batch. **Batch 1 is done**,
-    the sixteen reader-facing Home Office records (PR #99); **batch 2 is done**, the nine ONS
-    records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is done**,
-    twelve of the tail's seventeen in PR #103 and the last five in PR #104, which were sourcing
-    calls rather than fetching. **SO EVERY RECORD THAT REACHES A READER NOW CARRIES EVIDENCE**, and
-    what is left of A1 is the unpublished reserve records, batched under A1 below. **Batch 4 is done
-    (PR #111, 3 August 2026)**, the Home Office reserve records, which found two records graded
-    wrongly in opposite directions and corrected both. **Batch 5 is half done (PR #112, 3 August
-    2026)**: five of the Migration Observatory records are evidenced and **three are [you]**, one
-    superseded by a new edition of its briefing and two whose figures are in ONS EMP06 rather than
-    the briefing they cite, which would need a new catalogued publisher. **BATCH 6 IS DONE (PR #116,
-    3 August 2026), AND IT WAS THE LAST OF THE [me] WORK IN A1**: the Commons Library NHS share, the
-    Skills for Care adult social care share and the MAC salary threshold. All three cited a page that
-    is not where their figure lives. **So every record in the data layer now carries evidence except
-    the ones the batches above left as [you]**, which are named under A1 below and are all that is
-    left of this item. Batch 6 added one to them, and it is the Skills for Care base. **No count is
-    written here**: `npm run build` prints how many records are reserve, and how many lack an
-    evidence entry is what `node scripts/check-backlog.mjs` would refuse to let this line say.
-    Those are two different numbers, and this line gave one figure for both until 3 August 2026. And re-read or
-    drop
-    `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
-    unchecked. **[you]**.
-11. **R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source observation
-    the far-end trace produced has been taken: five records re-sourced to the publisher that prints
-    their figure, five regraded to say honestly what the figure is, and no published value moved.
-    What is left is one sentence of yours, whether `content/claims/nineteen-per-cent-born-abroad.md`
-    should stop calling a now-`calculated` figure "accredited".
-12. **Item 3's last phase**: rewriting what the sources page says about automation. **[you]**
-    sign-off, no build behind it.
-13. **Item 5, the eight undrafted claims**: a session drafts **[me]**, and the verdict and short
-    answer come to the owner before merge **[you]**. Only the pro-migration draft moves the direction split off
-    its floor.
-14. **A real screen reader over the pages** **[you]**, then A5's `aria-describedby` change
-    that is gated on it **[me]**. It is also the published limit most worth closing.
+3. **GATE. The reader-facing wording batch, taken in one sitting**: everything under A4 and R1
+   below, plus the two sources-page wording bullets at the end of *Scoped, not built* section 6.
+   All **[you]** calls; applying what is decided is **[me]**. Every one is cheaper before the
+   site has readers, and since 4 August 2026 every one blocks launch.
+4. **GATE. The decisions that change what launch publishes. THE DOMAIN IS DECIDED (4 August
+   2026): `ukmigrationexplorer.org`**, applied in PR #118, and it came first among these because
+   it changes the URL anyone cites, which the citation blocks now print as copyable text on every
+   chart and claim. What is left is the LICENCE scope, which pipeline `check-evidence` and `a11y` gate, the contact
+   route that is not a GitHub account, whether a fourth limit is published and which, whether the
+   success measure goes on `/about/`, and the rest of A6. All **[you]**; the applying is
+   **[me]**.
+5. **GATE. R2 is closed but for one wording call (PR #104, 3 August 2026). [you].** Every source
+   observation the far-end trace produced has been taken: five records re-sourced to the
+   publisher that prints their figure, five regraded to say honestly what the figure is, and no
+   published value moved. What is left is one sentence of yours, whether
+   `content/claims/nineteen-per-cent-born-abroad.md` should stop calling a now-`calculated`
+   figure "accredited".
+6. **GATE. The UX review, U3 to U5 below.** **U1 is done** (PR #86, 2 August 2026) apart from the
+   `robots.txt` half, which is in the launch gate at the end. **U2 is closed (PR #118, 4 August
+   2026), built and its format decided**, and what it is and what building it found are under U2
+   and *Completed*. U3 is five trust items, and U4 is two **[you]** decisions that block any work
+   on them, one of which the launch gate at the end now waits on. U5 records what was considered
+   and cut, so it is not proposed again. **What is left of this item now begins at U3**, whose
+   first bullet, and the thing that now waits beside it, are gated on the open grade questions in
+   R2 and A6, and whose withdrawn-claim stub needs wording from you. Its remaining bullets carry
+   no tag and neither does this sentence.
+7. **GATE. A SECOND UX ROUND, U6 below, because the first missed the navigation. The [me] half is
+   done (PR #98, 3 August 2026)** and nothing but **[you]** is left of it. All 17 pages were
+   rendered at five real device sizes with a genuine layout viewport. **The round found its own
+   premise wrong twice**, which is the point of it: the nav wraps to five rows at 320px rather
+   than the four the first review calculated, and the stylesheet's one width-dependent nav rule
+   is dead, being identical to the base rule it appears to override. **The costliest finding is
+   not the nav.** It is that 45% of every chart is off-screen at 320px and what is hidden is the
+   data its own summary sentence describes, which no review that reads markup could have seen.
+   **THE NAVIGATION IS DECIDED AND BUILT (PR #109, 3 August 2026)**: a `details` disclosure below
+   40em, no client-side JavaScript, which took the header from 55% of the first screen at 320px
+   to 19% and put every page's `h1` above the fold. Wide screens were proved untouched against a
+   build of `main` rather than argued to be. It opens from a bar icon that becomes a cross, so
+   the control keeps the state the browser's own triangle showed. **The sibling precedent was not
+   what settled it**: DEBT's collapse needs JavaScript, and what carries this is that the reveal
+   idiom was already in this stylesheet's print block, guard and all. **THE CHART REMEDY IS
+   DECIDED AND BUILT TOO (PR #113, 3 August 2026)**: each chart is rendered twice at build time
+   and CSS shows one, so 45% of every chart being off-screen at 320px is 0% at every size
+   measured, with no page overflow and no axis text below the stylesheet's own 11px floor. Wide
+   screens are byte-identical, and a second model is why that is now true: the first version
+   anchored the first and last year labels to the plot edge on BOTH geometries, which only narrow
+   needed, and on `/asylum/` it closed the gap between "2010" and "2012" to 4px so they read as
+   one token. **U6 IS NOT COMPLETE, AND THIS ENTRY SAID IT WAS UNTIL 3 AUGUST 2026 (PR #115).**
+   Its seven-table finding carries no resolution and was never addressed; it was re-measured on
+   the day this was corrected and reproduces unchanged, seven tables at 320px and two still
+   at 390. **The remedy is [you]**, because scoping the one stylesheet floor involved is a partial
+   rather than a fix: the worst of them, the Sources table, is 485px in a 280px box, and
+   `style.css:232`'s 224px floor accounts for 99px of the 205px overflow, so scoping it the way
+   PR #113 scoped the chart floor leaves the table still scrolling. Everything that would close
+   it changes what a reader sees. **[me]** was the building and the measuring, and both are done.
+8. **GATE. A1, and the owner has now decided its scope: FULL VALIDATION OF ALL DATA**, not only
+   the reader-facing records. Decided 2 August 2026, and it is the largest item on this list.
+   Fetching the sources and writing the `data/evidence/` entries is **[me]**; then land the
+   reverted regrade check, in that order, fetch first, because the other way round forces a
+   fabricated quote. **The regrade check is landed (PR #99, 3 August 2026)**, ahead of the rest
+   of the item, because the record it was gated on was in the first batch. **Batch 1 is done**,
+   the sixteen reader-facing Home Office records (PR #99); **batch 2 is done**, the nine ONS
+   records and the three moving blocks of the two ONS series files (PR #102); **batch 3 is
+   done**, twelve of the tail's seventeen in PR #103 and the last five in PR #104, which were
+   sourcing calls rather than fetching. **SO EVERY RECORD THAT REACHES A READER NOW CARRIES
+   EVIDENCE**, and what is left of A1 is the unpublished reserve records, batched under A1 below.
+   **Batch 4 is done (PR #111, 3 August 2026)**, the Home Office reserve records, which found two
+   records graded wrongly in opposite directions and corrected both. **Batch 5 is half done (PR
+   #112, 3 August 2026)**: five of the Migration Observatory records are evidenced and **three
+   are [you]**, one superseded by a new edition of its briefing and two whose figures are in ONS
+   EMP06 rather than the briefing they cite, which would need a new catalogued publisher. **BATCH
+   6 IS DONE (PR #116, 3 August 2026), AND IT WAS THE LAST OF THE [me] WORK IN A1**: the Commons
+   Library NHS share, the Skills for Care adult social care share and the MAC salary threshold.
+   All three cited a page that is not where their figure lives. **So every record in the data
+   layer now carries evidence except the ones the batches above left as [you]**, which are named
+   under A1 below and are all that is left of this item. Batch 6 added one to them, and it is the
+   Skills for Care base. **No count is written here**: `npm run build` prints how many records
+   are reserve, and how many lack an evidence entry is what `node scripts/check-backlog.mjs`
+   would refuse to let this line say. Those are two different numbers, and this line gave one
+   figure for both until 3 August 2026. And re-read or drop
+   `asylum/small-boat-arrivals-2026-year-to-date`, whose own notes forbid publishing it
+   unchecked. **[you]**.
+9. **GATE. The release notifier's last phase**, which is *Scoped, not built* section 3: rewriting
+   what the sources page says about automation. **[you]** sign-off, no build behind it.
+10. **GATE. The eight undrafted claims**, which are *Scoped, not built* section 5: a session
+    drafts **[me]**, and the verdict and short answer come to the owner before merge **[you]**.
+    Only the pro-migration draft moves the direction split off its floor.
+11. **GATE. A3, the checks that do not do what the documents say they do.** It was not in this
+    list until 4 August 2026, in a file whose order calls itself the single list of everything
+    outstanding. Three of its bullets are **[me]**: adding `previous_value` to the audit pass
+    that re-reads every evidence entry, which nothing looks at today; giving `check-sources.mjs`
+    the four browser headers that turn a Commons Library 403 into a 200, which retires a standing
+    manual step; and closing the split where `npm run validate` and the CI workflow are two lists
+    of checks that never read each other, so a check added to one gates nothing on a pull
+    request. One is **[you]**: `main` has no branch protection and no rulesets, so every claim in
+    this file that a check gates a pull request is only as strong as the habit of not merging
+    red.
+12. **GATE. Record the review as passed in `CHANGELOG.md`**, after the six-page checkboxes above,
+    the glossary gates behind them now being closed. **Its scope was decided on 2 August 2026:
+    all sixteen pages, not the ten the review read.** Worth knowing before signing: the review's
+    own selection criteria failed 2.6 and 2.7, and both were kept on the site's published
+    no-attribution policy, so signing backs that policy over the reviewer's criterion. **[you]**.
+13. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
+    guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
+    delete it**, which is the one place that review touches a gate, and it is now the only part
+    of U1 left. **The sitemap it wanted beside it is built** (PR #86), so what is outstanding is
+    the file itself plus the `Sitemap:` line pointing at it, and **what it says is gated on U4's
+    AI-crawler decision**, which is **[you]**. Then set up Search Console, which costs nothing,
+    needs no JavaScript, and is how success measure 2 would be noticed. **[me]**, on the owner's
+    word.
+14. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
+    week, in parallel with everything above, and the one acceptance criterion foundation section
+    18 says can save the whole build. The two comprehension criteria are tested by this and by
+    nothing else. **[you]**.
+15. **NOT A GATE, on the same decision. A real screen reader over the pages** **[you]**, then
+    A5's `aria-describedby` change that is gated on it **[me]**. It is also the published limit
+    most worth closing.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item.
 
-### The launch gates, in detail
+### The launch gates as they stood before 4 August 2026, in detail
+
+**These are the three that
+blocked launch when the gate set was narrow, and all three are closed. What blocks it now is The
+order above, which is where the widened set is stated so that it is stated once.**
 
 **All of them are mine.** The count that stood at the head of this sentence is deleted rather
 than decremented, which is this project's rule for a count about its own work:
@@ -240,7 +273,7 @@ publications during the audit found three defects, one of them a headline figure
   **Batch 4 is done (PR #111, 3 August 2026): the reserve records of `ho-immigration-stats`**, the
   same release batch 1 traced, so the entries extend the file that already existed rather than
   opening a new one. Fifteen of its sixteen; the sixteenth is
-  `asylum/small-boat-arrivals-2026-year-to-date`, which is **[you]** in the order's item 10 and was
+  `asylum/small-boat-arrivals-2026-year-to-date`, which is **[you]** in the order's item 8 and was
   deliberately left there. The rest is batched by publisher on the same rule: `migration-observatory`
   8, then one each from `commons-library`, `skills-for-care` and `mac`.
 
@@ -457,9 +490,12 @@ Nothing is left of it, so it is under *Completed*, where what it found is record
 kept here rather than closed up, because A3 and A5 are referred to by letter from the ordering
 sentence and renumbering five headings to save one line is how a reference goes stale.
 
-### A3. Checks worth hardening, none of them urgent
+### A3. Checks that do not do what the documents say they do
 
-All **[me]**, all small, each with its reasoning in the audit.
+This section was headed "Checks worth hardening, none of them urgent" until 4 August 2026, and
+what changed is not the checks but what is being claimed on top of them: they gate launch now, and
+they are how this file's own assertions about what is checked stop being only as strong as habit.
+Most are **[me]**, all are small, each with its reasoning in the audit.
 
 - **The success message. DONE (PR #77, 2 August 2026).** It claimed no page writes a live value
   longhand while four sat on `/sources-and-method/` under a `historical_literals` exemption. The
@@ -628,7 +664,9 @@ Each is one call. None blocks anything.
 - Whether `og:` tags should exist, and whether a claim page's `og:title` leads with the claim or the
   correction. Foundation 8.5.4's rejection of a share image is not reopened by this.
 - Whether `.netlify.app` is the launch domain, given the success measure is citation by a named
-  outlet.
+  outlet. **DECIDED 4 August 2026: `ukmigrationexplorer.org`.** Applied in PR #118, which is also
+  what made it urgent: the citation block prints the site's own URL as copyable text, so a domain
+  moved after launch invalidates citations already taken.
 - Whether `/sources-and-method/` publishes a fourth limit, and which of the three candidates.
 - Whether the emigration sentence names the 2019 peak or lets the chart carry it.
 - Whether the claim card's duplicated review date stays: it prints once in the card and once at the
@@ -651,8 +689,9 @@ no work state, on the same terms as the audit's. Seven review dimensions plus a 
 trace; 44 findings confirmed by an adversarial verification pass and three refuted by it. The
 mechanical half landed with the PR that opened it, including both blockers, and all seven
 checks were green after. **All eight home page figures were verified against their live
-sources with verbatim quotes.** What is left is below. None of it gates launch on this
-project's own definition; each item is cheaper before the site has readers.
+sources with verbatim quotes.** What is left is below. It did not gate launch on this project's
+own definition until 4 August 2026, when the owner widened the gate set to cover trust work; each
+item is also cheaper before the site has readers, which was always the argument for doing it.
 
 ### R1. Reader-facing wording and grading, all of it yours
 
@@ -920,7 +959,9 @@ have made "three" wrong.
 
 **A UX, SEO and trust review of the built site**, critiqued by two independent passes, with every
 factual claim verified against the repository and the built output before landing here. It found
-nothing that gates launch. **Six claims in the review's first draft were wrong and are recorded as
+nothing that gated launch under the gate set of the day, and on 4 August 2026 the owner widened
+that set to cover trust work, so U3 to U5 gate launch now. What the review found is unchanged;
+what it is measured against is not. **Six claims in the review's first draft were wrong and are recorded as
 corrections rather than quietly dropped**, because the shape recurs: most of the six asserted that
 something was ABSENT from the site after checking a single page, and it was present on the others.
 
@@ -950,7 +991,7 @@ recorded.
   metas, one per scheme, and a `description` front-matter field the 404 uses so it no longer falls
   through to the site strapline.
 
-### U2. The citation handover, and it is one item rather than two
+### U2. The citation handover, and it is one item rather than two. DONE (PR #118, 4 August 2026)
 
 The chosen success measure is citation by a named outlet within six months, and the audience
 statement is professionals who need a citation quickly. **The citation such a reader needs is to
@@ -968,11 +1009,99 @@ checked [date]" and the anchor URL. Select-and-copy needs no script once the tex
 claim page it belongs inside the card boundary, so that a screenshot carries it. **[me]** to build,
 **[you]** for the citation format.
 
+**BUILT AS SCOPED (PR #118, 3 August 2026), and the format is what is left.** `lib/citation.mjs`
+renders one block for both places. Nothing in it is typed by an author: the `points` filter carries
+each point's whole record through, so a line chart cites the publications its own points name; a
+bar already resolves to a record for its value and the record travels with it; and a claim page
+reads the `figures:` it declares. It reads those rather than the tokens on the page deliberately,
+because two claim pages declare the net fiscal impact record and then write it as rounded prose, so
+reading tokens would drop that publication from both.
+
+**The deduplication key was wrong first, and measuring the grouping across every page is what found
+it.** Keyed on the URL alone, `/common-claims/nineteen-per-cent-born-abroad/` cited one ONS bulletin
+once, where three records name it as "(Table 3)", as "(Table 9), summed by this project" and as a
+calculation from it and a population estimate: the first answered for all three and the page said a
+figure was read where it was not. Keyed on the name AND the URL, two fields still differed inside a
+group and are merged rather than taken from whichever record came first. Tables, because
+`/common-claims/refused-asylum-seekers-are-eventually-recognised/` cites FIA_4 and FIA_3 with T_3
+under one name. And the checked date, where the EARLIEST wins: records on
+`/common-claims/everyone-in-asylum-accommodation-arrived-recently/` share a name and a URL and were
+checked on different dates, and the latest would claim a more recent verification than happened.
+
+**A second model read this branch and found two false claims, each of which this branch had written
+in three places, and one evasion of this file's own count rule.** Recorded rather than quietly
+corrected, because the shape is this project's oldest defect and the first of them was inherited
+rather than invented:
+
+- **The UX review's finding that no spreadsheet link renders is wrong, and this branch repeated it
+  in a code comment, a commit message and a pull request body.** One does, on the home page, where
+  a dashboard card links its record's `source_url` and the small boat arrivals card's record is an
+  `.ods`. The review's reasoning was that these URLs sit on series points, which emit no link, and
+  20 of the 68 sit on metric records instead. The bullet above is the review's own text and is left
+  as written; this is the correction to it. The defect it describes was real for every spreadsheet
+  but one.
+- **A count of this project's own state, written in words.** The comment on the deduplication said
+  three records on one claim page share a name and a URL. Five do. No count is written in either
+  place now, on this file's own rule, and the count rule in `scripts/check-backlog.mjs` reads digits
+  only, so the word form passed the check that exists to catch it.
+
+**Three guards, all probed rather than read**, two of them added by that review. A table a source
+names cannot be lost through the deduplication, asserted against the rendered text so a change to
+the key, the merge or the printing fails the build, and asked case-insensitively because the filter
+that drops a duplicate table is case-insensitive. A source with no `retrieved_date` is refused
+rather than printed as "Checked Invalid Date": `POINT_FIELDS` in `scripts/validate-data.mjs` does
+not ask a series point for that field, and nothing rendered it until now, so a point without one
+would have passed the data contract, the build check and the failed-value scan alike. And two
+records citing one publication under one name may not disagree about its `published_date`, which
+has no defensible merge rule. `check-build.mjs` also resolves a link written with this site's own
+origin now: until this block there were none but the canonical tag, and a renamed chart id would
+have broken precisely the URL the block exists to hand over while every other link on the page
+resolved.
+
+**One data defect, fixed here.** `asylum/asylum-backlog-2019` spelled its `source_name` with one
+comma that the other records citing the same spreadsheet and the same table do not, so
+`/common-claims/everyone-in-asylum-accommodation-arrived-recently/` printed that spreadsheet twice
+with two different checked dates. No value moved.
+
+**THE FORMAT WAS DECIDED ON 4 AUGUST 2026 AND U2 IS CLOSED.** Three questions went to the owner
+with the rendered alternatives beside them rather than described, and the decision on all three was
+to keep what is built:
+
+- **A claim page cites one publication as many times as it names it differently**, so
+  `/common-claims/nineteen-per-cent-born-abroad/` carries five lines, three of them one ONS
+  bulletin. Kept, because those three are this site's own calculation, a table it reads directly
+  and a table it sums, and collapsing them is the defect the deduplication key was corrected for.
+  The alternative considered and refused was one entry per publication with the namings nested
+  under it: it leads with a URL rather than with a publication, which is the wrong way round for a
+  citation.
+- **"Via UK Migration Explorer" stays**, subordinate to the publication lines above it. It is the
+  established formula for "found through", and the anchor it carries is the one thing this site can
+  give a reader that the publisher cannot. Considered and refused: a neutral "This page:", which
+  reads as navigation rather than as citation, and dropping the line, which loses the anchor.
+- **The block does not say which figure came from which publication, and that one is deferred
+  rather than refused.** It is the option that would most help a reader of the born-abroad page,
+  where the site's own calculation and the Migration Observatory's figure sit side by side and
+  nothing says which produced the 19%. It is not available yet: it would render `metric_name`,
+  which appears nowhere in the built site today, and those names carry the grade vocabulary. That
+  is a wider surfacing of grades, which U3's first bullet sequences behind the open grade questions
+  in R2 and A6. It is recorded there rather than here, so that it is found when those close.
+
 ### U3. Trust, in the order they are worth doing
 
 - **The confidence grade renders only on home page cards.** The three theme pages, where most
   figures live, show neither a grade nor any per-figure date. **Sequence this after the open grade
   questions in R2 and A6**: surfacing grades more widely amplifies a wrong one.
+
+  **A second thing waits on the same gate, added 4 August 2026 when U2 closed.** The citation block
+  does not say which figure each publication was cited for, and the field that would say it is
+  `metric_name`, which appears nowhere in the built site today and carries the grade vocabulary in
+  its own text: "Foreign-born share of total UK population, mid-2024 (calculated, provisional)".
+  Rendering it is a wider surfacing of grades arriving by a side door, which is why U2 deferred it
+  here rather than building it. **It is worth doing when this bullet is**, and the place it earns
+  most is `/common-claims/nineteen-per-cent-born-abroad/`, where this site's own calculation and
+  the Migration Observatory's figure sit in one citation block with nothing saying which produced
+  the 19%. The mechanism already resolves the records, so it is small. **[me]**, gated on the same
+  **[you]** decisions as the bullet above.
 - **There is no withdrawn-claim state.** `/sources-and-method/` promises that a claim unreviewed
   for twelve months is taken down until it has been. On a static site, deleting the file turns a
   URL built to be screenshotted into a generic 404, which reads as scrubbing. A stub at the same
@@ -1374,7 +1503,8 @@ comes last. That is launch.
 
 ## Scoped, not built
 
-None of this blocks launch. Each has a scope document; read it before starting.
+**Sections 3 and 5 block launch as of 4 August 2026**, as items 9 and 10 of The order; the rest
+of this heading does not. Each has a scope document; read it before starting.
 
 **The order lives under *The order* at the top of this file**, as the one sequence, and it
 governed from here until 2 August 2026, when the sections had multiplied past what a sentence
@@ -1959,7 +2089,7 @@ Both came out of PR #41 on 28 July 2026.
 
 ---
 
-## Unmet acceptance criteria, which are not launch gates
+## Unmet acceptance criteria, which are still not launch gates
 
 **The distinction matters and is easy to lose.** Foundation section 17 labels only its five
 *Trust criteria* as launch gates, and all five are met. The site itself declares one thing
@@ -2012,6 +2142,24 @@ is the unrecorded-figure report, and that is the editorial decision above rather
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it.
+
+- **U2, the citation handover**, 4 August 2026. PR #118. A "How to cite this" block under every
+  chart and inside every claim card, giving the publication, its edition, its tables, the URL as
+  its own link text so that select-and-copy needs no script, the spreadsheet ones labelled as
+  downloads, when the figure was checked, and this site's anchor last. Derived from the
+  publications each figure draws, never typed beside them, so a chart cannot cite a source its own
+  data does not name and correcting a record corrects its citation in the same edit.
+
+  **The format was the owner's and was decided on 4 August 2026 by keeping what was built**, with
+  the alternatives rendered from real data rather than described. What was refused, and why, is
+  under U2. The one option deferred rather than refused is recorded under U3, behind the same
+  grade decisions its first bullet waits on.
+
+  **What building it cost is the part worth keeping.** The deduplication key was wrong first and
+  a claim page said a figure was read where it was not; two fable critics then found five more
+  defects, including a literal NUL byte that made git treat the pull request's central file as
+  binary and left it with no reviewable diff, and one false sentence inherited from the UX
+  review's own text and repeated in three places without anyone opening the built page.
 
 - **The last three unrecorded figures, and the ratchet reaching zero**, 2 August 2026. PR #94.
   Item 4 is closed. Three figures, three different remedies, which is the shape of the whole item

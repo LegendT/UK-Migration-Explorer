@@ -21,6 +21,9 @@ layout: base.njk
       {% if period %}<span class="sep" aria-hidden="true">·</span><span>{{ period }}</span>{% endif %}
       {% if source %}<span class="sep" aria-hidden="true">·</span><span>{{ source }}</span>{% endif %}
     </p>
+    {#- Inside the card, so that a screenshot of the card carries the citation with it. The
+        publications a reader should cite are the Home Office's and the ONS's, not this page. -#}
+    {% citation figures, claim %}
   </div>
 
   <p class="claim-tags">

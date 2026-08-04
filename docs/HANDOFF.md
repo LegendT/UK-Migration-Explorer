@@ -34,7 +34,12 @@ closed the other original blocker.
 
 ## Where things stand
 
-- **Live:** https://ukmigrationexplorer.netlify.app (robots.txt disallows all crawlers)
+- **Launch domain, decided 4 August 2026:** https://ukmigrationexplorer.org. It is what
+  `site.url` holds, so canonical links, the sitemap and every citation block already print it.
+  **Whether DNS points at the Netlify deploy yet is operational state and is deliberately not
+  recorded here**, on the same reasoning as the branches two paragraphs down: check it rather
+  than trust this line.
+- **Deploy:** https://ukmigrationexplorer.netlify.app (robots.txt disallows all crawlers)
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
 - **Working branch:** cut a new one from `main`. This project works through PRs even solo.
 
@@ -130,8 +135,9 @@ fifth site standing. Two launch gates remain and neither is a defect: recording 
 passed, scoped to all sixteen pages, and deleting the robots rule.
 
 **A UX, SEO and trust review of the built site followed on 2 August 2026**, critiqued by two
-independent passes. It found nothing that gates launch, and what it did find is in
-`docs/BACKLOG.md` under *From the UX review*, entry 8 in the order, in that file the format and
+independent passes. It found nothing that gated launch under the gate set of the day, and the
+owner widened that set on 4 August 2026, so it does now. What it found is in
+`docs/BACKLOG.md` under *From the UX review*, entry 6 in the order, in that file the format and
 not here. One item touches a gate: the review argues the launch `robots.txt` should be WRITTEN
 rather than only deleted, with a sitemap beside it, and the gate as worded says delete.
 

@@ -1,6 +1,8 @@
 import { readFileSync, readdirSync } from 'node:fs';
 
+import site from './content/_data/site.js';
 import { barChart, lineChart } from './lib/charts.mjs';
+import { citationBlock } from './lib/citation.mjs';
 import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
 import { COMPANION_BLOCKS, THEME_FILES, readSeries } from './lib/series.mjs';
 
@@ -93,8 +95,12 @@ export default function (eleventyConfig) {
 
   // Line charts are built from series files. Bar charts cite records: a bar names a metric
   // and the value comes from that record, so a data update reaches the chart.
+  // The whole point is carried through, not only the year and the value, because the chart's
+  // citation block is built from the points it draws. The plot reads year and value and ignores
+  // the rest; a series that changed publication mid-chart would therefore cite both editions
+  // rather than whichever one an author had typed beside it.
   eleventyConfig.addFilter('points', (data) =>
-    data.map((point) => ({ year: Number(point.date.slice(0, 4)), value: point.value })));
+    data.map((point) => ({ ...point, year: Number(point.date.slice(0, 4)) })));
 
   // A chart summary that names a single year of its own series cited that year by typing the
   // number, because no mechanism existed. The chart and the sentence describing it could
@@ -117,24 +123,55 @@ export default function (eleventyConfig) {
   // be evaluated as an expression and silently produce NaN, which shipped once. They use
   // this shortcode instead, which goes through exactly the same renderer.
   eleventyConfig.addShortcode('figure', (ref) => renderFigure(ref));
-  eleventyConfig.addShortcode('lineChart', (options) => lineChart(options));
+  // A chart's citation names the chart's own anchor, so the page it sits on is part of the
+  // address. Taken from this.page rather than from an argument: an author typing the URL of the
+  // page they are editing is a second copy of something the build already knows.
+  eleventyConfig.addShortcode('lineChart', function (options) {
+    return lineChart({ ...options, pageUrl: `${site.url}${this.page.url}` });
+  });
 
   // A bar names the metric it draws. A literal value here would be a second home for a
   // figure, outside the citation contract and invisible to a data update, which is exactly
   // what the sources page tells readers cannot happen. Refusing the literal is the only
   // version of that promise a reader can rely on.
-  eleventyConfig.addShortcode('barChart', (options) => barChart({
-    ...options,
-    bars: options.bars.map((bar) => {
-      if ('value' in bar) {
-        throw new Error(`Bar "${bar.name}" in chart "${options.id}" carries a literal value. Cite a record with ref instead.`);
-      }
-      const metric = registry.get(bar.ref);
-      if (!metric) throw new Error(`Bar "${bar.name}" in chart "${options.id}" cites ${bar.ref}, which is not a metric in the data layer`);
-      if (typeof metric.value !== 'number') throw new Error(`Bar "${bar.name}" in chart "${options.id}" cites ${bar.ref}, which has no single value to draw`);
-      return { ...bar, value: metric.value };
-    }),
-  }));
+  eleventyConfig.addShortcode('barChart', function (options) {
+    return barChart({
+      ...options,
+      pageUrl: `${site.url}${this.page.url}`,
+      bars: options.bars.map((bar) => {
+        if ('value' in bar) {
+          throw new Error(`Bar "${bar.name}" in chart "${options.id}" carries a literal value. Cite a record with ref instead.`);
+        }
+        const metric = registry.get(bar.ref);
+        if (!metric) throw new Error(`Bar "${bar.name}" in chart "${options.id}" cites ${bar.ref}, which is not a metric in the data layer`);
+        if (typeof metric.value !== 'number') throw new Error(`Bar "${bar.name}" in chart "${options.id}" cites ${bar.ref}, which has no single value to draw`);
+        // The record travels with the bar, so the citation is resolved once, here, alongside the
+        // value it belongs to. Resolving it a second time inside the chart would be a second
+        // route to the same record and could disagree with this one.
+        return { ...bar, value: metric.value, record: metric };
+      }),
+    });
+  });
+
+  // The same block on a claim page, built from the refs the page already declares in its front
+  // matter. validate-content.mjs fails a page that writes a figure without declaring it, so a
+  // publication cannot reach a reader here with no citation behind it.
+  //
+  // The other direction is looser, deliberately, and it is why this reads `figures:` rather than
+  // the tokens on the page: two claim pages declare the net fiscal impact record and then write
+  // it as rounded prose instead of as a token. Reading the tokens would leave the publication
+  // behind that sentence out of the citation on both pages.
+  eleventyConfig.addShortcode('citation', function (refs, label) {
+    return citationBlock({
+      sources: refs.map((ref) => {
+        const metric = registry.get(ref);
+        if (!metric) throw new Error(`${this.page.inputPath} declares figure ${ref}, which is not a metric in the data layer`);
+        return metric;
+      }),
+      url: `${site.url}${this.page.url}`,
+      label,
+    });
+  });
 
   // Resolve a dashboard card or denominator reference to the metric that owns it.
   eleventyConfig.addFilter('metric', (ref) => {

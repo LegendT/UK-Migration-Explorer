@@ -556,16 +556,39 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 }
 
 .chart-data { margin-top: 1rem; }
-.chart-data summary {
+.chart-data summary,
+.cite summary {
   cursor: pointer;
   padding: 0.6rem 0;
   min-height: 44px;
   color: var(--accent);
   font-size: 0.9375rem;
 }
-.chart-data summary:hover { text-decoration: underline; }
+.chart-data summary:hover,
+.cite summary:hover { text-decoration: underline; }
 .chart-data td { font-variant-numeric: tabular-nums; }
 .nodata { color: var(--ink-soft); font-style: italic; }
+
+
+/* The citation handover ---------------------------------------------------------------
+   A URL printed as its own link text is what makes select-and-copy work with no script, and
+   the Home Office spreadsheet URLs are around 100 characters. `overflow-wrap: anywhere` is
+   therefore load-bearing rather than defensive: the last thing to push this site sideways at
+   320px was a single long filename, 54px of it, on the page listing the data files.
+
+   No bullets. Most blocks cite one publication, and a list marker on a single item reads as
+   the start of something rather than as a citation. */
+.cite { margin-top: 0.5rem; }
+.cite-list { margin: 0; padding: 0; list-style: none; }
+.cite-list li,
+.cite-via {
+  max-width: var(--measure);
+  margin: 0 0 0.75rem;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+.cite-via { margin-bottom: 0; }
 
 
 /* --- print ---------------------------------------------------------------------------
@@ -598,9 +621,14 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 
   /* A link with no destination is not a citation. Internal links get the site's own domain
      so a printed page can be typed back in; external ones print their href. */
-  main a[href^="/"]::after { content: " (ukmigrationexplorer.netlify.app" attr(href) ")"; }
+  main a[href^="/"]::after { content: " (ukmigrationexplorer.org" attr(href) ")"; }
   main a[href^="http"]::after { content: " (" attr(href) ")"; }
   main a::after { font-size: 0.85em; word-break: break-all; }
+  /* A citation's links already print their URL as their own link text, which is what makes the
+     block copyable on screen. The rule above would print every one of them a second time, in
+     brackets, on the artefact that exists for filing a citation. Same specificity as that rule
+     and after it, so it wins on order. */
+  main .cite a::after { content: none; }
 
   /* Nothing should scroll on paper. */
   .scroll-x { overflow: visible; }
