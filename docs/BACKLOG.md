@@ -170,13 +170,13 @@ below.
 15. **NOT A GATE, on the same decision. A real screen reader over the pages** **[you]**, then
     A5's `aria-describedby` change that is gated on it **[me]**, and R1's call 10 with it. It is
     also the published limit most worth closing.
-16. **NOT A GATE. The scroll-region checks cannot see a region that carries a second class**, which
-    is the last bullet under A5. **[me]**, and it exists as an item because nothing else in this
-    list points at it: item 4 named A5 and closed on 5 August 2026, and item 15 names one specific
-    A5 change rather than the section, so the work was written into a section the ordered list no
-    longer reaches. **That is the A6 orphan repeating within a day, by the hand that had just
-    written up A6's**, which is why it is a numbered item rather than a sentence somewhere. Added at
-    the end, so nothing was renumbered.
+16. **CLOSED 5 August 2026 (PR #149).** The scroll-region checks could not see a region carrying a
+    second class, in all four patterns across the transform and the checker that is supposed to
+    disagree with it. It is under *Completed*. It existed as an item because nothing else in this
+    list pointed at it: item 4 named A5 and closed on 5 August 2026, and item 15 names one specific
+    A5 change rather than the section, so the work had been written into a section the ordered list
+    no longer reached. **That was the A6 orphan repeating within a day, by the hand that had just
+    written up A6's**, which is why it was a numbered item rather than a sentence somewhere.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -317,18 +317,22 @@ record and an evidence entry rather than a sentence.
   Observatory and others: licensing a publisher's own paragraphs onward, where the old enumeration
   had merely failed to license them. Worse than the gap it closed, and caught by the critique round
   rather than by any check. The alternative decision was to scope it to `content/` and `lib/`.
-- **`check-build.mjs` cannot see a scroll region that carries a second class. [me], found
-  5 August 2026 while applying call 29, and it is The order's item 16.** Both of its scroll-region assertions match
-  `class="scroll-x"` with the closing quote, so a region written `class="scroll-x anything-else"`
-  escapes the focusable check, the role check and the accessible-name check, all three, in silence.
-  The `scrollable-regions` transform in `eleventy.config.js` matches the same way, and there it is
-  worse than blindness: the wrapper reads as no wrapper and the table is wrapped a second time, so
-  a region ends up nested inside a region. **That is not hypothetical.** It shipped into a build
-  during PR #138 and was found by counting `.scroll-x` in the built page, with `npm run build` and
-  pa11y both green. **Nothing exploits it today**, because that pull request moved its toggle class
-  onto an outer div rather than change a shared check, so this is latent rather than live. Fixing it
-  is a character class in four patterns, two here and two in the transform, and the probe is the
-  five strings that must and must not count as a wrapper.
+- **`check-build.mjs` could not see a scroll region that carries a second class. DONE (PR #149,
+  5 August 2026)**, found on 5 August while applying call 29. Both of its scroll-region assertions
+  matched `class="scroll-x"` with the closing quote, and the `scrollable-regions` transform in
+  `eleventy.config.js` matched the same way, where it is worse than blindness: the wrapper read as
+  no wrapper and the table was wrapped a second time, so a region ended up nested inside a region.
+  It shipped into a build during PR #138 and was found by counting `.scroll-x` in the built page,
+  with `npm run build` and pa11y both green.
+  **Two things this bullet had wrong, recorded because the next bullet is written by the same
+  hand.** It said the three checks go silent, and only the attribute checks do: the wrapper check
+  says the opposite of the truth, reporting a correctly wrapped table as unwrapped, and it stayed
+  quiet in the shipped case only because the transform had already added a second plain wrapper for
+  it to find. And **a character class is not the fix**: `class="scroll-x[^"]*"` reads
+  `class="scroll-xy"` as a region. The class attribute is a space-separated list, so the token has
+  to be matched as a whole member of it. The five strings became eight, four that must count as a
+  wrapper and four that must not, plus a whole-build probe with the toggle class put back on the
+  region and a control on the old patterns that reproduced the nesting.
 - **Point `aria-describedby` at the visible chart summary** instead of duplicating it into
   `<desc>`. **Gated on a real screen reader**, which this project has never run, so it is
   **[you]** first, at The order's item 15.
@@ -787,6 +791,22 @@ establish*.
 Kept so that a future session can see what was decided and when, rather than reopening it. **The
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
+
+- **The scroll-region class blindness**, 5 August 2026. PR #149. The order's item 16, and A5's
+  last bullet. Four patterns across the `scrollable-regions` transform and the check that exists to
+  disagree with it matched `class="scroll-x"` up to the closing quote, so a region carrying a second
+  class was invisible to all four. The two failures are not one failure: the three attribute checks
+  never saw such a region and said nothing, while the wrapper check reported a correctly wrapped
+  table as unwrapped, and it stayed quiet on 5 August only because the transform had already added a
+  second plain wrapper for it to find. **The prescribed remedy was refused**: a character class
+  reads `class="scroll-xy"` as a region, so the token is matched as a whole member of the
+  space-separated list instead. **And widening the match alone would have been the worse half**,
+  because the naming rewrite rebuilt the class attribute and would have silently dropped the very
+  class that put the region there; it now captures and writes it back. **The patterns are
+  deliberately not shared between the two files**, one expression in both being one assumption
+  neither side can catch, which is how four of them went blind together. Probed with the toggle
+  class put back onto the region, where the control on the old patterns reproduced the nesting with
+  the build still green.
 
 - **The seven-table overflow**, 5 August 2026. PR #138. Call 29, both halves. The Sources
   catalogue is rendered twice and the page shows one: a definition list below 40em, the table above

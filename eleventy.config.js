@@ -499,10 +499,24 @@ export default function (eleventyConfig) {
   eleventyConfig.addTransform('scrollable-regions', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
 
+    // The class attribute is a space-separated list, so scroll-x has to be matched as a whole
+    // member of it. Ending the attribute at the token, `class="scroll-x"`, is what made the
+    // guard below mean "wrapped AND styled in exactly one way" rather than "wrapped": on
+    // 5 August 2026 a wrapper carrying a second class for a responsive toggle read as no
+    // wrapper, so the table was wrapped twice and shipped a scrolling region nested inside a
+    // scrolling region, with two boxes, the shadow affordance painted twice and a second
+    // focusable stop for a keyboard user. `npm run build`, its own scroll-region assertions and
+    // pa11y all passed.
+    //
+    // Deliberately not a character class, which is what the backlog bullet asked for:
+    // `class="scroll-x[^"]*"` would read `class="scroll-xy"` as a region. Either side of the
+    // token must be a quote or a space, which refuses that and `no-scroll-x` with it.
+    const scrollX = 'class="(?:[^"]*\\s)?scroll-x(?:\\s[^"]*)?"';
+
     // Wrap any table that is not already in one. A wrapper always sits immediately before
     // its table, so testing exactly that is both simpler and safer than counting divs.
     let html = content.replace(/<table[\s\S]*?<\/table>/g, (table, offset, whole) =>
-      /<div class="scroll-x"[^>]*>\s*$/.test(whole.slice(0, offset))
+      new RegExp(`<div ${scrollX}[^>]*>\\s*$`).test(whole.slice(0, offset))
         ? table
         : `<div class="scroll-x">${table}</div>`);
 
@@ -510,7 +524,12 @@ export default function (eleventyConfig) {
     // correct only while a region holds nothing but a table or a chart. Assert that rather
     // than assume it: a div dropped inside one would close the match early and rewrite the
     // page's nesting, which produces no error anywhere and no visible symptom.
-    html = html.replace(/<div class="scroll-x">([\s\S]*?)<\/div>/g, (whole, inner, offset) => {
+    // The class attribute is CAPTURED and written back, not rebuilt. Widening the match without
+    // that would have been the worse half of this fix: a region carrying a second class would
+    // finally be named, and the rewrite would drop the class that put it there, silently
+    // undoing the styling it was given. The whole reason the blindness reached a build is that
+    // one such class was needed.
+    html = html.replace(new RegExp(`<div (${scrollX})>([\\s\\S]*?)</div>`, 'g'), (whole, classes, inner, offset) => {
       // Both ends, not just the opening one: a div dropped in AFTER the table would end the
       // match at that div's closing tag, and the captured inner would still begin with
       // <table and pass an opening-only check while the page's nesting was rewritten.
@@ -521,7 +540,7 @@ export default function (eleventyConfig) {
       const heading = [...html.slice(0, offset).matchAll(/<h([23])[^>]*>([\s\S]*?)<\/h\1>/g)].pop();
       const name = stripTags(caption?.[1] ?? heading?.[2] ?? '');
       if (!name) throw new Error(`A scrollable region in ${this.page.inputPath} has no caption and no heading above it to name it`);
-      return `<div class="scroll-x" tabindex="0" role="region" aria-label="${escape(name)}">${inner}</div>`;
+      return `<div ${classes} tabindex="0" role="region" aria-label="${escape(name)}">${inner}</div>`;
     });
 
     return html;
