@@ -131,9 +131,11 @@ below.
    count is written here**: `npm run build` prints what is reserve, and
    `node scripts/check-backlog.mjs` would refuse to let this line say how many lack an evidence
    entry. Those are two different numbers and this line gave one figure for both until 3 August
-   2026. **What is left of A1 is the series-evidence gap named under it**, which is **[me]** and
-   was deliberately not taken with the calls, one deliverable being this project's rule; and one
-   grade question the applying raised, which is **[you]** and is under A1 below.
+   2026. **The series-evidence gap under A1 is built (PR #147, 5 August 2026)**, so every series
+   evidence entry naming a block that still holds its declared vintage is re-read on every run,
+   and `previous_vintage` is asked of every series claim a branch adds rather than only of a block
+   that moved. **All that is left of this item is the grade question the applying raised**, which
+   is **[you]** and is under A1 below. **So there is no [me] work left in this item.**
 9. **GATE. The release notifier's last phase**, which is *Scoped, not built* section 3: rewriting
    what the sources page says about automation. **[you]** sign-off, no build behind it.
 10. **GATE. The undrafted claims**, which is *Scoped, not built* section 5: a session drafts
@@ -281,13 +283,22 @@ mean rewriting the evidence entry into components, since a regrade across the de
 changes what kind of evidence the check demands. Nothing is blocked either way and the record
 reaches no reader.
 
-**One [me] gap is named and not built: a series evidence entry is validated by nothing at the
-moment it is written.** `check-evidence` asks only a block that MOVED, so an entry for a block
-sitting still is never re-read, which is the same shape as the record-level gap PR #100 closed and
-a smaller surface, four files rather than the whole record set. Batch 2 wrote three such entries,
-so the gap is live rather than hypothetical, and their quotes were generated from the fetched
-table with a per-point assertion for that reason. Still named here rather than built, because one
-deliverable a session is this project's rule. **[me]**.
+**The [me] gap is built (PR #147, 5 August 2026): a series evidence entry was validated by nothing
+at the moment it was written.** `check-evidence` asked only a block that MOVED, so an entry for a
+block sitting still was never re-read, which is the same shape as the record-level gap PR #100
+closed and a smaller surface, four files rather than the whole record set. Batch 2 wrote three such
+entries, so the gap was live rather than hypothetical, and their quotes were generated from the
+fetched table with a per-point assertion for that reason. It is under *Completed*.
+
+**What building it turned out to need, beyond what this bullet named**, kept because the next
+bullet is written by the same hand. The re-reading pass was the half named here, and it has a
+sibling the bullet did not: `previous_vintage` was read by the release loop alone, so a claim
+written for a block sitting still could say anything in that field and be asked by nothing, which
+is the twenty-eight-backfilled-entries defect one level over, and four blocks carry no entry yet.
+Both are in that pull request, and it says so rather than letting the wider diff pass as the
+bullet's own scope. **And the ordering rule held**: the entries were fetched and written in batch 2
+and the check landed after them, where landing it first would have turned the branch red until
+entries existed and forced the fabricated quote the evidence contract exists to prevent.
 
 ### A2. The corrections to the grant-rate record. DONE (PR #72, 31 July 2026)
 
@@ -807,6 +818,21 @@ maintained here. Newest first.
   neither side can catch, which is how four of them went blind together. Probed with the toggle
   class put back onto the region, where the control on the old patterns reproduced the nesting with
   the build still green.
+
+- **The series-evidence gap**, 5 August 2026. PR #147. A1's last **[me]** work. A series evidence
+  entry was validated by nothing at the moment it was written: `check-evidence` asked only a block
+  that had MOVED, and that skip happens before any entry is matched, so the three entries batch 2
+  wrote for blocks sitting still had been declared once and never read. The run audited none of
+  them and now audits all three. Two passes, both mirroring the record side: every entry naming a
+  block that still holds its declared vintage is re-read on every run, and `previous_vintage` is
+  asked of every series claim a branch adds. **The second half is beyond what the bullet named**,
+  and it is the twenty-eight-backfilled-entries defect one level over, so the pull request says so
+  rather than letting the wider diff pass as the bullet's own scope. The four refusals an entry
+  cannot be read past, an unmappable file or block, a missing `vintage`, and a block held neither
+  now nor on the base branch, are asked only of what a branch proposes: unconditional, a rename in
+  `lib/series.mjs` would orphan every entry naming the old name at once and leave rewriting the
+  audit trail as the only green run. Probed in a scratch clone, fourteen strings that must fail and
+  three that must not, each asserting the break applied before the run.
 
 - **The seven-table overflow**, 5 August 2026. PR #138. Call 29, both halves. The Sources
   catalogue is rendered twice and the page shows one: a definition list below 40em, the table above
