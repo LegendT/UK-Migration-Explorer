@@ -101,9 +101,18 @@ below.
    half, which is in the launch gate at the end. U2 is closed (PR #118), built and its format
    decided. **U3's first bullet and call 28 are applied (PR #137, 5 August 2026)**: the confidence
    grade and a per-figure checked date now render on all three theme pages, and a claim can be
-   taken down under the twelve-month promise without deleting its address. **What is left in U3 is
-   the `metric_name` bullet**, which was deliberately not released with the first and stays
-   **[you]**. Its remaining bullets carry no tag and neither does this sentence.
+   taken down under the twelve-month promise without deleting its address. **What is left is one
+   bullet in U3 and one call in U4, and this entry accounted only for U3 until 5 August 2026**,
+   which is the shape that orphaned A6 a day earlier: a header naming U3 to U5 above a conclusion
+   covering U3 alone, and the conclusion is what gets believed. A session read the item as spent
+   and named the wrong next item because of it. Taking the three sections in turn:
+   **U3** leaves the `metric_name` bullet, deliberately not released with the first and **[you]**;
+   its other bullets carry no tag. **U4** leaves call 27, the structured data, which is **[me]** and
+   whose first step is confirming the `ClaimReview` deprecation the section says it could not
+   verify, because if that holds the channel is dead and the rest is not worth building. U4's other
+   call, 26, is decided and unapplied but is **not applied here**: item 13 says what it decides is
+   the content of the `robots.txt` that item 13 writes, so it lands there and that item is
+   deliberately last. **U5** is considered-and-cut and holds no work by design.
 7. **CLOSED 5 August 2026 (PR #138).** U6's three findings are all built: the navigation (PR #109),
    the chart remedy (PR #113) and now the seven-table finding, call 29, where the first-column
    floor is scoped to the wide rendering and the Sources catalogue is rendered twice, a definition
@@ -155,6 +164,13 @@ below.
 15. **NOT A GATE, on the same decision. A real screen reader over the pages** **[you]**, then
     A5's `aria-describedby` change that is gated on it **[me]**, and R1's call 10 with it. It is
     also the published limit most worth closing.
+16. **NOT A GATE. The scroll-region checks cannot see a region that carries a second class**, which
+    is the last bullet under A5. **[me]**, and it exists as an item because nothing else in this
+    list points at it: item 4 named A5 and closed on 5 August 2026, and item 15 names one specific
+    A5 change rather than the section, so the work was written into a section the ordered list no
+    longer reaches. **That is the A6 orphan repeating within a day, by the hand that had just
+    written up A6's**, which is why it is a numbered item rather than a sentence somewhere. Added at
+    the end, so nothing was renumbered.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -267,7 +283,7 @@ record and an evidence entry rather than a sentence.
   had merely failed to license them. Worse than the gap it closed, and caught by the critique round
   rather than by any check. The alternative decision was to scope it to `content/` and `lib/`.
 - **`check-build.mjs` cannot see a scroll region that carries a second class. [me], found
-  5 August 2026 while applying call 29.** Both of its scroll-region assertions match
+  5 August 2026 while applying call 29, and it is The order's item 16.** Both of its scroll-region assertions match
   `class="scroll-x"` with the closing quote, so a region written `class="scroll-x anything-else"`
   escapes the focusable check, the role check and the accessible-name check, all three, in silence.
   The `scrollable-regions` transform in `eleventy.config.js` matches the same way, and there it is
