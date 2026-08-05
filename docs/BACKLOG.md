@@ -107,9 +107,12 @@ below.
 7. **GATE. A second UX round, U6 below. The [me] half is done (PR #98, 3 August 2026)** and
    nothing but **[you]** is left of it. All 17 pages were rendered at five real device sizes with
    a genuine layout viewport. The navigation is decided and built (PR #109) and the chart remedy
-   is decided and built (PR #113). **What is left is the seven-table finding**, whose remedy is
-   decided as call 29 and unapplied: the floor scoping plus a restack of the Sources table's
-   rows. **[me]** to apply.
+   is decided and built (PR #113). **The seven-table finding is applied, call 29 (PR #138,
+   5 August 2026)**: the first-column floor is scoped to the wide rendering and the Sources
+   catalogue is rendered twice, a definition list below 40em and the table above it. At 320px it
+   goes from 42% hidden to nothing hidden. **The other six tables still scroll and that is the
+   decision, not an omission**: they are 0 to 28% at 320px, worst on the costs page, and a scroll
+   container is defensible there. So nothing but **[you]** is left of this item.
 8. **GATE. A1, and its scope is full validation of all data**, not only the reader-facing
    records. Decided 2 August 2026, and it is the largest item on this list. **Every record in the
    data layer now carries evidence except the ones the batches left as [you]**, which are named
@@ -263,6 +266,18 @@ record and an evidence entry rather than a sentence.
   Observatory and others: licensing a publisher's own paragraphs onward, where the old enumeration
   had merely failed to license them. Worse than the gap it closed, and caught by the critique round
   rather than by any check. The alternative decision was to scope it to `content/` and `lib/`.
+- **`check-build.mjs` cannot see a scroll region that carries a second class. [me], found
+  5 August 2026 while applying call 29.** Both of its scroll-region assertions match
+  `class="scroll-x"` with the closing quote, so a region written `class="scroll-x anything-else"`
+  escapes the focusable check, the role check and the accessible-name check, all three, in silence.
+  The `scrollable-regions` transform in `eleventy.config.js` matches the same way, and there it is
+  worse than blindness: the wrapper reads as no wrapper and the table is wrapped a second time, so
+  a region ends up nested inside a region. **That is not hypothetical.** It shipped into a build
+  during PR #138 and was found by counting `.scroll-x` in the built page, with `npm run build` and
+  pa11y both green. **Nothing exploits it today**, because that pull request moved its toggle class
+  onto an outer div rather than change a shared check, so this is latent rather than live. Fixing it
+  is a character class in four patterns, two here and two in the transform, and the probe is the
+  five strings that must and must not count as a wrapper.
 - **Point `aria-describedby` at the visible chart summary** instead of duplicating it into
   `<desc>`. **Gated on a real screen reader**, which this project has never run, so it is
   **[you]** first, at The order's item 15.

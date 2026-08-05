@@ -35,12 +35,54 @@ function renderFigure(ref) {
 // Structural blocks rendered from the data layer rather than restated in prose, so a page
 // describing the sources cannot drift from them.
 const PARTIALS = {
-  'sources-catalogue': () => `<div class="scroll-x"><table class="sources">
+  // Rendered TWICE and the page shows one, which is the shape PR #113 established for charts.
+  // Backlog call 29. The measurements that decided it are in style.css beside `.sources-stack`
+  // and are deliberately not repeated here: two copies of a measurement diverge the first time
+  // anyone re-measures, and this project has the scars from counts kept in two places.
+  //
+  // The alternative was to restack the table itself with `display: block` on its rows and cells,
+  // which is the usual responsive-table trick and is not available here: it strips the implicit
+  // table roles, so the catalogue would stop being a table for a screen reader in order to fit a
+  // phone. A definition list IS the right semantic for the stacked form, so the stacked form is
+  // a definition list.
+  //
+  // Each is display:none at the other width, which takes it out of the accessibility tree as well
+  // as out of the layout, so nothing is announced twice.
+  //
+  // NO ROLE OR aria-label ON THE `dl`, and that was tried rather than assumed. `role="list"` with
+  // an aria-label was built and looked at in the accessibility tree, which showed no list and no
+  // name: the entries are `div` wrappers, so a list role finds no list items and the structure is
+  // dropped. The snapshot flattens tables too, so it does not prove the role broke anything, and
+  // that is the point: an ARIA attribute that cannot be verified is not worth the risk of a list
+  // with no items. The stack takes its context from the "Where the figures come from" heading
+  // directly above it, which the same snapshot does show.
+  //
+  // The column headings become visible labels in the stack. Dropped, the second and third values
+  // would be two bare strings under a source name, and "Monthly" under "Home Office" says nothing
+  // about what is monthly.
+  // The toggle class sits on an OUTER div and never on the .scroll-x itself. Written the other
+  // way first, `class="scroll-x sources-wide"`, and it shipped a region nested inside a region:
+  // the scrollable-regions transform tests for `class="scroll-x"` with the closing quote, so a
+  // second class made the wrapper read as no wrapper and the table was wrapped again. Two
+  // scrolling boxes, the affordance gradients painted twice, a second focusable stop for a
+  // keyboard user, and nothing failed: the build check passed and pa11y passed 20 of 20. It was
+  // found by counting `.scroll-x` in the built page.
+  //
+  // check-build.mjs matches the same way in both of its scroll-region assertions, so a region
+  // carrying an extra class escapes the focusable, role and accessible-name checks in silence.
+  // Not fixed here, because it is not this change: it is in the backlog under A5.
+  'sources-catalogue': () => `<div class="sources-wide"><div class="scroll-x"><table class="sources">
 <caption class="visually-hidden">Sources used on this site</caption>
 <thead><tr><th scope="col">Source</th><th scope="col">What it covers</th><th scope="col">Updated</th></tr></thead>
 <tbody>${sources.map((s) => `<tr>
 <th scope="row"><a href="${escape(s.url)}">${escape(s.name)}</a><span class="publisher">${escape(s.publisher)}</span></th>
-<td>${escape(s.covers)}</td><td>${escape(s.updateFrequency)}</td></tr>`).join('')}</tbody></table></div>`,
+<td>${escape(s.covers)}</td><td>${escape(s.updateFrequency)}</td></tr>`).join('')}</tbody></table></div></div>
+<dl class="sources-stack">${sources.map((s) => `
+<div class="sources-entry">
+<dt><a href="${escape(s.url)}">${escape(s.name)}</a><span class="publisher">${escape(s.publisher)}</span></dt>
+<dd><span class="sources-label">What it covers</span>${escape(s.covers)}</dd>
+<dd><span class="sources-label">Updated</span>${escape(s.updateFrequency)}</dd>
+</div>`).join('')}</dl>`,
 
   'confidence-levels': () => `<dl class="definitions">${Object.entries(meta.confidenceLevels)
     .map(([level, definition]) => `<dt>${escape(level)}</dt><dd>${escape(definition)}</dd>`).join('')}</dl>`,
