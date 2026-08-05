@@ -125,6 +125,7 @@ lib/citation.mjs        The "How to cite this" block, derived from the records e
 lib/provenance.mjs      Each theme page's figures with their grade and checked date, from its front matter
 lib/published.mjs       Which records reach a reader, and the counts /sources-and-method/ renders
 lib/series.mjs          The four timeseries and the names everything else calls them by
+lib/structured-data.mjs Dataset, Organization and WebSite as JSON-LD, on the two pages that carry it
 lib/tables.mjs          What a publisher's table identifier looks like, for the two checks that must agree
 data/                   Governed data layer, one file per theme, plus four timeseries
 data/evidence/          One file per release: the quote behind every figure, re-read on every run

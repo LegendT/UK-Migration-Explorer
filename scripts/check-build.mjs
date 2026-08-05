@@ -152,7 +152,9 @@ for (const file of pages) {
     // writes no literal URL today, which is what makes this cheap to keep true; a deliberate
     // external one, a sameAs or an external licence, widens this line rather than sneaking past.
     for (const { value } of jsonLdUrls(data).filter((u) => /^https?:\/\//.test(u.value))) {
-      if (!value.startsWith(`${site.url}/`) && value !== site.url && !value.startsWith('https://schema.org')) {
+      // The context is matched exactly rather than by prefix. Written `startsWith`, the rule
+      // meant to refuse a third origin accepted https://schema.org.example.com/ as the vocabulary.
+      if (!value.startsWith(`${site.url}/`) && value !== site.url && value !== 'https://schema.org') {
         errors.push(`${where}: structured data names ${value}, which is neither the schema.org context nor a URL under ${site.url}. If that origin is deliberate, widen this check.`);
       }
     }
