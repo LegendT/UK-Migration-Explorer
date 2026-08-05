@@ -229,7 +229,29 @@ th { font-weight: 600; }
 thead th { border-bottom: 2px solid var(--rule-strong); }
 tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
 
-.sources th[scope="row"] { min-width: 14rem; }
+/* The sources catalogue, in two renderings ------------------------------
+   Mobile first, so the stack is the base and the table is what a wider screen opts into. Both
+   toggles and the first-column floor sit together in the 40em block below, because separating
+   them is how one gets moved and the other does not.
+
+   The floor was `min-width: 14rem` unconditionally: a 224px demand on the first column inside a
+   280px content box. That is the same shape as the chart's 32rem floor, which PR #113 scoped to
+   the wide rendering rather than deleted, and it is scoped the same way here. Scoping it alone
+   was measured and does NOT fix this table: the table goes 485px to 386px and the first column
+   224px to 125px, still 106px past the box, so 42% hidden becomes 27% hidden and it still
+   scrolls. The stack is what fixes it; the scoping is what stops the floor crushing the table
+   in any context that renders it narrow, print being the real one. */
+.sources-stack { margin: 1.5rem 0; }
+.sources-entry { margin-bottom: 1.25rem; max-width: var(--measure); }
+/* The table zeroes its last row's border so the block ends flush. The stack ends with a margin
+   instead, so the two renderings closed with different trailing space until this line. */
+.sources-entry:last-child { margin-bottom: 0; }
+.sources-entry dt { font-weight: 600; }
+.sources-entry dd { margin: 0.35rem 0 0; color: var(--ink-soft); font-size: 0.9375rem; }
+/* The label is the column heading the table carries, and it is a block so the value starts on
+   its own line rather than running on from a heading that looks like part of the sentence. */
+.sources-label { display: block; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.sources-wide { display: none; }
 
 /* Nested spending figures are subsets of the row above, not siblings. The indent says so
    before the prose does. */
@@ -429,6 +451,13 @@ th.nested-2 { padding-left: 2.75rem; }
 /* Wider screens --------------------------------------------------------- */
 
 @media (min-width: 40em) {
+  /* The sources catalogue swaps to its table here, and the 224px first-column floor comes with
+     it, on the rendering it belongs to. See the block beside .sources-stack for what scoping it
+     alone was measured to cost, which is why the swap exists as well. */
+  .sources-wide { display: block; }
+  .sources-stack { display: none; }
+  .sources th[scope="row"] { min-width: 14rem; }
+
   body { font-size: 1.125rem; }
   h1 { font-size: 2.375rem; }
   .hero h1 { font-size: 2.25rem; }
