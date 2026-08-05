@@ -291,15 +291,39 @@ th.nested-2 { padding-left: 2.75rem; }
    wrapped it could break onto a line of its own. A badge is a separate object, so it can
    sit beside the date without joining it. Capitalised, not uppercased, so it matches the
    word the sources page defines. */
-.card .grade {
+.grade {
   display: inline-block;
-  margin-top: 0.35rem;
   padding: 0.05rem 0.5rem;
   border: 1px solid var(--rule-strong);
   border-radius: 999px;
   font-size: 0.75rem;
   text-transform: capitalize;
   letter-spacing: 0.01em;
+  color: var(--ink-soft);
+}
+/* The badge sits under three lines of source text on a card and beside its own term in the
+   provenance list, so the offset that separates it there belongs to the card and not to the
+   badge. It was written into .card .grade when the card was the only place a grade rendered. */
+.card .grade { margin-top: 0.35rem; }
+
+/* Every figure on this page --------------------------------------------
+   The grade and checked date for each figure a theme page declares, from lib/provenance.mjs.
+
+   A flex row with a gap rather than separator characters between the three parts. A "·" put
+   in with ::before content is announced by some screen readers and is read out once per
+   figure, which on /asylum/ is twenty-one times; a gap is spacing and has no text to read.
+   It wraps at any width without a media query, which is what the 280px column needs. */
+.provenance-block { margin-top: 0.5rem; }
+.provenance { margin: 1.5rem 0 0; }
+.provenance-row { max-width: var(--measure); margin-bottom: 1rem; }
+.provenance dt { font-weight: 600; }
+.provenance dd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin: 0.35rem 0 0;
+  font-size: 0.9375rem;
   color: var(--ink-soft);
 }
 

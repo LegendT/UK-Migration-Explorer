@@ -28,7 +28,7 @@ const REVIEW_MONTHS = 12;
 
 // A review date with no due date never becomes overdue, so the twelve-month rule above has
 // nothing to bite on until it has already been broken.
-function checkReviewDue(file, lastReviewed, reviewDue) {
+function checkReviewDue(file, lastReviewed, reviewDue, isPaused) {
   if (!lastReviewed) return;
   // last_reviewed was checked for presence and never for validity, so "last_reviewed: yesterday"
   // passed and every comparison below it silently went false against an Invalid Date.
@@ -56,8 +56,12 @@ function checkReviewDue(file, lastReviewed, reviewDue) {
   // outside content/claims/ could pass its due date with the build staying green. The twelve-month
   // rule covers the claims; this covers the other nine pages. The weekly cron exists so a
   // time-based rule fires without anyone pushing, and until now it ran this file and noticed nothing.
-  if (due < new Date()) {
-    errors.push(`${file}: review_due ${reviewDue} has passed. Re-review the page and move the date, or unpublish it.`);
+  // Only the LAST branch is skipped for a paused claim, and only that one. The declaration must
+  // still parse and still sit after the review date, because a page comes back from paused and a
+  // broken date field would come back with it. What is skipped is the demand that somebody act:
+  // the page has already been taken down, which is the action.
+  if (due < new Date() && !isPaused) {
+    errors.push(`${file}: review_due ${reviewDue} has passed. Re-review the page and move the date, or take it down: a claim page does that by adding "paused: <today>" to the front matter, and any other page has no stub state and has to be unpublished.`);
   }
 }
 
@@ -125,6 +129,10 @@ const warnings = [];
 // the heading over a pooled list would have to describe both, which is how a success message
 // starts claiming more than its check verifies.
 const unrecorded = [];
+// Claims taken down under the twelve-month promise. Printed rather than counted silently: a
+// paused claim clears the expiry error, so without a line naming it the run that stopped
+// complaining would look exactly like the run where someone re-reviewed the page.
+const paused = [];
 
 // THE RATCHET IS DONE AND THE BRANCH IS AN ERROR, 2 August 2026. It began at report level with a
 // baseline of 38 that could fall and never rise, because erroring on day one would have forced
@@ -167,17 +175,33 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
     errors.push(`${file}: id "${front.id}" does not match the filename`);
   }
 
+  // A paused claim is one taken down under the twelve-month promise rather than deleted: it
+  // renders as a stub at its own address, with its answer, figures and citation gone. Backlog
+  // call 28. The date is the day it came down and the stub prints it, so an invalid one reaches a
+  // reader as "Paused Invalid Date", which is the failure shape the citation block already
+  // records: an unparsed date renders as text and no check downstream looks for that string.
+  if (front.paused && Number.isNaN(new Date(`${front.paused}T00:00:00Z`).getTime())) {
+    errors.push(`${file}: paused "${front.paused}" is not a valid date. It is the day the check came down and the stub prints it, so an unparsed value renders to a reader as "Paused Invalid Date".`);
+  }
+
   // Every claim carries a review date, and a claim that has gone unreviewed for a year is
   // unpublishable, see the corrections policy in the foundation document.
+  //
+  // PAUSING CLEARS THIS, and that is the point of it rather than a hole in it. The error's own
+  // instruction was "unpublish or re-review", and pausing is what unpublishing looks like on a
+  // static site now that there is a state for it: the answer and the figures are gone and the
+  // address still resolves. Left firing, the state would be unreachable, because the deploy runs
+  // `npm test` first and would fail on the very claim that had just been taken down properly.
   if (front.last_reviewed) {
     const reviewed = new Date(`${front.last_reviewed}T00:00:00Z`);
     if (Number.isNaN(reviewed.getTime())) {
       errors.push(`${file}: last_reviewed "${front.last_reviewed}" is not a valid date`);
     } else {
       const age = (Date.now() - reviewed.getTime()) / (1000 * 60 * 60 * 24 * 30.44);
-      if (age > REVIEW_MONTHS) {
-        errors.push(`${file}: last reviewed ${age.toFixed(0)} months ago, unpublish or re-review`);
+      if (age > REVIEW_MONTHS && !front.paused) {
+        errors.push(`${file}: last reviewed ${age.toFixed(0)} months ago. Re-review it, or take it down under the twelve-month promise by adding "paused: <today>" to the front matter, which renders the page as a stub at the same address.`);
       }
+      if (front.paused) paused.push(`${file}: paused ${front.paused}, last reviewed ${front.last_reviewed}`);
     }
   }
 
@@ -198,7 +222,7 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
     if (!registry.has(ref)) errors.push(`${file}: figures: lists ${ref}, which is not a metric in the data layer`);
   }
 
-  checkReviewDue(file, front.last_reviewed, front.review_due);
+  checkReviewDue(file, front.last_reviewed, front.review_due, Boolean(front.paused));
 
   // The corrections policy promises a DATED note on a substantively revised claim. A note
   // without its date, or a date without its note, does not keep that promise.
@@ -1065,6 +1089,11 @@ if (errors.length) {
 const byDirection = claims.reduce((acc, c) => ({ ...acc, [c.direction]: (acc[c.direction] ?? 0) + 1 }), {});
 const cited = new Set([...claims.flatMap((c) => [...c.tokens]), ...glossaryTokens]);
 console.log(`Content checks passed: ${claims.length} claims, ${terms} glossary terms, ${pages} other page(s).`);
+if (paused.length) {
+  console.log(`\n${paused.length} claim(s) are PAUSED and render as a stub rather than as a check:`);
+  for (const entry of paused) console.log(`  ${entry}`);
+  console.log('Each keeps its address and has lost its answer, its figures and its citation. Pausing clears the twelve-month error, so nothing else will mention these again until someone re-reviews the page and removes the field.');
+}
 if (warnings.length) {
   console.log(`\n${warnings.length} figure(s) match a live metric value and may need citing, unit-qualified ones under 100 and ones written with a scale word:`);
   for (const warning of warnings) console.log(`  ${warning}`);
