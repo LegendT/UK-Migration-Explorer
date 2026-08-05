@@ -99,12 +99,11 @@ below.
    page was grepped rather than the entry believed.
 6. **GATE. The UX review, U3 to U5 below.** U1 is done (PR #86) apart from the `robots.txt`
    half, which is in the launch gate at the end. U2 is closed (PR #118), built and its format
-   decided. **What is left begins at U3**, and none of it waits on another section any more. Its
-   first bullet, surfacing the confidence grade on the three theme pages, was released on 4 August
-   2026 once the grade questions it was sequenced behind had closed, and is **[me]**; its
-   withdrawn-claim stub is decided as call 28 and is **[me]**. The `metric_name` bullet beside them
-   was deliberately not released with the first and stays **[you]**. Its remaining bullets carry no
-   tag and neither does this sentence.
+   decided. **U3's first bullet and call 28 are applied (PR #137, 5 August 2026)**: the confidence
+   grade and a per-figure checked date now render on all three theme pages, and a claim can be
+   taken down under the twelve-month promise without deleting its address. **What is left in U3 is
+   the `metric_name` bullet**, which was deliberately not released with the first and stays
+   **[you]**. Its remaining bullets carry no tag and neither does this sentence.
 7. **GATE. A second UX round, U6 below. The [me] half is done (PR #98, 3 August 2026)** and
    nothing but **[you]** is left of it. All 17 pages were rendered at five real device sizes with
    a genuine layout viewport. The navigation is decided and built (PR #109) and the chart remedy
@@ -394,8 +393,15 @@ grade decisions its first bullet waits on.
 
 ### U3. Trust, in the order they are worth doing
 
-- **The confidence grade renders only on home page cards. THE GATE ON THIS IS RELEASED,
-  4 August 2026, and it is [me] work now.** The three theme pages, where most figures live, show
+- **The confidence grade renders only on home page cards. APPLIED (PR #137, 5 August 2026).** Every
+  figure a theme page declares now carries its grade, its period and the date it was last checked,
+  in a disclosure at the foot of the page, built from the page's own `figures:` front matter by
+  `lib/provenance.mjs`. **The disclosure is the part that was a judgement rather than a build**, and
+  it was measured: open, the block is 2,891px on `/asylum/` at 320px, a quarter of the page; closed
+  it is 56px. Say the word and it opens. It is a definition list rather than a table, because a
+  table cannot reflow and that is the defect The order's item 7 exists to fix, three pages at a
+  time. What follows is why the gate was released, kept because it is the reasoning behind the
+  measurement above. The three theme pages, where most figures live, show
   neither a grade nor any per-figure date. It had been sequenced behind the open grade questions in
   R2 and A6, on the reasoning that surfacing grades more widely amplifies a wrong one, and **both
   closed without this being released**: A6's confidence convention in PR #79 and R2's accreditation
@@ -418,12 +424,19 @@ grade decisions its first bullet waits on.
   `/common-claims/nineteen-per-cent-born-abroad/`, where this site's own calculation and the
   Migration Observatory's figure sit in one citation block with nothing saying which produced the
   19%. The mechanism already resolves the records, so building it is small once it is decided.
-- **Call 28, the withdrawn-claim stub. DECIDED 4 August 2026, NOT YET APPLIED. [me].** The wording
-  is settled and drafted in the session record; building it is the work. There is no withdrawn-claim
-  state, and `/sources-and-method/` promises that a claim unreviewed for twelve months is taken down
-  until it has been. On a static site, deleting the file turns a URL built to be screenshotted into a
-  generic 404, which reads as scrubbing. A stub at the same URL, saying what it said and why it is
-  paused, is the missing state.
+- **Call 28, the withdrawn-claim stub. APPLIED (PR #137, 5 August 2026), with the wording open.**
+  `paused: <date>` in a claim's front matter renders a stub at the same address, keeping the claim
+  under its "The claim" label and losing the answer, the figures and the citation. An optional
+  `paused_reason` says more where there is one. **THE SETTLED WORDING WAS NOT FOUND.** The entry
+  said it was "drafted in the session record"; it is not in this repository, in any pull request
+  body or anywhere in the git history, all searched. What shipped is a session's draft, and
+  replacing the words is a one-line edit to `content/_includes/claim.njk` that changes no
+  behaviour. **[you]** to confirm or replace them.
+  **Pausing clears the twelve-month build error deliberately**, because Netlify runs `npm test`
+  before it builds, so left firing it would fail the deploy on the very claim just taken down and
+  the state would be unreachable. A printed list names every paused claim instead. Pausing stays a
+  deliberate act rather than a timeout: automatic would trade a check that stops a deploy for a page
+  that quietly empties itself.
 - **A reader-facing `/changes/`.** The changelog IS linked from the corrections section, so the
   promise is kept; the destination is a raw markdown file on GitHub.
 - **Theme-to-claim links.** Pages declare `figures:` in front matter, so which claims misuse a
