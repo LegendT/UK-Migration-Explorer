@@ -102,14 +102,16 @@ below.
    decided. **U3's first bullet and call 28 are applied (PR #137, 5 August 2026)**: the confidence
    grade and a per-figure checked date now render on all three theme pages, and a claim can be
    taken down under the twelve-month promise without deleting its address. **What is left is one
-   bullet in U3 and one call in U4, and this entry accounted only for U3 until 5 August 2026**,
+   bullet in U3, and this entry accounted only for U3 until 5 August 2026**,
    which is the shape that orphaned A6 a day earlier: a header naming U3 to U5 above a conclusion
    covering U3 alone, and the conclusion is what gets believed. A session read the item as spent
    and named the wrong next item because of it. Taking the three sections in turn:
    **U3** leaves the `metric_name` bullet, deliberately not released with the first and **[you]**;
-   its other bullets carry no tag. **U4** leaves call 27, the structured data, which is **[me]** and
-   whose first step is confirming the `ClaimReview` deprecation the section says it could not
-   verify, because if that holds the channel is dead and the rest is not worth building. U4's other
+   its other bullets carry no tag. **U4's call 27 is applied (PR #143, 5 August 2026)**, and the
+   deprecation it was gated on holds: Google's post of 12 June 2025 lists Claim Review among the
+   types that "will no longer be supported in Google Search results", and its update of 8 September
+   2025 takes the type out of Search Console the following day. **Checking eligibility for the one
+   surviving channel found a second and stronger ground**, which is under U4. U4's other
    call, 26, is decided and unapplied but is **not applied here**: item 13 says what it decides is
    the content of the `robots.txt` that item 13 writes, so it lands there and that item is
    deliberately last. **U5** is considered-and-cut and holds no work by design.
@@ -487,16 +489,33 @@ grade decisions its first bullet waits on.
   ships with the site and the Reuse section lists every top-level file with a link and a count,
   generated from the directory rather than typed.
 
-### U4. Two decisions, both decided 4 August 2026, both unapplied
+### U4. Two decisions, both decided 4 August 2026. Call 27 is applied, call 26 lands with item 13
 
 - **Call 26. AI crawlers**, and it is not binary. Allow retrieval bots that emit linked citations,
   refuse training-only bots. Retrieval citation is success measure 2's most likely route, and
   blocking keeps the option open where allowing does not. **NOT YET APPLIED, and it gates The
   order's item 13.**
-- **Call 27. Structured data**: `Dataset` plus `Organization` and `WebSite`, and **confirm the
-  `ClaimReview` deprecation before spending anything on it**. The claim this session could not
-  verify is that Google deprecated fact-check rich results in June 2025 and dropped Search Console
-  reporting that September. If it holds, the channel is dead. **NOT YET APPLIED.**
+- **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
+  and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from
+  the same directory read that renders the Reuse section, so what a reader is given and what a
+  machine is given cannot diverge. No new prose: the description is `data/meta.json`'s own, which
+  nothing rendered until now, and its claim that every figure carries all fourteen named fields
+  was checked against every metric rather than trusted.
+  **The deprecation this was gated on holds, and checking it produced a better reason than it.**
+  Google's post of 12 June 2025 lists Claim Review among the types that "will no longer be
+  supported in Google Search results", and its update of 8 September 2025 removes it from Search
+  Console reporting, the Rich Results Test and the appearance filters from the next day. The markup
+  survives only in Google's Fact Check Explorer, **whose guidelines require a page to "clearly
+  attribute the specific claim that you're assessing to a distinct origin (separate from your
+  website)"**, where `content/style-guide.md` tells readers "We do not attribute claims to named
+  people." So the surviving channel is closed to this site by this site's own published policy,
+  which is the ground that does not rot if Google reverses the other one. `check-build.mjs` now
+  refuses a `ClaimReview` node rather than leaving that reasoning in a comment.
+  **One question it raised is [you] and small**: `license` points at `/sources-and-method/#reuse`,
+  which states the Open Government Licence for most figures and does not mention the MIT half or
+  the two publishers whose figures are not Crown copyright, while `LICENCE` itself is not served by
+  the site at all. Serving it and pointing at it is the alternative, and it changes what the site
+  publishes.
 
 ### U5. Considered and cut, with the reasoning, so they are not re-proposed
 

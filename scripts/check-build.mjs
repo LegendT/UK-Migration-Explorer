@@ -53,6 +53,22 @@ const ORIGIN = new RegExp(`href="${site.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&
 const internalHrefs = (html) => [...html.matchAll(/href="(\/[^"]*)"/g)].map((m) => m[1])
   .concat([...html.matchAll(ORIGIN)].map((m) => m[1] || '/'));
 
+// Structured data is walked as parsed JSON rather than scanned as text, so a URL is found
+// wherever it sits and a nested node is not missed by a pattern written for the shape the graph
+// happens to have today. The KEY comes back with the value because the two kinds of URL in a
+// graph are checked differently: `@id` names a node and its fragment is an identifier that no
+// page has to carry, while `url`, `license` and `contentUrl` are addresses a reader or a crawler
+// is being sent to and their fragments have to exist. Checking them the same way reported four
+// working identifiers as dead anchors.
+const jsonLdUrls = (node, key = null) => (typeof node === 'string' ? [{ key, value: node }]
+  : Array.isArray(node) ? node.flatMap((child) => jsonLdUrls(child, key))
+    : node && typeof node === 'object'
+      ? Object.entries(node).flatMap(([k, child]) => jsonLdUrls(child, k)) : []);
+const jsonLdTypes = (node) => (Array.isArray(node) ? node.flatMap(jsonLdTypes)
+  : node && typeof node === 'object'
+    ? [node['@type'] ?? []].flat().concat(Object.values(node).flatMap(jsonLdTypes)) : []);
+const ldTypes = new Map();
+
 for (const file of pages) {
   const where = relative(siteDir, file);
   const html = readFileSync(file, 'utf8');
@@ -111,6 +127,50 @@ for (const file of pages) {
     }
     if (fragment && !(anchors.get(served.has(target) ? target : path) ?? new Set()).has(fragment)) {
       errors.push(`${where}: links to ${href}, but #${fragment} is not on that page`);
+    }
+  }
+
+  // Structured data, parsed rather than pattern-matched. Two failures are invisible everywhere
+  // else: a block that does not parse is silently discarded by every consumer while the page
+  // renders perfectly, and a URL inside one is invisible to the internal-link check above,
+  // because that reads href attributes and this sits inside a script element. The domain moved
+  // once already, on 4 August 2026, which is the incident the print-stylesheet check at the foot
+  // of this file exists for; this is the same fact written in a third place.
+  for (const [, block] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let data;
+    try {
+      data = JSON.parse(block);
+    } catch (error) {
+      errors.push(`${where}: the JSON-LD block does not parse, ${error.message}. A consumer discards it in silence and the page looks unchanged.`);
+      continue;
+    }
+    if (!ldTypes.has(url)) ldTypes.set(url, new Set());
+    for (const type of jsonLdTypes(data)) ldTypes.get(url).add(type);
+    // No third origin. Every absolute URL in a block is either the schema.org context or this
+    // site at the address site.url gives, so the deploy domain, a stale domain or a typo cannot
+    // ride along inside a script element where nothing else here reads. lib/structured-data.mjs
+    // writes no literal URL today, which is what makes this cheap to keep true; a deliberate
+    // external one, a sameAs or an external licence, widens this line rather than sneaking past.
+    for (const { value } of jsonLdUrls(data).filter((u) => /^https?:\/\//.test(u.value))) {
+      // The context is matched exactly rather than by prefix. Written `startsWith`, the rule
+      // meant to refuse a third origin accepted https://schema.org.example.com/ as the vocabulary.
+      if (!value.startsWith(`${site.url}/`) && value !== site.url && value !== 'https://schema.org') {
+        errors.push(`${where}: structured data names ${value}, which is neither the schema.org context nor a URL under ${site.url}. If that origin is deliberate, widen this check.`);
+      }
+    }
+
+    // Only this site's own URLs are resolved. An external one is a question about someone else's
+    // server, which is check-sources' job and not this file's.
+    for (const { key, value } of jsonLdUrls(data).filter((u) => u.value.startsWith(`${site.url}/`))) {
+      const [path, fragment] = value.slice(site.url.length).split('#');
+      const target = path.endsWith('/') ? path : `${path}/`;
+      if (!served.has(target) && !served.has(path)) {
+        errors.push(`${where}: structured data names ${value}, which the build does not serve.`);
+        continue;
+      }
+      if (key !== '@id' && fragment && !(anchors.get(served.has(target) ? target : path) ?? new Set()).has(fragment)) {
+        errors.push(`${where}: structured data names ${value}, but #${fragment} is not on that page.`);
+      }
     }
   }
 
@@ -211,6 +271,34 @@ for (const file of pages) {
       errors.push(`${where}: heading jumps from h${levels[i - 1]} to h${levels[i]}`);
       break;
     }
+  }
+}
+
+// --- the structured data each page is supposed to carry ---------------------------------
+// The block above checks what is there. This checks that it is there at all: a shortcode
+// renamed, a head rewritten or a page url changed drops the whole block, and nothing a reader
+// or a check can see changes. The same shape as the robots.txt and print-rule checks below,
+// and it is the failure the sitemap check was written for one level up.
+//
+// ClaimReview is asserted ABSENT deliberately, and it is the only type this file forbids.
+// Google withdrew it from Search on 12 June 2025 and from Search Console on 9 September 2025,
+// and Fact Check Explorer, where the markup still lives, requires each claim to be attributed to
+// a named origin off-site, which content/style-guide.md tells readers this site does not do. So
+// adding it back is a decision to publish markup against a published policy, and this is the
+// line that makes that deliberate rather than incidental. Backlog call 27.
+const EXPECTED_LD = {
+  '/': ['WebSite', 'Organization'],
+  '/sources-and-method/': ['Dataset'],
+};
+for (const [url, expected] of Object.entries(EXPECTED_LD)) {
+  const found = ldTypes.get(url) ?? new Set();
+  for (const type of expected) {
+    if (!found.has(type)) errors.push(`${url}: no ${type} in structured data. The page renders unchanged and every consumer of it loses the declaration.`);
+  }
+}
+for (const [url, found] of ldTypes) {
+  if (found.has('ClaimReview')) {
+    errors.push(`${url}: publishes ClaimReview structured data. Google withdrew the rich result in June 2025 and the Search Console report that September, and the surviving Fact Check Explorer requires claims attributed to a named off-site origin, which content/style-guide.md tells readers this site does not do.`);
   }
 }
 
@@ -343,4 +431,5 @@ console.log(`Build checks passed: ${pages.length} pages; ${internal} internal li
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
 console.log(`Of those, ${counts.tokenRefs.size} match the refs in the built HTML exactly, in both directions, outside comments. Not established: that the other ${counts.published - counts.tokenRefs.size}, reaching a reader through a chart bar or a dashboard card, render at all, because those routes put a value on the page with no ref beside it to match.`);
+console.log(`Structured data: ${[...ldTypes].map(([url, types]) => `${url} ${[...types].sort().join(', ')}`).join('; ')}. Every block parses and every URL in one that points at this site resolves. Not established: that a consumer accepts the vocabulary, which is a claim about a schema and about Google rather than about this build.`);
 console.log('External source URLs are not checked here, run npm run check-sources.');
