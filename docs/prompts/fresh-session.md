@@ -59,9 +59,12 @@ tick: they report and never gate. The online half of check-backlog runs
 in no workflow at all.
 
 Branch and PR, never straight to main, and the PR body carries the
-reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
-its PR and a date, and move it to Completed when nothing is left. Do not
-delete it.
+reasoning. Cut the branch from main before your first EDIT of each item,
+not when you are ready to commit: on 5 August 2026 a session running three
+items committed two of them onto the previous item's branch, and the check
+below cannot see that, because those commits are on a branch. When you
+finish an item, mark it done in docs/BACKLOG.md with its PR and a date,
+and move it to Completed when nothing is left. Do not delete it.
 
 Before you finish, run: git log --oneline origin/main..HEAD
 Any answer but silence is work that has not shipped. A commit made after
