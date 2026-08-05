@@ -1152,6 +1152,29 @@ is already here to adding a neighbour beside it.
   every subsection holding open work is still named by something in the ordered list. It was found
   by `grep -n "A6"` inside The order returning nothing, which is one command.
 
+  **It happened twice more on 5 August 2026, and the second time was self-inflicted hours after
+  this bullet was written up.** Both are worth having, because they are the two directions the
+  same defect runs in.
+
+  The first was a READER'S failure rather than a maintainer's. An item's header named three
+  subsections and its closing sentence covered one; the other two held a decided-but-unapplied
+  task. Walking the list, a session believed the conclusion, took the item as spent, and told the
+  owner in a summary that the next work was six items further down. He had asked what came next, so
+  the wrong answer went out before any code was written. **Read every subsection an item's header
+  names before calling that item finished.** The header is the claim about scope; the closing
+  sentence is a claim about state and is the one that rots.
+
+  The second was the A6 orphan reproduced exactly. An item that named a section was closed, and a
+  new piece of `[me]` work was filed into that section a few hours later, by the same session, with
+  nothing in the ordered list any longer routing to it: the only other mention named one specific
+  change inside the section rather than the section. **So on closing an item, run the grep in BOTH
+  directions**, for what pointed at the item and for what the item was the sole pointer to.
+  Anything in the second list holding open work needs a route in before you commit. **That routing
+  is what the orphaned work got**: its own entry at the foot of the ordered list, so nothing was
+  renumbered, rather than a sentence somewhere hoping a session would notice. Writing up a failure
+  mode plainly does not immunise a session against it, which is the argument for putting the work
+  where the list will hand it to somebody over trusting the write-up to be remembered.
+
 - **A gate does not release itself.** U3's first bullet was sequenced behind "the open grade
   questions in R2 and A6". A6's closed in PR #79 and R2's in PR #129, and neither release touched
   U3, because closing a section updates that section and nothing walks back to what was waiting on
@@ -1485,6 +1508,27 @@ version. **Recorded so the next reading does not add them as oversights.**
   suggests a prompt clause, check first whether an existing practice bullet simply had too narrow a
   trigger, because widening one rule beats adding a second copy of it.
 
+**One clause added and one refused, 5 August 2026, later the same day.**
+
+The clause, in TASK: read every subsection an item's header names before deciding the item is
+finished. The incident is the first one under *Compressing an entry* in *Working practices* and is
+not re-told here. It is a clause inside a paragraph that was already there rather than a fifth row,
+it names a dated incident and no count, section or item number, so it cannot rot, and **it governs
+the exact act TASK instructs**, which is choosing the item.
+
+**Both candidates that day had a fuller copy in *Working practices*, so that cannot be what
+separated them, and an earlier version of this paragraph said it was.** This section already
+settles the point in terms: *the test is not "is this stated elsewhere" but "can this go stale"*. A
+duplicate that cannot drift costs a line. So the discriminator is the other one in row four's own
+justification, **whether a session needs it EVERY time**, and that is what the two answers differ
+on. Picking an item is the first thing every session does. Closing one is not: most sessions close
+nothing, and a session that does has *Working practices* open by then anyway.
+
+The refusal, on that test: "on closing an item, grep both directions, for what pointed at it and
+for what it was the sole pointer to". That defect fired the same day, self-inflicted, hours after
+being written up, so it is not refused for being unimportant. It is a bullet under *Working
+practices* with its incident. **Recorded so the next reading does not add it as an oversight.**
+
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
 one: a second was added on 2 August 2026 under *Where things stand*, so anything extracting "the
@@ -1527,7 +1571,10 @@ question is.
 TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
-has been misread before. Reproduce the item's premise before building what
+has been misread before. Read every subsection an item's header names
+before deciding that item is finished: one closed on a sentence covering
+a third of its own scope on 5 August 2026, and the session believed it and
+named the wrong next item. Reproduce the item's premise before building what
 it prescribes: a recommendation is a claim about what can be built, and one
 taken on trust cost a reversal on 4 August 2026.
 
