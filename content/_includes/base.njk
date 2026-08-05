@@ -39,6 +39,11 @@
 <meta property="og:description" content="{% if claim and paused %}Paused: {{ claim }}{% elif claim %}Claim checked: {{ claim }}{% else %}{{ description or strapline or site.strapline }}{% endif %}">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+{#- Structured data, on the two pages that make these claims to a reader already: the home page
+    states who publishes this, and /sources-and-method/ describes the data layer and links every
+    file of it. Built in lib/structured-data.mjs, which says what is deliberately absent from it
+    and why. Every other page renders nothing here. -#}
+{% structuredData %}
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css">
 </head>

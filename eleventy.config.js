@@ -6,6 +6,7 @@ import { citationBlock } from './lib/citation.mjs';
 import { provenanceList } from './lib/provenance.mjs';
 import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
 import { COMPANION_BLOCKS, THEME_FILES, readSeries } from './lib/series.mjs';
+import { structuredData } from './lib/structured-data.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`./data/${file}`, import.meta.url), 'utf8'));
 
@@ -19,6 +20,14 @@ for (const file of THEME_FILES) {
 
 const meta = read('meta.json');
 const sources = read('sources.json').sources;
+
+// The data layer as it ships, read once. Both the Reuse list on /sources-and-method/ and the
+// Dataset in that page's structured data are built from this, so the list a reader is given and
+// the list a machine is given cannot come to differ: a second readdir with its own filter would
+// agree today and diverge the first time either was edited.
+const dataFiles = () => readdirSync(new URL('./data/', import.meta.url))
+  .filter((name) => name.endsWith('.json')).sort()
+  .map((name) => ({ name, json: read(name) }));
 
 const escape = (text) => String(text).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -94,10 +103,8 @@ const PARTIALS = {
   // catalogue is: a hand-written list of data files is a second copy of the data layer's
   // shape, and it goes stale the first time a file is added. What each file holds is counted
   // from the file, so a count here cannot disagree with the file it describes.
-  'data-files': () => `<ul class="data-files">${readdirSync(new URL('./data/', import.meta.url))
-    .filter((name) => name.endsWith('.json')).sort()
-    .map((name) => {
-      const json = read(name);
+  'data-files': () => `<ul class="data-files">${dataFiles()
+    .map(({ name, json }) => {
       const points = (block) => (block?.data ?? []).length;
       const held = json.metrics ? `${json.metrics.length} figures`
         : json.data ? `${points(json) + COMPANION_BLOCKS.reduce((n, b) => n + points(json[b]), 0)} points`
@@ -228,6 +235,13 @@ export default function (eleventyConfig) {
       }),
       pageUrl: this.page.url,
     });
+  });
+
+  // Structured data for the pages that carry it. The page url comes from this.page rather than
+  // from an argument, on the same reasoning as the chart shortcodes above: which page this is is
+  // something the build already knows, and an author typing it is a second copy of it.
+  eleventyConfig.addShortcode('structuredData', function () {
+    return structuredData({ site, pageUrl: this.page.url, meta, files: dataFiles() });
   });
 
   // Resolve a dashboard card or denominator reference to the metric that owns it.
