@@ -172,8 +172,8 @@ which is why the audit turns on the vintage still matching, the same key the rel
 on. So does an entry for a companion the data layer has since dropped.
 
 **Four things stop an entry being read at all, and each is refused only on the branch that writes
-it**: a `file` or a `block` that `lib/series.mjs` does not map, a missing `vintage`, and a block
-held neither by the data layer nor by the base branch. The first two are typos rather than history,
+it**: a `file` that `lib/series.mjs` does not map, a `block` it does not map, a missing `vintage`,
+and a block held neither by the data layer nor by the base branch. The first two are typos rather than history,
 because the file list and the companion names are a fixed list in code, and left to skip, one
 mistyped character would put an entry beyond every pass; the third is an entry for a block that has
 never existed, which no pass would otherwise reach. All four are asked of what a pull request
