@@ -1,0 +1,32 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/employment-rate-uk-born-population",
+      "previous_value": 74.7,
+      "value": 74.7,
+      "fetched_at": "2026-08-05",
+      "derivation": "ONS publishes 74.68465773259211 and this record holds it rounded to one decimal place, 74.7. The rounding is the whole of the derivation: no figure is combined with any other. It is calculated rather than official because a record holds a value and not a precision, so the published number and the recorded one are not the same string, and check-evidence refuses a quote that does not contain the value it evidences.",
+      "components": [
+        {
+          "value": 74.68465773259211,
+          "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
+          "quote": "Table EMP06: Employment rates by country of birth: People aged 16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column \"UK\", row \"Oct-Dec 2025\": 74.68465773259211"
+        }
+      ]
+    },
+    {
+      "ref": "fiscal/employment-rate-eu-born-residents",
+      "previous_value": 80.4,
+      "value": 80.4,
+      "fetched_at": "2026-08-05",
+      "derivation": "ONS publishes 80.39374408928576 and this record holds it rounded to one decimal place, 80.4. The rounding is the whole of the derivation: no figure is combined with any other. It is calculated rather than official because a record holds a value and not a precision, so the published number and the recorded one are not the same string, and check-evidence refuses a quote that does not contain the value it evidences.",
+      "components": [
+        {
+          "value": 80.39374408928576,
+          "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
+          "quote": "Table EMP06: Employment rates by country of birth: People aged 16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column \"Total EU (EU27)2\", row \"Oct-Dec 2025\": 80.39374408928576"
+        }
+      ]
+    }
+  ]
+}

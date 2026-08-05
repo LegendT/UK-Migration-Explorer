@@ -1,6 +1,6 @@
 {
   "theme": "Net migration and visas",
-  "lastUpdated": "2026-08-04",
+  "lastUpdated": "2026-08-05",
   "note": "Net migration figures come from ONS Long-term international migration (year ending December 2025, provisional, published 21 May 2026). Visa-grant figures come from Home Office Immigration system statistics (year ending March 2026). The two sources are not interchangeable: ONS counts people staying 12 months or more; the Home Office counts visas granted, which is always higher. ONS reason splits are for non-EU+ arrivals (inflow), not net migration by reason.",
   "metrics": [
     {
@@ -458,12 +458,12 @@
       "date": "2025-06-30",
       "period_label": "year ending June 2025",
       "geography": "United Kingdom",
-      "source_name": "Migration Observatory (University of Oxford), Long-term international migration flows to and from the UK (citing ONS)",
+      "source_name": "Migration Observatory (University of Oxford), Net migration to the UK (citing ONS)",
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/",
-      "published_date": "2026-05-27",
-      "retrieved_date": "2026-06-17",
-      "notes": "Indian nationals were the largest single nationality for overall immigration (16%), followed by Chinese and Pakistani (about 7% each). For study visas specifically, India (95,231 main applicants, 23%) and China (89,019, 22%) lead.",
+      "published_date": "2025-12-18",
+      "retrieved_date": "2026-08-05",
+      "notes": "Indian nationals were the largest single nationality for overall immigration (16%), followed by Chinese and Pakistani (about 7% each). For study visas specifically, India (95,231 main applicants, 23%) and China (89,019, 22%) lead. THE EDITION MATTERS AND THE URL CANNOT CARRY IT: this is a living page, and the 18 December 2025 edition is the one stating 16% for the year ending June 2025, beside its Figure 3. The edition of 27 May 2026 now at that address states 17% for a later period, so a reader following the link today does not meet this figure. Read at https://web.archive.org/web/20251223111734/https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/ on 5 August 2026, which is what the evidence entry quotes. The briefing is titled Net migration to the UK and has been since at least that December edition; the old title survives only in the URL slug.",
       "confidence_level": "provisional"
     }
   ]

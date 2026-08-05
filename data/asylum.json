@@ -1,6 +1,6 @@
 {
   "theme": "Asylum and refugees",
-  "lastUpdated": "2026-08-03",
+  "lastUpdated": "2026-08-05",
   "note": "Latest Home Office Immigration system statistics release is year ending March 2026 (published 21 May 2026). Asylum appeals come from a separate publisher (HMCTS/Ministry of Justice tribunals statistics, January to March 2026). Reference periods differ between measures, so do not mix calendar-year, year-ending, and point-in-time figures.",
   "metrics": [
     {
@@ -258,23 +258,6 @@
       ],
       "notes": "CALCULATED, not published: the Home Office publishes this table by quarter and by calendar year and states no year-ending-March total. Summed over 2025 Q2 to 2026 Q1 across all four methods of entry: small boats 39,271, inadequately documented air arrivals 2,621, detections in the UK 1,687, detections at UK ports 227. Small boats are 89.6% of it. Detected means detected: it cannot count arrivals nobody detected, so it is a floor rather than a total. URL CORRECTED 3 August 2026: this record named the right dataset in its source name and linked the data tables index page, which lists spreadsheets and contains no figures at all. It now links the dataset itself, which is the file its evidence entry already quoted. The figure was re-derived from it on the same day and every component above reproduces exactly, so retrieved_date is left at the day it was read rather than moved.",
       "confidence_level": "calculated"
-    },
-    {
-      "id": "small-boat-arrivals-2026-year-to-date",
-      "metric_name": "Small boat arrivals, 2026 year-to-date (to end May)",
-      "value": 9000,
-      "unit": "people",
-      "date": "2026-05-31",
-      "period_label": "1 January to 31 May 2026 (provisional)",
-      "geography": "United Kingdom",
-      "source_name": "Home Office, Migrants detected crossing the English Channel in small boats (operational data)",
-      "source_id": "ho-immigration-stats",
-      "source_url": "https://www.gov.uk/government/publications/migrants-detected-crossing-the-english-channel-in-small-boats",
-      "published_date": null,
-      "retrieved_date": "2026-06-17",
-      "notes": "Provisional operational figure, approximate (around 9,000), reported as about 38% lower than the same period in 2025. Subject to revision; treat as indicative, not finalised statistics. Approximate, and from a daily-updated operational page, so it decays weekly. See published_date_unavailable. Do not publish without re-checking.",
-      "confidence_level": "provisional",
-      "published_date_unavailable": "Daily-updated operational page: the publication date of a past snapshot cannot be recovered. Re-check before publishing; this figure decays weekly."
     },
     {
       "id": "asylum-appeals-lodged",
