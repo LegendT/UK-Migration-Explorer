@@ -139,7 +139,8 @@ below.
 10. **GATE. The undrafted claims**, which is *Scoped, not built* section 5: a session drafts
     **[me]**, and the verdict and short answer come to the owner before merge **[you]**. **The
     drafts merged so far are PRs #131, #132 and #133**, with their verdicts and short answers given
-    on 4 August 2026, and **PR #145 adds "Small boat arrivals are the whole asylum system" with its
+    on 4 August 2026, and **PRs #145 and #148 add "Small boat arrivals are the whole asylum system"
+    and "Visa grants equal arrivals", each with its
     verdict and short answer proposed and awaiting yours**. **Seven were draftable, not eight**: "Local areas all carry the same
     pressure" needs per-capita local authority figures and `data/` holds none. The order the rest
     are proposed in is in PR #132. **No count is written here, in digits or in words**: `npm run
@@ -683,10 +684,11 @@ figure the site is arguing against, so it is a decision rather than a widening.
 
 ### 5. The undrafted claims
 
-Foundation section 8.5.3 specifies fifteen; eleven are written, three of them in PRs #131, #132
-and #133 on 4 August 2026 and the fourth, "Small boat arrivals are the whole asylum system", in
-PR #145 on 5 August 2026. **One of the remaining four cannot be written**: "Local areas all carry
-the same pressure" needs per-capita local authority figures and `data/` holds none. **Three are
+Foundation section 8.5.3 specifies fifteen; twelve are written, three of them in PRs #131, #132
+and #133 on 4 August 2026, the fourth, "Small boat arrivals are the whole asylum system", in
+PR #145 on 5 August 2026, and the fifth, "Visa grants equal arrivals", in PR #148 on the same day.
+**One of the remaining three cannot be written**: "Local areas all carry
+the same pressure" needs per-capita local authority figures and `data/` holds none. **Two are
 left**, and the order they are proposed in is in PR #132.
 
 **Who drafts, decided 30 July 2026.** A session drafts and proposes; the **verdict and the short
@@ -712,9 +714,9 @@ four of its rows were overtaken by the review on 27 July.
 
 **The direction split is the thing to weigh before writing more.** `validate-content.mjs` counts
 parsed files in `content/claims/`, so a direction assigned to an undrafted claim changes nothing;
-only a merged page moves the split. It now stands at eight restrictionist to three pro-migration
-once PR #145 merges, further off the enforced floor, which reopens the option of dropping claim 2.7
-that correction 1g found closed. **One of the three remaining corrects a pro-migration claim**, the
+only a merged page moves the split. It stands at nine restrictionist to three pro-migration once
+PRs #145 and #148 merge, further off the enforced floor, which reopens the option of dropping claim
+2.7 that correction 1g found closed. **One of the two remaining corrects a pro-migration claim**, the
 lifetime contribution one, and it needs its own figure checked first: the record it would rest on
 moved from £341,000 to £297,000 in PR #129, so the claim as specified in 8.5.3 quotes a number this
 site no longer publishes.
