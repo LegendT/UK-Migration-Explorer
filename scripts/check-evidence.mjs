@@ -2,8 +2,9 @@
 // The evidence check. Any figure whose value changed, and any figure that is new, must carry
 // a quote from a fetched source containing that value. It compares the data layer against a
 // base branch, so it sees exactly what a pull request proposes to publish. It then re-reads
-// every entry on file that still describes a live figure, because the comparison alone asks
-// only about figures that moved and most of them do not.
+// every entry on file that still describes a live figure, and every series entry that still
+// describes a live block, because the comparison alone asks only about figures and blocks that
+// moved and most of them do not.
 //
 // This is the mechanical half of what content/sources-and-method.md promises a reader: "No
 // figure appears here because a model asserted it." A fabricated value cannot appear in a
@@ -367,7 +368,19 @@ const claimKey = (entry) => JSON.stringify([
   entry.range_max ?? null,
 ]);
 
+// The same question one level over, and the same answer to it. A series claim is its block and
+// the release it declares, so editing previous_vintage, the vintage it is measured against, or
+// the count re-opens it, and moving the entry between files does not.
+const seriesClaimKey = (entry) => JSON.stringify([
+  entry.file,
+  entry.block ?? 'primary',
+  'previous_vintage' in entry ? entry.previous_vintage : '<absent>',
+  entry.vintage ?? null,
+  entry.points ?? null,
+]);
+
 const baseClaims = new Set();
+const baseSeriesClaims = new Set();
 for (const file of existsSync(evidenceDir) ? readdirSync(evidenceDir).filter((name) => name.endsWith('.json')) : []) {
   let json;
   // Absent from the base branch, or unparseable there, means every claim in it is new here.
@@ -378,6 +391,7 @@ for (const file of existsSync(evidenceDir) ? readdirSync(evidenceDir).filter((na
     continue;
   }
   for (const entry of json.figures ?? []) baseClaims.add(claimKey(entry));
+  for (const entry of json.series ?? []) baseSeriesClaims.add(seriesClaimKey(entry));
 }
 
 let newClaims = 0;
@@ -404,16 +418,70 @@ const blocksOf = (series) => [
 const fingerprint = (block) => JSON.stringify((block?.data ?? []).map((p) => [p.date, p.value]));
 // Single vintage per block is enforced by validate-data.mjs, so the first point speaks for all.
 const vintageOf = (block) => (block?.data ?? [])[0]?.published_date ?? null;
+const blockIn = (file, name) => (name === 'primary' ? file : file?.[name]) ?? null;
 
+// Read once and shared with the audit pass below, which needs the same two states: what each block
+// holds now, and what it held on the base branch. Both were read inside the loop below and were
+// therefore reachable by nothing else, which is why hoisting them comes first.
+const seriesNow = new Map();
+const seriesBefore = new Map();
+for (const file of Object.values(SERIES_FILES)) {
+  seriesNow.set(file, readJson(`${repoRoot}data/${file}`));
+  try {
+    seriesBefore.set(file, JSON.parse(git('show', `${base}:data/${file}`)));
+  } catch {
+    seriesBefore.set(file, null);
+  }
+}
+
+// Everything a series entry must be, judged against the block as it stands NOW: the count, a real
+// fetch date, an https source, and a quote carrying both ends. Split out of the loop below for the
+// same reason checkEvidenceShape is split out of checkEntry: none of it needs the base branch, so
+// it can be put to an entry for a block that has not moved since the entry was written. The audit
+// pass below is the caller that matters, and until it existed nothing ever asked these of an entry
+// a second time.
+function checkSeriesShape(at, block, entry, where) {
+  const points = (block.data ?? []).length;
+  // The count catches an array pasted short, which quoting its two ends cannot. Stringified
+  // because "declares 14 point(s), but holds 14" is what a string 14 produces otherwise.
+  if (entry.points !== points) {
+    errors.push(`${where}: declares ${JSON.stringify(entry.points)} point(s), but ${at} holds ${points}. A series is replaced whole, so a mismatch means the array is not the one that was read.`);
+  }
+  if (!isRealDate(entry.fetched_at)) {
+    errors.push(`${where}: fetched_at "${entry.fetched_at}" is not a real YYYY-MM-DD date.`);
+  }
+  checkSourceUrl(where, 'source_url', entry.source_url);
+  // Both ends, because a release is read from a table and the two ends are what an author
+  // must look at to know they took the right column and the whole of it.
+  const ends = [(block.data ?? [])[0], (block.data ?? [])[points - 1]].filter(Boolean);
+  if (!entry.quote) {
+    errors.push(`${where}: no quote. ${SHAPE}`);
+    return;
+  }
+  for (const point of ends) {
+    if (!carries(entry.quote, point.value)) {
+      errors.push(`${where}: the quote does not contain ${format(point.value)}, the ${point === ends[0] ? 'first' : 'last'} point of ${at} (${point.date}).`);
+    }
+  }
+}
+
+// previous_vintage is what the block's published_date was on the base branch, the series half of
+// checkPreviousValue and split out for the same reason: it is a claim about the base branch alone,
+// so the pass that reads a CLAIM rather than a block can ask it of an entry whose block sat still.
+function checkPreviousVintage(at, was, entry, where) {
+  const claimed = 'previous_vintage' in entry ? entry.previous_vintage : undefined;
+  if (claimed === undefined) {
+    errors.push(`${where}: no previous_vintage. ${at} was ${JSON.stringify(vintageOf(was))} on ${base}.`);
+  } else if (claimed !== vintageOf(was)) {
+    errors.push(`${where}: previous_vintage ${JSON.stringify(claimed)} is not what ${at} holds on ${base}, which is ${JSON.stringify(vintageOf(was))}.`);
+  }
+}
+
+const seriesAudited = new Set();
 let seriesMoved = 0;
 for (const file of Object.values(SERIES_FILES)) {
-  const now = readJson(`${repoRoot}data/${file}`);
-  let before = null;
-  try {
-    before = JSON.parse(git('show', `${base}:data/${file}`));
-  } catch {
-    before = null;
-  }
+  const now = seriesNow.get(file);
+  const before = seriesBefore.get(file);
 
   // A block under a key nothing lists is invisible here and to validate-data.mjs, which walks
   // the same list: 100 points could ship with no evidence and no field validation at all.
@@ -459,12 +527,8 @@ for (const file of Object.values(SERIES_FILES)) {
     }
 
     const { entry, where } = matched;
-    const claimed = 'previous_vintage' in entry ? entry.previous_vintage : undefined;
-    if (claimed === undefined) {
-      errors.push(`${where}: no previous_vintage. ${at} was ${JSON.stringify(vintageOf(was))} on ${base}.`);
-    } else if (claimed !== vintageOf(was)) {
-      errors.push(`${where}: previous_vintage ${JSON.stringify(claimed)} is not what ${at} holds on ${base}, which is ${JSON.stringify(vintageOf(was))}.`);
-    }
+    seriesAudited.add(entry);
+    checkPreviousVintage(at, was, entry, where);
 
     // A block whose contents moved while its vintage did not is either a correction inside an
     // edition or an entry that predates the change. Matching on vintage cannot tell those
@@ -479,28 +543,91 @@ for (const file of Object.values(SERIES_FILES)) {
       errors.push(`${where}: ${at} moved while its vintage stayed ${JSON.stringify(vintage)}, so this entry cannot be evidence for the change. An entry matched on vintage also matches every earlier state of the same edition. If the publisher corrected the array inside its edition, re-read both ends and say what changed in a "correction" field. If it did not, an array moved without a release and that is the thing to explain.`);
     }
 
-    // The count catches an array pasted short, which quoting its two ends cannot. Stringified
-    // because "declares 14 point(s), but holds 14" is what a string 14 produces otherwise.
-    if (entry.points !== points) {
-      errors.push(`${where}: declares ${JSON.stringify(entry.points)} point(s), but ${at} holds ${points}. A series is replaced whole, so a mismatch means the array is not the one that was read.`);
-    }
-    if (!isRealDate(entry.fetched_at)) {
-      errors.push(`${where}: fetched_at "${entry.fetched_at}" is not a real YYYY-MM-DD date.`);
-    }
-    checkSourceUrl(where, 'source_url', entry.source_url);
-    // Both ends, because a release is read from a table and the two ends are what an author
-    // must look at to know they took the right column and the whole of it.
-    const ends = [(block.data ?? [])[0], (block.data ?? [])[points - 1]].filter(Boolean);
-    if (!entry.quote) {
-      errors.push(`${where}: no quote. ${SHAPE}`);
-    } else {
-      for (const point of ends) {
-        if (!carries(entry.quote, point.value)) {
-          errors.push(`${where}: the quote does not contain ${format(point.value)}, the ${point === ends[0] ? 'first' : 'last'} point of ${at} (${point.date}).`);
-        }
-      }
-    }
+    checkSeriesShape(at, block, entry, where);
   }
+}
+
+// --- and every series entry on file that still describes a live block ----------------------
+// The loop above asks only about a block that MOVED, so an entry written for a block that then sat
+// still was declared once and never asked again. That is the record-level gap of 3 August 2026 one
+// level over, on a smaller surface: four files rather than the whole record set, and live rather
+// than hypothetical, because three entries were written that way and their quotes had to be
+// generated from the fetched table with a per-point assertion for exactly this reason. A bad quote
+// in any of them was invisible for as long as the block held. The run's own closing line said so.
+//
+// The key is file, block and vintage, the same one the loop above matches on. Asked of both sides
+// it cannot be permanently satisfied, and it fails SOFT rather than open: a miss here skips an
+// entry as history, where a miss above exempts a block from needing one at all.
+//   Unchanged: the vintage sits still, so the entry is re-read on every run. That is the point.
+//   Absent: a nullable vintage matches null with null, which here means MORE checking rather than
+//     an exemption, so the null that would have made the block above exempt for ever is safe.
+//     Absent on the ENTRY is not: an entry with no vintage field matches no block and would slip
+//     both passes, so the field is required rather than defaulted.
+//   Wrong shape: a file or block name lib/series.mjs does not map is a typo, not history. Series
+//     files are a fixed list in code and companions are registered there, so unlike a record ref,
+//     which is genuinely renamed, an unmappable name here is refused rather than skipped. Left to
+//     skip, one mistyped character would reopen this whole gap for that entry.
+//   The other side: a companion the data layer no longer holds is history and is skipped, which is
+//     the same rule the record audit runs on, and the closing line still says nothing here asks
+//     whether a block was deleted.
+const KNOWN_BLOCKS = new Set(['primary', ...COMPANION_BLOCKS]);
+let seriesAuditedCount = 0;
+for (const { entry, where } of seriesEntries) {
+  const name = entry.block ?? 'primary';
+  // The four errors below are the ones an entry cannot be READ past, so they are asked only of an
+  // entry THIS branch proposes, the rule every other pass here runs on: a merged claim is history,
+  // because failing it now would push someone into editing the audit trail to get a green run.
+  // That distinction earns its place here rather than on the record side, where a ref names one
+  // record: these name a fixed list in code, so a rename in lib/series.mjs, of a FILE or of a
+  // companion, would otherwise orphan every entry pointing at the old name in one commit and the
+  // only green run available would be the one that rewrote history.
+  const proposed = !baseSeriesClaims.has(seriesClaimKey(entry));
+  if (!seriesNow.has(entry.file)) {
+    if (proposed) errors.push(`${where}: names file ${JSON.stringify(entry.file)}, which lib/series.mjs does not map, so no block can be found for it and nothing here can read this entry. ${SHAPE}`);
+    continue;
+  }
+  if (!KNOWN_BLOCKS.has(name)) {
+    if (proposed) errors.push(`${where}: names block ${JSON.stringify(name)}, which is neither "primary" nor a companion registered in lib/series.mjs (${COMPANION_BLOCKS.join(', ')}).`);
+    continue;
+  }
+  if (!('vintage' in entry)) {
+    if (proposed) errors.push(`${where}: no vintage. It is the block's published_date, and it is what an entry is matched on, so an entry without one is evidence for no release.`);
+    continue;
+  }
+  const block = blockIn(seriesNow.get(entry.file), name);
+  if (!block) {
+    // A companion the base branch HELD and the data layer no longer does is a deletion, and its
+    // entry is history like any other. A block present in NEITHER has never existed, so no pass
+    // reaches it: the loop above walks live blocks, this one skips it, and previous_vintage below
+    // is satisfied by the null it would carry anyway. Left out, a quote for nothing sits in the
+    // audit trail read by nothing, which is the shape of the gap this whole pass exists to close.
+    if (proposed && !blockIn(seriesBefore.get(entry.file), name)) {
+      errors.push(`${where}: names ${entry.file} ${name}, which the data layer does not hold and ${base} does not hold either, so this entry is evidence for no block at all. A companion deleted since ${base} keeps its entry as history; this one describes nothing.`);
+    }
+    continue;
+  }
+  if (vintageOf(block) !== entry.vintage) continue;        // the block moved on: history, not a defect
+  if (seriesAudited.has(entry)) continue;                  // already checked above, and twice is two errors
+  seriesAuditedCount += 1;
+  checkSeriesShape(`${entry.file} ${name}`, block, entry, where);
+}
+
+// --- and previous_vintage on every series claim this branch ADDS ---------------------------
+// The sibling of the previous_value pass above, and the same defect: the only loop that reads
+// previous_vintage runs for a block that moved, so a backfill entry for a block sitting still can
+// say anything there and be asked by nothing. Twenty-eight record entries said `null`, meaning
+// new, for figures that were years old, and four blocks in this data layer currently carry no
+// entry at all, so the next backfill is where this would have happened again.
+//
+// Already merged is history and is skipped, for the reason the pass above gives: failing it now
+// would push someone into editing the audit trail to get a green run.
+let newSeriesClaims = 0;
+for (const { entry, where } of seriesEntries) {
+  if (seriesAudited.has(entry)) continue;                      // the moved loop already asked
+  if (baseSeriesClaims.has(seriesClaimKey(entry))) continue;   // already merged: history
+  if (!seriesNow.has(entry.file) || !KNOWN_BLOCKS.has(entry.block ?? 'primary')) continue; // already reported above
+  newSeriesClaims += 1;
+  checkPreviousVintage(`${entry.file} ${entry.block ?? 'primary'}`, blockIn(seriesBefore.get(entry.file), entry.block ?? 'primary'), entry, where);
 }
 
 // --- report ----------------------------------------------------------------------------
@@ -539,8 +666,7 @@ if (auditedCount) {
   console.log('because a check that failed on them would push someone into deleting the audit trail to');
   console.log('get a green run. Its previous_value is still asked if THIS branch is what added it, by');
   console.log('the pass below, which reads a claim rather than a figure and so does not need one.');
-  console.log('Nor anything about SERIES entries, which have the same gap one level over: only a block');
-  console.log('that moved is asked, so an entry for a block sitting still is not re-read here either.');
+  console.log('Series entries are re-read by their own pass further down, not by this one.');
 } else {
   console.log('\nNo evidence entry on file still names a record holding exactly its value, so none was');
   console.log('re-read. That is unexpected while data/evidence/ has entries, and worth looking at.');
@@ -565,6 +691,25 @@ if (seriesMoved) {
   console.log('Not established: the points between those ends. A series is evidenced as one array from');
   console.log('one release, which is how it is published and how it is replaced, so a wrong value in the');
   console.log('middle of a correctly sourced array passes this.');
+}
+if (seriesAuditedCount) {
+  console.log(`\n${seriesAuditedCount} series evidence entr${seriesAuditedCount === 1 ? 'y names a block' : 'ies name blocks'} still holding exactly the vintage`);
+  console.log('declared, and each was re-read here: the point count against the array, both ends carried by');
+  console.log('the quote, a source URL and a real fetch date. As above, that is a claim about the ENTRY and');
+  console.log('re-fetches nothing.');
+  console.log('Not established HERE: the points between those two ends, which no pass reads; or anything');
+  console.log('about an entry whose block has since moved to another release, which is history by design.');
+} else {
+  console.log('\nNo series evidence entry on file names a block still holding its declared vintage, so none');
+  console.log('was re-read. With entries in data/evidence/, that is unexpected and worth looking at.');
+}
+if (newSeriesClaims) {
+  console.log(`\n${newSeriesClaims} series claim(s) are new on this branch and each declares what its block's`);
+  console.log(`published_date was on ${base}. A block absent there says null; one already there takes the`);
+  console.log('vintage it holds, which a backfill for a block that has not moved must do.');
+} else {
+  console.log(`\nNo series claim is new on this branch, so previous_vintage was asked of none beyond any block`);
+  console.log(`that moved: every series entry states the same block, vintage and count it states on ${base}.`);
 }
 // Printed whether or not a series moved. A pull request that only DELETES a companion moves
 // nothing, so it produces no series output at all, and the run where this limit matters most
