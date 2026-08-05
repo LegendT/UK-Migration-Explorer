@@ -171,6 +171,24 @@ fields the same review tied together: `source_url` and `source_id` must name the
 so pasting a new edition's URL against the wrong catalogue id now fails instead of silently
 filing the record under the wrong release watch.
 
+**And an eleventh, if the new source is not already catalogued.** Re-sourcing a record to a
+publisher `data/sources.json` does not hold means adding an entry there first, or
+`validate-data.mjs` refuses the record twice, once for citing an uncatalogued host and once for a
+`source_id` that is not a catalogue id. **That entry is reader-facing**: the Sources table on
+`/sources-and-method/` renders every catalogue entry, in both the wide and the stacked rendering,
+so adding one changes a published page. It does not move the counts beside it, which count records
+that reach a reader, and a catalogue entry whose records are all unpublished reserve therefore
+shows a row and no count. Five entries were already in that state before EMP06 was added on
+5 August 2026, so this is the existing shape rather than a new one.
+
+**A living page cannot be cited by edition through its URL.** Where a publisher revises a briefing
+in place, the edition that contains the figure may not be the one at the address, and
+`source_url` cannot point at an Internet Archive snapshot: the host is not a catalogued publisher
+and disagrees with `source_id`, so the record is refused twice. Both were probed rather than
+assumed on 5 August 2026. Put the edition in `published_date`, say in `notes` that the live page
+now shows something else, and let the evidence entry quote the archive, which is the one field
+that may.
+
 ### 6. Re-read the notes, and leave every page alone
 
 **Record `notes` are re-read against the release every time.** They are prose the site wrote, not

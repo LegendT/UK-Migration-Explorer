@@ -198,6 +198,26 @@ definition list below 40em, the table above it, and the first column's floor sco
 rendering it belongs to. Which of the seven still scroll, and by how much, is a measurement and
 belongs in the backlog under U6 rather than here. This paragraph stays for the lesson above it.
 
+**THE SITE PUBLISHES STRUCTURED DATA SINCE 5 AUGUST 2026, PR #143, AND WHAT IS ABSENT FROM IT IS
+THE DECIDED PART.** `WebSite` and `Organization` on the home page, a `Dataset` on
+`/sources-and-method/` built from the same directory read that renders the Reuse section. The
+mechanics are in `README.md` under *Build*; what belongs here is how the one open question in it
+was settled. The call said to confirm a deprecation before spending anything on `ClaimReview`, and
+it holds from Google's own post rather than from commentary about it. **Then checking whether the
+surviving channel was open produced a better reason than the deprecation**: Fact Check Explorer
+requires each claim attributed to a named origin off-site, and `content/style-guide.md` tells
+readers this site does not attribute claims to named people. So the channel is closed by this
+site's own published policy, which does not rot if Google reverses, and that is the ground the
+check now enforces. **The general move is worth more than the instance**: when a decision turns on
+someone else's platform, look for a reason that survives them changing their mind, and prefer it.
+
+**A1's last record calls and a claim draft went out the same day**, and **what state either is in
+is the backlog's to say, not this document's**. Three things they established outlast them and are
+in *Working practices* below: that a living page cannot be cited by edition through its
+`source_url`, probed rather than argued; that a critic's finding can be right while its remedy
+cannot be built; and that a page arguing two figures must not be combined is the likeliest place to
+combine them.
+
 **A1'S MECHANICAL HALF IS CLOSED, PR #116.** Batch 6 took the last three reserve records, one each
 from the Commons Library, Skills for Care and the MAC, and all three cited a page that is not where
 their figure lives, which is the fourth batch running to find that. The MAC record's notes quoted
@@ -696,6 +716,20 @@ is already here to adding a neighbour beside it.
   share runs 35% to 55%. **Recompute the rate from the primary table's own rows and check what the
   publisher divided by**, rather than checking the digits against a bulletin sentence.
 
+  **And the sentence beside a warning is the likeliest place to break it.** On 5 August 2026 a
+  claim page was drafted whose whole argument is that small boat arrivals and asylum claims count
+  different events, so dividing one by the other does not give the share of claims made by people
+  who arrived by boat. **Three sentences in that draft did exactly that**, one of them adjacent to
+  the warning: "a set of decisions, appeals, support and returns that most people in it did not
+  reach by boat" and "most people who claim asylum in Britain were already here" are both claims
+  about the composition of a population, which two counts of different events cannot establish. A
+  fourth compared cumulative scheme totals since 2021 against one year's resettlement figure, the
+  basis mismatch the same page explains. **Every check passed all four**, because a citation
+  guarantees the value in a sentence and says nothing about the sentence, which is the unprotected
+  prose this project publishes as a limit. After drafting anything that argues two numbers must not
+  be combined, re-read the whole piece asking only whether any sentence combines them, **on the
+  built page rather than in the source**, which is the version you are too close to.
+
 - **Negative-test every new check**, and confirm the break actually applied before concluding
   anything. Six "failures" here were tests that never fired: two in an earlier session, a
   `perl` edit on 28 July whose pattern missed so a check "passed" against a file nobody had
@@ -840,6 +874,20 @@ is already here to adding a neighbour beside it.
   time that has happened, and it still returned four more beside it, two of them serious. So the
   count is of pieces read, not of defects only a second model could have reached. It has never
   read one and found nothing.
+
+  **A THIRD FAILURE MODE, and on 5 August 2026 it was the only one: the finding is right and the
+  REMEDY cannot be built.** Three critique rounds produced eleven findings, every one of which
+  reproduced, and three of the prescribed fixes had to be refused. Point a `source_url` at an
+  Internet Archive snapshot: `validate-data.mjs` refuses it twice, as an uncatalogued publisher
+  and as a host disagreeing with `source_id`. Change "well under half" to "just under half" for
+  42%: it overstates in the other direction, and the page now compares the counts instead. A field
+  breaks the file's convention: the nearest sibling in that same file is formatted exactly the way
+  it was written, and the reviewer had compared against a distant one. **Grade the finding and the
+  fix separately.** A remedy is a claim about what can be built, per *Deciding what to build*
+  below, and a critic's gets no exemption; taking a right finding's wrong fix ships a change that
+  reads as a correction in the diff. **Probe it rather than argue with it**: applying the archive
+  URL and running the validator took one command and settled it, where a paragraph explaining why
+  it would not work would have been longer and proved nothing.
 
   **Why self-critique does not substitute for it.** Two rounds of critique on the series
   evidence check found real defects and missed the one a fresh reviewer reproduced in a scratch
@@ -997,6 +1045,20 @@ is already here to adding a neighbour beside it.
   agreed with itself: `git fetch origin main` and `git log origin/main` both answered about `main`
   while the tree was somewhere else. `git branch --show-current` is one command and answers the
   question none of those do.
+
+  **Cut it before the first EDIT, not before the commit, and that is where a multi-item session
+  goes wrong.** On 5 August 2026 three items ran in one session. The second item's six record fixes
+  were written, checked, critiqued and committed onto the first item's branch, which already had an
+  open pull request; the third item's draft then accumulated on the second's the same way. Nothing
+  prompts you at the right moment, because the tree is clean and the previous branch is still
+  checked out precisely because its pull request is open. **The `git log --oneline origin/main..HEAD`
+  check does not catch this**, which is the part worth knowing: the commits are on a branch and it
+  answers about `main`, so it reads exactly as it should. The harm is that one pull request carries
+  two deliverables, so neither can be reverted alone and the second one's reasoning is filed under
+  the first one's title. Recovery is `git branch <new>` at the current commit then `git reset --hard`
+  back to where that branch should end; **for a file both items touched, re-apply the edits rather
+  than copy the file**, asserting each replacement, because copying carries the other item's work
+  across with it.
 
 - **A deliberately stacked pull request does not retarget itself.** GitHub moves a stacked PR to
   `main` only when its base **branch is deleted**, not when the base PR merges. On 3 August 2026,
@@ -1529,6 +1591,46 @@ for what it was the sole pointer to". That defect fired the same day, self-infli
 being written up, so it is not refused for being unimportant. It is a bullet under *Working
 practices* with its incident. **Recorded so the next reading does not add it as an oversight.**
 
+**One clause added and two refused, 5 August 2026, on a session that ran three items.**
+
+The clause, in the branch-and-PR paragraph: cut the branch from `main` before the first edit of
+each item. **It is an extension of a row-four line rather than a fifth thing**, and it passes both
+halves of the test. It cannot rot, naming no count, item or section. And it governs an act every
+session performs, which is the discriminator that separated the last two candidates: every session
+cuts at least one branch, and the clause says when.
+
+**What earns it is that row four's own completion check cannot catch this one.** That session
+committed its second item onto its first item's branch, which already had an open pull request, and
+`git log --oneline origin/main..HEAD` answered about `main` exactly as it should while two
+deliverables piled into one pull request. The check at the foot of the prompt is for work stranded
+off `main`; this is work landing on the wrong side of `main`, and no command already in the block
+sees it. **The prompt carries the incident in one dated clause and not the rule behind it**, which
+is the form the other two clauses in the block already take: what cannot rot is that a session did
+this on a named date, where "always cut from `main`" is rule text with a fuller copy to drift
+against. The full account, the recovery and the re-apply-rather-than-copy half are under *Changing
+something without breaking something else*.
+
+**A second reader called that clause a contract breach and prescribed the opposite**, cutting the
+narrative to a bare rule plus a pointer to that heading. **The finding was right and the remedy was
+the forbidden form**: it had caught this paragraph claiming the incident was "not re-told in the
+prompt" while the block below re-told it, which is a claim about a different artefact than the one
+shipped and is this project's oldest defect. The sentence was wrong, not the clause. Grading a
+finding and its fix separately is the practice under *Building a check, and trusting it*, and this
+is the second time in one day it has mattered.
+
+The refusals, recorded so the next reading does not add them as oversights:
+
+- **"A critic's finding can be right while its remedy cannot be built."** Three of eleven were, that
+  day. Refused because TASK already carries "a recommendation is a claim about what can be built",
+  and this is the same rule with a different author; adding it would be a second copy of a clause
+  already in the block, which is the one thing this section forbids outright. It extends the
+  second-model bullet under *Building a check, and trusting it* instead.
+- **"Read the built page for prose that outruns its figures."** Refused on the every-time test. It
+  fires when a session drafts prose about figures, which is one item of the backlog rather than a
+  recurring act, and a drafter reaches the note where it now lives: a bullet under *Verifying a
+  figure* and a drafter's note in the backlog's own section 5, which is what a session doing that
+  work has open.
+
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
 one: a second was added on 2 August 2026 under *Where things stand*, so anything extracting "the
@@ -1597,9 +1699,12 @@ tick: they report and never gate. The online half of check-backlog runs
 in no workflow at all.
 
 Branch and PR, never straight to main, and the PR body carries the
-reasoning. When you finish an item, mark it done in docs/BACKLOG.md with
-its PR and a date, and move it to Completed when nothing is left. Do not
-delete it.
+reasoning. Cut the branch from main before your first EDIT of each item,
+not when you are ready to commit: on 5 August 2026 a session running three
+items committed two of them onto the previous item's branch, and the check
+below cannot see that, because those commits are on a branch. When you
+finish an item, mark it done in docs/BACKLOG.md with its PR and a date,
+and move it to Completed when nothing is left. Do not delete it.
 
 Before you finish, run: git log --oneline origin/main..HEAD
 Any answer but silence is work that has not shipped. A commit made after
