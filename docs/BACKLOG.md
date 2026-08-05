@@ -74,17 +74,17 @@ below.
    calls; applying what is decided is **[me]**. **The calls came back on 4 August 2026** and
    every one is applied or needs no change except call 10, which waits behind this list's item
    15 by the last clause of its own decision. **So there is no [me] work left in this item.**
-4. **GATE. The decisions that change what launch publishes.** The domain is decided and applied
-   (PR #118): `ukmigrationexplorer.org`. The contact address and the fourth published limit are
-   decided and applied, calls 16 and 20 in PR #130. The pipeline question is closed, call 17 in
-   PR #122. **The LICENCE scope is applied, call 18 under A5, and so is the rest of A6**: calls 19,
-   21 and 23, and the 47% half of call 24's residue, all in PR #136 on 5 August 2026. **What is
-   left is one [you] call**, on the `date` field of the fiscal-impact record, which A6 carries with
-   the finding behind it. **A6's own header says none of its calls blocks anything**, so they sat
-   inside a gate item for scope rather than because they gate: what gated here was call 18. **This
-   entry said the LICENCE scope was all that was left until 4 August 2026**, which orphaned A6, the
-   sentence enumerating it having been dropped a version before while the conclusion it contradicted
-   was kept.
+4. **CLOSED 5 August 2026 (PRs #136 and #139).** The domain (PR #118), the contact address and the
+   fourth published limit (calls 16 and 20, PR #130) and the pipeline question (call 17, PR #122)
+   were already done. The LICENCE scope, call 18, is inverted, and A6's calls 19, 21 and 23 are
+   applied with the 47% half of call 24's residue, all in PR #136. Call 24's other half, the
+   `date` field on the fiscal-impact record, is applied in PR #139: it held the briefing's
+   publication date where this project files `date` as the period end, and **the check that exists
+   to catch that could not**, because it asks only that the date's year appear in `period_label`
+   and the label named the briefing's own June 2026 publication. Both are under *Completed*.
+   **This entry said the LICENCE scope was all that was left until 4 August 2026**, which orphaned
+   A6, the sentence enumerating it having been dropped a version before while the conclusion it
+   contradicted was kept.
 5. **CLOSED 4 August 2026 (PR #129).** R2 is closed. Every source observation the far-end trace
    produced has been taken: five records re-sourced to the publisher that prints their figure,
    five regraded to say honestly what the figure is, and **one published value moved**, the OBR
@@ -104,15 +104,15 @@ below.
    taken down under the twelve-month promise without deleting its address. **What is left in U3 is
    the `metric_name` bullet**, which was deliberately not released with the first and stays
    **[you]**. Its remaining bullets carry no tag and neither does this sentence.
-7. **GATE. A second UX round, U6 below. The [me] half is done (PR #98, 3 August 2026)** and
-   nothing but **[you]** is left of it. All 17 pages were rendered at five real device sizes with
-   a genuine layout viewport. The navigation is decided and built (PR #109) and the chart remedy
-   is decided and built (PR #113). **The seven-table finding is applied, call 29 (PR #138,
-   5 August 2026)**: the first-column floor is scoped to the wide rendering and the Sources
-   catalogue is rendered twice, a definition list below 40em and the table above it. At 320px it
-   goes from 42% hidden to nothing hidden. **The other six tables still scroll and that is the
-   decision, not an omission**: they are 0 to 28% at 320px, worst on the costs page, and a scroll
-   container is defensible there. So nothing but **[you]** is left of this item.
+7. **CLOSED 5 August 2026 (PR #138).** U6's three findings are all built: the navigation (PR #109),
+   the chart remedy (PR #113) and now the seven-table finding, call 29, where the first-column
+   floor is scoped to the wide rendering and the Sources catalogue is rendered twice, a definition
+   list below 40em and the table above it. At 320px it goes from 42% hidden to nothing hidden.
+   **The other six tables still scroll and that is the decision, not an omission**: they are 0 to
+   28% at 320px, worst on the costs page, and a scroll container is defensible there. **This entry
+   read "nothing but [you] is left of it" until 5 August 2026 and no [you] work was named anywhere
+   under U6**, the sentence having been written while call 29 was still undecided and kept after it
+   was decided as **[me]**. It is under *Completed*.
 8. **GATE. A1, and its scope is full validation of all data**, not only the reader-facing
    records. Decided 2 August 2026, and it is the largest item on this list. **Every record in the
    data layer now carries evidence except the ones the batches left as [you]**, which are named
@@ -297,19 +297,24 @@ Each is one call. None blocks anything. **The three decided calls are applied (P
   The note now also warns that the same release prints 47% as the study-related share of non-EU+
   immigration, so anyone verifying the record by searching that release for the figure lands on a
   different measure first. **The `date` field on
-  `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp` is the open half, and it is a [you]
-  call rather than a mechanical fix.** It holds `2026-06-23`, which is the Migration Observatory
-  briefing's publication date and not a period end, where this project files `date` as the period
-  end. The studies the record summarises are far older: the newest in the briefing's Table 1 is
-  Oxford Economics on FY 2016/17, and the oldest runs from 1995. **Nothing catches it, and the
-  reason is worth keeping**: `validate-data`'s period check asks only that the date's year appear in
-  `period_label`, and that label names the briefing's own June 2026 publication, so the check is
-  satisfied by the very thing that makes the date wrong. It reaches a reader only through the served
-  JSON today; both claim pages citing it take their period from the claim's own front matter
-  instead. **The recommendation is to file it at the newest study's period end and name the span in
-  the label**, which also keeps the period check meaningful. The alternative is to leave it and
-  record in the record why this one is filed by publication date. It is the only record of its kind,
-  so whichever is chosen sets the convention for the next one.
+  `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp` was the open half, DECIDED and
+  APPLIED 5 August 2026 (PR #139).** It held `2026-06-23`, the Migration Observatory briefing's
+  publication date, where this project files `date` as the period end. The studies the record
+  summarises are far older: Table 1 of the briefing runs from Dustmann and Frattini on 1995-2011 to
+  Oxford Economics on FY 2016/17, read off the table itself. It is now `2017-03-31`, the newest
+  study's period end, chosen because a reader asking how current the range is should be told the
+  most recent evidence in it rather than the oldest. **Nothing caught it, and the reason is the
+  half worth keeping**: `validate-data`'s period check asks only that the date's year appear in
+  `period_label`, and the label named the briefing's own June 2026 publication, so the check was
+  satisfied by the very thing that made the date wrong. **The label therefore had to lose that
+  date, not just gain the span**, or a 2026 date would still have passed. Probed both ways: with
+  the label as it now reads, `2026-06-23` is refused and `2017-03-31` is accepted, the check
+  allowing `date-1` because a financial year is labelled by its opening year. **No rendered page
+  changed**, which is narrower than saying a reader sees nothing different and is the true claim:
+  diffing the whole built site before and against after, the only file that differs is the served
+  `data/fiscal.json`, and the data layer ships with the site, so a reuser reading that file does
+  see this. Both claim pages citing the record take their period from their own front matter. It is
+  the only range record, so this sets the convention for the next.
 - **The other residue was already settled**: the Asy_D02 pivot prints no year-ending total, searched
   with controls, so `asylum/asylum-administrative-outcomes` is correctly `calculated`.
 - **Closed here**: call 19, `og:` tags, applied in PR #136. A claim page's `og:title` leads with the
@@ -414,8 +419,8 @@ grade decisions its first bullet waits on.
   `lib/provenance.mjs`. **The disclosure is the part that was a judgement rather than a build**, and
   it was measured: open, the block is 2,891px on `/asylum/` at 320px, a quarter of the page; closed
   it is 56px. Say the word and it opens. It is a definition list rather than a table, because a
-  table cannot reflow and that is the defect The order's item 7 exists to fix, three pages at a
-  time. What follows is why the gate was released, kept because it is the reasoning behind the
+  table cannot reflow, which is the defect call 29 fixed on the Sources catalogue and would have
+  been shipped three more times here. What follows is why the gate was released, kept because it is the reasoning behind the
   measurement above. The three theme pages, where most figures live, show
   neither a grade nor any per-figure date. It had been sequenced behind the open grade questions in
   R2 and A6, on the reasoning that surfacing grades more widely amplifies a wrong one, and **both
@@ -442,11 +447,17 @@ grade decisions its first bullet waits on.
 - **Call 28, the withdrawn-claim stub. APPLIED (PR #137, 5 August 2026), with the wording open.**
   `paused: <date>` in a claim's front matter renders a stub at the same address, keeping the claim
   under its "The claim" label and losing the answer, the figures and the citation. An optional
-  `paused_reason` says more where there is one. **THE SETTLED WORDING WAS NOT FOUND.** The entry
-  said it was "drafted in the session record"; it is not in this repository, in any pull request
-  body or anywhere in the git history, all searched. What shipped is a session's draft, and
-  replacing the words is a one-line edit to `content/_includes/claim.njk` that changes no
-  behaviour. **[you]** to confirm or replace them.
+  `paused_reason` says more where there is one. **THE SETTLED WORDING DOES NOT EXIST IN ANY
+  ARTEFACT, verified 5 August 2026 and not merely looked for.** Five places, each with a control
+  proving the search would have found something: `git log -S` across all branches, where the only
+  hits are the entry that CLAIMS the wording was drafted and this session's own commits; every pull
+  request body, every pull request and issue comment and every issue, where a known phrase was found
+  as a control and the only hits are this session's PR #137 quoting the site's own promise; all 47
+  dangling git objects, where the two hits are this session's own intermediate blobs; `.history/`,
+  which holds two copies of `verification.txt` and no match; and the stash, which is empty. The
+  phrase "drafted in the session record" refers to a chat transcript that is in no artefact this
+  repository can reach. **What shipped is a session's draft**, and replacing the words is a one-line
+  edit to `content/_includes/claim.njk` that changes no behaviour. **[you]** to confirm or replace.
   **Pausing clears the twelve-month build error deliberately**, because Netlify runs `npm test`
   before it builds, so left firing it would fail the deploy on the very claim just taken down and
   the state would be unreachable. A printed list names every paused claim instead. Pausing stays a
@@ -517,7 +528,10 @@ off-screen at 320px, closed by the twice-rendered chart in PR #113. **One is ope
   It survived because the paragraph introducing the findings called the chart remedy "what is left
   of U6" while the charts were being fixed, so nothing noticed the table finding was still there.
 
-  **Call 29. DECIDED 4 August 2026, NOT YET APPLIED. [me].** Take the floor scoping as a partial
+  **Call 29. APPLIED (PR #138, 5 August 2026).** The Sources table goes from 42% hidden to nothing
+  hidden at 320px, and at 641px the table is 601px in a 601px box, so it fits the moment it
+  appears. What the decision said, kept because the measurement in it is why the remedy has two
+  halves rather than one, follows. Take the floor scoping as a partial
   AND restack the Sources table's rows as definition pairs below 40em. `content/assets/style.css`
   sets an unconditional 224px floor on the first column inside a 280px content box, the same shape
   as the chart floor PR #113 scoped to the wide rendering rather than deleted. **Scoping alone is
@@ -695,6 +709,37 @@ establish*.
 Kept so that a future session can see what was decided and when, rather than reopening it. **The
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
+
+- **The seven-table overflow**, 5 August 2026. PR #138. Call 29, both halves. The Sources
+  catalogue is rendered twice and the page shows one: a definition list below 40em, the table above
+  it with its 224px first-column floor scoped to the rendering it belongs to. 42% hidden at 320px
+  becomes nothing hidden, and the table fits its box the moment it appears. A definition list
+  rather than `display: block` on the table's own rows, which strips the implicit table roles: the
+  catalogue would have stopped being a table for a screen reader in order to fit a phone. **What it
+  cost was a region nested inside a region**, because the toggle class was first written onto the
+  `.scroll-x` div and the transform tests for that class with the closing quote, so the wrapper read
+  as no wrapper and the table was wrapped twice, with the build check and pa11y both green. The
+  blind spot that allowed it is open work under A5.
+
+- **Grades on the theme pages, and a paused-claim state**, 5 August 2026. PR #137. U3's first
+  bullet and call 28. Every figure a theme page declares now carries its grade, period and checked
+  date, built from the page's own `figures:` front matter and kept in a disclosure because open it
+  was a quarter of the page on a phone. `paused: <date>` gives a claim a stub at its own address
+  instead of a 404, losing the answer, the figures and the citation. **Pausing clears the
+  twelve-month build error deliberately**, because the deploy runs `npm test` first and the state
+  would otherwise be unreachable. Probing it found four things reading did not: the published counts
+  stayed overstated, the answer survived on the claims index and the home page, the tab still said
+  "Claim checked", and `og:title` would have published the correction the pause had taken down.
+
+- **The LICENCE scope, `og:` tags and two wording calls**, 5 August 2026. PRs #136 and #139. Calls
+  18, 19, 21, 23 and both halves of 24's residue. Clause 1 is inverted to everything except the
+  figures in `data/` **and the passages quoted from the publications they came from**, that second
+  exception being the critique's, since excepting only the figures licensed 120 verbatim publisher
+  quotes under MIT. A claim page's `og:title` leads with the correction and never the claim. The
+  emigration sentence stops opening at the 2021 trough. The NAO's 76% and 35% are separated into a
+  seven-month cost share and a 1 January 2025 headcount, verified in HC 874 rather than from this
+  project's own note. The fiscal-impact record's `date` moves from the briefing's publication date
+  to the newest study's period end.
 
 - **The three claim drafts and their verdicts**, 4 August 2026. PRs #131, #132 and #133. "Falling
   net migration means the asylum system is shrinking" answered "No", the two series having

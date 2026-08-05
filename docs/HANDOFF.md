@@ -253,9 +253,10 @@ and validated by nothing. An entry whose figure has since been renamed, dropped 
 history and is skipped, which is what stops a check forcing the audit trail to be deleted.
 
 **The audit's section 4, the figures the data layer never recorded, is closed, which changes what a
-session may assume.** It is named rather than numbered here because *The order*'s item 4 is a
-different and open thing, the decisions that change what launch publishes, and the prompt sends a
-fresh session to *The order* first. Every figure written
+session may assume.** It is named rather than numbered here because *The order* has an item 4 of
+its own, the decisions that change what launch publishes, and the prompt sends a fresh session to
+*The order* first. Whether that item is open is the backlog's to say and changes; that the two
+fours are different things does not. Every figure written
 longhand anywhere on this site is now held by a record or a series point, or declared as frozen
 with its reason beside it, and the branch that used to report the exceptions refuses them. There
 is no baseline constant any more. A new figure typed into a page fails the build.
