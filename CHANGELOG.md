@@ -9,6 +9,39 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Two declarations that nothing re-read, 5 August 2026
+
+**No figure moved and no page a reader sees changed.** Both are checks that could not see what they
+guard, which is all they have in common: one is a declaration nothing re-read, the other a matcher
+too specific to match. What they share is the consequence, that a check unable to see a thing
+reports nothing about it and the silence reads as a pass.
+
+**Series evidence is re-read on every run** (PR #147). `check-evidence.mjs` asked only a block
+whose data had MOVED, and that skip happens before any entry is matched, so an entry written for a
+block sitting still was declared once and never looked at a second time. Three entries on file had
+been written exactly that way, as backfills, which is why their quotes had to be generated from the
+fetched table with a per-point assertion: nothing else was ever going to read them. The run audited
+none of them and now audits all three. Two passes, both mirroring what PR #100 and its successor
+did for records: every entry naming a block that still holds its declared vintage is re-read, and
+`previous_vintage` is asked of every series claim a branch adds rather than only of a block that
+moved. Four things stop an entry being read at all and are refused only on the branch that writes
+them, so a rename in `lib/series.mjs` cannot orphan every entry naming the old name and leave
+rewriting the audit trail as the only green run.
+
+**A scroll region may carry a second class** (PR #149). Four patterns, two in the
+`scrollable-regions` transform and two in the `check-build.mjs` assertions that exist to verify its
+output independently, matched `class="scroll-x"` up to the closing quote. A region carrying any
+extra class was invisible to all four, and on 5 August a table was wrapped twice and shipped a
+scrolling region nested inside a scrolling region with the build check and pa11y both green.
+**The two failures were not one failure**, and the entry that first recorded this said they were:
+the three attribute checks never saw such a region and said nothing, while the wrapper check
+reported a correctly wrapped table as *unwrapped*, and stayed quiet only because the transform had
+already added a second plain wrapper for it to find. **The prescribed remedy was refused**, a
+character class reading `class="scroll-xy"` as a region; the token is matched as a whole member of
+the space-separated list instead. The naming pass now writes the class attribute back rather than
+rebuilding it, which it had to, or a region finally seen would have lost the class that put it
+there.
+
 ### Six reserve records answer to their sources, 5 August 2026
 
 **No published figure moved and no page a reader sees changed, apart from one row appearing in the
@@ -421,7 +454,10 @@ look at `previous_value` at all.
 **What this does not establish, and it is not silence.** The three series entries are not re-read
 by `check-evidence.mjs` on any run: only a block that MOVED is asked, so an entry for a block
 sitting still is validated by nothing, which is exactly the gap PR #100 closed one level up for
-figures. It is now live rather than hypothetical, and it is in the backlog under A3. Separately,
+figures. It is now live rather than hypothetical, and it is in the backlog under A3.
+**That paragraph was true when written and stopped being true on 5 August 2026 (PR #147)**, which
+closed the gap and now re-reads all three on every run; the backlog reference should have said A1
+rather than A3, and did not. Separately,
 no ONS record carries a `table_reference` and none can: ONS numbers its sheets "Table 1", which
 is not an identifier the corrections watch could declare or match, as `check-releases.mjs`
 already says on every run.

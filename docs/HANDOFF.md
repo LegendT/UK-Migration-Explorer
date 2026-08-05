@@ -218,6 +218,33 @@ in *Working practices* below: that a living page cannot be cited by edition thro
 cannot be built; and that a page arguing two figures must not be combined is the likeliest place to
 combine them.
 
+**TWO CHECKS THAT COULD NOT SEE WHAT THEY GUARD CLOSED ON 5 AUGUST 2026, PRs #147 AND #149.**
+Series evidence was asked only where a block's data had MOVED, and that skip happens before any
+entry is matched, so the three entries on file, all backfills for blocks sitting still, had been
+declared once and never read; the run audited none of them and now audits all three. Separately,
+four patterns, two in the `scrollable-regions` transform and two in the `check-build.mjs`
+assertions written to verify it independently, matched `class="scroll-x"` up to the closing quote,
+so a region carrying a second class was invisible to every one of them.
+
+**What they share is narrower than it first looks, and the wider version was written here and
+cut.** They are not one defect. One is a declaration nothing re-read; the other is a matcher too
+specific to match, evaluated fresh on every build. What is actually common is only the consequence,
+that a check which cannot see a thing reports nothing about it and the silence reads as a pass.
+Calling that one shape was a conclusion outrunning its evidence, which is the thing this document
+warns about more than any other, and a second reader caught it here.
+
+**Each also corrected the write-up that had sent a session to it**, and both corrections are under
+*Reproduce a backlog bullet's premise* rather than restated here: the backlog was right about the
+three checks that go silent and said nothing about the fourth, which fails the other way, and it
+prescribed a fix that would have loosened the check it was meant to tighten.
+
+**A third item drafted a claim page, whose verdict and short answer are the owner's.** It sits in
+an open pull request carrying its own backlog entry, so it is not recorded here and this document
+does not say where it has got to. What outlasts it is that reading it BUILT rather than in source
+found four defects, and only one was the combination error that reading was for: the others were a
+false superlative, an unbacked lead-lag claim, and a flatly false statement about another
+publisher's own output.
+
 **A1'S MECHANICAL HALF IS CLOSED, PR #116.** Batch 6 took the last three reserve records, one each
 from the Commons Library, Skills for Care and the MAC, and all three cited a page that is not where
 their figure lives, which is the fourth batch running to find that. The MAC record's notes quoted
@@ -278,6 +305,11 @@ because the backfill writes entries for figures that are not moving: they were b
 and validated by nothing. An entry whose figure has since been renamed, dropped or revised is
 history and is skipped, which is what stops a check forcing the audit trail to be deleted.
 
+**The identical gap existed one level over for series and closed on 5 August 2026, PR #147.** The
+check's own closing line announced it on every run for two days rather than closing it, which is
+worth noticing: a limit a run PRINTS is still a limit, and printing it honestly is not the same as
+fixing it. Both passes are now mirrored for series, on the same key asked of both sides.
+
 **The audit's section 4, the figures the data layer never recorded, is closed, which changes what a
 session may assume.** It is named rather than numbered here because *The order* has an item 4 of
 its own, the decisions that change what launch publishes, and the prompt sends a fresh session to
@@ -306,6 +338,15 @@ a pass done by hand, and A1's [me] half finished on 3 August 2026**: every recor
 now carries an entry in `data/evidence/` naming a source and quoting it, except the handful earlier
 batches referred to the owner as sourcing or naming calls. Six batches, by publisher. **What is
 left of A1 is those calls and nothing mechanical**, and which they are is the backlog's to say.
+
+**That last sentence was false for two days and is true again**, which is the reason to write it
+down rather than quietly re-assert it. A1 also held the series-evidence gap, which was mechanical
+`[me]` work, named under the section and deliberately not taken with the record calls because one
+deliverable a session is this project's rule. It closed on 5 August 2026, PR #147. **A sentence
+saying "and nothing mechanical" is a claim about state, and it goes false the moment a mechanical
+item is filed into the section it describes**, which is the same failure as the conclusion-above-an-
+enumeration bullet under *Working with this project's own documents and rules*, met from the other
+direction: there the enumeration was dropped, here the enumeration grew.
 
 **Every batch found more of the same defect, including the last one**, which is the argument for
 the pass rather than its by-product: a small-boats figure citing an index page holding no figures; a record naming a table
@@ -418,8 +459,8 @@ section about checking.
 | --- | --- |
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names on value, unit, confidence level and year, every point in a series block carrying one confidence level, `ons_marker` drawn from a fixed vocabulary, a theme file's `lastUpdated` present and a real date, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, since 2 August 2026, having run at report level under a ratchet from 38 down to zero, and names every declared literal that does equal a live value |
-| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, every metric that is new, and since 3 August 2026 every metric whose `confidence_level` crosses the derived boundary in either direction at an unchanged value, is declared in `data/evidence/` with a quote containing that value. **Also since 3 August 2026, every entry on file naming a record that still holds exactly its value is re-read on every run**, because the base-branch comparison asks only about figures that moved; an entry whose figure has since moved is history and is skipped, which is what stops a check forcing the audit trail to be deleted. **And since 4 August 2026 `previous_value` is asked of every claim a branch adds**, keyed on ref with that field and the published value, because the base-branch loop reads it only for a figure that moved and so never reached a backfill. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`** |
+| `check-evidence.mjs` | Every metric whose value changed against `origin/main`, every metric that is new, and since 3 August 2026 every metric whose `confidence_level` crosses the derived boundary in either direction at an unchanged value, is declared in `data/evidence/` with a quote containing that value. **Also since 3 August 2026, every entry on file naming a record that still holds exactly its value is re-read on every run**, because the base-branch comparison asks only about figures that moved; an entry whose figure has since moved is history and is skipped, which is what stops a check forcing the audit trail to be deleted. **And since 4 August 2026 `previous_value` is asked of every claim a branch adds**, keyed on ref with that field and the published value, because the base-branch loop reads it only for a figure that moved and so never reached a backfill. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. **Since 5 August 2026 series entries get both of the passes above too**: every entry naming a block that still holds its declared vintage is re-read on every run, and `previous_vintage` is asked of every series claim a branch adds. Four things stop an entry being read at all: a `file` that `lib/series.mjs` does not map, a `block` it does not map, a missing `vintage`, and a block held neither now nor on the base branch. Each is refused only on the branch that writes it, so a rename in `lib/series.mjs` cannot orphan every entry naming the old name and leave rewriting the audit trail as the only green run. Gates the build. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, **recognised since 5 August 2026 by matching `scroll-x` as a whole member of the class list** rather than as the whole attribute, which had made a region carrying any second class invisible to all four patterns here and in the transform, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`** |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike. The two parliamentary hosts that 403 every request Node's `fetch` makes go through `curl` over HTTP/1.1, where the same browser headers return 200 and an invalid path returns 404. **A 403 or a 429 from any host is reported as uncheckable rather than broken**, because a refusal is not a dead page and which hosts refuse depends on where the run happens: those two answer a laptop and refuse a GitHub runner, which is how CI came to report two live OBR links as dead on every run (network; runs in CI with `continue-on-error`) |
 | `check-pipeline.mjs` | That `npm run validate`, `.github/workflows/validate-data.yml` and `scripts/` name the same checks, measured against one manifest in that script, including which CI steps carry `continue-on-error`. `local: true` with `ci: false` is refused outright. Says nothing about whether a red job blocks a merge, which is still a habit |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
@@ -710,7 +751,16 @@ is already here to adding a neighbour beside it.
 
 - **Reproduce a backlog bullet's premise before building what it prescribes.** The bullet is usually
   right that something is broken and often wrong about the remedy, and building the remedy ships a
-  change that reads as a fix in the diff. Two of A3's three on 4 August 2026: "add `previous_value`
+  change that reads as a fix in the diff. **On 5 August 2026 one was wrong in both halves at once**,
+  which is the case worth budgeting for. Item 16 said the fix was "a character class in four
+  patterns": a character class reads `class="scroll-xy"` as a scrolling region, so building what
+  was written would have shipped a looser check that passes everything it did before and now also
+  passes things it must not. And its account of the defect, "escapes the focusable check, the role
+  check and the accessible-name check, all three, in silence", was right about those three and
+  silent about the fourth check, the wrapper one, which reports a correctly wrapped table as
+  UNWRAPPED. One command settled it: fixing the transform and leaving the check produced that error
+  on the one page it applies to. **A silent miss and a loud wrong verdict are different failures, and a bullet
+  describing both as one will send you to the wrong fix.** Two of A3's three on 4 August 2026: "add `previous_value`
   to the audit pass" cannot work, because forbidding `null` there fails the next genuinely new
   figure the moment its own pull request merges; and "add the four `Sec-Fetch` headers" changed
   nothing, because Node's `fetch` is refused whatever headers it sends and `--http1.1` was the
@@ -898,6 +948,22 @@ is already here to adding a neighbour beside it.
   reads as a correction in the diff. **Probe it rather than argue with it**: applying the archive
   URL and running the validator took one command and settled it, where a paragraph explaining why
   it would not work would have been longer and proved nothing.
+
+  **A FOURTH FAILURE MODE, 5 August 2026, and it is the most convincing thing a critic does: it
+  claims to have RUN something it cannot run.** A second reader was told in its own prompt that it
+  could execute nothing and had no tool-verified findings. Its single most confident finding said a
+  malformed entry produced "2-3 redundant errors for the same defect (verified live: exactly 2
+  without a block move, 3 with)". Measured, it produces exactly one; the two-error case it described
+  is two different missing fields, each reported once. The numbers, the conditions and the phrase
+  "verified live" were all invented, and the specificity is what makes it persuasive. **Check the
+  EVIDENCE CLASS as well as the claim**: a finding citing a run, a count or an exit code from a
+  reader with no execution is fabricated on its face, whatever else it says.
+
+  **And a reader judges only what it was handed.** In the same session two of seven findings on a
+  draft page were artefacts of it seeing the markdown and not the data records: it called a
+  publication date unsourced when every cited record carries `published_date`, and counted a third
+  duplicate disclaimer where the built page has two. Neither was dishonest. Paste in what the
+  finding would need, or expect to spend the checking on absences the reader could not see.
 
   **Why self-critique does not substitute for it.** Two rounds of critique on the series
   evidence check found real defects and missed the one a fresh reviewer reproduced in a scratch
@@ -1098,6 +1164,16 @@ is already here to adding a neighbour beside it.
   a handoff or backlog edit is naturally written last, after the code has merged. `git log
   --oneline origin/main..HEAD` before leaving a branch, and treat any answer but silence as work
   that has not shipped.
+
+- **Two items finished in one session ALWAYS conflict in the backlog's *Completed* section**, and
+  the rules that produce it are both working correctly. Every finished item inserts an entry at the
+  top of a newest-first list, and the bullet above forbids reusing the previous item's branch, so
+  two branches cut from `main` insert at the same anchor. On 5 August 2026 PR #147 merged cleanly
+  and PR #149 then conflicted there, on items that touched nothing else in common. **Do not stack
+  them to dodge it**, which is the worse failure two bullets up. Merge one at a time and resolve by
+  keeping BOTH entries, newest first. Then re-read the merged section, because that resolution is a
+  hand edit to the one document that is supposed to be the single record of state, and no check
+  reads it.
 
 ### Working with this project's own documents and rules
 
@@ -1640,6 +1716,37 @@ The refusals, recorded so the next reading does not add them as oversights:
   recurring act, and a drafter reaches the note where it now lives: a bullet under *Verifying a
   figure* and a drafter's note in the backlog's own section 5, which is what a session doing that
   work has open.
+
+**One vindication and three refusals, 5 August 2026, on a second session that ran three items. The
+block below is byte-identical to the version above it.** Recorded so the next reading does not add
+them as oversights.
+
+The vindication is the clause added hours earlier: **cut the branch from `main` before the first
+EDIT of each item**. The session ran three items and cut three branches, each before its first edit,
+and all three pull requests opened on `main` with nothing stacked and nothing stranded. **A clause
+added for a defect on one session and observably followed on the next is the evidence the
+every-time test asks for**, and it is worth recording, because every other entry in this section is
+a cut or a refusal and a block that only ever loses rows is not being tested, only trimmed.
+
+The refusals:
+
+- **"Two items finished in one session conflict in the backlog's *Completed* section."** It happened
+  that day, PR #147 and PR #149, and it is structural rather than accidental: a newest-first list
+  plus a branch cut from `main` per item collide by construction. Refused on the every-time test.
+  Most sessions finish one item, merging is usually the owner's act rather than the session's, and
+  git announces the conflict at the moment it matters, which is the opposite of the silent signals
+  row four exists for. It is a bullet under *Changing something without breaking something else*.
+- **"A critic can claim to have run something it cannot run."** The most confident finding of the
+  day cited a live measurement from a reader with no execution, and the numbers were invented.
+  Refused as recited rule text with a fuller copy under *Building a check, and trusting it*, and
+  because it fires when a session runs a critique rather than every time.
+- **"Read the built page sentence by sentence, with no question in mind."** The built read found
+  three defects that had nothing to do with the question it was run for. Refused: this is the same
+  candidate refused on 5 August as "read the built page for prose that outruns its figures", and
+  re-refusing it under a wider description would be the table growing by paraphrase. It sharpened
+  the existing bullet under *Verifying a figure* instead. **Where a candidate has been refused
+  before, widen the bullet rather than re-arguing the row**, which is the pattern the fourth refusal
+  of 5 August already set.
 
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
