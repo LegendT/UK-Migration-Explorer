@@ -141,9 +141,10 @@ below.
 10. **GATE. The undrafted claims**, which is *Scoped, not built* section 5: a session drafts
     **[me]**, and the verdict and short answer come to the owner before merge **[you]**. **The
     drafts merged so far are PRs #131, #132 and #133**, with their verdicts and short answers given
-    on 4 August 2026, and **PRs #145 and #148 add "Small boat arrivals are the whole asylum system"
-    and "Visa grants equal arrivals", each with its
-    verdict and short answer proposed and awaiting yours**. **Seven were draftable, not eight**: "Local areas all carry the same
+    on 4 August 2026, and **PRs #145 and #148 added "Small boat arrivals are the whole asylum system"
+    and "Visa grants equal arrivals", and both are merged and live**, so their verdicts and short
+    answers stand as drafted: merging them is what settled them, and changing either now is a
+    change to a published page rather than a call on a draft. **Seven were draftable, not eight**: "Local areas all carry the same
     pressure" needs per-capita local authority figures and `data/` holds none. The order the rest
     are proposed in is in PR #132. **No count is written here, in digits or in words**: `npm run
     validate` prints the direction split, and how far the finished set would carry it is under
@@ -729,8 +730,8 @@ four of its rows were overtaken by the review on 27 July.
 
 **The direction split is the thing to weigh before writing more.** `validate-content.mjs` counts
 parsed files in `content/claims/`, so a direction assigned to an undrafted claim changes nothing;
-only a merged page moves the split. It stands at nine restrictionist to three pro-migration once
-PRs #145 and #148 merge, further off the enforced floor, which reopens the option of dropping claim
+only a merged page moves the split. It stands at nine restrictionist to three pro-migration, both
+PRs having merged, further off the enforced floor, which reopens the option of dropping claim
 2.7 that correction 1g found closed. **One of the two remaining corrects a pro-migration claim**, the
 lifetime contribution one, and it needs its own figure checked first: the record it would rest on
 moved from £341,000 to £297,000 in PR #129, so the claim as specified in 8.5.3 quotes a number this
