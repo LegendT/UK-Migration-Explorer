@@ -1140,7 +1140,7 @@ Comprehension criteria:
 
 Data criteria:
 
-- Every headline figure shows, on the card, its source, its period and basis, its publication date, the date this site last checked it, its confidence grade, and a caveat.
+- Every headline figure shows, on the card, its source, its period and basis, its publication date, the date this site last checked it, its confidence grade, and a caveat. **The grade and the checked date are no longer only on the cards**, as of 5 August 2026: every figure the three theme pages declare carries both, in a disclosure at the foot of the page built from that page's own front matter. It is closed rather than open because open it was a quarter of the page height on a phone, which is measured in `docs/BACKLOG.md` under U3.
 - `node scripts/validate-data.mjs` passes, and CI enforces it on every push.
 - The dashboard references, it does not copy, and no card carries its own value. **The figure held twice is reconciled now, which this bullet denied until 5 August 2026.** It said four figures were held both as a theme metric and as the latest point of a series "with nothing reconciling them", and named a backlog item that has since become a different piece of work. A metric declaring `series_ref` is compared against its point on value, unit and confidence level, and `validate-data.mjs` refuses any drift; the pattern is the established route for a figure a markdown page cannot cite directly, so more metrics declare one now than the four this bullet counted. What was built is `docs/SERIES-CITATIONS.md`, PR #41, and it is under *Completed* in `docs/BACKLOG.md`.
 - No published figure has `published_date: null`. The validator reports the outstanding count; it must reach zero for the published subset before launch.

@@ -122,6 +122,7 @@ content/                Eleventy input
   sitemap.njk             Every built page but the 404, generated from collections.all
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code, two renderings per chart
 lib/citation.mjs        The "How to cite this" block, derived from the records each figure draws
+lib/provenance.mjs      Each theme page's figures with their grade and checked date, from its front matter
 lib/published.mjs       Which records reach a reader, and the counts /sources-and-method/ renders
 lib/series.mjs          The four timeseries and the names everything else calls them by
 lib/tables.mjs          What a publisher's table identifier looks like, for the two checks that must agree
@@ -256,6 +257,15 @@ page can be linked to. It skips the `h1`, whose link is the page URL, and a head
 `table-captions` turns a `{caption}` paragraph sitting before a table into that table's
 `<caption>`. `scrollable-regions` then wraps any unwrapped table and gives every scrolling box a
 `tabindex`, a role and a name taken from its caption or the heading above it.
+
+**Do not add a second class to a `.scroll-x` div.** Both this transform and `check-build.mjs`
+recognise the wrapper by matching `class="scroll-x"` up to the closing quote, so an extra class
+makes a wrapper read as no wrapper: the transform wraps the table again, producing a scrolling
+region nested inside one, and the checker's focusable, role and accessible-name assertions stop
+seeing the region at all. Both were silent when it happened on 5 August 2026, with the build
+check and pa11y green, and it was found by counting `class="scroll-x"` in the built HTML. Put the
+extra class on a wrapper outside, which is what the sources catalogue does. Hardening the four
+patterns is open work in `docs/BACKLOG.md` under A5.
 
 Two orderings carry the weight. Run `scrollable-regions` before `heading-anchors` and a heading
 still carrying its `{#id}` names the region, shipping raw syntax inside an `aria-label` where
@@ -397,7 +407,13 @@ Three further rules the validator enforces rather than trusting to review:
 
 - **No claim goes unreviewed for more than twelve months.** Statistics get revised; a claim
   resting on a superseded figure is worse than no claim. A weekly CI cron makes the rule fire
-  without anyone pushing.
+  without anyone pushing. There are three answers to it, not two: re-review the page, delete it,
+  or add `paused: <date>` to its front matter, which renders a stub at the same address keeping
+  the claim and losing the answer, the figures and the citation. The stub is what taking a claim
+  down looks like on a static site, where deleting the file turns a URL built to be screenshotted
+  into a generic 404. **Pausing clears the error deliberately**, because the deploy runs
+  `npm test` before it builds and the state would otherwise be unreachable; the run names every
+  paused claim instead.
 - **At least two published claims must correct each direction.** A floor, with no ceiling. It
   replaced a two-thirds cap that blocked the correction a pro-migration reader would most
   want to see, because `direction` records whose claim is corrected and correcting a
