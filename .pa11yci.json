@@ -31,6 +31,7 @@
     "http://127.0.0.1:8081/common-claims/a-refusal-means-the-claim-was-obviously-false/",
     "http://127.0.0.1:8081/common-claims/the-asylum-backlog-is-one-number/",
     "http://127.0.0.1:8081/common-claims/small-boat-arrivals-are-the-whole-asylum-system/",
+    "http://127.0.0.1:8081/common-claims/visa-grants-equal-arrivals/",
     "http://127.0.0.1:8081/404.html"
   ]
 }
