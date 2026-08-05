@@ -641,12 +641,22 @@ is already here to adding a neighbour beside it.
   It was found by counting `class="scroll-x"` in the built HTML and getting four where the page has
   three tables.
 
-  **The checker was blind the same way, in two more places.** `check-build.mjs` matches
-  `<div class="scroll-x"` identically in both its assertions, so a region carrying any extra class
-  escapes the focusable check, the role check and the accessible-name check, all three, silently.
-  Four patterns across a transform and its verifier shared one assumption, which is why neither
-  could catch the other. Hardening them is open under A5; the shipped work put its class on an
-  outer div instead.
+  **The checker was blind the same way, in two more places.** `check-build.mjs` matched
+  `<div class="scroll-x"` identically in both its assertions. Four patterns across a transform and
+  its verifier shared one assumption, which is why neither could catch the other. **All four are
+  hardened (PR #149, 5 August 2026)**, and fixing them corrected two things this paragraph used to
+  say. Only the ATTRIBUTE checks were silent: the wrapper check said the opposite of the truth,
+  calling a correctly wrapped table unwrapped, and it stayed quiet on the day only because the
+  transform had already added a second plain wrapper for it to find. **A silent miss and a loud
+  wrong verdict are different failures and one line cannot describe both**, which is worth
+  remembering the next time one pattern is shared by two checks. And the fix is not the character
+  class the backlog prescribed, which reads `class="scroll-xy"` as a region: a class attribute is a
+  space-separated list and the token has to be matched as a whole member of it.
+
+  **The patterns are still not shared between the two files, deliberately.** The checker exists to
+  disagree with the transform, so one expression imported by both would be one assumption that
+  cannot be caught from either side, which is exactly how four of them went blind together. The
+  duplication is the point, and each copy says so.
 
   **The general rule: before adding a class, id or attribute to anything, grep the repo for that
   marker and read every pattern that matches it**, not only the one you are editing. A guard that

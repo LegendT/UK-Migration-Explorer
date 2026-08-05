@@ -181,12 +181,42 @@ for (const file of pages) {
   // box reached one unnamed or unfocusable. Four markdown tables had no box at all.
   // match.index, not indexOf: two byte-identical tables on one page would have sent every
   // check back to the first one, and the second could then pass on the first one's wrapper.
+  //
+  // BOTH patterns below used to end the class attribute at scroll-x, `class="scroll-x"`, so a
+  // region written `class="scroll-x anything-else"` was invisible to them. The two failures are
+  // NOT the same failure, which is worth writing down because only one of them is silent:
+  //
+  //   The three attribute checks never see such a region AT ALL. It is not focusable, has no
+  //   role and has no name as far as they are concerned, and they say nothing, because a region
+  //   they cannot match is a region they never test.
+  //
+  //   The wrapper check says the OPPOSITE of the truth: it reports a correctly wrapped table as
+  //   not wrapped. Probed, not reasoned: fixing the transform while leaving this check produces
+  //   `a table is not inside a .scroll-x region` on the one page it applies to.
+  //
+  // Which is why it stayed quiet when this shipped on 5 August 2026. The transform carried the
+  // same assumption, so it read the wrapper as no wrapper and added a SECOND, plain one, and
+  // that plain wrapper is what this check then found. The page shipped a scrolling box inside a
+  // scrolling box, with the shadow affordance painted twice and a second focusable stop for a
+  // keyboard user, and this check and pa11y both passed. It was found by counting `.scroll-x` in
+  // the built page and getting four where the page has three tables.
+  //
+  // A CHARACTER CLASS IS NOT THE FIX, which is what the backlog bullet prescribed:
+  // `class="scroll-x[^"]*"` reads `class="scroll-xy"` as a scrolling region. The class attribute
+  // is a space-separated list, so the token has to be matched as a whole member of it: either
+  // side of scroll-x must be a quote or a space. `no-scroll-x` and `scroll-x-wide` are refused
+  // by that and by nothing looser.
+  //
+  // Written out here rather than shared with eleventy.config.js DELIBERATELY. This check exists
+  // to disagree with the transform, and one expression imported by both is one assumption that
+  // cannot be caught from either side, which is precisely how four patterns went blind together.
+  const SCROLL_X = 'class="(?:[^"]*\\s)?scroll-x(?:\\s[^"]*)?"';
   for (const match of html.matchAll(/<table[\s\S]*?<\/table>/g)) {
-    if (!/<div class="scroll-x"[^>]*>\s*$/.test(html.slice(0, match.index))) {
+    if (!new RegExp(`<div ${SCROLL_X}[^>]*>\\s*$`).test(html.slice(0, match.index))) {
       errors.push(`${where}: a table is not inside a .scroll-x region, so it cannot be scrolled below its own width`);
     }
   }
-  for (const [, attrs] of html.matchAll(/<div class="scroll-x"([^>]*)>/g)) {
+  for (const [, attrs] of html.matchAll(new RegExp(`<div ${SCROLL_X}([^>]*)>`, 'g'))) {
     if (!/tabindex="0"/.test(attrs)) errors.push(`${where}: a .scroll-x region is not focusable, so it cannot be scrolled from the keyboard`);
     if (!/role="region"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no role, so focus lands on an anonymous box`);
     if (!/aria-label="[^"]+"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no accessible name`);
