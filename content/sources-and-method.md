@@ -298,11 +298,26 @@ Most figures here are Crown copyright, published under the Open Government Licen
 
 > Contains public sector information licensed under the Open Government Licence v3.0.
 
+That covers the Office for National Statistics, the Home Office, the National Audit Office, the
+Office for Budget Responsibility, the Migration Advisory Committee and HM Courts and Tribunals
+Service, and the House of Commons Library under the Open Parliament Licence, whose terms are
+materially equivalent for this use. **Two publishers here are not Crown copyright**: figures from
+the Migration Observatory (University of Oxford) and from Skills for Care are short factual
+extracts reproduced with attribution, their own terms apply, and you should check the source
+before redistributing those in bulk.
+
 If you reuse them, keep the source and period attached. A figure stripped of its period,
 its basis and its source is the raw material for exactly the confusion this site exists to
 reduce.
 
-The site's code and original writing are openly licensed, and the underlying data files, including the source of every figure, are public.
+**The site's code and original writing are under the MIT Licence**, which covers the prose on
+these pages, the build code, the documentation and the writing carried inside the data files: the
+card paragraphs, the notes and the caveats are this project's words rather than the publishers'.
+The figures themselves are not covered by it; they are under the paragraphs above. The full text
+of both halves is in
+[the repository's LICENCE file](https://github.com/LegendT/UK-Migration-Explorer/blob/main/LICENCE).
+
+The underlying data files, including the source of every figure, are public.
 
 They are here, and they are the same files this site builds from rather than an export of them.
 Every figure on the site comes from one of these records, and each record carries its own source
