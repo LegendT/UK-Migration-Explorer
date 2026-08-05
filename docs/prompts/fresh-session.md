@@ -33,7 +33,10 @@ question is.
 TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
-has been misread before. Reproduce the item's premise before building what
+has been misread before. Read every subsection an item's header names
+before deciding that item is finished: one closed on a sentence covering
+a third of its own scope on 5 August 2026, and the session believed it and
+named the wrong next item. Reproduce the item's premise before building what
 it prescribes: a recommendation is a claim about what can be built, and one
 taken on trust cost a reversal on 4 August 2026.
 
