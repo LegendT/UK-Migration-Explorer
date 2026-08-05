@@ -70,7 +70,7 @@ const PARTIALS = {
   //
   // check-build.mjs matches the same way in both of its scroll-region assertions, so a region
   // carrying an extra class escapes the focusable, role and accessible-name checks in silence.
-  // Not fixed here, because it is not this change: it is in the backlog under U3.
+  // Not fixed here, because it is not this change: it is in the backlog under A5.
   'sources-catalogue': () => `<div class="sources-wide"><div class="scroll-x"><table class="sources">
 <caption class="visually-hidden">Sources used on this site</caption>
 <thead><tr><th scope="col">Source</th><th scope="col">What it covers</th><th scope="col">Updated</th></tr></thead>
