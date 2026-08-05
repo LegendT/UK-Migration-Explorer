@@ -72,6 +72,17 @@ only way to see which is to look at the flows separately.</p>
 {% set fl = series.flows %}
 {% set emigrationTotal = "migration/total-long-term-emigration" | metric %}
 {%- set immigrationPeak = "migration/total-long-term-immigration-peak" | metric %}
+{#- The summary's emigration half names no starting value on purpose, decided 4 August 2026
+    (backlog call 21). It used to open at the 2021 point, which is a local trough: emigration had
+    fallen for the two years before it, from the 2019 peak. Beginning a sentence at the bottom of a
+    fall is the same manoeuvre on the time axis as a truncated one on the value axis, which this
+    site refuses in its own charts and criticises in others, and the fix is not to name the 2019
+    peak in prose as well. The chart draws all fourteen years, the fall included, so the sentence
+    says a fall happened rather than starting after it. One fewer live value in prose, and no
+    figure written here that a revision could strand. A comment cannot sit inside the shortcode's
+    argument object below: nunjucks parses that as an expression, and `{#` there is a syntax error
+    that fails the build while `npm run validate` still passes, because nothing in validate renders
+    a template. #}
 {% lineChart {
   id: 'flows-over-time',
   series: [
@@ -79,7 +90,7 @@ only way to see which is to look at the flows separately.</p>
     { name: 'Emigration', points: fl.emigration.data | points, dashed: true }
   ],
   title: 'Long-term immigration and emigration, 2012 to 2025',
-  summary: 'Immigration was highest in 2023 on this calendar-year series, at ' ~ (fl.data | at(2023) | number) ~ ', and has fallen since. Emigration rose steadily from ' ~ (fl.emigration.data | at(2021) | number) ~ ' in 2021 to ' ~ (fl.emigration.data | at(2024) | number) ~ ' in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.',
+  summary: 'Immigration was highest in 2023 on this calendar-year series, at ' ~ (fl.data | at(2023) | number) ~ ', and has fallen since. Emigration fell for two years to 2021, then rose in each of the three years after it, to ' ~ (fl.emigration.data | at(2024) | number) ~ ' in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.',
   unit: 'people per year',
   source: 'ONS, long-term international immigration, emigration and net migration flows, provisional',
   sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional',

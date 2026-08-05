@@ -141,7 +141,7 @@ docs/UPDATING-DATA.md           The by-hand runbook for moving the site onto a n
 .pa11yci.json           The URL list the accessibility gate runs over, at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
 CHANGELOG.md            Data and methodology changes
-LICENCE                 MIT for code, Open Government Licence v3.0 attribution for data
+LICENCE                 MIT for everything but the figures in data/, which are OGL v3
 ```
 
 ### Data files

@@ -14,6 +14,23 @@
     the dark scheme. #}
 <meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16171a" media="(prefers-color-scheme: dark)">
+{#- Open Graph. A claim page's `og:title` is the CORRECTION and never the claim: a share card is
+    where a page travels furthest from its own context, and one leading in bold with the bare false
+    sentence is the same defect as an unqualified `h1` with more reach. The claim is still there,
+    in the description, labelled as checked. Everywhere else the title is the page's own.
+
+    There is no `og:image`, and that is a decision rather than an omission: the foundation document
+    at 8.5.4 refuses a share image, on the reasoning that a claim card gets screenshotted stripped
+    of its context by both sides, so the period, source and date live inside the card's own visual
+    boundary instead. Platforms fall back to a text card, which is what `twitter:card` names below.
+    Without that one, X decides for itself whether to draw a card at all. #}
+<meta property="og:type" content="{% if claim %}article{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+<meta property="og:title" content="{% if claim %}{{ short_answer | truncate(100) }}{% elif title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
+<meta property="og:description" content="{% if claim %}Claim checked: {{ claim }}{% else %}{{ description or strapline or site.strapline }}{% endif %}">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/style.css">

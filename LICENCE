@@ -4,8 +4,21 @@ This repository contains two kinds of material, licensed differently.
 1. CODE AND ORIGINAL WRITING: MIT Licence
 ================================================================================
 
-Applies to: scripts/, any site source added later, README.md, and the original
-editorial writing in docs/.
+Applies to: everything in this repository EXCEPT two things, both of which live in
+data/ and are covered by clause 2 below. Those two are the figures themselves, and
+the passages quoted from the publications the figures came from.
+
+So this clause covers the site's own prose in content/, the build code in lib/,
+scripts/ and eleventy.config.js, the documentation in docs/, README.md,
+CHANGELOG.md, the workflows in .github/, and the writing carried in the data files
+themselves: the card paragraphs, notes and caveats are this project's words, not
+the publishers'.
+
+The scope is written this way round on purpose. It was an enumeration, and an
+enumeration is a list of what someone remembered: it named scripts/, README.md
+and docs/, so every word of the pages a reader actually reads was licensed by
+neither clause. A reuser should not have to guess, and a citing outlet's legal
+desk will not.
 
 Copyright (c) 2026 Anthony George
 
@@ -31,7 +44,11 @@ SOFTWARE.
 2. DATA: Open Government Licence v3.0 and third-party terms
 ================================================================================
 
-Applies to: the figures in data/.
+Applies to: the figures in data/, meaning the values themselves and the source
+metadata attached to them, and the passages quoted from the source publications,
+which sit in data/evidence/. The writing around a figure is ours and is covered by
+clause 1. A quotation is the publisher's own words and is reproduced here under
+the terms below, never granted onward under clause 1.
 
 Most figures in this repository are derived from UK public sector information
 licensed under the Open Government Licence v3.0:
