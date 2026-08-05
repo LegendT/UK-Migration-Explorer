@@ -1,4 +1,4 @@
-# Handoff, 4 August 2026
+# Handoff, 5 August 2026
 
 State of UK Migration Explorer, and how it works. **Outstanding work is not in this document.**
 It is in `docs/BACKLOG.md`, which is the durable list, because a handoff gets rewritten every
@@ -184,13 +184,19 @@ what it was**, checked by script rather than by box metrics, which is the check 
 claim being false the first time it was made.
 
 **A THIRD FINDING WAS NEVER ADDRESSED, AND BOTH THIS DOCUMENT AND THE BACKLOG RECORDED U6 AS
-COMPLETE.** Seven tables overflow at 320px, worst the Sources table at 42% hidden, and it
-reproduces unchanged when re-measured. It survived because the paragraph introducing that findings
+COMPLETE.** Seven tables overflowed at 320px, worst the Sources table at 42% hidden, and it
+reproduced unchanged every time it was re-measured. It survived because the paragraph introducing
+that findings
 list named the chart remedy as "what is left of U6", and every later sentence, here and there, was
 written against that summary rather than against the list. **The lesson is not about tables.** A
 findings list where each entry gets a resolution marker as it lands can be audited by reading the
 list; a prose sentence that says what is left cannot, and it is the one that gets believed. Do not
 write "what is left is X" above a list that can answer the question itself.
+
+**The finding itself is closed, PR #138**, by the same two-renderings shape as the charts: a
+definition list below 40em, the table above it, and the first column's floor scoped to the
+rendering it belongs to. Which of the seven still scroll, and by how much, is a measurement and
+belongs in the backlog under U6 rather than here. This paragraph stays for the lesson above it.
 
 **A1'S MECHANICAL HALF IS CLOSED, PR #116.** Batch 6 took the last three reserve records, one each
 from the Commons Library, Skills for Care and the MAC, and all three cited a page that is not where
@@ -502,6 +508,21 @@ is already here to adding a neighbour beside it.
 
 ### Verifying a figure
 
+- **"I could not find it" is a claim about your search, not about the thing.** On 5 August 2026 a
+  session reported that a settled piece of wording did not exist and was told to VERIFY rather than
+  report. Doing that properly meant naming the stores rather than searching harder, with a control
+  in each that had to return a hit before a zero was believed: `git log -S` across **all** branches;
+  every pull request body, every pull request and issue comment and every issue, through `gh api`;
+  all 47 dangling objects from `git fsck --lost-found`, read with `git cat-file -p`; `.history/`;
+  and the stash. Every hit turned out to be either the entry that CLAIMED the wording was drafted
+  or the session's own commits and intermediate blobs.
+
+  The answer was better than the report it replaced: the phrase "drafted in the session record"
+  pointed at a chat transcript in no artefact this repository can reach. **Name the stores you
+  swept and the control you ran in each**, because a zero from a search that could not have
+  succeeded reads exactly like a zero from one that could, and the store list is the part the owner
+  can correct.
+
 - **Open the primary table, not the summary page.** Three figures in the review corrections did
   not exist on any HTML bulletin: the 5,931 administrative outcomes, the cohort grant rates, and
   the asylum-specific appeal figures. Worse, two site figures looked *wrong* against the bulletin
@@ -589,6 +610,34 @@ is already here to adding a neighbour beside it.
   fine.
 
 ### Building a check, and trusting it
+
+- **A guard asking "have I already done this?" fails OPEN if it matches an exact attribute
+  value.** On 5 August 2026 the `scrollable-regions` transform wrapped a table that was already
+  wrapped, because it tests for `class="scroll-x"` up to the closing quote and the wrapper had been
+  given a second class for a responsive toggle. So it means "wrapped AND styled in exactly one
+  way", not "wrapped". The result was a scrolling region nested inside a scrolling region: two
+  boxes, the shadow affordance painted twice, and a second focusable stop for a keyboard user.
+  **`npm run build` passed, its own scroll-region assertions passed, and pa11y passed 20 of 20.**
+  It was found by counting `class="scroll-x"` in the built HTML and getting four where the page has
+  three tables.
+
+  **The checker was blind the same way, in two more places.** `check-build.mjs` matches
+  `<div class="scroll-x"` identically in both its assertions, so a region carrying any extra class
+  escapes the focusable check, the role check and the accessible-name check, all three, silently.
+  Four patterns across a transform and its verifier shared one assumption, which is why neither
+  could catch the other. Hardening them is open under A5; the shipped work put its class on an
+  outer div instead.
+
+  **The general rule: before adding a class, id or attribute to anything, grep the repo for that
+  marker and read every pattern that matches it**, not only the one you are editing. A guard that
+  fails open has no error message, and its symptom is duplicated structure that renders almost
+  correctly.
+
+- **`npm run validate` passing does not mean the site builds.** Nothing in validate renders a
+  template, which its own output says. On 5 August 2026 a nunjucks comment was written inside a
+  shortcode's argument object, where nunjucks parses an expression rather than template body:
+  validate passed and `npm run build` failed with `unexpected token: #`. That is why the prompt
+  says run all four every time rather than treating the first green as clearance.
 
 - **Probe a check; never trust reading it.** Before wiring one in, write the strings it MUST catch
   and the strings it must IGNORE, and assert them. On 3 August 2026 `check-backlog.mjs` was written
@@ -819,6 +868,18 @@ is already here to adding a neighbour beside it.
 
 ### Looking at the built page
 
+- **Measure what a fix COSTS before choosing its form, not only that it worked.** On 5 August 2026,
+  surfacing the confidence grade on the theme pages worked as an open list at the foot of each
+  page, and the number that decided its shape was the cost: 2,891px on `/asylum/` at 320px,
+  **24% of the page**, a quarter of a phone page given to reference material sitting after the
+  reading. Closed inside a `details` it is 56px, 0.6%, with a 56px tap target. Both numbers went
+  into the pull request so the owner could reverse it in one word, and the backlog entry keeps
+  them so nobody re-derives the decision.
+
+  This is the same shape as the in-plot label knockout, which cleared every metric it was measured
+  against and hid three years of data behind a label. **A remedy that fixes what it aimed at can
+  cost more than the defect**, and the only way to know is to measure the page in both states.
+
 - **Look at the built page, and measure the thing you are claiming.** Run `npm run build`,
   serve `_site`, and look. Looking is not enough on its own: the pre-launch banner was reported
   as aligned on the strength of a screenshot and had not moved at all. If the claim is "these
@@ -1043,6 +1104,15 @@ is already here to adding a neighbour beside it.
   above" when it had moved below them, and two documents pointing into the list by number went
   stale twice in one day, once at the renumbering and once at a later move. Grep the block for
   `above`, `below` and `item \d` after any reorder, and prefer pointing at a name over a position.
+
+  **CLOSING an item does it too, and this rule said "after any reorder" until 5 August 2026, so it
+  would not have fired.** Nothing moved and nothing was renumbered when items 4 and 7 closed, and
+  two references went false anyway: this document called The order's item 4 "a different and open
+  thing" while disambiguating it from the audit's section 4, and a line in U3 called a table's
+  inability to reflow "the defect The order's item 7 exists to fix". Both were true when written
+  and both are claims about STATE hidden inside sentences about identity. **Run the same grep after
+  changing an item's state, not only after moving it**, and re-aim what you find at a name: "the
+  defect call 29 fixed" cannot rot, "what item 7 exists to fix" rots the day item 7 closes.
 
 - **Fix the generator, not the line it generated.** The same reorder was done by a script that
   rewraps each item, and one wrapped line began "390.", which GitHub renders as a nested ordered
@@ -1391,6 +1461,29 @@ the launch readiness review landed and three since, and the six-page document wa
 them. A first version of this paragraph said "always named three", which `git show` over six
 revisions refutes, and it is corrected here rather than quietly because a confident claim a command
 would have settled is the defect this whole document is about.
+
+**Four refusals and no change to the block, 5 August 2026.** A session applied five backlog items
+across five stacked pull requests and produced four candidates. Each was tested against this
+section's contract and each failed it, so the block below is byte-identical to the 4 August
+version. **Recorded so the next reading does not add them as oversights.**
+
+- **"`npm run validate` passing does not mean the site builds."** It cost a cycle that day: a
+  nunjucks comment inside a shortcode's argument object passed validate and failed the build.
+  Refused because row four already says run all four every time, so the clause would add nothing a
+  session that follows the prompt does not already do, and it is rule text with a fuller copy under
+  *Building a check, and trusting it*.
+- **The stacked-pull-request merge order.** Retarget the whole stack to `main` before merging any
+  of it. Refused on "will a session need it every time": five stacked pull requests is the first
+  time this project has had more than two, and the procedure already has a home under *Changing
+  something without breaking something else*.
+- **"Prove an absence in every store, with a control."** Refused as recited rule text; it is a new
+  bullet under *Verifying a figure* with its incident.
+- **"Grep for pointers by number after closing an item."** This one found a real gap, and the gap
+  was in the handoff rather than in the prompt: the *Reordering a list* bullet said "after any
+  reorder", and closing two items falsified two references with nothing reordered. **The bullet was
+  widened; the prompt was not touched.** That is the pattern to copy. When a session's mistake
+  suggests a prompt clause, check first whether an existing practice bullet simply had too narrow a
+  trigger, because widening one rule beats adding a second copy of it.
 
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
