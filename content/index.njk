@@ -109,7 +109,9 @@ apply the same test in every direction.</p>
   <li>
     <article>
       <h3><a href="{{ claim.url }}">{{ claim.data.claim }}</a></h3>
-      <p>{{ claim.data.short_answer }}</p>
+      {#- The third place a paused claim's answer would survive its own takedown, after the claim
+          page and the claims index. This one is the home page, so it is the worst of the three. -#}
+      <p>{% if claim.data.paused %}This check is paused pending re-review.{% else %}{{ claim.data.short_answer }}{% endif %}</p>
     </article>
   </li>
   {%- endfor %}

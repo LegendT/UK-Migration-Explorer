@@ -5,6 +5,54 @@ layout: base.njk
     browser tabs and heading-by-heading navigation. It sits INSIDE the card and under its
     "The claim" label, so the framing travels with it and a bare screenshot of the heading
     can never read as this site asserting the claim. See foundation section 8.5.4. -#}
+{#- The paused state, backlog call 28. `/sources-and-method/` promises that a claim unreviewed for
+    twelve months is taken down until it has been, and there was no state for that: the options in
+    the check's own error message were re-review or unpublish, and on a static site unpublishing
+    means deleting a file, which turns a URL built to be screenshotted into a generic 404. A 404
+    reads as scrubbing, which is the accusation this site is least able to afford.
+
+    So a paused claim keeps its address and says what it said and why it is paused. What it does
+    NOT keep is the answer, the figures and the citation: those are the thing the promise takes
+    down, and leaving them up behind an explanation would keep the promise in words only.
+
+    The claim text stays inside the card under its "The claim" label, for the same reason the live
+    version does, foundation 8.5.4: a screenshot of the heading can never read as this site
+    asserting the sentence.
+
+    Pausing is a deliberate act and not a timeout. The twelve-month check still fails the build,
+    which is what makes someone look; this is the third answer to it, beside re-reviewing and
+    deleting. Making it automatic would trade a check that stops a deploy for a page that quietly
+    empties itself, and nothing would say it had happened. -#}
+{% if paused %}
+<article class="claim claim-paused">
+  <div class="claim-card">
+    <p class="claim-label">The claim</p>
+    <h1 class="claim-text">{{ claim }}</h1>
+    {#- The reason is stated only where the page states one. An earlier version of this sentence
+        said the twelve-month promise was why THIS page came down, and nothing made that true:
+        `paused` is a date and a claim can be taken down at any age, a retracted source being the
+        obvious case. That would have put a confident false cause on a site whose subject is
+        confident false causes. Where no reason is given the page says what it knows, which is
+        that the answer is down pending re-review. -#}
+    <p class="claim-label">This check is paused</p>
+    <p class="claim-answer">The answer and the figures that were on this page came down on
+    {{ paused | longDate }}, pending re-review. It was last reviewed on
+    {{ last_reviewed | longDate }}.{% if paused_reason %} {{ paused_reason }}{% endif %}</p>
+    <p class="claim-meta">
+      <span>Reviewed {{ last_reviewed | longDate }}</span>
+      <span class="sep" aria-hidden="true">·</span><span>Paused {{ paused | longDate }}</span>
+    </p>
+  </div>
+
+  <p>The page stays at this address rather than disappearing, so a link taken when the check was
+  live still leads somewhere that says what happened to it. This site publishes no claim check it
+  has not reviewed within twelve months, which is the standing promise a page can come down under;
+  the <a href="/sources-and-method/#corrections">corrections policy</a> states it, and it is not
+  necessarily why this page came down.</p>
+
+  <p class="back"><a href="/common-claims/">All common claims</a></p>
+</article>
+{% else %}
 <article class="claim">
   <div class="claim-card">
     <p class="claim-label">The claim</p>
@@ -43,3 +91,4 @@ layout: base.njk
 
   <p class="back"><a href="/common-claims/">All common claims</a></p>
 </article>
+{% endif %}

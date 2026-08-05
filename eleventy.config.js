@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import site from './content/_data/site.js';
 import { barChart, lineChart } from './lib/charts.mjs';
 import { citationBlock } from './lib/citation.mjs';
+import { provenanceList } from './lib/provenance.mjs';
 import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
 import { COMPANION_BLOCKS, THEME_FILES, readSeries } from './lib/series.mjs';
 
@@ -170,6 +171,20 @@ export default function (eleventyConfig) {
       }),
       url: `${site.url}${this.page.url}`,
       label,
+    });
+  });
+
+  // The grade and checked date for every figure a theme page declares. Same argument as the
+  // citation block above and for the same reason: `figures:` is the page's own declaration and
+  // validate-content.mjs will not let it be short of what the page renders.
+  eleventyConfig.addShortcode('figureProvenance', function (refs) {
+    return provenanceList({
+      metrics: refs.map((ref) => {
+        const metric = registry.get(ref);
+        if (!metric) throw new Error(`${this.page.inputPath} declares figure ${ref}, which is not a metric in the data layer`);
+        return { ...metric, id: ref };
+      }),
+      pageUrl: this.page.url,
     });
   });
 

@@ -3,11 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if claim %}Claim checked: {{ claim }} | {{ site.name }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+{#- A paused claim has had its answer taken down, so "Claim checked" would be false in the one
+    place a reader reads before opening the page. Backlog call 28. -#}
+<title>{% if claim and paused %}Claim check paused: {{ claim }} | {{ site.name }}{% elif claim %}Claim checked: {{ claim }} | {{ site.name }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
 {#- `description` is for a page whose meta description should not be its visible strapline. The
     404 page is the only one today: it has no strapline, so it fell through to the site's own and
     was the one duplicated description among the seventeen pages. #}
-<meta name="description" content="{{ description or short_answer or strapline or site.strapline }}">
+{#- `short_answer` is skipped on a paused claim for the same reason the page no longer prints it:
+    a description tag is published text, and the pause took that answer down. -#}
+<meta name="description" content="{% if claim and paused %}This claim check is paused pending re-review. The page says what the claim was and why the check came down.{% else %}{{ description or short_answer or strapline or site.strapline }}{% endif %}">
 {#- The two --paper values from content/assets/style.css, which is where the palette lives. They
     cannot be read from CSS by markup, so this is the one place a colour is written twice, and it
     is only the page background: a browser that tints its own chrome otherwise picks white against
@@ -28,8 +32,11 @@
 <meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:locale" content="en_GB">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-<meta property="og:title" content="{% if claim %}{{ short_answer | truncate(100) }}{% elif title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
-<meta property="og:description" content="{% if claim %}Claim checked: {{ claim }}{% else %}{{ description or strapline or site.strapline }}{% endif %}">
+{#- A paused claim cannot lead with its correction, because the pause is exactly what took that
+    correction down. It leads with the pause instead. What it must never do is fall through to
+    the bare claim, which is the defect this whole block exists to prevent. -#}
+<meta property="og:title" content="{% if claim and paused %}This claim check is paused pending re-review{% elif claim %}{{ short_answer | truncate(100) }}{% elif title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
+<meta property="og:description" content="{% if claim and paused %}Paused: {{ claim }}{% elif claim %}Claim checked: {{ claim }}{% else %}{{ description or strapline or site.strapline }}{% endif %}">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">

@@ -35,7 +35,11 @@ want to see. A rule that prevents you correcting a claim is measuring the wrong 
   <li>
     <article>
       <h2><a href="{{ claim.url }}">{{ claim.data.claim }}</a></h2>
-      <p>{{ claim.data.short_answer }}</p>
+      {#- A paused claim's answer is down, and it has to be down HERE as well or the pause is
+          words. This index was publishing the short answer of a page that had taken it off its
+          own address, which is the shape the site has been bitten by before: a defect named on
+          one page usually has a sibling, and the sibling is the list that page is in. -#}
+      <p>{% if claim.data.paused %}This check is paused pending re-review.{% else %}{{ claim.data.short_answer }}{% endif %}</p>
       {#- Deliberately not the tag row the claim page carries. There the pills are the
           site's own classification of a claim, misuse type and political direction, and
           they are part of the argument. Here the line is card metadata: what kind of
