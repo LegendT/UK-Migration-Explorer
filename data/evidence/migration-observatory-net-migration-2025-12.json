@@ -1,0 +1,12 @@
+{
+  "figures": [
+    {
+      "ref": "migration/largest-nationality-for-immigration-india",
+      "previous_value": 16,
+      "value": 16,
+      "source_url": "https://web.archive.org/web/20251223111734/https://migrationobservatory.ox.ac.uk/resources/briefings/long-term-international-migration-flows-to-and-from-the-uk/",
+      "fetched_at": "2026-08-05",
+      "quote": "Figure 3 Indian nationals were by far the largest nationality coming to the UK, accounting for 16% of overall immigration, followed by Chinese and Pakistani citizens (7% each)."
+    }
+  ]
+}

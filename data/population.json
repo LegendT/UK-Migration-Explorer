@@ -1,6 +1,6 @@
 {
   "theme": "Population and integration",
-  "lastUpdated": "2026-08-03",
+  "lastUpdated": "2026-08-05",
   "note": "Foreign-born population figures come in two vintages. The census-based baseline is the 2021/22 Census (Census 2021 for England, Wales and Northern Ireland; Census 2022 for Scotland). In May 2026 ONS published a rolled-forward mid-2024 estimate of the non-UK-born population (13,115,000, about 18.9% of the population), an official statistic in development and provisional; ONS produced no June 2025 estimate because 2025 deaths data are not yet available, and it publishes no percentage. Citizenship and settlement figures come from Home Office Immigration system statistics (year ending March 2026).",
   "metrics": [
     {
@@ -285,7 +285,7 @@
     },
     {
       "id": "share-of-london-residents-born-abroad",
-      "metric_name": "Share of London residents born abroad",
+      "metric_name": "Share of London residents born abroad (floor)",
       "value": 40,
       "unit": "%",
       "date": "2021-03-21",
@@ -296,7 +296,7 @@
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
-      "notes": "More than 40% of London residents were born abroad, the highest of any region. National average 16%. Lowest: North East (7%), Wales (7%), Northern Ireland (9%).",
+      "notes": "THE SOURCE GIVES A FLOOR AND THIS RECORD HOLDS A POINT: the briefing says 'More than 40% of its residents had been born abroad', so 40 is the least it can be and not an estimate of what it is. Anything written from this record has to say at least, and a sentence reading 40% of Londoners were born abroad is not supported by it. The 2021 Census figure itself is not quoted by the briefing. Highest of any region. National average 16%. Lowest: North East (7%), Wales (7%), Northern Ireland (9%).",
       "confidence_level": "official"
     }
   ]

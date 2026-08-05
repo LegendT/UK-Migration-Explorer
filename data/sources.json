@@ -126,6 +126,15 @@
       "covers": "Guidance on responsible interpretation of migration and asylum statistics: which comparisons are valid, how to handle revisions, and where published figures are commonly misread. Used for methodology and caveat design rather than as a source of figures.",
       "updateFrequency": "Occasional",
       "confidence_level": "official"
+    },
+    {
+      "id": "ons-emp06",
+      "name": "ONS: EMP06, employment by country of birth and nationality",
+      "publisher": "Office for National Statistics",
+      "url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
+      "covers": "Employment levels and rates for people aged 16 to 64 by country of birth and by nationality, from the Labour Force Survey, not seasonally adjusted. The primary table behind the employment-rate comparisons between UK-born and migrant residents.",
+      "updateFrequency": "Quarterly (official statistics in development)",
+      "confidence_level": "provisional"
     }
   ]
 }

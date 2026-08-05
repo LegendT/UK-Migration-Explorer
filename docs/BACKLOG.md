@@ -125,12 +125,15 @@ below.
    under U6**, the sentence having been written while call 29 was still undecided and kept after it
    was decided as **[me]**. It is under *Completed*.
 8. **GATE. A1, and its scope is full validation of all data**, not only the reader-facing
-   records. Decided 2 August 2026, and it is the largest item on this list. **Every record in the
-   data layer now carries evidence except the ones the batches left as [you]**, which are named
-   under A1 below, are all decided as calls 30 to 35, and are unapplied **[me]** work. **No count
-   is written here**: `npm run build` prints what is reserve, and `node scripts/check-backlog.mjs`
-   would refuse to let this line say how many lack an evidence entry. Those are two different
-   numbers and this line gave one figure for both until 3 August 2026.
+   records. Decided 2 August 2026, and it was the largest item on this list. **Calls 30 to 35 are
+   applied (PR #144, 5 August 2026)**, so every record in the data layer now carries evidence and
+   the ones the batches left as **[you]** are decided and built. No published figure moved. **No
+   count is written here**: `npm run build` prints what is reserve, and
+   `node scripts/check-backlog.mjs` would refuse to let this line say how many lack an evidence
+   entry. Those are two different numbers and this line gave one figure for both until 3 August
+   2026. **What is left of A1 is the series-evidence gap named under it**, which is **[me]** and
+   was deliberately not taken with the calls, one deliverable being this project's rule; and one
+   grade question the applying raised, which is **[you]** and is under A1 below.
 9. **GATE. The release notifier's last phase**, which is *Scoped, not built* section 3: rewriting
    what the sources page says about automation. **[you]** sign-off, no build behind it.
 10. **GATE. The undrafted claims**, which is *Scoped, not built* section 5: a session drafts
@@ -218,8 +221,15 @@ that the named source CONTAINS the figure, and that the record's own fields are 
 label, its `date` as the period end, its unit, its grade and its `table_reference`. The far-end
 trace is the half no check can do.
 
-**Six calls are decided and unapplied. [me].** Each was a **[you]** call because the fix costs
-more than a re-source, and each was decided on 4 August 2026:
+**Six calls, all decided 4 August 2026 and all APPLIED (PR #144, 5 August 2026).** Each was a
+**[you]** call because the fix costs more than a re-source. **Every premise was reproduced against
+the source before the fix was built, and two came back sharper than they were written.** Call 31's
+briefing prints no decimal percentage at all, confirmed by searching the stems 80 and 74 with a
+control that did hit, so it could never have contained either rate. And call 32's record is not
+merely named for the wrong base: the same section of the briefing gives 20% for employee jobs and
+19% for employees on one definition, so the confusion it invites is between two published figures
+rather than between two definitions. What each call turned out to be is below, kept because the
+next bullet here is written by the same hand:
 
 - **Call 30. `migration/largest-nationality-for-immigration-india`**: re-date the citation to the
   18 December 2025 edition. The record holds 16% and its `published_date` is the edition stating
@@ -246,7 +256,29 @@ more than a re-source, and each was decided on 4 August 2026:
   The evidence entry already quotes the hedge.
 - **Call 35. `asylum/small-boat-arrivals-2026-year-to-date`**: drop it. Its own notes say "Do not
   publish without re-checking"; it is reserve, it is a part-year figure, and re-checking it buys a
-  record nothing renders.
+  record nothing renders. **Dropping it falsified one line of
+  `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md`**, which cited the record as evidence that a figure is
+  published on three bases at once, so that line was corrected in the same pull request. The
+  publisher still publishes all three; the data layer no longer holds the third.
+
+**WHAT APPLYING THEM COST, AND THE ONE THING THAT COULD NOT BE BUILT.** Call 30 re-dated the
+citation and cannot re-point it: `source_url` must resolve to the publisher's own host, so the
+Internet Archive address of the December edition can go in the notes and in the evidence entry and
+never in the field a reader clicks. **Probed rather than assumed**, the archive URL being refused
+twice by `validate-data.mjs`, as an uncatalogued publisher and as a host disagreeing with
+`source_id`. So the record now cites a living page whose current edition states a different figure,
+says so in its own notes, and quotes the December edition as its evidence. **That is the honest
+state of citing a living page by edition, not a defect left behind**, and the alternatives were
+refused by the call itself: updating to 17% moves a value, retiring it removes a record.
+
+**One [you] question the applying raised, and it is small.**
+`population/share-of-london-residents-born-abroad` is graded `official` while holding 40 for a
+source that says "More than 40%". Call 34 decided the remedy was to say so in the record, which is
+done, and the name now carries "(floor)". **Whether a floor recorded as a point should still be
+`official` is a grade decision and therefore yours**: `estimated` is the alternative and would
+mean rewriting the evidence entry into components, since a regrade across the derived boundary
+changes what kind of evidence the check demands. Nothing is blocked either way and the record
+reaches no reader.
 
 **One [me] gap is named and not built: a series evidence entry is validated by nothing at the
 moment it is written.** `check-evidence` asks only a block that MOVED, so an entry for a block

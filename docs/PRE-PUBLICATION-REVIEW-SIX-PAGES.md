@@ -258,7 +258,7 @@ The entry's line above says the published rate 'excludes withdrawals'. The recor
 | 'a substantial share of appeals succeed' | `asylum/asylum-appeal-success-rate` is 40% for the quarter January to March 2026, `provisional`, and is not cited here |
 | 'The initial decision queue has fallen sharply while the appeals queue has risen to a record' | The initial-decision series, people basis, falls from 160,919 at end-2022 to 64,426 at end-2025. There is no appeals series, so 'to a record' is not settleable from the data layer |
 | 'It includes British citizens leaving, who are a substantial part of the total' | No record holds a British-citizen share of emigration |
-| 'the figure is published on three bases at once: calendar year, year ending, and year to date' | All three exist: 41,472, 39,271 and 9,000. The third is `asylum/small-boat-arrivals-2026-year-to-date`, which is unpublished reserve and whose own notes forbid publishing it unchecked. Backlog item **A1** |
+| 'the figure is published on three bases at once: calendar year, year ending, and year to date' | Two are held: 41,472 and 39,271. The year-to-date basis was `asylum/small-boat-arrivals-2026-year-to-date`, 9,000, unpublished reserve, whose own notes forbade publishing it unchecked; **it was dropped on 5 August 2026 as A1's call 35** and the data layer no longer holds a year-to-date figure. The publisher still publishes all three, which is what this line is about. Backlog item **A1** |
 | 'Refused entry at port is counted separately again' | `asylum/returns-refused-entry-at-port`, 17,623, is held and not cited here. The wider silence about returns is backlog item **R1** |
 | 'the same underlying reality produces two very different numbers' | Both cited, 93,525 and 76,714 |
 

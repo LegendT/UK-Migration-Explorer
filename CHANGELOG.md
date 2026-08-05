@@ -9,6 +9,45 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Six reserve records answer to their sources, 5 August 2026
+
+**No published figure moved and no page a reader sees changed, apart from one row appearing in the
+sources catalogue.** These are A1's last six calls, all on records that reach no reader, and each
+was decided on 4 August 2026 because the fix cost more than a re-source.
+
+**Two employment rates left a briefing that never contained them.** `employment-rate-eu-born-residents`
+and `employment-rate-uk-born-population` cited a Migration Observatory briefing that prints no
+decimal percentage anywhere, while holding 80.4 and 74.7. They now cite ONS table EMP06, whose
+Country of birth rates sheet gives 80.39374408928576 and 74.68465773259211 for Oct-Dec 2025. **Both
+are `calculated` rather than `provisional` now**, because this site records a value and not a
+precision, so a record holding the rounded number is not copying a published one. EMP06 is
+catalogued as a source, which is the one visible change: the sources table on `/sources-and-method/`
+gains a row. The counts on that page did not move, because they count figures that reach a reader
+and these two do not.
+
+**The India immigration share cites the edition that contains it.** `largest-nationality-for-immigration-india`
+holds 16% for the year ending June 2025 and named the edition of 27 May 2026, which states 17% for a
+later period. The 18 December 2025 edition is the one carrying 16%. Its `published_date` is now that
+date and its evidence quotes the archived December page. **The URL cannot carry the edition**: it is
+a living page, `source_url` must resolve to the publisher's own host, and the archive is a different
+host, so the record says in its notes that a reader following the link today meets a different
+figure.
+
+**Two records were named for a base their source does not use.** The migrant share of UK employees
+was named as a foreign-born share; the briefing's 19% counts people who held a non-UK nationality
+when they first registered for a National Insurance number, which is a different population. The
+Skills for Care record was named for the adult social care workforce; its 31% is the local authority
+and independent sector workforce, and the whole workforce including direct payment recipients is
+29%. Both names now say which base they hold.
+
+**The London share says it is a floor.** The briefing gives 'More than 40%', and the record holds
+40 as though it were a point estimate. Nothing written from it may say 40% of Londoners were born
+abroad.
+
+**One record was dropped.** `small-boat-arrivals-2026-year-to-date` was a part-year operational
+figure from a daily-updated page, and its own notes said not to publish it without re-checking.
+Re-checking it would have bought a record nothing renders.
+
 ### Charts fit the phone they are read on, 3 August 2026
 
 **Forty-five per cent of every chart on this site was off the right-hand edge at 320 pixels, and

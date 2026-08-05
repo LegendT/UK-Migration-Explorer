@@ -1,6 +1,6 @@
 {
   "theme": "Economic and fiscal impact",
-  "lastUpdated": "2026-08-03",
+  "lastUpdated": "2026-08-05",
   "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across the pre-Brexit static studies summarised by the Migration Observatory, the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP; none of those studies covers the current post-Brexit system. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
   "metrics": [
     {
@@ -168,39 +168,39 @@
     },
     {
       "id": "employment-rate-eu-born-residents",
-      "metric_name": "Employment rate, EU-born residents",
+      "metric_name": "Employment rate, EU-born residents aged 16 to 64",
       "value": 80.4,
       "unit": "%",
       "date": "2025-12-31",
       "period_label": "Q4 2025",
       "geography": "United Kingdom",
-      "source_name": "ONS Labour Force Survey, via Migration Observatory labour market briefing",
-      "source_id": "migration-observatory",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
-      "published_date": "2026-05-15",
-      "retrieved_date": "2026-06-17",
-      "notes": "EU-born employment rate has exceeded UK-born and non-EU since about 2006. ONS Labour Force Survey has known reliability and sample-size limitations in recent years; treat as provisional and cross-check against the primary release.",
-      "confidence_level": "provisional"
+      "source_name": "ONS, EMP06: Employment by country of birth and nationality",
+      "source_id": "ons-emp06",
+      "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
+      "published_date": "2026-05-19",
+      "retrieved_date": "2026-08-05",
+      "notes": "Read from the primary table, not from a briefing about it: the Country of birth rates sheet gives 80.39374408928576 for the Total EU (EU27) column at Oct-Dec 2025, and this record rounds it to one decimal place, which is what makes it calculated rather than official. The Migration Observatory labour market briefing it used to cite prints no decimal percentage anywhere and so never contained this value; searching it for the stems 80 and 74 returns nothing at all. EU-born employment rate has exceeded UK-born and non-EU since about 2006. ONS labels EMP06 official statistics in development and warns that volatility remains in Labour Force Survey estimates for mid-2023 and through 2024, advising users to read long-term movements rather than short-term changes.",
+      "confidence_level": "calculated"
     },
     {
       "id": "employment-rate-uk-born-population",
-      "metric_name": "Employment rate, UK-born population",
+      "metric_name": "Employment rate, UK-born population aged 16 to 64",
       "value": 74.7,
       "unit": "%",
       "date": "2025-12-31",
       "period_label": "Q4 2025",
       "geography": "United Kingdom",
-      "source_name": "ONS Labour Force Survey, via Migration Observatory",
-      "source_id": "migration-observatory",
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
-      "published_date": "2026-05-15",
-      "retrieved_date": "2026-06-17",
-      "notes": "Non-EU-born rate was about 75.1% in the same period. The aggregate comparison masks a gender split: migrant men have higher employment than UK-born men, but migrant women have lower employment than UK-born women.",
-      "confidence_level": "provisional"
+      "source_name": "ONS, EMP06: Employment by country of birth and nationality",
+      "source_id": "ons-emp06",
+      "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
+      "published_date": "2026-05-19",
+      "retrieved_date": "2026-08-05",
+      "notes": "Read from the primary table, not from a briefing about it: the Country of birth rates sheet gives 74.68465773259211 for the UK column at Oct-Dec 2025, and this record rounds it to one decimal place, which is what makes it calculated rather than official. The same sheet gives 75.12462839533842 for Total non-EU in that quarter, which is the 'about 75.1%' this note already carried while the record cited a briefing that prints no decimal at all. The aggregate comparison masks a gender split: migrant men have higher employment than UK-born men, but migrant women have lower employment than UK-born women. ONS labels EMP06 official statistics in development.",
+      "confidence_level": "calculated"
     },
     {
       "id": "migrant-share-of-uk-employees",
-      "metric_name": "Migrant (foreign-born) share of UK employees",
+      "metric_name": "Share of UK employees who held a non-UK nationality at National Insurance registration",
       "value": 19,
       "unit": "%",
       "date": "2025-12-31",
@@ -211,7 +211,7 @@
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
       "published_date": "2026-05-15",
       "retrieved_date": "2026-06-17",
-      "notes": "About 5.9 million of UK employees were adult migrants (roughly a fifth of the workforce). Definitions of 'migrant' vary (foreign-born vs non-UK nationality) by dataset.",
+      "notes": "About 5.9 million of UK employees were adult migrants (roughly a fifth of the workforce). THE BASE IS NOT FOREIGN-BORN, WHICH IS WHAT THIS RECORD USED TO BE NAMED FOR: the section carrying the figure defines its 'adult migrants' as 'people who were non-UK citizens when they first registered for a national insurance number', which is HMRC payroll data rather than a country-of-birth survey. The briefing's Understanding the Evidence box states the same distinction for the whole document: 'By contrast, figures from HMRC data on employment counts and employee earnings define migrants as individuals who had a non-UK nationality when they applied for a National Insurance Number.' The same section gives 20% and 6.5 million for the share of employee JOBS on that definition, against 19% and 5.9 million for employees, the difference being multiple job holding rather than a different population. The two are easy to confuse and this record is the second one. Definitions of 'migrant' vary (foreign-born vs non-UK nationality) by dataset.",
       "confidence_level": "provisional"
     },
     {
@@ -232,7 +232,7 @@
     },
     {
       "id": "non-british-nationals-as-a-share-of-the-adult-social-care-wo",
-      "metric_name": "Non-British nationals as a share of the adult social care workforce (England)",
+      "metric_name": "Non-British nationals as a share of the local authority and independent sector adult social care workforce (England)",
       "value": 31,
       "unit": "%",
       "date": "2025-03-31",
