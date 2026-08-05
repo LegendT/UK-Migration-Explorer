@@ -194,7 +194,10 @@ routes still return 200. Three things changed the design and one concern was dro
   while every other Home Office figure cites March 2026, and the source-level answer is
   "current", because a different figure is on the newest edition. The staleness check cannot
   see it either: it ages `retrieved_date`, 17 June, which is well inside the quarterly window.
-  Recorded in `docs/BACKLOG.md` under *Found, not yet fixed*.
+  **Fixed on 28 July 2026, PR #45**, and under *Completed* in `docs/BACKLOG.md`. This line pointed
+  at a heading called *Found, not yet fixed* that has never existed in that file, so it named
+  neither the work nor a place to find it. The record was brought onto the current edition and the
+  notifier's comparison is per cited edition rather than per source because of it.
 - **The ONS edition must come from the canonical link**, for the reason given above.
 - **Dropped: the data-tables page needs no `sources.json` entry.** A record already cites
   `/government/statistical-data-sets/immigration-system-statistics-data-tables` under

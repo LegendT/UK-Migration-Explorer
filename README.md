@@ -12,9 +12,9 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. 17 pages from a governed data layer of metric records and four
+Built and not yet launched. A static site from a governed data layer of metric records and four
 timeseries of dated points, on Eleventy 3, with charts rendered as inline SVG at build time and
-no client-side JavaScript anywhere. **How many of each, and how many of the records reach a
+no client-side JavaScript anywhere. **How many pages, how many of each, and how many of the records reach a
 reader rather than being held as unpublished reserve, is what `npm run validate` and
 `npm run build` print.** They were typed into this paragraph until 2 August 2026, under a
 sentence admitting that nothing checked them, and they were wrong by then: the counts are
@@ -460,7 +460,8 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
   kind, and the run names them and counts them on every invocation. The NAO is one of them: it
   corrected HC 874 by a slip inside the PDF on 1 July 2025, and this site carried the retracted
   wording in a record's notes until 31 July 2026 with every check green. Within the publishers
-  that are watched, 17 records and 2 series files declare a `table_reference`, and the change
+  that are watched, the records and series files that name a table declare a `table_reference`,
+  which `validate-data.mjs` requires of any record naming a table in its own prose, and the change
   history is matched against them, but most of that history names its tables by title rather than by
   identifier. A correction announced that way, or one to a table nobody wrote down, is
   invisible to it.

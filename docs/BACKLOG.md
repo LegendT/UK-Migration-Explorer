@@ -17,16 +17,25 @@ count of this project's own state.
 **Consolidated 4 August 2026, from 2,729 lines.** A closed entry keeps what it was, what was
 decided, the date and the pull request; its reasoning is in that pull request, which is durable
 and does not have to be maintained here. An open entry keeps everything. Nothing was deleted from
-The order and nothing was renumbered. **Nothing was moved into `docs/HANDOFF.md` either**, which
-matters when you go looking: working practices are that document's subject and many of these
-entries taught one, but a lesson that lived only in a closed entry here is now only in that
-entry's pull request. Checked, not assumed, and it is not all of them.
+The order and nothing was renumbered. **The consolidation moved nothing into `docs/HANDOFF.md`**,
+which matters when you go looking: working practices are that document's subject and many of these
+entries taught one, but a lesson that lived only in a closed entry here is now only in that entry's
+pull request. Checked, not assumed, and it is not all of them. What the consolidation itself taught
+was written up there afterwards, on 5 August 2026, under *Working practices that earned their
+place*.
 
 **The frozen records, read for reasoning and never edited**: `docs/PRE-LAUNCH-AUDIT.md`,
-`docs/LAUNCH-READINESS-REVIEW.md`, `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` and
-`verification.txt` at the repository root. The pre-launch audit carried its own action list for a
-day, which was the mistake: two lists meant every change had to land twice, and they diverged
-twice. Whatever is still outstanding from any of these is in this file.
+`docs/LAUNCH-READINESS-REVIEW.md` and `verification.txt` at the repository root. The pre-launch
+audit carried its own action list for a day, which was the mistake: two lists meant every change
+had to land twice, and they diverged twice. Whatever is still outstanding from any of these is in
+this file.
+
+**`docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` is NOT one of them**, and this paragraph listed it as
+frozen from the consolidation of 4 August until 5 August 2026. It is the live half of The order's
+item 2: it carries unticked checkboxes that the owner works, so telling a session never to edit it
+would have shut the one document that item requires opening. `docs/PRE-PUBLICATION-REVIEW.md` is
+not frozen either, being the evidence template a reviewer works through, and call 13 corrected its
+section 3.
 
 **The prompt for a fresh session is copied to `docs/prompts/fresh-session.md`** from the
 handoff, so it can be copied without opening a long document. Nothing generates it: no script

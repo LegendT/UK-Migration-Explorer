@@ -16,6 +16,18 @@ or if a planning document exists that the backlog does not reference.
    have phases built and still be the first, and the header turns on a word that has been misread
    before. Which item it is, and how far it has got, is the backlog's to say and not this
    document's.
+
+   **It was consolidated on 4 August 2026, from 2,729 lines, so read it knowing the rule that was
+   applied**: a closed entry keeps what it was, what was decided, the date and the pull request,
+   and its reasoning stays in that pull request; an open entry keeps everything. **So a one-line
+   entry is not a thin one.** If you need why a closed thing was done the way it was, open its pull
+   request rather than concluding the file lost it. Nothing was deleted from The order and nothing
+   was renumbered, so an "item N" pointer from any document still resolves.
+
+   **And no entry names which item comes next.** The header's rule is the only thing that decides.
+   Derive the item by walking the list against it and checking each candidate against the
+   repository, which is usually one grep. A sentence that names the next item is a defect rather
+   than an instruction, and *Working practices* carries what one cost.
 2. Read the rest of this document, for how the project works and what not to repeat.
 3. Read the scope document for whatever you pick up, and do not re-derive it.
    `verification.txt` at the repository root is the pre-publication review itself. It is the
@@ -1039,6 +1051,48 @@ is already here to adding a neighbour beside it.
   and is not in this repository**, so the rule has to be re-imposed by whoever rewraps the list
   next. Nothing checks for it, which is the honest state rather than the tidy one.
 
+- **A sentence naming which item comes next is a second list, and one falsified itself in sixteen
+  minutes.** On 4 August 2026 at 13:07, item 3 of *The order* closed with "the next item a session
+  takes is The order's item 10". At 13:23, item 4 was updated to record call 18 as decided and
+  unapplied `[me]` work, which by the header's own rule is the item a session takes. Item 4 is the
+  entry immediately below the one carrying the pointer, and six above the one it named. A later
+  session followed the pointer and took item 10, skipping it.
+
+  **It was not a race, and this bullet said it was until a second model checked the history.**
+  `git merge-base --is-ancestor` puts the two commits four apart on one continuing line of work,
+  same author, same file, sixteen minutes; they reached `main` through PR #128 and PR #130, and
+  #128 merged first. So nothing collided. **The same person wrote a pointer and then wrote the
+  thing that falsified it, two screens apart in one file, and no check saw it.** The
+  branch-in-flight version was the more comfortable story and it let the practice off the hook.
+
+  Nothing moved and nothing was renumbered, so the bullet above would not have fired: the sentence
+  was simply a second copy of a rule the header already gives, and the copy a session happens to
+  read wins. **Never name the next item.** Say what is left of the entry you are closing and stop.
+  The backlog's header now says no entry names it, so a future session meets such a sentence as a
+  defect rather than an instruction.
+
+- **Compressing an entry keeps the conclusion and drops the enumeration, which is the wrong way
+  round.** Item 4 of *The order* listed its scope as several calls "and the rest of A6", then
+  closed with "so what is left of this item is the LICENCE scope". Those disagreed, because A6 held
+  three decided-but-unapplied items. The consolidation kept the closing sentence, and A6 stopped
+  being reachable from the ordered list at all: outstanding work that nothing pointed at. **An
+  enumeration is a claim about scope and changes rarely; a conclusion is a claim about state and
+  changes weekly.** Diff the two before cutting either, and after compressing any list, check that
+  every subsection holding open work is still named by something in the ordered list. It was found
+  by `grep -n "A6"` inside The order returning nothing, which is one command.
+
+- **A gate does not release itself.** U3's first bullet was sequenced behind "the open grade
+  questions in R2 and A6". A6's closed in PR #79 and R2's in PR #129, and neither release touched
+  U3, because closing a section updates that section and nothing walks back to what was waiting on
+  it. The gate then survived a consolidation, where narrowing it to "A6" turned an inherited
+  vagueness into a precise false claim. **Name the condition, not the section**: "behind A6" rots
+  when A6 closes, where "behind any open grade question on a published record" is checkable and
+  self-clearing. When you close a decision, grep for what was waiting on it before you commit, and
+  measure a gate's own reasoning rather than arguing about it: four commands established that no
+  theme page rendered a grade, that the one grade change still open was on records
+  `publishedRefs()` says reach nobody, and that the vocabulary already had a published definition.
+  **Whether a lapsed gate releases the work is the owner's**, not yours.
+
 ### Auditing, and auditing your own audit
 
 Four practices the July 2026 audit paid for, all of them by getting it wrong first.
@@ -1313,6 +1367,29 @@ expensive to omit on EVERY session, and this one guards a rare accident that the
 announces by printing `Bin`. It is in *Building a check, and trusting it* instead, with the
 incident. **The test the table applies is not "did this cost us once" but "will a session need it
 every time".** Recorded here so the next reading does not add it as an oversight.
+
+**One refusal and one vindication, 5 August 2026, and no change to the block.**
+
+The refusal: the backlog was consolidated from 2,729 lines and the costliest thing that surfaced
+was a sentence naming which item came next, false sixteen minutes after it was written, which a
+session followed. A clause guarding against it was considered for the TASK paragraph and left out.
+It fails both halves of this section's test. It would be a second copy of a rule *The order*'s own
+header now carries, so it can drift; and the defect is structural rather than recurring, the
+sentence having been deleted and forbidden at its source, so it is not something a session needs
+told every time. It is a bullet under *Working practices* with its incident instead. **Recorded
+here so the next reading does not add it as an oversight**, which is the same reason the NUL-byte
+command is written up above.
+
+The vindication, and it is an argument for leaving this block alone: **the prompt's frozen-records
+list was right when the backlog's was wrong.** The consolidation added
+`docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` to the backlog's list of records "read for reasoning and
+never edited". It is not one: it holds unticked checkboxes that item 2 exists for the owner to
+work, so the instruction would have shut the one document that item requires opening. **The prompt
+has never named it**, checked through the file's history rather than asserted: it named two until
+the launch readiness review landed and three since, and the six-page document was never among
+them. A first version of this paragraph said "always named three", which `git show` over six
+revisions refutes, and it is corrected here rather than quietly because a confident claim a command
+would have settled is the defect this whole document is about.
 
 **One thing to check when you change this section.** `docs/prompts/fresh-session.md` is generated
 from the code block below, which is the LAST fenced block in this document and no longer the only
