@@ -717,7 +717,7 @@ scripts/check-sources.mjs   network check that every source URL still resolves
 .pa11yci.json               pa11y over all 16 URLs at WCAG2AA
 .github/workflows/          CI: everything above runs on every push, plus a weekly cron
 CHANGELOG.md                data and methodology changes
-LICENCE                     MIT for code, OGL v3 attribution for data
+LICENCE                     MIT for everything but the figures in data/, those OGL v3
 ```
 
 **There is no `src/`.** An earlier version of this section expected `src/pages/` and

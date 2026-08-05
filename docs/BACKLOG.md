@@ -77,11 +77,11 @@ below.
 4. **GATE. The decisions that change what launch publishes.** The domain is decided and applied
    (PR #118): `ukmigrationexplorer.org`. The contact address and the fourth published limit are
    decided and applied, calls 16 and 20 in PR #130. The pipeline question is closed, call 17 in
-   PR #122. **What is left is the LICENCE scope, call 18 under A5, and the rest of A6**: calls 19,
-   21 and 23, plus call 24's open residue. All are decided and unapplied **[me]** work, and the
-   LICENCE scope goes first because it is the only one of them a reader could be affected by
-   reusing something. **A6's own header says none of its calls blocks anything**, so they sit
-   inside a gate item for scope rather than because they gate: what gates here is call 18. **This
+   PR #122. **The LICENCE scope is applied, call 18 under A5, and so is the rest of A6**: calls 19,
+   21 and 23, and the 47% half of call 24's residue, all in PR #136 on 5 August 2026. **What is
+   left is one [you] call**, on the `date` field of the fiscal-impact record, which A6 carries with
+   the finding behind it. **A6's own header says none of its calls blocks anything**, so they sat
+   inside a gate item for scope rather than because they gate: what gated here was call 18. **This
    entry said the LICENCE scope was all that was left until 4 August 2026**, which orphaned A6, the
    sentence enumerating it having been dropped a version before while the conclusion it contradicted
    was kept.
@@ -256,10 +256,14 @@ record and an evidence entry rather than a sentence.
 
 ### A5. Site-level decisions and small build work
 
-- **Call 18, the LICENCE scope. DECIDED 4 August 2026, NOT YET APPLIED. [me].** Invert it, so it
-  covers everything except the figures in `data/`, which stay OGL. It is the shorter clause and it
-  names the site's own prose; neither clause currently does. The alternative was to scope it to
-  `content/` and `lib/`.
+- **Call 18, the LICENCE scope. DECIDED 4 August 2026, APPLIED (PR #136, 5 August 2026).** Inverted,
+  so clause 1 covers everything except two things in `data/`: the figures, and the passages quoted
+  from the publications they came from. **The second exception was not in the decision, and finding
+  it is why this was not a one-line change.** Excepting only the figures swept `data/evidence/` into
+  MIT, which is 16 files holding 120 verbatim quote fields from ONS, the NAO, the Migration
+  Observatory and others: licensing a publisher's own paragraphs onward, where the old enumeration
+  had merely failed to license them. Worse than the gap it closed, and caught by the critique round
+  rather than by any check. The alternative decision was to scope it to `content/` and `lib/`.
 - **Point `aria-describedby` at the visible chart summary** instead of duplicating it into
   `<desc>`. **Gated on a real screen reader**, which this project has never run, so it is
   **[you]** first, at The order's item 15.
@@ -270,21 +274,37 @@ record and an evidence entry rather than a sentence.
 
 ### A6. Decisions with no build behind them
 
-Each is one call. None blocks anything. **Three are decided and unapplied. [me].**
+Each is one call. None blocks anything. **The three decided calls are applied (PR #136, 5 August
+2026). What is left is one question that applying them raised, and it is [you].**
 
-- **Call 19. `og:` tags**: yes, and a claim page's `og:title` leads with the correction, because a
-  share card showing the bare false claim is the same defect as call 10 at more reach. Foundation
-  8.5.4's rejection of a share image is not reopened by this.
-- **Call 21. The emigration sentence**: let the chart carry the 2019 peak, one fewer live value in
-  prose.
-- **Call 23. The NAO comparison**: be more precise than the NAO about the 76% being a seven-month
-  cost share while the 35% is a point-in-time headcount. That error is this site's subject.
-- **Call 24 left one residue open, and it is [me] rather than a decision**: the `date` field on the
-  fiscal-impact record plus the 47% in the work-immigration notes. A session opens both sources and
-  brings a finding, rather than asking the owner to decide blind. The other residue is settled: the
-  Asy_D02 pivot prints no year-ending total, searched with controls, so
-  `asylum/asylum-administrative-outcomes` is correctly `calculated`.
-- **Closed here**: the confidence convention, decided 2 August 2026 and applied in PR #79, every
+- **Call 24's residue is opened, and it splits.** The 47% in the work-immigration notes is checked
+  and right: ONS states it in the bulletin, in the sentence carrying this record's own figure, and
+  the note's claim that it does not reproduce from the two rounded ends holds, those giving 46.3%.
+  The note now also warns that the same release prints 47% as the study-related share of non-EU+
+  immigration, so anyone verifying the record by searching that release for the figure lands on a
+  different measure first. **The `date` field on
+  `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp` is the open half, and it is a [you]
+  call rather than a mechanical fix.** It holds `2026-06-23`, which is the Migration Observatory
+  briefing's publication date and not a period end, where this project files `date` as the period
+  end. The studies the record summarises are far older: the newest in the briefing's Table 1 is
+  Oxford Economics on FY 2016/17, and the oldest runs from 1995. **Nothing catches it, and the
+  reason is worth keeping**: `validate-data`'s period check asks only that the date's year appear in
+  `period_label`, and that label names the briefing's own June 2026 publication, so the check is
+  satisfied by the very thing that makes the date wrong. It reaches a reader only through the served
+  JSON today; both claim pages citing it take their period from the claim's own front matter
+  instead. **The recommendation is to file it at the newest study's period end and name the span in
+  the label**, which also keeps the period check meaningful. The alternative is to leave it and
+  record in the record why this one is filed by publication date. It is the only record of its kind,
+  so whichever is chosen sets the convention for the next one.
+- **The other residue was already settled**: the Asy_D02 pivot prints no year-ending total, searched
+  with controls, so `asylum/asylum-administrative-outcomes` is correctly `calculated`.
+- **Closed here**: call 19, `og:` tags, applied in PR #136. A claim page's `og:title` leads with the
+  correction, the claim sitting in the description labelled as checked, and there is no `og:image`,
+  foundation 8.5.4's refusal of a share image standing. Call 21, the emigration sentence, applied in
+  PR #136, which also moved the summary quoted in `docs/PRE-PUBLICATION-REVIEW.md` section 6 so a
+  reviewer's direction-word check reads the sentence the page now carries. Call 23, the NAO
+  comparison, applied in PR #136 and verified in HC 874 at paragraphs 1.14 and 1.18 rather than from
+  this project's own note. The confidence convention, decided 2 August 2026 and applied in PR #79, every
   ONS LTIM series point becoming `provisional` with `ons_marker` the single home for the
   publisher's per-vintage marker. The launch domain, decided 4 August 2026 and applied in PR #118.
   Call 20, the fourth published limit, applied in PR #130. Call 22, the claim card's duplicated

@@ -146,7 +146,7 @@ is the record of a review that was carried out, not a template to be tidied.
 
 **Summary as written**
 
-> 'Immigration was highest in 2023 on this calendar-year series, at **1,441,000** [series flows@2023], and has fallen since. Emigration rose steadily from **480,000** [series flows.emigration@2021] in 2021 to **680,000** [series flows.emigration@2024] in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.'
+> 'Immigration was highest in 2023 on this calendar-year series, at **1,441,000** [series flows@2023], and has fallen since. Emigration fell for two years to 2021, then rose in each of the three years after it, to **680,000** [series flows.emigration@2024] in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.'
 
 **Note as written**
 
