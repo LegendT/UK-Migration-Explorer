@@ -160,6 +160,31 @@ two ends cannot. Between them they establish that the author looked at the whole
 took. They establish nothing about the points in the middle, and the check says so on every run
 where a series moved.
 
+**Every series entry naming a block that still holds its declared vintage is re-read on every
+run**, on the same terms as a record entry: the count against the array, both ends carried by the
+quote, an https source and a real fetch date. Until 5 August 2026 only a block that MOVED was
+asked, so an entry written for a block sitting still was declared once and never read again, and
+three entries on file had been written exactly that way. Their quotes were generated from the
+fetched table with a per-point assertion because nothing else was going to look at them.
+
+**An entry whose block has since moved to another release stays as history and fails nothing**,
+which is why the audit turns on the vintage still matching, the same key the release above matches
+on. So does an entry for a companion the data layer has since dropped.
+
+**Four things stop an entry being read at all, and each is refused only on the branch that writes
+it**: a `file` or a `block` that `lib/series.mjs` does not map, a missing `vintage`, and a block
+held neither by the data layer nor by the base branch. The first two are typos rather than history,
+because the file list and the companion names are a fixed list in code, and left to skip, one
+mistyped character would put an entry beyond every pass; the third is an entry for a block that has
+never existed, which no pass would otherwise reach. All four are asked of what a pull request
+proposes and never of what is merged, so a rename in `lib/series.mjs` cannot orphan every entry
+naming the old name at once and leave rewriting the audit trail as the only green run.
+
+**`previous_vintage` is asked of every series claim this branch ADDS**, whatever its block did,
+which is what a backfill for a block that has not moved has to satisfy: it takes the vintage the
+block already holds, not `null`. A claim already on the base branch is history and is read once, on
+the branch that added it.
+
 A companion block is a separate series with its own release and its own entry. `historical` in
 `netMigrationTimeseries.json` is a superseded vintage that is deliberately frozen: it does not
 move, so it needs no entry until it does.
