@@ -31,9 +31,11 @@ had to land twice, and they diverged twice. Whatever is still outstanding from a
 this file.
 
 **`docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` is NOT one of them**, and this paragraph listed it as
-frozen from the consolidation of 4 August until 5 August 2026. It is the live half of The order's
-item 2: it carries unticked checkboxes that the owner works, so telling a session never to edit it
-would have shut the one document that item requires opening. `docs/PRE-PUBLICATION-REVIEW.md` is
+frozen from the consolidation of 4 August until 5 August 2026. It was the live half of The order's
+item 2, carrying unticked checkboxes the owner worked, so telling a session never to edit it would
+have shut the one document that item required opening. **Item 2 closed on 6 August 2026 and the
+document is now a record**: every verdict is given, and its one remaining unticked box is itself a
+verdict, so nothing further is expected to be marked in it. `docs/PRE-PUBLICATION-REVIEW.md` is
 not frozen either, being the evidence template a reviewer works through, and call 13 corrected its
 section 3.
 
@@ -64,11 +66,15 @@ below.
 
 1. **Both glossary gates are closed (PR #83, 2 August 2026).** The numbers 1 and 2 are collapsed
    into this one entry rather than left as empty rows.
-2. **GATE. The six pages the pre-publication review never opened**, put through
-   `docs/PRE-PUBLICATION-REVIEW.md`. **The [me] half is done (PR #76, 2 August 2026)**: the
-   evidence is in `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md`, which sets every figure and every
-   claim about a figure on those six pages beside what the data layer holds, and leaves the
-   checkboxes unticked. **The verdicts are [you]**, and are all that is left of this item.
+2. **CLOSED 6 August 2026 (PRs #158, #160 and #161).** The six pages the review never opened have
+   been through `docs/PRE-PUBLICATION-REVIEW.md`. The evidence written in PR #76 was
+   **regenerated against the live site before any verdict was given**, having gone stale under the
+   pages it quoted, and the failures it found were corrected and then re-answered against the
+   corrected pages rather than marked off on the promise of a fix. **The last checkbox stays
+   unticked and
+   that is a verdict rather than an omission**: `last_reviewed` records what a review READ, which
+   is the precedent PR #54 set, and these six were not re-read, so their older dates stand and a
+   reader meets them in the page footer. It is under *Completed*.
 3. **GATE. The reader-facing wording batch**: everything under A4 and R1 below, plus the two
    sources-page wording bullets at the end of *Scoped, not built* section 6. All **[you]**
    calls; applying what is decided is **[me]**. **The calls came back on 4 August 2026** and
@@ -128,8 +134,10 @@ below.
    and `previous_vintage` is asked of every series claim a branch adds rather than only of a block
    that moved. **All that is left of this item is the grade question the applying raised**, which
    is **[you]** and is under A1 below. **So there is no [me] work left in this item.**
-9. **GATE. The release notifier's last phase**, which is *Scoped, not built* section 3: rewriting
-   what the sources page says about automation. **[you]** sign-off, no build behind it.
+9. **CLOSED 6 August 2026 (PR #157).** The release notifier's last phase, which is *Scoped, not
+   built* section 3's phase 4: what `/sources-and-method/` says about automation is rewritten and
+   signed off, so all five phases of `docs/UPDATE-AUTOMATION.md` are built. It is under
+   *Completed*.
 10. **GATE. The undrafted claims**, which is *Scoped, not built* section 5: a session drafts
     **[me]**, and the verdict and short answer come to the owner before merge **[you]**. **The
     drafts merged so far are PRs #131, #132 and #133**, with their verdicts and short answers given
@@ -151,11 +159,15 @@ below.
     too, and force pushes and deletions are off. Probed rather than read: a direct push to `main`
     is refused with `GH006, Required status check "validate" is expected`. So every claim in this
     file that a check gates a pull request now means what it says.
-12. **GATE. Record the review as passed in `CHANGELOG.md`**, after the six-page checkboxes above.
-    **Its scope was decided on 2 August 2026: all sixteen pages, not the ten the review read.**
-    Worth knowing before signing: the review's own selection criteria failed 2.6 and 2.7, and both
-    were kept on the site's published no-attribution policy, so signing backs that policy over the
-    reviewer's criterion. **[you]**.
+12. **CLOSED 6 August 2026 (PR #159).** The review is recorded as passed in `CHANGELOG.md`. **Its
+    precondition was item 2, and item 2 met it by verdict rather than by tick**: every six-page
+    verdict was given, and the box left unticked is itself a verdict, so waiting on it would have
+    been waiting for a mark nobody intends to make. **Its scope was decided as sixteen pages on
+    2 August 2026 and was signed wider**, because claim pages published after that decision were in
+    neither the review's ten nor item 2's six, and signing at sixteen would have left live pages
+    outside the signature on a site whose stated objection to others is scope silence. Signing also
+    backs this site's published no-attribution policy over the reviewer's own selection criteria
+    2.6 and 2.7, which it failed and which were kept deliberately. It is under *Completed*.
 13. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
     guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
     delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
@@ -667,12 +679,14 @@ root, kept out of `docs/` because it uses em-dashes and pound signs the style sc
 publish as written" or "substantial revision required", and five of the seven data sections had
 carried required corrections. What each correction changed is in its pull request.
 
-**Two of the three closing steps are settled.** The `last_reviewed` question was settled by asking
+**All three closing steps are settled.** The `last_reviewed` question was settled by asking
 what the review actually READ rather than which pages had been corrected: ten pages carry
 `2026-07-27` and the other six are deliberately left on their older dates, because the review never
-opened them and a reader sees the date (PR #54). The pre-launch banner was corrected rather than
-removed, because removing it would itself have asserted the third step; it still goes at launch
-(PR #54). **The third step is The order's item 12 and is the owner's.**
+opened them and a reader sees the date (PR #54). **That precedent then decided the six-page pass's
+own last checkbox**, which is why item 2 closed with it unticked. The pre-launch banner was
+corrected rather than removed, because removing it would itself have asserted the third step; it
+still goes at launch (PR #54). **The third step was The order's item 12, recorded as passed in
+`CHANGELOG.md` on 6 August 2026 (PR #159).**
 
 **How the corrections were tagged**, and it is the mapping this project calls the highest-damage
 thing to get wrong: **[you]** marked an editorial or sourcing call only the owner makes; **[me]**
@@ -687,11 +701,11 @@ marked a mechanical or factual change against a cited source.
 **Sections 3 and 5 block launch as of 4 August 2026**, as items 9 and 10 of The order; the rest of
 this heading does not. Each has a scope document; read it before starting.
 
-### 3. Release notifier and evidence check: four phases built, phase 4 left
+### 3. Release notifier and evidence check: all five phases built
 
-**`docs/UPDATE-AUTOMATION.md`.** Five phases. Phases 1, 1b, 2 and 3 are built, in PRs #43, #46,
-#48 and #56; **phase 4 is a reader-facing trust statement and needs the owner's sign-off, so it is
-the only one left. [you]**.
+**`docs/UPDATE-AUTOMATION.md`.** Five phases. Phases 1, 1b, 2 and 3 were built in PRs #43, #46,
+#48 and #56, and **phase 4, the reader-facing trust statement, was signed off and applied on
+6 August 2026 (PR #157)**, closing The order's item 9. Nothing here is left to build.
 
 **Three things the built phases leave behind**, kept because they bound what the next release run
 can do rather than because they are tasks:
@@ -831,6 +845,40 @@ establish*.
 Kept so that a future session can see what was decided and when, rather than reopening it. **The
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
+
+- **The review is recorded as passed**, 6 August 2026. PR #159, closing The order's item 12, the
+  last of the three closing steps the review of 27 July left. **No figure moved and no page a
+  reader sees changed by it**: it records a signature, which is the last thing
+  `/sources-and-method/` promises and had not been given. **The scope was decided as sixteen pages
+  on 2 August and signed wider**, because claim pages published since were in neither the review's
+  ten nor item 2's six, and signing at sixteen would have left live pages outside the signature on
+  a site whose stated objection to others is scope silence. **The entry names three routes rather
+  than one word**: the review of 27 July with `verification.txt` as its evidence, the six-page pass
+  with `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` as its evidence, and the claim pages evidenced
+  and verdicted one at a time, which is a per-page method rather than a pass and is recorded
+  separately for that reason. **And it says what signing backs**: the review's own selection
+  criteria failed claims 2.6 and 2.7, both were kept on this site's published policy of not
+  attributing claims to named people, so the signature prefers that policy to the reviewer's
+  criterion and the disagreement is written down rather than absorbed.
+
+- **The six pages the review never opened**, 6 August 2026. PRs #158, #160 and #161, closing The
+  order's item 2. The evidence written in PR #76 was **regenerated against the live site** before
+  any verdict was given, five of the six pages having moved under it and seven of its twenty quoted
+  passages having stopped matching the page they quoted, two of them because the glossary launch
+  gates closed after it was written; every regenerated quotation was lifted from the source by
+  script rather than typed. The owner read it and gave every verdict, the marks being recorded by
+  the session at his direction and the document saying so, because that is not the arrangement this
+  gate assumes. **The substantive failures were corrected and then re-answered against the
+  corrected pages**, not marked off on the promise of a fix. **Two of them turned out differently
+  from how the evidence wrote them up**: the claim that the appeals queue moves the other way was
+  recorded as unsettleable and was in fact supportable and merely uncited, so it is now cited in
+  both places rather than removed. **The last checkbox stays unticked deliberately**, on PR #54's
+  precedent that `last_reviewed` records what a review READ.
+
+- **The release notifier's last phase**, 6 August 2026. PR #157, closing The order's item 9 and
+  *Scoped, not built* section 3. What `/sources-and-method/` says about automation is rewritten and
+  signed off, so all five phases of `docs/UPDATE-AUTOMATION.md` are built. It was a wording call
+  with no build behind it, which is why it sat as a gate on a sentence.
 
 - **The UX review's trust work, U3 to U5**, 6 August 2026. PR #154, closing The order's item 6.
   Three things landed and one was a decision not to build. A citation block now says which FIGURE

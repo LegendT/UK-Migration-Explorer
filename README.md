@@ -84,11 +84,13 @@ wrong year passed wherever two years share a value. Both are closed and negative
 directions. **Seven of the nineteen were a comment or a message asserting a property the code beside
 it did not have**, which is this project's signature defect, committed while fixing instances of it.
 
-**The corrections landing is not the review passing.** Of the three closing steps, two are
-settled: `last_reviewed` now carries 27 July on the ten pages the review actually read, and the
-pre-launch banner has been corrected rather than removed, because removing it would itself have
-asserted the step that is not decided. What remains is recording the review as passed in
-`CHANGELOG.md`, and that is the owner's. The banner goes at launch. Outstanding work is tracked
+**The corrections landing is not the review passing, and all three closing steps are now
+settled.** `last_reviewed` carries 27 July on the ten pages the review actually read and the other
+six keep their older dates, because that field records what a review READ rather than when a page
+was corrected. The pre-launch banner was corrected rather than removed. And the review is recorded
+as passed in `CHANGELOG.md` on 6 August 2026, its scope stated as three named routes rather than
+one word, because the pages did not all reach it the same way. The banner goes at launch.
+Outstanding work is tracked
 in `docs/BACKLOG.md`, which is the durable list; this file does not restate it.
 
 The update commitment was signed on 23 July 2026: **one month** from each of the three
@@ -138,7 +140,7 @@ docs/PRE-PUBLICATION-REVIEW.md  The evidence template the review of 27 July 2026
 docs/LAUNCH-READINESS-REVIEW.md The verified whole-project critique of 2 August 2026, a findings record
 docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md  The evidence pass over the six pages the review never opened
 docs/SERIES-CITATIONS.md        Built July 2026: citing a series point, and the figures held twice
-docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; four of five phases built
+docs/UPDATE-AUTOMATION.md       Scope: release notifier and evidence check; all five phases built
 docs/UPDATING-DATA.md           The by-hand runbook for moving the site onto a new release
 .pa11yci.json           The URL list the accessibility gate runs over, at WCAG2AA
 .github/workflows/      CI on every push, plus a weekly cron for the time-based rules
