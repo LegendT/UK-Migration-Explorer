@@ -39,6 +39,7 @@ const CHECKS = [
   { script: 'check-pipeline.mjs', local: true, ci: true, gates: true },
   { script: 'check-build.mjs', local: false, ci: true, gates: true, why: 'runs inside `npm run build`, which needs a built site' },
   { script: 'check-evidence.mjs', local: false, ci: true, gates: true, why: 'compares against a base branch a laptop may not have fetched' },
+  { script: 'check-a11y-dark.mjs', local: false, ci: true, gates: true, why: 'needs a served site, so it runs inside `npm run a11y` beside the light pass rather than in `npm run validate`' },
   { script: 'check-sources.mjs', local: false, ci: true, gates: false, why: 'network, and a transient outage must not redden a pull request' },
   { script: 'check-releases.mjs', local: false, ci: true, gates: false, why: 'network, and a newer edition is not a defect in the diff' },
 ];
@@ -70,9 +71,12 @@ for (const { script, local, ci, why } of CHECKS) {
 
 // --- what each side actually invokes -------------------------------------------------------
 // Follows `npm run <name>` through package.json, so a check reached through `npm run build` counts
-// as invoked. It does not follow a bare script name passed as an argument, which is how
-// start-server-and-test calls a11y:serve and a11y:ci; neither runs a script in scripts/, and the
-// closing line below says so rather than leaving it implied.
+// as invoked. It does not follow a BARE script name passed as an argument, which is how
+// start-server-and-test used to be given a11y:ci. That stopped being a harmless gap on 6 August
+// 2026, when the dark-palette pass became the first script in scripts/ reachable only that way:
+// the manifest declared it as running in CI and this could not see it. Rather than widen the
+// parser, the invocation was made explicit, `"npm run a11y:ci"`, so the chain resolves by the one
+// rule already here. a11y:serve is still a bare name and still runs no script in scripts/.
 const pkg = JSON.parse(readFileSync(`${repoRoot}package.json`, 'utf8'));
 const invokedBy = (command, seen = new Set()) => {
   const found = new Set([...String(command).matchAll(/node\s+scripts\/([\w.-]+\.mjs)/g)].map((m) => m[1]));
@@ -173,7 +177,8 @@ console.log('Out of `npm run validate` on purpose, each with the reason it is de
 for (const { script, why } of CHECKS.filter((check) => !check.local)) console.log(`  ${script}: ${why}`);
 console.log('Established since 4 August 2026, and probed rather than read: a failing job DOES block a');
 console.log('merge. main requires the validate check, enforce_admins is on, and a direct push is refused');
-console.log('with GH006. Not established: that a11y:serve and a11y:ci run what they should, being passed');
-console.log('to start-server-and-test as bare names rather than through npm run, so this does not follow');
-console.log('them, and neither runs anything in scripts/. Nor that any check is correct, only that it');
-console.log('runs on both sides.');
+console.log('with GH006. a11y:ci IS followed as of 6 August 2026, start-server-and-test being given it');
+console.log('as `npm run a11y:ci` rather than as a bare name, which is what lets the dark-palette pass');
+console.log('be declared in CHECKS and seen here. Not established: that a11y:serve does what it should,');
+console.log('still a bare name and still running nothing in scripts/. Nor that any check is correct,');
+console.log('only that it runs on both sides.');
