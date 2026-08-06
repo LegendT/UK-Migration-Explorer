@@ -192,6 +192,37 @@ below.
     A5 change rather than the section, so the work had been written into a section the ordered list
     no longer reached. **That was the A6 orphan repeating within a day, by the hand that had just
     written up A6's**, which is why it was a numbered item rather than a sentence somewhere.
+17. **The costs page still frames net fiscal impact the way correction 1b retired.** Found by the
+    docs audit of 6 August 2026, from the one item `docs/PRE-LAUNCH-AUDIT.md` still marks open.
+    `content/costs.njk` renders "Contested, method-dependent, and lands within about plus or minus
+    1% of GDP either way" on `/costs/`. Correction 1b retired that framing as statistically invalid
+    because the bound is the spread across separate studies, not an uncertainty interval around one
+    estimate. **The two claim pages were fixed on 27 July 2026 and the glossary on 2 August (PR
+    #83); this sentence was not**, and it also drops the pre-Brexit scope that every other site of
+    it carries, so it reads as a current fact about a system none of those studies covers. The
+    glossary now says in terms "not one estimate with a margin of error", which is what this page
+    states. **`data/meta.json` and `data/fiscal.json` carry the phrase too and are NOT defects**:
+    both attribute it to the studies, checked rather than assumed. **This is the fourth instance of
+    the correction-missing-its-siblings shape**, whose remedy this project already wrote down as
+    "grep the claim, not the page". **Whether it gates launch is [you]**, and so is the wording;
+    applying what is decided is **[me]**.
+18. **NOT A GATE. Choose the success measures, and record which.** Found by the docs audit of
+    6 August 2026. Foundation section 4.2 offers three candidates and says they must be chosen and
+    committed to in phase 1: cited by a named outlet or briefing within six months; organic search
+    entries on definitional queries; return visits in the week after a major data release. **None
+    has been chosen.** Section 17 makes it a process criterion, alongside talking to five target
+    users, and `docs/foundation.md` said of it "**it is the only one with nothing pointing at it**",
+    which was true until this entry existed and is corrected there rather than left standing.
+    **This list twice calls one of them "success measure 2" as though the set were adopted**, under
+    item 13 and under call 26, where 4.2 offers candidates in prose and numbers nothing. **Adopting
+    a numbering may not reconcile those two, and that is part of the decision**: item 13's is
+    Search Console, which reports organic search entries and maps to 4.2's second candidate
+    cleanly; call 26's is retrieval citation, an assistant citing the site in an answer, which is
+    neither plainly that nor plainly the first candidate about a named outlet or briefing. One of
+    the two may need rewording rather than numbering. **Timing
+    matters and is the reason this is not a gate**: two of the three can only be read after launch,
+    and the first runs a six-month clock that starts at it, so choosing them before launch is worth
+    more than choosing them well after. **[you]**, and nothing is built either way.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -614,8 +645,10 @@ grade decisions its first bullet waits on.
 
 ### U5. Considered and cut, with the reasoning, so they are not re-proposed
 
-- **Site search.** Seventeen pages, nine nav items, a glossary. A hand-maintained index is a second
-  list that rots, which this project has been bitten by twice.
+- **Site search.** Nine nav items, a glossary, and a page count `npm run build` prints rather than
+  this line: it read "Seventeen pages" until 6 August 2026 and the build then said 24. **The cut
+  stands and the growth strengthens it**: a hand-maintained index is a second list that rots, which
+  this project has been bitten by twice, and it rots faster the more pages there are.
 - **A horizontally scrolling nav.** It has the same invisible-scroll defect the review flagged for
   chart regions, and with no JavaScript there is no scroll-state styling to rescue it. **The cut
   stands and its remedy guess was wrong**: the nine labels measure 819px of text and need 979px of

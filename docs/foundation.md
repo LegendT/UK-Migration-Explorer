@@ -606,12 +606,12 @@ should be recorded so they are not silently reinstated:
 ### 9.3 Known gaps in the contract
 
 - **`table_reference` no longer names the gap; what it cannot see does.** The field was
-  implemented on 30 July 2026, and carried today by 17 records and 2 series files, and `validate-data.mjs`
+  implemented on 30 July 2026, and carried by 33 records and 2 series files as at 6 August 2026, and `validate-data.mjs`
   refuses a figure that names a table in its own prose and declares nothing. What is still
   open is that this reads what was written: a figure whose table nobody wrote down declares
   none and is asked for none, and an ONS sheet called "Table 1" carries no identifier that
   could be declared at all. The corrections watch is only as complete as this declaration.
-- **`published_date` is now recorded for all but one of the theme metrics**, closing what was 33
+- **`published_date` is now recorded for EVERY record**, checked on 6 August 2026 through `registry()` rather than read off this line, which said "all but one of the theme metrics" until then. It closed what was 33
   outstanding in the June 2026 draft. Nothing was inferred to close it, because inventing a
   publication date on a project about statistical integrity is not a defensible shortcut. The
   one remaining null is a daily-updated operational page whose past snapshot has no
@@ -845,7 +845,10 @@ open invited an indefinite planning loop.
 - ~~Methodology page outline.~~ Done, and built: `content/sources-and-method.md`.
 - **Outstanding: choose the success measures.** Section 4.2 offers three candidates and says
   they must be chosen and committed to in this phase. None has been. Section 17 makes it a
-  process criterion, and it is the only one with nothing pointing at it.
+  process criterion. **It was the only one with nothing pointing at it until 6 August 2026**,
+  when a docs audit found this line and `docs/BACKLOG.md` gave it a numbered item in The order.
+  That entry carries its state; this line does not, and says so rather than becoming the second
+  place it is tracked.
 - **Outstanding, and genuinely missing from the original phase: talk to five people.** A local
   journalist, a councillor, a teacher, and two people who are simply interested. Ask whether
   they would use this and what they would look for. This project has been designed for named
