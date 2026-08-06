@@ -394,7 +394,7 @@ It declares the same two frozen vintages as the glossary.
 | --- | --- |
 | 'Every figure is traceable to a named publication with a date' | Every record names a source and a date. **No check verifies that the source contains the figure.** Backlog item **A1**; the handoff records three defects found by opening five publications, one of them a headline figure |
 | 'Where a number appears in a sentence on this site, it is inserted from the record when the page is built' | Backlog item **A4**. The build's unrecorded-figure report prints the ones that are not, and the count is what `npm run validate` prints rather than a number restated here |
-| 'a current value written out longhand anywhere in a page will each stop the site being built' | A comma-grouped value a record holds is an error. A value under 100, and a value written with a scale word that a record holds, are **warnings**. A figure the data layer never recorded is **reported and not refused** |
+| 'a current value written out longhand anywhere in a page will each stop the site being built' | A comma-grouped value a record holds is an error. A value under 100, and a value written with a scale word that a record holds, are **warnings**. **A figure the data layer never recorded is now REFUSED**, promoted from a falling report to an error on 2 August 2026. **This row said reported and not refused until 6 August 2026**, which understated what the build does, and the regeneration of 6 August missed it because that pass compared quoted passages and this lives in a table |
 | 'A claim unreviewed for twelve months is taken down until it has been' | `review_due` fails the build when the date passes, which stops the site publishing rather than removing a page from a published site |
 
 ### 4.2 What the page publishes as the limits of the checks
@@ -408,32 +408,36 @@ Three are published. Set beside what the build reports:
   closing line.
 - **'No real screen reader has been run over these pages.'** Matches, and the backlog carries running one.
 
-**A fourth candidate is not published and is backlog item A6**: that a figure the data layer never
-recorded is reported and never refused. It is the one that bears on 4.1's second and third rows.
+**The fourth candidate limit no longer exists**, and this paragraph argued for publishing it until
+6 August 2026. It was that a figure the data layer never recorded is reported and never refused.
+The build refuses those now, so there is no unpublished limit here to weigh.
 
 ### 4.3 The count about this site's own work
 
-> 'Four false summaries were found on this site, by reading, not by tooling.'
+> 'False summaries have been found on this site, by reading, not by tooling.'
 
-A count about the project's own work, on a live page, and nothing re-derives it. The same count
-appears in section 1 of `docs/PRE-PUBLICATION-REVIEW.md`, so it is held in two places. This
-project's practice with counts about its own work has been to delete them rather than correct
-them.
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** It read 'Four false
+summaries' until then: a count about the project's own work, live on a page, held here and in
+section 1 of `docs/PRE-PUBLICATION-REVIEW.md`, and re-derived by nothing. This project's practice
+with counts about its own work is to delete them rather than correct them, so the number is gone
+and the sentence keeps its point. **The copy in the review template still carries the number** and
+is a frozen record, so it stays as written.
 
 ### 4.4 The reference-periods table
 
-Its lead-in says 'Different measures cover different twelve-month windows', and its caption reads
-'The twelve-month window each family of measures covers at the last update'. The four rows are:
-year ending March 2026; year ending December 2025; point-in-time 31 March 2026; 2021/22 Census.
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** All three findings below
+were live until then and all three are closed:
 
-- **Two of the four are not twelve-month windows.** A point-in-time stock at 31 March 2026 is one
-  date, and the 2021/22 Census is a census.
-- **Money is not in the table.** `fiscal/government-spending-on-the-asylum-system` is on
-  **financial year 2024-25**, as are the two spending records its home page card cites, and no row
-  names that period.
-- The **Foreign-born population** row gives only the 2021/22 Census. The site also publishes
-  `population/foreign-born-population-mid-2024` and `population/foreign-born-share-mid-2024`, both
-  for mid-2024, and the home page card and the born-abroad claim both carry the later estimate.
+- The lead-in and caption said **twelve-month windows** and two of the four rows were not one. They
+  now say **period**, and the point-in-time row says in the table that it is one date rather than a
+  window.
+- **Money had no row**, though `fiscal/government-spending-on-the-asylum-system` is on financial
+  year 2024-25, as are the two spending records its home page card cites. **Asylum system spending
+  now has a row.**
+- The **Foreign-born population** row gave only the 2021/22 Census while the site also publishes
+  `population/foreign-born-population-mid-2024` and `population/foreign-born-share-mid-2024`, which
+  the home page card and the born-abroad claim both carry. The row **now names the rolled-forward
+  mid-2024 estimate** beside the census.
 
 ### 4.5 The update section
 
@@ -448,7 +452,14 @@ year ending March 2026; year ending December 2025; point-in-time 31 March 2026; 
 ### 4.6 How this site was built
 
 > 'A verification pass in July 2026 checked them against primary publications, quoting the
-> specific sentence or table cell behind each value.'
+> specific sentence or table cell behind each value it covered. Where a figure has been checked
+> that way, the quotation is recorded in `data/evidence/` and a check refuses a changed value whose
+> quotation does not contain it. That does not yet cover every figure here.'
+
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** It claimed a quotation behind
+EACH VALUE until then. What follows is what the pass found, and the count has moved since: there
+were four evidence entries when this was written and there are eighteen now, against ninety-nine
+records, which is why the sentence had to say what it does not yet cover.
 
 `data/evidence/` holds **four** entries. `check-evidence.mjs` fires on a value that changed
 against `origin/main` and on a value that is new, so a record that has not moved has never been
@@ -524,8 +535,16 @@ Set beside the data: `asylum/small-boat-arrivals-calendar-year-2025` carries the
 
 ### 6.3 The direction labels
 
-> 'Those are the only two labels in use. A misuse common on both sides is currently written up
-> under whichever version circulates more, and named as shared in the text.'
+> 'Those are the only two labels in use. A misuse common on both sides is written up under
+> whichever version circulates more, and carries that side's label. There is no shared label:
+> one was described here until 6 August 2026 and no claim ever carried it, which is a promise
+> to a reader that nothing kept.'
+
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** It promised that a misuse
+common to both sides is 'named as shared in the text' until then. No claim carried a shared label
+and 'both' was removed as a direction, on the reasoning that a label no claim carries is a promise
+to the reader that nothing keeps. **Section 8.5.3 of the foundation document still marks two rows
+'(shared)'**, which is the specification as it stood and not the site.
 
 The front matter uses two labels and no third. **No claim page contains the word 'shared'**, so
 the second sentence describes a practice with no live instance. The two rows marked '(shared)' are
