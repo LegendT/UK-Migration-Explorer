@@ -15,9 +15,9 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 is the last thing `/sources-and-method/` promises and had not been given: "Before this site
 publishes, a human reviews the figures and the claims."
 
-**The signature covers all 22 pages the build produces, and the three routes are not the same
-route.** Saying so is the point, because a single "reviewed" would imply one process covered
-everything and it did not:
+**The signature covers 22 of the 23 pages the build produces other than the 404, and the three
+routes are not the same route.** Saying so is the point, because a single "reviewed" would imply
+one process covered everything and it did not:
 
 - **Ten pages went through the review of 27 July 2026**, whose evidence is `verification.txt` at
   the repository root: the three theme pages and the seven claim pages that existed then.
@@ -29,6 +29,13 @@ everything and it did not:
   #133, #145, #148 and #152, each set against the data layer at drafting and each carrying an
   owner's verdict before or at merge. That is a different method from the review's, applied per
   page rather than as a pass, and it is recorded separately here rather than folded in.
+
+**One page is outside the signature and is named rather than absorbed**: the lifetime
+contribution claim, `content/claims/average-migrant-contributes-341000-over-a-lifetime.md`,
+drafted after the last of the six above and so in none of the three routes. It is named here on
+the same reasoning the rest of this entry runs on, that a signature which quietly rounds up to
+"every page" is the scope silence this site objects to in others. **Corrected on 6 August 2026**,
+this entry having read "all 22 pages the build produces" from the day it was written.
 
 **The scope was decided as sixteen pages on 2 August 2026 and is signed at 22.** Six claim pages
 were published after that decision and none of them was in the ten or the six. Signing at sixteen

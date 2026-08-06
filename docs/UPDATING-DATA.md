@@ -9,8 +9,11 @@ Written 30 July 2026. Modelled on `~/Projects/DEBT/docs/UPDATING-DATA.md`, which
 because its data layer is smaller and carries no evidence contract.
 
 **The one rule everything else serves:** no figure changes without a quote from a source you
-fetched, written down before you touch the record. `check-evidence.mjs` enforces it and the
-build fails without it.
+fetched, written down before you touch the record. `check-evidence.mjs` enforces it, and **it
+gates the pull request rather than the build**: it runs in the CI job at
+`.github/workflows/validate-data.yml`, and neither `npm run build` nor the Netlify deploy
+command, `npm test && npm run build`, invokes it. This sentence said the build fails without it
+until 6 August 2026, which told a session the contract was enforced locally when it is not.
 
 ## When
 
@@ -80,11 +83,13 @@ how an update passes validation and ships half a release.
 Every record carries `source_id` for exactly this. **Series files carry one too**, as of PR #47,
 so a source that moves a series shows up here rather than being invisible. Note which of the
 `series_ref` metrics are in scope, and moving any of them without its series point fails
-`validate-data.mjs`. There are **five**, and they are **not** all ONS, which the first version of
-this runbook got wrong: `net-migration`, `net-migration-2`, `total-long-term-immigration` and
-`total-long-term-emigration` are `ons-ltim`, and `asylum/asylum-applications-2025` is
-`ho-immigration-stats`. Count them from the data rather than from this sentence, which is what
-`npm run validate` prints under "Figures held twice".
+`validate-data.mjs`. They are **not** all ONS, which the first version of this runbook got
+wrong, and there are **more of them than this runbook said until 6 August 2026**, when it still
+named five: the `netMigration` and `flows` metrics are `ons-ltim`, in a current and two
+historical vintages each, and `asylum/asylum-applications-2025` and `asylum/asylum-backlog-2019`
+are `ho-immigration-stats`. **Count them from the data rather than from this sentence**, which is
+what `npm run validate` prints under "Figures held twice"; that instruction was already here and
+is the reason a stale number was survivable.
 
 Do not touch a figure whose `source_id` is not the one you are updating. A release you are not
 reading is not a release you can evidence.

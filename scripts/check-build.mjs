@@ -8,14 +8,16 @@
 //
 // Run after `npm run build`: node scripts/check-build.mjs
 
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import site from '../content/_data/site.js';
 import { publishedCounts, registry } from '../lib/published.mjs';
+import { BAR_FONT } from '../lib/charts.mjs';
 
 const siteDir = fileURLToPath(new URL('../_site/', import.meta.url));
+const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 
 function walk(dir) {
   return readdirSync(dir).flatMap((entry) => {
@@ -410,6 +412,83 @@ if (!sitemap) {
   }
   if (phantom.length) {
     errors.push(`sitemap.xml: lists ${phantom.join(', ')}, which the build does not serve. A crawler following that URL meets a 404.`);
+  }
+}
+
+// --- the bar chart's text size, which the stylesheet and the estimator both hold -----------
+// lib/charts.mjs estimates a label's width to decide the left gutter and whether a value fits
+// inside its bar, and the size it estimates at must be the size the page renders. This exact
+// mismatch produced a reader-facing blocker once: the estimator was calibrated against 13px text
+// while the chart drew at 17px, and every y-axis label was clipped at the chart's left edge, so
+// 1,500,000 rendered as "500,000". The bar chart then carried the same shape in miniature until
+// 6 August 2026, measuring at 14 while the narrow rendering draws at 15.
+//
+// CSS cannot import anything, so the two cannot share one constant and are compared instead, on
+// the same reasoning as the print stylesheet's hand-written domain below. Anchored to the
+// declaration blocks rather than to their order in the file.
+const stylesheet = readFileSync(`${repoRoot}content/assets/style.css`, 'utf8');
+// Selectors are compared WHOLE, split out of each rule's selector list, not searched for as
+// substrings. The first version matched `.bar-value` inside `.bar-value-renamed`, so renaming the
+// class out from under this check left it reporting agreement with a rule that no longer styled
+// anything. Found by probing the rename, not by reading the expression.
+const rules = [...stylesheet.matchAll(/([^{}]+)\{([^}]*)\}/g)].map(([, selectors, body]) => ({
+  selectors: selectors.split(',').map((one) => one.trim().split(/\s+/).filter(Boolean).join(' ')),
+  body,
+}));
+const declaredSize = (selector) => {
+  const match = rules.find((rule) => rule.selectors.includes(selector)
+    && /font-size:\s*\d/.test(rule.body));
+  const size = match && /font-size:\s*(\d+(?:\.\d+)?)px/.exec(match.body);
+  return size ? Number(size[1]) : null;
+};
+for (const [key, expected] of Object.entries(BAR_FONT)) {
+  const selector = key === 'narrow' ? '.chart-svg--narrow .bar-value' : '.bar-value';
+  const rendered = declaredSize(selector);
+  if (rendered === null) {
+    errors.push(`content/assets/style.css: no font-size found for ${selector}, so BAR_FONT.${key} in lib/charts.mjs is checked against nothing. If the rule moved, move this check with it.`);
+  } else if (rendered !== expected) {
+    errors.push(`lib/charts.mjs BAR_FONT.${key} is ${expected} and content/assets/style.css renders ${selector} at ${rendered}px. The label-width estimator would measure text at the wrong size, which is how every y-axis label came to be clipped once. Change both or neither.`);
+  }
+}
+
+// --- the accessibility page list, against the pages the build actually produced ---------
+// `.pa11yci.json` names its URLs by hand, and until 6 August 2026 nothing compared that list
+// with the build. A hand-maintained list fails by OMISSION, which is the worst direction: add a
+// page, forget the list, and the run reports every URL clean while never opening the new one.
+// This project has already been bitten by exactly that shape once, an accessibility pass
+// reporting a full clean sweep with a live page absent from the list.
+//
+// Compared BOTH ways, on the same rule as the sitemap above. The other direction catches a URL
+// the list still names after the page was renamed or removed: pa11y-ci fails on a 404 rather
+// than passing silently, so that end is noisier, but it is the end that tells you which list is
+// wrong.
+//
+// 404.html is INCLUDED here, unlike the sitemap, because it is a page a reader reaches and it
+// carries navigation like any other. The list names it as /404.html, which is how the server
+// serves it.
+//
+// The port is taken from whatever the list already uses rather than written here, so this
+// compares paths and never disagrees with the runner about where the site is being served.
+const pa11yConfigPath = `${repoRoot}.pa11yci.json`;
+if (!existsSync(pa11yConfigPath)) {
+  errors.push('.pa11yci.json: missing, so npm run a11y has no list of pages and would audit nothing.');
+} else {
+  const pa11yConfig = JSON.parse(readFileSync(pa11yConfigPath, 'utf8'));
+  const listedPaths = new Set((pa11yConfig.urls ?? [])
+    .map((entry) => (typeof entry === 'string' ? entry : entry.url))
+    .filter(Boolean)
+    .map((url) => url.replace(/^https?:\/\/[^/]+/, '') || '/'));
+  const shouldAudit = new Set(pages.map((file) => {
+    const rel = relative(siteDir, file).replace(/\\/g, '/');
+    return rel === '404.html' ? '/404.html' : `/${rel.replace(/index\.html$/, '')}`;
+  }));
+  const unaudited = [...shouldAudit].filter((path) => !listedPaths.has(path));
+  const phantomAudit = [...listedPaths].filter((path) => !shouldAudit.has(path));
+  if (unaudited.length) {
+    errors.push(`.pa11yci.json: does not list ${unaudited.join(', ')}, which the build serves. npm run a11y would report a clean sweep without ever opening ${unaudited.length === 1 ? 'that page' : 'those pages'}.`);
+  }
+  if (phantomAudit.length) {
+    errors.push(`.pa11yci.json: lists ${phantomAudit.join(', ')}, which the build does not produce. pa11y-ci audits a 404 page under that URL, so the count it reports is not the count of this site's pages.`);
   }
 }
 

@@ -81,7 +81,7 @@
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "Foreign-citizen (non-British nationality) share, up from about 5% in 2004. Differs from the foreign-born group: many migrants naturalise, and some UK-born residents are non-citizens.",
-      "confidence_level": "official"
+      "confidence_level": "estimated"
     },
     {
       "id": "total-uk-population",
@@ -113,7 +113,7 @@
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "India was the largest single country of birth (9%). The top five, India (9%), Poland (8%), Pakistan (6%), Romania (5%), Ireland (4%), together accounted for 32% of the foreign-born population.",
-      "confidence_level": "official"
+      "confidence_level": "estimated"
     },
     {
       "id": "british-citizenship-grants",
@@ -281,7 +281,7 @@
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "About 47% of foreign-born residents lived in London and the South East, against 27% of the overall population.",
-      "confidence_level": "official"
+      "confidence_level": "estimated"
     },
     {
       "id": "share-of-london-residents-born-abroad",
@@ -297,7 +297,7 @@
       "published_date": "2024-08-09",
       "retrieved_date": "2026-06-17",
       "notes": "THE SOURCE GIVES A FLOOR AND THIS RECORD HOLDS A POINT: the briefing says 'More than 40% of its residents had been born abroad', so 40 is the least it can be and not an estimate of what it is. Anything written from this record has to say at least, and a sentence reading 40% of Londoners were born abroad is not supported by it. The 2021 Census figure itself is not quoted by the briefing. Highest of any region. National average 16%. Lowest: North East (7%), Wales (7%), Northern Ireland (9%).",
-      "confidence_level": "official"
+      "confidence_level": "estimated"
     }
   ]
 }

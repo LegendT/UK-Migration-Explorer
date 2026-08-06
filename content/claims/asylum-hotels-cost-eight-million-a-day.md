@@ -3,10 +3,11 @@ id: asylum-hotels-cost-eight-million-a-day
 claim: Asylum hotels cost £8 million a day.
 short_answer: >-
   Check the figure and the year before repeating it. About £8 million a day is close to the Home
-  Office's own average for 2023-24, a financial year that ended in March 2024. For 2024-25 the
-  same page of the same accounts gives £5.77 million a day. Both are hotels only, and hotels are
-  one part of the bill: the National Audit Office puts the whole asylum system at £4.9 billion in
-  2024-25, and no publisher states a daily average for it.
+  Office's own average for 2023-24, a financial year that ended in March 2024. The same page of
+  the same accounts gives a materially lower average for 2024-25. Both are hotels only, and
+  hotels are one part of the bill: the National Audit Office's whole-system total is larger
+  again, and no publisher states a daily average for it. The current figures, each with its
+  source and date, are on this page.
 direction: restrictionist
 error_type: a figure from a past year repeated as current, and hotels read as the whole bill
 # £8 million is declared on the same reasoning that declared it on content/costs.njk, decided

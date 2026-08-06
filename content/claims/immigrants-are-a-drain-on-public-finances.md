@@ -64,9 +64,10 @@ contribution depends on age at arrival, earnings, family composition and length 
 Office for Budget Responsibility's illustrative chart, corrected in November 2024, shows a
 representative migrant arriving at 25 on the average wage, modelled as a lone individual with
 no dependants, as a clear lifetime net contributor, while a low earner is a net cost. The
-figure of about £{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} that is
-sometimes read from that chart is not one OBR itself states; it is a stylised single case,
-quoted here for its spread rather than its size.
+figure of about £{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} is **this
+site's own reading of that chart at age 82**, not one OBR itself states: OBR singles out no
+endpoint age, and the figure moves by a large margin with the age chosen. It is a stylised
+single case, given here for its spread rather than its size.
 
 ## Where the claim draws its strength
 

@@ -135,11 +135,49 @@ const isRealDate = (value) => {
 // which is what makes it a thousands separator or a decimal point rather than punctuation. The
 // leading side is deliberately unchanged: a comma or full stop immediately before the digits is a
 // separator in every real case, and loosening it would let 1,313 answer for 313 again.
+//
+// AND A SIGN IS REFUSED, since 6 August 2026. The lookbehind excluded a preceding digit, comma
+// and full stop and said nothing about a minus, so a quote reading "-297,000", "−297,000" or
+// "-£297,000" answered for a record holding a positive 297,000. This project publishes figures
+// whose SIGN is the contested part: the OBR record below says in terms that the endpoint age
+// "decides the sign as well as the size", so the evidence contract was weakest exactly where the
+// subject is hardest. Found by probing the function, not by reading it.
+//
+// A minus is refused only where it is ACTING as a sign, meaning it is not itself preceded by a
+// digit. That distinction is load-bearing in both directions: refusing every preceding hyphen
+// would have failed a quote giving a range as "290,000-297,000" and a financial year as
+// "2024-25", both of which real quotes use. One space and one currency symbol may sit between
+// the sign and the digits, because "-£297,000" and "− £297,000" are how the sign is actually
+// written here.
+//
+// NOT fixed, and pre-existing rather than introduced: a record whose own value is negative,
+// quoted with the symbol inside the sign as "-£308,275", is not found, because the formatted
+// form is "-308,275" and that string is not in the text. No record holds a negative value today.
+const CARRIES_LOOKBEHIND = String.raw`(?<![\d,.])(?<!(?<!\d)[-−–]\s?[£$€]?)`;
 const carries = (text, value) =>
   [...new Set([format(value), String(value)])].some((form) => {
     const escaped = form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return new RegExp(`(?<![\\d,.])${escaped}(?!\\d)(?![,.]\\d)`).test(String(text));
+    return new RegExp(`${CARRIES_LOOKBEHIND}${escaped}(?!\\d)(?![,.]\\d)`).test(String(text));
   });
+
+// Control, run every time, on the precedent scripts/validate-content.mjs sets for its scale-word
+// scan: a matcher that quietly stopped matching would let every entry through and read as a pass.
+// Both directions, because a check that only proves it still CATCHES can be satisfied by a
+// matcher that catches everything.
+for (const [text, value, expected] of [
+  ['reaches 297,000 at age 82', 297000, true],
+  ['reaches £297,000 at 82', 297000, true],
+  ['between 290,000-297,000 people', 297000, true],
+  ['in 2024-25 the figure', 25, true],
+  ['the total was 1,297,000', 297000, false],
+  ['a net cost of -297,000', 297000, false],
+  ['a net cost of −297,000', 297000, false],
+  ['a net cost of -£297,000', 297000, false],
+]) {
+  if (carries(text, value) !== expected) {
+    errors.push(`quote matching: ${JSON.stringify(text)} against ${value} should be ${expected}. The rule that a quote must contain its figure means nothing while this disagrees.`);
+  }
+}
 
 // --- the evidence on file ------------------------------------------------------------
 // Every entry ever written stays here; it is the audit trail that makes a figure's history

@@ -68,8 +68,8 @@ year to stop at, and the page carrying it had looked equally confident before an
 
 **"The average migrant" is the wrong noun for a single modelled individual.** The chart's subject
 is one hypothetical person with fixed characteristics: arriving at 25, earning the average wage,
-with no dependants in the model. Real arrivals come at every age, on every wage, and about a third
-of main applicants bring a dependant. An illustration built to show how the answer moves with
+with no dependants in the model. Real arrivals come at every age, on every wage, and many bring
+dependants, whom the modelled individual does not have. An illustration built to show how the answer moves with
 circumstances is being quoted as though it had averaged over them.
 
 **The endpoint does the arithmetic, and it is never stated.** A claim of this shape is only

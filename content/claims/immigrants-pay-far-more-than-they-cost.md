@@ -43,9 +43,13 @@ supports a confident claim in either direction.
 One figure sometimes quoted in support of this claim comes from an Office for Budget
 Responsibility chart, corrected in November 2024: a representative migrant arriving at 25 on the
 average wage, modelled as a lone individual with no dependants, is a lifetime net contributor.
-The roughly £{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} figure read
-from that chart is an illustration, not a number OBR itself prints, and it describes one
-hypothetical individual. The same OBR analysis finds a migrant on low earnings has a
+OBR prints no single value and singles out no endpoint age, and the chart runs to age 100. The
+roughly £{{fiscal/illustrative-lifetime-net-fiscal-contribution-of-a-migrant}} here is **this
+site's own reading of that chart at age 82**, chosen because that is the life expectancy OBR's
+own text gives an average person in 2028. It is an illustration, not a number OBR itself prints,
+it describes one hypothetical individual, and **the age is doing much of the arithmetic**: stop
+at a different one and the figure moves by a large margin, and before the chart ends it changes
+sign. The same OBR analysis finds a migrant on low earnings has a
 **negative** lifetime impact, and one on high earnings a considerably larger positive one. It
 shows how sensitive the answer is to circumstances; it is not an average.
 

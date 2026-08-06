@@ -235,7 +235,29 @@ for (const file of readdirSync(claimsDir).filter((f) => f.endsWith('.md'))) {
   }
 
   const literals = parseLiterals(front.historical_literals);
-  contentPages.push({ file, prose, literals, lineOffset: frontMatterLines(match[1]) });
+  // The front matter is BLANKED LINE BY LINE rather than cut away, and `short_answer` is left
+  // in it, so the scans below read the one front-matter field that renders to a reader as this
+  // site's own words: `claim.njk` prints it as the answer and `base.njk` puts it in the meta
+  // description and the og:title. It was scanned by nothing until 6 August 2026, and the hotels
+  // claim's answer was restating two live record values as frozen text underneath that silence,
+  // which is the state the published promise on /sources-and-method/ says cannot happen.
+  //
+  // `claim:` stays blanked, deliberately: it holds the proposition being corrected and
+  // legitimately carries the figure the page exists to examine. Blanking rather than cutting is
+  // what keeps a reported line number pointing at the real line, so lineOffset is 0 here.
+  const blanked = (() => {
+    let keeping = false;
+    return match[1].split('\n').map((line) => {
+      if (/^[a-z_]+:/.test(line)) keeping = /^short_answer:/.test(line);
+      return keeping ? line : '';
+    });
+  })();
+  contentPages.push({
+    file,
+    prose: ['', ...blanked, '', ...prose.split('\n')].join('\n'),
+    literals,
+    lineOffset: 0,
+  });
   claims.push({ file, id: front.id, direction: front.direction, mirrorOf: front.mirror_of, tokens: new Set(tokens) });
 }
 
@@ -1112,7 +1134,7 @@ if (declaredLive.length) {
 } else {
   console.log('No declared literal equals a value the data layer holds, so the exemption list and the claim above do not overlap on this run.');
 }
-console.log(`A longhand figure the data layer never recorded is REFUSED as of 2 August 2026, having been reported under a falling baseline since the branch was written. ${unrecorded.length ? `${unrecorded.length} are listed above and this run fails on them` : 'None on this run'}. Still not covered, and this is what the promotion did not change: a figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand" is not scanned at all, and neither is front matter, where one claim's short answer carries a rounded figure this scan would otherwise see.`);
+console.log(`A longhand figure the data layer never recorded is REFUSED as of 2 August 2026, having been reported under a falling baseline since the branch was written. ${unrecorded.length ? `${unrecorded.length} are listed above and this run fails on them` : 'None on this run'}. Still not covered, and this is what the promotion did not change: a figure written "2 200 000", "two million", "£1.3bn" or "2.2 thousand" is not scanned at all. Front matter WAS also unscanned until 6 August 2026 and now is, for short_answer alone, which is the one field that renders to a reader as this site's own words; it caught two claim pages restating live record values as frozen text. The other fields stay unread, the claim field deliberately, because it holds the proposition being corrected.`);
 console.log(`${dataFields} prose field(s) in data/ that render to a page are held to the same rule, cards, caveats, confidence definitions and the source catalogue.`);
 console.log(`Not covered: whether a sentence describing a figure describes it correctly. A citation protects the value, never the verb around it, so a summary saying a series rose when it fell still builds. ${BANNED_TERMS.length} language rules scanned across ${contentPages.length} pages.`);
 console.log(`Claim direction split: ${Object.entries(byDirection).map(([d, n]) => `${n} ${d}`).join(', ')}, each meets the minimum of ${MINIMUM_PER_DIRECTION}.`);

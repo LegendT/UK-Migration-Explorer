@@ -3,9 +3,9 @@ id: nineteen-per-cent-born-abroad
 claim: 19% of the UK population was born abroad.
 short_answer: >-
   Roughly right now, but not as an exact, current, official figure. ONS's
-  provisional mid-2024 estimate puts the foreign-born population at about 13.1
-  million, or 18.9% of the population, but that is an official statistic in
-  development, ONS publishes no percentage, and there is no 2026 count.
+  provisional mid-2024 estimate is close to it, but that estimate is an official
+  statistic in development, ONS publishes no percentage of its own, and there is
+  no 2026 count. The figures, and what each one rests on, are on this page.
 direction: restrictionist
 error_type: provisional estimate treated as an exact, current, official figure
 correction: >-

@@ -101,8 +101,10 @@ period_label or date moved, for every record where they did.
 ## What this refuses, and why that is the whole design
 
 **Series work.** Decided 30 July 2026. If a series file is in scope, or any of the metrics
-declaring a `series_ref` is, the run stops and hands the job to a person. There are five of them;
-do not take that number from here, take it from what `npm run validate` prints.
+declaring a `series_ref` is, the run stops and hands the job to a person. **Do not take their
+number or their publishers from here**, take both from what `npm run validate` prints: this
+paragraph said five when there were more, and named the wrong split, from 30 July until
+6 August 2026.
 
 The refusal names where to go and **does not restate the steps**:
 
@@ -114,10 +116,12 @@ That wording is deliberate. A procedure printed in two places is the duplication
 been burned by twice, and the copy a session happens to read wins. If the refusal grew a helpful
 summary of what to do, that summary would be the second copy.
 
-**What it costs, and the first version of this paragraph understated it by half.** Four of the
-five `series_ref` metrics are `ons-ltim`, so this prompt cannot do an ONS update at all. The
-fifth, `asylum/asylum-applications-2025`, is `ho-immigration-stats`, so the refusal now fires on
-the Home Office quarterly through a metric as well as through a series file. Two
+**What it costs, and every version of this paragraph has understated it.** Most of the
+`series_ref` metrics are `ons-ltim`, so this prompt cannot do an ONS update at all. The rest are
+`ho-immigration-stats`, `asylum/asylum-applications-2025` and `asylum/asylum-backlog-2019`, so
+the refusal fires on the Home Office quarterly through a metric as well as through a series
+file. **No count is written here on purpose**: the run prints it, and both numbers this
+paragraph used to give were wrong within a week. Two
 of the four series files are `ho-immigration-stats`, `asylumApplicationsTimeseries.json` and
 `asylumBacklogTimeseries.json`, and both are replaced whole on every Home Office quarterly. So
 the refusal fires on **two of the three cadenced releases**, including the most frequent one and
