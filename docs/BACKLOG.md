@@ -97,36 +97,16 @@ below.
    withholds it at UK level in terms, so nothing accredited publishes a UK-wide foreign-born
    figure at all. **This entry read as open until the consolidation of 4 August 2026**, when the
    page was grepped rather than the entry believed.
-6. **GATE. The UX review, U3 to U5 below.** U1 is done (PR #86) apart from the `robots.txt`
-   half, which is in the launch gate at the end. U2 is closed (PR #118), built and its format
-   decided. **U3's first bullet and call 28 are applied (PR #137, 5 August 2026)**: the confidence
-   grade and a per-figure checked date now render on all three theme pages, and a claim can be
-   taken down under the twelve-month promise without deleting its address. **What is left is one
-   bullet in U3, and this entry accounted only for U3 until 5 August 2026**,
-   which is the shape that orphaned A6 a day earlier: a header naming U3 to U5 above a conclusion
-   covering U3 alone, and the conclusion is what gets believed. A session read the item as spent
-   and named the wrong next item because of it. Taking the three sections in turn:
-   **U3** leaves the `metric_name` bullet, deliberately not released with the first and **[you]**;
-   **call 28's WORDING, which is also [you]**, PR #137 having settled the behaviour and shipped a
-   session's draft of the words, so this entry's own "call 28 is applied" is true of the mechanism
-   and not of the sentence a reader meets; and two bullets that carry no tag at all, a reader-facing
-   `/changes/` page and theme-to-claim links, which the header's rule routes to nobody. **This
-   entry named only the `metric_name` bullet until 5 August 2026.**
-   **U4's call 27 is applied (PR #143, 5 August 2026)**, and the
-   deprecation it was gated on holds: Google's post of 12 June 2025 lists Claim Review among the
-   types that "will no longer be supported in Google Search results", and its update of 8 September
-   2025 takes the type out of Search Console the following day. **Checking eligibility for the one
-   surviving channel found a second and stronger ground**, which is under U4. **Applying call 27
-   also raised a [you] question that no entry in The order named until 5 August 2026**: `license`
-   points at `/sources-and-method/#reuse`, which states the Open Government Licence and mentions
-   neither the MIT half nor the two publishers whose figures are not Crown copyright, while
-   `LICENCE` itself is served nowhere. It is under U4, and it was reachable from this list only by
-   opening a section whose header this entry named and whose contents it did not read. **That is
-   the shape that orphaned A6 and then U6's call 29**, and no count of how often is written here,
-   because it would need editing the next time it happened. U4's other
-   call, 26, is decided and unapplied but is **not applied here**: item 13 says what it decides is
-   the content of the `robots.txt` that item 13 writes, so it lands there and that item is
-   deliberately last. **U5** is considered-and-cut and holds no work by design.
+6. **CLOSED 6 August 2026 (PR #154).** The UX review, U3 to U5, and those sections now hold
+   nothing. `metric_name` in the citation block and the theme-to-claim links are built;
+   `/sources-and-method/#reuse` names the MIT half and the two publishers whose figures are not
+   Crown copyright, which is the question applying call 27 raised; call 28's wording is confirmed
+   rather than replaced, on the owner's word; and the reader-facing `/changes/` page is decided
+   against, on a measurement that is under U3. U1 was done in PR #86 and U2 closed in PR #118.
+   **U4's call 26 is the one thing any of these sections still points at, and it was never this
+   item's**: item 13 says what it decides is the content of the `robots.txt` that item 13 writes.
+   **This entry accounted for less than its own header named on two successive days**, which is why
+   U3 and U4 carry the state and this line carries only the outcome. It is under *Completed*.
 7. **CLOSED 5 August 2026 (PR #138).** U6's three findings are all built: the navigation (PR #109),
    the chart remedy (PR #113) and now the seven-table finding, call 29, where the first-column
    floor is scoped to the wide rendering and the Sources catalogue is rendered twice, a definition
@@ -156,7 +136,10 @@ below.
     on 4 August 2026, and **PRs #145 and #148 added "Small boat arrivals are the whole asylum system"
     and "Visa grants equal arrivals", and both are merged and live**, so their verdicts and short
     answers stand as drafted: merging them is what settled them, and changing either now is a
-    change to a published page rather than a call on a draft. **Seven were draftable, not eight**: "Local areas all carry the same
+    change to a published page rather than a call on a draft. **PR #152 added "Asylum hotels cost
+    £8 million a day" and is merged and live**, its verdict and short answer approved as drafted on
+    6 August 2026 before the merge rather than by it, which is the only one of the set settled in
+    that order. **Seven were draftable, not eight**: "Local areas all carry the same
     pressure" needs per-capita local authority figures and `data/` holds none. The order the rest
     are proposed in is in PR #132. **No count is written here, in digits or in words**: `npm run
     validate` prints the direction split, and how far the finished set would carry it is under
@@ -517,19 +500,27 @@ grade decisions its first bullet waits on.
   the ones a reader will ask about. **The one grade change still open, A1's call 31, is on two
   records that reach no reader**, established through `publishedRefs()` rather than read off an
   entry. `/sources-and-method/#confidence` already defines all four grades, so a grade printed on a
-  theme page has somewhere to send whoever meets it. **[me]**.
-- **The `metric_name` in the citation block is NOT released with it, and that is deliberate.** The
+  theme page has somewhere to send whoever meets it. It was **[me]** and it is done.
+- **The `metric_name` in the citation block. APPLIED (PR #154, 6 August 2026), and the grade
+  vocabulary inside a name is kept rather than stripped: it is the record's own description, and a
+  citation a reader pastes elsewhere should not be tidier than the record. Fifteen entries across
+  the site cite one publication for more than one figure, one of them for five, which the block was
+  collapsing in silence. What follows is why it was held back, kept because it was the reasoning.**
+  It was NOT released with the confidence-grade bullet, and that was deliberate. The
   block does not say which figure each publication was cited for, and the field that would say it is
   `metric_name`, which appears nowhere in the built site today and carries the grade vocabulary in
   its own text: "Foreign-born share of total UK population, mid-2024 (calculated, provisional)".
   That prints grade vocabulary inside the block a reader copies, which is a different question from
   printing a grade beside a figure, and U2 deferred it here rather than building it. **Releasing it
-  as a by-product of the bullet above would be deciding it by omission**, so it stays **[you]**, and
-  it is worth seeing rendered before deciding. The place it earns most is
+  as a by-product of the confidence-grade bullet would have been deciding it by omission**, so it stayed
+  **[you]** until 6 August 2026 and was worth seeing rendered before deciding. The place it earns most is
   `/common-claims/nineteen-per-cent-born-abroad/`, where this site's own calculation and the
   Migration Observatory's figure sit in one citation block with nothing saying which produced the
   19%. The mechanism already resolves the records, so building it is small once it is decided.
-- **Call 28, the withdrawn-claim stub. APPLIED (PR #137, 5 August 2026), with the wording open.**
+- **Call 28, the withdrawn-claim stub. APPLIED (PR #137, 5 August 2026), and its WORDING IS NOW
+  CONFIRMED rather than replaced, on the owner's word of 6 August 2026**, so what shipped is the
+  settled text. This bullet records that it was a session's draft, which is what the
+  confirmation was needed for.
   `paused: <date>` in a claim's front matter renders a stub at the same address, keeping the claim
   under its "The claim" label and losing the answer, the figures and the citation. An optional
   `paused_reason` says more where there is one. **THE SETTLED WORDING DOES NOT EXIST IN ANY
@@ -541,17 +532,30 @@ grade decisions its first bullet waits on.
   dangling git objects, where the two hits are this session's own intermediate blobs; `.history/`,
   which holds two copies of `verification.txt` and no match; and the stash, which is empty. The
   phrase "drafted in the session record" refers to a chat transcript that is in no artefact this
-  repository can reach. **What shipped is a session's draft**, and replacing the words is a one-line
-  edit to `content/_includes/claim.njk` that changes no behaviour. **[you]** to confirm or replace.
+  repository can reach. **What shipped was a session's draft**, and replacing the words would have been a one-line
+  edit to `content/_includes/claim.njk` changing no behaviour. It was **[you]** to confirm or
+  replace, and it was confirmed.
   **Pausing clears the twelve-month build error deliberately**, because Netlify runs `npm test`
   before it builds, so left firing it would fail the deploy on the very claim just taken down and
   the state would be unreachable. A printed list names every paused claim instead. Pausing stays a
   deliberate act rather than a timeout: automatic would trade a check that stops a deploy for a page
   that quietly empties itself.
-- **A reader-facing `/changes/`.** The changelog IS linked from the corrections section, so the
-  promise is kept; the destination is a raw markdown file on GitHub.
-- **Theme-to-claim links.** Pages declare `figures:` in front matter, so which claims misuse a
-  given figure is computable at build time.
+- **A reader-facing `/changes/`. DECIDED NOT TO BE BUILT, 6 August 2026**, and refused on a
+  measurement rather than on taste: `CHANGELOG.md` holds 151 distinct comma-grouped values, 68 of
+  them held nowhere in `data/`, and `validate-content.mjs` REFUSES a longhand figure no record
+  holds. So a markdown page fails outright, and a template reading the file at build time passes
+  the scan while shipping those figures unguarded, which meets the rule by evading it. The
+  changelog stays a file on GitHub. **This bullet said it was linked from the corrections section
+  until 6 August 2026**: it is not, and never was. That section names it twice in plain text. The
+  link is in `base.njk`, so it is in the footer of every page, and on `/about/` and the 404. The
+  promise is kept, for a different reason than this bullet gave.
+- **Theme-to-claim links. APPLIED (PR #154, 6 August 2026).** Pages declare `figures:` in front
+  matter and so does every claim, so the join is computed at build time and a claim added later
+  appears without anybody remembering. It renders 7 items on `/asylum/`, 4 on `/migration/` and 2
+  on `/costs/`. **The numbers first proposed for this were 8, 4 and 3 from 21, 16 and 10 declared
+  figures, and all six were wrong**: the parse ran over the whole file rather than its front matter
+  and swallowed chart bar lists. The real declarations are 20, 15 and 9. A count put in front of
+  the owner to decide on gets the treatment a published figure gets.
 - **Closed here**: no visible door to the data layer, done in PR #105. The whole `data/` directory
   ships with the site and the Reuse section lists every top-level file with a link and a count,
   generated from the directory rather than typed.
@@ -578,7 +582,10 @@ grade decisions its first bullet waits on.
   people." So the surviving channel is closed to this site by this site's own published policy,
   which is the ground that does not rot if Google reverses the other one. `check-build.mjs` now
   refuses a `ClaimReview` node rather than leaving that reasoning in a comment.
-  **One question it raised is [you] and small**: `license` points at `/sources-and-method/#reuse`,
+  **One question it raised is APPLIED (PR #154, 6 August 2026)**, and the alternative was refused
+  because it changes what the site publishes: `#reuse` now names the MIT half, what it covers, and
+  the two publishers whose figures are not Crown copyright, while `LICENCE` is still served
+  nowhere. What it said before, and why the alternative was weighed: `license` pointed at `/sources-and-method/#reuse`,
   which states the Open Government Licence for most figures and does not mention the MIT half or
   the two publishers whose figures are not Crown copyright, while `LICENCE` itself is not served by
   the site at all. Serving it and pointing at it is the alternative, and it changes what the site
@@ -717,12 +724,13 @@ figure the site is arguing against, so it is a decision rather than a widening.
 
 ### 5. The undrafted claims
 
-Foundation section 8.5.3 specifies fifteen; twelve are written, three of them in PRs #131, #132
+Foundation section 8.5.3 specifies fifteen; thirteen are written, three of them in PRs #131, #132
 and #133 on 4 August 2026, the fourth, "Small boat arrivals are the whole asylum system", in
-PR #145 on 5 August 2026, and the fifth, "Visa grants equal arrivals", in PR #148 on the same day.
-**One of the remaining three cannot be written**: "Local areas all carry
-the same pressure" needs per-capita local authority figures and `data/` holds none. **Two are
-left**, and the order they are proposed in is in PR #132.
+PR #145 on 5 August 2026, the fifth, "Visa grants equal arrivals", in PR #148 on the same day, and
+the sixth, "Asylum hotels cost £8 million a day", in PR #152 on 6 August 2026.
+**One of the remaining two cannot be written**: "Local areas all carry
+the same pressure" needs per-capita local authority figures and `data/` holds none. **One is
+left**, and the order they were proposed in is in PR #132.
 
 **Who drafts, decided 30 July 2026.** A session drafts and proposes; the **verdict and the short
 answer come to the owner before merge**. The spec in 8.5.3 is a starting position rather than an
@@ -747,12 +755,13 @@ four of its rows were overtaken by the review on 27 July.
 
 **The direction split is the thing to weigh before writing more.** `validate-content.mjs` counts
 parsed files in `content/claims/`, so a direction assigned to an undrafted claim changes nothing;
-only a merged page moves the split. It stands at nine restrictionist to three pro-migration, both
-PRs having merged, further off the enforced floor, which reopens the option of dropping claim
-2.7 that correction 1g found closed. **One of the two remaining corrects a pro-migration claim**, the
+only a merged page moves the split. It stands at ten restrictionist to three pro-migration, PR #152
+having merged, further off the enforced floor still, which reopens the option of dropping claim
+2.7 that correction 1g found closed. **The one remaining claim corrects a pro-migration claim**, the
 lifetime contribution one, and it needs its own figure checked first: the record it would rest on
 moved from £341,000 to £297,000 in PR #129, so the claim as specified in 8.5.3 quotes a number this
-site no longer publishes.
+site no longer publishes. **That makes its wording a call before it is a draft**, and the call is
+whether the page corrects the figure as it circulates or as this site now publishes it.
 
 ### 6. The sources page's counts have no check behind them. DONE (PR #68, 30 July 2026)
 
@@ -822,6 +831,41 @@ establish*.
 Kept so that a future session can see what was decided and when, rather than reopening it. **The
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
+
+- **The UX review's trust work, U3 to U5**, 6 August 2026. PR #154, closing The order's item 6.
+  Three things landed and one was a decision not to build. A citation block now says which FIGURE
+  each publication was cited for, which matters most where this site's own calculation sits beside
+  somebody else's published figure with nothing distinguishing them; fifteen entries across the
+  site turn out to cite one publication for more than one figure, one of them for five. The three
+  theme pages now list the claim checks resting on a figure they declare, joined at build time from
+  front matter on both sides so a claim added later appears without anybody remembering. And
+  `/sources-and-method/#reuse` names the MIT half and the two non-Crown publishers, where it had
+  named only the Open Government Licence. **The `/changes/` page was refused on a measurement**:
+  `CHANGELOG.md` holds 151 distinct comma-grouped values, 68 held nowhere in `data/`, so the page
+  either fails `validate-content.mjs` or evades it. **Call 28's wording was confirmed rather than
+  replaced**, which closes a question that had no artefact behind it anywhere in this repository.
+  **Two guards, and the second is the one worth keeping**: the merge is guarded against dropping a
+  metric name, asking with the full stop attached because names in this data layer nest and the
+  shorter of a nesting pair would otherwise pass while absent; and `check-build.mjs` now refuses a
+  name printed under a publication that is not its source, which the first guard cannot see and
+  which is the worse failure, since a citation exists to be pasted somewhere else.
+
+- **"Asylum hotels cost £8 million a day"**, 6 August 2026. PR #152, the sixth drafted claim under
+  The order's item 10. **A different error type from anything else in the set**: the claimed figure
+  was real, was official, and is a year stale. The Home Office's accounts state both daily averages
+  themselves on one page, £8.3m for 2023-24 and £5.77m for 2024-25, so the page corrects a date
+  rather than a number and says so. **Its verdict was given before the merge rather than by it**,
+  which is the only one of the set settled in that order. Every sentence resting on a figure was
+  checked against the record field or record note it rests on, generated rather than typed, because
+  `validate-content.mjs` states in its own output that a citation protects the value and never the
+  verb around it.
+
+- **The work item 6 and A6 had stopped accounting for**, 6 August 2026. PR #155. Naming a section
+  is not accounting for what is in it. Item 6 named one of U3's outstanding bullets and nothing at
+  all from U4, which held a question raised the day before; A6's summary said one question was open
+  when both halves of it had merged. **The sweep that found this was wrong on its first pass**: it
+  searched `**[you]**` where U4 prints `[you]` unadorned, so it cleared the orphan it existed to
+  find. Re-run against the form the source prints, with a control.
 
 - **The scroll-region class blindness**, 5 August 2026. PR #149. The order's item 16, and A5's
   last bullet. Four patterns across the `scrollable-regions` transform and the check that exists to
