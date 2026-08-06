@@ -9,6 +9,38 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The pre-publication review is recorded as passed, 6 August 2026
+
+**No figure moved and no page a reader sees changed by this entry.** It records a signature, which
+is the last thing `/sources-and-method/` promises and had not been given: "Before this site
+publishes, a human reviews the figures and the claims."
+
+**The signature covers all 22 pages the build produces, and the three routes are not the same
+route.** Saying so is the point, because a single "reviewed" would imply one process covered
+everything and it did not:
+
+- **Ten pages went through the review of 27 July 2026**, whose evidence is `verification.txt` at
+  the repository root: the three theme pages and the seven claim pages that existed then.
+- **Six pages went through the same method afterwards** in `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md`,
+  because the review never opened them. That evidence was regenerated on 6 August against the live
+  site, seven of its twenty quoted passages having stopped matching the pages they quoted, two of
+  them because the glossary launch gates closed after it was written.
+- **Six claim pages were drafted, evidenced and given a verdict individually**, in PRs #131, #132,
+  #133, #145, #148 and #152, each set against the data layer at drafting and each carrying an
+  owner's verdict before or at merge. That is a different method from the review's, applied per
+  page rather than as a pass, and it is recorded separately here rather than folded in.
+
+**The scope was decided as sixteen pages on 2 August 2026 and is signed at 22.** Six claim pages
+were published after that decision and none of them was in the ten or the six. Signing at sixteen
+would have left six live pages outside the signature, on a site whose stated objection to others
+is scope silence.
+
+**What signing backs, stated because it is a judgement rather than a formality.** The review's own
+selection criteria failed claims 2.6 and 2.7, and both were kept, on this site's published policy
+of not attributing claims to named people. The signature therefore prefers that policy to the
+reviewer's criterion. Whoever reads this later should know the disagreement was real and was
+decided, not overlooked.
+
 ### Two declarations that nothing re-read, 5 August 2026
 
 **No figure moved and no page a reader sees changed.** Both are checks that could not see what they
