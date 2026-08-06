@@ -16,7 +16,7 @@
       "id": "awaiting-first-decision",
       "ref": "asylum/asylum-backlog-people-awaiting-an-initial-decision",
       "shortLabel": "Awaiting a first decision",
-      "whatThisMeans": "A stock, not an intake: it is the queue on one date, and it has fallen sharply from its peak at the end of 2022. It counts people including dependants; the same queue counted as main-applicant cases is about a quarter smaller. This is one of three separate queues, and the appeals queue has moved the other way, from {{asylum/asylum-appeals-backlog-previous-year}} a year earlier to {{asylum/asylum-appeals-backlog}}, so there is no single number for 'the backlog'."
+      "whatThisMeans": "A stock, not an intake: it is the queue on one date, and it has fallen sharply from its peak of {{asylum/asylum-backlog-peak}} in June 2023. It counts people including dependants; the same queue counted as main-applicant cases is about a quarter smaller. This is one of three separate queues, and the appeals queue has moved the other way, from {{asylum/asylum-appeals-backlog-previous-year}} a year earlier to {{asylum/asylum-appeals-backlog}}, so there is no single number for 'the backlog'."
     },
     {
       "id": "asylum-support",

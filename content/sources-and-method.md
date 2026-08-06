@@ -197,10 +197,12 @@ Most of this site is driven by three releases, and the commitment is to update w
 The other {count-in-words:other-figures} published figures come from
 {count-in-words:other-publishers} publishers outside those three cycles.
 Some publish annually and some publish when they publish, and none of them carries a
-promised update schedule here: the National Audit Office, the House of Commons Library, the
-Migration Observatory, the Office for Budget Responsibility, the Independent Chief Inspector
-of Borders and Immigration, ONS population estimates, and the Home Office's annual report and
-accounts. Those are re-checked when they publish, and no
+promised update schedule here: the National Audit Office, the Migration Observatory, the
+Office for Budget Responsibility, the Independent Chief Inspector of Borders and Immigration,
+ONS population estimates, and the Home Office's annual report and accounts. **The count above
+is derived and this list is typed, so they are two homes for one fact**: the House of Commons
+Library stood here until 6 August 2026 and sources nothing a reader meets, which is what made
+the list say seven where the count said six. Those are re-checked when they publish, and no
 schedule is promised for them, because a schedule nobody can predict is not a commitment.
 
 One month rather than something tighter because this is one person working unfunded, and a
@@ -277,10 +279,11 @@ explainer.
 
 **Returns and removals.** Not yet covered, and the figures are held rather than absent. The
 data layer records enforced, voluntary and asylum-related returns for the year ending March
-2026, and no page shows any of them; the only returns figure a reader meets here is the
-port-refusal count in the caveat warning against adding it to a total this site does not
-print. Showing them means a page setting out what a return counts and why the categories do
-not nest, rather than a number placed beside the asylum figures. Named here because a figure
+2026. **Two of them reach a reader, and neither has a page explaining it**: the asylum-related
+total on the small boats claim check, in the list of stages a count of arrivals does not
+measure, and the port-refusal count in the caveat warning against adding it to a total this
+site does not print. Covering the subject means a page setting out what a return counts and
+why the categories do not nest, rather than a number placed beside the asylum figures. Named here because a figure
 held and not shown is the same silence as one not held.
 
 **What immigration policy should be.** Never covered. That is a question about values, and
