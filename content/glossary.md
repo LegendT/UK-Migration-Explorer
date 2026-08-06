@@ -19,6 +19,8 @@ figures:
   - asylum/asylum-applications-main-applicants
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
   - asylum/asylum-appeals-backlog
+  - asylum/asylum-appeals-backlog-previous-year
+  - asylum/asylum-appeal-success-rate
   - asylum/asylum-initial-decision-grant-rate
   - asylum/people-in-receipt-of-asylum-support
   - asylum/small-boat-arrivals-year-ending-march-2026
@@ -151,7 +153,7 @@ differ by the entire size of the outflow.
 
 People leaving the UK for a long-term stay elsewhere. Around
 {{migration/total-long-term-emigration}} in the year ending December 2025. It includes
-British citizens leaving, who are a substantial part of the total.
+British citizens leaving, and this site publishes no figure for their share.
 
 **The common mistake.** Forgetting it exists. Emigration is the half of net migration that
 rarely appears in coverage, and changes in it move the headline figure just as much as
@@ -230,8 +232,9 @@ comparing figures on different bases without saying which is which.
 The Home Office's first decision on a claim: a grant of protection or other leave, or a
 refusal.
 
-**The common mistake.** Treating it as final. It can be appealed, and a substantial share
-of appeals succeed.
+**The common mistake.** Treating it as final. It can be appealed, and
+{{asylum/asylum-appeal-success-rate}}% of appeals decided in the quarter to March 2026
+succeeded.
 
 ### Grant rate {#grant-rate}
 
@@ -275,7 +278,9 @@ of very different sizes:
 | Total casework work in progress | {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current**: the breakdown was suspended |
 
 **Why it matters.** These measure different things and move independently. The initial
-decision queue has fallen sharply while the appeals queue has risen to a record. Someone
+decision queue has fallen sharply while the appeals queue has risen, from
+{{asylum/asylum-appeals-backlog-previous-year}} a year earlier to
+{{asylum/asylum-appeals-backlog}}. Someone
 citing "the backlog" as one falling number, or one rising number, can be right about one
 queue and wrong about the system.
 
