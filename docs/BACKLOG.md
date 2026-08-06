@@ -31,9 +31,11 @@ had to land twice, and they diverged twice. Whatever is still outstanding from a
 this file.
 
 **`docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` is NOT one of them**, and this paragraph listed it as
-frozen from the consolidation of 4 August until 5 August 2026. It is the live half of The order's
-item 2: it carries unticked checkboxes that the owner works, so telling a session never to edit it
-would have shut the one document that item requires opening. `docs/PRE-PUBLICATION-REVIEW.md` is
+frozen from the consolidation of 4 August until 5 August 2026. It was the live half of The order's
+item 2, carrying unticked checkboxes the owner worked, so telling a session never to edit it would
+have shut the one document that item required opening. **Item 2 closed on 6 August 2026 and the
+document is now a record**: every verdict is given, and its one remaining unticked box is itself a
+verdict, so nothing further is expected to be marked in it. `docs/PRE-PUBLICATION-REVIEW.md` is
 not frozen either, being the evidence template a reviewer works through, and call 13 corrected its
 section 3.
 
@@ -64,16 +66,23 @@ below.
 
 1. **Both glossary gates are closed (PR #83, 2 August 2026).** The numbers 1 and 2 are collapsed
    into this one entry rather than left as empty rows.
-2. **GATE. The six pages the pre-publication review never opened**, put through
-   `docs/PRE-PUBLICATION-REVIEW.md`. **The [me] half is done (PR #76, 2 August 2026)**: the
-   evidence is in `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md`, which sets every figure and every
-   claim about a figure on those six pages beside what the data layer holds, and leaves the
-   checkboxes unticked. **The verdicts are [you]**, and are all that is left of this item.
-3. **GATE. The reader-facing wording batch**: everything under A4 and R1 below, plus the two
-   sources-page wording bullets at the end of *Scoped, not built* section 6. All **[you]**
-   calls; applying what is decided is **[me]**. **The calls came back on 4 August 2026** and
-   every one is applied or needs no change except call 10, which waits behind this list's item
-   15 by the last clause of its own decision. **So there is no [me] work left in this item.**
+2. **CLOSED 6 August 2026 (PRs #158, #160 and #161).** The six pages the review never opened have
+   been through `docs/PRE-PUBLICATION-REVIEW.md`. The evidence written in PR #76 was
+   **regenerated against the live site before any verdict was given**, having gone stale under the
+   pages it quoted, and the failures it found were corrected and then re-answered against the
+   corrected pages rather than marked off on the promise of a fix. **The last checkbox stays
+   unticked and
+   that is a verdict rather than an omission**: `last_reviewed` records what a review READ, which
+   is the precedent PR #54 set, and these six were not re-read, so their older dates stand and a
+   reader meets them in the page footer. It is under *Completed*.
+3. **CLOSED 6 August 2026 (PR #163).** The reader-facing wording batch: everything under A4 and R1,
+   plus the two sources-page wording bullets at the end of *Scoped, not built* section 6. The calls
+   came back on 4 August 2026 and every one is applied or needs no change. **Call 10 is decided,
+   deliberately unapplied, and is carried by item 15 below**, where the real screen reader its own
+   decision waits on already sits and which already named it in terms. **This entry was a gate
+   whose last content depended on a non-gate**, the screen reader having been put after Launch on
+   4 August 2026, so as written it could never have closed before the launch it was blocking.
+   Closing it moves no work. It is under *Completed*.
 4. **CLOSED 5 August 2026 (PRs #136 and #139).** The domain (PR #118), the contact address and the
    fourth published limit (calls 16 and 20, PR #130) and the pipeline question (call 17, PR #122)
    were already done. The LICENCE scope, call 18, is inverted, and A6's calls 19, 21 and 23 are
@@ -116,8 +125,12 @@ below.
    read "nothing but [you] is left of it" until 5 August 2026 and no [you] work was named anywhere
    under U6**, the sentence having been written while call 29 was still undecided and kept after it
    was decided as **[me]**. It is under *Completed*.
-8. **GATE. A1, and its scope is full validation of all data**, not only the reader-facing
-   records. Decided 2 August 2026, and it was the largest item on this list. **Calls 30 to 35 are
+8. **CLOSED 6 August 2026 (PR #163).** A1, and its scope was full validation of all data, not only
+   the reader-facing
+   records. Decided 2 August 2026, and it was the largest item on this list. **Its last question is
+   answered: `population/share-of-london-residents-born-abroad` keeps `official`**, and A1 below
+   says why rather than this line saying it a second time. It is under *Completed*. **Calls 30 to
+   35 are
    applied (PR #144, 5 August 2026)**, so every record in the data layer now carries evidence and
    the ones the batches left as **[you]** are decided and built. No published figure moved. **No
    count is written here**: `npm run build` prints what is reserve, and
@@ -126,36 +139,39 @@ below.
    2026. **The series-evidence gap under A1 is built (PR #147, 5 August 2026)**, so every series
    evidence entry naming a block that still holds its declared vintage is re-read on every run,
    and `previous_vintage` is asked of every series claim a branch adds rather than only of a block
-   that moved. **All that is left of this item is the grade question the applying raised**, which
-   is **[you]** and is under A1 below. **So there is no [me] work left in this item.**
-9. **GATE. The release notifier's last phase**, which is *Scoped, not built* section 3: rewriting
-   what the sources page says about automation. **[you]** sign-off, no build behind it.
-10. **GATE. The undrafted claims**, which is *Scoped, not built* section 5: a session drafts
-    **[me]**, and the verdict and short answer come to the owner before merge **[you]**. **The
-    drafts merged so far are PRs #131, #132 and #133**, with their verdicts and short answers given
-    on 4 August 2026, and **PRs #145 and #148 added "Small boat arrivals are the whole asylum system"
-    and "Visa grants equal arrivals", and both are merged and live**, so their verdicts and short
-    answers stand as drafted: merging them is what settled them, and changing either now is a
-    change to a published page rather than a call on a draft. **PR #152 added "Asylum hotels cost
-    £8 million a day" and is merged and live**, its verdict and short answer approved as drafted on
-    6 August 2026 before the merge rather than by it, which is the only one of the set settled in
-    that order. **Seven were draftable, not eight**: "Local areas all carry the same
-    pressure" needs per-capita local authority figures and `data/` holds none. The order the rest
-    are proposed in is in PR #132. **No count is written here, in digits or in words**: `npm run
-    validate` prints the direction split, and how far the finished set would carry it is under
-    section 5, which is where a dated measurement belongs. **Worth reading that before drafting
-    another**, because only one of those remaining corrects a pro-migration claim and the split
-    is already off the floor.
+   that moved. **The grade question the applying raised was the last thing in this item**, and it
+   is answered above and under A1 below.
+9. **CLOSED 6 August 2026 (PR #157).** The release notifier's last phase, which is *Scoped, not
+   built* section 3's phase 4: what `/sources-and-method/` says about automation is rewritten and
+   signed off, so all five phases of `docs/UPDATE-AUTOMATION.md` are built. It is under
+   *Completed*.
+10. **CLOSED 6 August 2026 (PR #163).** The undrafted claims, which is *Scoped, not built* section 5. **Every
+    draftable one is drafted**: PRs #131, #132 and #133 with their verdicts given on 4 August 2026,
+    PRs #145 and #148 on 5 August, PR #152 on 6 August, and the last of them, the lifetime
+    contribution claim, in this list's own closing pull request. **Seven were draftable, not
+    eight**: "Local areas all carry the same pressure" needs per-capita local authority figures and
+    `data/` holds none, so this item closes with a claim from 8.5.3 unwritten and says which. That
+    refusal and the written pages together account for the whole of 8.5.3, which section 5 sets
+    out; nothing is trailing.
+    **The last one was a wording call before it was a draft**, because 8.5.3 specifies a figure
+    this site published itself and then moved, and the answer decided on 6 August was to quote the
+    circulating sentence and correct it by saying that no single figure exists. **No count is
+    written here, in digits or in words**: `npm run validate` prints the direction split. It is
+    under *Completed*.
 11. **CLOSED 4 August 2026 (PRs #121 and #124), and A3 is closed with it.** `main` is protected:
     the `validate` job is a required status check, `enforce_admins` is on so it binds the owner
     too, and force pushes and deletions are off. Probed rather than read: a direct push to `main`
     is refused with `GH006, Required status check "validate" is expected`. So every claim in this
     file that a check gates a pull request now means what it says.
-12. **GATE. Record the review as passed in `CHANGELOG.md`**, after the six-page checkboxes above.
-    **Its scope was decided on 2 August 2026: all sixteen pages, not the ten the review read.**
-    Worth knowing before signing: the review's own selection criteria failed 2.6 and 2.7, and both
-    were kept on the site's published no-attribution policy, so signing backs that policy over the
-    reviewer's criterion. **[you]**.
+12. **CLOSED 6 August 2026 (PR #159).** The review is recorded as passed in `CHANGELOG.md`. **Its
+    precondition was item 2, and item 2 met it by verdict rather than by tick**: every six-page
+    verdict was given, and the box left unticked is itself a verdict, so waiting on it would have
+    been waiting for a mark nobody intends to make. **Its scope was decided as sixteen pages on
+    2 August 2026 and was signed wider**, because claim pages published after that decision were in
+    neither the review's ten nor item 2's six, and signing at sixteen would have left live pages
+    outside the signature on a site whose stated objection to others is scope silence. Signing also
+    backs this site's published no-attribution policy over the reviewer's own selection criteria
+    2.6 and 2.7, which it failed and which were kept deliberately. It is under *Completed*.
 13. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
     guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
     delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
@@ -271,14 +287,15 @@ says so in its own notes, and quotes the December edition as its evidence. **Tha
 state of citing a living page by edition, not a defect left behind**, and the alternatives were
 refused by the call itself: updating to 17% moves a value, retiring it removes a record.
 
-**One [you] question the applying raised, and it is small.**
-`population/share-of-london-residents-born-abroad` is graded `official` while holding 40 for a
-source that says "More than 40%". Call 34 decided the remedy was to say so in the record, which is
-done, and the name now carries "(floor)". **Whether a floor recorded as a point should still be
-`official` is a grade decision and therefore yours**: `estimated` is the alternative and would
-mean rewriting the evidence entry into components, since a regrade across the derived boundary
-changes what kind of evidence the check demands. Nothing is blocked either way and the record
-reaches no reader.
+**The one [you] question the applying raised is ANSWERED, 6 August 2026: the grade stays
+`official`.** `population/share-of-london-residents-born-abroad` holds 40 for a source that says
+"More than 40%". Call 34 decided the remedy was to say so in the record, which is done, and the
+name now carries "(floor)". **The grade describes where a figure came from and it came from an
+official publication**; the floor is stated in the record and in the record's own name, which is
+where a reader of the data layer meets it. `estimated` was the alternative and would have meant
+rewriting the evidence entry into components, since a regrade across the derived boundary changes
+what kind of evidence the check demands. Nothing was blocked either way and the record reaches no
+reader, which is why it is recorded here and cost nothing to apply.
 
 **The [me] gap is built (PR #147, 5 August 2026): a series evidence entry was validated by nothing
 at the moment it was written.** `check-evidence` asked only a block that MOVED, so an entry for a
@@ -409,7 +426,11 @@ against their live sources with verbatim quotes.**
 
 ### R1. Reader-facing wording and grading, all of it yours
 
-**One call is left, and it waits on The order's item 15 by the last clause of its own decision.**
+**One call is left, and it is carried by The order's item 15 rather than by item 3, which closed
+on 6 August 2026.** Call 10 waits on the real screen reader by the last clause of its own
+decision, and item 15 is where that test lives. **Item 3 was a gate whose last content depended on
+a non-gate**, item 15 sitting after Launch by a decision of 4 August 2026, so leaving call 10
+inside it would have blocked the launch on something the same list had put after the launch.
 
 - **Call 10. The claim page `h1`. DECIDED 4 August 2026, NOT YET APPLIED, and deliberately so.**
   Qualify the accessible name, not the visible heading: the visible bare claim is the design, and
@@ -667,12 +688,14 @@ root, kept out of `docs/` because it uses em-dashes and pound signs the style sc
 publish as written" or "substantial revision required", and five of the seven data sections had
 carried required corrections. What each correction changed is in its pull request.
 
-**Two of the three closing steps are settled.** The `last_reviewed` question was settled by asking
+**All three closing steps are settled.** The `last_reviewed` question was settled by asking
 what the review actually READ rather than which pages had been corrected: ten pages carry
 `2026-07-27` and the other six are deliberately left on their older dates, because the review never
-opened them and a reader sees the date (PR #54). The pre-launch banner was corrected rather than
-removed, because removing it would itself have asserted the third step; it still goes at launch
-(PR #54). **The third step is The order's item 12 and is the owner's.**
+opened them and a reader sees the date (PR #54). **That precedent then decided the six-page pass's
+own last checkbox**, which is why item 2 closed with it unticked. The pre-launch banner was
+corrected rather than removed, because removing it would itself have asserted the third step; it
+still goes at launch (PR #54). **The third step was The order's item 12, recorded as passed in
+`CHANGELOG.md` on 6 August 2026 (PR #159).**
 
 **How the corrections were tagged**, and it is the mapping this project calls the highest-damage
 thing to get wrong: **[you]** marked an editorial or sourcing call only the owner makes; **[me]**
@@ -687,11 +710,11 @@ marked a mechanical or factual change against a cited source.
 **Sections 3 and 5 block launch as of 4 August 2026**, as items 9 and 10 of The order; the rest of
 this heading does not. Each has a scope document; read it before starting.
 
-### 3. Release notifier and evidence check: four phases built, phase 4 left
+### 3. Release notifier and evidence check: all five phases built
 
-**`docs/UPDATE-AUTOMATION.md`.** Five phases. Phases 1, 1b, 2 and 3 are built, in PRs #43, #46,
-#48 and #56; **phase 4 is a reader-facing trust statement and needs the owner's sign-off, so it is
-the only one left. [you]**.
+**`docs/UPDATE-AUTOMATION.md`.** Five phases. Phases 1, 1b, 2 and 3 were built in PRs #43, #46,
+#48 and #56, and **phase 4, the reader-facing trust statement, was signed off and applied on
+6 August 2026 (PR #157)**, closing The order's item 9. Nothing here is left to build.
 
 **Three things the built phases leave behind**, kept because they bound what the next release run
 can do rather than because they are tasks:
@@ -724,13 +747,28 @@ figure the site is arguing against, so it is a decision rather than a widening.
 
 ### 5. The undrafted claims
 
-Foundation section 8.5.3 specifies fifteen; thirteen are written, three of them in PRs #131, #132
-and #133 on 4 August 2026, the fourth, "Small boat arrivals are the whole asylum system", in
-PR #145 on 5 August 2026, the fifth, "Visa grants equal arrivals", in PR #148 on the same day, and
-the sixth, "Asylum hotels cost £8 million a day", in PR #152 on 6 August 2026.
-**One of the remaining two cannot be written**: "Local areas all carry
-the same pressure" needs per-capita local authority figures and `data/` holds none. **One is
-left**, and the order they were proposed in is in PR #132.
+**CLOSED 6 August 2026 with one claim from the specification deliberately unwritten.** Foundation
+section 8.5.3 specifies fifteen, fourteen are written and the fifteenth is refused, so the
+accounting closes rather than trailing off: **fourteen plus the refusal is the whole
+specification.** Read the drafted count off `npm run validate`, which prints the direction split,
+rather than off this sentence. Seven of the fourteen came from this drafting programme.
+Three were drafted in PRs #131, #132 and #133 on 4 August 2026,
+"Small boat arrivals are the whole asylum system" in PR #145 on 5 August, "Visa grants equal
+arrivals" in PR #148 on the same day, "Asylum hotels cost £8 million a day" in PR #152 on
+6 August, and the last, the lifetime contribution claim, in the pull request that closed The
+order's item 10. **What cannot be written is "Local areas all carry the same pressure"**: it needs
+per-capita local authority figures and `data/` holds none, so it is refused on the data layer
+rather than deferred. The order they were proposed in is in PR #132.
+
+**What the last one took, kept because it is the only one whose wording was a call before it was a
+draft.** 8.5.3 specifies the claim as "The average migrant contributes £341,000 over their
+lifetime", and £341,000 is a figure THIS SITE published until 3 August 2026, as the age-80 point
+of an OBR chart whose age nobody had written down. Moving to age 82 moved it. So the page could
+quote the circulating sentence, or the figure this site now publishes, or no figure. **Decided
+6 August 2026: quote the circulating sentence and answer that no single figure exists**, because
+the endpoint age is what does the arithmetic and this project's own figure having moved on that
+choice is the sharpest demonstration of it available. The alternative would have corrected a
+sentence nobody circulates and read as endorsing this site's own pick of age.
 
 **Who drafts, decided 30 July 2026.** A session drafts and proposes; the **verdict and the short
 answer come to the owner before merge**. The spec in 8.5.3 is a starting position rather than an
@@ -831,6 +869,67 @@ establish*.
 Kept so that a future session can see what was decided and when, rather than reopening it. **The
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
+
+- **The last drafted claim, and item 10 with it**, 6 August 2026. "The average migrant contributes
+  £341,000 over their lifetime", the seventh and last draftable claim in foundation 8.5.3.
+  **Its wording was a call before it was a draft**, uniquely in the set: the figure 8.5.3 specifies
+  is one this site published itself until 3 August 2026, as the age-80 point of OBR chart 4.13, and
+  it moved when the owner chose age 82 and wrote the age down. The page quotes the circulating
+  sentence and answers that no single figure exists, because OBR states no value and singles out no
+  age, and the line is positive in the person's sixties and negative by the age the chart ends.
+  **This project's own figure having moved on nothing but a choice of endpoint is the demonstration
+  the page rests on**, and the page says so rather than correcting a number it once carried without
+  mentioning that it carried it. `341,000` is declared under `historical_literals` without a
+  currency symbol, which is what the comma-grouped scan reports; the scale-word scan is the one
+  that captures a leading "£", which is why the hotels claim declares "£8 million" and this
+  declares a bare number. **It overlaps an existing page and is sharpened against it**:
+  `/common-claims/immigrants-pay-far-more-than-they-cost/` already cites the same record and
+  already says the chart describes one hypothetical individual, so this page is about the endpoint
+  doing the arithmetic rather than about whether migrants pay their way, and links to it.
+
+- **The last two gates that held only a question**, 6 August 2026, closing The order's items 3 and
+  8. **Item 3 was a gate whose last content depended on a non-gate**: everything under A4 and R1
+  was applied or needed no change except call 10, which is decided, deliberately unapplied, and
+  waits on a real screen reader, and that test is item 15, which the same list puts after Launch.
+  As written it could never have closed before the launch it was blocking. Call 10 is carried by
+  item 15, which already named it. **Item 8's last question was a grade**:
+  `population/share-of-london-residents-born-abroad` keeps `official`, and A1 carries the reasoning
+  rather than this entry repeating it. It cost nothing to apply: the record is unpublished reserve
+  and reaches no reader either way, which is why it could sit open under a gate for two days.
+
+- **The review is recorded as passed**, 6 August 2026. PR #159, closing The order's item 12, the
+  last of the three closing steps the review of 27 July left. **No figure moved and no page a
+  reader sees changed by it**: it records a signature, which is the last thing
+  `/sources-and-method/` promises and had not been given. **The scope was decided as sixteen pages
+  on 2 August and signed wider**, because claim pages published since were in neither the review's
+  ten nor item 2's six, and signing at sixteen would have left live pages outside the signature on
+  a site whose stated objection to others is scope silence. **The entry names three routes rather
+  than one word**: the review of 27 July with `verification.txt` as its evidence, the six-page pass
+  with `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md` as its evidence, and the claim pages evidenced
+  and verdicted one at a time, which is a per-page method rather than a pass and is recorded
+  separately for that reason. **And it says what signing backs**: the review's own selection
+  criteria failed claims 2.6 and 2.7, both were kept on this site's published policy of not
+  attributing claims to named people, so the signature prefers that policy to the reviewer's
+  criterion and the disagreement is written down rather than absorbed.
+
+- **The six pages the review never opened**, 6 August 2026. PRs #158, #160 and #161, closing The
+  order's item 2. The evidence written in PR #76 was **regenerated against the live site** before
+  any verdict was given, five of the six pages having moved under it and seven of its twenty quoted
+  passages having stopped matching the page they quoted, two of them because the glossary launch
+  gates closed after it was written; every regenerated quotation was lifted from the source by
+  script rather than typed. The owner read it and gave every verdict, the marks being recorded by
+  the session at his direction and the document saying so, because that is not the arrangement this
+  gate assumes. **The substantive failures were corrected and then re-answered against the
+  corrected pages**, not marked off on the promise of a fix. **Two of them turned out differently
+  from how the evidence wrote them up**: the claim that the appeals queue moves the other way was
+  recorded as unsettleable and was in fact supportable and merely uncited, so it is now cited in
+  both places rather than removed. **The last checkbox stays unticked deliberately**, on PR #54's
+  precedent that `last_reviewed` records what a review READ.
+
+- **The release notifier's last phase**, 6 August 2026. PR #157, closing The order's item 9 and
+  *Scoped, not built* section 3. What `/sources-and-method/` says about automation is rewritten and
+  signed off, so all five phases of `docs/UPDATE-AUTOMATION.md` are built. It was a wording call
+  with no build behind it, which is why it sat as a gate on a sentence.
 
 - **The UX review's trust work, U3 to U5**, 6 August 2026. PR #154, closing The order's item 6.
   Three things landed and one was a decision not to build. A citation block now says which FIGURE
