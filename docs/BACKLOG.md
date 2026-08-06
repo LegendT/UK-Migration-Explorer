@@ -107,11 +107,23 @@ below.
    covering U3 alone, and the conclusion is what gets believed. A session read the item as spent
    and named the wrong next item because of it. Taking the three sections in turn:
    **U3** leaves the `metric_name` bullet, deliberately not released with the first and **[you]**;
-   its other bullets carry no tag. **U4's call 27 is applied (PR #143, 5 August 2026)**, and the
+   **call 28's WORDING, which is also [you]**, PR #137 having settled the behaviour and shipped a
+   session's draft of the words, so this entry's own "call 28 is applied" is true of the mechanism
+   and not of the sentence a reader meets; and two bullets that carry no tag at all, a reader-facing
+   `/changes/` page and theme-to-claim links, which the header's rule routes to nobody. **This
+   entry named only the `metric_name` bullet until 5 August 2026.**
+   **U4's call 27 is applied (PR #143, 5 August 2026)**, and the
    deprecation it was gated on holds: Google's post of 12 June 2025 lists Claim Review among the
    types that "will no longer be supported in Google Search results", and its update of 8 September
    2025 takes the type out of Search Console the following day. **Checking eligibility for the one
-   surviving channel found a second and stronger ground**, which is under U4. U4's other
+   surviving channel found a second and stronger ground**, which is under U4. **Applying call 27
+   also raised a [you] question that no entry in The order named until 5 August 2026**: `license`
+   points at `/sources-and-method/#reuse`, which states the Open Government Licence and mentions
+   neither the MIT half nor the two publishers whose figures are not Crown copyright, while
+   `LICENCE` itself is served nowhere. It is under U4, and it was reachable from this list only by
+   opening a section whose header this entry named and whose contents it did not read. **That is
+   the shape that orphaned A6 and then U6's call 29**, and no count of how often is written here,
+   because it would need editing the next time it happened. U4's other
    call, 26, is decided and unapplied but is **not applied here**: item 13 says what it decides is
    the content of the `robots.txt` that item 13 writes, so it lands there and that item is
    deliberately last. **U5** is considered-and-cut and holds no work by design.
@@ -357,7 +369,12 @@ record and an evidence entry rather than a sentence.
 ### A6. Decisions with no build behind them
 
 Each is one call. None blocks anything. **The three decided calls are applied (PR #136, 5 August
-2026). What is left is one question that applying them raised, and it is [you].**
+2026), and so is the question that applying them raised**: call 24's residue split, the 47% half
+landing in PR #136 and the `date` field on the fiscal-impact record in PR #139. **Nothing is left
+here.** This paragraph said a question was still open until 5 August 2026, having been written
+before PR #139 and kept after it. It is the same defect The order's item 4 records against this
+section, arriving a second time by the same route: a conclusion kept after what it concluded from
+had changed.
 
 - **Call 24's residue is opened, and it splits.** The 47% in the work-immigration notes is checked
   and right: ONS states it in the bulletin, in the sentence carrying this record's own figure, and
