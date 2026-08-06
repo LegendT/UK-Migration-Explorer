@@ -32,8 +32,13 @@ If you find an error, we want to know. See [corrections](#corrections).
 It is an explainer. It takes official statistics that are already published and tries to
 make them readable without making them wrong.
 
-It is **not** a source of original data. Every number here was published by somebody else,
-and where our figure and theirs differ, theirs is right and ours is a bug.
+It is **not** a source of original statistics. Every figure it starts from was published by
+somebody else, and where our figure and theirs differ, theirs is right and ours is a bug.
+**Some figures here are worked out from those rather than taken from them**, most often a
+share this site calculates because no publisher prints it. Each one is graded `calculated`,
+says so where it appears, and shows what was divided by what. That is the only original
+arithmetic on the site, and it is labelled rather than hidden inside a number that looks
+taken.
 
 It is **not** a live system. Figures are the latest published at the time of the last
 update, not a real-time count. There are no live counters on this site, deliberately.
@@ -118,9 +123,11 @@ for more than it does is worse than no check at all:
 - **The scan for written-out figures reads one set of forms, not every form.** It sees a
   number in digits, grouped with commas, or followed by the word "million" or "billion". It
   does not see one spaced as "2 200 000", spelled as "two million", abbreviated to "bn", or
-  scaled by any other word, and it does not read front matter, so a rounded figure in a
-  claim's short answer passes it. The rule above holds for what the scan can see; beyond
-  that it rests on editing.
+  scaled by any other word. **Since 6 August 2026 it reads one front-matter field**, the
+  short answer a claim page prints as its answer, which until then was unread and was
+  carrying live figures frozen as text on two pages. The rest of the front matter it still
+  does not read. The rule above holds for what the scan can see; beyond that it rests on
+  editing.
 - **A correction made inside an edition can pass unseen.** Where a publisher revises a table
   but keeps the same release under the same address, nothing here re-reads it. One
   publisher's corrections page is watched, and the match is made against the table

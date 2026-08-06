@@ -72,9 +72,12 @@ The queue of people waiting for a first decision stands at
 [asylum page](/asylum/) shows it well below where it stood in 2022.
 
 That fall is real, and it is not what the claim describes. It happened while claims stayed
-near their record, so arithmetically it came from decisions being issued rather than from
-fewer people claiming. Why decisions were issued faster is a question about casework this
-site's figures cannot answer. And it did not shrink the system, it moved the work:
+near their record, so arithmetically it came from people leaving the queue faster than they
+joined it rather than from fewer people claiming. **Decisions are the largest of those routes
+and not the only one**: withdrawals and administrative outcomes leave the queue too, and the
+[asylum page](/asylum/) shows both sitting outside the decisions total rather than inside it,
+which is why grants and refusals do not sum to everything that left. Why cases were cleared
+faster is a question about casework this site's figures cannot answer. And it did not shrink the system, it moved the work:
 the appeals queue stood at {{asylum/asylum-appeals-backlog}} at 31 March 2026, against
 {{asylum/asylum-appeals-backlog-previous-year}} a year earlier. Deciding a claim faster
 produces a refusal that can be appealed, and the appeal is a queue of its own.
