@@ -436,6 +436,21 @@ th.nested-2 { padding-left: 2.75rem; }
    not: the answer is a sentence, and it keeps the reading measure. */
 .claim-list p { margin: 0; max-width: var(--measure); color: var(--ink-soft); font-size: 0.9375rem; }
 
+/* The claim checks a theme page's figures are used by. Backlog U3. Deliberately NOT `.claim-list`:
+   that is a grid of bordered cards carrying a short answer, and this is a pointer list under a
+   page of figures. Reusing the card would have promised the same weight as the claims index and
+   put a bordered box at the foot of a theme page for every claim that touches it. */
+.claim-links { list-style: none; margin: 1.5rem 0 2rem; padding: 0; display: grid; gap: 0.75rem; }
+/* Same 44px target and the same reason as the card headings above: the box is taller than one
+   line, so the text is centred in it rather than the empty space hanging below a short claim. */
+.claim-links a { display: flex; align-items: center; min-height: 44px; max-width: var(--measure); }
+.claim-links .claim-link-meta,
+.claim-links .claim-link-paused {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.8125rem;
+}
+
 .back { margin-top: 3rem; }
 
 .visually-hidden {

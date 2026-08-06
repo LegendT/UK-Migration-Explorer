@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import site from './content/_data/site.js';
 import { barChart, lineChart } from './lib/charts.mjs';
 import { citationBlock } from './lib/citation.mjs';
+import { claimLinks } from './lib/claim-links.mjs';
 import { provenanceList } from './lib/provenance.mjs';
 import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
 import { COMPANION_BLOCKS, THEME_FILES, readSeries } from './lib/series.mjs';
@@ -237,6 +238,13 @@ export default function (eleventyConfig) {
       }),
       pageUrl: this.page.url,
     });
+  });
+
+  // The claim checks resting on a figure this page declares. Backlog U3. A shortcode rather than
+  // a filter because it needs `collections`, which arrives on the data argument, and the join is
+  // between two sets of front matter that the build already holds.
+  eleventyConfig.addShortcode('claimsUsing', function (refs, claims) {
+    return claimLinks({ figures: refs, claims, pageUrl: this.page.url });
   });
 
   // Structured data for the pages that carry it. The page url comes from this.page rather than
