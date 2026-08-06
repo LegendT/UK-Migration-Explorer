@@ -172,12 +172,21 @@ below.
     outside the signature on a site whose stated objection to others is scope silence. Signing also
     backs this site's published no-attribution policy over the reviewer's own selection criteria
     2.6 and 2.7, which it failed and which were kept deliberately. It is under *Completed*.
-13. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
-    guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
-    delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
-    the sitemap built in PR #86, and **what it says is decided as call 26 under U4** and
-    unapplied. Then set up Search Console, which costs nothing, needs no JavaScript, and is how
-    success measure 2 would be noticed. **[me]**, on the owner's word.
+13. **GATE, and the last one open. Launch. THE REPOSITORY HALF IS DONE (PR #153, 6 August 2026);
+    Search Console is what is left and it is [you].** The gate as originally worded said delete
+    `content/robots.txt` and its guard, and **the UX review said write that file rather than only
+    delete it**, which is what happened: the file admits retrieval agents that emit a linked
+    citation and refuses crawlers documented as collecting training data, on call 26 under U4, with
+    a `Sitemap:` line pointing at the sitemap built in PR #86. The guard in
+    `scripts/check-build.mjs` was swapped rather than deleted, so it now asserts the launch state
+    and would fail a build that quietly closed the site again. **The pre-launch notice went with
+    it**, in the same change rather than a later one, because a page served from the commit that
+    launches saying the site is not launched yet would be false on every page; removing it at
+    launch was decided on 27 July 2026 (PR #54). **What is left needs the owner's own accounts and
+    nothing in this repository**: verify the domain by DNS TXT record, chosen on 6 August 2026 over
+    the HTML-file and meta-tag methods, and submit
+    `https://ukmigrationexplorer.org/sitemap.xml`. That is how success measure 2 would be noticed.
+    **[you]**.
 14. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
