@@ -762,7 +762,7 @@ is already here to adding a neighbour beside it.
 - **Reproduce a backlog bullet's premise before building what it prescribes.** The bullet is usually
   right that something is broken and often wrong about the remedy, and building the remedy ships a
   change that reads as a fix in the diff. **On 5 August 2026 one was wrong in both halves at once**,
-  which is the case worth budgeting for. Item 16 said the fix was "a character class in four
+  which is the case worth budgeting for. Item 18 said the fix was "a character class in four
   patterns": a character class reads `class="scroll-xy"` as a scrolling region, so building what
   was written would have shipped a looser check that passes everything it did before and now also
   passes things it must not. And its account of the defect, "escapes the focusable check, the role

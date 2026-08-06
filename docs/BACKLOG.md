@@ -203,6 +203,14 @@ below.
     the sitemap built in PR #86, and **what it says is decided as call 26 under U4** and
     unapplied. Then set up Search Console, which costs nothing, needs no JavaScript, and is how
     success measure 2 would be noticed. **[me]**, on the owner's word.
+    **The changeset for it is written, and was verified rather than assumed on 6 August 2026.**
+    It is PR #153, merged and then reverted by PR #164 because the launch had been taken without
+    that word; reverting the revert restores it. The code half re-applies with no conflict, and
+    the two documentation tables that do conflict do so only because later work landed after the
+    revert. Applied on a scratch branch, `npm test`, `npm run validate`, `npm run build` and
+    `npm run a11y` all pass, the built `robots.txt` disallows nothing under the wildcard and
+    carries its `Sitemap:` line, and no built page still says the site is not launched. **What is
+    outstanding is the word, not the work**, and the gates above it.
 16. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
