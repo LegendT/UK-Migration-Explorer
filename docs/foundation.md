@@ -845,7 +845,10 @@ open invited an indefinite planning loop.
 - ~~Methodology page outline.~~ Done, and built: `content/sources-and-method.md`.
 - **Outstanding: choose the success measures.** Section 4.2 offers three candidates and says
   they must be chosen and committed to in this phase. None has been. Section 17 makes it a
-  process criterion, and it is the only one with nothing pointing at it.
+  process criterion. **It was the only one with nothing pointing at it until 6 August 2026**,
+  when a docs audit found this line and `docs/BACKLOG.md` gave it a numbered item in The order.
+  That entry carries its state; this line does not, and says so rather than becoming the second
+  place it is tracked.
 - **Outstanding, and genuinely missing from the original phase: talk to five people.** A local
   journalist, a councillor, a teacher, and two people who are simply interested. Ask whether
   they would use this and what they would look for. This project has been designed for named
