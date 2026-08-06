@@ -206,6 +206,19 @@ below.
     the correction-missing-its-siblings shape**, whose remedy this project already wrote down as
     "grep the claim, not the page". **Whether it gates launch is [you]**, and so is the wording;
     applying what is decided is **[me]**.
+18. **NOT A GATE. Choose the success measures, and record which.** Found by the docs audit of
+    6 August 2026. Foundation section 4.2 offers three candidates and says they must be chosen and
+    committed to in phase 1: cited by a named outlet or briefing within six months; organic search
+    entries on definitional queries; return visits in the week after a major data release. **None
+    has been chosen.** Section 17 makes it a process criterion, alongside talking to five target
+    users, and `docs/foundation.md` says of it "**it is the only one with nothing pointing at it**",
+    which was still true when this entry was written, so the flag had sat unactioned in a
+    document nothing routes from. **This list twice calls one of them "success measure 2" as
+    though the set were adopted**, under item 13 and under call 26, where 4.2 offers candidates in
+    prose and numbers nothing. That is the reference this entry exists to make honest. **Timing
+    matters and is the reason this is not a gate**: two of the three can only be read after launch,
+    and the first runs a six-month clock that starts at it, so choosing them before launch is worth
+    more than choosing them well after. **[you]**, and nothing is built either way.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
