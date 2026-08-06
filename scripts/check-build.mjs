@@ -13,7 +13,7 @@ import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import site from '../content/_data/site.js';
-import { publishedCounts } from '../lib/published.mjs';
+import { publishedCounts, registry } from '../lib/published.mjs';
 
 const siteDir = fileURLToPath(new URL('../_site/', import.meta.url));
 
@@ -433,6 +433,57 @@ if (!printed) {
   errors.push(`assets/style.css: the print rule prints "${printed[1]}" and site.url is "${host}". A printed page would send a reader to the wrong domain, and nothing on screen would show it.`);
 }
 
+// --- every "Cited for" name sits under the publication that is its source ---------------
+// lib/citation.mjs guards its own merge against DROPPING a metric name. This is the other way
+// the same feature goes wrong and that guard cannot see it: a name printed under the WRONG
+// publication. It is the worse failure. The citation block exists to be pasted somewhere else,
+// so a misattributed line hands a reader a figure credited to a source that never carried it,
+// which is the error this entire site is about.
+//
+// At the far end, against the built HTML, for the reason every check in this file is: the map
+// inside the transform can be right while what ships is not. This ran once as a sweep on
+// 5 August 2026 and was reported in a pull request comment, which is the shape this project
+// names in its own output, that printing is not reviewing and nothing checks anyone read it.
+//
+// The printed publication is source_name with `, table X` sometimes appended, so the test is
+// that the line STARTS with a source_name the record carries, never that the two are equal.
+// Entities are decoded first, because citation.mjs escapes & < > " on the way out and a name
+// containing one would otherwise never match the record it came from.
+//
+// No guard on a missing source_name, and that is deliberate rather than an oversight: it is in
+// validate-data.mjs's REQUIRED_FIELDS and every record carries one. A `continue` past a record
+// without it would make this check quietly cover less than it says, which is the failure this
+// file exists to prevent. If the contract ever changes, the crash here is the right outcome.
+const unescape = (text) => text.replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>').replace(/&quot;/g, '"');
+const metricSources = new Map();
+for (const metric of registry().values()) {
+  if (!metric.metric_name) continue;
+  if (!metricSources.has(metric.metric_name)) metricSources.set(metric.metric_name, []);
+  metricSources.get(metric.metric_name).push(metric.source_name);
+}
+let citedForNames = 0;
+for (const file of pages) {
+  const where = relative(siteDir, file);
+  for (const [, item] of readFileSync(file, 'utf8').matchAll(/<li>([\s\S]*?)<\/li>/g)) {
+    if (!item.includes('Cited for')) continue;
+    const text = unescape(item.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
+    const [publication, rest] = text.split('Cited for');
+    const printed = publication.trim().replace(/\.$/, '').trim();
+    for (const raw of rest.split('Published')[0].split('. ')) {
+      const name = raw.trim().replace(/\.$/, '').trim();
+      if (!name) continue;
+      citedForNames += 1;
+      const sources = metricSources.get(name);
+      if (!sources) {
+        errors.push(`${where}: a citation says "Cited for ${name}", which is the metric_name of no record. A name a reader can check against nothing is worse than no name at all.`);
+      } else if (!sources.some((source) => printed.startsWith(source.replace(/\.$/, '')))) {
+        errors.push(`${where}: a citation prints "Cited for ${name}" under "${printed}", and no record holding that metric_name names that publication as its source. A misattributed citation credits a figure to a source that never carried it.`);
+      }
+    }
+  }
+}
+
 // robots.txt survives launch rather than being deleted, which the UX review asked for and
 // backlog call 26 decided the content of. Until launch this block asserted the opposite of what
 // it asserts now: that the wildcard group disallowed everything. Both versions exist for the same
@@ -508,6 +559,7 @@ if (errors.length) {
 }
 
 const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
+console.log(`Every "Cited for" line in the built site names a figure whose own record cites the publication it is printed under: ${citedForNames} name(s) checked. Not established: that the publication contains the figure, which is the far-end trace no check does.`);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt admits crawlers, announces the sitemap at ${site.url}/sitemap.xml and refuses no citing retrieval agent.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
