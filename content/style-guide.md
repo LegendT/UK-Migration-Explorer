@@ -63,8 +63,9 @@ right to distrust everything else on the page.
 Each claim check is tagged with a direction: **restrictionist** for claims that overstate the
 scale or cost of migration, and **pro-migration** for claims that overstate its benefits or
 understate its difficulties. Those are the only two labels in use. A misuse common on both
-sides is currently written up under whichever version circulates more, and named as shared
-in the text.
+sides is written up under whichever version circulates more, and carries that side's label.
+There is no shared label: one was described here until 6 August 2026 and no claim ever carried
+it, which is a promise to a reader that nothing kept.
 
 These labels describe *the claim*, not the person making it, and they are ours rather than
 anybody's self-description. "Restrictionist" in particular is not a word most people who
