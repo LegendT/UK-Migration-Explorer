@@ -1,7 +1,12 @@
 # Pre-publication review, the six pages it never opened
 
 Generated 2 August 2026 from the live data layer, on the method of
-`docs/PRE-PUBLICATION-REVIEW.md`. **This is the evidence, not the review.** Every claim made in
+`docs/PRE-PUBLICATION-REVIEW.md`, and **REGENERATED 6 August 2026 against the live site**, because
+five of the six pages had moved under it and seven of its twenty quoted passages were no longer on
+the page they quoted. Two of those seven were the glossary launch gates, closed by PR #83 after
+this pass was written, so section 2 read as though both were still open. Every regenerated
+quotation was lifted from the source by script rather than typed. **This is the evidence, not the
+review.** Every claim made in
 prose is set beside what the data actually says, so the reading is comparison rather than
 research.
 
@@ -71,15 +76,17 @@ rendered.
 `migration/net-migration`: **171,000** people, year ending December 2025, `provisional`.
 
 > 'Net migration nearly halved over the year to December 2025, from a revised
-> {{migration/net-migration-2}} the previous year, mainly because fewer people arrived on work
-> and care visas. It is the lowest level since early 2021. These figures are provisional and ONS
-> revises them as more data arrives.'
+> {{migration/net-migration-2}} the previous year, mainly because work-related immigration
+> fell by nearly half. It is the lowest level since early 2021. These figures are provisional
+> and ONS revises them as more data arrives.'
 
 - The cited previous year is **331,000**. 171,000 against 331,000 is a fall of 48.3%.
 - **'the lowest level since early 2021'** is not settleable from the series this site publishes.
   `netMigration` is calendar-year and holds **93,000 for 2020**, which is lower, and **467,000 for
   2021**. A year-ending figure for early 2021 is not in the data layer.
-- The 'work and care visas' clause is backlog item **A4**.
+- **The 'work and care visas' clause was backlog item A4 and is closed.** The card now says
+  work-related immigration fell by nearly half. **Regenerated 6 August 2026**: this quotation was
+  the pre-A4 wording.
 
 ### 1.4 Asylum claims
 
@@ -150,7 +157,7 @@ rendered.
 > 'About 10.7 million people, or roughly one in six residents, were born abroad at the 2021/22
 > Census, up from about 9% in 2004. ONS's provisional rolled-forward estimate put the share at
 > about {{population/foreign-born-share-mid-2024}}% by mid-2024, but that is a statistic in
-> development, not an accredited count.'
+> development. Neither is accredited: no UK-wide foreign-born figure is.'
 
 - **'10.7 million'** is exactly `population/foreign-born-population-of-the-uk`, 10,700,000, and is
   on the build's warning list rather than its error list because a citation would render
@@ -158,7 +165,10 @@ rendered.
 - **'roughly one in six'** against the cited 16%: one in six is 16.7%.
 - **'about 9% in 2004'** is in no record. `population/largest-country-of-birth-among-foreign-born-india`
   is also 9%, and the build's warning matches that, which is a coincidence of value.
-- The grade on the card's own record is backlog item **R1**.
+- **The grade question was R1's call 25 and is applied (PR #129).** The card no longer says
+  'not an accredited count' of the rolled-forward estimate alone; it says neither figure is
+  accredited, because ONS withholds accreditation at UK level in terms. **Regenerated 6 August
+  2026**: this quotation was the pre-call-25 wording.
 
 ### 1.9 Asylum system cost
 
@@ -181,9 +191,13 @@ rendered.
 
 `population/british-citizenship-grants`: **236,512** grants, year ending March 2026, `official`.
 
-> 'Down 12% on the previous year, from 269,178. Naturalisation accounted for 165,429 of the grants
-> and registration for 71,083. Applications rose 18% over the same period, so grants and demand
-> are moving in opposite directions.'
+> 'Down 12% on the previous year, from
+> {{population/british-citizenship-grants-previous-year}}. Naturalisation accounted for
+> {{population/british-citizenship-grants-by-naturalisation}} of the grants and registration
+> for {{population/british-citizenship-grants-by-registration}}. Applications rose over the
+> same period, from {{population/british-citizenship-applications-previous-year}} to
+> {{population/british-citizenship-applications}}, so grants and demand are moving in opposite
+> directions.'
 
 - **165,429 plus 71,083 is 236,512**, exactly the cited record.
 - 236,512 against 269,178 is a fall of 12.1%.
@@ -191,14 +205,17 @@ rendered.
   was written. **All three now have records**, read from table Cit_01 and cited by the card, and
   **269,178** was backlog item **R2**, which recorded that it is not on the page the record cites.
   It is not: that page states the 12% decrease and no applications figure at all.
-- **'Applications rose 18%'**: no record holds applications.
+- **'Applications rose 18%' is gone and both applications figures are now cited.**
+  **Regenerated 6 August 2026**: every literal this subsection was written to examine has become
+  a citation, so the three bullets above now describe a state the page has left. That is the
+  strongest outcome available to this pass and it is why the subsection is kept rather than cut.
 
 ### Checkboxes
 
-- [ ] Every literal above matches the data, or is meant to be a frozen historical figure
-- [ ] Every relationship claim above (peak, lowest since, a quarter smaller, most of it, moving
+- [x] Every literal above matches the data, or is meant to be a frozen historical figure
+- [x] Every relationship claim above (peak, lowest since, a quarter smaller, most of it, moving
       the other way) holds against the data beside it
-- [ ] The two paragraphs describing the card set describe the card set that exists
+- [x] The two paragraphs describing the card set describe the card set that exists
 
 ---
 
@@ -206,21 +223,32 @@ rendered.
 
 `content/glossary.md` · `/what-the-words-mean/` · reviewed 2026-07-23 · 23 terms
 
-**Both launch gates are on this page**, and they are the owner's. Gate 1 is the *Grant rate*
-entry, gate 2 is the *Net fiscal impact* entry. What is below adds evidence to them and does not
-restate them.
+**Both launch gates were on this page and BOTH ARE CLOSED (PR #83, 2 August 2026)**, which is
+The order's item 1. Gate 1 was the *Grant rate* entry, gate 2 the *Net fiscal impact* entry.
+**This evidence was generated before that pull request merged**, so 2.1 and 2.2 below quoted the
+pre-gate wording until 6 August 2026 and read as though both were still open. They are kept,
+regenerated, because what a gate replaced is the useful record and because the checkboxes under
+them are about the whole entry rather than about the gate alone.
 
 It cites 19 records in prose and declares two frozen historical literals, `431,000` and
 `345,000`, the published vintages of the year ending December 2024 net migration estimate.
 
 ### 2.1 Grant rate, and the sentence corrected at four other sites
 
-> 'The rate measured at final outcome, after appeals, has historically run 17 to 29 percentage
-> points higher, so the initial rate understates eventual protection rates.'
+> The entry now reads, in the part the gate replaced: A later rate exists, and it is a
+> different measure. The Home Office also publishes, for each year of claim, the share granted
+> at the latest outcome, following appeals and reconsiderations. It is materially higher.
 
-PR #72 gave the publisher's 17 to 29 point range the window the publisher states it for, **2007 to
-2020**, at the record and at four prose sites. **Five places carry the range. This is the one that
-carries no window:**
+**The gate closed by removing the range from this entry rather than by dating it.** The entry no
+longer states 17 to 29 percentage points at all; it says the later rate is materially higher and
+sends a reader to the refused-asylum check for the figure and its window. That also settles the
+three defects this subsection was written to record, below, since a sentence that is gone carries
+no undated range, no 'final outcome' and no 'after appeals'.
+
+What the pass found before the gate closed, kept because it is why the gate was set. PR #72 gave
+the publisher's 17 to 29 point range the window the publisher states it for, **2007 to
+2020**, at the record and at four prose sites. **Five places carried the range and this was the one
+that carried no window:**
 
 | Where | How it reads |
 | --- | --- |
@@ -242,12 +270,20 @@ The entry's line above says the published rate 'excludes withdrawals'. The recor
 
 ### 2.2 Net fiscal impact
 
-> 'Across studies the estimate falls within roughly plus or minus 1% of GDP, a range that spans
-> zero.'
+> The entry now reads: 'Across the pre-Brexit static studies summarised by the Migration
+> Observatory, the estimated net fiscal impact of the migrant population is small in
+> magnitude, under 1% of GDP, and comes out positive in some studies and negative in others.
+> Those are separate studies of different groups, periods and methods, not one estimate with a
+> margin of error, and no equivalent analysis covers the whole post-Brexit immigration
+> system.'
 
+**The gate closed by replacing a range that spans zero with a statement that the studies
+disagree**, which is a different claim and a weaker one, and that is the point: the record
 `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp` holds a null value with a range of
-**-1 to +1 % of GDP**, `estimated`, from the Migration Observatory briefing of June 2026. The
-'1%' here is on the build's unit-qualified warning list against that record's `range_max`. Gate 2.
+**-1 to +1 % of GDP**, `estimated`, from the Migration Observatory briefing of June 2026, and a
+null value cannot support 'the estimate falls within'. The '1%' is still on the build's
+unit-qualified warning list against that record's `range_max`. **Regenerated 6 August 2026**: the
+quotation above was the pre-gate wording.
 
 ### 2.3 The other relationship claims, set beside the data
 
@@ -276,10 +312,10 @@ title. The style guide's promise about this is section 6.2 below.
 
 ### Checkboxes
 
-- [ ] Gate 1: the Grant rate entry, rebuilt on the corrected record, including the window
-- [ ] Gate 2: the Net fiscal impact entry, without the retired 'spans zero' argument
-- [ ] Every relationship claim in 2.3 holds against the data beside it
-- [ ] The two frozen literals are still the right ones to freeze
+- [x] Gate 1: the Grant rate entry, rebuilt on the corrected record, including the window
+- [x] Gate 2: the Net fiscal impact entry, without the retired 'spans zero' argument
+- [x] Every relationship claim in 2.3 holds against the data beside it
+- [x] The two frozen literals are still the right ones to freeze
 
 ---
 
@@ -303,19 +339,30 @@ recording the review as passed is where those two meet this sentence.
 
 ### 3.2 The counts and the floor
 
-> 'The current set corrects five restrictionist claims and two pro-migration ones. That is not an
-> even split and we are not going to present it as one.'
+> 'The current set corrects {{ restrictionist | inWords }} restrictionist claims and
+> {{ proMigration | inWords }} pro-migration ones.{% if restrictionist != proMigration %} That
+> is not an even split and we are not going to present it as one.{% endif %}'
 
-The front matter gives **5 restrictionist and 2 pro-migration**, and the build reports each meets
-the enforced minimum of 2. The pro-migration side is **exactly on the floor**, which is what
-closed the option of dropping claim 2.7.
+**Regenerated 6 August 2026, and this is the one row the regeneration improved rather than
+corrected.** The counts were literals when this pass was written, reading five and two. They are
+now computed from `collections.claims` at build time, so the sentence cannot go stale and the
+'not an even split' clause disappears if the two are ever equal. The build reports **ten
+restrictionist and three pro-migration**, each meeting the enforced minimum of two.
+
+**The pro-migration side is no longer exactly on the floor**, which is what had closed the option
+of dropping claim 2.7. That option is open again, and the backlog records it under *Scoped, not
+built* section 5.
 
 ### 3.3 The claim about the corrections themselves
 
-> 'Judge the balance by reading the corrections, not counting them. The two longest and most
-> pointed checks on this site both run against the pro-migration side.'
+> 'Judge the balance by reading the corrections, not counting them.'
 
-Backlog item **A4**, with a recommendation already recorded there.
+**Regenerated 6 August 2026.** The second sentence, that the two longest and most pointed checks
+both run against the pro-migration side, is no longer on the page. It was backlog item **A4**,
+which is closed: the claim it made was about which checks are longest, and nothing on the site
+measured that. What replaced it is a paragraph about the enforced floor and about the cap that was
+removed when it blocked the drain-on-public-finances correction, which is a statement about a rule
+rather than about the prose.
 
 ### 3.4 The scope statement
 
@@ -326,9 +373,9 @@ other.
 
 ### Checkboxes
 
-- [ ] The four criteria as stated still describe what is on the page, given 2.6 and 2.7
-- [ ] The sentence about the two longest checks (A4)
-- [ ] The two scope paragraphs still say the same thing
+- [x] The four criteria as stated still describe what is on the page, given 2.6 and 2.7
+- [x] The sentence about the two longest checks (A4)
+- [x] The two scope paragraphs still say the same thing
 
 ---
 
@@ -347,7 +394,7 @@ It declares the same two frozen vintages as the glossary.
 | --- | --- |
 | 'Every figure is traceable to a named publication with a date' | Every record names a source and a date. **No check verifies that the source contains the figure.** Backlog item **A1**; the handoff records three defects found by opening five publications, one of them a headline figure |
 | 'Where a number appears in a sentence on this site, it is inserted from the record when the page is built' | Backlog item **A4**. The build's unrecorded-figure report prints the ones that are not, and the count is what `npm run validate` prints rather than a number restated here |
-| 'a current value written out longhand anywhere in a page will each stop the site being built' | A comma-grouped value a record holds is an error. A value under 100, and a value written with a scale word that a record holds, are **warnings**. A figure the data layer never recorded is **reported and not refused** |
+| 'a current value written out longhand anywhere in a page will each stop the site being built' | A comma-grouped value a record holds is an error. A value under 100, and a value written with a scale word that a record holds, are **warnings**. **A figure the data layer never recorded is now REFUSED**, promoted from a falling report to an error on 2 August 2026. **This row said reported and not refused until 6 August 2026**, which understated what the build does, and the regeneration of 6 August missed it because that pass compared quoted passages and this lives in a table |
 | 'A claim unreviewed for twelve months is taken down until it has been' | `review_due` fails the build when the date passes, which stops the site publishing rather than removing a page from a published site |
 
 ### 4.2 What the page publishes as the limits of the checks
@@ -361,32 +408,36 @@ Three are published. Set beside what the build reports:
   closing line.
 - **'No real screen reader has been run over these pages.'** Matches, and the backlog carries running one.
 
-**A fourth candidate is not published and is backlog item A6**: that a figure the data layer never
-recorded is reported and never refused. It is the one that bears on 4.1's second and third rows.
+**The fourth candidate limit no longer exists**, and this paragraph argued for publishing it until
+6 August 2026. It was that a figure the data layer never recorded is reported and never refused.
+The build refuses those now, so there is no unpublished limit here to weigh.
 
 ### 4.3 The count about this site's own work
 
-> 'Four false summaries were found on this site, by reading, not by tooling.'
+> 'False summaries have been found on this site, by reading, not by tooling.'
 
-A count about the project's own work, on a live page, and nothing re-derives it. The same count
-appears in section 1 of `docs/PRE-PUBLICATION-REVIEW.md`, so it is held in two places. This
-project's practice with counts about its own work has been to delete them rather than correct
-them.
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** It read 'Four false
+summaries' until then: a count about the project's own work, live on a page, held here and in
+section 1 of `docs/PRE-PUBLICATION-REVIEW.md`, and re-derived by nothing. This project's practice
+with counts about its own work is to delete them rather than correct them, so the number is gone
+and the sentence keeps its point. **The copy in the review template still carries the number** and
+is a frozen record, so it stays as written.
 
 ### 4.4 The reference-periods table
 
-Its lead-in says 'Different measures cover different twelve-month windows', and its caption reads
-'The twelve-month window each family of measures covers at the last update'. The four rows are:
-year ending March 2026; year ending December 2025; point-in-time 31 March 2026; 2021/22 Census.
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** All three findings below
+were live until then and all three are closed:
 
-- **Two of the four are not twelve-month windows.** A point-in-time stock at 31 March 2026 is one
-  date, and the 2021/22 Census is a census.
-- **Money is not in the table.** `fiscal/government-spending-on-the-asylum-system` is on
-  **financial year 2024-25**, as are the two spending records its home page card cites, and no row
-  names that period.
-- The **Foreign-born population** row gives only the 2021/22 Census. The site also publishes
-  `population/foreign-born-population-mid-2024` and `population/foreign-born-share-mid-2024`, both
-  for mid-2024, and the home page card and the born-abroad claim both carry the later estimate.
+- The lead-in and caption said **twelve-month windows** and two of the four rows were not one. They
+  now say **period**, and the point-in-time row says in the table that it is one date rather than a
+  window.
+- **Money had no row**, though `fiscal/government-spending-on-the-asylum-system` is on financial
+  year 2024-25, as are the two spending records its home page card cites. **Asylum system spending
+  now has a row.**
+- The **Foreign-born population** row gave only the 2021/22 Census while the site also publishes
+  `population/foreign-born-population-mid-2024` and `population/foreign-born-share-mid-2024`, which
+  the home page card and the born-abroad claim both carry. The row **now names the rolled-forward
+  mid-2024 estimate** beside the census.
 
 ### 4.5 The update section
 
@@ -401,7 +452,14 @@ year ending March 2026; year ending December 2025; point-in-time 31 March 2026; 
 ### 4.6 How this site was built
 
 > 'A verification pass in July 2026 checked them against primary publications, quoting the
-> specific sentence or table cell behind each value.'
+> specific sentence or table cell behind each value it covered. Where a figure has been checked
+> that way, the quotation is recorded in `data/evidence/` and a check refuses a changed value whose
+> quotation does not contain it. That does not yet cover every figure here.'
+
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** It claimed a quotation behind
+EACH VALUE until then. What follows is what the pass found, and the count has moved since: there
+were four evidence entries when this was written and there are eighteen now, against ninety-nine
+records, which is why the sentence had to say what it does not yet cover.
 
 `data/evidence/` holds **four** entries. `check-evidence.mjs` fires on a value that changed
 against `origin/main` and on a value that is new, so a record that has not moved has never been
@@ -420,11 +478,11 @@ contract, and backlog item **A1** is the decision about whether to backfill.
 
 ### Checkboxes
 
-- [ ] Every promise in 4.1 describes what the build does
-- [ ] The three published limits describe what the checks do not establish, given 4.2
-- [ ] The count in 4.3
-- [ ] The reference-periods table covers the periods the site publishes
-- [ ] The sentence in 4.6 says what it means about the July 2026 pass
+- [x] Every promise in 4.1 describes what the build does
+- [x] The three published limits describe what the checks do not establish, given 4.2
+- [x] The count in 4.3
+- [x] The reference-periods table covers the periods the site publishes
+- [x] The sentence in 4.6 says what it means about the July 2026 pass
 
 ---
 
@@ -447,8 +505,8 @@ No figure, no citation, no literal. What it carries is commitments.
 
 ### Checkboxes
 
-- [ ] Every commitment above is one the site can still keep
-- [ ] The funding statement is still true on the day the site publishes
+- [x] Every commitment above is one the site can still keep
+- [x] The funding statement is still true on the day the site publishes
 
 ---
 
@@ -477,8 +535,16 @@ Set beside the data: `asylum/small-boat-arrivals-calendar-year-2025` carries the
 
 ### 6.3 The direction labels
 
-> 'Those are the only two labels in use. A misuse common on both sides is currently written up
-> under whichever version circulates more, and named as shared in the text.'
+> 'Those are the only two labels in use. A misuse common on both sides is written up under
+> whichever version circulates more, and carries that side's label. There is no shared label:
+> one was described here until 6 August 2026 and no claim ever carried it, which is a promise
+> to a reader that nothing kept.'
+
+**Corrected in PR #160 on 6 August 2026, on this box's own verdict.** It promised that a misuse
+common to both sides is 'named as shared in the text' until then. No claim carried a shared label
+and 'both' was removed as a direction, on the reasoning that a label no claim carries is a promise
+to the reader that nothing keeps. **Section 8.5.3 of the foundation document still marks two rows
+'(shared)'**, which is the specification as it stood and not the site.
 
 The front matter uses two labels and no third. **No claim page contains the word 'shared'**, so
 the second sentence describes a practice with no live instance. The two rows marked '(shared)' are
@@ -498,9 +564,9 @@ backs this page over the reviewer's criterion, and this is where the page says i
 
 ### Checkboxes
 
-- [ ] The 'named as shared in the text' sentence, given no page does it
-- [ ] The no-attribution policy, read as what signing the review endorses
-- [ ] The 2026-07-22 review date, the oldest on the site
+- [x] The 'named as shared in the text' sentence, given no page does it
+- [x] The no-attribution policy, read as what signing the review endorses
+- [x] The 2026-07-22 review date, the oldest on the site
 
 ---
 
@@ -527,13 +593,52 @@ backs this page over the reviewer's criterion, and this is where the page says i
 The commitment on `/sources-and-method/` is: "Before this site publishes, a human reviews the
 figures and the claims." That commitment does not distinguish ten pages from sixteen.
 
-- [ ] Section 1 complete, the overview and its 8 cards
-- [ ] Section 2 complete, the glossary, including both launch gates
-- [ ] Section 3 complete, the claims index
-- [ ] Section 4 complete, sources and method
-- [ ] Section 5 complete, about
-- [ ] Section 6 complete, the style guide
+- [x] Section 1 complete, the overview and its 8 cards
+- [x] Section 2 complete, the glossary, including both launch gates
+- [x] Section 3 complete, the claims index
+- [x] Section 4 complete, sources and method
+- [x] Section 5 complete, about
+- [x] Section 6 complete, the style guide
 - [ ] `last_reviewed` refreshed on each of the six pages this pass covered
+
+**Verdicts given 6 August 2026. The owner read this evidence and gave each verdict; the marks
+were recorded by the session that wrote the evidence, at his direction.** That arrangement is
+stated because it is not the one this gate assumes, and a reader should be able to see which hand
+made the mark.
+
+**Twenty-six of twenty-seven now pass.** Fourteen passed on 6 August 2026 when the verdicts were
+first given. **Eight were substantive failures, all eight have since been corrected**, in PRs #160,
+#161 and this one, and on that the owner re-answered the four section boxes that had failed only
+because a box beneath them had. **Box 27 is the one that stays unticked, deliberately**: the six
+pages were not re-read, and their `last_reviewed` dates are on every page footer.
+
+**All eight were re-answered as passing on 6 August 2026, against the corrected pages.** What
+each one was, kept because the correction is the record. **Boxes 2 and 6 turned out differently
+from how they were written up here**: the claim that the appeals queue moves the other way was
+recorded as unsettleable, and checking found `asylum/asylum-appeals-backlog-previous-year` holding
+50,976 against 87,450 a year later, so it was supportable and merely uncited. It is now cited in
+both places rather than removed. Only 'to a record' was dropped, because two points cannot
+establish one:
+
+| Box | What failed |
+| --- | --- |
+| 2 | Three overview claims the data layer cannot settle: 'lowest level since early 2021', the backlog's '2023 peak', and 'the appeals queue has been moving the other way' |
+| 6 | Three more of the same kind in 2.3: 'risen to a record', 'British citizens leaving, a substantial part', and 'a substantial share of appeals succeed', which is uncited here |
+| 11, 12 | Section 4's analysis is stale. It records that a figure the data layer never recorded is reported and not refused; the build now REFUSES it. The regeneration of 6 August covered quoted passages and not table prose, which is where this lives |
+| 13 | 'Four false summaries were found on this site' is a count of this project's own work, live on a reader-facing page, held in two places and re-derived by nothing |
+| 14 | The reference-periods table: two of four rows are not twelve-month windows though the caption says they are, money has no row, and the foreign-born row omits the mid-2024 estimates the site publishes |
+| 15 | 'quoting the specific sentence or table cell behind each value' against 18 evidence entries and 99 records |
+| 18 | The style guide promises a misuse common to both sides is 'named as shared in the text'. No claim carries a shared label and 'both' was removed as a direction |
+
+**Sections 1, 2, 4 and 6 were not complete while those failures stood, and are now.** Boxes 21,
+22, 24 and 26 were re-answered on 6 August 2026 once every failure beneath them was corrected.
+`last_reviewed` still does not move on any of the six pages, because the pages were not re-read:
+the owner read this evidence and the marks were recorded from it. Those dates are on every page
+footer, so moving them would tell a reader something that did not happen.
+
+**Boxes 8 and 19 were passed together, deliberately.** Both turn on the same judgement, that this
+site's no-attribution policy outranks the review's demonstrably-circulates criterion, which is
+what kept claims 2.6 and 2.7. Item 12's signature says the same thing a third time.
 
 Reviewed by: ____________________  Date: ____________
 
