@@ -518,7 +518,15 @@ if (!robots) {
     if (agent) {
       if (!group || group.directives.length) groups.push((group = { agents: [], directives: [] }));
       group.agents.push(agent[1]);
-    } else if (group) {
+    } else if (group && !/^Sitemap:/i.test(line)) {
+      // Sitemap is a non-group field in RFC 9309 and belongs to the file, not to whichever group
+      // it happens to sit under. Collecting it as a directive was harmless for the two assertions
+      // below, since neither reads anything but Disallow, and it broke the grouping rule this
+      // parser exists to get right: a Sitemap line between a User-agent line and its first real
+      // directive made `group.directives.length` truthy, so the NEXT User-agent line opened a new
+      // group where the spec keeps both agents in one. An admitted agent sharing a blocking
+      // group with a refused one would then be missed, which is the single thing this check is
+      // here to catch. Probed in both directions rather than reasoned about.
       group.directives.push(line);
     }
   }

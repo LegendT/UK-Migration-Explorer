@@ -21,13 +21,15 @@ sentence admitting that nothing checked them, and they were wrong by then: the c
 derived by `lib/published.mjs` and every record added moves them. A number in prose beside a
 run that computes it is the defect this project spends most of its checks on. The site is
 crawlable: `content/robots.txt` was rewritten under backlog call 26 to admit retrieval agents
-that emit a linked citation and refuse crawlers documented as collecting training data. Every
-page still carries a notice saying the site is unfinished, because that notice is tied to
-recording the pre-publication review as passed and not to this file. **The launch domain was decided on 4 August 2026 and is
+that emit a linked citation and refuse crawlers documented as collecting training data. **The
+pre-launch notice went with it**, in the same change rather than a later one, because it existed
+to cover a site reachable by URL while every crawler was refused, and a page served from the
+commit that launches saying the site is not launched yet would be false. **The launch domain was decided on 4 August 2026 and is
 `ukmigrationexplorer.org`**, which is what `content/_data/site.js` holds, so canonical links,
 the sitemap and every citation block print it; the Netlify address remains the deploy URL.
-**That rule governs indexing, not access:** the site is reachable now by anyone with the URL,
-which is why the notice on every page is the thing doing the work.
+**That rule governed indexing, not access**, which is why a notice on every page did the work
+while it stood: the site was always reachable by anyone holding the URL, and refusing crawlers
+never made it private. Neither half applies now.
 
 **The pre-publication review has been conducted, and its corrections have landed.** It ran
 on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its

@@ -50,15 +50,18 @@
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<div class="prelaunch" role="region" aria-label="Pre-launch notice">
-  <p class="wrap">
-    <strong>This site is not launched yet.</strong> The pre-publication review it promises was done
-    on 27 July 2026, its corrections have landed, and it is now recorded as passed in the
-    changelog. Figures are sourced and checked, and the update commitment is signed.
-    <a href="/about/">Who runs it and who pays</a>,
-    <a href="/sources-and-method/#updates">how often this is updated</a>.
-  </p>
-</div>
+{# The pre-launch notice was removed here, with the launch. It existed because the site was
+   reachable by anyone holding the URL while `robots.txt` refused every crawler, so a reader
+   could arrive at a page nothing had announced; the notice was what did the work in that gap.
+   Rewriting `robots.txt` under call 26 closes the gap, and a banner saying the site is not
+   launched yet, served from the commit that launches it, would be false on every page. It goes
+   at launch was decided on 27 July 2026 (PR #54) and is stated in README.md and in
+   docs/BACKLOG.md under the review's closing steps. Of the two links it carried, /about/ and
+   /sources-and-method/, both are in the navigation on all 23 built pages, counted against the
+   build rather than assumed. The #updates FRAGMENT is not: this banner was the only thing on
+   the site linking straight to the update cadence, and after it the page is one click away in
+   the navigation and the fragment is not linked from anywhere. That is a reader-facing wording
+   question and it is the owner's, so nothing is invented here to replace it. #}
 
 <header class="site-header">
   <div class="wrap">
