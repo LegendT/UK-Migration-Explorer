@@ -212,10 +212,10 @@ rendered.
 
 ### Checkboxes
 
-- [ ] Every literal above matches the data, or is meant to be a frozen historical figure
+- [x] Every literal above matches the data, or is meant to be a frozen historical figure
 - [ ] Every relationship claim above (peak, lowest since, a quarter smaller, most of it, moving
       the other way) holds against the data beside it
-- [ ] The two paragraphs describing the card set describe the card set that exists
+- [x] The two paragraphs describing the card set describe the card set that exists
 
 ---
 
@@ -312,10 +312,10 @@ title. The style guide's promise about this is section 6.2 below.
 
 ### Checkboxes
 
-- [ ] Gate 1: the Grant rate entry, rebuilt on the corrected record, including the window
-- [ ] Gate 2: the Net fiscal impact entry, without the retired 'spans zero' argument
+- [x] Gate 1: the Grant rate entry, rebuilt on the corrected record, including the window
+- [x] Gate 2: the Net fiscal impact entry, without the retired 'spans zero' argument
 - [ ] Every relationship claim in 2.3 holds against the data beside it
-- [ ] The two frozen literals are still the right ones to freeze
+- [x] The two frozen literals are still the right ones to freeze
 
 ---
 
@@ -373,9 +373,9 @@ other.
 
 ### Checkboxes
 
-- [ ] The four criteria as stated still describe what is on the page, given 2.6 and 2.7
-- [ ] The sentence about the two longest checks (A4)
-- [ ] The two scope paragraphs still say the same thing
+- [x] The four criteria as stated still describe what is on the page, given 2.6 and 2.7
+- [x] The sentence about the two longest checks (A4)
+- [x] The two scope paragraphs still say the same thing
 
 ---
 
@@ -494,8 +494,8 @@ No figure, no citation, no literal. What it carries is commitments.
 
 ### Checkboxes
 
-- [ ] Every commitment above is one the site can still keep
-- [ ] The funding statement is still true on the day the site publishes
+- [x] Every commitment above is one the site can still keep
+- [x] The funding statement is still true on the day the site publishes
 
 ---
 
@@ -546,8 +546,8 @@ backs this page over the reviewer's criterion, and this is where the page says i
 ### Checkboxes
 
 - [ ] The 'named as shared in the text' sentence, given no page does it
-- [ ] The no-attribution policy, read as what signing the review endorses
-- [ ] The 2026-07-22 review date, the oldest on the site
+- [x] The no-attribution policy, read as what signing the review endorses
+- [x] The 2026-07-22 review date, the oldest on the site
 
 ---
 
@@ -576,11 +576,38 @@ figures and the claims." That commitment does not distinguish ten pages from six
 
 - [ ] Section 1 complete, the overview and its 8 cards
 - [ ] Section 2 complete, the glossary, including both launch gates
-- [ ] Section 3 complete, the claims index
+- [x] Section 3 complete, the claims index
 - [ ] Section 4 complete, sources and method
-- [ ] Section 5 complete, about
+- [x] Section 5 complete, about
 - [ ] Section 6 complete, the style guide
 - [ ] `last_reviewed` refreshed on each of the six pages this pass covered
+
+**Verdicts given 6 August 2026. The owner read this evidence and gave each verdict; the marks
+were recorded by the session that wrote the evidence, at his direction.** That arrangement is
+stated because it is not the one this gate assumes, and a reader should be able to see which hand
+made the mark.
+
+**Fourteen boxes pass and THIRTEEN DO NOT. Eight are substantive failures**, and the review is
+NOT recorded as passed on this document as it stands:
+
+| Box | What failed |
+| --- | --- |
+| 2 | Three overview claims the data layer cannot settle: 'lowest level since early 2021', the backlog's '2023 peak', and 'the appeals queue has been moving the other way' |
+| 6 | Three more of the same kind in 2.3: 'risen to a record', 'British citizens leaving, a substantial part', and 'a substantial share of appeals succeed', which is uncited here |
+| 11, 12 | Section 4's analysis is stale. It records that a figure the data layer never recorded is reported and not refused; the build now REFUSES it. The regeneration of 6 August covered quoted passages and not table prose, which is where this lives |
+| 13 | 'Four false summaries were found on this site' is a count of this project's own work, live on a reader-facing page, held in two places and re-derived by nothing |
+| 14 | The reference-periods table: two of four rows are not twelve-month windows though the caption says they are, money has no row, and the foreign-born row omits the mid-2024 estimates the site publishes |
+| 15 | 'quoting the specific sentence or table cell behind each value' against 18 evidence entries and 99 records |
+| 18 | The style guide promises a misuse common to both sides is 'named as shared in the text'. No claim carries a shared label and 'both' was removed as a direction |
+
+**The other five unticked boxes follow from those**: sections 1, 2, 4 and 6 are not complete
+because each carries a failure, and `last_reviewed` does not move on any of the six pages,
+because the pages were not re-read. Those dates are on every page footer, so moving them would
+tell a reader something that did not happen.
+
+**Boxes 8 and 19 were passed together, deliberately.** Both turn on the same judgement, that this
+site's no-attribution policy outranks the review's demonstrably-circulates criterion, which is
+what kept claims 2.6 and 2.7. Item 12's signature says the same thing a third time.
 
 Reviewed by: ____________________  Date: ____________
 
