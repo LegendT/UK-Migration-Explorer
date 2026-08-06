@@ -192,20 +192,22 @@ below.
     A5 change rather than the section, so the work had been written into a section the ordered list
     no longer reached. **That was the A6 orphan repeating within a day, by the hand that had just
     written up A6's**, which is why it was a numbered item rather than a sentence somewhere.
-17. **The costs page still frames net fiscal impact the way correction 1b retired.** Found by the
-    docs audit of 6 August 2026, from the one item `docs/PRE-LAUNCH-AUDIT.md` still marks open.
-    `content/costs.njk` renders "Contested, method-dependent, and lands within about plus or minus
-    1% of GDP either way" on `/costs/`. Correction 1b retired that framing as statistically invalid
-    because the bound is the spread across separate studies, not an uncertainty interval around one
-    estimate. **The two claim pages were fixed on 27 July 2026 and the glossary on 2 August (PR
-    #83); this sentence was not**, and it also drops the pre-Brexit scope that every other site of
-    it carries, so it reads as a current fact about a system none of those studies covers. The
-    glossary now says in terms "not one estimate with a margin of error", which is what this page
-    states. **`data/meta.json` and `data/fiscal.json` carry the phrase too and are NOT defects**:
-    both attribute it to the studies, checked rather than assumed. **This is the fourth instance of
-    the correction-missing-its-siblings shape**, whose remedy this project already wrote down as
-    "grep the claim, not the page". **Whether it gates launch is [you]**, and so is the wording;
-    applying what is decided is **[me]**.
+17. **CLOSED 6 August 2026 (PR #166). It was a GATE**, decided so on the reasoning of 4 August
+    that a site whose subject is other people's misuse of statistics cannot launch with its own
+    trust work outstanding. The costs page framed net fiscal impact the way correction 1b retired.
+    Found by the docs audit of 6 August 2026, from the one item `docs/PRE-LAUNCH-AUDIT.md` still
+    marks open. `content/costs.njk` rendered "Contested, method-dependent, and lands within about
+    plus or minus 1% of GDP either way" on `/costs/`, which is invalid because the bound is the
+    spread across separate studies rather than an uncertainty interval around one estimate, and it
+    carried no scope, so it read as a current fact about a system none of those studies covers.
+    **The two claim pages were fixed on 27 July 2026 and the glossary on 2 August (PR #83); this
+    card was missed both times**, which made it **the fourth instance of the
+    correction-missing-its-siblings shape**, whose remedy this project had already written down as
+    "grep the claim, not the page". **`data/meta.json` and `data/fiscal.json` carry the phrase too
+    and are NOT defects**: both attribute it to the studies, checked rather than assumed. The card
+    now says there is no agreed figure, scopes it to the pre-Brexit studies, and attaches the
+    magnitude to the estimated effect rather than to the studies, which a critique round caught in
+    the draft. It is under *Completed*.
 18. **NOT A GATE. Choose the success measures, and record which.** Found by the docs audit of
     6 August 2026. Foundation section 4.2 offers three candidates and says they must be chosen and
     committed to in phase 1: cited by a named outlet or briefing within six months; organic search
@@ -929,6 +931,20 @@ maintained here. Newest first.
   `population/share-of-london-residents-born-abroad` keeps `official`, and A1 carries the reasoning
   rather than this entry repeating it. It cost nothing to apply: the record is unpublished reserve
   and reaches no reader either way, which is why it could sit open under a gate for two days.
+
+- **The costs page's fiscal-impact framing**, 6 August 2026. PR #166, closing The order's item 17.
+  **The fourth instance of a correction shipping without its siblings**, and the first found by
+  auditing documents rather than content: `docs/PRE-LAUNCH-AUDIT.md` is frozen and marks exactly one
+  item still open, correction 1b's, and following it to the page showed the signpost card on
+  `/costs/` still saying "lands within about plus or minus 1% of GDP either way" seven days after
+  the claim pages and five after the glossary were fixed. **The bound is the spread across separate
+  studies, not an interval around one estimate**, and the card carried no scope at all, so it read
+  as a current fact about a system none of those studies covers. **What the audit could have got
+  wrong and did not**: `data/meta.json` and `data/fiscal.json` carry the same phrase and both
+  attribute it to the studies, so both are correct and neither was touched, established by reading
+  them rather than by matching the phrase. **A critique round then caught the replacement
+  misattributing "small in magnitude" to the studies instead of to the effect they estimate**,
+  which on this subject is the same class of error as the one being fixed.
 
 - **The review is recorded as passed**, 6 August 2026. PR #159, closing The order's item 12, the
   last of the three closing steps the review of 27 July left. **No figure moved and no page a
