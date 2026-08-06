@@ -192,6 +192,20 @@ below.
     A5 change rather than the section, so the work had been written into a section the ordered list
     no longer reached. **That was the A6 orphan repeating within a day, by the hand that had just
     written up A6's**, which is why it was a numbered item rather than a sentence somewhere.
+17. **The costs page still frames net fiscal impact the way correction 1b retired.** Found by the
+    docs audit of 6 August 2026, from the one item `docs/PRE-LAUNCH-AUDIT.md` still marks open.
+    `content/costs.njk` renders "Contested, method-dependent, and lands within about plus or minus
+    1% of GDP either way" on `/costs/`. Correction 1b retired that framing as statistically invalid
+    because the bound is the spread across separate studies, not an uncertainty interval around one
+    estimate. **The two claim pages were fixed on 27 July 2026 and the glossary on 2 August (PR
+    #83); this sentence was not**, and it also drops the pre-Brexit scope that every other site of
+    it carries, so it reads as a current fact about a system none of those studies covers. The
+    glossary now says in terms "not one estimate with a margin of error", which is what this page
+    states. **`data/meta.json` and `data/fiscal.json` carry the phrase too and are NOT defects**:
+    both attribute it to the studies, checked rather than assumed. **This is the fourth instance of
+    the correction-missing-its-siblings shape**, whose remedy this project already wrote down as
+    "grep the claim, not the page". **Whether it gates launch is [you]**, and so is the wording;
+    applying what is decided is **[me]**.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -614,8 +628,10 @@ grade decisions its first bullet waits on.
 
 ### U5. Considered and cut, with the reasoning, so they are not re-proposed
 
-- **Site search.** Seventeen pages, nine nav items, a glossary. A hand-maintained index is a second
-  list that rots, which this project has been bitten by twice.
+- **Site search.** Nine nav items, a glossary, and a page count `npm run build` prints rather than
+  this line: it read "Seventeen pages" until 6 August 2026 and the build then said 24. **The cut
+  stands and the growth strengthens it**: a hand-maintained index is a second list that rots, which
+  this project has been bitten by twice, and it rots faster the more pages there are.
 - **A horizontally scrolling nav.** It has the same invisible-scroll defect the review flagged for
   chart regions, and with no JavaScript there is no scroll-state styling to rescue it. **The cut
   stands and its remedy guess was wrong**: the nine labels measure 819px of text and need 979px of
