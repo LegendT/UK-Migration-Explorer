@@ -264,30 +264,40 @@ below.
     and the first runs a six-month clock that starts at it, so choosing them before launch is worth
     more than choosing them well after. **[you]**, and nothing is built either way.
 
-21. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below. PART BUILT
-    on the same branch and not merged.** Applied: the Migration Observatory grades and their
-    evidence entries, the counts in `README.md`, `docs/foundation.md` and
+21. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below. BUILT on the
+    same branch and not merged, and the code tidy is done.** Applied: the Migration Observatory
+    grades and their evidence entries, the counts in `README.md`, `docs/foundation.md` and
     `docs/UPDATE-AUTOMATION.md`, the census entry in `data/sources.json`, the glossary
     cross-references, `content/404.md`, the provenance disclosure's target size, and both
-    accessibility gaps: the page list is now compared against the build in both directions and
-    the dark palette is audited on every run. **One finding was refused rather than fixed**:
-    the bar labels on `/costs/` were reported as unitless against the style guide, and
-    `content/style-guide.md` carries no rule about units, its subject being contested
-    vocabulary, while the chart's own heading states the unit. **What is left is the code
-    tidying**: the dead flag and the stale comment blocks in `lib/charts.mjs`, its escaping
-    helper defined in more than one place, its label guard calibrated for a size the narrow
-    chart does not use, the three chart edge cases that would emit NaN rather than fail, the
-    two unread global data registrations in `eleventy.config.js` and its stale note about a
-    scroll-region blindness that is fixed, the way an evidence entry can be retired by editing
-    its own value, and the two claim-page labelling points.** Miscounts
-    in `README.md`, `docs/foundation.md` and `docs/UPDATE-AUTOMATION.md`, the last contradicting
-    itself in adjacent sentences; grades in `data/population.json` that the identical sibling was
-    moved off on 4 August 2026, and a catalogue entry in `data/sources.json` that no record cites;
-    small defects on the pages and in `lib/charts.mjs`; and **the accessibility run tests one
-    theme**, `.pa11yci.json` setting no colour scheme, so the clean report covers the light
-    palette. The dark palette was measured by hand for this critique, on every page sampled and
-    including chart text, and passes; nothing keeps it that way. None of this is a false sentence
-    to a reader, which is why it sits here with the other things that are not gates. **[me]**.
+    accessibility gaps: the page list is compared against the build in both directions and the
+    dark palette is audited on every run. **The code tidy of 6 August 2026**: the HTML escaper had
+    one home made for it in `lib/escape.mjs` where five files each held a copy, the withdrawn
+    y-label flag is gone from `lib/charts.mjs` with the measurement that withdrew it kept and the
+    three comments that outlived it corrected, the bar chart's text size is carried per rendering
+    and held against `content/assets/style.css` by `scripts/check-build.mjs`, the inputs that
+    produced NaN coordinates are refused with the chart named, and `eleventy.config.js` lost an
+    unread global and a note describing a defect fixed the day before. **Both refactors were
+    proved to change nothing**, the built site being compared byte for byte against the commit
+    before them.
+    **Two findings were refused rather than fixed.** The bar labels on `/costs/` were reported as
+    unitless against the style guide, and `content/style-guide.md` carries no rule about units,
+    its subject being contested vocabulary, while the chart's own heading states the unit. And
+    two unread global registrations were reported in `eleventy.config.js` where there was one.
+    **What is left is two labelling points**: the table on the most-immigration-is-asylum check
+    has no caption and its scroll region falls back to a name that says nothing, and a claim is a
+    heading with no "The claim" label travelling with it in heading navigation. **[me]**.
+22. **NOT A GATE, and it is the one thing under R6 that is not cosmetic. An evidence entry can be
+    retired from every pass by editing its own value.** `scripts/check-evidence.mjs` audits an
+    entry only where the record still exists and still holds exactly what the entry declares,
+    which is deliberate and is what stops the audit trail having to be deleted when a figure
+    moves. The gap is the other side of it: the base-branch loop asks about figures that moved,
+    so if the ENTRY moves instead, by a hand editing its `value`, the entry stops being read and
+    nothing asks why. Nothing suggests it has happened; the quotes were re-read on 6 August 2026.
+    **Deliberately not taken in the same session as the sign fix**, because this is the script the
+    whole evidence contract rests on and the shape of the remedy is a real question: probably that
+    a branch changing an entry's `value` must show the record moving with it, which is the
+    machinery the base-branch comparison already has. **[me]**, as its own piece of work.
+
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item. A closed item

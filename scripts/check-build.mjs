@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 
 import site from '../content/_data/site.js';
 import { publishedCounts, registry } from '../lib/published.mjs';
+import { BAR_FONT } from '../lib/charts.mjs';
 
 const siteDir = fileURLToPath(new URL('../_site/', import.meta.url));
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
@@ -411,6 +412,42 @@ if (!sitemap) {
   }
   if (phantom.length) {
     errors.push(`sitemap.xml: lists ${phantom.join(', ')}, which the build does not serve. A crawler following that URL meets a 404.`);
+  }
+}
+
+// --- the bar chart's text size, which the stylesheet and the estimator both hold -----------
+// lib/charts.mjs estimates a label's width to decide the left gutter and whether a value fits
+// inside its bar, and the size it estimates at must be the size the page renders. This exact
+// mismatch produced a reader-facing blocker once: the estimator was calibrated against 13px text
+// while the chart drew at 17px, and every y-axis label was clipped at the chart's left edge, so
+// 1,500,000 rendered as "500,000". The bar chart then carried the same shape in miniature until
+// 6 August 2026, measuring at 14 while the narrow rendering draws at 15.
+//
+// CSS cannot import anything, so the two cannot share one constant and are compared instead, on
+// the same reasoning as the print stylesheet's hand-written domain below. Anchored to the
+// declaration blocks rather than to their order in the file.
+const stylesheet = readFileSync(`${repoRoot}content/assets/style.css`, 'utf8');
+// Selectors are compared WHOLE, split out of each rule's selector list, not searched for as
+// substrings. The first version matched `.bar-value` inside `.bar-value-renamed`, so renaming the
+// class out from under this check left it reporting agreement with a rule that no longer styled
+// anything. Found by probing the rename, not by reading the expression.
+const rules = [...stylesheet.matchAll(/([^{}]+)\{([^}]*)\}/g)].map(([, selectors, body]) => ({
+  selectors: selectors.split(',').map((one) => one.trim().split(/\s+/).filter(Boolean).join(' ')),
+  body,
+}));
+const declaredSize = (selector) => {
+  const match = rules.find((rule) => rule.selectors.includes(selector)
+    && /font-size:\s*\d/.test(rule.body));
+  const size = match && /font-size:\s*(\d+(?:\.\d+)?)px/.exec(match.body);
+  return size ? Number(size[1]) : null;
+};
+for (const [key, expected] of Object.entries(BAR_FONT)) {
+  const selector = key === 'narrow' ? '.chart-svg--narrow .bar-value' : '.bar-value';
+  const rendered = declaredSize(selector);
+  if (rendered === null) {
+    errors.push(`content/assets/style.css: no font-size found for ${selector}, so BAR_FONT.${key} in lib/charts.mjs is checked against nothing. If the rule moved, move this check with it.`);
+  } else if (rendered !== expected) {
+    errors.push(`lib/charts.mjs BAR_FONT.${key} is ${expected} and content/assets/style.css renders ${selector} at ${rendered}px. The label-width estimator would measure text at the wrong size, which is how every y-axis label came to be clipped once. Change both or neither.`);
   }
 }
 

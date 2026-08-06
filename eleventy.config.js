@@ -8,6 +8,7 @@ import { provenanceList } from './lib/provenance.mjs';
 import { CADENCED_SOURCES, publishedCounts } from './lib/published.mjs';
 import { COMPANION_BLOCKS, THEME_FILES, readSeries } from './lib/series.mjs';
 import { structuredData } from './lib/structured-data.mjs';
+import { escape } from './lib/escape.mjs';
 
 const read = (file) => JSON.parse(readFileSync(new URL(`./data/${file}`, import.meta.url), 'utf8'));
 
@@ -32,7 +33,6 @@ const dataFiles = readdirSync(new URL('./data/', import.meta.url))
   .filter((name) => name.endsWith('.json')).sort()
   .map((name) => ({ name, json: read(name) }));
 
-const escape = (text) => String(text).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 // A figure renders as its formatted value and nothing else, the unit is prose, written by
 // the author. See the token contract in docs/foundation.md section 15. The wrapper carries
@@ -80,9 +80,11 @@ const PARTIALS = {
   // keyboard user, and nothing failed: the build check passed and pa11y passed 20 of 20. It was
   // found by counting `.scroll-x` in the built page.
   //
-  // check-build.mjs matches the same way in both of its scroll-region assertions, so a region
-  // carrying an extra class escapes the focusable, role and accessible-name checks in silence.
-  // Not fixed here, because it is not this change: it is in the backlog under A5.
+  // check-build.mjs used to match the same way in both of its scroll-region assertions, so a
+  // region carrying an extra class escaped the focusable, role and accessible-name checks in
+  // silence. FIXED ON 5 AUGUST 2026 (PR #149), in all four patterns across the transform and the
+  // checker. This note said it was live and pointed at an open backlog item until 6 August 2026,
+  // which is a comment describing the repository of a day earlier.
   'sources-catalogue': () => `<div class="sources-wide"><div class="scroll-x"><table class="sources">
 <caption class="visually-hidden">Sources used on this site</caption>
 <thead><tr><th scope="col">Source</th><th scope="col">What it covers</th><th scope="col">Updated</th></tr></thead>
@@ -137,7 +139,6 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ data: 'data' });
   eleventyConfig.addPassthroughCopy({ 'content/robots.txt': 'robots.txt' });
 
-  eleventyConfig.addGlobalData('metrics', () => Object.fromEntries(registry));
   eleventyConfig.addGlobalData('meta', () => meta);
   eleventyConfig.addGlobalData('sources', () => sources);
   eleventyConfig.addGlobalData('dashboard', () => read('dashboard.json'));
