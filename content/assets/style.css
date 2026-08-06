@@ -513,9 +513,22 @@ th.nested-2 { padding-left: 2.75rem; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-/* The pre-launch band's rules went with the banner at launch. What they taught outlives them
-   and is in docs/HANDOFF.md: a rule reaching inside a utility class, `.prelaunch p` against
-   `.wrap`, outranks it on specificity and silently undoes the declarations doing the centring. */
+/* The band is full width; its text is not. It qualifies the page, so it starts where the
+   page starts. With its own padding it began 79px left of every other line on the site at
+   any viewport wide enough to centre the wrap. */
+/* margin-block, not margin. `.prelaunch p` outranks `.wrap` on specificity, so both a
+   `max-width: none` and a shorthand `margin: 0` here silently undid the two declarations
+   that do the centring, and the banner text stayed exactly where it had been. Only the
+   block margins belong to this rule; the inline auto belongs to .wrap. */
+.prelaunch p { margin-block: 0; }
+.prelaunch {
+  padding: 0.85rem 0;
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--rule-strong);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
 
 /* A substantive revision, disclosed on the claim it changed. Styled like the site-wide
    notice so it reads as a statement about the page rather than part of the argument. */
