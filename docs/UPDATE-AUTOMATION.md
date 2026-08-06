@@ -4,8 +4,8 @@ What can be automated about keeping this site current, what must not be, and in 
 build it. Scoped 23 July 2026. **Four of the five phases are built:** phase 2, the evidence
 check, on 28 July 2026, PR #43; phase 1, the notifier, the same day, PR #46; phase 1b, the
 corrections watch, on 30 July, PR #48; and phase 3, the update prompt, the same day, PR #56.
-**Phase 4 is the only one left**, and it is a reader-facing trust statement needing the owner's
-sign-off rather than a build. Everything below except phase 4 is now the reasoning behind what
+**All five phases are done. Phase 4 was signed off on 6 August 2026** and the paragraph it
+rewrites is live on `/sources-and-method/`. Everything here is now the reasoning behind what
 exists rather than a scope for what does not.
 
 The problem it solves is named in the risk register: silent staleness is the most likely way
