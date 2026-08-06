@@ -202,20 +202,22 @@ below.
     to a session. **A gate on the same reasoning**: each is a promise about how this site sources
     things, on a site that asks to be trusted for exactly that. **[me]**, except the
     original-data sentence, which is a wording call and is **[you]**, with a draft under R5.
-15. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
-    guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
-    delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
-    the sitemap built in PR #86, and **what it says is decided as call 26 under U4** and
-    unapplied. Then set up Search Console, which costs nothing, needs no JavaScript, and is how
-    success measure 2 would be noticed. **[me]**, on the owner's word.
-    **The changeset for it is written, and was verified rather than assumed on 6 August 2026.**
-    It is PR #153, merged and then reverted by PR #164 because the launch had been taken without
-    that word; reverting the revert restores it. The code half re-applies with no conflict, and
-    the two documentation tables that do conflict do so only because later work landed after the
-    revert. Applied on a scratch branch, `npm test`, `npm run validate`, `npm run build` and
-    `npm run a11y` all pass, the built `robots.txt` disallows nothing under the wildcard and
-    carries its `Sitemap:` line, and no built page still says the site is not launched. **What is
-    outstanding is the word, not the work**, and the gates above it.
+15. **GATE, and deliberately last of the gates. Launch. THE REPOSITORY HALF IS DONE (PR #153,
+    6 August 2026), and items 13 and 14 are the gates ahead of it;
+    Search Console is what is left and it is [you].** The gate as originally worded said delete
+    `content/robots.txt` and its guard, and **the UX review said write that file rather than only
+    delete it**, which is what happened: the file admits retrieval agents that emit a linked
+    citation and refuses crawlers documented as collecting training data, on call 26 under U4, with
+    a `Sitemap:` line pointing at the sitemap built in PR #86. The guard in
+    `scripts/check-build.mjs` was swapped rather than deleted, so it now asserts the launch state
+    and would fail a build that quietly closed the site again. **The pre-launch notice went with
+    it**, in the same change rather than a later one, because a page served from the commit that
+    launches saying the site is not launched yet would be false on every page; removing it at
+    launch was decided on 27 July 2026 (PR #54). **What is left needs the owner's own accounts and
+    nothing in this repository**: verify the domain by DNS TXT record, chosen on 6 August 2026 over
+    the HTML-file and meta-tag methods, and submit
+    `https://ukmigrationexplorer.org/sitemap.xml`. That is how success measure 2 would be noticed.
+    **[you]**.
 16. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
