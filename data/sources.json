@@ -42,7 +42,7 @@
       "name": "Census 2021/22",
       "publisher": "ONS (England, Wales, Northern Ireland) and National Records of Scotland",
       "url": "https://www.ons.gov.uk/census",
-      "covers": "Foreign-born population, country of birth, nationality, and regional distribution. The most reliable foreign-born stock figures, as the ONS survey-based series was discontinued in October 2022.",
+      "covers": "Foreign-born population, country of birth, nationality, and regional distribution, and the basis the foreign-born figures on this site ultimately rest on, the ONS survey-based series having been discontinued in October 2022. NO RECORD CITES THIS ENTRY DIRECTLY, and it is listed because a reader is owed the underlying source: the figures are cited to the Migration Observatory briefing and the ONS estimate that read the census, because those are what this site fetched and quoted, and no census release publishes a UK-wide foreign-born share at all.",
       "updateFrequency": "Every 10 years (last: 2021 for E&W/NI, 2022 for Scotland)",
       "confidence_level": "official"
     },

@@ -1,11 +1,14 @@
 # Update automation, scoped
 
 What can be automated about keeping this site current, what must not be, and in what order to
-build it. Scoped 23 July 2026. **Four of the five phases are built:** phase 2, the evidence
-check, on 28 July 2026, PR #43; phase 1, the notifier, the same day, PR #46; phase 1b, the
-corrections watch, on 30 July, PR #48; and phase 3, the update prompt, the same day, PR #56.
-**All five phases are done. Phase 4 was signed off on 6 August 2026** and the paragraph it
-rewrites is live on `/sources-and-method/`. Everything here is now the reasoning behind what
+build it. Scoped 23 July 2026. **All five phases are built:** phase 2, the evidence check, on
+28 July 2026, PR #43; phase 1, the notifier, the same day, PR #46; phase 1b, the corrections
+watch, on 30 July, PR #48; phase 3, the update prompt, the same day, PR #56; and phase 4, the
+disclosure, signed off on 6 August 2026, the paragraph it rewrites being live on
+`/sources-and-method/`. **This opened by saying four of five were built and then said all five
+were done, in adjacent sentences**, from the sign-off until 6 August 2026: the count was
+correct before phase 4 and the sentence after it was added rather than the sentence before it
+being updated. Everything here is now the reasoning behind what
 exists rather than a scope for what does not.
 
 The problem it solves is named in the risk register: silent staleness is the most likely way
@@ -585,7 +588,7 @@ the update commitment does.
 | 2, evidence check | **Built, 28 July 2026, PR #43.** Applies to human updates too. | Nothing |
 | 1b, corrections watch | **Built, 30 July 2026, PR #48.** Closes the one channel through which a wrong number can sit here indefinitely. | Nothing. `table_reference` was built with it |
 | 3, prompt | **Built, 30 July 2026, PR #56.** No, and it was not built alone: unsafe without 2, and the runbook had to exist first. | 1, 2, and `docs/UPDATING-DATA.md` |
-| 4, disclosure | Not applicable. **The only phase left.** | 3, and owner sign-off |
+| 4, disclosure | **Built, 6 August 2026, PR #157.** Not applicable. | 3, and owner sign-off |
 
 **None of it should delay launch.** Launch waits on two decisions, and this changes neither.
 The first real run of Phase 3 should be against a release that was going to be checked by

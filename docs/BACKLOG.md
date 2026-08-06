@@ -173,7 +173,9 @@ below.
     backs this site's published no-attribution policy over the reviewer's own selection criteria
     2.6 and 2.7, which it failed and which were kept deliberately. It is under *Completed*.
 13. **GATE. Reader-facing accuracy, from the pre-launch critique of 6 August 2026, and it is R4
-    below.** Every one of them is a statement on a live page that this repository itself
+    below. BUILT ON `item-13-reader-facing-accuracy` AND NOT MERGED**, so this entry stays open:
+    a thing is done here when it is on `main`, and the check that closes an entry asks for a
+    merged pull request. All six are corrected and every check passes on that branch.** Every one of them is a statement on a live page that this repository itself
     contradicts: the home page naming the wrong date for the initial-decision peak, when the site
     holds a record for that peak and `content/asylum.njk` qualifies it correctly;
     `/sources-and-method/` saying no page shows a returns figure while a claim page renders one; a
@@ -186,7 +188,10 @@ below.
     outstanding, and these are what a reader meets rather than what a document says. **[me]**,
     except the sign-off's remedy, which is **[you]**: whether the unsigned claim page joins a
     route or the entry names it as standing outside one.
-14. **GATE. Sourcing, provenance and the evidence check, which is R5 below.** A quote carrying a
+14. **GATE. Sourcing, provenance and the evidence check, which is R5 below. BUILT ON THE SAME
+    BRANCH AND NOT MERGED**, on the same reasoning as item 13. Every entry under R5 is applied,
+    the sign rule and the front-matter scan both carry a control that was proved by breaking
+    them, and every check passes.** A quote carrying a
     value with the opposite sign passes `scripts/check-evidence.mjs`, probed with controls in both
     directions rather than read; three figures reach a reader with no record behind them, one of
     them frozen into front matter where the scan cannot see it at all; the home page's first panel
@@ -259,7 +264,22 @@ below.
     and the first runs a six-month clock that starts at it, so choosing them before launch is worth
     more than choosing them well after. **[you]**, and nothing is built either way.
 
-21. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below.** Miscounts
+21. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below. PART BUILT
+    on the same branch and not merged.** Applied: the Migration Observatory grades and their
+    evidence entries, the counts in `README.md`, `docs/foundation.md` and
+    `docs/UPDATE-AUTOMATION.md`, the census entry in `data/sources.json`, the glossary
+    cross-references, `content/404.md`, the provenance disclosure's target size, and both
+    accessibility gaps: the page list is now compared against the build in both directions and
+    the dark palette is audited on every run. **One finding was refused rather than fixed**:
+    the bar labels on `/costs/` were reported as unitless against the style guide, and
+    `content/style-guide.md` carries no rule about units, its subject being contested
+    vocabulary, while the chart's own heading states the unit. **What is left is the code
+    tidying**: the dead flag and the stale comment blocks in `lib/charts.mjs`, its escaping
+    helper defined in more than one place, its label guard calibrated for a size the narrow
+    chart does not use, the three chart edge cases that would emit NaN rather than fail, the
+    two unread global data registrations in `eleventy.config.js` and its stale note about a
+    scroll-region blindness that is fixed, the way an evidence entry can be retired by editing
+    its own value, and the two claim-page labelling points.** Miscounts
     in `README.md`, `docs/foundation.md` and `docs/UPDATE-AUTOMATION.md`, the last contradicting
     itself in adjacent sentences; grades in `data/population.json` that the identical sibling was
     moved off on 4 August 2026, and a catalogue entry in `data/sources.json` that no record cites;

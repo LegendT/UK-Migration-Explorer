@@ -624,8 +624,12 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
 }
 
 .chart-data { margin-top: 1rem; }
+/* .provenance-block joined this list on 6 August 2026. It was the one disclosure on the site
+   with no summary rule at all, so it took the browser default: no pointer cursor, and a target
+   short of the 44px this stylesheet declares at the top and every other control here meets. */
 .chart-data summary,
-.cite summary {
+.cite summary,
+.provenance-block summary {
   cursor: pointer;
   padding: 0.6rem 0;
   min-height: 44px;

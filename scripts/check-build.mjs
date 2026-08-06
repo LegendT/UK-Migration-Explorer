@@ -8,7 +8,7 @@
 //
 // Run after `npm run build`: node scripts/check-build.mjs
 
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -16,6 +16,7 @@ import site from '../content/_data/site.js';
 import { publishedCounts, registry } from '../lib/published.mjs';
 
 const siteDir = fileURLToPath(new URL('../_site/', import.meta.url));
+const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 
 function walk(dir) {
   return readdirSync(dir).flatMap((entry) => {
@@ -410,6 +411,47 @@ if (!sitemap) {
   }
   if (phantom.length) {
     errors.push(`sitemap.xml: lists ${phantom.join(', ')}, which the build does not serve. A crawler following that URL meets a 404.`);
+  }
+}
+
+// --- the accessibility page list, against the pages the build actually produced ---------
+// `.pa11yci.json` names its URLs by hand, and until 6 August 2026 nothing compared that list
+// with the build. A hand-maintained list fails by OMISSION, which is the worst direction: add a
+// page, forget the list, and the run reports every URL clean while never opening the new one.
+// This project has already been bitten by exactly that shape once, an accessibility pass
+// reporting a full clean sweep with a live page absent from the list.
+//
+// Compared BOTH ways, on the same rule as the sitemap above. The other direction catches a URL
+// the list still names after the page was renamed or removed: pa11y-ci fails on a 404 rather
+// than passing silently, so that end is noisier, but it is the end that tells you which list is
+// wrong.
+//
+// 404.html is INCLUDED here, unlike the sitemap, because it is a page a reader reaches and it
+// carries navigation like any other. The list names it as /404.html, which is how the server
+// serves it.
+//
+// The port is taken from whatever the list already uses rather than written here, so this
+// compares paths and never disagrees with the runner about where the site is being served.
+const pa11yConfigPath = `${repoRoot}.pa11yci.json`;
+if (!existsSync(pa11yConfigPath)) {
+  errors.push('.pa11yci.json: missing, so npm run a11y has no list of pages and would audit nothing.');
+} else {
+  const pa11yConfig = JSON.parse(readFileSync(pa11yConfigPath, 'utf8'));
+  const listedPaths = new Set((pa11yConfig.urls ?? [])
+    .map((entry) => (typeof entry === 'string' ? entry : entry.url))
+    .filter(Boolean)
+    .map((url) => url.replace(/^https?:\/\/[^/]+/, '') || '/'));
+  const shouldAudit = new Set(pages.map((file) => {
+    const rel = relative(siteDir, file).replace(/\\/g, '/');
+    return rel === '404.html' ? '/404.html' : `/${rel.replace(/index\.html$/, '')}`;
+  }));
+  const unaudited = [...shouldAudit].filter((path) => !listedPaths.has(path));
+  const phantomAudit = [...listedPaths].filter((path) => !shouldAudit.has(path));
+  if (unaudited.length) {
+    errors.push(`.pa11yci.json: does not list ${unaudited.join(', ')}, which the build serves. npm run a11y would report a clean sweep without ever opening ${unaudited.length === 1 ? 'that page' : 'those pages'}.`);
+  }
+  if (phantomAudit.length) {
+    errors.push(`.pa11yci.json: lists ${phantomAudit.join(', ')}, which the build does not produce. pa11y-ci audits a 404 page under that URL, so the count it reports is not the count of this site's pages.`);
   }
 }
 

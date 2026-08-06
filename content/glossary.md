@@ -66,8 +66,8 @@ day in March 2026, a stock. Those figures are of similar size and describe entir
 different things. Someone who claimed in 2023 and is still waiting appears in the second
 but not the first.
 
-**The common mistake.** Reading a stock as though it were an annual intake. See the claim
-check on asylum accommodation.
+**The common mistake.** Reading a stock as though it were an annual intake. See the claim check
+on [who is in asylum accommodation](/common-claims/everyone-in-asylum-accommodation-arrived-recently/).
 
 ### Long-term international migration {#long-term-migration}
 
@@ -351,8 +351,9 @@ in October 2022. It has since published a provisional rolled-forward estimate fo
 official statistic in development, so a later figure now exists. **Neither it nor the
 census-based figure above is accredited at UK level**: ONS accredits the England and Wales and
 Northern Ireland statistics in its census-based UK release and states that the UK ones have
-"just Official Statistics status, without accreditation". See the claim check for the number
-and its caveats.
+"just Official Statistics status, without accreditation". See the claim check on
+[the born-abroad share](/common-claims/nineteen-per-cent-born-abroad/) for the number and its
+caveats.
 
 ### Foreign national, or non-British citizen {#foreign-national}
 

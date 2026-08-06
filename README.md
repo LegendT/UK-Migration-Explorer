@@ -110,7 +110,7 @@ content/                Eleventy input
   asylum.njk              Pipeline table, three charts, three queues, support, small boats
   costs.njk               Audited spending only, nested table, cost per accommodation place
   common-claims.njk       Index, selection criteria, the disclosed direction split
-  glossary.md             23 terms in five groups, each with a stable anchor
+  glossary.md             24 terms in five groups, each with a stable anchor
   sources-and-method.md   Catalogue, data contract, limits, caveats, corrections, scope
   style-guide.md          Precision rules separated from value judgements
   about.md                Who runs it, who pays, what it is not
@@ -124,6 +124,7 @@ content/                Eleventy input
   sitemap.njk             Every built page but the 404, generated from collections.all
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code, two renderings per chart
 lib/citation.mjs        The "How to cite this" block, derived from the records each figure draws
+lib/claim-links.mjs     Which claim checks a theme page links to, resolved from the claims themselves
 lib/provenance.mjs      Each theme page's figures with their grade and checked date, from its front matter
 lib/published.mjs       Which records reach a reader, and the counts /sources-and-method/ renders
 lib/series.mjs          The four timeseries and the names everything else calls them by
@@ -161,7 +162,7 @@ LICENCE                 MIT for everything but the figures in data/, which are O
 | `asylumBacklogTimeseries.json` | Initial decision backlog 2010-2025, on both the people and cases bases |
 | `migrationFlowsTimeseries.json` | Immigration and emigration 2012-2025, the gross flows behind net migration |
 | `dashboard.json` | Home page cards. References only; it holds no values and no unrendered prose |
-| `sources.json` | Catalogue of the publications figures are cited from. More entries than publishers: the Home Office has two, its statistics collection and its annual accounts, and ONS has two, migration and population estimates. That is why a figure names its source by id and not by hostname, and why neither count is written down here |
+| `sources.json` | Catalogue of the publications figures are cited from. More entries than publishers: the Home Office has its statistics collection and its annual accounts, and ONS has long-term international migration, population estimates and EMP06. Neither is counted here, deliberately, because this line named two ONS entries after EMP06 made it three. That is why a figure names its source by id and not by hostname, and why neither count is written down here |
 | `meta.json` | Confidence-level definitions, cross-cutting caveats, footer note |
 | `evidence/` | One file per publisher release, holding the quote behind every evidenced figure and its own README. Not read by the site; read by `check-evidence.mjs` |
 

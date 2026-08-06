@@ -1,50 +1,74 @@
 {
-  "figures": [
+ "figures": [
+  {
+   "ref": "population/foreign-born-share-of-total-uk-population",
+   "previous_value": 16,
+   "value": 16,
+   "fetched_at": "2026-08-04",
+   "derivation": "Nothing is computed. The Migration Observatory states the share outright, and the estimated grade records that the briefing is not an official published release and that the share is the briefing's own construction: it says it combines 2021 data for England, Wales and Northern Ireland with 2022 data for Scotland, and no census release carries a UK-wide share. REGRADED FROM official ON 4 August 2026 under R1 call 8, which is why this is a components entry where it was a quote: a regrade across the derived boundary makes the old shape the wrong kind of evidence. What it used to hold is the same quote, now the component below. The source was not moved onto ONS's census-based UK release, whose table UK05 prints no totals, only country-of-birth cells by sex and age; summing it corroborates this figure at 16.03% and is recorded in the record's own notes.",
+   "components": [
     {
-      "ref": "population/foreign-born-share-of-total-uk-population",
-      "previous_value": 16,
-      "value": 16,
-      "fetched_at": "2026-08-04",
-      "derivation": "Nothing is computed. The Migration Observatory states the share outright, and the estimated grade records that the briefing is not an official published release and that the share is the briefing's own construction: it says it combines 2021 data for England, Wales and Northern Ireland with 2022 data for Scotland, and no census release carries a UK-wide share. REGRADED FROM official ON 4 August 2026 under R1 call 8, which is why this is a components entry where it was a quote: a regrade across the derived boundary makes the old shape the wrong kind of evidence. What it used to hold is the same quote, now the component below. The source was not moved onto ONS's census-based UK release, whose table UK05 prints no totals, only country-of-birth cells by sex and age; summing it corroborates this figure at 16.03% and is recorded in the record's own notes.",
-      "components": [
-        {
-          "value": 16,
-          "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-          "quote": "According to data from the latest Census – which combines 2021 data from England, Wales, and Northern Ireland with 2022 data for Scotland – it stood at 10.7 million. That means that 16% of people in the UK, which had a total estimated population of 66.9 million, had been born abroad."
-        }
-      ]
-    },
-    {
-      "ref": "population/non-british-share-of-uk-population",
-      "previous_value": 10,
-      "value": 10,
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "fetched_at": "2026-08-03",
-      "quote": "The foreign-born population made up 9% of the UK's total population in 2004. At the time of the 2021/22 Census, this had risen to 16%. The share of foreign citizens rose from 5% to 10% in the same period (Figure 2)."
-    },
-    {
-      "ref": "population/largest-country-of-birth-among-foreign-born-india",
-      "previous_value": 9,
-      "value": 9,
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "fetched_at": "2026-08-03",
-      "quote": "According to the 2021/22 Census, an estimated 32% of all foreign-born residents in the UK came from five countries – India (9%), Poland (8%), Pakistan (6%), Romania (5%), and Ireland (4%)."
-    },
-    {
-      "ref": "population/share-of-foreign-born-residents-living-in-london-and-the-sou",
-      "previous_value": 47,
-      "value": 47,
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "fetched_at": "2026-08-03",
-      "quote": "Around 47% of all foreign-born residents in the UK lived in London and the South East at the time of the 2021/22 Census."
-    },
-    {
-      "ref": "population/share-of-london-residents-born-abroad",
-      "previous_value": 40,
-      "value": 40,
-      "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
-      "fetched_at": "2026-08-03",
-      "quote": "London stands out among all other regions in the UK. More than 40% of its residents had been born abroad, according to the 2021 Census. The national average was 16%, and percentages were below this average in all other regions of the country (Figure 4). The North East (7%), Wales (7%), and Northern Ireland (9%) had the lowest shares of foreign-born residents (for more details at the local authority level, see the Migration Observatory’s Local Data Guide )."
+     "value": 16,
+     "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+     "quote": "According to data from the latest Census – which combines 2021 data from England, Wales, and Northern Ireland with 2022 data for Scotland – it stood at 10.7 million. That means that 16% of people in the UK, which had a total estimated population of 66.9 million, had been born abroad."
     }
-  ]
+   ]
+  },
+  {
+   "ref": "population/non-british-share-of-uk-population",
+   "previous_value": 10,
+   "value": 10,
+   "fetched_at": "2026-08-03",
+   "derivation": "Nothing is computed. The Migration Observatory states this figure outright, and the estimated grade records that the briefing is not an official published release. REGRADED FROM official ON 6 August 2026, following the same reasoning that regraded population/foreign-born-share-of-total-uk-population on 4 August 2026 under R1 call 8: /sources-and-method/ promises that figures attributed to the Migration Observatory are marked as not coming from an official statistics producer, and the official grade said the opposite. The quote below is the one this entry already held; it was moved into a component rather than rewritten, because a regrade across the derived boundary makes the old shape the wrong kind of evidence.",
+   "components": [
+    {
+     "value": 10,
+     "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+     "quote": "The foreign-born population made up 9% of the UK's total population in 2004. At the time of the 2021/22 Census, this had risen to 16%. The share of foreign citizens rose from 5% to 10% in the same period (Figure 2)."
+    }
+   ]
+  },
+  {
+   "ref": "population/largest-country-of-birth-among-foreign-born-india",
+   "previous_value": 9,
+   "value": 9,
+   "fetched_at": "2026-08-03",
+   "derivation": "Nothing is computed. The Migration Observatory states this figure outright, and the estimated grade records that the briefing is not an official published release. REGRADED FROM official ON 6 August 2026, following the same reasoning that regraded population/foreign-born-share-of-total-uk-population on 4 August 2026 under R1 call 8: /sources-and-method/ promises that figures attributed to the Migration Observatory are marked as not coming from an official statistics producer, and the official grade said the opposite. The quote below is the one this entry already held; it was moved into a component rather than rewritten, because a regrade across the derived boundary makes the old shape the wrong kind of evidence.",
+   "components": [
+    {
+     "value": 9,
+     "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+     "quote": "According to the 2021/22 Census, an estimated 32% of all foreign-born residents in the UK came from five countries – India (9%), Poland (8%), Pakistan (6%), Romania (5%), and Ireland (4%)."
+    }
+   ]
+  },
+  {
+   "ref": "population/share-of-foreign-born-residents-living-in-london-and-the-sou",
+   "previous_value": 47,
+   "value": 47,
+   "fetched_at": "2026-08-03",
+   "derivation": "Nothing is computed. The Migration Observatory states this figure outright, and the estimated grade records that the briefing is not an official published release. REGRADED FROM official ON 6 August 2026, following the same reasoning that regraded population/foreign-born-share-of-total-uk-population on 4 August 2026 under R1 call 8: /sources-and-method/ promises that figures attributed to the Migration Observatory are marked as not coming from an official statistics producer, and the official grade said the opposite. The quote below is the one this entry already held; it was moved into a component rather than rewritten, because a regrade across the derived boundary makes the old shape the wrong kind of evidence.",
+   "components": [
+    {
+     "value": 47,
+     "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+     "quote": "Around 47% of all foreign-born residents in the UK lived in London and the South East at the time of the 2021/22 Census."
+    }
+   ]
+  },
+  {
+   "ref": "population/share-of-london-residents-born-abroad",
+   "previous_value": 40,
+   "value": 40,
+   "fetched_at": "2026-08-03",
+   "derivation": "Nothing is computed. The Migration Observatory states this figure outright, and the estimated grade records that the briefing is not an official published release. REGRADED FROM official ON 6 August 2026, following the same reasoning that regraded population/foreign-born-share-of-total-uk-population on 4 August 2026 under R1 call 8: /sources-and-method/ promises that figures attributed to the Migration Observatory are marked as not coming from an official statistics producer, and the official grade said the opposite. The quote below is the one this entry already held; it was moved into a component rather than rewritten, because a regrade across the derived boundary makes the old shape the wrong kind of evidence.",
+   "components": [
+    {
+     "value": 40,
+     "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
+     "quote": "London stands out among all other regions in the UK. More than 40% of its residents had been born abroad, according to the 2021 Census. The national average was 16%, and percentages were below this average in all other regions of the country (Figure 4). The North East (7%), Wales (7%), and Northern Ireland (9%) had the lowest shares of foreign-born residents (for more details at the local authority level, see the Migration Observatory’s Local Data Guide )."
+    }
+   ]
+  }
+ ]
 }
