@@ -213,7 +213,7 @@ rendered.
 ### Checkboxes
 
 - [x] Every literal above matches the data, or is meant to be a frozen historical figure
-- [ ] Every relationship claim above (peak, lowest since, a quarter smaller, most of it, moving
+- [x] Every relationship claim above (peak, lowest since, a quarter smaller, most of it, moving
       the other way) holds against the data beside it
 - [x] The two paragraphs describing the card set describe the card set that exists
 
@@ -314,7 +314,7 @@ title. The style guide's promise about this is section 6.2 below.
 
 - [x] Gate 1: the Grant rate entry, rebuilt on the corrected record, including the window
 - [x] Gate 2: the Net fiscal impact entry, without the retired 'spans zero' argument
-- [ ] Every relationship claim in 2.3 holds against the data beside it
+- [x] Every relationship claim in 2.3 holds against the data beside it
 - [x] The two frozen literals are still the right ones to freeze
 
 ---
@@ -478,11 +478,11 @@ contract, and backlog item **A1** is the decision about whether to backfill.
 
 ### Checkboxes
 
-- [ ] Every promise in 4.1 describes what the build does
-- [ ] The three published limits describe what the checks do not establish, given 4.2
-- [ ] The count in 4.3
-- [ ] The reference-periods table covers the periods the site publishes
-- [ ] The sentence in 4.6 says what it means about the July 2026 pass
+- [x] Every promise in 4.1 describes what the build does
+- [x] The three published limits describe what the checks do not establish, given 4.2
+- [x] The count in 4.3
+- [x] The reference-periods table covers the periods the site publishes
+- [x] The sentence in 4.6 says what it means about the July 2026 pass
 
 ---
 
@@ -564,7 +564,7 @@ backs this page over the reviewer's criterion, and this is where the page says i
 
 ### Checkboxes
 
-- [ ] The 'named as shared in the text' sentence, given no page does it
+- [x] The 'named as shared in the text' sentence, given no page does it
 - [x] The no-attribution policy, read as what signing the review endorses
 - [x] The 2026-07-22 review date, the oldest on the site
 
@@ -593,12 +593,12 @@ backs this page over the reviewer's criterion, and this is where the page says i
 The commitment on `/sources-and-method/` is: "Before this site publishes, a human reviews the
 figures and the claims." That commitment does not distinguish ten pages from sixteen.
 
-- [ ] Section 1 complete, the overview and its 8 cards
-- [ ] Section 2 complete, the glossary, including both launch gates
+- [x] Section 1 complete, the overview and its 8 cards
+- [x] Section 2 complete, the glossary, including both launch gates
 - [x] Section 3 complete, the claims index
-- [ ] Section 4 complete, sources and method
+- [x] Section 4 complete, sources and method
 - [x] Section 5 complete, about
-- [ ] Section 6 complete, the style guide
+- [x] Section 6 complete, the style guide
 - [ ] `last_reviewed` refreshed on each of the six pages this pass covered
 
 **Verdicts given 6 August 2026. The owner read this evidence and gave each verdict; the marks
@@ -606,8 +606,19 @@ were recorded by the session that wrote the evidence, at his direction.** That a
 stated because it is not the one this gate assumes, and a reader should be able to see which hand
 made the mark.
 
-**Fourteen boxes pass and THIRTEEN DO NOT. Eight are substantive failures**, and the review is
-NOT recorded as passed on this document as it stands:
+**Twenty-six of twenty-seven now pass.** Fourteen passed on 6 August 2026 when the verdicts were
+first given. **Eight were substantive failures, all eight have since been corrected**, in PRs #160,
+#161 and this one, and on that the owner re-answered the four section boxes that had failed only
+because a box beneath them had. **Box 27 is the one that stays unticked, deliberately**: the six
+pages were not re-read, and their `last_reviewed` dates are on every page footer.
+
+**All eight were re-answered as passing on 6 August 2026, against the corrected pages.** What
+each one was, kept because the correction is the record. **Boxes 2 and 6 turned out differently
+from how they were written up here**: the claim that the appeals queue moves the other way was
+recorded as unsettleable, and checking found `asylum/asylum-appeals-backlog-previous-year` holding
+50,976 against 87,450 a year later, so it was supportable and merely uncited. It is now cited in
+both places rather than removed. Only 'to a record' was dropped, because two points cannot
+establish one:
 
 | Box | What failed |
 | --- | --- |
@@ -619,10 +630,11 @@ NOT recorded as passed on this document as it stands:
 | 15 | 'quoting the specific sentence or table cell behind each value' against 18 evidence entries and 99 records |
 | 18 | The style guide promises a misuse common to both sides is 'named as shared in the text'. No claim carries a shared label and 'both' was removed as a direction |
 
-**The other five unticked boxes follow from those**: sections 1, 2, 4 and 6 are not complete
-because each carries a failure, and `last_reviewed` does not move on any of the six pages,
-because the pages were not re-read. Those dates are on every page footer, so moving them would
-tell a reader something that did not happen.
+**Sections 1, 2, 4 and 6 were not complete while those failures stood, and are now.** Boxes 21,
+22, 24 and 26 were re-answered on 6 August 2026 once every failure beneath them was corrected.
+`last_reviewed` still does not move on any of the six pages, because the pages were not re-read:
+the owner read this evidence and the marks were recorded from it. Those dates are on every page
+footer, so moving them would tell a reader something that did not happen.
 
 **Boxes 8 and 19 were passed together, deliberately.** Both turn on the same judgement, that this
 site's no-attribution policy outranks the review's demonstrably-circulates criterion, which is
