@@ -110,7 +110,7 @@ for more than it does is worse than no check at all:
 
 - **A description of a figure is not checked against the figure.** A chart summary saying a
   series rose when it fell would build cleanly, and so would one that quotes the right
-  number against the wrong year. Four false summaries were found on this site, by reading,
+  number against the wrong year. False summaries have been found on this site, by reading,
   not by tooling.
 - **Values under 100 are reported for review rather than refused.** Too many measures share
   a small value for a match to mean much, so those are flagged on every build and looked
@@ -162,17 +162,18 @@ statistics system working rather than failing.
 
 ## Reference periods do not line up {#periods}
 
-Different measures cover different twelve-month windows, because different bodies publish on
-different cycles. At the last update:
+Different measures cover different periods, because different bodies publish on different
+cycles, and not every period is a twelve-month window. At the last update:
 
-{caption}The twelve-month window each family of measures covers at the last update
+{caption}The period each family of measures covers at the last update
 
 | Measure | Period |
 | --- | --- |
 | Asylum, returns, visas, settlement, citizenship | Year ending March 2026 |
 | Net migration, immigration, emigration | Year ending December 2025 |
-| Asylum support, backlogs, appeals | Point-in-time, 31 March 2026 |
-| Foreign-born population | 2021/22 Census |
+| Asylum support, backlogs, appeals | Point-in-time, 31 March 2026, one date rather than a window |
+| Foreign-born population | 2021/22 Census, with a rolled-forward estimate for mid-2024 |
+| Asylum system spending | Financial year 2024-25 |
 
 Comparing a year-ending-March figure with a year-ending-December one and calling the
 difference a change is invalid. Where this site puts two figures near each other, it labels
@@ -215,9 +216,27 @@ Before anything is published, an automated check ages every figure against its o
 cycle and reports the ones that are overdue. That runs weekly whether or not anyone is
 working on the site.
 
-Updating is manual and deliberate. There is no automated pipeline pulling numbers straight
-onto the site, because an automated update that publishes an error is worse than a slow one
-that does not.
+Updating is deliberate, and part of it is now assisted. A second weekly check watches the
+publishers this site cites and opens an issue when one puts out a new edition, or corrects a
+table a figure here is read from. It reads publication pages and never touches a figure.
+
+When an update is then made, an assistant may draft it: reading the release, proposing which
+records move, and opening a pull request. It cannot publish. Every figure whose value changes
+must carry a quotation from the source that contains the new number, and a check refuses the
+change if it does not. That catches an invented figure rather than a misread one, which is why a
+person still reads the source. Merging is a person's, and this site's main branch refuses a
+change that has not passed the checks set to block one. Some checks here report rather than
+block, and this site's documentation says which.
+
+Work on a whole series is handed back to a person on purpose, which covers two of the three
+regular releases rather than one, because a series is easier to get subtly wrong than a single
+value.
+
+There is still no automated pipeline pulling numbers straight onto the site, and no figure
+appears here because a model asserted it.
+
+What this has not been through: the whole path, from notification to a merged update, has never
+been run against a real release. Its parts are tested and the sequence is not.
 
 ---
 
@@ -273,7 +292,9 @@ this site has no standing to answer it.
 
 The figures were assembled in two stages. An initial research pass in June 2026 gathered
 figures and sources. A verification pass in July 2026 checked them against primary
-publications, quoting the specific sentence or table cell behind each value.
+publications, quoting the specific sentence or table cell behind each value it covered. Where a
+figure has been checked that way, the quotation is recorded in `data/evidence/` and a check refuses a
+changed value whose quotation does not contain it. That does not yet cover every figure here.
 
 That verification found real errors, which is the point of doing it. One long-run series
 had to be rebuilt entirely: it had silently mixed three different vintages of the same ONS
