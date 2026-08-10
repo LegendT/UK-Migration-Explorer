@@ -1288,6 +1288,22 @@ Kept so that a future session can see what was decided and when, rather than reo
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
 
+- **Returns and removals are covered**, 10 August 2026, at `content/returns.njk`. **This
+  supersedes call 9 under R1**, which on 4 August 2026 decided the subject was an unstated scope
+  silence and closed it by DECLARING the omission on `/sources-and-method/` rather than by
+  covering it. The declaration was the cheaper half and it held for six days; the owner asked for
+  the page. Nothing new was sourced: the data layer already held all five records and two of them
+  already reached a reader with no page explaining either, which the scope statement itself called
+  the same silence as not holding them. **The page is built around the two traps the records
+  document rather than around the total**: returns count events and not people, so no figure on it
+  is a headcount of individuals; and the categories do not nest, port refusals being published
+  outside the headline total and asylum-related returns being a subset already inside it. Both
+  additions a reader is invited to make are named and refused in terms. The scope statement on
+  `/sources-and-method/` is rewritten from "not yet covered" to what is now true, rather than left
+  to rot into the fourth instance of a correction missing its siblings. **`.pa11yci.json` was
+  updated in the same change**, that list being hand-maintained and having once reported a full
+  pass with a new page absent from it.
+
 - **Reader-facing accuracy and sourcing, The order's items 13 and 14**, 6 August 2026. PR #167,
   closing R4 and R5 together. Six statements a reader met that this repository contradicted, and
   six promises about how the site sources things: among them the home page naming the wrong date

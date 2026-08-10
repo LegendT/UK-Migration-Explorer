@@ -15,6 +15,7 @@
     "http://127.0.0.1:8081/what-the-words-mean/",
     "http://127.0.0.1:8081/migration/",
     "http://127.0.0.1:8081/asylum/",
+    "http://127.0.0.1:8081/returns/",
     "http://127.0.0.1:8081/costs/",
     "http://127.0.0.1:8081/common-claims/",
     "http://127.0.0.1:8081/sources-and-method/",

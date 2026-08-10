@@ -1,0 +1,88 @@
+---
+layout: base.njk
+permalink: /returns/
+title: Returns
+strapline: >-
+  Returns count departures, not people, and the categories do not nest. Adding them together
+  is the commonest way this figure is made to say something it does not say.
+last_reviewed: 2026-08-10
+review_due: 2027-08-10
+figures:
+  - asylum/returns-enforced-plus-voluntary
+  - asylum/returns-enforced
+  - asylum/returns-voluntary
+  - asylum/returns-refused-entry-at-port
+  - asylum/returns-asylum-related
+---
+<p>A return is a departure from the UK by someone with no right to remain. The Home Office
+publishes several counts of them, on different bases, and they are among the easiest figures
+on this subject to add up wrongly. Two things decide almost every misreading.</p>
+
+<p><strong>They count events, not people.</strong> One person returned twice appears twice.
+No published figure here is a headcount of individuals, so
+"{% figure "asylum/returns-enforced-plus-voluntary" %} people were returned" is not a claim
+any of these numbers supports, however often the total is written that way.</p>
+
+<p><strong>The categories do not nest.</strong> One of them is published separately from the
+headline total on purpose, and one is a subset of it. Neither can be added to it.</p>
+
+<h2>What the Home Office publishes</h2>
+
+<div class="scroll-x">
+<table>
+  <caption>Returns from the UK, year ending March 2026, and how each figure relates to the
+  others</caption>
+  <thead><tr><th scope="col">Count</th><th scope="col">Latest figure</th><th scope="col">How it relates to the total</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Enforced returns</th><td>{% figure "asylum/returns-enforced" %}&nbsp;returns</td><td>Carried out by the state. Part of the total below</td></tr>
+    <tr><th scope="row">Voluntary returns</th><td>{% figure "asylum/returns-voluntary" %}&nbsp;returns</td><td>Not carried out by the state. Part of the total below, and about three-quarters of it</td></tr>
+    <tr><th scope="row">Enforced plus voluntary</th><td>{% figure "asylum/returns-enforced-plus-voluntary" %}&nbsp;returns</td><td><strong>The headline total.</strong> The two rows above, and nothing else</td></tr>
+    <tr><th scope="row">Refused entry at port</th><td>{% figure "asylum/returns-refused-entry-at-port" %}&nbsp;returns</td><td><strong>Separate.</strong> Published outside the total and must not be added to it</td></tr>
+    <tr><th scope="row">Asylum-related returns</th><td>{% figure "asylum/returns-asylum-related" %}&nbsp;returns</td><td><strong>A subset.</strong> Already inside the total, not an addition to it</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Only the first two rows sum to the third. Someone who adds the port refusals to the
+headline total produces a larger number that the Home Office does not publish and that
+counts two different things at once. Someone who adds the asylum-related figure counts part
+of the total twice.</p>
+
+<h2>Why port refusals are not returns in the usual sense</h2>
+
+<p>A person refused entry at the border has not been living in the UK and is not being
+removed from it. They are being turned away at the point of arrival. The Home Office counts
+this separately for that reason, and this site holds the figure specifically so that the
+separation is visible rather than assumed. It is
+{% figure "asylum/returns-refused-entry-at-port" %} for the year ending March 2026, and it
+belongs beside the returns total rather than inside it.</p>
+
+<h2>Only some returns are asylum-related</h2>
+
+<p>Of the headline total, {% figure "asylum/returns-asylum-related" %} were asylum-related:
+people whose asylum claim had been refused, withdrawn or otherwise concluded. The rest
+involve people with no asylum claim at all, such as visa overstayers and people refused at
+an earlier stage. <strong>Returns are not an asylum statistic</strong>, and a returns total
+quoted in an argument about asylum is describing a larger population than the argument is
+about.</p>
+
+<h2>What these figures cannot tell you</h2>
+
+<p>They do not say how many individuals left, because they count events. They do not say how
+many people who should have left did not, because nobody publishes a reliable figure for the
+population without leave. And they do not measure enforcement effort against any total, for
+the same reason: there is no published denominator to divide them by. A return rate, in the
+sense of returns as a share of people liable to be returned, is not a figure that exists.</p>
+
+<p>Every figure on this page is flagged <strong>provisional</strong> by the Home Office, which
+means it can be revised in later releases. See
+<a href="/what-the-words-mean/#statistical-status">provisional, revised and official
+statistics in development</a>, and <a href="/what-the-words-mean/#return">return</a> for the
+definitions in full.</p>
+
+{#- Built from the page's own `figures:` declaration rather than a second list typed here, which
+    is the contract claim.njk uses: validate-content fails a page that writes a figure it has not
+    declared, so the block cannot fall behind what the page prints. The theme pages carry no such
+    block; this one does because all five of its figures are provisional, appear nowhere else on
+    the site, and come from a release that revises them. -#}
+{% citation figures, "Returns" %}
