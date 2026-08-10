@@ -266,7 +266,10 @@ are at handling its own mistakes.
 If something here is wrong, please say so. Tell us which figure, and what you think it
 should be: [open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new).
 Corrections are handled in public, so the objection and the answer stay attached to the figure
-rather than sitting in somebody's inbox.
+rather than sitting in somebody's inbox. **That does mean a correction needs a GitHub account**,
+which is free but is a step. Until 10 August 2026 this page offered an email address instead and
+said a correction should not depend on having an account; the address was withdrawn, and the
+condition it existed to avoid now applies. It is a real cost and it is stated rather than dropped.
 
 ---
 

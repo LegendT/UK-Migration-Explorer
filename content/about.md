@@ -55,8 +55,10 @@ of statistics, and applies that in every direction.
 ## Corrections
 
 If something here is wrong, please say so, and say which figure and what you think it should
-be. [Open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new). Corrections
-are handled in public, which is the same standard this site asks of the figures it checks.
+be. [Open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new), which needs a
+free GitHub account. Corrections are handled in public, which is the same standard this site
+asks of the figures it checks, and [sources and method](/sources-and-method/#corrections) says
+what that costs a reader who has no account.
 
 Every change to a published figure is recorded in the
 [public changelog](https://github.com/LegendT/UK-Migration-Explorer/blob/main/CHANGELOG.md),
