@@ -195,6 +195,14 @@ below.
     a site whose subject is other people's misuse of statistics cannot launch with its own trust
     work outstanding, widened to these by the owner on 10 August 2026. **[me]**, except the two
     calls named under R7, which are **[you]**.
+    **BUILT IN THE PULL REQUEST THAT CARRIES THIS LINE AND NOT YET MERGED**, which is why this
+    entry is still open: a thing is done here when it is on `main`. Every R7 entry is applied and
+    `npm test`, `npm run validate`, `npm run build` and `scripts/check-evidence.mjs` pass. **The
+    two [you] calls are applied to a recommended draft rather than left blank**, the footer's new
+    wording and the card's date label, so the branch is complete and reviewable rather than
+    waiting; overruling either changes one string. **`npm run a11y` did not run**, puppeteer being
+    unable to launch a browser in the session that built this, so the accessibility claim on this
+    branch rests on the workflow rather than on a local pass.
 16. **NOT A GATE. The reader-facing batch from the same sweep, which is R8 below.** Definitions
     the home page's own cards assume and never link, two glossary terms the money pages use and
     the glossary does not hold, a denominator that is correct and unnamed, a chart marking a
@@ -1215,6 +1223,26 @@ than a date defect and is where R7's last entry comes from.
   prints "Figures are the latest published at that date" under every page that has a review date,
   including the style guide and the 404**, where the sentence describes nothing. Naming the three
   concepts is **[me]**; what the card's label should say to a reader is **[you]**.
+
+**What taking it found, kept because three of the six were larger than the finding said.** The
+cost card was not the only card citing a publisher it does not name: the first-decision queue
+quotes HMCTS appeal figures under a Home Office link and the born-abroad card quotes ONS under a
+Migration Observatory one, so the remedy is a filter over every card rather than a sentence on
+one. The review footer's figures sentence rendered on four pages with no figure, not two: `/about/`
+and `/common-claims/` were missed by a reading that went looking for the two it already knew. And
+the annual report split three ways rather than holding or moving as a block: the health surcharge
+and the fee income are both superseded and are moved, with the surcharge's Consolidated Fund half
+now printed as a dash so that the two-part sum the old record described no longer exists; the hotel
+total and both per-day averages are NOT superseded, HC 440 printing no hotel cost figure and no
+daily average in either the report or its Core Data Tables, and they carry that decision in their
+notes and on `/costs/`.
+
+**One thing was found by moving a figure rather than by looking for it.** `£3 billion` on
+`/costs/` is the 2023-24 hotel spend, and it passed the longhand scan for as long as it did only
+by colliding with the visa and immigration fee income record, which held a value of 3 in the same
+unit for an unrelated figure. Moving that record to the newer edition failed the build on the
+collision. **A collision is not coverage**, and nothing distinguishes the two while the numbers
+agree; the figure is now declared with its reason.
 
 ### R8. The reader-facing batch, none of it a false statement
 

@@ -1,0 +1,32 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/immigration-health-surcharge-revenue",
+      "previous_value": 2.6,
+      "value": 2.3,
+      "fetched_at": "2026-08-10",
+      "derivation": "The 2025-26 accounts print the surcharge in the same two places as the year before, and the Consolidated Fund half is now nil: 2,318,923 thousand retained by the department and nothing payable to the Consolidated Fund, so the total is 2,318,923 thousand, £2.32 billion, published here as £2.3 billion. In 2024-25 the two halves were 2,420,109 and 200,769, summing to 2,620,878, which is the £2.6 billion this record carried until 10 August 2026. The Consolidated Fund half is printed as a dash rather than a zero and so is stated here rather than carried as a component, a component being something that can quote its own value: \"Home Office Annual Report and Accounts 2025-26, HC 440, printed page 279, Note 3 Income. Other operating income - payable to Consolidated Fund. Immigration Health Surcharge – – 200,769 200,769\".",
+      "components": [
+        {
+          "value": 2318923,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a58e9953ae256c99b702f50/36.54_HO_ARA_25-26_WEB.pdf",
+          "quote": "Home Office Annual Report and Accounts 2025-26, HC 440, printed page 278, Note 3 Income. Other operating income. Immigration Health Surcharge 2,318,923 2,318,923 2,420,109 2,420,109"
+        }
+      ]
+    },
+    {
+      "ref": "fiscal/home-office-visa-and-immigration-fee-income",
+      "previous_value": 3,
+      "value": 3.6,
+      "fetched_at": "2026-08-10",
+      "derivation": "The 2025-26 accounts print 3,574,088 thousand, £3.57 billion, and this site rounds it to £3.6 billion. Nothing is summed; the rounding is the whole of the derivation, and it is recorded here because a rounded figure appears in no source exactly and so cannot be quoted. The Fees and Charges disclosure in the same document prints 3,574,081 for the same stream, seven thousand lower; Note 3 is the audited financial statement and is what this record and its predecessor both read.",
+      "components": [
+        {
+          "value": 3574088,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a58e9953ae256c99b702f50/36.54_HO_ARA_25-26_WEB.pdf",
+          "quote": "Home Office Annual Report and Accounts 2025-26, HC 440, printed page 278, Note 3 Income. Revenue from contracts with customers. Visa and immigration income 3,574,088 3,574,088 2,978,355 2,978,355"
+        }
+      ]
+    }
+  ]
+}

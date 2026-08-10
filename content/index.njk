@@ -67,8 +67,17 @@ grade is our judgement about how far the figure can be relied on, not the publis
     {#- The date we last checked the figure against its source, which is a different thing
         from when the source published it. A reader judging whether this site is up to date
         needs the second, and it was only ever in the data files. Foundation 17. -#}
-    Checked {{ m.retrieved_date | longDate }}<br>
+    We checked this against the source on {{ m.retrieved_date | longDate }}<br>
     <span class="grade">{{ m.confidence_level }}</span></p>
+    {#- A card's source line above belongs to its headline figure. Where the prose beside it
+        quotes a figure from a different publisher, that publisher is named here rather than
+        left behind a link that does not print the number. Derived by the `citedSources`
+        filter, which says why it is derived and not typed. -#}
+    {%- set alsoCited = card | citedSources %}
+    {%- if alsoCited | length %}
+    <p class="source also-cited">Figures quoted above also come from
+      {%- for s in alsoCited %} <a href="{{ s.url }}">{{ s.name }}</a>{% if not loop.last %},{% endif %}{% endfor %}.</p>
+    {%- endif %}
   </li>
   {%- endfor %}
 </ul>

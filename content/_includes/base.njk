@@ -91,9 +91,15 @@
 
   {{ content | safe }}
 
+  {#- "This page was last reviewed" rather than "Last reviewed", because the pre-launch notice
+      above states the date of the site-wide pre-publication review and the owner read the two
+      as a contradiction. They are different facts and now say which they are. The second
+      sentence is stated only where the page has a figure to be true about: it rendered under
+      /about/, /common-claims/, /style-guide/ and the 404, none of which prints one. -#}
   {% if last_reviewed %}
-  <p class="reviewed">Last reviewed {{ last_reviewed | longDate }}.
-  Figures are the latest published at that date, not a live count.</p>
+  <p class="reviewed">This page was last reviewed on {{ last_reviewed | longDate }}.
+  {%- if content | carriesAFigure %} Its figures were the latest published at that date, not a
+  live count.{% endif %}</p>
   {% endif %}
 </main>
 
