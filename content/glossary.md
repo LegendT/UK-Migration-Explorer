@@ -313,6 +313,7 @@ they are a different thing.
 
 **The common mistake.** Reading a returns total as a headcount of individuals, or folding
 port refusals into it to produce a larger number.
+See [returns](/returns/) for what each category counts and why they do not add up.
 
 ---
 
