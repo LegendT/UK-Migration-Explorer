@@ -50,8 +50,9 @@ March 2026, against {{asylum/asylum-appeals-backlog-previous-year}} a year earli
 cases basis the appeals queue is now the larger**:
 {{asylum/asylum-appeals-backlog}} appeal cases against
 {{asylum/asylum-backlog-cases-awaiting-an-initial-decision}} cases awaiting a first decision.
-Both figures in that comparison are cases; the two before it are people, and putting one
-against the other is the error this page exists to correct.
+Both figures in that comparison are cases. The first-decision queue's June 2023 peak and its
+2019 level, given at the start of this paragraph, are counts of people, and setting either of
+those against an appeal-case count is the error this page exists to correct.
 
 So "the backlog has more than halved" and "the backlog is at a record" are both available,
 from the same release, to anyone willing not to say which queue they mean.
