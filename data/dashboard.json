@@ -22,7 +22,7 @@
       "id": "asylum-support",
       "ref": "asylum/people-in-receipt-of-asylum-support",
       "shortLabel": "In asylum support",
-      "whatThisMeans": "Also a {{link:/what-the-words-mean/#flow-and-stock|stock}}, a count on one day rather than over a year. It includes people at every stage of the system, some waiting since well before this year, so it is not a count of recent arrivals. It excludes unaccompanied asylum-seeking children, who are supported by local authorities. No UK-wide count of those children in care is published beside this figure; what the Home Office does publish is that {{asylum/asylum-claims-from-unaccompanied-children}} children claimed asylum unaccompanied in the year to March 2026, which is a year's arrivals and not a count of anyone being supported today."
+      "whatThisMeans": "Also a {{link:/what-the-words-mean/#flow-and-stock|stock}}, a count on one day rather than over a year. It includes people at every stage of the system, some waiting since well before this year, so it is not a count of recent arrivals. It excludes unaccompanied asylum-seeking children, who are supported by local authorities. No UK-wide count of those children in care is published beside this figure; what the Home Office does publish is that {{asylum/asylum-claims-from-unaccompanied-children}} asylum claims were made by unaccompanied children in the year to March 2026, which is a year's claims and not a count of anyone being supported today."
     },
     {
       "id": "small-boats",

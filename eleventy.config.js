@@ -290,10 +290,18 @@ export default function (eleventyConfig) {
   // of the four, which is why this is derived. A hand-kept list of which pages have figures is
   // the thing that passes by omission the first time a page is added.
   //
-  // Two routes put a figure on a page and both are tested. A {{theme/id}} token is still a
-  // token when a layout sees the content, because resolve-citations is a transform and runs
-  // after layouts; the {% figure %} shortcode has already rendered its span by then.
-  // `scripts/check-build.mjs` asserts the two agree on the built page, so this cannot drift.
+  // Two routes are tested. A {{theme/id}} token is still a token when a layout sees the
+  // content, because resolve-citations is a transform and runs after layouts; the
+  // {% figure %} shortcode has already rendered its span by then.
+  //
+  // A THIRD ROUTE IS NOT TESTED AND THIS COMMENT CLAIMED IT WAS. A dashboard card value and a
+  // chart bar put a number on a page with no token and no span, which is the same set
+  // check-build already reports as unmatched at the end of every run. `check-build.mjs` reads
+  // `class="figure"` to decide the same question this filter reads it to decide, so the two
+  // agree by construction and cannot catch each other missing that route. No page relies on it
+  // today: the home page's cards carry tokens in their prose and the chart pages carry them in
+  // theirs. A page whose ONLY figures came through a card value or a bar would silently lose
+  // the sentence, and nothing would say so.
   eleventyConfig.addFilter('carriesAFigure', (content) =>
     /class="figure"/.test(content) || /\{\{\s*[a-z]+\/[a-z0-9-]+\s*\}\}/.test(content));
 
