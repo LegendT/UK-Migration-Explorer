@@ -591,7 +591,7 @@
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-07-22",
-      "notes": "Up 17% on the year ending March 2025. Of which 3,475 enforced and 8,443 voluntary. A subset of total returns, not an addition to them. Return events, not unique people.",
+      "notes": "Up 17% on the year ending March 2025. Of which 3,475 enforced and 8,443 voluntary. A subset of total returns, not an addition to them. Return events, not unique people. THE PUBLISHER'S DEFINITION, added 10 August 2026 by the pre-publication review of /returns/: \"Asylum-related returns relate to cases where there has been an asylum claim or further submission at some stage prior to the return.\" It is recorded because the page says the remaining returns involve people with no asylum claim at all, and that sentence rests entirely on this definition being drawn on whether a claim was EVER made rather than on why the person was returned. Nothing in this data layer established it before.",
       "confidence_level": "provisional"
     },
     {
