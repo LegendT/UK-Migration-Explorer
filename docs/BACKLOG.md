@@ -1300,7 +1300,8 @@ maintained here. Newest first.
   outside the headline total and asylum-related returns being a subset already inside it. Both
   additions a reader is invited to make are named and refused in terms. The scope statement on
   `/sources-and-method/` is rewritten from "not yet covered" to what is now true, rather than left
-  to rot into the fourth instance of a correction missing its siblings. **`.pa11yci.json` was
+  to rot into another correction that missed its siblings, which this file already records twice
+  by that name and which no entry should be numbering a third time. **`.pa11yci.json` was
   updated in the same change**, that list being hand-maintained and having once reported a full
   pass with a new page absent from it.
 
