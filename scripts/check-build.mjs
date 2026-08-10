@@ -383,6 +383,38 @@ if (counts) {
   }
 }
 
+// --- the review sign-off's page count, against the pages the build actually produced --------
+// CHANGELOG.md records that a human reviewed this site before publication, and says how many
+// pages that signature covers out of how many the build produces. It is the last promise
+// /sources-and-method/ makes, and until now the denominator was prose that nothing read.
+//
+// It has gone short twice. Written as "all 22 pages the build produces" when the build made 23,
+// corrected on 6 August 2026; then correct at 23 until a new page on 10 August made the build 24
+// and nothing said so. Both times the defect is the same shape and it is the one the entry's own
+// argument is about: a signature that rounds up to "every page" is the scope silence this site
+// objects to in others. Adding a page is exactly when it happens, and adding a page is exactly
+// when nobody is thinking about the changelog.
+//
+// Only the DENOMINATOR is checked. How many pages a human actually signed is a claim about what
+// a person did, which no script can verify and which this file must not appear to; the covered
+// count is read out beside it so the gap is visible, and a reader is told it is unchecked.
+const signoff = readFileSync(`${repoRoot}CHANGELOG.md`, 'utf8')
+  .match(/signature covers (\d+) of the (\d+) pages the build produces other than the 404/);
+const contentPages = pages.filter((f) => !f.endsWith('404.html')).length;
+let signedCovered = null;
+if (!signoff) {
+  errors.push('CHANGELOG.md: the review sign-off sentence naming how many pages the signature covers is gone or reworded. It is the last promise /sources-and-method/ makes; if it moved, move this check with it.');
+} else {
+  signedCovered = Number(signoff[1]);
+  const claimed = Number(signoff[2]);
+  if (claimed !== contentPages) {
+    errors.push(`CHANGELOG.md: the review sign-off says the build produces ${claimed} pages other than the 404 and it produces ${contentPages}. A page was added or removed and the signature's scope was not revisited, which is the defect the entry itself is about. Correct the count, and name any page standing outside the signature rather than absorbing it.`);
+  }
+  if (signedCovered > contentPages) {
+    errors.push(`CHANGELOG.md: the review sign-off claims to cover ${signedCovered} pages and the build produces ${contentPages} other than the 404. A signature cannot cover more pages than exist.`);
+  }
+}
+
 // --- the review footer, checked against whether the page has a figure to be true about ---
 // The shared footer states "Its figures were the latest published at that date" under a page's
 // review date. It used to state it unconditionally, so it rendered under /about/,
@@ -617,6 +649,7 @@ if (errors.length) {
 const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
 console.log(`Every "Cited for" line in the built site names a figure whose own record cites the publication it is printed under: ${citedForNames} name(s) checked. Not established: that the publication contains the figure, which is the far-end trace no check does.`);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt disallows all crawlers.`);
+console.log(`The review sign-off in CHANGELOG.md names ${contentPages} page(s) other than the 404, which is what this build produced, and says the signature covers ${signedCovered}. Not established: that a human reviewed that many, which is a claim about a person; only the denominator is checked here, and the ${contentPages - signedCovered} page(s) outside it have to be named in the entry by hand.`);
 console.log(`${footerPages} page(s) carry a review footer, and on each one the sentence about when its figures were current is present exactly where the page renders a figure, matched in both directions.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
