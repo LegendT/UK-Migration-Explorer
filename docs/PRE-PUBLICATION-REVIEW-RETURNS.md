@@ -47,10 +47,23 @@ never made one. **The sentence is sound and was resting on nothing**; the defini
 `returns-asylum-related` record so a future reader can check it without repeating this fetch.
 
 **"Nobody publishes a reliable figure for the population without leave."** This was an absence
-claimed across every publisher and checked in one. The cited publication does carry no rate and no
-population estimate, which supports the narrow claim. **The broad one was not established and is
-withdrawn**: the page now says the Home Office publishes no such estimate, which is what was read.
-This is the project's own rule about proving an absence in every store, applied to itself.
+claimed across every publisher and checked in one, and **the first attempt to fix it was worse than
+the defect**: the sentence was narrowed to the Home Office, which made it true by shrinking it
+rather than by checking. The owner refused that and asked for the other acceptable sources, which
+is what proving an absence in every store actually requires.
+
+**Checking them overturned the claim.** The Migration Observatory, which this site already cites
+and grades, publishes a briefing collecting exactly these estimates: a Greater London Authority
+central figure for 2017, a Pew Research Center range for the same year, and a 2025 commission's
+range for part of London. So estimates DO exist and a source this site accepts publishes them.
+What is true is narrower and more useful: the Home Office declines to make one, in terms, and the
+Migration Observatory warns the independent ones are "highly uncertain and have large margins of
+error". **The most widely quoted was retracted in March 2025 and revised downwards**, which is the
+kind of fact this site exists to carry.
+
+The page now says that, quoting both, and prints no figure of its own: naming a contested estimate
+would need a record and a grade, and the sentence's job is to explain why no return rate can be
+computed rather than to publish a population estimate.
 
 ---
 

@@ -35,7 +35,12 @@ method on 10 August 2026, recorded in `docs/PRE-PUBLICATION-REVIEW-RETURNS.md`. 
 already empty, every figure being a citation, so the review read the prose against the data and
 against the publication. It found two things: a sentence about who the remaining returns involve
 that was sound and evidenced by nothing, now carrying the publisher's definition in the record;
-and an absence claimed across every publisher and checked in one, now scoped to what was read.
+and an absence claimed across every publisher and checked in one. That second one was first
+"fixed" by narrowing the claim to the Home Office, which made it true by shrinking it; checking
+the other sources this site accepts overturned it instead. The Migration Observatory publishes
+the estimates the page said nobody published, and the page now says what is actually true: the
+Home Office declines to estimate, the independent figures carry large margins of error, and the
+most quoted was retracted in 2025.
 
 **One page is outside the signature and is named rather than absorbed**: the lifetime
 contribution claim, `content/claims/average-migrant-contributes-341000-over-a-lifetime.md`,
