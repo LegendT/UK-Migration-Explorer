@@ -383,6 +383,34 @@ if (counts) {
   }
 }
 
+// --- the review footer, checked against whether the page has a figure to be true about ---
+// The shared footer states "Its figures were the latest published at that date" under a page's
+// review date. It used to state it unconditionally, so it rendered under /about/,
+// /common-claims/, /style-guide/ and the 404, none of which prints a figure at all: a sentence
+// about figures on a page that has none is not a small imprecision on a site whose subject is
+// statements that describe nothing.
+//
+// The template decides by testing its own rendered content, and this checks the decision at the
+// end where the truth is. Compared BOTH ways, which is this project's rule for comparing two
+// sets: one direction catches the sentence returning to a page with no figures, the other
+// catches a page that gained figures and lost the sentence, which is the failure the first
+// direction cannot see and the one a front-matter flag would have shipped.
+let footerPages = 0;
+for (const file of pages) {
+  const html = readFileSync(file, 'utf8');
+  const where = `/${relative(siteDir, file).replace(/\\/g, '/')}`;
+  const claimsFigures = html.includes('latest published at that date');
+  const hasFigures = html.includes('class="figure"');
+  if (!html.includes('This page was last reviewed on')) continue;
+  footerPages += 1;
+  if (claimsFigures && !hasFigures) {
+    errors.push(`${where}: the review footer says its figures were the latest published at that date, and the page renders no figure. Either the page lost its figures or the condition in content/_includes/base.njk stopped being asked.`);
+  }
+  if (!claimsFigures && hasFigures) {
+    errors.push(`${where}: the page renders a figure and the review footer does not say when it was current. The carriesAFigure filter missed a route that puts a figure on a page.`);
+  }
+}
+
 // --- the sitemap, checked against the pages the build actually produced -----------------
 // A generated list is only worth having if something asks whether it still matches. Compared
 // BOTH ways, which is this project's rule for comparing two sets: one direction finds a page
@@ -589,6 +617,7 @@ if (errors.length) {
 const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
 console.log(`Every "Cited for" line in the built site names a figure whose own record cites the publication it is printed under: ${citedForNames} name(s) checked. Not established: that the publication contains the figure, which is the far-end trace no check does.`);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt disallows all crawlers.`);
+console.log(`${footerPages} page(s) carry a review footer, and on each one the sentence about when its figures were current is present exactly where the page renders a figure, matched in both directions.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
 console.log(`Of those, ${counts.tokenRefs.size} match the refs in the built HTML exactly, in both directions, outside comments. Not established: that the other ${counts.published - counts.tokenRefs.size}, reaching a reader through a chart bar or a dashboard card, render at all, because those routes put a value on the page with no ref beside it to match.`);

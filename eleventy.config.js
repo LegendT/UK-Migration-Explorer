@@ -262,6 +262,53 @@ export default function (eleventyConfig) {
     return metric;
   });
 
+  // Whether a page carries any figure at all, tested against its own rendered content rather
+  // than declared in front matter. The shared footer used to state "Figures are the latest
+  // published at that date" under every page with a review date, and four pages have no figure
+  // on them at all: /about/, /common-claims/, /style-guide/ and the 404. The finding named two
+  // of the four, which is why this is derived. A hand-kept list of which pages have figures is
+  // the thing that passes by omission the first time a page is added.
+  //
+  // Two routes put a figure on a page and both are tested. A {{theme/id}} token is still a
+  // token when a layout sees the content, because resolve-citations is a transform and runs
+  // after layouts; the {% figure %} shortcode has already rendered its span by then.
+  // `scripts/check-build.mjs` asserts the two agree on the built page, so this cannot drift.
+  eleventyConfig.addFilter('carriesAFigure', (content) =>
+    /class="figure"/.test(content) || /\{\{\s*[a-z]+\/[a-z0-9-]+\s*\}\}/.test(content));
+
+  // The publishers a card QUOTES but does not NAME. A card renders one source line, built from
+  // its own headline metric, while its prose cites other records by reference and those can
+  // belong to anyone. On the asylum cost card the hotel figure is the Home Office's own accounts
+  // under a link to the NAO, so a reader who followed the link met a report that does not print
+  // the number, which is the far-end defect the trace of 2 August 2026 exists to catch, arriving
+  // by a route the trace cannot see: it checks a record against its source, and this is a second
+  // record's figure quoted inside a first record's prose.
+  //
+  // Derived rather than declared, because a hand-kept list beside the prose is the thing that
+  // goes stale the next time a sentence is edited. Two other cards had the same defect and
+  // neither was in the finding that started this: the first-decision queue quotes HMCTS appeal
+  // figures under a Home Office link, and the born-abroad card quotes ONS under a Migration
+  // Observatory one.
+  eleventyConfig.addFilter('citedSources', (card) => {
+    const own = registry.get(card.ref);
+    if (!own) throw new Error(`Unknown metric reference: ${card.ref}`);
+    const seen = new Set([own.source_id]);
+    const extra = [];
+    for (const [, ref] of card.whatThisMeans.matchAll(/\{\{([^}]+)\}\}/g)) {
+      const quoted = registry.get(ref.trim());
+      // A card citing a reference nothing owns is a build failure everywhere else in this
+      // file, and it is one here: the token would render through renderFigure and this filter
+      // would silently drop the publisher behind it.
+      if (!quoted) throw new Error(`Card ${card.id} cites unknown metric reference: ${ref.trim()}`);
+      if (seen.has(quoted.source_id)) continue;
+      seen.add(quoted.source_id);
+      const source = sources.find((s) => s.id === quoted.source_id);
+      if (!source) throw new Error(`Card ${card.id} cites ${quoted.source_id}, which is not in the source catalogue`);
+      extra.push(source);
+    }
+    return extra;
+  });
+
   // Throws rather than rendering an empty string. A range record's value is deliberately
   // null and a typoed property in a chart summary is undefined; either would otherwise ship
   // as an invisible blank in a sentence, which is the quiet failure renderFigure and the

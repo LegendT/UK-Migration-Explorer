@@ -46,8 +46,12 @@ four different measures at four different stages. They are set out side by side 
 {{asylum/asylum-backlog-peak}} people in June 2023, and now sits below where it stood at the
 end of 2019, when it was {{asylum/asylum-backlog-2019}}. Over the same recent period the
 appeals queue went the other way: {{asylum/asylum-appeals-backlog}} cases outstanding at 31
-March 2026, against {{asylum/asylum-appeals-backlog-previous-year}} a year earlier. **The
-appeals queue is now the larger of the two.**
+March 2026, against {{asylum/asylum-appeals-backlog-previous-year}} a year earlier. **On a
+cases basis the appeals queue is now the larger**:
+{{asylum/asylum-appeals-backlog}} appeal cases against
+{{asylum/asylum-backlog-cases-awaiting-an-initial-decision}} cases awaiting a first decision.
+Both figures in that comparison are cases; the two before it are people, and putting one
+against the other is the error this page exists to correct.
 
 So "the backlog has more than halved" and "the backlog is at a record" are both available,
 from the same release, to anyone willing not to say which queue they mean.
