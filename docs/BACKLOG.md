@@ -78,7 +78,7 @@ below.
 3. **CLOSED 6 August 2026 (PR #163).** The reader-facing wording batch: everything under A4 and R1,
    plus the two sources-page wording bullets at the end of *Scoped, not built* section 6. The calls
    came back on 4 August 2026 and every one is applied or needs no change. **Call 10 is decided,
-   deliberately unapplied, and is carried by item 17 below**, where the real screen reader its own
+   deliberately unapplied, and is carried by item 19 below**, where the real screen reader its own
    decision waits on already sits and which already named it in terms. **This entry was a gate
    whose last content depended on a non-gate**, the screen reader having been put after Launch on
    4 August 2026, so as written it could never have closed before the launch it was blocking.
@@ -113,7 +113,7 @@ below.
    rather than replaced, on the owner's word; and the reader-facing `/changes/` page is decided
    against, on a measurement that is under U3. U1 was done in PR #86 and U2 closed in PR #118.
    **U4's call 26 is the one thing any of these sections still points at, and it was never this
-   item's**: item 15 says what it decides is the content of the `robots.txt` that item 15 writes.
+   item's**: item 17 says what it decides is the content of the `robots.txt` that item 17 writes.
    **This entry accounted for less than its own header named on two successive days**, which is why
    U3 and U4 carry the state and this line carries only the outcome. It is under *Completed*.
 7. **CLOSED 5 August 2026 (PR #138).** U6's three findings are all built: the navigation (PR #109),
@@ -172,38 +172,37 @@ below.
     outside the signature on a site whose stated objection to others is scope silence. Signing also
     backs this site's published no-attribution policy over the reviewer's own selection criteria
     2.6 and 2.7, which it failed and which were kept deliberately. It is under *Completed*.
-13. **GATE. Reader-facing accuracy, from the pre-launch critique of 6 August 2026, and it is R4
-    below. BUILT ON `item-13-reader-facing-accuracy` AND NOT MERGED**, so this entry stays open:
-    a thing is done here when it is on `main`, and the check that closes an entry asks for a
-    merged pull request. All six are corrected and every check passes on that branch.** Every one of them is a statement on a live page that this repository itself
-    contradicts: the home page naming the wrong date for the initial-decision peak, when the site
-    holds a record for that peak and `content/asylum.njk` qualifies it correctly;
-    `/sources-and-method/` saying no page shows a returns figure while a claim page renders one; a
-    ratio published as a share on the very page correcting people for that error; the OBR lifetime
-    figure quoted with no endpoint age on both fiscal claim pages, which those pages argue in terms
-    is meaningless; a derived publisher count disagreeing with the list typed beside it; and the
-    `CHANGELOG.md` sign-off accounting for one page fewer than the build produces, which falsifies
-    the sentence making its own case. **A gate on the reasoning of 4 August 2026**, that a site
-    whose subject is other people's misuse of statistics cannot launch with its own trust work
-    outstanding, and these are what a reader meets rather than what a document says. **[me]**,
-    except the sign-off's remedy, which is **[you]**: whether the unsigned claim page joins a
-    route or the entry names it as standing outside one.
-14. **GATE. Sourcing, provenance and the evidence check, which is R5 below. BUILT ON THE SAME
-    BRANCH AND NOT MERGED**, on the same reasoning as item 13. Every entry under R5 is applied,
-    the sign rule and the front-matter scan both carry a control that was proved by breaking
-    them, and every check passes.** A quote carrying a
-    value with the opposite sign passes `scripts/check-evidence.mjs`, probed with controls in both
-    directions rather than read; three figures reach a reader with no record behind them, one of
-    them frozen into front matter where the scan cannot see it at all; the home page's first panel
-    makes a reason comparison `data/migration.json` says the data does not support;
-    `/sources-and-method/` tells readers the site is never a source of original data while it
-    derives figures and grades them as calculated; and four documents state counts of this
-    repository that no longer hold, the two update prompts among them, which is live instruction
-    to a session. **A gate on the same reasoning**: each is a promise about how this site sources
-    things, on a site that asks to be trusted for exactly that. **[me]**, except the
-    original-data sentence, which is a wording call and is **[you]**, with a draft under R5.
-15. **GATE, and deliberately last of the gates. Launch. THE REPOSITORY HALF IS DONE (PR #153,
-    6 August 2026), and items 13 and 14 are the gates ahead of it;
+13. **CLOSED 6 August 2026 (PR #167).** R4, the reader-facing accuracy batch from the pre-launch
+    critique. **This entry read "BUILT ON `item-13-reader-facing-accuracy` AND NOT MERGED" until
+    10 August 2026**, four days after the branch it names was merged into `main`. The entry was
+    right about its own closing rule, that a thing is done here when it is on `main`; nothing
+    reread it against `main` once that became true. Found by the pre-launch sweep of 10 August
+    2026. It is under *Completed*.
+14. **CLOSED 6 August 2026 (PR #167).** R5, the sourcing and provenance batch, merged by the same
+    pull request and stale in the same way and for the same four days. **Two entries carrying the
+    identical false sentence is the shape this file already names**, a correction landing at its
+    named site and going stale one reference away, and here neither reference had a correction to
+    miss: the branch merged and no hand returned to the list. It is under *Completed*.
+15. **GATE. The pre-launch sweep of 10 August 2026, which is R7 below.** The owner read the built
+    site as a reader and the findings were checked against the repository one at a time. What
+    survives is a launch PR that would merge into a branch that is already history; a site-wide
+    footer calling every figure an official statistic on a site whose own grades say four
+    different things; a comparison of appeal cases with people on the page whose subject is that
+    the two must not be compared; a home page card citing a figure from a source that is not the
+    one its link goes to; and five records reading from an edition of the Home Office accounts
+    that has been superseded, where the supersession decision is recorded in one field of
+    `data/sources.json` and reaches no reader. **A gate on the reasoning of 4 August 2026**, that
+    a site whose subject is other people's misuse of statistics cannot launch with its own trust
+    work outstanding, widened to these by the owner on 10 August 2026. **[me]**, except the two
+    calls named under R7, which are **[you]**.
+16. **NOT A GATE. The reader-facing batch from the same sweep, which is R8 below.** Definitions
+    the home page's own cards assume and never link, two glossary terms the money pages use and
+    the glossary does not hold, a denominator that is correct and unnamed, a chart marking a
+    methodology change without saying what changed, and one word on a live page. **None of these
+    is a false statement**, which is why it is not a gate: each is a reader meeting a term or a
+    number with less than they need to read it. **[me]**.
+17. **GATE, and deliberately last of the gates. Launch. THE REPOSITORY HALF IS DONE (PR #153,
+    6 August 2026), and item 15 is the gate ahead of it;
     Search Console is what is left and it is [you].** The gate as originally worded said delete
     `content/robots.txt` and its guard, and **the UX review said write that file rather than only
     delete it**, which is what happened: the file admits retrieval agents that emit a linked
@@ -218,21 +217,25 @@ below.
     the HTML-file and meta-tag methods, and submit
     `https://ukmigrationexplorer.org/sitemap.xml`. That is how success measure 2 would be noticed.
     **[you]**.
-16. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
+    **This entry named items 13 and 14 as the gates ahead of it until 10 August 2026**, when both
+    closed and the pre-launch sweep took their place. It was written on a branch cut before either
+    happened, which is how a true sentence arrives stale through a merge rather than through
+    neglect.
+18. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
     nothing else. **[you]**.
-17. **NOT A GATE, on the same decision. A real screen reader over the pages** **[you]**, then
+19. **NOT A GATE, on the same decision. A real screen reader over the pages** **[you]**, then
     A5's `aria-describedby` change that is gated on it **[me]**, and R1's call 10 with it. It is
     also the published limit most worth closing.
-18. **CLOSED 5 August 2026 (PR #149).** The scroll-region checks could not see a region carrying a
+20. **CLOSED 5 August 2026 (PR #149).** The scroll-region checks could not see a region carrying a
     second class, in all four patterns across the transform and the checker that is supposed to
     disagree with it. It is under *Completed*. It existed as an item because nothing else in this
-    list pointed at it: item 4 named A5 and closed on 5 August 2026, and item 17 names one specific
+    list pointed at it: item 4 named A5 and closed on 5 August 2026, and item 19 names one specific
     A5 change rather than the section, so the work had been written into a section the ordered list
     no longer reached. **That was the A6 orphan repeating within a day, by the hand that had just
     written up A6's**, which is why it was a numbered item rather than a sentence somewhere.
-19. **CLOSED 6 August 2026 (PR #166). It was a GATE**, decided so on the reasoning of 4 August
+21. **CLOSED 6 August 2026 (PR #166). It was a GATE**, decided so on the reasoning of 4 August
     that a site whose subject is other people's misuse of statistics cannot launch with its own
     trust work outstanding. The costs page framed net fiscal impact the way correction 1b retired.
     Found by the docs audit of 6 August 2026, from the one item `docs/PRE-LAUNCH-AUDIT.md` still
@@ -248,7 +251,7 @@ below.
     now says there is no agreed figure, scopes it to the pre-Brexit studies, and attaches the
     magnitude to the estimated effect rather than to the studies, which a critique round caught in
     the draft. It is under *Completed*.
-20. **NOT A GATE. Choose the success measures, and record which.** Found by the docs audit of
+22. **NOT A GATE. Choose the success measures, and record which.** Found by the docs audit of
     6 August 2026. Foundation section 4.2 offers three candidates and says they must be chosen and
     committed to in phase 1: cited by a named outlet or briefing within six months; organic search
     entries on definitional queries; return visits in the week after a major data release. **None
@@ -256,8 +259,8 @@ below.
     users, and `docs/foundation.md` said of it "**it is the only one with nothing pointing at it**",
     which was true until this entry existed and is corrected there rather than left standing.
     **This list twice calls one of them "success measure 2" as though the set were adopted**, under
-    item 15 and under call 26, where 4.2 offers candidates in prose and numbers nothing. **Adopting
-    a numbering may not reconcile those two, and that is part of the decision**: item 15's is
+    item 17 and under call 26, where 4.2 offers candidates in prose and numbers nothing. **Adopting
+    a numbering may not reconcile those two, and that is part of the decision**: item 17's is
     Search Console, which reports organic search entries and maps to 4.2's second candidate
     cleanly; call 26's is retrieval citation, an assistant citing the site in an answer, which is
     neither plainly that nor plainly the first candidate about a named outlet or briefing. One of
@@ -266,8 +269,10 @@ below.
     and the first runs a six-month clock that starts at it, so choosing them before launch is worth
     more than choosing them well after. **[you]**, and nothing is built either way.
 
-21. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below. BUILT on the
-    same branch and not merged, and the code tidy is done.** Applied: the Migration Observatory
+23. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below. MERGED
+    6 August 2026 (PR #167), and the code tidy with it.** **This entry read "BUILT on the same
+    branch and not merged" until 10 August 2026**, the third of the three that did, and the only
+    one of the three that stays open on its own account rather than on that sentence. Applied: the Migration Observatory
     grades and their evidence entries, the counts in `README.md`, `docs/foundation.md` and
     `docs/UPDATE-AUTOMATION.md`, the census entry in `data/sources.json`, the glossary
     cross-references, `content/404.md`, the provenance disclosure's target size, and both
@@ -288,7 +293,7 @@ below.
     **What is left is two labelling points**: the table on the most-immigration-is-asylum check
     has no caption and its scroll region falls back to a name that says nothing, and a claim is a
     heading with no "The claim" label travelling with it in heading navigation. **[me]**.
-22. **NOT A GATE, and it is the one thing under R6 that is not cosmetic. An evidence entry can be
+24. **NOT A GATE, and it is the one thing under R6 that is not cosmetic. An evidence entry can be
     retired from every pass by editing its own value.** `scripts/check-evidence.mjs` audits an
     entry only where the record still exists and still holds exactly what the entry declares,
     which is deliberate and is what stops the audit trail having to be deleted when a figure
@@ -467,7 +472,7 @@ record and an evidence entry rather than a sentence.
   region and a control on the old patterns that reproduced the nesting.
 - **Point `aria-describedby` at the visible chart summary** instead of duplicating it into
   `<desc>`. **Gated on a real screen reader**, which this project has never run, so it is
-  **[you]** first, at The order's item 17.
+  **[you]** first, at The order's item 19.
 - **Closed here**: call 16, the contact address, applied in PR #130 as
   `corrections@ukmigrationexplorer.org` in all three places the issue tracker was the only door.
   **The mailbox must exist before launch and nothing checks that it does.** Call 17, which
@@ -533,10 +538,10 @@ against their live sources with verbatim quotes.**
 
 ### R1. Reader-facing wording and grading, all of it yours
 
-**One call is left, and it is carried by The order's item 17 rather than by item 3, which closed
+**One call is left, and it is carried by The order's item 19 rather than by item 3, which closed
 on 6 August 2026.** Call 10 waits on the real screen reader by the last clause of its own
-decision, and item 17 is where that test lives. **Item 3 was a gate whose last content depended on
-a non-gate**, item 17 sitting after Launch by a decision of 4 August 2026, so leaving call 10
+decision, and item 19 is where that test lives. **Item 3 was a gate whose last content depended on
+a non-gate**, item 19 sitting after Launch by a decision of 4 August 2026, so leaving call 10
 inside it would have blocked the launch on something the same list had put after the launch.
 
 - **Call 10. The claim page `h1`. DECIDED 4 August 2026, NOT YET APPLIED, and deliberately so.**
@@ -594,7 +599,7 @@ the nav.
 
 ### U1. Cheap, uncontested, all [me]. DONE (PR #86, 2 August 2026), except the half that is the gate
 
-Nothing is left of it but the `robots.txt` sentence, which is inside The order's item 15 and stays
+Nothing is left of it but the `robots.txt` sentence, which is inside The order's item 17 and stays
 there: the gate says delete the file, and the line pointing at the sitemap has to be written into
 it. What was built, `content/sitemap.njk`, an id on every heading, `theme-color` and a 404
 description, is under *Completed*.
@@ -688,12 +693,12 @@ grade decisions its first bullet waits on.
   ships with the site and the Reuse section lists every top-level file with a link and a count,
   generated from the directory rather than typed.
 
-### U4. Two decisions, both decided 4 August 2026. Call 27 is applied, call 26 lands with item 15
+### U4. Two decisions, both decided 4 August 2026. Call 27 is applied, call 26 lands with item 17
 
 - **Call 26. AI crawlers**, and it is not binary. Allow retrieval bots that emit linked citations,
   refuse training-only bots. Retrieval citation is success measure 2's most likely route, and
   blocking keeps the option open where allowing does not. **NOT YET APPLIED, and it gates The
-  order's item 15.**
+  order's item 17.**
 - **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
   and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from
   the same directory read that renders the Reuse section, so what a reader is given and what a
@@ -810,7 +815,7 @@ still goes at launch (PR #54). **The third step was The order's item 12, recorde
 thing to get wrong: **[you]** marked an editorial or sourcing call only the owner makes; **[me]**
 marked a mechanical or factual change against a cited source.
 
-**Then, and only then: remove the robots rule**, which is The order's item 15.
+**Then, and only then: remove the robots rule**, which is The order's item 17.
 
 ---
 
@@ -946,7 +951,7 @@ and launching with them unmet is a decision rather than an oversight.
 
 - **"Five target users have been spoken to, and what they said is written down."** Open since June.
   Section 18 calls it the cheapest possible way to find out the whole thing is unwanted, and puts it
-  at a week. The order's item 16.
+  at a week. The order's item 18.
 - **"Success measures are chosen and recorded." MET, 30 July 2026.** The measure is **candidate 1 of
   section 4.2: cited by a named outlet or briefing within six months**, chosen because 4.2's own
   audience statement names "professionals who need a citation quickly". **Candidate 2, organic search
@@ -1134,11 +1139,144 @@ field. **And the accessibility run tests one theme.** `.pa11yci.json` sets no co
 the clean report covers the light palette; the dark palette was measured by hand for this critique
 and passes, and nothing keeps it that way.
 
+## From the pre-launch sweep, 10 August 2026
+
+**The owner read the built site as a reader would and wrote down what he met**, in an informal
+note and a formal snagging list, and both were checked against the repository one finding at a
+time before anything reached this file. **Whatever survived them is here, in this file's format,
+and the source documents carry no state**: that is the rule this project set after the pre-launch
+audit built a second list and the two diverged twice in one day. Whether they are committed beside
+`verification.txt` as records or deleted is the owner's call and changes nothing above.
+
+**The sweep found six things the owner then gated, and R7 below holds five of them.** The sixth
+was this file: items 13, 14 and 23 each said the work was built and not merged, four days after
+PR #167 merged it. That one has no bullet because it is applied by the changeset that adds this
+section, and a finding fixed in the same breath as it is written down does not need a line
+telling a session to do it.
+
+**What did not survive is worth recording, because a rejected finding costs a session an
+afternoon if it comes back.** The snagging list asked for the lifetime-contribution page to be
+signed so the review reads 23 of 23; `CHANGELOG.md` already signs at 22 of 23 and names that page
+as standing outside, deliberately, and that naming was item 13's own **[you]** half, taken. It
+asked for a real screen reader as a launch blocker; item 19 put that test after Launch on
+4 August 2026 by a decision with reasons, and a newer document does not silently outrank an older
+decision. It asked for the citation block on claim pages to be moved behind progressive
+disclosure; it already is, a closed `details` sitting between the short answer and the
+explanation, so the remedy and the state of the site agree already. And it read the home page's
+23 July review date against the pre-launch banner's 27 July as a contradiction; they are the page's
+own review and the site-wide one, two facts wearing one word, which is a labelling defect rather
+than a date defect and is where R7's last entry comes from.
+
+### R7. The gate, and every one of these is what a reader or a merge actually meets
+
+- **The launch pull request would merge into a branch that is already history.** PR #168 has
+  `item-13-reader-facing-accuracy` as its base, and PR #167 merged that branch into `main` on
+  6 August 2026. GitHub retargets a stacked pull request only when its base BRANCH is deleted,
+  and this one still exists, so merging #168 as it stands sends the launch changeset into merged
+  history and never to `main`, with every local signal reading clean. Retarget it to `main`
+  first. Checked rather than assumed: against `main` the diff is the launch changeset and nothing
+  else, and it merges without conflict.
+
+- **The site-wide footer calls every figure an official statistic.** `data/meta.json` opens its
+  `footerNote` with "Figures are official statistics and may be revised", and it renders on every
+  page the build produces including the 404. The same file names four confidence grades a few
+  lines below, two of which exist precisely to say a figure is not that. **This is the same defect
+  as R5's "not a source of original data" sentence and it is on more pages**: the site's broadest
+  trust claim is stronger than its own data model permits, and the clearest case is the OBR
+  lifetime figure, which the page carrying it correctly explains is not an OBR-published value.
+  The snagging list's draft replacement is serviceable and the wording is **[you]**.
+
+- **Appeal cases are compared with people on the page about not doing that.**
+  `content/claims/the-asylum-backlog-is-one-number.md` ends a paragraph with "The appeals queue is
+  now the larger of the two." The two figures beside it are the June 2023 peak and the end-2019
+  stock, both in people; the sentence means cases. **The page renders the cases-basis figure for
+  the first-decision queue earlier on itself**, so the honest comparison is available without a
+  new record and the fix is to name the basis and use it. The snagging list's replacement wording
+  was checked against `data/asylum.json` and is correct as written.
+
+- **The asylum cost card cites a figure the card's own source link does not contain.**
+  `data/dashboard.json` attributes the hotel component to the Home Office's own annual accounts,
+  in terms, and `content/index.njk` renders one source line per card, built from the card metric
+  alone, which is the NAO. A reader who follows the link meets a report that does not print it.
+  **This is the far-end defect the trace of 2 August 2026 was built to catch, on the home page**,
+  and it survived because the trace checks a record against its source and this is a second
+  record's figure quoted inside another record's prose.
+
+- **Five `ho-ara` records read from a superseded edition and say so nowhere a reader looks.** All
+  of them cite the 2024-25 accounts; the 2025-26 edition, HC 440, published in July 2026, which
+  the release check names in its unwatched column. `data/sources.json` already carries the
+  decision for one of them, that the newer edition drops the hotel figure, in the source's
+  `covers` field. **That leaves the rest undecided and the decided one invisible**: the two per-day
+  averages, the hotel total, the health surcharge and the fee income each need the newer edition
+  opened and the answer recorded per record, and where the older figure stands it needs the
+  supersession note the snagging list drafts. **Nobody has opened the 2025-26 accounts**, so
+  whether it restates the surcharge and the fee income is the thing to establish and not a thing
+  to assume; the recommendation that it would was withdrawn before it reached this file.
+
+- **The three displayed dates mean three different things and wear one vocabulary.** The
+  pre-launch banner's date is the site-wide pre-publication review, a page footer's is that page's
+  own `last_reviewed`, and a home page card's is the day the figure was last read against its
+  source, labelled "Checked" with no agent. The owner read the first two as a contradiction, which
+  is the evidence that the labels do not carry their own meaning. **And `content/_includes/base.njk`
+  prints "Figures are the latest published at that date" under every page that has a review date,
+  including the style guide and the 404**, where the sentence describes nothing. Naming the three
+  concepts is **[me]**; what the card's label should say to a reader is **[you]**.
+
+### R8. The reader-facing batch, none of it a false statement
+
+- **Four cards and a panel assume a definition the glossary holds and neither links.**
+  `content/index.njk` writes "non-EU+ arrivals" in the first panel, which is effectively this
+  site's front door, and the cards built from `data/dashboard.json` use "main-applicant
+  applications", "Also a stock" and "Naturalisation" with no route to the terms. Every anchor
+  exists in `content/glossary.md` already, so this is missing links rather than missing content.
+
+- **The small boats card names a figure elsewhere on the site and does not go there.** It says the
+  year-ending-March count for the same route gives a different number; `content/asylum.njk`
+  renders that record. Link it.
+
+- **The mirror claim is named and not linked.**
+  `content/claims/a-refusal-means-the-claim-was-obviously-false.md` says the opposite claim "is
+  checked on its own page", and the page exists.
+
+- **A correct share reaches a reader without its denominator.**
+  `content/claims/falling-net-migration-means-asylum-is-shrinking.md` gives asylum applicants as a
+  share of all long-term immigration; another page gives the same numerator over non-EU+ arrivals,
+  which is the only basis ONS publishes on. **Both are right and `data/migration.json` holds the
+  arithmetic for both**, including the rounding interval. The prose needs the denominator named
+  beside it, not a correction.
+
+- **The glossary defines neither charge the money pages spend.** Visa and immigration fees and the
+  Immigration Health Surcharge both have records in `data/fiscal.json` with worked notes, and
+  `content/costs.njk` names them.
+
+- **The migration chart marks a methodology change and never says what changed.**
+  `content/migration.njk` gives the note ONS gives, that estimates either side of June 2021 differ
+  in method. Neither the survey it moved from nor the administrative data it moved to appears on
+  the built page; that explanation renders only on `/sources-and-method/`. A clause or a link.
+
+- **One word on a live page.** `content/common-claims.njk` says the correction "a reader
+  sympathetic to migration would most want to see", and the owner asked for "most" dropped.
+  **The internal copies of that sentence are not this one and are not in scope**: it took a
+  second look to find the rendered instance, the phrase being wrapped across two lines, which is
+  the defect this project has already written up about grepping its own prose.
+
 ## Completed
 
 Kept so that a future session can see what was decided and when, rather than reopening it. **The
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
+
+- **Reader-facing accuracy and sourcing, The order's items 13 and 14**, 6 August 2026. PR #167,
+  closing R4 and R5 together. Six statements a reader met that this repository contradicted, and
+  six promises about how the site sources things: among them the home page naming the wrong date
+  for the initial-decision peak, `/sources-and-method/` denying that any page shows a returns
+  figure while a claim page rendered one, a ratio published as a share on the page correcting
+  people for that error, and a quote carrying the opposite sign passing `scripts/check-evidence.mjs`.
+  **Both entries then said they were unmerged for four days after they were merged**, and so did
+  item 23, which is why this entry exists at all rather than being written when the work landed.
+  The pull request that carries the work is the durable record; what the delay taught is that
+  merging a branch closes nothing in this file by itself, and it is written up in `docs/HANDOFF.md`
+  rather than a third time here.
 
 - **The last drafted claim, and item 10 with it**, 6 August 2026. "The average migrant contributes
   £341,000 over their lifetime", the seventh and last draftable claim in foundation 8.5.3.
@@ -1160,14 +1298,14 @@ maintained here. Newest first.
 - **The last two gates that held only a question**, 6 August 2026, closing The order's items 3 and
   8. **Item 3 was a gate whose last content depended on a non-gate**: everything under A4 and R1
   was applied or needed no change except call 10, which is decided, deliberately unapplied, and
-  waits on a real screen reader, and that test is item 17, which the same list puts after Launch.
+  waits on a real screen reader, and that test is item 19, which the same list puts after Launch.
   As written it could never have closed before the launch it was blocking. Call 10 is carried by
-  item 17, which already named it. **Item 8's last question was a grade**:
+  item 19, which already named it. **Item 8's last question was a grade**:
   `population/share-of-london-residents-born-abroad` keeps `official`, and A1 carries the reasoning
   rather than this entry repeating it. It cost nothing to apply: the record is unpublished reserve
   and reaches no reader either way, which is why it could sit open under a gate for two days.
 
-- **The costs page's fiscal-impact framing**, 6 August 2026. PR #166, closing The order's item 19.
+- **The costs page's fiscal-impact framing**, 6 August 2026. PR #166, closing The order's item 21.
   **The fourth instance of a correction shipping without its siblings**, and the first found by
   auditing documents rather than content: `docs/PRE-LAUNCH-AUDIT.md` is frozen and marks exactly one
   item still open, correction 1b's, and following it to the page showed the signpost card on
@@ -1250,7 +1388,7 @@ maintained here. Newest first.
   searched `**[you]**` where U4 prints `[you]` unadorned, so it cleared the orphan it existed to
   find. Re-run against the form the source prints, with a control.
 
-- **The scroll-region class blindness**, 5 August 2026. PR #149. The order's item 18, and A5's
+- **The scroll-region class blindness**, 5 August 2026. PR #149. The order's item 20, and A5's
   last bullet. Four patterns across the `scrollable-regions` transform and the check that exists to
   disagree with it matched `class="scroll-x"` up to the closing quote, so a region carrying a second
   class was invisible to all four. The two failures are not one failure: the three attribute checks
