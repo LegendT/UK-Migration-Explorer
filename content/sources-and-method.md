@@ -264,9 +264,9 @@ are at handling its own mistakes.
   taken down until it has been.
 
 If something here is wrong, please say so. Tell us which figure, and what you think it
-should be: email [corrections@ukmigrationexplorer.org](mailto:corrections@ukmigrationexplorer.org), or
-[open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new). A correction should
-not depend on having a GitHub account.
+should be: [open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new).
+Corrections are handled in public, so the objection and the answer stay attached to the figure
+rather than sitting in somebody's inbox.
 
 ---
 

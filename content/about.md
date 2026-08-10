@@ -55,9 +55,8 @@ of statistics, and applies that in every direction.
 ## Corrections
 
 If something here is wrong, please say so, and say which figure and what you think it should
-be. Email [corrections@ukmigrationexplorer.org](mailto:corrections@ukmigrationexplorer.org), or
-[open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new) if you would rather
-it were public. Neither route is preferred and both reach the same person.
+be. [Open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new). Corrections
+are handled in public, which is the same standard this site asks of the figures it checks.
 
 Every change to a published figure is recorded in the
 [public changelog](https://github.com/LegendT/UK-Migration-Explorer/blob/main/CHANGELOG.md),

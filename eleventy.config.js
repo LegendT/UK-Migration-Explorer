@@ -44,6 +44,27 @@ function renderFigure(ref) {
   return `<span class="figure" data-metric="${escape(ref)}">${escape(metric.value.toLocaleString('en-GB'))}</span>`;
 }
 
+// A link written inside data prose, as {{link:/path/#anchor|the words a reader sees}}.
+//
+// Prose in data/ is plain text everywhere in this repository: nothing under data/ carries markup,
+// the caveats partial escapes what it renders, and the card prose is printed by an autoescaping
+// engine. So a dashboard card could not define its own terms, and the home page's cards used
+// "main-applicant", "Also a stock" and "Naturalisation" with no route to the glossary that
+// defines all three. This keeps the convention and resolves the link at build time instead.
+//
+// The anchor is deliberately NOT validated here. `scripts/check-build.mjs` already resolves every
+// internal link and its fragment against the pages the build produced, cross-page fragments
+// included, so a glossary anchor renamed under one of these fails the build at the end where the
+// truth is. A second check here would be a copy of that one, kept in step by hand.
+const LINK_TOKEN = /^link:(\S+)\|(.+)$/s;
+
+function resolveToken(raw) {
+  const link = LINK_TOKEN.exec(raw);
+  if (!link) return renderFigure(raw);
+  const [, href, text] = link;
+  return `<a href="${escape(href)}">${escape(text.trim())}</a>`;
+}
+
 // Structural blocks rendered from the data layer rather than restated in prose, so a page
 // describing the sources cannot drift from them.
 const PARTIALS = {
@@ -295,6 +316,11 @@ export default function (eleventyConfig) {
     const seen = new Set([own.source_id]);
     const extra = [];
     for (const [, ref] of card.whatThisMeans.matchAll(/\{\{([^}]+)\}\}/g)) {
+      // A card's prose holds two kinds of token and only one of them names a publisher. Tested
+      // against LINK_TOKEN rather than a second pattern here: this filter throws on a reference
+      // nothing owns, which is what caught the first link token added to a card, and a private
+      // copy of the rule would go out of step with the resolver the moment either changed.
+      if (LINK_TOKEN.test(ref.trim())) continue;
       const quoted = registry.get(ref.trim());
       // A card citing a reference nothing owns is a build failure everywhere else in this
       // file, and it is one here: the token would render through renderFigure and this filter
@@ -373,7 +399,7 @@ export default function (eleventyConfig) {
     return content
       .replace(new RegExp(String.raw`<p>\s*${PARTIAL_TOKEN}\s*</p>`, 'g'), (_, name) => renderPartial(name))
       .replace(new RegExp(PARTIAL_TOKEN, 'g'), (_, name) => renderPartial(name))
-      .replace(/\{\{([^}]+)\}\}/g, (_, raw) => renderFigure(raw.trim()));
+      .replace(/\{\{([^}]+)\}\}/g, (_, raw) => resolveToken(raw.trim()));
   });
 
   // Heading anchors. Markdown does not support {#id} natively, so without this the syntax
