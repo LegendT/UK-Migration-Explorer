@@ -116,7 +116,7 @@ content/                Eleventy input
   about.md                Who runs it, who pays, what it is not
   claims/                 The claim checks, citing live figures by token
   _includes/              base.njk, and claim.njk for claim pages
-  _data/site.js           Name, strapline, navigation, nine items rendered as a disclosure below 40em
+  _data/site.js           Name, strapline, navigation, ten items rendered as a disclosure below 40em
   assets/style.css        One stylesheet, including the print rules
   assets/favicon.svg      Inline SVG, no binary asset
   404.md                  Served by Netlify when a link into the site goes stale
@@ -171,7 +171,7 @@ section of `/sources-and-method/`, generated from the directory rather than type
 promised the files were public and linked none of them.
 
 **Two things change shape below 40em, and they do it in opposite ways.** The navigation is the
-same nine items at every width, in one `<nav>` and one `<details>`: below 40em the `<summary>` is
+same ten items at every width, in one `<nav>` and one `<details>`: below 40em the `<summary>` is
 the control that opens them, and above it the summary is `display: none` and the items lay out as
 the flat row they have always been. Nine flat items needed about 980px of line length, which is
 what a 280px column could not give them. **The charts are the case that really does render twice.**

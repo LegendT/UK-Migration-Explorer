@@ -266,7 +266,10 @@ are at handling its own mistakes.
 If something here is wrong, please say so. Tell us which figure, and what you think it
 should be: [open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new).
 Corrections are handled in public, so the objection and the answer stay attached to the figure
-rather than sitting in somebody's inbox.
+rather than sitting in somebody's inbox. **That does mean a correction needs a GitHub account**,
+which is free but is a step. Until 10 August 2026 this page offered an email address instead and
+said a correction should not depend on having an account; the address was withdrawn, and the
+condition it existed to avoid now applies. It is a real cost and it is stated rather than dropped.
 
 ---
 
@@ -284,14 +287,12 @@ it. We would rather say that than publish a number we cannot stand behind.
 careful handling, and doing it badly produces something closer to a targeting tool than an
 explainer.
 
-**Returns and removals.** Not yet covered, and the figures are held rather than absent. The
-data layer records enforced, voluntary and asylum-related returns for the year ending March
-2026. **Two of them reach a reader, and neither has a page explaining it**: the asylum-related
-total on the small boats claim check, in the list of stages a count of arrivals does not
-measure, and the port-refusal count in the caveat warning against adding it to a total this
-site does not print. Covering the subject means a page setting out what a return counts and
-why the categories do not nest, rather than a number placed beside the asylum figures. Named here because a figure
-held and not shown is the same silence as one not held.
+**Returns and removals.** Covered since 10 August 2026, at [returns](/returns/). This entry
+previously said the subject was not covered while the data layer held the figures and two of
+them already reached a reader with no page explaining either, which is the same silence as not
+holding them. The page does what this entry said covering it would take: it sets out what a
+return counts, that the counts are of events rather than people, and why the categories do not
+nest, rather than placing a number beside the asylum figures.
 
 **What immigration policy should be.** Never covered. That is a question about values, and
 this site has no standing to answer it.
