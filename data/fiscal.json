@@ -1,6 +1,6 @@
 {
   "theme": "Economic and fiscal impact",
-  "lastUpdated": "2026-08-10",
+  "lastUpdated": "2026-08-11",
   "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across the pre-Brexit static studies summarised by the Migration Observatory, the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP; none of those studies covers the current post-Brexit system. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
   "metrics": [
     {
@@ -178,7 +178,7 @@
       "source_id": "ons-emp06",
       "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
       "published_date": "2026-05-19",
-      "retrieved_date": "2026-08-05",
+      "retrieved_date": "2026-08-11",
       "notes": "Read from the primary table, not from a briefing about it: the Country of birth rates sheet gives 80.39374408928576 for the Total EU (EU27) column at Oct-Dec 2025, and this record rounds it to one decimal place, which is what makes it calculated rather than official. The Migration Observatory labour market briefing it used to cite prints no decimal percentage anywhere and so never contained this value; searching it for the stems 80 and 74 returns nothing at all. EU-born employment rate has exceeded UK-born and non-EU since about 2006. ONS labels EMP06 official statistics in development and warns that volatility remains in Labour Force Survey estimates for mid-2023 and through 2024, advising users to read long-term movements rather than short-term changes.",
       "confidence_level": "calculated"
     },
@@ -194,7 +194,7 @@
       "source_id": "ons-emp06",
       "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
       "published_date": "2026-05-19",
-      "retrieved_date": "2026-08-05",
+      "retrieved_date": "2026-08-11",
       "notes": "Read from the primary table, not from a briefing about it: the Country of birth rates sheet gives 74.68465773259211 for the UK column at Oct-Dec 2025, and this record rounds it to one decimal place, which is what makes it calculated rather than official. The same sheet gives 75.12462839533842 for Total non-EU in that quarter, which is the 'about 75.1%' this note already carried while the record cited a briefing that prints no decimal at all. The aggregate comparison masks a gender split: migrant men have higher employment than UK-born men, but migrant women have lower employment than UK-born women. ONS labels EMP06 official statistics in development.",
       "confidence_level": "calculated"
     },
