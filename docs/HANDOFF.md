@@ -53,7 +53,8 @@ closed the other original blocker.
   **Whether DNS points at the Netlify deploy yet is operational state and is deliberately not
   recorded here**, on the same reasoning as the branches two paragraphs down: check it rather
   than trust this line.
-- **Deploy:** https://ukmigrationexplorer.netlify.app (robots.txt disallows all crawlers)
+- **Deploy:** https://ukmigrationexplorer.netlify.app (robots.txt admits citing retrieval agents
+  and refuses training crawlers, backlog call 26)
 - **Repo:** https://github.com/LegendT/UK-Migration-Explorer
 - **Working branch:** cut a new one from `main`. This project works through PRs even solo.
 
@@ -161,8 +162,9 @@ fifth site standing.
 independent passes. It found nothing that gated launch under the gate set of the day, and the
 owner widened that set on 4 August 2026, so it does now. What it found is in
 `docs/BACKLOG.md` under *From the UX review*, entry 6 in the order, in that file the format and
-not here. One item touches a gate: the review argues the launch `robots.txt` should be WRITTEN
-rather than only deleted, with a sitemap beside it, and the gate as worded says delete.
+not here. One item touched a gate: the review argued the launch `robots.txt` should be WRITTEN
+rather than only deleted, with a sitemap beside it, where the gate as worded said delete. It was
+written rather than deleted, and the gate's wording is what the backlog entry has to reconcile.
 
 **The sitemap half of that is built, PR #86.** What remains of U1, and what the file should say,
 is the backlog's to state, under the launch gate and U4. The same pull request gave every linkable section heading an
@@ -470,7 +472,7 @@ section about checking.
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, a citation's `source_url` and `source_id` naming the same publisher, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, a metric declaring a `series_ref` agrees with the point it names on value, unit, confidence level and year, every point in a series block carrying one confidence level, `ons_marker` drawn from a fixed vocabulary, a theme file's `lastUpdated` present and a real date, a figure naming a publisher table in its own prose declares it in `table_reference`, figures overdue against their source's cycle, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value or series point written longhand in content or in the `data/` prose that reaches a page, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` and its subdirectories referenced from the backlog, outstanding work tracked in the backlog. **Fails** on a figure the data layer never recorded, comma-grouped or written with a scale word, since 2 August 2026, having run at report level under a ratchet from 38 down to zero, and names every declared literal that does equal a live value |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, every metric that is new, and since 3 August 2026 every metric whose `confidence_level` crosses the derived boundary in either direction at an unchanged value, is declared in `data/evidence/` with a quote containing that value. **Also since 3 August 2026, every entry on file naming a record that still holds exactly its value is re-read on every run**, because the base-branch comparison asks only about figures that moved; an entry whose figure has since moved is history and is skipped, which is what stops a check forcing the audit trail to be deleted. **And since 4 August 2026 `previous_value` is asked of every claim a branch adds**, keyed on ref with that field and the published value, because the base-branch loop reads it only for a figure that moved and so never reached a backfill. A derived figure quotes its inputs and states the arithmetic instead. A series is evidenced **per array and per release**, carrying its vintage, its point count and a quote holding both ends; a move with no new release behind it needs a correction note, because an entry matched on vintage alone also matches every earlier state of the same edition. **Since 5 August 2026 series entries get both of the passes above too**: every entry naming a block that still holds its declared vintage is re-read on every run, and `previous_vintage` is asked of every series claim a branch adds. Four things stop an entry being read at all: a `file` that `lib/series.mjs` does not map, a `block` it does not map, a missing `vintage`, and a block held neither now nor on the base branch. Each is refused only on the branch that writes it, so a rename in `lib/series.mjs` cannot orphan every entry naming the old name and leave rewriting the audit trail as the only green run. Gates the CI job at `.github/workflows/validate-data.yml`, **not `npm run build` and not the Netlify deploy**, whose command is `npm test && npm run build`; this row said "Gates the build" until 6 August 2026, which told a session the evidence contract was enforced locally when it is not. Needs the base branch fetched, and fails rather than skipping when it cannot see it |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, **recognised since 5 August 2026 by matching `scroll-x` as a whole member of the class list** rather than as the whole attribute, which had made a region carrying any second class invisible to all four patterns here and in the transform, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, **every "Cited for" name in a citation block sitting under a publication its own record names as its source**, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`**. **Structured data is parsed rather than pattern-matched**: every JSON-LD block must parse, the pages that should carry one must, every URL in one that points at this site must resolve, no third origin may appear, and `ClaimReview` is refused outright |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, **recognised since 5 August 2026 by matching `scroll-x` as a whole member of the class list** rather than as the whole attribute, which had made a region carrying any second class invisible to all four patterns here and in the transform, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, **every "Cited for" name in a citation block sitting under a publication its own record names as its source**, the launch `robots.txt` state, meaning no `User-agent: *` group disallows the site, the `Sitemap:` line matches `site.url`, no agent on the file's own "# Admits:" line sits in a refusing group, and some group still refuses; it read "the launch state under call 26" while guarding only the allow half, and three ways past it were found by probing on 11 August 2026, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, and the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`**. **Structured data is parsed rather than pattern-matched**: every JSON-LD block must parse, the pages that should carry one must, every URL in one that points at this site must resolve, no third origin may appear, and `ClaimReview` is refused outright |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike. The two parliamentary hosts that 403 every request Node's `fetch` makes go through `curl` over HTTP/1.1, where the same browser headers return 200 and an invalid path returns 404. **A 403 or a 429 from any host is reported as uncheckable rather than broken**, because a refusal is not a dead page and which hosts refuse depends on where the run happens: those two answer a laptop and refuse a GitHub runner, which is how CI came to report two live OBR links as dead on every run (network; runs in CI with `continue-on-error`) |
 | `check-pipeline.mjs` | That `npm run validate`, `.github/workflows/validate-data.yml` and `scripts/` name the same checks, measured against one manifest in that script, including which CI steps carry `continue-on-error`. `local: true` with `ci: false` is refused outright. Says nothing about whether a red job blocks a merge, which since PRs #121 and #124 is enforced rather than a habit: `main` requires the `validate` check and `enforce_admins` is on. This cell said "still a habit" until 6 August 2026, which this same document had already corrected further down |
 | `check-releases.mjs` | Two halves. Whether a watched source has published a newer edition than the one each record **and series file** cites, per cited edition rather than per source, compared on the month and year in the URL. And whether a table declared in `table_reference` was corrected **inside** the cited edition, matched against the Home Office change history and raised only where the figure's own `retrieved_date` pre-dates the correction. Network; reports and never gates, and opens one deduplicated issue from `main` or the cron. A route that matches no document, or a page that answers with no change history at all, fails loudly rather than reading as quiet |
@@ -619,6 +621,25 @@ is already here to adding a neighbour beside it.
   from. Write the narrow claim, and before writing any "no X at all", spend one search actively
   trying to find an X. This is the same discipline as *Test the inference, not just the caveat*
   below, applied to your own sentence.
+
+- **A file that tells its reader to check it against an outside source is a file nobody has
+  checked.** `content/robots.txt` carries the sentence "Check it against the operators' own
+  published documentation" and, on 11 August 2026, nine of its claims about other companies'
+  crawlers did not survive that check being run for the first time. Three named agents their
+  operator documents nowhere; one refused a training crawler while its operator publishes that it
+  runs none; one named a Huawei chatbot product as a crawler; and one told readers Amazon
+  described a bot as serving answers rather than training, where Amazon's page says it "may be
+  used to train Amazon AI models". **The instruction is the tell**: it is written by somebody who
+  knew verification was needed and did not do it, and so are "as at <date>", "this will go stale"
+  and "re-read rather than assumed". Treat every one as a work item. Fetch the operator's own page
+  rather than an aggregator, because a token that exists only in third-party crawler lists is the
+  commonest way a name that names nothing gets into a file; render a JavaScript page before
+  believing a zero; and run a control on the same page that must hit.
+  **And never write "all N checked" without enumerating N by script.** That pass reported "all 25
+  crawler names" in a commit message. The file named twenty-nine, and six had not been read, which
+  is a count of this project's own state written beside a sweep that computes it. Two of its own
+  corrections were wrong the same way, each written after checking part of a list and before
+  checking the rest. State what was checked, never that everything was.
 
 - **Reconcile a derived figure against published ones before writing it.** The 5,931 was summed
   from a pivot over four quarters. The same four quarters reproduce the published 79,719 refusals,
@@ -1117,7 +1138,13 @@ is already here to adding a neighbour beside it.
   reverts everything and cost an hour. The single-file form has the same failure whenever the
   file carries the session's own uncommitted edits: it restores the last commit, not the
   pre-probe state, and on 2 August 2026 it silently took two of a session's fixes with the
-  probe, recovered only because the harness reported the file changed on disk. Reverse the
+  probe, recovered only because the harness reported the file changed on disk. **It happened again
+  on 11 August 2026 and nothing reported it**: a loop of seven probes ended each iteration with
+  `git checkout -- content/robots.txt`, which reverted an uncommitted correction made minutes
+  earlier, and it was found by grepping the file for that correction rather than by any signal. So
+  the recovery route named above is not a safety net, and inside a loop the `git diff` check below
+  is impractical anyway. Copy the file to the scratch directory before the first probe and restore
+  from the copy every time. Reverse the
   exact edit instead, or snapshot to a scratch directory first and restore from there, chaining
   the restore with `;` rather than `&&`, because a failing `grep` in the middle will otherwise
   skip it. If checkout is ever the tool, run `git diff` on the file first and confirm the probe

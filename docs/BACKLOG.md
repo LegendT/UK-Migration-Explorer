@@ -205,7 +205,7 @@ below.
     were closed late for saying they were unmerged when they were; this one would have been
     closed early, which is the same defect pointing the other way and the more dangerous of the
     two, because a closed item is not read again. It is under *Completed*.
-17. **GATE, and it is the last thing before Launch. Re-read every record against its source, so
+17. **NOT A GATE SINCE 11 AUGUST 2026, and it was the last of them. Re-read every record against its source, so
     that the date a reader meets and the date the figures were checked are the same day.** The
     owner asked for this on launch day, and the reason is the one this site makes of other
     people: a page saying it was reviewed in July, met by a reader in August, invites the
@@ -452,25 +452,54 @@ below.
     target are decided and built, both above. The EMP06 period is decided and dated: those two
     records move at the 18 August 2026 release and not before, and that move is what this item
     still has left.
+    **THE GATE IS RELEASED AND THE ITEM STAYS OPEN, decided by the owner on 11 August 2026.** He
+    was asked whether to hold Launch for the move or to launch and update after it, and chose to
+    launch. **What is left of this item reaches no reader**, checked rather than argued: the two
+    EMP06 employment rates appear in no built page, only in `data/fiscal.json` and in
+    `data/evidence/ons-emp06-2026-05.json`, so a reader meets nothing they carry. And this item's
+    own goal is already met in the open, every page that renders a figure printing the date its
+    figures were checked. So holding a launch for them would have held it for a quarterly refresh
+    the gate was never written about. **The move itself is unchanged**: it is a figure change with
+    an evidence entry lifted from the sheet by script, on 18 August, and item 27's per-page proof
+    still rides on the differing dates it creates.
     **This paragraph named all three as outstanding for a few hours on 11 August 2026**, having
     been written before they were answered and kept after them, which is the enumerate-then-
     conclude defect this file already records against A6 and against item 4. A closing sentence
     saying what is left goes stale faster than the entries it summarises, and it is the one a
     session reads.
-18. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
-    guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
-    delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
-    the sitemap built in PR #86, and **what it says is decided as call 26 under U4** and
-    unapplied. Then set up Search Console, which costs nothing, needs no JavaScript, and is how
-    success measure 2 would be noticed. **[me]**, on the owner's word.
-    **The changeset for it is written, and was verified rather than assumed on 6 August 2026.**
-    It is PR #153, merged and then reverted by PR #164 because the launch had been taken without
-    that word; reverting the revert restores it. The code half re-applies with no conflict, and
-    the two documentation tables that do conflict do so only because later work landed after the
-    revert. Applied on a scratch branch, `npm test`, `npm run validate`, `npm run build` and
-    `npm run a11y` all pass, the built `robots.txt` disallows nothing under the wildcard and
-    carries its `Sitemap:` line, and no built page still says the site is not launched. **What is
-    outstanding is the word, not the work**, and the gates above it.
+18. **GATE, and deliberately last of the gates. Launch. THE REPOSITORY HALF IS DONE (PR #153,
+    6 August 2026); Search Console is what is left and it is [you], and what else is ahead of
+    this is whatever The order still shows open above it.** The gate as originally worded said delete
+    `content/robots.txt` and its guard, and **the UX review said write that file rather than only
+    delete it**, which is what happened: the file admits retrieval agents that emit a linked
+    citation and refuses crawlers documented as collecting training data, on call 26 under U4, with
+    a `Sitemap:` line pointing at the sitemap built in PR #86. The guard in
+    `scripts/check-build.mjs` was swapped rather than deleted, so it now asserts the launch state
+    and would fail a build that quietly closed the site again. **The pre-launch notice went with
+    it**, in the same change rather than a later one, because a page served from the commit that
+    launches saying the site is not launched yet would be false on every page; removing it at
+    launch was decided on 27 July 2026 (PR #54). **What is left needs the owner's own accounts and
+    nothing in this repository**: verify the domain by DNS TXT record, chosen on 6 August 2026 over
+    the HTML-file and meta-tag methods, and submit
+    `https://ukmigrationexplorer.org/sitemap.xml`. That is how success measure 2 would be noticed.
+    **[you]**.
+    **This entry has twice named a gate ahead of it that had closed.** Items 13 and 14 until
+    10 August 2026, then item 15 until 11 August. Both times it was written on a branch cut
+    before the closing happened, so a true sentence arrived stale through a merge rather than
+    through neglect, and both times the merge is where it had to be caught. **It now names no
+    other item**, which is the only version of this sentence that cannot rot: what is ahead of
+    Launch is whatever The order still shows open above it, and that is readable from the list
+    itself.
+    **THE WORD WAS GIVEN ON 11 AUGUST 2026 AND THE SITE IS LAUNCHED.** The owner was asked twice
+    that day. Asked first whether to re-scope item 17's gate and launch or to wait for the
+    18 August sitting, he said wait, and this entry said so for part of the afternoon. He then
+    reversed it: launch now, update on 18 August. **Both are recorded rather than the first being
+    quietly overwritten**, because an entry that shows only the surviving answer cannot be read
+    against the pull request that acted on it. Item 17's gate is released under its own entry, and
+    the EMP06 move it still holds is a post-launch update rather than a launch condition.
+    **What went with the word**: the changeset was already applied, current with `main` and green,
+    and every crawler claim in `content/robots.txt` had been checked against its operator's own
+    documentation the same day, which found nine wrong and corrected them.
 19. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
@@ -736,7 +765,11 @@ record and an evidence entry rather than a sentence.
   **[you]** first, at The order's item 20.
 - **Closed here**: call 16, the contact address, applied in PR #130 as
   `corrections@ukmigrationexplorer.org` in all three places the issue tracker was the only door.
-  **The mailbox must exist before launch and nothing checks that it does.** Call 17, which
+  **THE ADDRESS WAS THEN WITHDRAWN on 10 August 2026, so the mailbox is not a launch
+  condition and this line said it was until 11 August.** No page and no built file names it;
+  the route is the issue tracker again, and `/about/` says in terms that this needs a GitHub
+  account. The domain has no MX record, checked on three resolvers, so reinstating the address
+  means setting up mail first rather than only editing a page. Call 17, which
   pipeline gates what, applied in PR #122. The claim-list heading level, done in PR #77.
 
 ### A6. Decisions with no build behind them
@@ -958,7 +991,63 @@ grade decisions its first bullet waits on.
 
 - **Call 26. AI crawlers**, and it is not binary. Allow retrieval bots that emit linked citations,
   refuse training-only bots. Retrieval citation is success measure 2's most likely route, and
-  blocking keeps the option open where allowing does not. **NOT YET APPLIED, and it gates The
+  blocking keeps the option open where allowing does not.
+  **ONE ENTRY REOPENED AND IS NOW DECIDED: Amazonbot is REFUSED, on the owner's word of
+  11 August 2026, and applied on branch `launch-ready`.** What follows is what the call was. The published file left it off
+  the refusal list on the stated ground that Amazon "described it as serving answers rather than
+  training". Amazon's own page now reads "Amazonbot is used to improve our products and services.
+  This helps us provide more accurate information to customers and may be used to train Amazon AI
+  models", so under call 26's own test it belongs on the refusal list and the reason for omitting
+  it has gone. **Amazon has split out `Amzn-SearchBot` and `Amzn-User`**, both documented as not
+  crawling for generative AI training, which are the tokens the old sentence actually described.
+  **Refused, which was the recommendation.** The alternative was to keep admitting it and say why,
+  which meant publishing a reason Amazon's documentation contradicts. **The second half of the
+  recommendation was NOT taken and that is deliberate**: `Amzn-SearchBot` and `Amzn-User` are not
+  added to the "# Admits:" line, because that line is the named list rather than everything the
+  open wildcard group lets through, and naming them is a separate call. Say the word and it is one
+  line. Nothing waits on it either way.
+  **Found by checking that file's crawler names against their operators' documentation on
+  11 August 2026**, which the file has always told its reader to do and which nothing had done.
+  Six claims did not survive it. Three named tokens their operator documents nowhere, `FacebookBot`,
+  `Gemini-Deep-Research` and `anthropic-ai`; the Apple sentence attributed to Apple a description
+  Apple does not make; the refusal header called every entry a data-gathering crawler when
+  `Google-Extended` and `Applebot-Extended` crawl nothing and only signal how a sibling's data may
+  be used; and `CCBot` is refused for what its corpus feeds rather than for anything Common Crawl
+  documents. All six are corrected in the file except this one, because only this one changes what
+  the site does. **`Webzio-Extended` was recorded as unverified and then verified on a third
+  route**, `webz.io/bot.html`, after a 404 and a DNS failure on the first two: Webz.io describes it
+  as taking "the data collected by Webzio" and "tagging the data as usable or not usable for AI/ML
+  training", so it is a consent token rather than a crawler, and the file said "training token".
+  **Finding that corrected the correction**: the header rewritten hours earlier named
+  `Google-Extended` and `Applebot-Extended` as the control tokens and missed this third one, an
+  enumeration going stale inside the change that introduced it.
+  **AND THE PASS SAID IT HAD CHECKED THEM ALL WHEN IT HAD NOT.** It reported "all 25 crawler names"
+  in a commit message and here. The file names TWENTY-NINE distinct tokens across its admit list,
+  its refusal groups and its prose, and six had not been read at all: `Bytespider`, `cohere-ai`,
+  `PanguBot`, `Timpibot`, and the two the prose says "sell web data rather than training on it",
+  `Diffbot` and `Omgilibot`. **A completeness claim is a claim, and this one was written by the
+  hand that had spent the day removing other people's**: a wrong count of this project's own state,
+  beside a sweep that can compute it, and an "all" that was never counted. Caught by enumerating
+  the file rather than by re-reading the sentence.
+  **READING THE SIX FOUND THREE MORE UNDOCUMENTED TOKENS AND FALSIFIED A SENTENCE WRITTEN HOURS
+  EARLIER.** Cohere publishes "We do not use Cohere bots or user agents for the purpose of
+  crawling or scraping web content to train generative AI foundation models at this time" with an
+  empty bot table, so `cohere-ai` refuses a crawler its operator says it does not run. Huawei's
+  documented crawler is PetalBot and "PanguBot" is a Huawei Cloud chatbot product; the aspiegel.com
+  page gives PetalBot 39 times and Pangu none, control "crawler" hitting. Timpi documents its
+  crawler as the "Collector" and uses this name nowhere. And ByteDance's own webmaster platform
+  documents Bytespider as a SEARCH crawler, which falsified `content/robots.txt` saying "CCBot is
+  the one entry the training test does not reach": there are five, and the file now names them.
+  **All five stay refused and none of that changes behaviour**, because refusing costs this site
+  nothing and admitting a training crawler by mistake costs it what it is protecting; what changed
+  is that the file stopped implying an operator had said something it had not.
+  **TWO THINGS CAME OUT OF IT FOR THE OWNER, both [you] and neither urgent.** First, whether to drop
+  the four refusals no operator supports, `cohere-ai`, `PanguBot`, `Timpibot` and `Bytespider`, or
+  keep them defensively as now. **Recommended: keep them**, on the file's own reasoning that the
+  cost is asymmetric. Second, **`Webzio` is not named or refused anywhere**: Webz.io retired
+  Omgilibot in July 2024 and its current crawler pair is Webzio and Webzio-extended, of which this
+  file refuses only the second. That is a gap rather than a decision. **Recommended: refuse
+  `Webzio`**, on the same ground the file already refuses its sibling. **NOT YET APPLIED, and it gates The
   order's item 18.**
 - **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
   and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from
@@ -1794,8 +1883,12 @@ maintained here. Newest first.
 
 - **The contact route and the fourth published limit**, 4 August 2026. PR #130. Calls 16 and 20.
   `corrections@ukmigrationexplorer.org` replaces the issue tracker as the only door, in the footer
-  on every page, on `/about/` and in the corrections policy. **The mailbox must exist before launch
-  and nothing checks that it does.** The fourth limit publishes the corrections-watch candidate,
+  on every page, on `/about/` and in the corrections policy. **Both were withdrawn again on
+  10 August 2026 and the closed entry above carries what that leaves.** This sentence read "the
+  mailbox must exist before launch and nothing checks that it does" until 11 August 2026, one
+  reference away from the live bullet saying the same thing, which is this file's own
+  correction-missing-its-siblings shape landing inside the record of the change that caused it.
+  The fourth limit publishes the corrections-watch candidate,
   written from `check-releases`'s own output rather than from the summary of it, which had
   understated the gap.
 

@@ -12,7 +12,7 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. A static site from a governed data layer of metric records and four
+Launched. A static site from a governed data layer of metric records and four
 timeseries of dated points, on Eleventy 3, with charts rendered as inline SVG at build time and
 no client-side JavaScript anywhere. **How many pages, how many of each, and how many of the records reach a
 reader rather than being held as unpublished reserve, is what `npm run validate` and
@@ -20,12 +20,21 @@ reader rather than being held as unpublished reserve, is what `npm run validate`
 sentence admitting that nothing checked them, and they were wrong by then: the counts are
 derived by `lib/published.mjs` and every record added moves them. A number in prose beside a
 run that computes it is the defect this project spends most of its checks on. The site is
-deployed behind a `robots.txt` that disallows all crawlers, and every page carries a notice
-saying it is unfinished. **The launch domain was decided on 4 August 2026 and is
+crawlable: `content/robots.txt` was rewritten under backlog call 26 to admit retrieval agents
+that emit a linked citation and refuse crawlers documented as collecting training data.
+**This section opened "Built and not yet launched" until 11 August 2026**, three sentences above
+its own statement that the site is crawlable and that the notice had gone with it. The launch
+changeset rewrote the paragraph and left its first four words standing, so the shortest and
+most-read line in the repository contradicted the rest of its own paragraph. Nothing checks this
+file. **The
+pre-launch notice went with it**, in the same change rather than a later one, because it existed
+to cover a site reachable by URL while every crawler was refused, and a page served from the
+commit that launches saying the site is not launched yet would be false. **The launch domain was decided on 4 August 2026 and is
 `ukmigrationexplorer.org`**, which is what `content/_data/site.js` holds, so canonical links,
 the sitemap and every citation block print it; the Netlify address remains the deploy URL.
-**That rule governs indexing, not access:** the site is reachable now by anyone with the URL,
-which is why the notice on every page is the thing doing the work.
+**That rule governed indexing, not access**, which is why a notice on every page did the work
+while it stood: the site was always reachable by anyone holding the URL, and refusing crawlers
+never made it private. Neither half applies now.
 
 **The pre-publication review has been conducted, and its corrections have landed.** It ran
 on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its
@@ -89,7 +98,7 @@ settled.** `last_reviewed` carries 27 July on the ten pages the review actually 
 six keep their older dates, because that field records what a review READ rather than when a page
 was corrected. The pre-launch banner was corrected rather than removed. And the review is recorded
 as passed in `CHANGELOG.md` on 6 August 2026, its scope stated as three named routes rather than
-one word, because the pages did not all reach it the same way. The banner goes at launch.
+one word, because the pages did not all reach it the same way. The banner went with the launch.
 Outstanding work is tracked
 in `docs/BACKLOG.md`, which is the durable list; this file does not restate it.
 
@@ -97,8 +106,15 @@ The update commitment was signed on 23 July 2026: **one month** from each of the
 cadenced releases, named on the sources page. Sources that publish irregularly carry no
 promised schedule.
 
-Removing `content/robots.txt` and its guard in `scripts/check-build.mjs` is the last step,
-and it is deliberate.
+`content/robots.txt` is no longer a blanket refusal, and its guard in `scripts/check-build.mjs`
+now asserts the launch state instead of the pre-launch one: no `User-agent: *` group disallows the
+site, the `Sitemap:` line matches `site.url`, no citing retrieval agent sits in a group that
+disallows everything, and some group still refuses, which is call 26's other half.
+**This sentence listed the first three and not the fourth until 11 August 2026**, and the table row
+below it was corrected in the same sitting while this was left standing: one file describing one
+check in two places, and a correction reaching one of them. That is the shape this repository
+records against itself four times over, committed here by the hand fixing an instance of it.
+Setting up Search Console is what is left, and it is deliberate.
 
 ## Layout
 
@@ -122,7 +138,7 @@ content/                Eleventy input
   assets/style.css        One stylesheet, including the print rules
   assets/favicon.svg      Inline SVG, no binary asset
   404.md                  Served by Netlify when a link into the site goes stale
-  robots.txt              Disallows all crawlers until launch
+  robots.txt              Call 26: admits citing retrieval agents, refuses training crawlers
   sitemap.njk             Every built page but the 404, generated from collections.all
 lib/charts.mjs          Build-time SVG charts, four rules enforced in code, two renderings per chart
 lib/citation.mjs        The "How to cite this" block, derived from the records each figure draws
@@ -314,7 +330,7 @@ of its paragraphs on.
 | `validate-data.mjs` | Metadata contract, date consistency, catalogued publishers, every figure linked to its catalogue entry, **a citation's `source_url` and `source_id` naming the same publisher**, a theme file's `lastUpdated` keeping up with its newest record, single-vintage series, **a metric that declares a `series_ref` agrees with the series point it names on value, unit, confidence level and year**, **every publisher table named in a figure's prose is declared in `table_reference` and every declaration is named in prose**, figures overdue against their source's cycle, a theme file's `lastUpdated` present and a real date, **every point in a series block carrying one confidence level**, `ons_marker` drawn from a fixed vocabulary, `DO NOT PUBLISH` flag fails the build. **Reports rather than fails** on a record whose `notes` restate another record's value, naming both, because nothing keeps those two in step |
 | `validate-content.mjs` | Citations resolve, units present, figures declared, review and due dates, mirror claims paired, correction notes dated, representation floor, language rules, no em-dashes, no record value **or series point** written longhand in content **or in the data-file prose that reaches a page**, a `historical_literals` declaration that matches nothing in its own file, every planning document in `docs/` **and its subdirectories** referenced from `docs/BACKLOG.md`, and outstanding work tracked there. **No planning document other than the backlog may carry work state**, meaning a table row marked done, withdrawn or struck, because a second list has to be kept true in two places and this project watched two diverge twice in one day. **A review date that has passed fails the build**, not merely one that was never declared, and a Nunjucks page must carry one like every other. **The language rules and the glossary-link check reach the `data/` prose that renders to a page**, which they did not until 31 July 2026. **Fails** on a figure the data layer never recorded, comma-grouped or **written with a scale word**, since 2 August 2026, having been a ratchet at report level from 38 down to zero, and **names every declared literal that does equal a live value**, because the exemption is granted on trust and the success message asserted it did not exist |
 | `check-evidence.mjs` | Every metric whose value changed against `origin/main`, every metric that is new, and every metric whose `confidence_level` crosses the derived boundary in either direction even at an unchanged value, is declared in `data/evidence/` with a quote from a fetched source containing that value. **And every entry already on file that still names a record holding exactly its value is re-read on every run**, so a backfilled entry is not declared once and never asked again; an entry whose figure has since been renamed, dropped or revised is history and is skipped. **And `previous_value` is asked of every claim a branch adds, whatever its figure did**, because the loop above reads that field only for a figure that moved, which is how twenty-eight entries came to declare a years-old figure new. A derived figure quotes its inputs and states the arithmetic instead. **A series is evidenced per array and per release**, because that is how it is published and replaced: its vintage, its point count and a quote holding both ends. A series that moved with no new release behind it needs a correction note saying what changed. **Series entries get both of the passes above too** (PR #147, 5 August 2026): every entry naming a block that still holds its declared vintage is re-read on every run, and `previous_vintage` is asked of every series claim a branch adds rather than only of a block that moved. Four things stop an entry being read at all and are refused only on the branch that writes them: a `file` `lib/series.mjs` does not map, a `block` it does not map, a missing `vintage`, and a block held neither by the data layer nor by the base branch. The quote match is boundary-anchored, so one figure's digits sitting inside another do not satisfy it. **And an entry may not retire itself** (PR #185, 11 August 2026): an entry audited on the base branch may stop being audited only because its record moved, so editing an entry's `value`, `ref`, `range_min` or a series entry's `vintage` or `block`, or deleting it, is refused while the record still holds what it declared. Six routes out of the audit, all probed. Gates the CI job, **not the Netlify deploy**, which runs only `npm test` and `npm run build`, so neither this nor `npm run a11y` runs there. Decided 4 August 2026: state which pipeline gates what rather than add them to the deploy, because CI already gates them and the deploy would pay for a second run |
-| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, **every "Cited for" name in a citation block sitting under a publication its own record names as its source**, robots rule under `User-agent: *`, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`**. **Structured data is parsed rather than pattern-matched**: every JSON-LD block must parse, the pages that should carry one must, every URL in one that points at this site must resolve, no third origin may appear, and `ClaimReview` is refused outright |
+| `check-build.mjs` | The built HTML: links and fragments resolve, no unrendered syntax, no `NaN`, every table inside a focusable named scrolling region, every ARIA reference resolves, no id on two elements, no two controls sharing a name, no two links sharing their text while going to different places, no link text that names nothing, **every "Cited for" name in a citation block sitting under a publication its own record names as its source**, the launch `robots.txt` state, meaning no `User-agent: *` group disallows the site, the `Sitemap:` line matches `site.url`, no agent on the file's own "# Admits:" line sits in a refusing group, and some group still refuses, which is call 26's other half and went unasserted until 11 August 2026, `sitemap.xml` holding exactly the built pages other than the 404, compared in both directions, the published-figure counts match the refs in the built HTML exactly, in both directions, comments excluded at both ends, **a link written with this site's own origin resolves like a relative one**, and **the domain the print stylesheet writes by hand matches `site.url`**. **Structured data is parsed rather than pattern-matched**: every JSON-LD block must parse, the pages that should carry one must, every URL in one that points at this site must resolve, no third origin may appear, and `ClaimReview` is refused outright |
 | `check-backlog.mjs` | `docs/BACKLOG.md` itself, which directed all the work and was the one thing nothing read: every backticked path exists, every section cross-reference has a heading, The order is contiguously numbered, every item carries a tag or says it is closed, and no item in The order writes a count of this project's own state. `npm run check-backlog` adds the network half, that every cited pull request is merged |
 | `check-sources.mjs` | Every source URL still resolves, the data-layer citations and the external links written in page prose alike. **Including the two parliamentary hosts that answer Node's `fetch` with 403 whatever headers it sends**: those go through `curl` over HTTP/1.1, which the same headers clear, and are reported as uncheckable only where `curl` cannot run (network; runs in CI with `continue-on-error`) |
 | `check-pipeline.mjs` | That `npm run validate`, `.github/workflows/validate-data.yml` and `scripts/` name the same checks, measured against one manifest, including which CI steps carry `continue-on-error`. A check declared to run on a laptop and not in CI is refused, which is what stops a check being added to one list and gating nothing on the other. It does not establish that a red job blocks a merge |

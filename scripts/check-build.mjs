@@ -642,21 +642,108 @@ for (const file of pages) {
   }
 }
 
-// robots.txt is deliberately present until launch. If it goes missing the site becomes
-// crawlable again with no other signal, so its absence is treated as a build failure until
-// someone removes this check on purpose.
+// robots.txt survives launch rather than being deleted, which the UX review asked for and
+// backlog call 26 decided the content of. Until launch this block asserted the opposite of what
+// it asserts now: that the wildcard group disallowed everything. Both versions exist for the same
+// reason, that the file is the only statement of a site-wide decision and nothing else would
+// notice it changing. What is checked now is the launch state: the site is crawlable, the sitemap
+// is announced at the address site.url gives, and BOTH halves of call 26 hold: no admitted
+// retrieval agent sits in a refusing group, and some group still refuses. It guarded the allow
+// half alone until 11 August 2026, and the sentence here said so while README.md and
+// docs/HANDOFF.md both described it as asserting "the launch robots.txt state under call 26",
+// which is twice what it did. Three ways past it were found by probing and are fixed below:
+// a path form it could not read, a second wildcard group it never looked at, and the refuse
+// half it never asked about. Each one passed while this printed that the site admits crawlers.
+//
+// The retrieval agents call 26 admits are NOT listed here. They are listed once, on the "# Admits:"
+// comment line in content/robots.txt, and read out of it below. A copy here would be a second list
+// of the same decision, which is the trap this project has fallen into twice, and the copy in the
+// checker is the one that would win an argument with the published file while the reader saw the
+// other. So the served artefact is the authority and this asserts it.
 const robots = built.find((f) => f.endsWith('robots.txt'));
 if (!robots) {
-  errors.push('robots.txt: missing from the build, the site would become crawlable. Remove this check deliberately at launch.');
+  errors.push('robots.txt: missing from the build. The Sitemap line and every call 26 refusal go with it, and nothing else in the built site states either.');
 } else {
-  // The rule must apply to the wildcard agent. A Disallow under one named bot satisfied the
-  // previous check while everything else stayed allowed.
-  const groups = readFileSync(robots, 'utf8').split(/\n(?=\s*User-agent:)/i)
-    .map((g) => g.trim()).filter((g) => /^User-agent:/i.test(g));
-  const wildcard = groups.find((g) => /^User-agent:\s*\*/im.test(g));
-  if (!wildcard) errors.push('robots.txt: no "User-agent: *" group, named-bot rules do not cover other crawlers.');
-  else if (!/^\s*Disallow:\s*\/\s*$/m.test(wildcard)) errors.push('robots.txt: the "User-agent: *" group does not Disallow: /, the site would be crawlable.');
-  else if (/^\s*Allow:/im.test(wildcard)) errors.push('robots.txt: the "User-agent: *" group contains an Allow rule, which may re-open paths.');
+  const text = readFileSync(robots, 'utf8');
+  // Groups are parsed as the spec defines them: consecutive User-agent lines share one group,
+  // and a group ends at the first User-agent line that follows a directive. The previous parser
+  // split before EVERY User-agent line, which was right for a file with one agent per group and
+  // would read this file's refusal block as one group per agent, only the last of them carrying
+  // the Disallow, and report every refusal above it as unrestricted. No count is written here:
+  // the block's length is in the file and a number in this comment would be wrong the first time
+  // somebody edits it, which is what happened to the version this sentence replaces.
+  const groups = [];
+  let group = null;
+  for (const raw of text.split('\n')) {
+    const line = raw.replace(/#.*$/, '').trim();
+    if (!line) continue;
+    const agent = line.match(/^User-agent:\s*(\S+)/i);
+    if (agent) {
+      if (!group || group.directives.length) groups.push((group = { agents: [], directives: [] }));
+      group.agents.push(agent[1]);
+    } else if (group && !/^Sitemap:/i.test(line)) {
+      // Sitemap is a non-group field in RFC 9309 and belongs to the file, not to whichever group
+      // it happens to sit under. Collecting it as a directive was harmless for the two assertions
+      // below, since neither reads anything but Disallow, and it broke the grouping rule this
+      // parser exists to get right: a Sitemap line between a User-agent line and its first real
+      // directive made `group.directives.length` truthy, so the NEXT User-agent line opened a new
+      // group where the spec keeps both agents in one. An admitted agent sharing a blocking
+      // group with a refused one would then be missed, which is the single thing this check is
+      // here to catch. Probed in both directions rather than reasoned about.
+      group.directives.push(line);
+    }
+  }
+  // MATCHED ON THE PATH RATHER THAN ON THE WHOLE LINE, and the difference is not cosmetic. This
+  // tested `/^Disallow:\s*\/\s*$/i`, one exact string, so `Disallow: /*` closed the site to every
+  // wildcard-supporting crawler while this printed "admits crawlers". A path blocks everything when
+  // it reduces to "/" with robots.txt wildcards taken out: "/" and "/*" both match every URL. "/$"
+  // does NOT, because "$" anchors the end and so names the home page alone, and that exception is
+  // the reason this is not simply a `startsWith('/')`. Probed in both directions.
+  const blocksEverything = (g) => g.directives.some((d) => {
+    const path = d.match(/^Disallow:\s*(\S+)\s*$/i)?.[1];
+    return path !== undefined && path !== '/$' && /^\/\**\$?$/.test(path);
+  });
+  // EVERY wildcard group, not the first. RFC 9309 has a crawler obey the union of the groups
+  // matching its name, so a second "User-agent: *" group carrying Disallow: / closes the site
+  // while the first one still reads as open. `groups.find` returned that first group and this
+  // reported the site crawlable. Probed by appending exactly such a group.
+  const wildcardGroups = groups.filter((g) => g.agents.includes('*'));
+  if (!wildcardGroups.length) {
+    errors.push('robots.txt: no "User-agent: *" group. Every crawler not named in this file is then unaddressed, and what a site does with an unaddressed crawler is the crawler\'s choice rather than this site\'s.');
+  } else if (wildcardGroups.some(blocksEverything)) {
+    errors.push('robots.txt: a "User-agent: *" group disallows the whole site, so it is closed to search engines and to every retrieval agent. That was the pre-launch state. A crawler obeys every group naming it, so this fails on any of them, not only the first. If it is deliberate again, say so here rather than leaving this check to fail.');
+  }
+  // CALL 26'S REFUSE HALF, which nothing asserted until 11 August 2026: deleting the whole
+  // training-crawler block passed this check and printed "admits crawlers", because every
+  // assertion here read the allow half. Call 26 is a split rather than a permission, so a file
+  // refusing nobody states one half of it and drops the other, and the wildcard group above then
+  // admits every training crawler by omission. This asks only that some group refuses, because
+  // WHICH crawlers is a dated snapshot the file itself says will go stale, and a list here would
+  // be the second copy the comment above refuses to keep.
+  if (!groups.some((g) => blocksEverything(g) && !g.agents.includes('*'))) {
+    errors.push('robots.txt: no group refuses anything, so call 26\'s REFUSE half is gone and the open wildcard group admits every training crawler. Reversing that is a backlog change, not a deletion here.');
+  }
+  const sitemap = text.match(/^\s*Sitemap:\s*(\S+)\s*$/im);
+  if (!sitemap) {
+    errors.push('robots.txt: no Sitemap: line. The sitemap is built and listed in the site, but nothing announces it to a crawler that has not already found a page.');
+  } else if (sitemap[1] !== `${site.url}/sitemap.xml`) {
+    errors.push(`robots.txt: the Sitemap: line points at "${sitemap[1]}" and site.url gives "${site.url}/sitemap.xml". This file is passthrough-copied and cannot be templated, so the address is typed by hand and this is the only thing comparing it.`);
+  }
+  // `[^\S\n]` and not `\s`, which was the first version and was wrong: `\s` matches a newline, so
+  // `\s*(.+)` on an EMPTY "# Admits:" line consumed the line break and captured the NEXT line,
+  // giving one admitted agent named "#" and a passing build. Found by probing the check rather
+  // than by reading it, and it is the exact failure a check written to guard a list can have.
+  const admits = text.match(/^#[^\S\n]*Admits:[^\S\n]*(.*)$/im);
+  if (!admits || !admits[1].trim()) {
+    errors.push('robots.txt: no "# Admits:" comment line, or it names nothing. That line is the only statement of which retrieval agents call 26 lets in, and without it this check has nothing to assert and would pass on an empty set.');
+  } else {
+    const admitted = admits[1].split(',').map((a) => a.trim()).filter(Boolean);
+    for (const g of groups.filter(blocksEverything)) {
+      for (const agent of g.agents.filter((a) => admitted.includes(a))) {
+        errors.push(`robots.txt: ${agent} is on the "# Admits:" line and also in a group that disallows everything, so this file states call 26 and contradicts it. Reversing the decision is a backlog change, not a line here.`);
+      }
+    }
+  }
 }
 
 if (errors.length) {
@@ -667,7 +754,7 @@ if (errors.length) {
 
 const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
 console.log(`Every "Cited for" line in the built site names a figure whose own record cites the publication it is printed under: ${citedForNames} name(s) checked. Not established: that the publication contains the figure, which is the far-end trace no check does.`);
-console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt disallows all crawlers.`);
+console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; no "User-agent: *" group disallows the site, robots.txt announces the sitemap at ${site.url}/sitemap.xml, no agent on its "# Admits:" line sits in a refusing group, and some group still refuses. Not established: that the agents it names are the right ones, which is a dated snapshot of other companies' documentation and is a reading, not a check.`);
 console.log(`The review sign-off in CHANGELOG.md names ${contentPages} page(s) other than the 404, which is what this build produced, and says the signature covers ${signedCovered}. Not established: that a human reviewed that many, which is a claim about a person; only the denominator is checked here, and the ${contentPages - signedCovered} page(s) outside it have to be named in the entry by hand.`);
 console.log(`${footerPages} page(s) carry a review footer, and on each one "${FIGURE_CURRENCY}" is present exactly where the page renders a figure, matched in both directions.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);

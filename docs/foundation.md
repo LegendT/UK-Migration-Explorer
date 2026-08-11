@@ -707,7 +707,7 @@ content/                    the site's pages; `npm run build` prints how many
   _includes/base.njk        the only layout, plus claim.njk for claim pages
   _data/site.js             name, strapline, navigation
   assets/style.css          one stylesheet
-  robots.txt                disallows all crawlers until launch
+  robots.txt                call 26: admits citing retrieval agents, refuses training crawlers
 lib/charts.mjs              inline SVG charts, built at build time
 eleventy.config.js          citation shortcodes, filters and the five HTML transforms
 docs/foundation.md          this document

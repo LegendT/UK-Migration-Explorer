@@ -1,11 +1,101 @@
-# Not ready for search engines yet.
+# UK Migration Explorer. https://ukmigrationexplorer.org
 #
-# The pre-publication review the sources page promises was carried out on 27 July 2026 and
-# its corrections have landed, but it has not yet been recorded as passed. Ownership and
-# funding are stated at /about/, and the update commitment was signed on 23 July 2026 at one
-# month per cadenced release.
+# Backlog call 26, decided 4 August 2026: allow retrieval bots that emit a linked citation,
+# refuse crawlers whose stated purpose is collecting training data. It is not binary and it
+# is not a copyright position. Retrieval citation is the most likely route to success
+# measure 2, and refusing keeps that option open where allowing does not.
 #
-# Remove this file at launch. See docs/foundation.md section 4.2.
+# The UX review asked for this file to be WRITTEN rather than only deleted, which is why it
+# still exists after launch. Its predecessor disallowed everything, because the pre-publication
+# review the sources page promises had not been recorded as passed.
+#
+# Search engines and retrieval assistants are permitted by the wildcard group below and are not
+# given a named allow group, because that would be a second statement of the same decision. The
+# line below is the ONLY list of them, and scripts/check-build.mjs parses it out of this file and
+# refuses a build that puts any of them in a group disallowing everything. Edit the line, not a
+# copy of it. As at 5 August 2026:
+# Admits: Googlebot, Bingbot, DuckDuckBot, Applebot, OAI-SearchBot, ChatGPT-User, PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User, DuckAssistBot
+#
+# THE REFUSAL LIST BELOW IS A SNAPSHOT AND WILL GO STALE. It names the tokens that keep this
+# site's content out of model training: crawlers whose operators document them as gathering data
+# to train, AND the control tokens some operators use instead, which crawl nothing and only say
+# how data their sibling already took may be used. Google-Extended, Applebot-Extended and
+# Webzio-Extended are the second kind. Apple states it outright, "Applebot-Extended does not crawl
+# webpages", and Webz.io describes Webzio-extended as taking "the data collected by Webzio" and
+# "tagging the data as usable or not usable for AI/ML training". A header saying every entry
+# gathers data was false of all three; it said that until 11 August 2026, and this sentence named
+# two of the three for several hours after, which is the same enumeration defect one layer down.
+# A crawler that is not on the list is
+# allowed, which is the safe direction for this site and means the list has to be re-read
+# rather than assumed. Check it against the operators' own published documentation. Every
+# omission below is deliberate. **FIVE ENTRIES ARE REFUSED ON SOMETHING OTHER THAN THEIR
+# OPERATOR'S OWN WORDS, and saying which is the only honest version of this list.** CCBot: Common
+# Crawl's page documents an open repository "universally accessible and analyzable by anyone" and
+# says nothing about training, so it is refused for what its corpus feeds. Bytespider: ByteDance's
+# Toutiao webmaster platform documents it as a SEARCH crawler, "帮助Bytespider收录您的网站", and no
+# ByteDance page stating a training purpose was found. cohere-ai: Cohere's crawler page says "We
+# do not use Cohere bots or user agents for the purpose of crawling or scraping web content to
+# train generative AI foundation models at this time" and its bot table reads N/A, so this refuses
+# a crawler its operator says it does not run. PanguBot: Huawei's documented crawler is PetalBot,
+# and "PanguBot" is a Huawei Cloud chatbot product rather than a crawler. Timpibot: Timpi
+# documents its crawler as the "Collector" and nowhere uses this name, though the user agent is
+# observed in the wild. **All five stay refused, because refusing costs this site nothing and
+# admitting a training crawler by mistake costs it the thing it is protecting.** What changed on
+# 11 August 2026 is that the list stopped implying an operator said something it did not.
+# **THIS PARAGRAPH SAID "CCBot IS THE ONE ENTRY" EARLIER THE SAME DAY.** It was written after
+# checking some of the list and before checking the rest, which is the shape of every other
+# correction in this file.
+# **APPLEBOT IS ADMITTED ON APPLE'S OWN OPT-OUT, NOT ON ITS PURPOSE.** Apple documents that
+# "the data crawled by Applebot may also be used to help train Apple foundation models" and that
+# publishers opt out "by disallowing Applebot-Extended", which this file does. Until 11 August
+# 2026 this said Apple described Applebot as serving answers rather than training. Apple says no
+# such thing, and the opt-out is the whole of why admitting it is consistent with call 26.
+# **AMAZONBOT IS REFUSED, decided by the owner on 11 August 2026.** Until that day this named it
+# beside Applebot as serving answers rather than training. Amazon's own page reads "Amazonbot is
+# used to improve our products and services. This helps us provide more accurate information to
+# customers and may be used to train Amazon AI models", so the reason for leaving it off had gone
+# and the test above reached it. **Amazon's answer to publishers who want the search half without
+# the training half is two other tokens rather than an opt-out**: Amzn-SearchBot and Amzn-User,
+# both documented as not crawling content for generative AI training. Neither is named on the
+# Admits line, because that line is the named list rather than everything the open wildcard group
+# lets through, and adding them is a separate call this file has not been given.
+# FacebookExternalHit fetches a
+# page to build the link preview shown when somebody shares it, which Meta documents as gathering
+# "the title, description and thumbnail image": distribution rather than training, and a thing this
+# site wants. THAT SENTENCE NAMED "FacebookBot" UNTIL 11 AUGUST 2026 AND WAS FALSE. Meta's crawler
+# documentation does not mention FacebookBot at all, and attributes link previews to
+# FacebookExternalHit, so the line named a token that does nothing while the crawler actually doing
+# the work went unnamed. Nothing behaved differently, because no Meta crawler answers to the name
+# this file used; what was wrong was the explanation, on a site whose product is explanations. It
+# was caught by doing what the line above tells the reader to do.
+# **Diffbot is not refused and its operator gives a better reason than this file did.** It says
+# outright "Diffbot does not crawl pages for training generative AI foundation models" and
+# describes citing what it finds, so it is the admit class rather than merely a data seller.
+# **Omgilibot is the retired name of Webz.io's crawler**, kept here because the token is still
+# sent: Webz.io writes "Omgilibot served us well" in the past tense and names its current pair as
+# Webzio and Webzio-extended. **Webzio itself is named nowhere in this file and is not refused**,
+# which is a gap rather than a decision, and it sits in docs/BACKLOG.md under call 26.
+# Webzio-Extended, which IS refused, is Webz.io's training-consent token rather
+# than a crawler, on its own documentation at webz.io/bot.html: it takes "the data collected by
+# Webzio" and tags it "as usable or not usable for AI/ML training".
 
 User-agent: *
+Disallow:
+
+# Training data collection. Refused under call 26.
+User-agent: Amazonbot
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: cohere-ai
+User-agent: AI2Bot
+User-agent: PanguBot
+User-agent: Timpibot
+User-agent: Webzio-Extended
 Disallow: /
+
+Sitemap: https://ukmigrationexplorer.org/sitemap.xml
