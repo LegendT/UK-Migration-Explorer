@@ -11,6 +11,8 @@ strapline: >-
 last_reviewed: 2026-07-23
 review_due: 2027-07-23
 figures:
+  - fiscal/home-office-visa-and-immigration-fee-income
+  - fiscal/immigration-health-surcharge-revenue
   - migration/net-migration
   - migration/total-long-term-immigration
   - migration/total-long-term-emigration
@@ -387,6 +389,36 @@ authorities, so it understates the full figure.
 **The common mistake.** Treating it as the fiscal impact of immigration. It is the running
 cost of one part of one system, and tells you nothing about taxes paid by migrants
 generally.
+
+### Visa and immigration fees {#visa-fees}
+
+What the Home Office charges for applications to enter or stay: visas, settlement,
+citizenship and the rest. It collected
+£{{fiscal/home-office-visa-and-immigration-fee-income}} billion in fees in the financial year
+2025-26.
+
+**Why it matters.** Fees are set above the cost of processing for most routes, so the system
+is not simply cost-recovering, and the income is real money paid before anyone pays any tax.
+It is charged per application rather than per person, and a refused application is not
+refunded.
+
+**The common mistake.** Setting fee income against the cost of the asylum system to argue
+that migration pays for itself, or that it does not. The two figures cover different
+populations: almost nobody claiming asylum is paying visa fees.
+
+### Immigration Health Surcharge {#health-surcharge}
+
+A charge paid up front by most people applying for a visa of more than six months, covering
+NHS use for the length of the visa. It raised
+£{{fiscal/immigration-health-surcharge-revenue}} billion in the financial year 2025-26.
+
+**Why it matters.** It is paid in addition to any tax and National Insurance the person then
+pays, and in addition to the visa fee, so the same person is charged for the NHS twice on two
+different bases. Asylum seekers do not pay it.
+
+**The common mistake.** Reading a published surcharge total as the whole of it. The
+department's accounts print the figure in two places, what it keeps and what it passes to the
+Consolidated Fund, and a total quoting only the first is lower than the amount collected.
 
 ### Net fiscal impact {#fiscal-impact}
 
