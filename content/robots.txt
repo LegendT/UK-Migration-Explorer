@@ -71,13 +71,21 @@
 # **Diffbot is not refused and its operator gives a better reason than this file did.** It says
 # outright "Diffbot does not crawl pages for training generative AI foundation models" and
 # describes citing what it finds, so it is the admit class rather than merely a data seller.
-# **Omgilibot is the retired name of Webz.io's crawler**, kept here because the token is still
-# sent: Webz.io writes "Omgilibot served us well" in the past tense and names its current pair as
-# Webzio and Webzio-extended. **Webzio itself is named nowhere in this file and is not refused**,
-# which is a gap rather than a decision, and it sits in docs/BACKLOG.md under call 26.
-# Webzio-Extended, which IS refused, is Webz.io's training-consent token rather
-# than a crawler, on its own documentation at webz.io/bot.html: it takes "the data collected by
-# Webzio" and tags it "as usable or not usable for AI/ML training".
+# **WEBZIO IS REFUSED, decided by the owner on 11 August 2026, and it goes further than the
+# training test above.** Webz.io's own page names its current pair as Webzio, which "crawls
+# websites", and Webzio-extended, which takes "the data collected by Webzio" and tags it "as
+# usable or not usable for AI/ML training". So refusing Webzio-extended alone is the documented
+# consent route and would leave the crawling in place; refusing Webzio stops the collection. That
+# is a decision about a data broker rather than about a model trainer, and this file says so
+# rather than filing it under a test it does not meet. Until that decision Webzio was named
+# nowhere here while its sibling was refused, which was a gap rather than a choice.
+# **Omgilibot is refused with it**, being the retired name of the same company's crawler and still
+# sent: Webz.io writes "Omgilibot served us well" in the past tense. Refusing one and not the other
+# would have left Webz.io refused under its current name and admitted under its old one, which is
+# the whole of what the Webzio decision was for. **That leaves "sells web data" as a ground this
+# file still does not refuse on by itself**: Diffbot stays admitted on its operator's own words
+# that it "does not crawl pages for training generative AI foundation models", and the Webz.io pair
+# is refused for collection its own consent token exists to gate rather than for being a broker.
 
 User-agent: *
 Disallow:
@@ -95,6 +103,8 @@ User-agent: cohere-ai
 User-agent: AI2Bot
 User-agent: PanguBot
 User-agent: Timpibot
+User-agent: Omgilibot
+User-agent: Webzio
 User-agent: Webzio-Extended
 Disallow: /
 
