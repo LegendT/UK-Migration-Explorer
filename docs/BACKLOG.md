@@ -514,6 +514,28 @@ below.
     whole evidence contract rests on and the shape of the remedy is a real question: probably that
     a branch changing an entry's `value` must show the record moving with it, which is the
     machinery the base-branch comparison already has. **[me]**, as its own piece of work.
+    **BUILT, on branch `item-25-evidence-entry-drift`, and the prescription was one third of the
+    defect.** The premise was reproduced first: editing one entry's `value` to a wrong number and
+    leaving its record alone dropped it out of the audit and the run exited 0 saying nothing. But
+    an entry leaves the audit by three routes, not one. Its `value` can be edited, its `ref` can
+    be edited, or it can be deleted, and building only what was prescribed would have shipped a
+    change that reads as a fix while leaving two of the three open.
+    **One rule covers all three**: an entry that WAS audited on the base branch may stop being
+    audited only because its record moved. If the record still holds what that entry declared,
+    the entry cannot have stopped being evidence for it, so the trail was edited rather than the
+    data. Matching on ref AND value is what makes one rule reach three edits.
+    **Probed on all four cases before it was wired in**: value edited, ref edited and entry
+    deleted are each caught; a figure that genuinely moved, leaving its entry behind as history,
+    is still allowed, which is the behaviour the audit exists to protect and the whole reason it
+    reads only entries whose record still matches.
+    **A critique then found two more routes and both are closed.** A RANGE entry carries
+    `range_min` and `range_max` and no `value`, so reading `entry.value` dropped it before the
+    comparison ran and editing the fiscal-impact entry's `range_min` was silent; entries are now
+    compared on the same shape a record publishes. And a SERIES entry retires itself the same way
+    by having its `file`, `block` or `vintage` edited, which took the series audit from three to
+    two in silence. **That second one is PR #147's asymmetry repeating**: the figures half guarded
+    and the series half not, in the same script, by the hand that had just read the entry saying
+    so. Six routes are caught now, and a figure that genuinely moved is still allowed.
 
 26. **NOT A GATE, and it is the first thing AFTER launch. Bring `docs/UPDATING-DATA.md` up to
     date for a site that has readers.** The owner asked for a document telling him what to do to
