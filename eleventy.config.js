@@ -20,6 +20,16 @@ for (const file of THEME_FILES) {
   for (const metric of read(file).metrics ?? []) registry.set(`${theme}/${metric.id}`, metric);
 }
 
+// Front matter dates arrive as Date objects from the YAML parser; data-layer dates arrive
+// as ISO strings. Both are formatted in UTC so a date never shifts by a day.
+function longDate(value) {
+  if (!value) return '';
+  const date = value instanceof Date ? value : new Date(`${value}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) throw new Error(`Not a date: ${value}`);
+  return date.toLocaleDateString('en-GB',
+    { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+}
+
 const meta = read('meta.json');
 const sources = read('sources.json').sources;
 
@@ -362,15 +372,9 @@ export default function (eleventyConfig) {
     return value.toLocaleString('en-GB');
   });
 
-  // Front matter dates arrive as Date objects from the YAML parser; data-layer dates arrive
-  // as ISO strings. Both are formatted in UTC so a date never shifts by a day.
-  eleventyConfig.addFilter('longDate', (value) => {
-    if (!value) return '';
-    const date = value instanceof Date ? value : new Date(`${value}T00:00:00Z`);
-    if (Number.isNaN(date.getTime())) throw new Error(`Not a date: ${value}`);
-    return date.toLocaleDateString('en-GB',
-      { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-  });
+  // One definition, two callers: this filter and the figure-currency transform below. A second
+  // copy is how two renderings of the same date drift apart.
+  eleventyConfig.addFilter('longDate', longDate);
 
   eleventyConfig.addFilter('limit', (array, n) => array.slice(0, n));
 
@@ -421,6 +425,46 @@ export default function (eleventyConfig) {
   //
   // Numerals in a table cell, words in prose, which is why there are two markers: a column of
   // 19 and 10 with "two" in the third row would be worse than what it replaced.
+  // The footer states when a page's figures were last checked against their sources, and it is
+  // DERIVED rather than written, because a typed date is a claim nobody re-checks. It used to say
+  // "Its figures were the latest published at that date", welding the figures' currency to the
+  // page's prose-review date; those are two different facts and the older one spoke for the newer.
+  //
+  // Two routes put a dated figure on a page and both are read here, because reading one would
+  // quietly speak for the other. A token renders as `data-metric="theme/id"`, which resolves to a
+  // record's retrieved_date. A chart or a card renders no ref at all, and reaches a reader through
+  // a citation block, which now carries a machine-readable `datetime` for exactly this reason.
+  //
+  // The EARLIEST wins, and the sentence says "on or after", because a page mixing a figure read
+  // today with one read last month is only honestly described by its oldest. That is the same rule
+  // lib/citation.mjs applies when merging sources under one name, and for the same reason: the
+  // latest would tell a reader something was verified more recently than it was.
+  //
+  // A page that carries a figure and yields no date keeps the word "pending", which check-build.mjs
+  // refuses. Failing loudly is the point: silence here would read as a page with current figures.
+  eleventyConfig.addTransform('figure-currency', function (content) {
+    if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
+    if (!content.includes('class="figure-currency"')) return content;
+    const dates = new Set();
+    for (const [, ref] of content.matchAll(/data-metric="([^"]+)"/g)) {
+      const held = registry.get(ref)?.retrieved_date;
+      if (held) dates.add(held);
+    }
+    for (const [, iso] of content.matchAll(/<time datetime="(\d{4}-\d{2}-\d{2})"/g)) dates.add(iso);
+    if (!dates.size) return content;
+    const earliest = [...dates].sort()[0];
+    // One date on the page is the common case and "on or after" hedges it for no reason, on a
+    // site whose subject is precision about figures. Two forms rather than one, and the check in
+    // check-build.mjs deliberately matches the <time> element and the unchanged first clause
+    // rather than either wording, so neither form can quietly stop being checked.
+    const clause = dates.size === 1
+      ? ` they were all checked against their sources on <time class="figure-currency" datetime="${earliest}">${longDate(earliest)}</time>`
+      : ` every one was checked against its source on or after <time class="figure-currency" datetime="${earliest}">${longDate(earliest)}</time>`;
+    return content.replace(
+      /<span class="figure-currency-clause">.*?<\/span>/s,
+      `<span class="figure-currency-clause">${clause}</span>`);
+  });
+
   eleventyConfig.addTransform('published-counts', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html') || !content.includes('{count')) return content;
     const counts = publishedCounts();

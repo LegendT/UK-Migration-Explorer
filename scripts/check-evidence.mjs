@@ -472,6 +472,90 @@ for (const file of Object.values(SERIES_FILES)) {
   }
 }
 
+// --- an entry may not retire itself ------------------------------------------------------
+// The audit above reads an entry only where the record still holds exactly what the entry
+// declares, which is deliberate: it is what stops a figure moving from forcing its own audit
+// trail to be deleted. The other side of that is the gap. Edit an ENTRY's value, or its ref, or
+// delete it, and it simply stops being read. Probed before this was written: changing one entry's
+// value from 69,281,400 to 1 took the audited count from 100 to 99, and the run exited 0 with
+// nothing said.
+//
+// So: an entry that WAS audited on the base branch may stop being audited only because its record
+// moved. If the record still holds what that entry declared, the entry cannot have stopped being
+// evidence for it, and something edited the trail rather than the data.
+//
+// Written against the goal rather than the remedy the backlog prescribed, which was a branch
+// changing an entry's `value` must show the record moving. That is one of three routes out of the
+// audit and the other two, editing `ref` and deleting the entry, are the same defect wearing a
+// different edit. Matching on ref AND value covers all three with one rule.
+// An entry declares a figure the same way a record publishes one, so the two are compared on the
+// same shape rather than on `value` alone. A range entry carries range_min and range_max and no
+// value at all, and reading `entry.value` dropped it before the comparison ran: editing the
+// fiscal-impact entry's range_min took the audit from 100 entries to 99 and exited 0.
+const entryShape = (entry) => JSON.stringify(
+  entry.range_min !== undefined || entry.range_max !== undefined
+    ? [entry.range_min, entry.range_max]
+    : [entry.value]);
+
+const declaredOn = (text) => {
+  const out = { figures: [], series: [] };
+  try {
+    const json = JSON.parse(text);
+    for (const entry of json.figures ?? []) {
+      const shaped = entry?.ref !== undefined
+        && (entry.value !== undefined || entry.range_min !== undefined || entry.range_max !== undefined);
+      if (shaped) out.figures.push(entry);
+    }
+    for (const entry of json.series ?? []) {
+      if (entry?.file !== undefined && entry?.block !== undefined && entry?.vintage !== undefined) {
+        out.series.push(entry);
+      }
+    }
+  } catch { /* an unparseable base file is not this check's to report */ }
+  return out;
+};
+
+if (!sameCommit) {
+  const held = (map, ref) => {
+    const metric = map.get(ref);
+    return metric === undefined ? undefined : shape(metric);
+  };
+  const nowDeclares = new Set(
+    entries.filter(({ entry }) => entry.ref !== undefined)
+      .map(({ entry }) => `${entry.ref}\u0000${entryShape(entry)}`));
+  // The same rule one level over. A series entry retires itself by having its vintage, its block
+  // or its file edited, and PR #147 already found this exact asymmetry once: the figures half was
+  // guarded and the series half was not. Probed: editing one entry's vintage took the series
+  // audit from three to two and exited 0.
+  const nowSeries = new Set(
+    seriesEntries.map(({ entry }) => `${entry.file}\u0000${entry.block}\u0000${entry.vintage}`));
+  let baseFiles = [];
+  try {
+    baseFiles = git('ls-tree', '--name-only', `${base}:data/evidence`).trim().split('\n')
+      .filter((name) => name.endsWith('.json'));
+  } catch { baseFiles = []; }
+  for (const file of baseFiles) {
+    const wasDeclared = declaredOn(git('show', `${base}:data/evidence/${file}`));
+    for (const entry of wasDeclared.figures) {
+      const declared = entryShape(entry);
+      if (held(previous, entry.ref) !== declared) continue;   // it was not audited on the base either
+      if (nowDeclares.has(`${entry.ref}\u0000${declared}`)) continue;  // still audited
+      if (held(current, entry.ref) === declared) {
+        errors.push(`data/evidence/${file}: an entry for ${entry.ref} was audited on ${base} and is not audited now, while ${entry.ref} still holds what that entry declared. An entry stops being read when its ref or value stops matching its record, or when it is deleted, and none of those is legitimate while the record has not moved: the audit trail was edited rather than the data. Restore the entry, or move the figure it is evidence for.`);
+      }
+    }
+    for (const entry of wasDeclared.series) {
+      const wasBlock = blockIn(seriesBefore.get(entry.file), entry.block);
+      if (vintageOf(wasBlock) !== entry.vintage) continue;    // it was not audited on the base either
+      if (nowSeries.has(`${entry.file}\u0000${entry.block}\u0000${entry.vintage}`)) continue;
+      if (vintageOf(blockIn(seriesNow.get(entry.file), entry.block)) === entry.vintage) {
+        errors.push(`data/evidence/${file}: a series entry for ${entry.file} ${entry.block} at vintage ${entry.vintage} was audited on ${base} and is not audited now, while that block still holds that vintage. Editing an entry's file, block or vintage retires it from every pass, and that is not legitimate while the block has not moved.`);
+      }
+    }
+  }
+}
+
+
 // Everything a series entry must be, judged against the block as it stands NOW: the count, a real
 // fetch date, an https source, and a quote carrying both ends. Split out of the loop below for the
 // same reason checkEvidenceShape is split out of checkEntry: none of it needs the base branch, so

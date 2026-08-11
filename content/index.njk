@@ -82,7 +82,12 @@ grade is our judgement about how far the figure can be relied on, not the publis
         did the checking and the owner read it as ambiguous. The SAME words are used by the
         citation blocks in lib/citation.mjs: two wordings for one concept is what invited the
         question, and this file briefly carried the second of them. -#}
-    Checked by us on {{ m.retrieved_date | longDate }}<br>
+    {#- A machine-readable date, on the same terms as lib/citation.mjs and lib/provenance.mjs.
+        A dashboard card renders its own value with no ref beside it, so this line is the ONLY
+        trace of when that figure was checked, and the figure-currency transform reads traces.
+        Without it the home page's footer date was computed from the comparison figures in the
+        prose alone, and every headline card figure was invisible to it. -#}
+    Checked by us on <time datetime="{{ m.retrieved_date }}">{{ m.retrieved_date | longDate }}</time><br>
     <span class="grade">{{ m.confidence_level }}</span></p>
     {#- A card's source line above belongs to its headline figure. Where the prose beside it
         quotes a figure from a different publisher, that publisher is named here rather than

@@ -263,6 +263,19 @@ below.
     **DECIDED: they move once, at the 18 August 2026 release, and not before.** Nothing changes
     in the data until then; what changes is that the choice is on the record rather than being a
     thing nobody looked at.
+    **THAT RELEASE IS ONE SITTING AND IT CARRIES MORE THAN THE TWO FIGURES.** Moving them is the
+    first time this data layer has held records read on different days since the re-read, and two
+    things wait on exactly that. Item 27's per-page proof cannot be completed while every record
+    shares one date, because a footer date derived from the earliest is indistinguishable from one
+    derived from any single route when all routes agree: age one record reaching a page only by a
+    chart, and only by a card, and by a token, and check the footer follows each. And this item's
+    own goal becomes readable for the first time, because a page whose figures were read on two
+    days will print "on or after" where every page currently prints "on". **Do all three in the
+    same sitting**, because the differing dates that make the proof possible are the same ones the
+    move creates, and a later session would have to manufacture them.
+    **What the move itself needs**: both records are `calculated` from an unrounded ONS figure, so
+    it is a figure change with an evidence entry lifted from the sheet by script, not a date bump,
+    and the sheet publishes the newer quarter already.
     Second, what the LTIM citations should point at. **DECIDED AND BUILT**: every record and
     series point that cited the dataset landing page now cites the edition-bearing spreadsheet
     file, which is what the evidence entries already name and what this site already does for the
@@ -277,6 +290,35 @@ below.
     period, and on this release those are two different dates. Probed against both, and against
     the bulletin, the Home Office assets and the pages that must stay evergreen. Every LTIM
     citation is now compared where seven of them could not be.
+    **THAT RE-POINTING SWEPT RECORDS AND SERIES POINTS AND MISSED THE CHARTS, which is the
+    correction-missing-its-siblings shape this file already records four times, and it is closed
+    now on branch `item-17-closing-state`.** A chart carries its own hand-written `source` and
+    `sourceUrl` beside the data, and nothing compares the two, so the visible "Source:" line a
+    reader clicks and the citation block under the same chart named different publications. Both
+    line charts on `/migration/` linked a page their plotted series is not in, and all three
+    charts on `/asylum/` linked the release index while their own labels already said "asylum
+    summary tables". **Reproduced against pages fetched on 11 August 2026 rather than argued**:
+    the ONS dataset landing page holds none of the points either chart draws, the bulletin holds
+    only the latest year or two of them, and the Home Office release page carries no
+    comma-grouped figure at all. Each absence was established with a control that hit, and one
+    apparent bulletin match was a substring of a census population figure. Every chart on the
+    site now links a publication its own citation block names.
+    **ONE CHART CANNOT BE MADE WHOLLY RIGHT BY A LINK, AND WHAT TO DO ABOUT IT IS THE OWNER'S.**
+    `initial-decisions-by-outcome` on `/asylum/` draws three bars from two publications, two from
+    the summary tables and the granted bar from the release's "How many people are granted asylum
+    in the UK?" page, and one `Source:` line can name one. It now names the summary tables, which
+    is what its own label already said and what two of the three bars are in, where before it
+    named a page none of them are in. The citation block names both, which is this site's designed
+    answer to a figure with more than one source. **Recommended: leave it there.** The alternative
+    is re-sourcing the granted record to the summary table so all three agree, and that moves a
+    citation a reader clicks on the strength of a table nobody has opened for it, which is the
+    thing A1 exists to refuse. **[you]**, and nothing waits on it.
+    **The comment in `lib/charts.mjs` was the reason this was invisible**: it says the citation
+    is built from the points the chart draws "so a chart cannot cite a publication its own data
+    does not come from", which is true of the citation block and false of the `Source:` line
+    rendered a few lines under it from the argument beside the data. It now says where the
+    guarantee stops. Deriving that line from the points too is item 27's inversion and is not
+    done here.
     **A third thing is for the owner, and one of its three answers changes what the remaining
     batches owe.** The reading and the date move are the same work under all three, so no batch
     waits on this; what waits is whether a batch also owes a page review. This item's own goal is
@@ -296,9 +338,10 @@ below.
     string in `content/_includes/base.njk` plus the string `scripts/check-build.mjs` matches it on,
     which has to move with it and has to be a phrase the old sentence does not contain, or the check
     passes on both and stops telling them apart. Draft, for the half that renders only where a page
-    carries a figure. **DECIDED AND BUILT, on branch `footer-unweld-figure-currency`**: the owner
-    took the third reading. The footer now says "This page was last reviewed on <date>. Its
-    figures are not a live count", and the weld is gone.
+    carries a figure. **DECIDED AND BUILT (PR #180)**: the owner said "lets do the footer", which
+    is recorded in those words rather than as a reading number, because the entry first read
+    "the owner took the third reading" and that put a specific choice into his mouth. The weld
+    is gone.
     **The recommended draft was wrong and reproducing it before building is what caught that.**
     It ended "each citation says when we last checked that figure against its source", which
     points a reader at something two pages do not have: `/sources-and-method/` and
@@ -309,14 +352,45 @@ below.
     in no version of the retired sentence, which the old sentence's own "not a live count" would
     have satisfied; forcing the sentence onto a page with no figure is caught, and removing it
     from the pages that have one is caught on every one of them.
-    **What this does NOT close is the gap it was raised for, and on two pages it widens it.**
-    `/sources-and-method/` and `/what-the-words-mean/` carried the retired sentence too, so they
-    had a currency claim, a false one, and now have none: no date for their figures in the open
-    and no citation block to hold one. Everywhere else the change trades a wrong date for the
-    citation's right one; there it trades a wrong date for no date. That is defensible, a false
-    date being worse than none, but it is a change to those pages rather than a state they were
-    already in, and nothing in the build asks about it. It is a smaller and more specific thing
-    than the question that started here.
+    **That left two pages with no date at all, and it is closed now**, on branch
+    `footer-derived-currency-date`. `/sources-and-method/` and `/what-the-words-mean/` render
+    live record values through tokens and have no citation block to hold a date, so unwelding
+    took away the only date-bearing claim they had. **The footer now DERIVES the date instead of
+    dropping it**: "every one was checked against its source on or after <date>", computed per
+    page from the records it renders. **That is this item's own goal met in the open**, which is
+    what `retrieved_date` alone could not reach, and it reaches the two pages a citation never
+    could.
+    **Both routes are read, because reading one would speak for the other.** A token renders as
+    `data-metric`, which resolves to a record; a chart or a card renders no ref at all and
+    reaches a reader through a citation block, which now carries a machine-readable `datetime`
+    for exactly this purpose. The EARLIEST wins and the sentence says "on or after", on the same
+    rule `lib/citation.mjs` already applies when merging sources under one name: the latest would
+    tell a reader something was verified more recently than it was.
+    **The sentence takes the form the page's own dates justify.** Where every figure on a page was
+    checked the same day, which is the common case, it says "they were all checked against their
+    sources on <date>"; where they differ it says "every one was checked against its source on or
+    after <date>" and gives the earliest. One form for both would have hedged the common case for
+    no reason, on a site whose subject is precision about figures. `check-build.mjs` matches the
+    `<time>` element and the unchanged first clause rather than either wording, so neither form
+    can quietly stop being checked.
+    **A page it cannot date keeps the word "pending" and `check-build.mjs` refuses it**, which is
+    the guard this had none of.
+    **What that guard still cannot see is a route that leaves no trace at all**, and the decision
+    is to record it rather than build against it now. `lib/published.mjs` names five ways a figure
+    reaches a reader and all five trace today, checked one at a time rather than assumed: the
+    markdown token, the `{% figure %}` shortcode and the `data/` prose token render a
+    `data-metric`; a chart bar and a `"ref" | metric` summary render none and reach the footer
+    through the chart's own citation block; a dashboard card reaches it through the date that card
+    prints. **The chart route was proved by ageing a record that reaches `/migration/` only that
+    way**, and the footer date moved to match. So the exposure is a SIXTH route added later with
+    no trace, which would narrow the date set silently, and the check has nothing to compare
+    against because it reads the same HTML. Carried below as its own piece of work, after launch,
+    because closing it properly means every renderer declaring what it put on the page instead of
+    the build reading traces back out, and that touches every rendering path. **One thing would
+    sharpen it and cannot be done yet**: the per-page proof needs dates that differ, and every
+    record currently shares one. The EMP06 move creates the first of those. Probed by disabling the transform and by forcing a future date;
+    each is caught on every page that claims a currency. A footer promising a date and printing a
+    placeholder would be worse than the welded sentence all this replaced.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
@@ -363,14 +437,26 @@ below.
     was wrong. A parse or a search reporting a gap is a claim about the parse or the search
     first.
     **THE READING HALF OF THIS ITEM IS FINISHED AND THE ITEM IS NOT.** Its own goal is that the
-    date a reader meets and the date the figures were checked are the same day, and the footer
-    question above is the half of that `retrieved_date` cannot reach. **Measured on the built
-    site now that the reading is done**: every citation date a reader can reach says 11 August
-    2026, and the footers still say 22 July, 23 July, 27 July and 10 August, each beside a
-    sentence attaching the figures' currency to that older date. The gap the item exists to
-    close is now the only gap left. That, the EMP06 period and the LTIM citation target are the
-    owner's, and this item closes when they are answered rather than when the last file was
-    fetched.
+    date a reader meets and the date the figures were checked are the same day, and
+    `retrieved_date` never reached that on its own, rendering only inside the closed *How to
+    cite this* disclosure. **That half is built, and measured on the built site rather than
+    asserted**: every page that renders a figure now prints "they were all checked against
+    their sources on 11 August 2026" in its footer, one date across all of them, and the pages
+    that render no figure print no currency sentence at all rather than a placeholder.
+    **The older dates beside it are each page's own `last_reviewed` and they are correct**,
+    running from 22 July to 10 August. Item 2's precedent is that the field records what a
+    review READ, a data re-read is not a page review, and the sentence that used to weld the
+    figures' currency to that date is gone. Converging them means re-reviewing the pages, which
+    U5 considered and cut.
+    **So the three questions this item sent up are answered.** The footer and the LTIM citation
+    target are decided and built, both above. The EMP06 period is decided and dated: those two
+    records move at the 18 August 2026 release and not before, and that move is what this item
+    still has left.
+    **This paragraph named all three as outstanding for a few hours on 11 August 2026**, having
+    been written before they were answered and kept after them, which is the enumerate-then-
+    conclude defect this file already records against A6 and against item 4. A closing sentence
+    saying what is left goes stale faster than the entries it summarises, and it is the one a
+    session reads.
 18. **GATE, and deliberately last of the gates. Launch. THE REPOSITORY HALF IS DONE (PR #153,
     6 August 2026); Search Console is what is left and it is [you], and what else is ahead of
     this is whatever The order still shows open above it.** The gate as originally worded said delete
@@ -442,41 +528,24 @@ below.
     and the first runs a six-month clock that starts at it, so choosing them before launch is worth
     more than choosing them well after. **[you]**, and nothing is built either way.
 
-24. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below. MERGED
-    6 August 2026 (PR #167), and the code tidy with it.** **This entry read "BUILT on the same
-    branch and not merged" until 10 August 2026**, the third of the three that did, and the only
-    one of the three that stays open on its own account rather than on that sentence. Applied: the Migration Observatory
-    grades and their evidence entries, the counts in `README.md`, `docs/foundation.md` and
-    `docs/UPDATE-AUTOMATION.md`, the census entry in `data/sources.json`, the glossary
-    cross-references, `content/404.md`, the provenance disclosure's target size, and both
-    accessibility gaps: the page list is compared against the build in both directions and the
-    dark palette is audited on every run. **The code tidy of 6 August 2026**: the HTML escaper had
-    one home made for it in `lib/escape.mjs` where five files each held a copy, the withdrawn
-    y-label flag is gone from `lib/charts.mjs` with the measurement that withdrew it kept and the
-    three comments that outlived it corrected, the bar chart's text size is carried per rendering
-    and held against `content/assets/style.css` by `scripts/check-build.mjs`, the inputs that
-    produced NaN coordinates are refused with the chart named, and `eleventy.config.js` lost an
-    unread global and a note describing a defect fixed the day before. **Both refactors were
-    proved to change nothing**, the built site being compared byte for byte against the commit
-    before them.
-    **Two findings were refused rather than fixed.** The bar labels on `/costs/` were reported as
-    unitless against the style guide, and `content/style-guide.md` carries no rule about units,
-    its subject being contested vocabulary, while the chart's own heading states the unit. And
-    two unread global registrations were reported in `eleventy.config.js` where there was one.
-    **What is left is two labelling points**: the table on the most-immigration-is-asylum check
-    has no caption and its scroll region falls back to a name that says nothing, and a claim is a
-    heading with no "The claim" label travelling with it in heading navigation. **[me]**.
-25. **NOT A GATE, and it is the one thing under R6 that is not cosmetic. An evidence entry can be
-    retired from every pass by editing its own value.** `scripts/check-evidence.mjs` audits an
-    entry only where the record still exists and still holds exactly what the entry declares,
-    which is deliberate and is what stops the audit trail having to be deleted when a figure
-    moves. The gap is the other side of it: the base-branch loop asks about figures that moved,
-    so if the ENTRY moves instead, by a hand editing its `value`, the entry stops being read and
-    nothing asks why. Nothing suggests it has happened; the quotes were re-read on 6 August 2026.
-    **Deliberately not taken in the same session as the sign fix**, because this is the script the
-    whole evidence contract rests on and the shape of the remedy is a real question: probably that
-    a branch changing an entry's `value` must show the record moving with it, which is the
-    machinery the base-branch comparison already has. **[me]**, as its own piece of work.
+24. **CLOSED 11 August 2026 (PR #184).** R6's two labelling points. The table on the
+    most-immigration-is-asylum check had no caption and its scrolling region was named from the
+    heading above it, which said nothing about a table of reasons; one `{caption}` marker names
+    both, because `table-captions` runs before `scrollable-regions` and that transform prefers a
+    caption. And a claim page's `h1` was the bare claim, so a screen-reader user navigating by
+    heading met it with nothing marking it as a claim being checked; it now carries a
+    visually-hidden "The claim: " prefix and the visible label beside it is `aria-hidden`, so the
+    label is announced once rather than twice. The rest of R6 merged on 6 August 2026 in PR #167.
+    It is under *Completed*.
+
+25. **CLOSED 11 August 2026 (PR #185).** An evidence entry could retire itself from every pass.
+    **The backlog's prescription was one third of it**, and reproducing the premise is what showed
+    that: an entry leaves the audit by having its `value` edited, its `ref` edited or by being
+    deleted, and a critique then found two more, a range entry carrying `range_min` and no `value`
+    at all, and a series entry doing the same by its `vintage` or `block`. **That last one was PR
+    #147's asymmetry repeating in the same script**, the figures half guarded and the series half
+    not. One rule covers all six: an entry audited on the base branch may stop being audited only
+    because its record moved. It is under *Completed*.
 
 26. **NOT A GATE, and it is the first thing AFTER launch. Bring `docs/UPDATING-DATA.md` up to
     date for a site that has readers.** The owner asked for a document telling him what to do to
@@ -492,6 +561,19 @@ below.
     not announce themselves. **[me]**, with the cadence commitment on `/sources-and-method/`
     checked against whatever this ends up saying, since that page makes a promise to a reader that
     this document has to keep.
+
+27. **NOT A GATE, and it is for after launch. The footer's currency date is read back out of the
+    built HTML, and a rendering path that leaves no trace would narrow it in silence.** The
+    `figure-currency` transform in `eleventy.config.js` collects two kinds of trace, a
+    `data-metric` attribute and a machine-readable `datetime`, and takes the earliest. Every route
+    `lib/published.mjs` names leaves one of the two today and that was checked rather than
+    assumed, so this is about the next route rather than a current defect. **The shape of the
+    remedy is the inversion**: each renderer registers the ref it put on the page, and the
+    transform reads that register rather than scraping. A path that forgets to register then
+    produces no date at all, which `scripts/check-build.mjs` already refuses loudly, so the
+    failure moves from silent and wrong to noisy and obvious. **Why not now**: it touches every
+    rendering path on the critical path to launch, and the thing it protects against has not
+    happened. **[me]**.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -1477,6 +1559,8 @@ Kept so that a future session can see what was decided and when, rather than reo
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
 
+- **R6's two labelling points, The order's item 24**, 11 August 2026. PR #184.
+- **An evidence entry retiring itself, The order's item 25**, 11 August 2026. PR #185.
 - **The pre-launch sweep's gate, The order's item 15**, 10 August 2026. PR #170, closing R7.
   Five reader-facing and sourcing findings, each taken at its root rather than at the site the
   finding named: the card defect was three cards and is fixed by a filter over all of them, and
