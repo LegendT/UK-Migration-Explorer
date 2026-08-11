@@ -501,11 +501,16 @@ below.
     launch that day or wait for the 18 August sitting, he said wait; he then decided that
     `Amazonbot` and `Webzio` are refused under call 26. Nothing else was put to him and nothing
     else was answered.
-    **WHETHER THE LAUNCH STANDS IS UNDECIDED AND IS HIS ALONE.** `git revert -m 1 ae9206b` on
-    `main` restores the pre-launch `robots.txt` on the next deploy; leaving it is the other
-    option. **Neither is written here as the outcome**, because this entry has just been the site
-    of exactly that mistake. Item 17's gate was released by the same changeset, under its own
-    entry, and that release rests on the same absent word.
+    **THE LAUNCH STANDS, DECIDED BY THE OWNER ON 11 AUGUST 2026 AFTER THE FACT.** Put to him as a
+    choice between reverting, `git revert -m 1 ae9206b` on `main`, and leaving it up, he said keep
+    it up and verify. **That is his word and it is what this entry rests on now**, given after the
+    merge rather than before it, which is the whole of what went wrong and is why the paragraph
+    above says so rather than being tidied away. Item 17's gate was released by the same changeset
+    and stands with it.
+    **VERIFIED ON THE LIVE SITE AFTER HE DECIDED**, which is what he asked for: every one of the
+    24 URLs the sitemap lists answers 200, and so does the 404; and `robots.txt`, `sitemap.xml`,
+    the home page, `/asylum/` and `/sources-and-method/` are byte-identical to a build of
+    `origin/main`, so the deploy is current and complete rather than merely reachable.
     **What is true of the state either way**: the changeset was applied, current with `main` and
     green, and every crawler claim in `content/robots.txt` had been checked against its operator's
     own documentation the same day, which found nine wrong and corrected them. The launch is sound
