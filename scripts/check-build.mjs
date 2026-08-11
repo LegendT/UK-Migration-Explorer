@@ -647,8 +647,13 @@ for (const file of pages) {
 // it asserts now: that the wildcard group disallowed everything. Both versions exist for the same
 // reason, that the file is the only statement of a site-wide decision and nothing else would
 // notice it changing. What is checked now is the launch state: the site is crawlable, the sitemap
-// is announced at the address site.url gives, and call 26's ALLOW half is not quietly reversed by
-// somebody adding a retrieval agent to the refusal block.
+// is announced at the address site.url gives, and BOTH halves of call 26 hold: no admitted
+// retrieval agent sits in a refusing group, and some group still refuses. It guarded the allow
+// half alone until 11 August 2026, and the sentence here said so while README.md and
+// docs/HANDOFF.md both described it as asserting "the launch robots.txt state under call 26",
+// which is twice what it did. Three ways past it were found by probing and are fixed below:
+// a path form it could not read, a second wildcard group it never looked at, and the refuse
+// half it never asked about. Each one passed while this printed that the site admits crawlers.
 //
 // The retrieval agents call 26 admits are NOT listed here. They are listed once, on the "# Admits:"
 // comment line in content/robots.txt, and read out of it below. A copy here would be a second list
@@ -688,12 +693,35 @@ if (!robots) {
       group.directives.push(line);
     }
   }
-  const blocksEverything = (g) => g.directives.some((d) => /^Disallow:\s*\/\s*$/i.test(d));
-  const wildcard = groups.find((g) => g.agents.includes('*'));
-  if (!wildcard) {
+  // MATCHED ON THE PATH RATHER THAN ON THE WHOLE LINE, and the difference is not cosmetic. This
+  // tested `/^Disallow:\s*\/\s*$/i`, one exact string, so `Disallow: /*` closed the site to every
+  // wildcard-supporting crawler while this printed "admits crawlers". A path blocks everything when
+  // it reduces to "/" with robots.txt wildcards taken out: "/" and "/*" both match every URL. "/$"
+  // does NOT, because "$" anchors the end and so names the home page alone, and that exception is
+  // the reason this is not simply a `startsWith('/')`. Probed in both directions.
+  const blocksEverything = (g) => g.directives.some((d) => {
+    const path = d.match(/^Disallow:\s*(\S+)\s*$/i)?.[1];
+    return path !== undefined && path !== '/$' && /^\/\**\$?$/.test(path);
+  });
+  // EVERY wildcard group, not the first. RFC 9309 has a crawler obey the union of the groups
+  // matching its name, so a second "User-agent: *" group carrying Disallow: / closes the site
+  // while the first one still reads as open. `groups.find` returned that first group and this
+  // reported the site crawlable. Probed by appending exactly such a group.
+  const wildcardGroups = groups.filter((g) => g.agents.includes('*'));
+  if (!wildcardGroups.length) {
     errors.push('robots.txt: no "User-agent: *" group. Every crawler not named in this file is then unaddressed, and what a site does with an unaddressed crawler is the crawler\'s choice rather than this site\'s.');
-  } else if (blocksEverything(wildcard)) {
-    errors.push('robots.txt: the "User-agent: *" group has Disallow: /, so the site is closed to search engines and to every retrieval agent. That was the pre-launch state. If it is deliberate again, say so here rather than leaving this check to fail.');
+  } else if (wildcardGroups.some(blocksEverything)) {
+    errors.push('robots.txt: a "User-agent: *" group disallows the whole site, so it is closed to search engines and to every retrieval agent. That was the pre-launch state. A crawler obeys every group naming it, so this fails on any of them, not only the first. If it is deliberate again, say so here rather than leaving this check to fail.');
+  }
+  // CALL 26'S REFUSE HALF, which nothing asserted until 11 August 2026: deleting the whole
+  // training-crawler block passed this check and printed "admits crawlers", because every
+  // assertion here read the allow half. Call 26 is a split rather than a permission, so a file
+  // refusing nobody states one half of it and drops the other, and the wildcard group above then
+  // admits every training crawler by omission. This asks only that some group refuses, because
+  // WHICH crawlers is a dated snapshot the file itself says will go stale, and a list here would
+  // be the second copy the comment above refuses to keep.
+  if (!groups.some((g) => blocksEverything(g) && !g.agents.includes('*'))) {
+    errors.push('robots.txt: no group refuses anything, so call 26\'s REFUSE half is gone and the open wildcard group admits every training crawler. Reversing that is a backlog change, not a deletion here.');
   }
   const sitemap = text.match(/^\s*Sitemap:\s*(\S+)\s*$/im);
   if (!sitemap) {
@@ -726,7 +754,7 @@ if (errors.length) {
 
 const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
 console.log(`Every "Cited for" line in the built site names a figure whose own record cites the publication it is printed under: ${citedForNames} name(s) checked. Not established: that the publication contains the figure, which is the far-end trace no check does.`);
-console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt admits crawlers, announces the sitemap at ${site.url}/sitemap.xml and refuses no citing retrieval agent.`);
+console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; no "User-agent: *" group disallows the site, robots.txt announces the sitemap at ${site.url}/sitemap.xml, no agent on its "# Admits:" line sits in a refusing group, and some group still refuses. Not established: that the agents it names are the right ones, which is a dated snapshot of other companies' documentation and is a reading, not a check.`);
 console.log(`The review sign-off in CHANGELOG.md names ${contentPages} page(s) other than the 404, which is what this build produced, and says the signature covers ${signedCovered}. Not established: that a human reviewed that many, which is a claim about a person; only the denominator is checked here, and the ${contentPages - signedCovered} page(s) outside it have to be named in the entry by hand.`);
 console.log(`${footerPages} page(s) carry a review footer, and on each one "${FIGURE_CURRENCY}" is present exactly where the page renders a figure, matched in both directions.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);

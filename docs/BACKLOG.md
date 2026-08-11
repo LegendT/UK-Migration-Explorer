@@ -745,7 +745,11 @@ record and an evidence entry rather than a sentence.
   **[you]** first, at The order's item 20.
 - **Closed here**: call 16, the contact address, applied in PR #130 as
   `corrections@ukmigrationexplorer.org` in all three places the issue tracker was the only door.
-  **The mailbox must exist before launch and nothing checks that it does.** Call 17, which
+  **THE ADDRESS WAS THEN WITHDRAWN on 10 August 2026, so the mailbox is not a launch
+  condition and this line said it was until 11 August.** No page and no built file names it;
+  the route is the issue tracker again, and `/about/` says in terms that this needs a GitHub
+  account. The domain has no MX record, checked on three resolvers, so reinstating the address
+  means setting up mail first rather than only editing a page. Call 17, which
   pipeline gates what, applied in PR #122. The claim-list heading level, done in PR #77.
 
 ### A6. Decisions with no build behind them
@@ -1803,8 +1807,12 @@ maintained here. Newest first.
 
 - **The contact route and the fourth published limit**, 4 August 2026. PR #130. Calls 16 and 20.
   `corrections@ukmigrationexplorer.org` replaces the issue tracker as the only door, in the footer
-  on every page, on `/about/` and in the corrections policy. **The mailbox must exist before launch
-  and nothing checks that it does.** The fourth limit publishes the corrections-watch candidate,
+  on every page, on `/about/` and in the corrections policy. **Both were withdrawn again on
+  10 August 2026 and the closed entry above carries what that leaves.** This sentence read "the
+  mailbox must exist before launch and nothing checks that it does" until 11 August 2026, one
+  reference away from the live bullet saying the same thing, which is this file's own
+  correction-missing-its-siblings shape landing inside the record of the change that caused it.
+  The fourth limit publishes the corrections-watch candidate,
   written from `check-releases`'s own output rather than from the summary of it, which had
   understated the gap.
 

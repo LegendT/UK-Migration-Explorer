@@ -22,9 +22,15 @@
 # rather than assumed. Check it against the operators' own published documentation. The
 # omissions below are deliberate, and each fails the test in the line above. Amazonbot and Applebot are
 # described by their operators as serving answers rather than training, and Google-Extended and
-# Applebot-Extended are the training tokens for those two companies. FacebookBot fetches pages to
-# build the link preview shown when somebody shares one, which is distribution rather than
-# training and is a thing this site wants. Diffbot and Omgilibot sell web data rather than
+# Applebot-Extended are the training tokens for those two companies. FacebookExternalHit fetches a
+# page to build the link preview shown when somebody shares it, which Meta documents as gathering
+# "the title, description and thumbnail image": distribution rather than training, and a thing this
+# site wants. THAT SENTENCE NAMED "FacebookBot" UNTIL 11 AUGUST 2026 AND WAS FALSE. Meta's crawler
+# documentation does not mention FacebookBot at all, and attributes link previews to
+# FacebookExternalHit, so the line named a token that does nothing while the crawler actually doing
+# the work went unnamed. Nothing behaved differently, because no Meta crawler answers to the name
+# this file used; what was wrong was the explanation, on a site whose product is explanations. It
+# was caught by doing what the line above tells the reader to do. Diffbot and Omgilibot sell web data rather than
 # training on it; Webzio-Extended, which IS refused, is Webz.io's own training token.
 
 User-agent: *

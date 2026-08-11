@@ -662,10 +662,12 @@ circle.series-1, text.series-1 { fill: var(--ink-soft); }
    the data table sits inside a closed <details>, and every source link's destination,
    because printed HTML drops the href unless CSS puts it back.
 
-   The pre-launch banner deliberately PRINTS. It is the mitigation that makes the site being
-   reachable before launch a small problem rather than a large one, and a printed page with
-   it suppressed is exactly the artefact that reasoning says does not exist. It goes when the
-   banner goes, at launch. */
+   The pre-launch banner deliberately PRINTED, and went with the banner at launch. It was the
+   mitigation that made the site being reachable before launch a small problem rather than a
+   large one, so suppressing it in print would have produced exactly the artefact that
+   reasoning said did not exist. Kept as the reason, in the past tense: this paragraph carried
+   its own instruction to go at launch and was left behind by the changeset that launched,
+   while the sibling comment 140 lines above was updated in the same commit. */
 @media print {
   .skip-link,
   .site-header nav { display: none; }
