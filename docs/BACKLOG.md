@@ -196,14 +196,17 @@ below.
     any entry, because the pull request that carries it is by definition open when it is written
     and merged the moment the entry becomes true. Say which branch, or say nothing. It is under
     *Completed*.
-16. **NOT A GATE. The reader-facing batch from the same sweep, which is R8 below.** Definitions
-    the home page's own cards assume and never link, two glossary terms the money pages use and
-    the glossary does not hold, a denominator that is correct and unnamed, a chart marking a
-    methodology change without saying what changed, and one word on a live page. **None of these
-    is a false statement**, which is why it is not a gate: each is a reader meeting a term or a
-    number with less than they need to read it. **[me]**.
+16. **CLOSED 11 August 2026 (PRs #171 and this one).** R8, the reader-facing batch. **Most of it
+    merged in PR #171 and two entries did not, and this entry did not say so**: the mirror
+    claim's own sentence still named the page it did not link to, and the glossary still defined
+    neither of the two charges the money pages spend. Found by checking the section bullet by
+    bullet against the built site before closing the item, rather than closing it because its
+    pull request had merged. **That check is the point of this line.** The three entries above it
+    were closed late for saying they were unmerged when they were; this one would have been
+    closed early, which is the same defect pointing the other way and the more dangerous of the
+    two, because a closed item is not read again. It is under *Completed*.
 17. **GATE, and deliberately last of the gates. Launch. THE REPOSITORY HALF IS DONE (PR #153,
-    6 August 2026), and item 15 is the gate ahead of it;
+    6 August 2026), and nothing is ahead of it any more;
     Search Console is what is left and it is [you].** The gate as originally worded said delete
     `content/robots.txt` and its guard, and **the UX review said write that file rather than only
     delete it**, which is what happened: the file admits retrieval agents that emit a linked
@@ -218,10 +221,13 @@ below.
     the HTML-file and meta-tag methods, and submit
     `https://ukmigrationexplorer.org/sitemap.xml`. That is how success measure 2 would be noticed.
     **[you]**.
-    **This entry named items 13 and 14 as the gates ahead of it until 10 August 2026**, when both
-    closed and the pre-launch sweep took their place. It was written on a branch cut before either
-    happened, which is how a true sentence arrives stale through a merge rather than through
-    neglect.
+    **This entry has twice named a gate ahead of it that had closed.** Items 13 and 14 until
+    10 August 2026, then item 15 until 11 August. Both times it was written on a branch cut
+    before the closing happened, so a true sentence arrived stale through a merge rather than
+    through neglect, and both times the merge is where it had to be caught. **It now names no
+    other item**, which is the only version of this sentence that cannot rot: what is ahead of
+    Launch is whatever The order still shows open above it, and that is readable from the list
+    itself.
 18. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
@@ -1301,6 +1307,15 @@ maintained here. Newest first.
   carried a reading of it, missed by reading those notes truncated. **And this entry's own item
   said it was unmerged after it merged**, which is what items 13 and 14 had said for four days
   and what closing them that morning was supposed to have taught.
+
+- **The reader-facing batch, The order's item 16**, 11 August 2026, closing R8. Card definition
+  links, the small boats route, the denominator, the methodology clause and the one word on
+  `/common-claims/` all merged in PR #171. **Two entries did not and were found by reading the
+  section against the built site**: the sentence naming the mirror claim did not link to it, and
+  the glossary defined neither visa and immigration fees nor the Immigration Health Surcharge,
+  both of which `/costs/` spends. Both entries now cite their records rather than restating a
+  value, so a release moves the glossary with the page. **The item was checked bullet by bullet
+  before closing**, which is what stopped it being closed with two thirds of a section done.
 
 - **`/returns/` went through the pre-publication review**, 10 August 2026, recorded in
   `docs/PRE-PUBLICATION-REVIEW-RETURNS.md`. The page was live and outside the signature because it

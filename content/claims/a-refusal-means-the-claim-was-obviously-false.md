@@ -86,8 +86,8 @@ makes, and it is as wrong as this one.
 
 ## The mirror claim fails too
 
-"Almost all refused asylum seekers are eventually recognised as refugees" is checked on its
-own page and fails for the same underlying reason: both claims take a real and partial effect
+"Almost all refused asylum seekers are eventually recognised as refugees" is
+[checked on its own page](/common-claims/refused-asylum-seekers-are-eventually-recognised/) and fails for the same underlying reason: both claims take a real and partial effect
 and inflate it into a total one. This pair is published on both sides deliberately, as the
 fiscal pair is, because a site that corrected only one of them would be making the choice it
 says it does not make.
