@@ -115,8 +115,10 @@ content/                Eleventy input
   migration.njk           Net migration, the two flows, reason splits, ONS vs Home Office
   asylum.njk              Pipeline table, three charts, three queues, support, small boats
   costs.njk               Audited spending only, nested table, cost per accommodation place
+  returns.njk             What a return counts, why the categories do not nest, added 10 Aug 2026
   common-claims.njk       Index, selection criteria, the disclosed direction split
-  glossary.md             24 terms in five groups, each with a stable anchor
+  glossary.md             Terms in five groups, each with a stable anchor. `npm run validate`
+                          prints the count rather than this line carrying one
   sources-and-method.md   Catalogue, data contract, limits, caveats, corrections, scope
   style-guide.md          Precision rules separated from value judgements
   about.md                Who runs it, who pays, what it is not

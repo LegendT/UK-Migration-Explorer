@@ -249,7 +249,7 @@ The first public version should be shallow and clear. Avoid creating a sprawling
 | Fiscal impact | The contested question: does immigration pay for itself? | Phase 3 |
 | Local picture | Local authority lookup for asylum support and related measures. | Phase 4 |
 | Work, study and family routes | Deeper visa-route explainers. | Phase 5 |
-| Returns and removals | Deeper enforcement and returns explainer. | Phase 5 |
+| Returns and removals | ~~Deeper enforcement and returns explainer.~~ **Built 10 August 2026** at `content/returns.njk`, ahead of its phase, because a review called it the only omission a hostile reader could frame as concealment. | Phase 5 |
 
 Two sequencing changes from the June 2026 draft, made 22 July 2026:
 
@@ -319,7 +319,9 @@ Both are what the asylum argument actually turns on, and both were a click away 
 page while the home page showed neither. Both are stocks counted on one day, so both cards
 say so: a stock read as a flow is the error behind two of the claim checks.
 
-**Returns has no card, and the June 2026 draft's list is not the set that shipped.** That list
+**Returns has no card, and the June 2026 draft's list is not the set that shipped.** (It has a
+PAGE as of 10 August 2026, `/returns/`; this paragraph is about the home page cards and its
+reasoning still holds. The two cautions it sets out below are what that page is built around.) That list
 named immigration, emigration, people awaiting a decision, people in asylum support and
 returns; the first two are on the migration page as a chart, the middle two are now cards, and
 returns is not. The set that ships spans the range of things this site publishes rather than
@@ -698,10 +700,10 @@ data/                       75 governed metrics and four timeseries
   dashboard.json            homepage cards, references only, holds no values
   sources.json              publisher catalogue
   meta.json                 confidence definitions and cross-cutting caveats
-content/                    the site's pages, 16 of them
-  index.njk asylum.njk migration.njk costs.njk common-claims.njk
+content/                    the site's pages; `npm run build` prints how many
+  index.njk asylum.njk migration.njk costs.njk returns.njk common-claims.njk
   glossary.md sources-and-method.md style-guide.md about.md
-  claims/                   seven claim pages, one per claim
+  claims/                   the claim pages, one per claim
   _includes/base.njk        the only layout, plus claim.njk for claim pages
   _data/site.js             name, strapline, navigation
   assets/style.css          one stylesheet
