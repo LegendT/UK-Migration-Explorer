@@ -1,6 +1,6 @@
 {
   "theme": "Population and integration",
-  "lastUpdated": "2026-08-05",
+  "lastUpdated": "2026-08-11",
   "note": "Foreign-born population figures come in two vintages. The census-based baseline is the 2021/22 Census (Census 2021 for England, Wales and Northern Ireland; Census 2022 for Scotland). In May 2026 ONS published a rolled-forward mid-2024 estimate of the non-UK-born population (13,115,000, about 18.9% of the population), an official statistic in development and provisional; ONS produced no June 2025 estimate because 2025 deaths data are not yet available, and it publishes no percentage. Citizenship and settlement figures come from Home Office Immigration system statistics (year ending March 2026).",
   "metrics": [
     {
@@ -15,7 +15,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "The 2021/22 Census total for the UK, and NOBODY PUBLISHES IT AS ONE NUMBER. Established 3 August 2026: ONS's Table 9 prints the two census days as separate rows, 10,183,000 for England, Wales and Northern Ireland at 21 March 2021 and 555,000 for Scotland at 20 March 2022, and its UK rows begin at 30 June 2022. The census outputs were per-nation when this was established and are not any longer, CORRECTED 4 August 2026: ONS's “Census-based statistics UK: 2021”, released 27 June 2025, publishes UK-level tables, and its UK05 gives country of birth for the United Kingdom, aligning the 2021 censuses of England, Wales and Northern Ireland with Scotland's 2022 census interpolated back to March 2021. ONS's own freedom-of-information response, which called a UK non-UK-born estimate an ambition in the future tense, is superseded by it. The sentence above still holds: UK05 prints country-of-birth groups and no non-UK-born total, and its “Other Europe” column expressly includes “Great Britain and United Kingdom not otherwise specified”, so a sum of its non-UK columns is an upper bound rather than a count. Summing it gives a figure a little below the one held here, on a different construction: ONS states these are “not considered to be census statistics themselves, but rather census-based statistics”, grants the UK-level ones “just Official Statistics status, without accreditation”, and advises against comparing them with cross-UK datasets built by aggregation, which is how this figure is built. Whether this record moves onto that release is open under R1 call 8. So this figure is the sum, 10,738,000, rounded to the nearest hundred thousand, which is the “10.7 million” the Migration Observatory states and which this site published against that briefing until it was regraded. Both components are themselves rounded to the nearest thousand by ONS, so publishing 10,738,000 would claim precision the inputs do not have. The value a reader sees did not change. The foreign-born population has continued to rise since 2021; ONS's provisional rolled-forward estimate for mid-2024 is held separately as foreign-born-population-mid-2024.",
       "confidence_level": "calculated"
     },
@@ -31,7 +31,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Roughly one in six residents, of a total population of 66.9 million at the time. Up from about 9% in 2004. NOT AN ACCREDITED FIGURE AND NOT AN OFFICIAL RELEASE, REGRADED 4 August 2026 under R1 call 8. The Migration Observatory builds this share itself, saying it combines 2021 data for England, Wales and Northern Ireland with 2022 data for Scotland, and no census release carries a UK-wide share. Nor is any UK-level figure accredited: ONS grants accreditation to the England and Wales and Northern Ireland statistics in its census-based UK release and states that the Scotland, Great Britain and UK ones have \"just Official Statistics status, without accreditation\". The source was NOT moved onto that ONS release, and the reason is mechanical: its table UK05 prints country-of-birth cells by sex and age and no totals at all, so a numerator and a denominator taken from it are sums of 36 rows rather than published values, and could not be quoted as components. CHECKED AGAINST IT ANYWAY, 4 August 2026: summing UK05 gives 10,724,293 of 66,912,612 usual residents, 16.03%, and a control against UK01 agrees on the population to twenty-five people. So the published 16% is independently corroborated by ONS even though it is read from the briefing. For the later provisional estimate see foreign-born-share-mid-2024.",
       "confidence_level": "estimated"
     },
@@ -47,7 +47,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-27",
+      "retrieved_date": "2026-08-11",
       "notes": "ONS rolled-forward estimate from a Census 2021 (England, Wales, Northern Ireland) and Census 2022 (Scotland) baseline. An official statistic in development and provisional, subject to revision. ONS gives no June 2025 estimate because 2025 deaths of people born outside the UK are not yet available. Of the total, 3,871,000 were EU+ born and 9,244,000 non-EU+ born. Do not confuse with the lower APS-based ad hoc estimate of about 10.6 million, which uses a different population base and does not reconcile with the mid-2024 UK total.",
       "confidence_level": "provisional"
     },
@@ -63,7 +63,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-27",
+      "retrieved_date": "2026-08-11",
       "notes": "Calculated by this project: 13,115,000 non-UK-born (ONS LTIM provisional, mid-2024) divided by the accredited mid-2024 UK population of 69,281,400 (ONS mid-year estimate, published 26 September 2025) is 18.93%, shown here as 18.9%. ONS does not publish this share directly. The numerator is an official statistic in development and provisional, so treat the share as approximate; it is often rounded to about 19%.",
       "confidence_level": "calculated"
     },
@@ -79,7 +79,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Foreign-citizen (non-British nationality) share, up from about 5% in 2004. Differs from the foreign-born group: many migrants naturalise, and some UK-born residents are non-citizens.",
       "confidence_level": "estimated"
     },
@@ -95,7 +95,7 @@
       "source_id": "ons-population",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/bulletins/annualmidyearpopulationestimates/mid2024",
       "published_date": "2025-09-26",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Latest official mid-year estimate (69.3 million). Up 755,300 (1.1%) on mid-2023, with net international migration of 738,700 the main driver. Accredited official statistics.",
       "confidence_level": "official"
     },
@@ -111,7 +111,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "India was the largest single country of birth (9%). The top five, India (9%), Poland (8%), Pakistan (6%), Romania (5%), Ireland (4%), together accounted for 32% of the foreign-born population.",
       "confidence_level": "estimated"
     },
@@ -130,7 +130,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "The bulletin states a 12% decrease against the year ending March 2025, which is the one percentage on the home page card that a reader finds by following this record's own source link; table Cit_01 gives that year's total, this one's naturalisation and registration components, and both application totals, and all five now have their own records rather than living here. Supersedes the year ending December 2025 figure of 235,782, which was this site's previous value: the current edition revises that period to 236,239, so 235,782 is not re-derivable from it.",
       "confidence_level": "official"
     },
@@ -149,7 +149,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "Applications, not grants: the two move independently and in this period move in opposite directions, which is what the home page card is about. Cit_01 publishes an 18% rise in its own percentage row; the card gives both annual totals instead and lets a reader take the difference, because a percentage computed against two live values goes wrong the moment one of them is revised. Neither this figure nor its comparison year appears on the bulletin page the grants record cites, which states no application figure at all.",
       "confidence_level": "official"
     },
@@ -168,7 +168,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The comparison year behind the rise in citizenship applications on the home page card, held as a record for the same reason british-citizenship-grants-previous-year is: a prior-year figure written into prose is recomputed at every release and goes stale exactly as fast as the current one. Read from the current edition rather than the previous one, per the single-vintage rule.",
       "confidence_level": "official"
     },
@@ -187,7 +187,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The comparison year behind the home page card's fall in citizenship grants, held as a record for the same reason migration/net-migration-2 is: a prior-year figure written into prose is recomputed at every release, so it goes stale exactly as fast as the current one. Read from the current edition rather than the previous one, per the single-vintage rule: this is what the year ending March 2025 stands at today, not what was published for it at the time. It is NOT on the bulletin page the parent record cites, which states only the percentage change; the launch readiness review found that and this record is the answer to it.",
       "confidence_level": "official"
     },
@@ -206,7 +206,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "Naturalisation is the main route for adults and is one of the two components of the all-routes total. The bulletin states this figure in prose as well as table Cit_01, describing it as a 14% decrease on the year ending March 2025. Registration is the other component, and the two sum to the all-routes total, which is what establishes that these are components rather than overlapping counts.",
       "confidence_level": "official"
     },
@@ -225,7 +225,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a2927b4e371d9d2c0052b92/citizenship-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "Registration is the route used most often by children and by people with a defined connection to the UK or its overseas territories, and is the second component of the all-routes total. The bulletin states this figure in prose as well as table Cit_01, describing it as a 7% fall on the year ending March 2025.",
       "confidence_level": "official"
     },
@@ -244,7 +244,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "Down 11% on the year ending March 2025 (170,237). Excludes EU Settlement Scheme settled status. Refugee settlement grants within this fell 53% to 19,960. All three figures are the 'Total Grants of settlement' and 'Total refugee grants' rows of table Se_02, re-read there on 2 August 2026. Supersedes the year ending December 2025 figure of 146,405, which was this site's previous value: the current edition revises that period to 146,119, so 146,405 is not re-derivable from it.",
       "confidence_level": "official"
     },
@@ -263,7 +263,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-indefinite-leave-to-remain-settlement-and-euss-settled-status-and-citizenship-grants-have-been-issued-in-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-28",
+      "retrieved_date": "2026-08-11",
       "notes": "About 4.5 million settled-status grants have been issued since the scheme launched in 2018. Classified as Official Statistics (not accredited). Includes an estimated 100,300 automated grants, from an estimated 103,820 automated in total. RECONCILED against table EUSS_QTR, whose settled conclusions for the four quarters to March 2026 sum to 270,235: the difference is the automated estimate, which no summary table carries. The published figure appears in the bulletin narrative only, which is why the evidence entry names no table.",
       "confidence_level": "official"
     },
@@ -279,7 +279,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "About 47% of foreign-born residents lived in London and the South East, against 27% of the overall population.",
       "confidence_level": "estimated"
     },
@@ -295,7 +295,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "THE SOURCE GIVES A FLOOR AND THIS RECORD HOLDS A POINT: the briefing says 'More than 40% of its residents had been born abroad', so 40 is the least it can be and not an estimate of what it is. Anything written from this record has to say at least, and a sentence reading 40% of Londoners were born abroad is not supported by it. The 2021 Census figure itself is not quoted by the briefing. Highest of any region. National average 16%. Lowest: North East (7%), Wales (7%), Northern Ireland (9%).",
       "confidence_level": "estimated"
     }

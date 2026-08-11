@@ -99,6 +99,18 @@ function citedEdition(url) {
     const file = pathname.split('/').pop();
     return { slug: file, key: editionKey(file) };
   }
+  // ONS serves a dataset file from /file with the whole path in a `uri` QUERY parameter, so
+  // `pathname` is just "/file" and every branch above misses it. Reading the edition from the
+  // path segment before the filename, never the filename: the shape is
+  // .../datasets/<dataset>/<edition>/<file>, and the file is named for the PUBLICATION month
+  // while the edition names the PERIOD. On the May 2026 spreadsheet those are 2026-05 and
+  // 2025-12, so taking the filename would date the citation to the wrong thing and report a
+  // current edition as behind at the next release.
+  if (hostname === 'www.ons.gov.uk' && pathname === '/file') {
+    const segments = (new URL(url).searchParams.get('uri') ?? '').split('/').filter(Boolean);
+    const edition = segments.length > 1 ? segments[segments.length - 2] : null;
+    if (edition) return { slug: edition, key: editionKey(edition) };
+  }
   // An evergreen page: the data-tables set, or a rolling publication. It names no edition and
   // therefore cannot be behind one.
   return { slug: null, key: null };

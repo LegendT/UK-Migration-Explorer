@@ -1,0 +1,52 @@
+Remove the corrections@ email address and just leave open an issue. On all footers.
+
+There seems to be a discrepancy on the page about the last reviewed on the overview page near the bottom. It says the 23rd, but in the banner at the top it says the 27th. 
+
+On the overview page, under the heading "Migration is not the same as asylum", it says "among non-EU plus arrivals". Link to definition of EU+, this is effectivley the homepage so the text needs to be decipherable / understandable. 
+
+In terms of accessibility, should links that are linking to an external site be highlighted in some way?
+
+With the figures in the cards on the overview page, it says "Published 21st of May 2026" and "Checked 17th of June 2026." This seems a little bit ambiguous. I understand "Published," but "Checked" by whom? 
+
+Within the card, can the word "people" be on the same line as the number? Is it important for us to highlight that we are dealing with people? 
+
+On the asylum claims card, there are two figures: the 93,000 and the 76,000. Can we link to the main applicant applications definition page just so people can understand why there are two figures in there? 
+
+So the card in asylum support starts with the sentence "also a stock". This doesn't make any sense in this context without at least a link to the definition. Do we have the number of children anywhere, and could we include it as an aside in this card? 
+
+With a small boat arrivals card, it mentions a figure elsewhere on the site. Can we link to it? 
+
+In the card Asylum System Cost, there is a figure from the Home Office's own annual accounts rather than from the NAO, but this is not sourced in the links at the bottom of the card. 
+
+In the card citizenship grants, it mentions naturalisation. Can we link to the definition for this to give a definition? 
+
+
+On the migration page, the chart mentions that there is a change in methodology at a certain point. Do we have an explanation anywhere of what that change in methodology was from and to? 
+
+An area that the site misses is removed / returns. What statistics are there on this? Should we include them?
+
+Define (and link to):
+ - Visa and immigration fees
+ - Immigration Health Surcharge
+
+ "the correction a reader sympathetic to migration would most want to see" drop the word 'most'
+
+ general point about better UX throughout the site and linking between pages. deep thought on this!
+
+ Because we have not launched the site yet do we need corrections sections (e.g. the 'Immigrants pay more in tax than they cost.' page)? What are the precidents going forward?
+
+"Asylum is a small part of the immigration side. Asylum applicants were 10.8% of all long-term immigration in the year ending December 2025. " verify, elsewhere it's 14% ?
+
+""Almost all refused asylum seekers are eventually recognised as refugees" is checked on its own page " link to page.
+
+
+The major accuracy fixes from the previous critique were merged into main on 6 August, so the live content is materially better than the backlog wording initially suggested. The interesting problem is now narrower: the repository’s backlog/status documentation has not fully caught up with that merge, while the launch PR is still deliberately unmerged. In a project built around auditability, stale governance text is not cosmetic.
+
+
+Check and fix the open github issue (or close if already fixed)
+The automated release checker has an open issue right now: it could not verify ONS LTIM, and it explicitly says the Home Office 2025–26 annual report is newer than the annual report the site cites but is outside the automated watch. I independently verified the ONS LTIM numbers, so that part is not a data error. The annual-report gap still needs a human supersession note before launch, particularly on the costs pages.
+
+
+
+
+

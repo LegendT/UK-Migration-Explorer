@@ -1,6 +1,6 @@
 {
   "theme": "Economic and fiscal impact",
-  "lastUpdated": "2026-08-10",
+  "lastUpdated": "2026-08-11",
   "note": "This is the most contested area. Fiscal-impact estimates depend heavily on method (snapshot vs lifetime), assumptions about return migration, and which spending is attributed to migrants. Across the pre-Brexit static studies summarised by the Migration Observatory, the net fiscal impact, positive or negative, is consistently within about plus or minus 1% of GDP; none of those studies covers the current post-Brexit system. Asylum cost figures are firmer (National Audit Office). Figures here should always be presented with their source and method, not as settled facts.",
   "metrics": [
     {
@@ -15,7 +15,7 @@
       "source_id": "nao",
       "source_url": "https://www.nao.org.uk/reports/an-analysis-of-the-asylum-system/",
       "published_date": "2025-12-10",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Home Office plus Ministry of Justice only. The NAO states this does not capture all costs, particularly those incurred by local authorities, so it understates the full system cost. The NAO's landing page leads with £4.0 billion, its narrower direct-support figure, so a reader who follows the source link and does not open the report meets a different number first. Most recent authoritative figure (published 10 December 2025).",
       "confidence_level": "official"
     },
@@ -31,7 +31,7 @@
       "source_id": "nao",
       "source_url": "https://www.nao.org.uk/reports/an-analysis-of-the-asylum-system/",
       "published_date": "2025-12-10",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Largest single area of Home Office asylum spend; a subset of the £4.9bn total. Includes hotels, dispersal accommodation, cash support and local-authority dispersal grants.",
       "confidence_level": "official"
     },
@@ -47,7 +47,7 @@
       "source_id": "ho-ara",
       "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
       "published_date": "2025-07-17",
-      "retrieved_date": "2026-08-01",
+      "retrieved_date": "2026-08-11",
       "notes": "A Home Office figure from its own accounts, not an NAO one: £2.1bn of the £4.0bn asylum support spend in 2024-25. The per-day average the accounts state beside it, and the prior year's pair, are held as records of their own rather than restated here. It was attributed to the NAO's An analysis of the asylum system until 1 August 2026, and that report does not contain it; the £5.77m per day sitting in this note was the clue that found the real source. The site presents the figure inside the NAO's £3.4bn accommodation and support total, which is a different aggregate from the accounts' £4.0bn asylum support spend. That nesting is this site's own: the NAO's £3.4bn includes about £2.7bn of direct spending on asylum accommodation and £2.1bn fits inside it, but neither publisher places one figure inside the other, and the NAO total excludes unaccompanied asylum-seeking children while the accounts do not say whether this figure does. DO NOT expect to update this from the next annual report. The 2025-26 edition, HC 440, gives hotel headcounts and no hotel spending total, no per-day rate and no unit cost; the only hotel money in it is a £22.9m constructive loss on a single contract, at page 218. So the report is annual and this figure is not, and the annual staleness prompt on this record is cleared by re-reading the newest edition and confirming it still carries nothing comparable, not by finding a new number. HC 1133 carries a correction slip, read on 1 August 2026: it corrects a graph axis on page 42, a name on page 140 and the audited exit-package cost figures on page 170, and touches nothing on asylum. Hotels were about 76% of the cost of asylum accommodation contracts, £1.3bn of an estimated £1.7bn in the FIRST SEVEN MONTHS of 2024-25 (NAO, HC 874, paragraphs 8 and 1.18), and housed about 35% of people in asylum accommodation as at 1 January 2025 (paragraph 1.14, which is where that date comes from; this note cited only 8 and 1.18 until 1 August 2026, and neither of those carries a date). Not an annual share: the NAO issued a correction slip dated 1 July 2025 for 'a misrepresentation of 2024-25 spending on asylum accommodation' affecting paragraphs 4, 8 and 1.18. It struck 'annual' from 'the annual cost of the contracts' in 8 and 1.18, and re-dated the period to the first seven months in all three; paragraph 4 never contained the word 'annual', which this note implied until 1 August 2026. This note carried the retracted wording until 31 July 2026. Note also that the 76% is a seven-month cost share and the 35% a point-in-time headcount, so they are different kinds of measure. RE-CHECKED 10 AUGUST 2026 AND STILL NOT SUPERSEDED. The sentence above had already established this, from a reading of HC 440 that named a page and a figure; the re-check adds only that the Core Data Tables published with HC 440 carry no hotel line either. It does NOT establish that HC 440 names no hotel money at all, which the older sentence is the accurate one about: there is a 22.9 million constructive loss in it. A search reporting none had read this note truncated, which is why the correction is written here rather than quietly applied.",
       "confidence_level": "official"
     },
@@ -63,7 +63,7 @@
       "source_id": "ho-ara",
       "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
       "published_date": "2025-07-17",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "THE ACCOUNTS PUBLISH THIS, THIS SITE DOES NOT DIVIDE ANYTHING TO GET IT. That distinction is the whole reason the record exists: docs/BACKLOG.md listed this figure and the prior year's as the annual spend divided by 365, and reading page 75 showed the Home Office states both averages itself, in the same sentence as the annual totals. It does not reproduce exactly from the rounded annual figure either, £2.1bn over 365 days being about £5.75m, because the accounts divide the unrounded spend. No comparable figure exists for the asylum system as a whole: no publisher states a per-day rate for it, which is why /costs/ gives the system total per year and leaves any daily version to whoever wants to do the division. CHECKED AGAINST THE 2025-26 ACCOUNTS ON 10 AUGUST 2026 AND NOT SUPERSEDED. HC 440 was opened and searched, and it prints no hotel spending total and no per-day average: the word hotel appears throughout its narrative and beside no cost figure, and the four uses of \"per day\" in the document are all consultancy day rates. The Core Data Tables published with it carry no hotel line either. So this remains the latest comparable published figure rather than a stale one, which is a different thing and is why it is written down.",
       "confidence_level": "official"
     },
@@ -79,7 +79,7 @@
       "source_id": "ho-ara",
       "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2024-to-2025",
       "published_date": "2025-07-17",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "Also the accounts' own average rather than this site's arithmetic. It is the figure the circulating claim of about £8 million a day is closest to, and it belongs to 2023-24 rather than to now, which is the point /costs/ makes with it: the claim was roughly right for a year that has ended. CHECKED AGAINST THE 2025-26 ACCOUNTS ON 10 AUGUST 2026 AND NOT SUPERSEDED. HC 440 was opened and searched, and it prints no hotel spending total and no per-day average: the word hotel appears throughout its narrative and beside no cost figure, and the four uses of \"per day\" in the document are all consultancy day rates. The Core Data Tables published with it carry no hotel line either. So this remains the latest comparable published figure rather than a stale one, which is a different thing and is why it is written down.",
       "confidence_level": "official"
     },
@@ -95,7 +95,7 @@
       "source_id": "icibi",
       "source_url": "https://www.gov.uk/government/publications/an-inspection-of-contingency-asylum-accommodation-november-2023-june-2024",
       "published_date": "2024-10-24",
-      "retrieved_date": "2026-07-27",
+      "retrieved_date": "2026-08-11",
       "notes": "Approximately £158: the Home Office's own figure, from its April 2024 business case, for the average hotel cost in the three months to June 2023, quoted by the ICIBI at paragraph 5.14. It is not an NAO figure; the NAO accommodation-contracts report (HC 874) carries the 35% and 76% contract-share figures, not this unit cost. Compares with about £20 per night for dispersal accommodation, recorded separately. Read it as about £158; the gap with the dispersal rate is a major reason hotels dominate the bill, alongside the number of people housed and the mix of accommodation.",
       "confidence_level": "estimated"
     },
@@ -111,7 +111,7 @@
       "source_id": "icibi",
       "source_url": "https://www.gov.uk/government/publications/an-inspection-of-contingency-asylum-accommodation-november-2023-june-2024",
       "published_date": "2024-10-24",
-      "retrieved_date": "2026-07-27",
+      "retrieved_date": "2026-08-11",
       "notes": "Around £20: the Home Office's own figure, from its April 2024 business case, quoted by the ICIBI at paragraph 5.14. Dispersal is non-hotel accommodation, mostly houses and flats. Approximate, so read it as about £20. The gap with the hotel rate is a major reason accommodation type drives the bill, though the number of people housed and the accommodation mix matter too.",
       "confidence_level": "estimated"
     },
@@ -127,7 +127,7 @@
       "source_id": "nao",
       "source_url": "https://www.nao.org.uk/wp-content/uploads/2025/05/home-offices-asylum-accommodation-contracts.pdf",
       "published_date": "2025-05-07",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Lifetime cost of the seven regional Asylum Accommodation and Support Contracts, held by three suppliers, now projected at £15.3bn, more than triple the original estimate of £4.5bn. THIS NOTE SAID 'the three contracts' UNTIL 3 AUGUST 2026, which conflated the seven contracts with the three suppliers holding them; HC 874 states both. This is a projection over the contract life, NOT an annual figure.",
       "confidence_level": "official"
     },
@@ -143,7 +143,7 @@
       "source_id": "obr",
       "source_url": "https://obr.uk/frs/fiscal-risks-and-sustainability-september-2024/",
       "published_date": "2024-09-12",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "A STYLISED ILLUSTRATION read from OBR's Chart 4.13 (corrected 14 November 2024), not a figure OBR prints. It shows the cumulative net fiscal contribution of a representative migrant arriving at 25 on the UK average wage, modelled as an individual with no dependants; OBR compares a UK resident on the same basis and makes no assumption that migrants are childless (real-world dependants average about 0.3 per main applicant). OBR states no single value and singles out no endpoint age; the chart runs to age 100, so the site has to pick one and does. THE AGE IS 82, CHOSEN BY THE OWNER ON 3 AUGUST 2026 because it is the life expectancy OBR's own text gives an average person in 2028, and so is the only candidate age OBR states a reason for. The chart's own data gives the average-wage migrant 297.297 at age 82 on an axis labelled 'Cumulative fiscal impact (£ thousand)', which is the £297,000 here, rounded to the nearest thousand. THIS RECORD PUBLISHED £341,000 UNTIL THAT DAY, which was the age-80 point and was written down nowhere: the far-end trace found the age, not the figure. The age decides the sign as well as the size, and that is why it is recorded: the same series peaks at £533,832 at age 66 and is -£308,275 at age 100 where the chart ends. The same analysis finds a low-wage migrant a net cost and a high-wage one a larger positive; the result is highly sensitive to age, earnings and children. Do not present as a typical or average figure.",
       "confidence_level": "estimated"
     },
@@ -159,7 +159,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/the-fiscal-impact-of-immigration-in-the-uk/",
       "published_date": "2026-06-23",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "A RANGE, NOT A POINT ESTIMATE. Across separate pre-Brexit static studies of the migrant population, the net fiscal impact is small in magnitude, under 1% of GDP, positive in some studies and negative in others. These are different studies of different periods, groups and methods, not one estimate with an uncertainty band, so there is no single correct figure. No analysis covers the whole post-Brexit immigration system. Never render this as \"1% of GDP\". Method-dependent and contested; dynamic (lifetime) studies tend more positive, static (snapshot) studies more mixed. THE date FIELD IS THE NEWEST STUDY'S PERIOD END, 5 August 2026, and it held the briefing's publication date until then. Table 1 of the briefing runs from Dustmann and Frattini on 1995-2011 to Oxford Economics on FY 2016/17, so the range this record holds is nine years older than the summary that reports it, and a date of 2026 said the opposite. Nothing caught it: validate-data's period check asks only that the date's year appear in period_label, and the label named the briefing's own June 2026 publication, so the check was satisfied by the very thing that made the date wrong. The label now names the span the studies cover AND NOTHING ELSE, which is the half that makes the check bind: naming the briefing's June 2026 publication in it, as it did, would still have let a 2026 date through. The briefing's date is in published_date and in source_name, which is where it belongs. Probed rather than reasoned: with this label a date of 2026-06-23 is refused and 2017-03-31 is accepted. There is no single period end here and 31 March 2017 is the newest one, chosen because a reader asking how current this is should be told the most recent evidence in it, not the oldest.",
       "confidence_level": "estimated",
       "value_type": "range",
@@ -178,7 +178,7 @@
       "source_id": "ons-emp06",
       "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
       "published_date": "2026-05-19",
-      "retrieved_date": "2026-08-05",
+      "retrieved_date": "2026-08-11",
       "notes": "Read from the primary table, not from a briefing about it: the Country of birth rates sheet gives 80.39374408928576 for the Total EU (EU27) column at Oct-Dec 2025, and this record rounds it to one decimal place, which is what makes it calculated rather than official. The Migration Observatory labour market briefing it used to cite prints no decimal percentage anywhere and so never contained this value; searching it for the stems 80 and 74 returns nothing at all. EU-born employment rate has exceeded UK-born and non-EU since about 2006. ONS labels EMP06 official statistics in development and warns that volatility remains in Labour Force Survey estimates for mid-2023 and through 2024, advising users to read long-term movements rather than short-term changes.",
       "confidence_level": "calculated"
     },
@@ -194,7 +194,7 @@
       "source_id": "ons-emp06",
       "source_url": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06",
       "published_date": "2026-05-19",
-      "retrieved_date": "2026-08-05",
+      "retrieved_date": "2026-08-11",
       "notes": "Read from the primary table, not from a briefing about it: the Country of birth rates sheet gives 74.68465773259211 for the UK column at Oct-Dec 2025, and this record rounds it to one decimal place, which is what makes it calculated rather than official. The same sheet gives 75.12462839533842 for Total non-EU in that quarter, which is the 'about 75.1%' this note already carried while the record cited a briefing that prints no decimal at all. The aggregate comparison masks a gender split: migrant men have higher employment than UK-born men, but migrant women have lower employment than UK-born women. ONS labels EMP06 official statistics in development.",
       "confidence_level": "calculated"
     },
@@ -210,7 +210,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-labour-market-an-overview/",
       "published_date": "2026-05-15",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "About 5.9 million of UK employees were adult migrants (roughly a fifth of the workforce). THE BASE IS NOT FOREIGN-BORN, WHICH IS WHAT THIS RECORD USED TO BE NAMED FOR: the section carrying the figure defines its 'adult migrants' as 'people who were non-UK citizens when they first registered for a national insurance number', which is HMRC payroll data rather than a country-of-birth survey. The briefing's Understanding the Evidence box states the same distinction for the whole document: 'By contrast, figures from HMRC data on employment counts and employee earnings define migrants as individuals who had a non-UK nationality when they applied for a National Insurance Number.' The same section gives 20% and 6.5 million for the share of employee JOBS on that definition, against 19% and 5.9 million for employees, the difference being multiple job holding rather than a different population. The two are easy to confuse and this record is the second one. Definitions of 'migrant' vary (foreign-born vs non-UK nationality) by dataset.",
       "confidence_level": "provisional"
     },
@@ -226,7 +226,7 @@
       "source_id": "commons-library",
       "source_url": "https://commonslibrary.parliament.uk/research-briefings/cbp-7783/",
       "published_date": "2025-11-26",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "About 325,000 of about 1.5 million staff reported a non-British nationality. England only, and the base excludes the 1.3% of staff whose nationality is unknown. The full briefing gives 21.3% and states doctors at 36.3% and nurses at 30.0% ON THAT SAME BASE, in one sentence. Its landing page separately prints the rounded 36% and 30% against a 19% for staff overall, and that sentence cites a different dataset, the supplementary information files rather than the staff-in-post tables. Re-including the unknowns does not explain the gap: it moves 21.3% to about 21.0%, nowhere near 19%.",
       "confidence_level": "official"
     },
@@ -242,7 +242,7 @@
       "source_id": "skills-for-care",
       "source_url": "https://www.skillsforcare.org.uk/Adult-Social-Care-Workforce-Data/workforceintelligence/resources/Reports/National/The-state-of-the-adult-social-care-sector-and-workforce-in-England-2025.pdf",
       "published_date": "2025-09-30",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "Skills for Care prints no non-British share. It states that 69% of the local authority and independent sector workforce had a British nationality in 2024/25, so 31% is 100 minus that, and the two components it publishes for the same base, 25% non-EU and 6% EU, reconcile to the same 31%. THE BASE IS NARROWER THAN THIS RECORD'S NAME: for the whole workforce, including direct payment recipients, the report gives 71% British, which is 29% non-British. Non-EU share has risen from 10% to 25% since 2021-22, around 245,000 filled posts. Overseas arrivals to care roles fell from 105,000 (2023-24) to 50,000 (2024-25).",
       "confidence_level": "calculated"
     },
@@ -258,7 +258,7 @@
       "source_id": "ho-ara",
       "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2025-to-2026",
       "published_date": "2026-07-14",
-      "retrieved_date": "2026-08-10",
+      "retrieved_date": "2026-08-11",
       "notes": "The total Immigration Health Surcharge, from the Home Office's own accounts, which print no total and give it in two places. SUPERSEDED FROM THE 2024-25 EDITION ON 10 AUGUST 2026, the 2025-26 accounts having been opened and read rather than assumed to restate it. For 2025-26 the department retained 2,318,923 thousand and the amount payable to the Consolidated Fund is nil, so the total is 2,318,923 thousand and the two-part construction that produced the old figure no longer applies. The 2024-25 figure this record carried was 2,420,109 thousand retained plus 200,769 thousand payable, together 2,620,878 thousand, published as £2.6 billion; the 2025-26 accounts reprint both of those as comparatives, which is how the move was checked in both directions. THE MIGRATION OBSERVATORY PUBLISHED £2.4bn FOR 2024-25 AND WAS NOT DISAGREEING: that was the retained half alone, and the same distinction applies to any figure quoted for this year. The surcharge rose 66% in February 2024 (standard rate £624 to £1,035 per year), estimated to raise about £1.1bn extra per year.",
       "confidence_level": "calculated"
     },
@@ -274,7 +274,7 @@
       "source_id": "ho-ara",
       "source_url": "https://www.gov.uk/government/publications/home-office-annual-report-and-accounts-2025-to-2026",
       "published_date": "2026-07-14",
-      "retrieved_date": "2026-08-10",
+      "retrieved_date": "2026-08-11",
       "notes": "Separate from the Immigration Health Surcharge (about £2.3bn) and the employer Immigration Skills Charge, so total immigration-related revenue is higher than this figure alone. SUPERSEDED FROM THE 2024-25 EDITION ON 10 AUGUST 2026. The 2025-26 accounts print visa and immigration income as 3,574,088 thousand, which is £3.57bn; £3.6 billion is this site rounding it. The 2024-25 figure this record carried was 2,978,355 thousand, £2.98bn, rounded to £3 billion, and the new edition reprints it unchanged as its comparative. TWO TABLES IN THE SAME DOCUMENT DISAGREE BY SEVEN THOUSAND: the Fees and Charges disclosure prints 3,574,081 for the In-Country and Overseas stream against Note 3's 3,574,088. Note 3 is the audited financial statement and is what this record reads, which is also what the 2024-25 record read.",
       "confidence_level": "calculated"
     },
@@ -290,7 +290,7 @@
       "source_id": "mac",
       "source_url": "https://www.gov.uk/government/publications/review-of-salary-requirements/review-of-salary-requirements-accessible",
       "published_date": "2025-12-18",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "The MAC recommends keeping the threshold at £41,700, finding this maximises fiscal benefits. It found that raising it to £52,500 would cut net migration by only about 2,900 to 5,100 a year but cost public finances about £520m to £710m, illustrating that cutting migration via salary thresholds can be fiscally counter-productive because fiscal gains concentrate among the highest earners. Those option figures are option 5 of Table 2.5 of the review, which prints them without thousands separators and in millions; the fiscal pair is also in the review's summary prose. The covering letter this record cited until 3 August 2026 announces the review and states £41,700, but carries none of them, and neither does the annual report.",
       "confidence_level": "official"
     }
