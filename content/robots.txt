@@ -19,9 +19,12 @@
 # THE REFUSAL LIST BELOW IS A SNAPSHOT AND WILL GO STALE. It names the tokens that keep this
 # site's content out of model training: crawlers whose operators document them as gathering data
 # to train, AND the control tokens some operators use instead, which crawl nothing and only say
-# how data their sibling already took may be used. Google-Extended and Applebot-Extended are the
-# second kind. Apple states it outright, "Applebot-Extended does not crawl webpages", so a header
-# saying every entry gathers data was false of them; it said that until 11 August 2026.
+# how data their sibling already took may be used. Google-Extended, Applebot-Extended and
+# Webzio-Extended are the second kind. Apple states it outright, "Applebot-Extended does not crawl
+# webpages", and Webz.io describes Webzio-extended as taking "the data collected by Webzio" and
+# "tagging the data as usable or not usable for AI/ML training". A header saying every entry
+# gathers data was false of all three; it said that until 11 August 2026, and this sentence named
+# two of the three for several hours after, which is the same enumeration defect one layer down.
 # A crawler that is not on the list is
 # allowed, which is the safe direction for this site and means the list has to be re-read
 # rather than assumed. Check it against the operators' own published documentation. Every
@@ -51,7 +54,11 @@
 # the work went unnamed. Nothing behaved differently, because no Meta crawler answers to the name
 # this file used; what was wrong was the explanation, on a site whose product is explanations. It
 # was caught by doing what the line above tells the reader to do. Diffbot and Omgilibot sell web data rather than
-# training on it; Webzio-Extended, which IS refused, is Webz.io's own training token.
+# training on it; Webzio-Extended, which IS refused, is Webz.io's training-consent token rather
+# than a crawler, on its own documentation at webz.io/bot.html. **This was the one claim in this
+# file that could not be verified on 11 August 2026**, two routes to Webz.io's documentation having
+# failed with a 404 and a DNS failure; it was recorded as unverified rather than counted, and a
+# third route found the page. A failed fetch is a fact about the fetch.
 
 User-agent: *
 Disallow:

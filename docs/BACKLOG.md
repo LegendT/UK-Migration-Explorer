@@ -991,9 +991,14 @@ grade decisions its first bullet waits on.
   `Google-Extended` and `Applebot-Extended` crawl nothing and only signal how a sibling's data may
   be used; and `CCBot` is refused for what its corpus feeds rather than for anything Common Crawl
   documents. All six are corrected in the file except this one, because only this one changes what
-  the site does. **`Webzio-Extended` is the one claim still unverified**: both routes to Webz.io's
-  documentation failed, one 404 and one DNS failure, which is a fact about the fetches and not
-  about the token. **NOT YET APPLIED, and it gates The
+  the site does. **`Webzio-Extended` was recorded as unverified and then verified on a third
+  route**, `webz.io/bot.html`, after a 404 and a DNS failure on the first two: Webz.io describes it
+  as taking "the data collected by Webzio" and "tagging the data as usable or not usable for AI/ML
+  training", so it is a consent token rather than a crawler, and the file said "training token".
+  **Finding that corrected the correction**: the header rewritten hours earlier named
+  `Google-Extended` and `Applebot-Extended` as the control tokens and missed this third one, an
+  enumeration going stale inside the change that introduced it. Twenty-five names checked, seven
+  claims wrong, one decision open. **NOT YET APPLIED, and it gates The
   order's item 18.**
 - **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
   and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from
