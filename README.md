@@ -12,7 +12,7 @@ selection criteria are published rather than assumed.
 
 ## Status
 
-Built and not yet launched. A static site from a governed data layer of metric records and four
+Launched. A static site from a governed data layer of metric records and four
 timeseries of dated points, on Eleventy 3, with charts rendered as inline SVG at build time and
 no client-side JavaScript anywhere. **How many pages, how many of each, and how many of the records reach a
 reader rather than being held as unpublished reserve, is what `npm run validate` and
@@ -21,7 +21,12 @@ sentence admitting that nothing checked them, and they were wrong by then: the c
 derived by `lib/published.mjs` and every record added moves them. A number in prose beside a
 run that computes it is the defect this project spends most of its checks on. The site is
 crawlable: `content/robots.txt` was rewritten under backlog call 26 to admit retrieval agents
-that emit a linked citation and refuse crawlers documented as collecting training data. **The
+that emit a linked citation and refuse crawlers documented as collecting training data.
+**This section opened "Built and not yet launched" until 11 August 2026**, three sentences above
+its own statement that the site is crawlable and that the notice had gone with it. The launch
+changeset rewrote the paragraph and left its first four words standing, so the shortest and
+most-read line in the repository contradicted the rest of its own paragraph. Nothing checks this
+file. **The
 pre-launch notice went with it**, in the same change rather than a later one, because it existed
 to cover a site reachable by URL while every crawler was refused, and a page served from the
 commit that launches saying the site is not launched yet would be false. **The launch domain was decided on 4 August 2026 and is
@@ -93,7 +98,7 @@ settled.** `last_reviewed` carries 27 July on the ten pages the review actually 
 six keep their older dates, because that field records what a review READ rather than when a page
 was corrected. The pre-launch banner was corrected rather than removed. And the review is recorded
 as passed in `CHANGELOG.md` on 6 August 2026, its scope stated as three named routes rather than
-one word, because the pages did not all reach it the same way. The banner goes at launch.
+one word, because the pages did not all reach it the same way. The banner went with the launch.
 Outstanding work is tracked
 in `docs/BACKLOG.md`, which is the durable list; this file does not restate it.
 
