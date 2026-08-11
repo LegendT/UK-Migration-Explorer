@@ -447,6 +447,19 @@ for (const file of pages) {
   if (!claimsFigures && hasFigures) {
     errors.push(`${where}: the page renders a figure and the review footer does not say the figures are not a live count. The carriesAFigure filter missed a route that puts a figure on a page.`);
   }
+  // The date in that sentence is derived by the figure-currency transform from the records the
+  // page renders. A page it could not date keeps the word "pending", and that must fail rather
+  // than ship: a footer promising a currency date and printing a placeholder is worse than the
+  // welded sentence this replaced. Two pages have no citation block at all, so the token route is
+  // the only thing dating them, and nothing else would notice if it stopped resolving.
+  if (claimsFigures) {
+    const stamped = /<time class="figure-currency" datetime="(\d{4}-\d{2}-\d{2})">/.exec(html);
+    if (!stamped) {
+      errors.push(`${where}: the review footer says when its figures were checked and carries no resolved date. The figure-currency transform in eleventy.config.js found no data-metric ref and no citation datetime on this page, so it left the placeholder.`);
+    } else if (stamped[1] > new Date().toISOString().slice(0, 10)) {
+      errors.push(`${where}: the review footer dates its figures to ${stamped[1]}, which is in the future.`);
+    }
+  }
 }
 
 // --- the sitemap, checked against the pages the build actually produced -----------------

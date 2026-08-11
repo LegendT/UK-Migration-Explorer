@@ -296,9 +296,10 @@ below.
     string in `content/_includes/base.njk` plus the string `scripts/check-build.mjs` matches it on,
     which has to move with it and has to be a phrase the old sentence does not contain, or the check
     passes on both and stops telling them apart. Draft, for the half that renders only where a page
-    carries a figure. **DECIDED AND BUILT, on branch `footer-unweld-figure-currency`**: the owner
-    took the third reading. The footer now says "This page was last reviewed on <date>. Its
-    figures are not a live count", and the weld is gone.
+    carries a figure. **DECIDED AND BUILT (PR #180)**: the owner said "lets do the footer", which
+    is recorded in those words rather than as a reading number, because the entry first read
+    "the owner took the third reading" and that put a specific choice into his mouth. The weld
+    is gone.
     **The recommended draft was wrong and reproducing it before building is what caught that.**
     It ended "each citation says when we last checked that figure against its source", which
     points a reader at something two pages do not have: `/sources-and-method/` and
@@ -309,14 +310,24 @@ below.
     in no version of the retired sentence, which the old sentence's own "not a live count" would
     have satisfied; forcing the sentence onto a page with no figure is caught, and removing it
     from the pages that have one is caught on every one of them.
-    **What this does NOT close is the gap it was raised for, and on two pages it widens it.**
-    `/sources-and-method/` and `/what-the-words-mean/` carried the retired sentence too, so they
-    had a currency claim, a false one, and now have none: no date for their figures in the open
-    and no citation block to hold one. Everywhere else the change trades a wrong date for the
-    citation's right one; there it trades a wrong date for no date. That is defensible, a false
-    date being worse than none, but it is a change to those pages rather than a state they were
-    already in, and nothing in the build asks about it. It is a smaller and more specific thing
-    than the question that started here.
+    **That left two pages with no date at all, and it is closed now**, on branch
+    `footer-derived-currency-date`. `/sources-and-method/` and `/what-the-words-mean/` render
+    live record values through tokens and have no citation block to hold a date, so unwelding
+    took away the only date-bearing claim they had. **The footer now DERIVES the date instead of
+    dropping it**: "every one was checked against its source on or after <date>", computed per
+    page from the records it renders. **That is this item's own goal met in the open**, which is
+    what `retrieved_date` alone could not reach, and it reaches the two pages a citation never
+    could.
+    **Both routes are read, because reading one would speak for the other.** A token renders as
+    `data-metric`, which resolves to a record; a chart or a card renders no ref at all and
+    reaches a reader through a citation block, which now carries a machine-readable `datetime`
+    for exactly this purpose. The EARLIEST wins and the sentence says "on or after", on the same
+    rule `lib/citation.mjs` already applies when merging sources under one name: the latest would
+    tell a reader something was verified more recently than it was.
+    **A page it cannot date keeps the word "pending" and `check-build.mjs` refuses it**, which is
+    the guard this had none of. Probed by disabling the transform and by forcing a future date;
+    each is caught on every page that claims a currency. A footer promising a date and printing a
+    placeholder would be worse than the welded sentence all this replaced.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
