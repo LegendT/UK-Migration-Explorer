@@ -238,7 +238,7 @@ below.
     for the wording around it, batched rather than one at a time.
 
     **Taken by publisher, because one fetch covers a publisher at once**, which is the shape A1's
-    batches used. **The ONS family is re-read, on branch `item-17-source-reread-ons`.** Every ONS
+    batches used. **The ONS family is re-read, on branch `item-17-source-reread-ons` (PR #177).** Every ONS
     record and every ONS series point was checked against a source fetched on 11 August 2026: the
     long-term international migration spreadsheet, the bulletin it accompanies, EMP06, the mid-2024
     population bulletin and the discontinued LTIM 2.00 table. **No published figure moved**, and
