@@ -82,6 +82,14 @@ there, is in .github/workflows/validate-data.yml and changes without this
 file knowing: read the workflow rather than this sentence, and read a
 step's log rather than the job's green tick.
 
+If your item MOVES A PUBLISHED FIGURE, the record is half of it. Lift the
+evidence quote from the source by script rather than typing it:
+check-evidence does not fire on a figure that did not move, so a quote
+written by hand is validated by nothing at the moment it is written. Then
+grep the value across prose, chart summaries, other records' notes and
+every page that cites it, because a citation protects the number and never
+the sentence around it.
+
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. Cut the branch from main before your first EDIT of each item,
 not when you are ready to commit: on 5 August 2026 a session running three
