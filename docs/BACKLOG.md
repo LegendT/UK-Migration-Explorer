@@ -236,6 +236,38 @@ below.
     that implies: a record, an evidence quote lifted from the source, and the pages that cite it.
     **[me]** for the reading and the mechanical updates; **[you]** for any figure that moves and
     for the wording around it, batched rather than one at a time.
+
+    **Taken by publisher, because one fetch covers a publisher at once**, which is the shape A1's
+    batches used. **The ONS family is re-read, on branch `item-17-source-reread-ons`.** Every ONS
+    record and every ONS series point was checked against a source fetched on 11 August 2026: the
+    long-term international migration spreadsheet, the bulletin it accompanies, EMP06, the mid-2024
+    population bulletin and the discontinued LTIM 2.00 table. **No published figure moved**, and
+    every checkable claim in the record notes held against the source as fetched, including each
+    maximum re-derived over the whole column and the nationality and reason breakdowns
+    re-reconciled to their totals. What the run printed is where the numbers are.
+    **It found the shape A1 exists for, in a record and in a series.**
+    `migration/net-migration-2023` and every point of `netMigrationTimeseries` cited the ONS
+    bulletin, and the bulletin prints neither that record's figure nor most of that series. Both now
+    cite the dataset their own evidence entries already named and their siblings already cite, so no
+    value moves. **The absence was established with a control that hit**, because a stem search that
+    could not have matched reads exactly like one that did, and one apparent match here turned out to
+    be a substring of an unrelated figure in another table.
+    **What came back for the owner is below, and none of it is a figure that moved.** First, EMP06: the
+    same sheet that gives this site its Oct-Dec 2025 employment rates also prints Jan-Mar 2026, so
+    both records are a quarter behind their own source, and ONS publishes again on 18 August 2026.
+    Moving them moves published figures, and doing it now means doing it twice inside a week;
+    the recommendation is to move them once, at that release. Second, edition comparability: a
+    record citing the LTIM dataset landing page cannot be compared by `check-releases.mjs`, which
+    reads the edition out of the URL, and the fix above adds to the citations in that position
+    rather than creating it. Citing the edition-bearing spreadsheet file directly, as this site
+    already does for the Home Office `.ods` tables, would restore the comparison for all of them;
+    that reaches records this batch did not touch, so it is a call rather than a tidy.
+    **And a check that gates nothing is failing on `main`, found by running it here**:
+    `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
+    is open because it is the launch. The bullet names it as the thing that needed retargeting
+    rather than as the record of work, and the retarget is done, `gh pr view 168` now reporting
+    `main` as its base. The check cannot tell those two uses apart. Left as found: it is R7's
+    text, under a closed item, and rewriting it here would be a second deliverable.
 18. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
     guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
     delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
