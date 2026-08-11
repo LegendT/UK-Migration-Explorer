@@ -1,6 +1,6 @@
 {
   "theme": "Net migration and visas",
-  "lastUpdated": "2026-08-05",
+  "lastUpdated": "2026-08-11",
   "note": "Net migration figures come from ONS Long-term international migration (year ending December 2025, provisional, published 21 May 2026). Visa-grant figures come from Home Office Immigration system statistics (year ending March 2026). The two sources are not interchangeable: ONS counts people staying 12 months or more; the Home Office counts visas granted, which is always higher. ONS reason splits are for non-EU+ arrivals (inflow), not net migration by reason.",
   "metrics": [
     {
@@ -16,7 +16,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Provisional. Nearly halved from the year ending December 2024; lowest since early 2021.",
       "confidence_level": "provisional"
     },
@@ -33,7 +33,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Originally published as 431,000 (May 2025), revised to about 345,000 (November 2025) and to 331,000 here, largely due to higher British emigration estimates.",
       "confidence_level": "provisional"
     },
@@ -46,11 +46,11 @@
       "date": "2023-12-31",
       "period_label": "year ending December 2023",
       "geography": "United Kingdom",
-      "source_name": "ONS, Long-term international migration, provisional: year ending December 2025, Table 1",
+      "source_name": "ONS, Long-term international immigration, emigration and net migration flows, provisional: year ending December 2025, Table 1",
       "source_id": "ons-ltim",
-      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
+      "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The earlier end of the fall the refused-arrivals claim page describes, held as a record because that page is markdown and only a Nunjucks chart summary can cite a series point directly. It declares series_ref, so a release cannot revise the point and leave this behind. NOT A SECOND HOME FOR net-migration-2, which is the same series at 2024: this one is 2023.",
       "confidence_level": "provisional"
     },
@@ -66,7 +66,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "THIS IS A MAXIMUM, SO RE-DERIVE IT AT EVERY RELEASE RATHER THAN CARRYING IT FORWARD. It is the largest of the 55 year-ending periods in Table 1 of the accompanying dataset, which runs from the year ending June 2012 to the year ending December 2025 quarterly, and the maximum is unique: no other period reaches it. The bulletin calls it a peak in its own words, and the table is what establishes that no period the bulletin does not mention exceeds it. The calendar-year series charted on /migration/ cannot show this period at all, which is why the figure exists here: the highest calendar year on that series is 2022. Not comparable with the discontinued International Passenger Survey basis, whose highest estimate is far lower and answers a different question.",
       "confidence_level": "provisional"
     },
@@ -83,7 +83,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Provisional. Down 20% from the updated year ending December 2024, which is held as its own record below rather than restated here, as are the peak it has fallen from and the non-EU+ share of it, about 77%.",
       "confidence_level": "provisional"
     },
@@ -100,7 +100,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The earlier end of the immigration fall the net-migration-is-arrivals claim page describes. Held as a record because that page is markdown and only a Nunjucks chart summary can cite a series point directly; series_ref keeps it in step with the point. The highest calendar year on this series, which is not the same as the highest twelve-month estimate ONS publishes: that falls in the year ending March 2023 and has its own record.",
       "confidence_level": "provisional"
     },
@@ -117,7 +117,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The later end of that fall, and the figure the current headline is measured against. Revised in this release, marked R by ONS.",
       "confidence_level": "provisional"
     },
@@ -133,7 +133,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "THIS IS A MAXIMUM, SO RE-DERIVE IT AT EVERY RELEASE RATHER THAN CARRYING IT FORWARD, on the same terms as the net migration peak above: largest of the 55 year-ending periods in Table 1 of the accompanying dataset, unique, and called a peak by the bulletin in its own words. It falls in the same period as the net migration peak, which is a coincidence of this vintage and not a rule: emigration peaks elsewhere, in the year ending March 2025 on this release.",
       "confidence_level": "provisional"
     },
@@ -149,7 +149,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-30",
+      "retrieved_date": "2026-08-11",
       "notes": "Provisional. Non-EU+ is a nationality grouping, not a route or a visa type. Read from Table 1 of the accompanying dataset rather than the bulletin narrative: the three nationality groups reconcile exactly to the all-nationalities total, 110,000 British plus 76,000 EU+ plus 627,000 non-EU+ equals 813,000. It is the denominator ONS uses for its reason-for-immigration breakdown, which it publishes for this group only.",
       "confidence_level": "provisional"
     },
@@ -166,7 +166,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Provisional. Down from the updated year ending December 2024, which is held as its own record below rather than restated here.",
       "confidence_level": "provisional"
     },
@@ -183,7 +183,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The earlier end of the emigration rise the net-migration-is-arrivals claim page describes. It is the half of that argument the page exists for: emigration moved UP while both other figures moved down, so the fall in net migration is not a fall in arrivals. Held as a record because that page is markdown and only a Nunjucks chart summary can cite a series point directly.",
       "confidence_level": "provisional"
     },
@@ -200,7 +200,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The later end of that rise, and the highest calendar year on this series. Revised in this release, marked R by ONS: the upward revision to British emigration is what moved the year ending December 2024 net migration estimate down across three vintages.",
       "confidence_level": "provisional"
     },
@@ -216,7 +216,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "47% of non-EU+ immigration; the largest single reason. The main applicant and dependant split is held as two records of its own rather than restated here.",
       "confidence_level": "provisional"
     },
@@ -232,7 +232,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "A main applicant is the person the visa was granted to, not a household. With the dependant record below it sums exactly to the study-related total above, which is what establishes that the two are the whole of that category and not a selection from it. The bulletin gives both in prose and Table 4b gives both as cells.",
       "confidence_level": "provisional"
     },
@@ -248,7 +248,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The dependants of study main applicants, counted as long-term arrivals in their own right. Far smaller than the work equivalent, which is the whole reason the split is published: the two categories are not the same shape. Do not read it as a rate per student, because both figures count arrivals in the same period rather than a cohort and its family.",
       "confidence_level": "provisional"
     },
@@ -264,7 +264,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "23% of non-EU+ immigration; down 47% on the previous year, which is held as its own record rather than restated here. ONS states that percentage in the bulletin and computes it on unrounded figures, so it does not reproduce exactly from the two rounded ends. Re-read at the source on 5 August 2026, in the sentence that carries this record's own figure: the fall is stated there and in the bulletin's opening summary. Do NOT verify it by searching that release for '47%'. The same release prints 47% as the study-related share of non-EU+ immigration, a different measure entirely, and a search lands on it first. The main applicant and dependant split is held as two records of its own, on the same rule. The main driver of the fall in net migration.",
       "confidence_level": "provisional"
     },
@@ -280,7 +280,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The people the work visa was granted to. Fewer than their dependants, which is the reverse of the study split and is the point the chart's note is making. With the dependant record below it sums to one thousand less than the work-related total above; that is rounding, not a missing category, and the release says so on its cover sheet: every estimate is individually rounded to the nearest thousand while the calculations are done on unrounded numbers.",
       "confidence_level": "provisional"
     },
@@ -296,7 +296,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The dependants of work main applicants. The bulletin describes them as just over half of work-related arrivals, so this is the larger half of that split and not a footnote to it. Whether a dependant may work is a visa-route question this figure does not answer: it counts long-term arrivals classified by the reason the main applicant came.",
       "confidence_level": "provisional"
     },
@@ -312,7 +312,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The comparison figure behind the fall stated on /migration/, held as a record for the reason net-migration-2 is: a prior-year figure is revised by the release that publishes it, so freezing it in prose would put a superseded number beside a current one. Revised in this release, marked R by ONS. Read from Table 4b, All Work Related, and confirmed by the bulletin, which gives it in brackets beside the percentage. The percentage itself is deliberately not a record: it is ONS's own published figure, a reader following the source link finds it, and minting it would leave three figures that must move together with nothing to keep them in step.",
       "confidence_level": "provisional"
     },
@@ -328,7 +328,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "ASYLUM APPLICANTS ONLY, 14% of non-EU+ immigration. Humanitarian is a separate ONS category, about 6%, and is NOT in this figure; family is about 7%. Labelling this bar or row 'asylum and humanitarian' understates the combined category and misstates this one. Includes those who claimed asylum after regular arrival and via illegal entry.",
       "confidence_level": "provisional"
     },
@@ -344,7 +344,7 @@
       "source_id": "ons-ltim",
       "source_url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-04",
+      "retrieved_date": "2026-08-11",
       "notes": "Calculated by this project: 88,000 asylum-related long-term immigration, ONS Table 4b, divided by 813,000 total long-term immigration, ONS Table 1, both provisional and both year ending December 2025, is 10.82%, shown here as 10.8%. ONS PUBLISHES ITS REASON BREAKDOWN AGAINST NON-EU+ ARRIVALS ONLY and states no share of all immigration, which is why this is derived rather than read off a release. Both inputs are rounded to the nearest thousand by ONS and the share holds at 10.8% across the whole rounding interval, 10.76% to 10.89%, so the rounding does not reach the published digit. ASYLUM APPLICANTS ONLY, on the same basis as the numerator: humanitarian is a separate ONS category and is not in it. The companion figure is the 14% share of non-EU+ arrivals, the same numerator over a smaller denominator, which is the framing ONS itself uses.",
       "confidence_level": "calculated"
     },
