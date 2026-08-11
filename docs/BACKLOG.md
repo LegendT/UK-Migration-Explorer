@@ -582,20 +582,18 @@ below.
     not. One rule covers all six: an entry audited on the base branch may stop being audited only
     because its record moved. It is under *Completed*.
 
-26. **NOT A GATE, and it is the first thing AFTER launch. Bring `docs/UPDATING-DATA.md` up to
-    date for a site that has readers.** The owner asked for a document telling him what to do to
-    keep the site current. **It exists**: that file already carries when to update, what to do
-    before touching anything, the procedure, when to stop and ask, what the procedure does not
-    establish, and a worked example. So this is not writing a second one, which is the rule this
-    file opens with. What it needs is the half that only becomes true at launch: `robots.txt` now
-    admits crawlers rather than refusing them, Search Console exists and is where success measure
-    two is read, corrections arrive from strangers through the issue tracker rather than from the
-    owner, and the release checker's weekly issue is now something a person is expected to answer
-    rather than a report nobody reads. **Read it against what the site actually does before
-    editing it**, because it was written for a site with no readers and the parts that rotted will
-    not announce themselves. **[me]**, with the cadence commitment on `/sources-and-method/`
-    checked against whatever this ends up saying, since that page makes a promise to a reader that
-    this document has to keep.
+26. **CLOSED 11 August 2026 (PR #190).** `docs/UPDATING-DATA.md` is up to date for a site that has readers.
+    **Reading it against what the site does, as this entry asked, found three live defects that had
+    nothing to do with launch** and would have sent a session wrong: it said five metrics declare
+    `series_ref` where eleven do, and that one was Home Office where two are, while a passage
+    eleven sections earlier already carried the correction and said to count from the data; it said
+    only the asylum backlog series lacked a protecting metric, when `asylum/asylum-backlog-2019`
+    declares one; and it aged an "other eight cited sources" count the release run prints for
+    itself. **One of the four launch facts this entry listed was not true and is written as
+    absent**: Search Console does not exist, it is the owner's to set up, and nothing in the
+    procedure depends on it. **The cadence commitment checks out**: `/sources-and-method/` promises
+    to update within one month of each of the three cadenced releases, and the runbook's *When*
+    section names the same three and the same month. It is under *Completed*.
 
 27. **NOT A GATE, and it is for after launch. The footer's currency date is read back out of the
     built HTML, and a rendering path that leaves no trace would narrow it in silence.** The
@@ -1665,6 +1663,9 @@ Kept so that a future session can see what was decided and when, rather than reo
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
 
+- **`docs/UPDATING-DATA.md` brought up to date for a site with readers, The order's item 26**,
+  11 August 2026. PR #190. The launch half it named, plus a correction-from-a-reader path, plus three stale
+  facts found by reading it against the data rather than editing on top of it.
 - **R6's two labelling points, The order's item 24**, 11 August 2026. PR #184.
 - **An evidence entry retiring itself, The order's item 25**, 11 August 2026. PR #185.
 - **The pre-launch sweep's gate, The order's item 15**, 10 August 2026. PR #170, closing R7.
