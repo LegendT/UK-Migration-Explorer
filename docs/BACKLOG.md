@@ -286,8 +286,27 @@ below.
     string in `content/_includes/base.njk` plus the string `scripts/check-build.mjs` matches it on,
     which has to move with it and has to be a phrase the old sentence does not contain, or the check
     passes on both and stops telling them apart. Draft, for the half that renders only where a page
-    carries a figure: "Its figures are not a live count: each citation says when we last checked
-    that figure against its source." **[you]**, and nothing is built either way.
+    carries a figure. **DECIDED AND BUILT, on branch `footer-unweld-figure-currency`**: the owner
+    took the third reading. The footer now says "This page was last reviewed on <date>. Its
+    figures are not a live count", and the weld is gone.
+    **The recommended draft was wrong and reproducing it before building is what caught that.**
+    It ended "each citation says when we last checked that figure against its source", which
+    points a reader at something two pages do not have: `/sources-and-method/` and
+    `/what-the-words-mean/` render live record values through tokens and carry no citation block
+    at all. A sentence true on most pages and false on two is the defect the change exists to
+    remove, so the replacement promises no location and states only what holds everywhere.
+    **The check moved with it and was probed in both directions**: the phrase it matches appears
+    in no version of the retired sentence, which the old sentence's own "not a live count" would
+    have satisfied; forcing the sentence onto a page with no figure is caught, and removing it
+    from the pages that have one is caught on every one of them.
+    **What this does NOT close is the gap it was raised for, and on two pages it widens it.**
+    `/sources-and-method/` and `/what-the-words-mean/` carried the retired sentence too, so they
+    had a currency claim, a false one, and now have none: no date for their figures in the open
+    and no citation block to hold one. Everywhere else the change trades a wrong date for the
+    citation's right one; there it trades a wrong date for no date. That is defensible, a false
+    date being worse than none, but it is a change to those pages rather than a state they were
+    already in, and nothing in the build asks about it. It is a smaller and more specific thing
+    than the question that started here.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
