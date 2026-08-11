@@ -248,20 +248,24 @@ below.
     **It found the shape A1 exists for, in a record and in a series.**
     `migration/net-migration-2023` and every point of `netMigrationTimeseries` cited the ONS
     bulletin, and the bulletin prints neither that record's figure nor most of that series. Both now
-    cite the dataset their own evidence entries already named and their siblings already cite, so no
-    value moves. **The absence was established with a control that hit**, because a stem search that
+    cite the dataset page their siblings already cite, so no value moves. **That reduces the defect
+    rather than closing it, and this says so because the pull request first claimed otherwise**: the
+    dataset landing page prints no figure either, its whole content being links to the spreadsheet,
+    and the evidence entries name that spreadsheet FILE rather than the page. The far end is the
+    file, and what the citations should point at is the second question below. **The absence was established with a control that hit**, because a stem search that
     could not have matched reads exactly like one that did, and one apparent match here turned out to
     be a substring of an unrelated figure in another table.
     **What came back for the owner is below, and none of it is a figure that moved.** First, EMP06: the
     same sheet that gives this site its Oct-Dec 2025 employment rates also prints Jan-Mar 2026, so
     both records are a quarter behind their own source, and ONS publishes again on 18 August 2026.
     Moving them moves published figures, and doing it now means doing it twice inside a week;
-    the recommendation is to move them once, at that release. Second, edition comparability: a
-    record citing the LTIM dataset landing page cannot be compared by `check-releases.mjs`, which
-    reads the edition out of the URL, and the fix above adds to the citations in that position
-    rather than creating it. Citing the edition-bearing spreadsheet file directly, as this site
-    already does for the Home Office `.ods` tables, would restore the comparison for all of them;
-    that reaches records this batch did not touch, so it is a call rather than a tidy.
+    the recommendation is to move them once, at that release. Second, what the LTIM citations
+    should point at. The dataset landing page contains no figure, so a citation resting on it
+    still fails A1's standard that the named source CONTAINS the figure, and it carries no edition
+    either, so `check-releases.mjs` cannot compare it. Citing the edition-bearing spreadsheet file,
+    which is what the evidence entries already name and what this site already does for the Home
+    Office `.ods` tables, answers both at once. It reaches records this batch did not touch, so it
+    is a call rather than a tidy.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
