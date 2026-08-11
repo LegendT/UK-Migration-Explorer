@@ -324,6 +324,13 @@ below.
     for exactly this purpose. The EARLIEST wins and the sentence says "on or after", on the same
     rule `lib/citation.mjs` already applies when merging sources under one name: the latest would
     tell a reader something was verified more recently than it was.
+    **The sentence takes the form the page's own dates justify.** Where every figure on a page was
+    checked the same day, which is the common case, it says "they were all checked against their
+    sources on <date>"; where they differ it says "every one was checked against its source on or
+    after <date>" and gives the earliest. One form for both would have hedged the common case for
+    no reason, on a site whose subject is precision about figures. `check-build.mjs` matches the
+    `<time>` element and the unchanged first clause rather than either wording, so neither form
+    can quietly stop being checked.
     **A page it cannot date keeps the word "pending" and `check-build.mjs` refuses it**, which is
     the guard this had none of. Probed by disabling the transform and by forcing a future date;
     each is caught on every page that claims a currency. A footer promising a date and printing a

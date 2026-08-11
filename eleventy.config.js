@@ -453,9 +453,16 @@ export default function (eleventyConfig) {
     for (const [, iso] of content.matchAll(/<time datetime="(\d{4}-\d{2}-\d{2})"/g)) dates.add(iso);
     if (!dates.size) return content;
     const earliest = [...dates].sort()[0];
+    // One date on the page is the common case and "on or after" hedges it for no reason, on a
+    // site whose subject is precision about figures. Two forms rather than one, and the check in
+    // check-build.mjs deliberately matches the <time> element and the unchanged first clause
+    // rather than either wording, so neither form can quietly stop being checked.
+    const clause = dates.size === 1
+      ? ` they were all checked against their sources on <time class="figure-currency" datetime="${earliest}">${longDate(earliest)}</time>`
+      : ` every one was checked against its source on or after <time class="figure-currency" datetime="${earliest}">${longDate(earliest)}</time>`;
     return content.replace(
-      /<time class="figure-currency" datetime="pending">pending<\/time>/,
-      `<time class="figure-currency" datetime="${earliest}">${longDate(earliest)}</time>`);
+      /<span class="figure-currency-clause">.*?<\/span>/s,
+      `<span class="figure-currency-clause">${clause}</span>`);
   });
 
   eleventyConfig.addTransform('published-counts', function (content) {
