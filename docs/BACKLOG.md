@@ -263,6 +263,19 @@ below.
     **DECIDED: they move once, at the 18 August 2026 release, and not before.** Nothing changes
     in the data until then; what changes is that the choice is on the record rather than being a
     thing nobody looked at.
+    **THAT RELEASE IS ONE SITTING AND IT CARRIES MORE THAN THE TWO FIGURES.** Moving them is the
+    first time this data layer has held records read on different days since the re-read, and two
+    things wait on exactly that. Item 27's per-page proof cannot be completed while every record
+    shares one date, because a footer date derived from the earliest is indistinguishable from one
+    derived from any single route when all routes agree: age one record reaching a page only by a
+    chart, and only by a card, and by a token, and check the footer follows each. And this item's
+    own goal becomes readable for the first time, because a page whose figures were read on two
+    days will print "on or after" where every page currently prints "on". **Do all three in the
+    same sitting**, because the differing dates that make the proof possible are the same ones the
+    move creates, and a later session would have to manufacture them.
+    **What the move itself needs**: both records are `calculated` from an unrounded ONS figure, so
+    it is a figure change with an evidence entry lifted from the sheet by script, not a date bump,
+    and the sheet publishes the newer quarter already.
     Second, what the LTIM citations should point at. **DECIDED AND BUILT**: every record and
     series point that cited the dataset landing page now cites the edition-bearing spreadsheet
     file, which is what the evidence entries already name and what this site already does for the
