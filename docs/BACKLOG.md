@@ -994,7 +994,7 @@ grade decisions its first bullet waits on.
   added to the "# Admits:" line, because that line is the named list rather than everything the
   open wildcard group lets through, and naming them is a separate call. Say the word and it is one
   line. Nothing waits on it either way.
-  **Found by checking all 25 crawler names in that file against their operators' documentation on
+  **Found by checking that file's crawler names against their operators' documentation on
   11 August 2026**, which the file has always told its reader to do and which nothing had done.
   Six claims did not survive it. Three named tokens their operator documents nowhere, `FacebookBot`,
   `Gemini-Deep-Research` and `anthropic-ai`; the Apple sentence attributed to Apple a description
@@ -1008,8 +1008,34 @@ grade decisions its first bullet waits on.
   training", so it is a consent token rather than a crawler, and the file said "training token".
   **Finding that corrected the correction**: the header rewritten hours earlier named
   `Google-Extended` and `Applebot-Extended` as the control tokens and missed this third one, an
-  enumeration going stale inside the change that introduced it. Twenty-five names checked, seven
-  claims wrong, one decision open. **NOT YET APPLIED, and it gates The
+  enumeration going stale inside the change that introduced it.
+  **AND THE PASS SAID IT HAD CHECKED THEM ALL WHEN IT HAD NOT.** It reported "all 25 crawler names"
+  in a commit message and here. The file names TWENTY-NINE distinct tokens across its admit list,
+  its refusal groups and its prose, and six had not been read at all: `Bytespider`, `cohere-ai`,
+  `PanguBot`, `Timpibot`, and the two the prose says "sell web data rather than training on it",
+  `Diffbot` and `Omgilibot`. **A completeness claim is a claim, and this one was written by the
+  hand that had spent the day removing other people's**: a wrong count of this project's own state,
+  beside a sweep that can compute it, and an "all" that was never counted. Caught by enumerating
+  the file rather than by re-reading the sentence.
+  **READING THE SIX FOUND THREE MORE UNDOCUMENTED TOKENS AND FALSIFIED A SENTENCE WRITTEN HOURS
+  EARLIER.** Cohere publishes "We do not use Cohere bots or user agents for the purpose of
+  crawling or scraping web content to train generative AI foundation models at this time" with an
+  empty bot table, so `cohere-ai` refuses a crawler its operator says it does not run. Huawei's
+  documented crawler is PetalBot and "PanguBot" is a Huawei Cloud chatbot product; the aspiegel.com
+  page gives PetalBot 39 times and Pangu none, control "crawler" hitting. Timpi documents its
+  crawler as the "Collector" and uses this name nowhere. And ByteDance's own webmaster platform
+  documents Bytespider as a SEARCH crawler, which falsified `content/robots.txt` saying "CCBot is
+  the one entry the training test does not reach": there are five, and the file now names them.
+  **All five stay refused and none of that changes behaviour**, because refusing costs this site
+  nothing and admitting a training crawler by mistake costs it what it is protecting; what changed
+  is that the file stopped implying an operator had said something it had not.
+  **TWO THINGS CAME OUT OF IT FOR THE OWNER, both [you] and neither urgent.** First, whether to drop
+  the four refusals no operator supports, `cohere-ai`, `PanguBot`, `Timpibot` and `Bytespider`, or
+  keep them defensively as now. **Recommended: keep them**, on the file's own reasoning that the
+  cost is asymmetric. Second, **`Webzio` is not named or refused anywhere**: Webz.io retired
+  Omgilibot in July 2024 and its current crawler pair is Webzio and Webzio-extended, of which this
+  file refuses only the second. That is a gap rather than a decision. **Recommended: refuse
+  `Webzio`**, on the same ground the file already refuses its sibling. **NOT YET APPLIED, and it gates The
   order's item 18.**
 - **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
   and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from

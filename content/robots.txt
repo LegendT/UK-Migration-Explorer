@@ -28,11 +28,23 @@
 # A crawler that is not on the list is
 # allowed, which is the safe direction for this site and means the list has to be re-read
 # rather than assumed. Check it against the operators' own published documentation. Every
-# omission below is deliberate. **CCBot is the one entry the training test does not reach**:
-# Common Crawl's own page documents an open repository "universally accessible and analyzable by
-# anyone" and says nothing about training, so it is refused for what its corpus is used for
-# rather than for what its operator says, and that exception is stated here rather than left to
-# look like an oversight.
+# omission below is deliberate. **FIVE ENTRIES ARE REFUSED ON SOMETHING OTHER THAN THEIR
+# OPERATOR'S OWN WORDS, and saying which is the only honest version of this list.** CCBot: Common
+# Crawl's page documents an open repository "universally accessible and analyzable by anyone" and
+# says nothing about training, so it is refused for what its corpus feeds. Bytespider: ByteDance's
+# Toutiao webmaster platform documents it as a SEARCH crawler, "帮助Bytespider收录您的网站", and no
+# ByteDance page stating a training purpose was found. cohere-ai: Cohere's crawler page says "We
+# do not use Cohere bots or user agents for the purpose of crawling or scraping web content to
+# train generative AI foundation models at this time" and its bot table reads N/A, so this refuses
+# a crawler its operator says it does not run. PanguBot: Huawei's documented crawler is PetalBot,
+# and "PanguBot" is a Huawei Cloud chatbot product rather than a crawler. Timpibot: Timpi
+# documents its crawler as the "Collector" and nowhere uses this name, though the user agent is
+# observed in the wild. **All five stay refused, because refusing costs this site nothing and
+# admitting a training crawler by mistake costs it the thing it is protecting.** What changed on
+# 11 August 2026 is that the list stopped implying an operator said something it did not.
+# **THIS PARAGRAPH SAID "CCBot IS THE ONE ENTRY" EARLIER THE SAME DAY.** It was written after
+# checking some of the list and before checking the rest, which is the shape of every other
+# correction in this file.
 # **APPLEBOT IS ADMITTED ON APPLE'S OWN OPT-OUT, NOT ON ITS PURPOSE.** Apple documents that
 # "the data crawled by Applebot may also be used to help train Apple foundation models" and that
 # publishers opt out "by disallowing Applebot-Extended", which this file does. Until 11 August
@@ -55,12 +67,17 @@
 # FacebookExternalHit, so the line named a token that does nothing while the crawler actually doing
 # the work went unnamed. Nothing behaved differently, because no Meta crawler answers to the name
 # this file used; what was wrong was the explanation, on a site whose product is explanations. It
-# was caught by doing what the line above tells the reader to do. Diffbot and Omgilibot sell web data rather than
-# training on it; Webzio-Extended, which IS refused, is Webz.io's training-consent token rather
-# than a crawler, on its own documentation at webz.io/bot.html. **This was the one claim in this
-# file that could not be verified on 11 August 2026**, two routes to Webz.io's documentation having
-# failed with a 404 and a DNS failure; it was recorded as unverified rather than counted, and a
-# third route found the page. A failed fetch is a fact about the fetch.
+# was caught by doing what the line above tells the reader to do.
+# **Diffbot is not refused and its operator gives a better reason than this file did.** It says
+# outright "Diffbot does not crawl pages for training generative AI foundation models" and
+# describes citing what it finds, so it is the admit class rather than merely a data seller.
+# **Omgilibot is the retired name of Webz.io's crawler**, kept here because the token is still
+# sent: Webz.io writes "Omgilibot served us well" in the past tense and names its current pair as
+# Webzio and Webzio-extended. **Webzio itself is named nowhere in this file and is not refused**,
+# which is a gap rather than a decision, and it sits in docs/BACKLOG.md under call 26.
+# Webzio-Extended, which IS refused, is Webz.io's training-consent token rather
+# than a crawler, on its own documentation at webz.io/bot.html: it takes "the data collected by
+# Webzio" and tags it "as usable or not usable for AI/ML training".
 
 User-agent: *
 Disallow:
