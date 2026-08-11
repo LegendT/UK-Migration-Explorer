@@ -33,6 +33,8 @@ the year ending December 2025. Of that, {{migration/non-eu-plus-long-term-immigr
 [non-EU+](/what-the-words-mean/#non-eu-plus)
 nationals, and ONS publishes a breakdown by reason for that group:
 
+{caption}Reasons for long-term immigration of non-EU+ nationals, year ending December 2025
+
 | Reason | People | Share of non-EU+ arrivals |
 | --- | --- | --- |
 | Study | {{migration/study-related-immigration}} | 47% |

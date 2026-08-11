@@ -1,7 +1,12 @@
 ---
 layout: base.njk
 ---
-{#- The h1 is the claim itself, so every claim page has a distinctive heading for search,
+{#- The h1 carries a visually-hidden "The claim: " prefix, on the same idiom lib/citation.mjs and
+    lib/charts.mjs use for their summaries. The visible label sits above the heading and a sighted
+    reader meets the two together, but a screen-reader user navigating BY HEADING meets the h1
+    alone, and "Most immigration is asylum seekers." on its own reads as this site asserting it.
+    That is the same defect as an unqualified share card, arriving by a route a screenshot cannot.
+    The h1 is the claim itself, so every claim page has a distinctive heading for search,
     browser tabs and heading-by-heading navigation. It sits INSIDE the card and under its
     "The claim" label, so the framing travels with it and a bare screenshot of the heading
     can never read as this site asserting the claim. See foundation section 8.5.4. -#}
@@ -27,7 +32,7 @@ layout: base.njk
 <article class="claim claim-paused">
   <div class="claim-card">
     <p class="claim-label">The claim</p>
-    <h1 class="claim-text">{{ claim }}</h1>
+    <h1 class="claim-text"><span class="visually-hidden">The claim: </span>{{ claim }}</h1>
     {#- The reason is stated only where the page states one. An earlier version of this sentence
         said the twelve-month promise was why THIS page came down, and nothing made that true:
         `paused` is a date and a claim can be taken down at any age, a retracted source being the
@@ -56,7 +61,7 @@ layout: base.njk
 <article class="claim">
   <div class="claim-card">
     <p class="claim-label">The claim</p>
-    <h1 class="claim-text">{{ claim }}</h1>
+    <h1 class="claim-text"><span class="visually-hidden">The claim: </span>{{ claim }}</h1>
     <p class="claim-label">The short answer</p>
     <p class="claim-answer">{{ short_answer }}</p>
     {#- The site name was here as a byline. The header, the footer and the browser tab all
