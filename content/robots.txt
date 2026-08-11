@@ -38,13 +38,15 @@
 # publishers opt out "by disallowing Applebot-Extended", which this file does. Until 11 August
 # 2026 this said Apple described Applebot as serving answers rather than training. Apple says no
 # such thing, and the opt-out is the whole of why admitting it is consistent with call 26.
-# **AMAZONBOT IS A DECISION THIS FILE HAS NOT TAKEN, and it is recorded rather than answered
-# here.** Until 11 August 2026 this named Amazonbot beside Applebot as serving answers rather
-# than training. Amazon's own page now reads "may be used to train Amazon AI models", so under
-# the test above Amazonbot belongs on the refusal list, and the reason it was left off is no
-# longer true. Amazon has since split out Amzn-SearchBot and Amzn-User, both documented as not
-# crawling for generative AI training, which are the tokens the old sentence described. Changing
-# what this site refuses is a call 26 decision and it sits in docs/BACKLOG.md.
+# **AMAZONBOT IS REFUSED, decided by the owner on 11 August 2026.** Until that day this named it
+# beside Applebot as serving answers rather than training. Amazon's own page reads "Amazonbot is
+# used to improve our products and services. This helps us provide more accurate information to
+# customers and may be used to train Amazon AI models", so the reason for leaving it off had gone
+# and the test above reached it. **Amazon's answer to publishers who want the search half without
+# the training half is two other tokens rather than an opt-out**: Amzn-SearchBot and Amzn-User,
+# both documented as not crawling content for generative AI training. Neither is named on the
+# Admits line, because that line is the named list rather than everything the open wildcard group
+# lets through, and adding them is a separate call this file has not been given.
 # FacebookExternalHit fetches a
 # page to build the link preview shown when somebody shares it, which Meta documents as gathering
 # "the title, description and thumbnail image": distribution rather than training, and a thing this
@@ -64,6 +66,7 @@ User-agent: *
 Disallow:
 
 # Training data collection. Refused under call 26.
+User-agent: Amazonbot
 User-agent: GPTBot
 User-agent: ClaudeBot
 User-agent: Google-Extended

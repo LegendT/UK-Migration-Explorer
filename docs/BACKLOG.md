@@ -480,6 +480,14 @@ below.
     other item**, which is the only version of this sentence that cannot rot: what is ahead of
     Launch is whatever The order still shows open above it, and that is readable from the list
     itself.
+    **THE OWNER WAS ASKED AND SAID WAIT, 11 AUGUST 2026.** Put to him as a choice between
+    re-scoping item 17's gate and launching that day, or waiting for the 18 August sitting that
+    closes it, he chose to wait. **Nothing in this repository blocks the launch**: the changeset
+    is applied, up to date with `main`, every check passes on it, and the crawler claims in
+    `content/robots.txt` were checked against their operators' own documentation the same day.
+    What it waits on is item 17, which its own entry dates. **This records the decision rather
+    than a date to count down to**, because a sentence saying how many days are left is wrong
+    the day after it is written, which is the defect this file has paid for more than any other.
 19. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
@@ -972,17 +980,20 @@ grade decisions its first bullet waits on.
 - **Call 26. AI crawlers**, and it is not binary. Allow retrieval bots that emit linked citations,
   refuse training-only bots. Retrieval citation is success measure 2's most likely route, and
   blocking keeps the option open where allowing does not.
-  **ONE ENTRY IS NOW OPEN AGAIN AND IT IS THE OWNER'S: Amazonbot.** The published file left it off
+  **ONE ENTRY REOPENED AND IS NOW DECIDED: Amazonbot is REFUSED, on the owner's word of
+  11 August 2026, and applied on branch `launch-ready`.** What follows is what the call was. The published file left it off
   the refusal list on the stated ground that Amazon "described it as serving answers rather than
   training". Amazon's own page now reads "Amazonbot is used to improve our products and services.
   This helps us provide more accurate information to customers and may be used to train Amazon AI
   models", so under call 26's own test it belongs on the refusal list and the reason for omitting
   it has gone. **Amazon has split out `Amzn-SearchBot` and `Amzn-User`**, both documented as not
   crawling for generative AI training, which are the tokens the old sentence actually described.
-  **Recommended: refuse `Amazonbot`, and name the two split tokens as the admitted ones.** The
-  alternative is to keep admitting it and say why, which means publishing a reason Amazon's
-  documentation contradicts. The false sentence is already gone from `content/robots.txt`; what
-  waits is whether the site's behaviour changes. **[you]**, and nothing else waits on it.
+  **Refused, which was the recommendation.** The alternative was to keep admitting it and say why,
+  which meant publishing a reason Amazon's documentation contradicts. **The second half of the
+  recommendation was NOT taken and that is deliberate**: `Amzn-SearchBot` and `Amzn-User` are not
+  added to the "# Admits:" line, because that line is the named list rather than everything the
+  open wildcard group lets through, and naming them is a separate call. Say the word and it is one
+  line. Nothing waits on it either way.
   **Found by checking all 25 crawler names in that file against their operators' documentation on
   11 August 2026**, which the file has always told its reader to do and which nothing had done.
   Six claims did not survive it. Three named tokens their operator documents nowhere, `FacebookBot`,
