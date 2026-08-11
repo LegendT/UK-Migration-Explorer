@@ -236,6 +236,30 @@ below.
     that implies: a record, an evidence quote lifted from the source, and the pages that cite it.
     **[me]** for the reading and the mechanical updates; **[you]** for any figure that moves and
     for the wording around it, batched rather than one at a time.
+
+    **Taken by publisher, because one fetch covers a publisher at once**, which is the shape A1's
+    batches used. **The Home Office statistics release is re-read, on branch
+    `item-17-source-reread-home-office`.** Every record and every series point sourced to the
+    year-ending-March-2026 immigration statistics was checked against a file fetched on 11 August
+    2026: the asylum, citizenship, illegal-entry, returns and visas summary tables, the asylum
+    claims and illegal-entry datasets, and the release pages the records read from. **No published
+    figure moved.** No record cites a page that does not carry its figure: each release-page value
+    was read in the sentence around it rather than counted as a string match, and each spreadsheet
+    value was located by row and column label so a shifted table throws rather than agreeing. The
+    derived figures were recomputed from their components, and the small-boat and
+    administrative-outcome totals reconcile against figures the Home Office publishes itself.
+    **The files are the same files**: every asset URL the records cite is still the one the
+    publisher links, checked against the data-tables page with a control rather than assumed, so
+    nothing has been re-published under a new address. The release names 27 August 2026 as its
+    next update.
+    **What is NOT re-read, and this item stays open for it**: the records taken from the Home
+    Office annual report and accounts, which is a different publication from the statistics
+    release and was read on its own dates. Those dates still say something true, which is why
+    they are left alone rather than moved.
+    **Two apparent defects in one session were the reading's own**, both worth the warning: a
+    year-label stored as text made a discontinued ONS series look like it stopped early, and a
+    month slice that swept up a Total column inflated a twelve-month sum by exactly that total.
+    Neither was the publisher's. A parse that reports a gap is a claim about the parser first.
 18. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
     guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
     delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at

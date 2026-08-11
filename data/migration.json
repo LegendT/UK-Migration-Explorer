@@ -1,6 +1,6 @@
 {
   "theme": "Net migration and visas",
-  "lastUpdated": "2026-08-05",
+  "lastUpdated": "2026-08-11",
   "note": "Net migration figures come from ONS Long-term international migration (year ending December 2025, provisional, published 21 May 2026). Visa-grant figures come from Home Office Immigration system statistics (year ending March 2026). The two sources are not interchangeable: ONS counts people staying 12 months or more; the Home Office counts visas granted, which is always higher. ONS reason splits are for non-EU+ arrivals (inflow), not net migration by reason.",
   "metrics": [
     {
@@ -360,7 +360,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/why-do-people-come-to-the-uk-study",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Main applicants 391,572 plus dependants 18,382. Down 3% on the previous year and 37% below the year ending June 2023 peak. Supersedes the year ending December 2025 figure of 426,471.",
       "confidence_level": "official"
     },
@@ -376,7 +376,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/why-do-people-come-to-the-uk-work",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Main applicants 166,576 plus dependants 86,199. Down 17% on the previous year and 59% below the year ending December 2023 peak. Supersedes the year ending December 2025 figure of 261,112.",
       "confidence_level": "official"
     },
@@ -392,7 +392,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/why-do-people-come-to-the-uk-work",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Down 53% on the previous year. Dependants 32,149 (down 30%); whole route 42,658 (down 38%). Supersedes the year ending December 2025 figure of 13,286 main applicants.",
       "confidence_level": "official"
     },
@@ -411,7 +411,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a1d5ab3050971fbebf3bc88/visas-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Down 17% on the year ending March 2025 (75,649). Comprises Partner (39,169), Child (6,192), Other (322) and Refugee Family Reunion (16,787). Supersedes the year ending December 2025 figure of 66,610.",
       "confidence_level": "official"
     },
@@ -427,7 +427,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-each-year",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Main applicants plus dependants; 11% fewer than the previous year. Breakdown: Study 412,825; Work 252,775; Family 62,470; Other 50,555. Excludes visitor visas, held as their own record rather than restated here, and 19,853 Transit visas. Supersedes the year ending December 2025 figure of 809,407.",
       "confidence_level": "official"
     },
@@ -446,7 +446,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a1d5ab3050971fbebf3bc88/visas-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-30",
+      "retrieved_date": "2026-08-11",
       "notes": "Up 4% on the year ending March 2025 (2,157,064). A visit visa is not immigration and appears in no migration figure on this site, which is the whole reason this record exists: Vis_01's total of 3,040,475 entry clearance visas, less these and 19,853 transit visas, reconciles exactly to the total entry clearance visas granted above.",
       "confidence_level": "official"
     },
