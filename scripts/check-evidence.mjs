@@ -440,6 +440,57 @@ for (const { entry, where } of entries) {
   checkPreviousValue(entry.ref, previous.get(entry.ref), entry, where);
 }
 
+// --- an entry may not retire itself ------------------------------------------------------
+// The audit above reads an entry only where the record still holds exactly what the entry
+// declares, which is deliberate: it is what stops a figure moving from forcing its own audit
+// trail to be deleted. The other side of that is the gap. Edit an ENTRY's value, or its ref, or
+// delete it, and it simply stops being read. Probed before this was written: changing one entry's
+// value from 69,281,400 to 1 took the audited count from 100 to 99, and the run exited 0 with
+// nothing said.
+//
+// So: an entry that WAS audited on the base branch may stop being audited only because its record
+// moved. If the record still holds what that entry declared, the entry cannot have stopped being
+// evidence for it, and something edited the trail rather than the data.
+//
+// Written against the goal rather than the remedy the backlog prescribed, which was a branch
+// changing an entry's `value` must show the record moving. That is one of three routes out of the
+// audit and the other two, editing `ref` and deleting the entry, are the same defect wearing a
+// different edit. Matching on ref AND value covers all three with one rule.
+const declaredOn = (text) => {
+  const out = [];
+  try {
+    const json = JSON.parse(text);
+    for (const entry of json.figures ?? []) {
+      if (entry?.ref !== undefined && entry?.value !== undefined) out.push(entry);
+    }
+  } catch { /* an unparseable base file is not this check's to report */ }
+  return out;
+};
+
+if (!sameCommit) {
+  const held = (map, ref) => {
+    const metric = map.get(ref);
+    return metric === undefined ? undefined : shape(metric);
+  };
+  const nowDeclares = new Set(
+    entries.map(({ entry }) => `${entry.ref}\u0000${JSON.stringify([entry.value])}`));
+  let baseFiles = [];
+  try {
+    baseFiles = git('ls-tree', '--name-only', `${base}:data/evidence`).trim().split('\n')
+      .filter((name) => name.endsWith('.json'));
+  } catch { baseFiles = []; }
+  for (const file of baseFiles) {
+    for (const entry of declaredOn(git('show', `${base}:data/evidence/${file}`))) {
+      const declared = JSON.stringify([entry.value]);
+      if (held(previous, entry.ref) !== declared) continue;   // it was not audited on the base either
+      if (nowDeclares.has(`${entry.ref}\u0000${declared}`)) continue;  // still audited
+      if (held(current, entry.ref) === declared) {
+        errors.push(`data/evidence/${file}: an entry for ${entry.ref} at ${format(entry.value)} was audited on ${base} and is not audited now, while ${entry.ref} still holds ${format(entry.value)}. An entry stops being read when its ref or value stops matching its record, or when it is deleted, and none of those is legitimate while the record has not moved: the audit trail was edited rather than the data. Restore the entry, or move the figure it is evidence for.`);
+      }
+    }
+  }
+}
+
 // --- and every series that moved ---------------------------------------------------------
 // A series is not a hundred independent figures. It is one array replaced whole from one
 // release, because ONS states you cannot append the latest estimates to a series taken from an
