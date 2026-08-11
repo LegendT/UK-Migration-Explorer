@@ -465,7 +465,11 @@ below.
     unqualified share card arriving by a route a screenshot cannot reach. The heading now carries
     a visually-hidden "The claim: " prefix, on the idiom `lib/citation.mjs` and `lib/charts.mjs`
     already use, so what a sighted reader sees is unchanged. Both claim states carry it, live and
-    paused. `npm run a11y` passes on every page in both palettes. **[me]**, and it stays tagged
+    paused. **The visible "The claim" label is `aria-hidden` with it**, because the heading now
+    carries that label in its own accessible name and without hiding the visible one a screen
+    reader reading linearly announces it twice. Only that label: "The short answer" below it is
+    carried by nothing else and stays. What a sighted reader sees is unchanged either way.
+    `npm run a11y` passes on every page in both palettes. **[me]**, and it stays tagged
     until it is on `main`: an item is done here when it is merged, not when it is built.
 25. **NOT A GATE, and it is the one thing under R6 that is not cosmetic. An evidence entry can be
     retired from every pass by editing its own value.** `scripts/check-evidence.mjs` audits an
