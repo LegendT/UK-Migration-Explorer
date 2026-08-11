@@ -332,7 +332,21 @@ below.
     `<time>` element and the unchanged first clause rather than either wording, so neither form
     can quietly stop being checked.
     **A page it cannot date keeps the word "pending" and `check-build.mjs` refuses it**, which is
-    the guard this had none of. Probed by disabling the transform and by forcing a future date;
+    the guard this had none of.
+    **What that guard still cannot see is a route that leaves no trace at all**, and the decision
+    is to record it rather than build against it now. `lib/published.mjs` names five ways a figure
+    reaches a reader and all five trace today, checked one at a time rather than assumed: the
+    markdown token, the `{% figure %}` shortcode and the `data/` prose token render a
+    `data-metric`; a chart bar and a `"ref" | metric` summary render none and reach the footer
+    through the chart's own citation block; a dashboard card reaches it through the date that card
+    prints. **The chart route was proved by ageing a record that reaches `/migration/` only that
+    way**, and the footer date moved to match. So the exposure is a SIXTH route added later with
+    no trace, which would narrow the date set silently, and the check has nothing to compare
+    against because it reads the same HTML. Carried below as its own piece of work, after launch,
+    because closing it properly means every renderer declaring what it put on the page instead of
+    the build reading traces back out, and that touches every rendering path. **One thing would
+    sharpen it and cannot be done yet**: the per-page proof needs dates that differ, and every
+    record currently shares one. The EMP06 move creates the first of those. Probed by disabling the transform and by forcing a future date;
     each is caught on every page that claims a currency. A footer promising a date and printing a
     placeholder would be worse than the welded sentence all this replaced.
     **And a check that gates nothing is failing on `main`, found by running it here**:
@@ -501,6 +515,19 @@ below.
     not announce themselves. **[me]**, with the cadence commitment on `/sources-and-method/`
     checked against whatever this ends up saying, since that page makes a promise to a reader that
     this document has to keep.
+
+27. **NOT A GATE, and it is for after launch. The footer's currency date is read back out of the
+    built HTML, and a rendering path that leaves no trace would narrow it in silence.** The
+    `figure-currency` transform in `eleventy.config.js` collects two kinds of trace, a
+    `data-metric` attribute and a machine-readable `datetime`, and takes the earliest. Every route
+    `lib/published.mjs` names leaves one of the two today and that was checked rather than
+    assumed, so this is about the next route rather than a current defect. **The shape of the
+    remedy is the inversion**: each renderer registers the ref it put on the page, and the
+    transform reads that register rather than scraping. A path that forgets to register then
+    produces no date at all, which `scripts/check-build.mjs` already refuses loudly, so the
+    failure moves from silent and wrong to noisy and obvious. **Why not now**: it touches every
+    rendering path on the critical path to launch, and the thing it protects against has not
+    happened. **[me]**.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
