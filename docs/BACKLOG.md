@@ -482,6 +482,14 @@ below.
     deleted are each caught; a figure that genuinely moved, leaving its entry behind as history,
     is still allowed, which is the behaviour the audit exists to protect and the whole reason it
     reads only entries whose record still matches.
+    **A critique then found two more routes and both are closed.** A RANGE entry carries
+    `range_min` and `range_max` and no `value`, so reading `entry.value` dropped it before the
+    comparison ran and editing the fiscal-impact entry's `range_min` was silent; entries are now
+    compared on the same shape a record publishes. And a SERIES entry retires itself the same way
+    by having its `file`, `block` or `vintage` edited, which took the series audit from three to
+    two in silence. **That second one is PR #147's asymmetry repeating**: the figures half guarded
+    and the series half not, in the same script, by the hand that had just read the entry saying
+    so. Six routes are caught now, and a figure that genuinely moved is still allowed.
 
 26. **NOT A GATE, and it is the first thing AFTER launch. Bring `docs/UPDATING-DATA.md` up to
     date for a site that has readers.** The owner asked for a document telling him what to do to
