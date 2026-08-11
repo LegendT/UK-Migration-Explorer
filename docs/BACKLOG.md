@@ -1044,10 +1044,20 @@ grade decisions its first bullet waits on.
   **TWO THINGS CAME OUT OF IT FOR THE OWNER, both [you] and neither urgent.** First, whether to drop
   the four refusals no operator supports, `cohere-ai`, `PanguBot`, `Timpibot` and `Bytespider`, or
   keep them defensively as now. **Recommended: keep them**, on the file's own reasoning that the
-  cost is asymmetric. Second, **`Webzio` is not named or refused anywhere**: Webz.io retired
-  Omgilibot in July 2024 and its current crawler pair is Webzio and Webzio-extended, of which this
-  file refuses only the second. That is a gap rather than a decision. **Recommended: refuse
-  `Webzio`**, on the same ground the file already refuses its sibling. **NOT YET APPLIED, and it gates The
+  cost is asymmetric. Still open.
+  **Second, `Webzio` was named and refused nowhere while its sibling was refused. DECIDED AND
+  APPLIED: refused, on the owner's word of 11 August 2026.** Webz.io retired Omgilibot in July 2024
+  and its current pair is Webzio, which crawls, and Webzio-extended, which tags what Webzio
+  collected as usable or not for AI/ML training. **The decision goes further than call 26's own
+  test and the file says so**: refusing the consent token alone is the documented route and leaves
+  the crawling in place, so refusing Webzio is a judgement about a data broker rather than about a
+  model trainer. **IT LEAVES ONE THING OPEN AND APPLYING IT IS WHAT SHOWED THAT**: `Omgilibot` is
+  the same company's retired token, still sent, and is not refused, so Webz.io is now refused under
+  its current name and admitted under its old one. **Recommended: refuse `Omgilibot` as well**, one
+  line, which is the only version of this decision that does what it was taken to do. Refusing it
+  would also part company with `Diffbot`, which stays admitted on its operator's own words that it
+  does not crawl for training, so "sells web data" would remain a ground this file does not refuse
+  on by itself. **[you]**. **NOT YET APPLIED, and it gates The
   order's item 18.**
 - **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
   and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from
