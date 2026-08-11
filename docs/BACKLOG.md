@@ -210,11 +210,21 @@ below.
     owner asked for this on launch day, and the reason is the one this site makes of other
     people: a page saying it was reviewed in July, met by a reader in August, invites the
     question of what has moved since, and the honest answer today is that nobody has looked at
-    most of it since it was written. **The scale is smaller than the record count suggests**:
-    a hundred records carry a `retrieved_date` and they resolve to thirty-four distinct source
-    URLs, because two publishers account for seventy of them and each publishes one release
-    covering many tables. Establish the count from the data rather than from this sentence,
-    which is a dated measurement and not a live one.
+    most of it since it was written. **The scale is smaller than the record count
+    suggests, and this line does not say by how much.** Records resolve to far fewer distinct
+    source URLs than there are records, because two publishers dominate the catalogue and each
+    publishes one release covering many tables. Get the numbers from the data rather than from
+    here:
+
+        python3 -c "import json,glob;r=[]
+        [ (lambda d: [r.append(o) for o in json.loads(open(d).read()).get('metrics',[])])(f)
+          for f in glob.glob('data/*.json') ]
+        print(len(r),'records', len({x['source_url'] for x in r if 'source_url' in x}),'URLs')"
+
+    **Written in words at first, which is how this file's own rule got evaded**: The order may
+    not carry a count of this project's own state, and `scripts/check-backlog.mjs` enforces it
+    against digits, so a count spelled out in words passed a check that would have refused the
+    same count in figures. A rule kept by a check is only kept in the forms the check can see.
     **What makes it a re-read rather than a date change**: `retrieved_date` records what somebody
     READ, which is the precedent PR #54 set and item 2 held to when it left a checkbox unticked
     rather than claim a reading nobody did. Bumping the dates without opening the sources would
