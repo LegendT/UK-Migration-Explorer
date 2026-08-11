@@ -296,9 +296,10 @@ below.
     string in `content/_includes/base.njk` plus the string `scripts/check-build.mjs` matches it on,
     which has to move with it and has to be a phrase the old sentence does not contain, or the check
     passes on both and stops telling them apart. Draft, for the half that renders only where a page
-    carries a figure. **DECIDED AND BUILT, on branch `footer-unweld-figure-currency`**: the owner
-    took the third reading. The footer now says "This page was last reviewed on <date>. Its
-    figures are not a live count", and the weld is gone.
+    carries a figure. **DECIDED AND BUILT (PR #180)**: the owner said "lets do the footer", which
+    is recorded in those words rather than as a reading number, because the entry first read
+    "the owner took the third reading" and that put a specific choice into his mouth. The weld
+    is gone.
     **The recommended draft was wrong and reproducing it before building is what caught that.**
     It ended "each citation says when we last checked that figure against its source", which
     points a reader at something two pages do not have: `/sources-and-method/` and
@@ -309,14 +310,45 @@ below.
     in no version of the retired sentence, which the old sentence's own "not a live count" would
     have satisfied; forcing the sentence onto a page with no figure is caught, and removing it
     from the pages that have one is caught on every one of them.
-    **What this does NOT close is the gap it was raised for, and on two pages it widens it.**
-    `/sources-and-method/` and `/what-the-words-mean/` carried the retired sentence too, so they
-    had a currency claim, a false one, and now have none: no date for their figures in the open
-    and no citation block to hold one. Everywhere else the change trades a wrong date for the
-    citation's right one; there it trades a wrong date for no date. That is defensible, a false
-    date being worse than none, but it is a change to those pages rather than a state they were
-    already in, and nothing in the build asks about it. It is a smaller and more specific thing
-    than the question that started here.
+    **That left two pages with no date at all, and it is closed now**, on branch
+    `footer-derived-currency-date`. `/sources-and-method/` and `/what-the-words-mean/` render
+    live record values through tokens and have no citation block to hold a date, so unwelding
+    took away the only date-bearing claim they had. **The footer now DERIVES the date instead of
+    dropping it**: "every one was checked against its source on or after <date>", computed per
+    page from the records it renders. **That is this item's own goal met in the open**, which is
+    what `retrieved_date` alone could not reach, and it reaches the two pages a citation never
+    could.
+    **Both routes are read, because reading one would speak for the other.** A token renders as
+    `data-metric`, which resolves to a record; a chart or a card renders no ref at all and
+    reaches a reader through a citation block, which now carries a machine-readable `datetime`
+    for exactly this purpose. The EARLIEST wins and the sentence says "on or after", on the same
+    rule `lib/citation.mjs` already applies when merging sources under one name: the latest would
+    tell a reader something was verified more recently than it was.
+    **The sentence takes the form the page's own dates justify.** Where every figure on a page was
+    checked the same day, which is the common case, it says "they were all checked against their
+    sources on <date>"; where they differ it says "every one was checked against its source on or
+    after <date>" and gives the earliest. One form for both would have hedged the common case for
+    no reason, on a site whose subject is precision about figures. `check-build.mjs` matches the
+    `<time>` element and the unchanged first clause rather than either wording, so neither form
+    can quietly stop being checked.
+    **A page it cannot date keeps the word "pending" and `check-build.mjs` refuses it**, which is
+    the guard this had none of.
+    **What that guard still cannot see is a route that leaves no trace at all**, and the decision
+    is to record it rather than build against it now. `lib/published.mjs` names five ways a figure
+    reaches a reader and all five trace today, checked one at a time rather than assumed: the
+    markdown token, the `{% figure %}` shortcode and the `data/` prose token render a
+    `data-metric`; a chart bar and a `"ref" | metric` summary render none and reach the footer
+    through the chart's own citation block; a dashboard card reaches it through the date that card
+    prints. **The chart route was proved by ageing a record that reaches `/migration/` only that
+    way**, and the footer date moved to match. So the exposure is a SIXTH route added later with
+    no trace, which would narrow the date set silently, and the check has nothing to compare
+    against because it reads the same HTML. Carried below as its own piece of work, after launch,
+    because closing it properly means every renderer declaring what it put on the page instead of
+    the build reading traces back out, and that touches every rendering path. **One thing would
+    sharpen it and cannot be done yet**: the per-page proof needs dates that differ, and every
+    record currently shares one. The EMP06 move creates the first of those. Probed by disabling the transform and by forcing a future date;
+    each is caught on every page that claims a currency. A footer promising a date and printing a
+    placeholder would be worse than the welded sentence all this replaced.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
@@ -483,6 +515,19 @@ below.
     not announce themselves. **[me]**, with the cadence commitment on `/sources-and-method/`
     checked against whatever this ends up saying, since that page makes a promise to a reader that
     this document has to keep.
+
+27. **NOT A GATE, and it is for after launch. The footer's currency date is read back out of the
+    built HTML, and a rendering path that leaves no trace would narrow it in silence.** The
+    `figure-currency` transform in `eleventy.config.js` collects two kinds of trace, a
+    `data-metric` attribute and a machine-readable `datetime`, and takes the earliest. Every route
+    `lib/published.mjs` names leaves one of the two today and that was checked rather than
+    assumed, so this is about the next route rather than a current defect. **The shape of the
+    remedy is the inversion**: each renderer registers the ref it put on the page, and the
+    transform reads that register rather than scraping. A path that forgets to register then
+    produces no date at all, which `scripts/check-build.mjs` already refuses loudly, so the
+    failure moves from silent and wrong to noisy and obvious. **Why not now**: it touches every
+    rendering path on the critical path to launch, and the thing it protects against has not
+    happened. **[me]**.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,

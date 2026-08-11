@@ -116,7 +116,7 @@
       nineteen pages and false on two is the defect this one was written to remove. -#}
   {% if last_reviewed %}
   <p class="reviewed">This page was last reviewed on {{ last_reviewed | longDate }}.
-  {%- if content | carriesAFigure %} Its figures are not a live count.{% endif %}</p>
+  {%- if content | carriesAFigure %} Its figures are not a live count;<span class="figure-currency-clause"> every one was checked against its source on or after <time class="figure-currency" datetime="pending">pending</time></span>.{% endif %}</p>
   {% endif %}
 </main>
 
