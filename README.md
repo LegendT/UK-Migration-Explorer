@@ -107,8 +107,13 @@ cadenced releases, named on the sources page. Sources that publish irregularly c
 promised schedule.
 
 `content/robots.txt` is no longer a blanket refusal, and its guard in `scripts/check-build.mjs`
-now asserts the launch state instead of the pre-launch one: the site is crawlable, the `Sitemap:`
-line matches `site.url`, and no citing retrieval agent sits in a group that disallows everything.
+now asserts the launch state instead of the pre-launch one: no `User-agent: *` group disallows the
+site, the `Sitemap:` line matches `site.url`, no citing retrieval agent sits in a group that
+disallows everything, and some group still refuses, which is call 26's other half.
+**This sentence listed the first three and not the fourth until 11 August 2026**, and the table row
+below it was corrected in the same sitting while this was left standing: one file describing one
+check in two places, and a correction reaching one of them. That is the shape this repository
+records against itself four times over, committed here by the hand fixing an instance of it.
 Setting up Search Console is what is left, and it is deliberate.
 
 ## Layout
