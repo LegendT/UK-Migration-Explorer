@@ -290,6 +290,35 @@ below.
     period, and on this release those are two different dates. Probed against both, and against
     the bulletin, the Home Office assets and the pages that must stay evergreen. Every LTIM
     citation is now compared where seven of them could not be.
+    **THAT RE-POINTING SWEPT RECORDS AND SERIES POINTS AND MISSED THE CHARTS, which is the
+    correction-missing-its-siblings shape this file already records four times, and it is closed
+    now on branch `item-17-closing-state`.** A chart carries its own hand-written `source` and
+    `sourceUrl` beside the data, and nothing compares the two, so the visible "Source:" line a
+    reader clicks and the citation block under the same chart named different publications. Both
+    line charts on `/migration/` linked a page their plotted series is not in, and all three
+    charts on `/asylum/` linked the release index while their own labels already said "asylum
+    summary tables". **Reproduced against pages fetched on 11 August 2026 rather than argued**:
+    the ONS dataset landing page holds none of the points either chart draws, the bulletin holds
+    only the latest year or two of them, and the Home Office release page carries no
+    comma-grouped figure at all. Each absence was established with a control that hit, and one
+    apparent bulletin match was a substring of a census population figure. Every chart on the
+    site now links a publication its own citation block names.
+    **ONE CHART CANNOT BE MADE WHOLLY RIGHT BY A LINK, AND WHAT TO DO ABOUT IT IS THE OWNER'S.**
+    `initial-decisions-by-outcome` on `/asylum/` draws three bars from two publications, two from
+    the summary tables and the granted bar from the release's "How many people are granted asylum
+    in the UK?" page, and one `Source:` line can name one. It now names the summary tables, which
+    is what its own label already said and what two of the three bars are in, where before it
+    named a page none of them are in. The citation block names both, which is this site's designed
+    answer to a figure with more than one source. **Recommended: leave it there.** The alternative
+    is re-sourcing the granted record to the summary table so all three agree, and that moves a
+    citation a reader clicks on the strength of a table nobody has opened for it, which is the
+    thing A1 exists to refuse. **[you]**, and nothing waits on it.
+    **The comment in `lib/charts.mjs` was the reason this was invisible**: it says the citation
+    is built from the points the chart draws "so a chart cannot cite a publication its own data
+    does not come from", which is true of the citation block and false of the `Source:` line
+    rendered a few lines under it from the argument beside the data. It now says where the
+    guarantee stops. Deriving that line from the points too is item 27's inversion and is not
+    done here.
     **A third thing is for the owner, and one of its three answers changes what the remaining
     batches owe.** The reading and the date move are the same work under all three, so no batch
     waits on this; what waits is whether a batch also owes a page review. This item's own goal is
@@ -408,14 +437,26 @@ below.
     was wrong. A parse or a search reporting a gap is a claim about the parse or the search
     first.
     **THE READING HALF OF THIS ITEM IS FINISHED AND THE ITEM IS NOT.** Its own goal is that the
-    date a reader meets and the date the figures were checked are the same day, and the footer
-    question above is the half of that `retrieved_date` cannot reach. **Measured on the built
-    site now that the reading is done**: every citation date a reader can reach says 11 August
-    2026, and the footers still say 22 July, 23 July, 27 July and 10 August, each beside a
-    sentence attaching the figures' currency to that older date. The gap the item exists to
-    close is now the only gap left. That, the EMP06 period and the LTIM citation target are the
-    owner's, and this item closes when they are answered rather than when the last file was
-    fetched.
+    date a reader meets and the date the figures were checked are the same day, and
+    `retrieved_date` never reached that on its own, rendering only inside the closed *How to
+    cite this* disclosure. **That half is built, and measured on the built site rather than
+    asserted**: every page that renders a figure now prints "they were all checked against
+    their sources on 11 August 2026" in its footer, one date across all of them, and the pages
+    that render no figure print no currency sentence at all rather than a placeholder.
+    **The older dates beside it are each page's own `last_reviewed` and they are correct**,
+    running from 22 July to 10 August. Item 2's precedent is that the field records what a
+    review READ, a data re-read is not a page review, and the sentence that used to weld the
+    figures' currency to that date is gone. Converging them means re-reviewing the pages, which
+    U5 considered and cut.
+    **So the three questions this item sent up are answered.** The footer and the LTIM citation
+    target are decided and built, both above. The EMP06 period is decided and dated: those two
+    records move at the 18 August 2026 release and not before, and that move is what this item
+    still has left.
+    **This paragraph named all three as outstanding for a few hours on 11 August 2026**, having
+    been written before they were answered and kept after them, which is the enumerate-then-
+    conclude defect this file already records against A6 and against item 4. A closing sentence
+    saying what is left goes stale faster than the entries it summarises, and it is the one a
+    session reads.
 18. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
     guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
     delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
