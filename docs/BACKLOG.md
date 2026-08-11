@@ -266,9 +266,11 @@ below.
     which is what the evidence entries already name and what this site already does for the Home
     Office `.ods` tables, answers both at once. It reaches records this batch did not touch, so it
     is a call rather than a tidy.
-    **A third thing is for the owner, and the remaining batches wait on it, because it decides
-    what they have to do.** This item's own goal is that the date a reader meets and the date the
-    figures were checked are the same day, and `retrieved_date` does not reach that on its own. It
+    **A third thing is for the owner, and one of its three answers changes what the remaining
+    batches owe.** The reading and the date move are the same work under all three, so no batch
+    waits on this; what waits is whether a batch also owes a page review. This item's own goal is
+    that the date a reader meets and the date the figures were checked are the same day, and
+    `retrieved_date` does not reach that on its own. It
     renders only inside the closed *How to cite this* disclosure, while the date a reader meets
     without opening anything is `last_reviewed` in the page footer, whose next sentence says "Its
     figures were the latest published at that date". So a re-read moves the figure's date and
