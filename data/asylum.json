@@ -287,7 +287,7 @@
       "source_id": "hmcts-tribunals",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "A single quarter's inflow, not an annual figure. MoJ table FIA_1, asylum, protection and revocation of protection receipts: 14,748 of the chamber's 27,689 in the quarter. Down from 17,822 the prior quarter, and that IS the peak rather than a possible one: 17,822 is the highest of all 76 quarters the table holds, read on 3 August 2026.",
       "confidence_level": "provisional",
       "table_reference": [
@@ -306,7 +306,7 @@
       "source_id": "hmcts-tribunals",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "A record high. The figure a year earlier and the number of appeals disposed of in the quarter are both held as records of their own rather than restated here; between them they are why the backlog rises, because appeals lodged run at roughly twice disposals. The total open caseload of the chamber across all case types is 151,767, table FIA_4. THIS RECORD'S NOTES CLAIMED FEWER THAN 7,000 APPEALS ARE DECIDED PER QUARTER UNTIL 2 AUGUST 2026, and so did /asylum/. It was true when written and had been false for three quarters: asylum and protection disposals passed 7,000 in the July to September 2025 quarter and reached 7,799 in this one.",
       "confidence_level": "provisional",
       "table_reference": [
@@ -328,7 +328,7 @@
       "source_id": "hmcts-tribunals",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The comparison year behind the record high above, on the precedent net-migration-2 set: a prior-year figure is republished by each release and rounding it into prose freezes a number the publisher may revise. Read from FIA_4 at 2024/25 Q4, which is the quarter ending 31 March 2025. The page rounded this to about 51,000 until 2 August 2026, which is also how the end-2019 initial-decision backlog rounds, so two unrelated queues appeared on this site as the same number.",
       "confidence_level": "provisional"
     },
@@ -347,7 +347,7 @@
       "source_id": "hmcts-tribunals",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "Asylum, protection and revocation of protection only, all disposal categories: 52% determined at a hearing or on the papers, 35% withdrawn, 6% struck out and 6% invalid or out of time. DISPOSED OF IS NOT DETERMINED, and the difference is why this record exists: 4,088 were determined, which is the base of the appeal success rate held separately, so quoting one where the other belongs understates the throughput of the tribunal by nearly half. Set beside appeals lodged in the same quarter, this is what makes the backlog rise: roughly two arrive for every one that leaves.",
       "confidence_level": "provisional"
     },
@@ -367,7 +367,7 @@
       "source_id": "hmcts-tribunals",
       "source_url": "https://www.gov.uk/government/statistics/tribunals-statistics-quarterly-january-to-march-2026",
       "published_date": "2026-06-11",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Asylum/Protection/Revocation of Protection appeals only, MoJ table FIA_3: 4,088 determined at a hearing or on the papers in the quarter, 40% allowed. NOT a share of all disposals. Of 7,799 asylum and protection appeals disposed of, 52% were determined, 35% withdrawn, 6% struck out and 6% invalid or out of time. The chamber-wide figure across all case types is 39%, so do not mix the two. Mean time to clearance for asylum and protection, MoJ table T_3: 67 weeks; the 61 weeks in the bulletin is the chamber-wide figure. The latest quarter is provisional and the three before it have been revised.",
       "confidence_level": "provisional"
     },

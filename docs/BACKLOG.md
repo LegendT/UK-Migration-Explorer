@@ -252,7 +252,8 @@ below.
     rather than closing it, and this says so because the pull request first claimed otherwise**: the
     dataset landing page prints no figure either, its whole content being links to the spreadsheet,
     and the evidence entries name that spreadsheet FILE rather than the page. The far end is the
-    file, and what the citations should point at is the second question below. **The absence was established with a control that hit**, because a stem search that
+    file, and what the citations should point at is the second question below. **The absence was
+    established with a control that hit**, because a stem search that
     could not have matched reads exactly like one that did, and one apparent match here turned out to
     be a substring of an unrelated figure in another table.
     **What came back for the owner is below, and none of it is a figure that moved.** First, EMP06: the
@@ -307,15 +308,40 @@ below.
     publisher links, checked against the data-tables page with a control rather than assumed, so
     nothing has been re-published under a new address. The release names 27 August 2026 as its
     next update.
-    **What is NOT re-read, and this item stays open for it**: the records taken from the Home
-    Office annual report and accounts, which is a different publication from the statistics
-    release and was read on its own dates. Those dates still say something true, which is why
-    they are left alone rather than moved.
-    **One apparent defect in each batch was the reading's own**, both worth the warning: a
-    year label stored as text made the discontinued ONS series look like it stopped two years
-    early, and a month slice that swept up a Total column inflated a twelve-month sum by exactly
-    that total. Neither was the publisher's. A parse that reports a gap is a claim about the
-    parser first.
+    **What was NOT re-read in that batch was the Home Office annual report and accounts**, a
+    different publication from the statistics release. It is read now, in the batch below.
+
+    **The remaining publishers are re-read, on branch `item-17-source-reread-remaining`**: the
+    Migration Observatory briefings, HMCTS tribunals, both Home Office annual reports, the NAO
+    reports, the ICIBI inspection, the MAC salary review, the Commons Library briefing, Skills
+    for Care and the OBR chart data. **Every record in the data layer, and every point of every
+    series, now carries a date from a reading done on 11 August 2026.** No published figure
+    moved in any batch.
+    **Two claims a grade rests on were re-tested rather than carried forward.** Skills for Care
+    still publishes no non-British share of the workforce, only the British share and the
+    composition within non-British, so `calculated` is right; and the OBR figure is still chart
+    data rather than a sentence, read from the "Average-wage migrant worker" series at the age
+    this site chose. **The India share was re-read where it actually lives**, the archived
+    December 2025 edition, because the live page states a different figure for a later period
+    and call 30 settled that as a re-dating rather than an update.
+    **EVERY BATCH TURNED UP A DEFECT THAT WAS THE READING'S OWN RATHER THAN THE PUBLISHER'S**,
+    and stated once here because it is the lesson the item leaves behind. A year label stored as
+    text made the discontinued ONS series look like it stopped two years early. A month slice
+    that swept up a Total column inflated a twelve-month sum by exactly that total. And three
+    searches used a form the source does not print: a dispersal cost printed as £20 followed by a
+    close quote, a MAC page that never spells out its own committee's name, and a chart-data
+    pattern looking for a spreadsheet where the publisher offers a zip. Each returned a zero that
+    was wrong. A parse or a search reporting a gap is a claim about the parse or the search
+    first.
+    **THE READING HALF OF THIS ITEM IS FINISHED AND THE ITEM IS NOT.** Its own goal is that the
+    date a reader meets and the date the figures were checked are the same day, and the footer
+    question above is the half of that `retrieved_date` cannot reach. **Measured on the built
+    site now that the reading is done**: every citation date a reader can reach says 11 August
+    2026, and the footers still say 22 July, 23 July, 27 July and 10 August, each beside a
+    sentence attaching the figures' currency to that older date. The gap the item exists to
+    close is now the only gap left. That, the EMP06 period and the LTIM citation target are the
+    owner's, and this item closes when they are answered rather than when the last file was
+    fetched.
 18. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
     guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
     delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
