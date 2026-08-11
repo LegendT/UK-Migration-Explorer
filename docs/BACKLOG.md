@@ -205,7 +205,7 @@ below.
     were closed late for saying they were unmerged when they were; this one would have been
     closed early, which is the same defect pointing the other way and the more dangerous of the
     two, because a closed item is not read again. It is under *Completed*.
-17. **GATE, and it is the last thing before Launch. Re-read every record against its source, so
+17. **NOT A GATE SINCE 11 AUGUST 2026, and it was the last of them. Re-read every record against its source, so
     that the date a reader meets and the date the figures were checked are the same day.** The
     owner asked for this on launch day, and the reason is the one this site makes of other
     people: a page saying it was reviewed in July, met by a reader in August, invites the
@@ -452,6 +452,16 @@ below.
     target are decided and built, both above. The EMP06 period is decided and dated: those two
     records move at the 18 August 2026 release and not before, and that move is what this item
     still has left.
+    **THE GATE IS RELEASED AND THE ITEM STAYS OPEN, decided by the owner on 11 August 2026.** He
+    was asked whether to hold Launch for the move or to launch and update after it, and chose to
+    launch. **What is left of this item reaches no reader**, checked rather than argued: the two
+    EMP06 employment rates appear in no built page, only in `data/fiscal.json` and in
+    `data/evidence/ons-emp06-2026-05.json`, so a reader meets nothing they carry. And this item's
+    own goal is already met in the open, every page that renders a figure printing the date its
+    figures were checked. So holding a launch for them would have held it for a quarterly refresh
+    the gate was never written about. **The move itself is unchanged**: it is a figure change with
+    an evidence entry lifted from the sheet by script, on 18 August, and item 27's per-page proof
+    still rides on the differing dates it creates.
     **This paragraph named all three as outstanding for a few hours on 11 August 2026**, having
     been written before they were answered and kept after them, which is the enumerate-then-
     conclude defect this file already records against A6 and against item 4. A closing sentence
@@ -480,14 +490,16 @@ below.
     other item**, which is the only version of this sentence that cannot rot: what is ahead of
     Launch is whatever The order still shows open above it, and that is readable from the list
     itself.
-    **THE OWNER WAS ASKED AND SAID WAIT, 11 AUGUST 2026.** Put to him as a choice between
-    re-scoping item 17's gate and launching that day, or waiting for the 18 August sitting that
-    closes it, he chose to wait. **Nothing in this repository blocks the launch**: the changeset
-    is applied, up to date with `main`, every check passes on it, and the crawler claims in
-    `content/robots.txt` were checked against their operators' own documentation the same day.
-    What it waits on is item 17, which its own entry dates. **This records the decision rather
-    than a date to count down to**, because a sentence saying how many days are left is wrong
-    the day after it is written, which is the defect this file has paid for more than any other.
+    **THE WORD WAS GIVEN ON 11 AUGUST 2026 AND THE SITE IS LAUNCHED.** The owner was asked twice
+    that day. Asked first whether to re-scope item 17's gate and launch or to wait for the
+    18 August sitting, he said wait, and this entry said so for part of the afternoon. He then
+    reversed it: launch now, update on 18 August. **Both are recorded rather than the first being
+    quietly overwritten**, because an entry that shows only the surviving answer cannot be read
+    against the pull request that acted on it. Item 17's gate is released under its own entry, and
+    the EMP06 move it still holds is a post-launch update rather than a launch condition.
+    **What went with the word**: the changeset was already applied, current with `main` and green,
+    and every crawler claim in `content/robots.txt` had been checked against its operator's own
+    documentation the same day, which found nine wrong and corrected them.
 19. **NOT A GATE, and that is a decision rather than an oversight. Talk to five target users.** A
     week, in parallel with everything above, and the one acceptance criterion foundation section
     18 says can save the whole build. The two comprehension criteria are tested by this and by
