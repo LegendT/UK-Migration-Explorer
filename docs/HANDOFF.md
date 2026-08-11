@@ -1375,6 +1375,43 @@ query had been run and named its output. The query had been run, with `console.l
 published lacked it. **A claim about a different artefact than the one shipped** is this project's
 oldest defect, committed by the fix for it, in two files. Copy the command out of your terminal.
 
+### Closing an item, and the sentence that cannot be true
+
+- **Never write that work is unmerged in a document the merge will publish.** "BUILT IN THE PULL
+  REQUEST THAT CARRIES THIS LINE AND NOT YET MERGED" is false the moment anybody reads it on
+  `main`: the pull request carrying it is open by definition while it is being written, and merged
+  the instant the entry lands. It was written into `docs/BACKLOG.md` **four times in six days**.
+  Items 13 and 14 carried it for four days after PR #167. The sentence was REMOVED from item 15 on the
+  morning of 10 August 2026, for exactly this defect, and written back into it hours later,
+  by the same hand, so the last launch gate read as open while its work was on `main`. Name the
+  branch, or say nothing and let the list's own state speak.
+
+- **A merged pull request is not evidence an item is finished, only that some of it is.** Item 16
+  read as open the day after its PR merged and closing it looked obviously right. Reading section
+  R8 bullet by bullet against the **built site** first found two entries that had never shipped: a
+  sentence naming a page it did not link to, and two glossary terms `/costs/` uses that the
+  glossary never defined. **Closing early is the worse of the two errors**, because a closed item
+  is not read again, where a stale open one is at least still in front of somebody.
+
+- **Both errors are the same root and the merge is where they are caught.** An entry gets written
+  before the state it describes exists. So when a long-lived branch is finally merged, read the
+  conflicting entries rather than accepting either side: item 17's "the gate ahead of it" sentence
+  went stale twice that way, naming items 13 and 14, then item 15, both already closed.
+
+- **Read a field in full before making a claim about it.** A session surveyed record notes as
+  `notes[:700]` and then wrote that nobody had opened a source document. One record's notes
+  already carried a detailed reading of it past character 700, naming a page and a figure the
+  session's own search had reported absent. A truncated display is fine to glance at and unusable
+  under a sentence beginning "nothing in this repository".
+
+- **Narrowing a claim until it is true is not establishing it.** A page said nobody publishes a
+  figure for the population without leave. Caught as an absence checked in one publisher, the
+  first fix narrowed the sentence to the Home Office, which made it true by shrinking it. The
+  owner refused that and asked for the other acceptable sources; checking them overturned the
+  claim outright, because the Migration Observatory, which this site already cites and grades,
+  publishes exactly those estimates. The narrowed version reads like diligence, which is what
+  makes it dangerous.
+
 ### Deciding what to build
 
 - **Test the mechanism before recommending it.** A scope recommended a Nunjucks filter for
@@ -1785,15 +1822,22 @@ them: whatever is still outstanding is in the backlog.
 
 Your global instructions at ~/.claude/CLAUDE.md load automatically.
 
-ONE THING RECITED HERE, because it inverts and getting it backwards does
-the most damage available. Work is tagged [me] or [you] from the
+ONE THING IS EXPLAINED HERE RATHER THAN POINTED AT, because it inverts
+and getting it backwards does the most damage available. Everything else
+below is an imperative with a date; docs/HANDOFF.md holds the incident.
+Work is tagged [me] or [you] from the
 SESSION's side, so the tags invert against the pronouns in this message.
-Use the mapping, never the pronoun:
-  [me] = a factual or mechanical change against a cited source. YOU do it.
-  [you] = a call or a task that is the owner's. Propose and stop.
+The tag names WHO ACTS, which is how The order's own header puts it. Use
+that, never the pronoun and never the kind of work:
+  [me] = the session acts. YOU do it.
+  [you] = the owner acts. Propose and stop.
+Usually [me] is a mechanical change against a cited source and [you] is a
+judgement, but that is a description, not the test. When a [me] item turns
+out to need a judgement, the tag still says you act on everything around
+it: bring the judgement, do not take it, and do not retag the item.
 Check it against The order's own header in docs/BACKLOG.md, which says
 in one sentence which side takes which. On a list mixing both, do all
-the [me] work first and bring me the [you] decisions in one batch,
+the [me] work first and batch the [you] items for the owner,
 because the mechanical work usually determines what the editorial
 question is.
 
@@ -1801,29 +1845,46 @@ TASK: take the first item The order says a session takes, unless I have
 told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
 has been misread before. Read every subsection an item's header names
-before deciding that item is finished: one closed on a sentence covering
-a third of its own scope on 5 August 2026, and the session believed it and
-named the wrong next item. Reproduce the item's premise before building what
+before deciding that item is finished, against the BUILT SITE rather than
+against its pull request. A merged PR says some of the item is done, not
+all of it. Closing early is worse than leaving it open, because a closed
+item is never read again. (5 and 11 August 2026.) Reproduce the item's
+premise before building what
 it prescribes: a recommendation is a claim about what can be built, and one
 taken on trust cost a reversal on 4 August 2026.
 
-Tell me which item you are taking and what you expect to change before
-you start. If it is larger than a session, propose a split. If it is
+Say which item you are taking and what you expect to change, then start.
+That is an announcement, not a request: do not wait for my reply. If it is
+larger than a session, propose a split and start the first part. If it is
 wholly gated on a decision of mine, do not stall and do not take the
 decision: bring it to me and start the next item that is not waiting
 on me, saying which.
 
-Everything must pass, and run these rather than assume: npm run validate,
-npm run build, npm run a11y and npm run check-evidence. All four every
-time. Read what a passing run says it did NOT establish, rather than
-taking silence as clearance, and read the COUNT in a pass line against
+Everything must pass, and run these rather than assume. All four, every
+time:
+  npm run validate
+  npm run build
+  npm run a11y
+  npm run check-evidence
+ Read what a passing run says it did NOT establish, rather than
+taking silence as clearance. Before writing that anything is absent, name
+every store that could hold it and sweep each. Narrowing a claim until it
+is true is not establishing it. Read a field in full before making a claim
+about it: a survey printed at [:700] hid the evidence that made the claim
+false. (10 August 2026.) Read the COUNT in a pass line against
 what the build printed: a11y took its URLs from a hand-written list and
-reported 17 of 17 with a new page missing from it. check-releases,
+reported 17 of 17 with a new page missing from it. If a11y cannot launch
+a browser,
+that is usually a broken Chrome in ~/.cache/puppeteer rather than the
+environment: a stub is a few hundred KB where a real one is ~300MB. Fix it
+before recording accessibility as unverified; docs/HANDOFF.md has the
+steps. check-releases,
 check-sources and the ONLINE half of check-backlog are network checks
-that gate nothing, so run them by hand before a PR. The first two run in
-CI as report-only steps, so read their step logs rather than the green
-tick: they report and never gate. The online half of check-backlog runs
-in no workflow at all.
+that gate nothing, so run them by hand before a PR. Which of them CI
+runs, and which are report-only
+there, is in .github/workflows/validate-data.yml and changes without this
+file knowing: read the workflow rather than this sentence, and read a
+step's log rather than the job's green tick.
 
 Branch and PR, never straight to main, and the PR body carries the
 reasoning. Cut the branch from main before your first EDIT of each item,
@@ -1832,10 +1893,20 @@ items committed two of them onto the previous item's branch, and the check
 below cannot see that, because those commits are on a branch. When you
 finish an item, mark it done in docs/BACKLOG.md with its PR and a date,
 and move it to Completed when nothing is left. Do not delete it.
+NEVER write that work is unmerged in a document the merge will publish.
+"Built in the pull request that carries this line and not yet merged" is
+false the moment anyone reads it on main. Name the branch, or say nothing.
+(Written four times in six days, to 11 August 2026.)
 
-Before you finish, run: git log --oneline origin/main..HEAD
-Any answer but silence is work that has not shipped. A commit made after
-its pull request merged is stranded on a dead branch, and git status,
-git log and the branch name all read clean.
+Before you finish, run BOTH of these. They answer different questions and
+the pass state is different for each:
+  git log --oneline origin/$(git branch --show-current)..HEAD
+    Silence means everything you committed is pushed. Anything printed is
+    unpushed and will be lost with the working copy.
+  git log --oneline origin/main..HEAD
+    On an open branch this prints your own commits, and that is correct.
+    It matters AFTER your pull request has merged: anything printed then
+    is stranded on a dead branch, and git status, git log and the branch
+    name all read clean.
 ```
 
