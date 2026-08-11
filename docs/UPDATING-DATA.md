@@ -25,6 +25,24 @@ Three releases carry a promise of one month, signed 23 July 2026:
 | ONS, long-term international migration | Twice yearly |
 | Ministry of Justice, tribunals statistics | Quarterly |
 
+**The site launched on 11 August 2026, and four things about this procedure changed with it.**
+`content/robots.txt` admits search engines and citing retrieval agents rather than refusing
+everything, so a stale figure is now indexed and quotable rather than sitting where only you would
+find it: the cost of leaving one has gone up, not the procedure for fixing it. Corrections now
+arrive from strangers through the issue tracker, which `/about/` names as the route and which needs
+a free GitHub account, so an incoming report is a stranger's first impression of whether this site
+does what it says. The release checker's weekly issue is now something a person is expected to
+answer rather than a report nobody reads. And **Search Console is not set up yet**, which is the
+owner's to do and is where success measure two would be read; nothing in this procedure depends on
+it, and this sentence is here so that its absence is a known state rather than an assumption.
+
+**A correction from a reader is this procedure with the trigger changed, not a different one.**
+Reproduce the figure against the source before agreeing or disagreeing, because a reader is as
+likely to be reading the wrong basis as the site is to be wrong, and this site's own subject is
+people doing exactly that. If they are right, it is a full update from step 3, evidence included,
+and the changelog entry says a reader found it. If they are wrong, the reply is the reconciliation,
+not an assertion.
+
 Everything else is irregular and carries no promised schedule. Three things tell you to go and
 look, and only the third is a calendar:
 
@@ -217,9 +235,11 @@ grep -rn "series\." content/*.njk             # charts, which no figures: block 
 `content/index.njk` carries **no** `figures:` block at all: the home page draws from
 `dashboard.json` card refs. And no page declares a series under `figures:` anywhere, so for a
 move of `asylumApplicationsTimeseries.json` or `asylumBacklogTimeseries.json`, the front-matter
-query returns nothing at all. Of those two, only the backlog series has no `series_ref` metric
-protecting it: `asylum/asylum-applications-2025` declares `asylumApplications@2025`, so the
-applications series cannot drift from its metric in silence.
+query returns nothing at all. **Both of those two are protected by a `series_ref` metric**, `asylum/asylum-applications-2025`
+declaring `asylumApplications@2025` and `asylum/asylum-backlog-2019` declaring
+`asylumBacklog@2019`, so neither can drift from its metric in silence. **This said the backlog
+series had no such metric until 11 August 2026**, which would have sent a session looking for a
+gap that is not there.
 
 **A third kind of prose sits between the two rules above, and it renders to the most-read page.**
 `dashboard.json`'s `whatThisMeans` prints on the home page, and `meta.json`'s `keyCaveats` print
@@ -251,8 +271,11 @@ an earlier release, and the single-vintage rule enforces it, so do not append po
   prose date, which is how the `vintage` field beside it is written, sorts above every ISO date
   and would have cleared every correction to that series for ever. Guarded since PR #48, and the
   reason the guard exists is worth knowing when you are typing the field.
-- Keep every `series_ref` metric in step with the point it names, or the build fails. There are
-  five, and one of them is Home Office rather than ONS.
+- Keep every `series_ref` metric in step with the point it names, or the build fails. **How many
+  there are is not written here**: this line said five until 11 August 2026, when there were
+  eleven, and said one was Home Office when two are. The count is a scan, so run it rather than
+  trust a sentence:
+  `node -e 'for(const f of require("fs").readdirSync("data").filter(f=>f.endsWith(".json")))for(const m of (JSON.parse(require("fs").readFileSync("data/"+f)).metrics||[]))if(m.series_ref)console.log(m.id,m.series_ref,m.source_id)'`
 - Evidence is **per array and per release**, carrying the vintage, the point count and a quote
   holding both ends. `data/evidence/README.md` has the shape.
 - **Companion blocks are separate series with their own release.** `netMigration.historical` is
@@ -341,9 +364,9 @@ that does not happen.
   around them.
 - **That the figures not in scope are current.** This procedure deliberately touches one source,
   and `check-releases.mjs` does **not** cover the rest. It watches two GOV.UK collections and one
-  ONS bulletin. On 30 July 2026 the other eight cited sources, including the NAO, the Commons
-  Library, the Migration Observatory, ICIBI and the OBR, are reported as **not watched** on every
-  run, with no detection route at all. They are aged by cadence in `validate-data.mjs`, which is
+  ONS bulletin. Every other cited source is reported as **not watched** on every run, with no
+  detection route at all, and the run names them and counts them rather than this line doing it:
+  it said eight on 30 July 2026 and the number has grown since. They are aged by cadence in `validate-data.mjs`, which is
   a guess about time. Read the "Not watched" block; it is printed for exactly this reason.
 - **That a figure the edition check cannot compare is current.** Both small-boats figures cite
   evergreen pages that name no edition, so the comparison reports "cannot be compared" rather
