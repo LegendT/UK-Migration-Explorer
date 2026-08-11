@@ -454,7 +454,7 @@ below.
     unitless against the style guide, and `content/style-guide.md` carries no rule about units,
     its subject being contested vocabulary, while the chart's own heading states the unit. And
     two unread global registrations were reported in `eleventy.config.js` where there was one.
-    **CLOSED, on branch `item-24-labelling`.** Both labelling points are built and both premises
+    **BOTH LABELLING POINTS ARE BUILT, on branch `item-24-labelling`.** Both premises
     were reproduced against the built site first. The table on the most-immigration-is-asylum
     check had no `<caption>` and its scrolling region was named "What the data says", the heading
     above it, which says nothing about a table of reasons. A `{caption}` marker fixes both at once
@@ -465,7 +465,8 @@ below.
     unqualified share card arriving by a route a screenshot cannot reach. The heading now carries
     a visually-hidden "The claim: " prefix, on the idiom `lib/citation.mjs` and `lib/charts.mjs`
     already use, so what a sighted reader sees is unchanged. Both claim states carry it, live and
-    paused. `npm run a11y` passes on every page in both palettes.
+    paused. `npm run a11y` passes on every page in both palettes. **[me]**, and it stays tagged
+    until it is on `main`: an item is done here when it is merged, not when it is built.
 25. **NOT A GATE, and it is the one thing under R6 that is not cosmetic. An evidence entry can be
     retired from every pass by editing its own value.** `scripts/check-evidence.mjs` audits an
     entry only where the record still exists and still holds exactly what the entry declares,
