@@ -266,6 +266,25 @@ below.
     which is what the evidence entries already name and what this site already does for the Home
     Office `.ods` tables, answers both at once. It reaches records this batch did not touch, so it
     is a call rather than a tidy.
+    **A third thing is for the owner, and the remaining batches wait on it, because it decides
+    what they have to do.** This item's own goal is that the date a reader meets and the date the
+    figures were checked are the same day, and `retrieved_date` does not reach that on its own. It
+    renders only inside the closed *How to cite this* disclosure, while the date a reader meets
+    without opening anything is `last_reviewed` in the page footer, whose next sentence says "Its
+    figures were the latest published at that date". So a re-read moves the figure's date and
+    leaves the footer welding the figures' currency to a review date that is now the older of the
+    two, which is the wrong way round. **`last_reviewed` cannot honestly be moved by this item**:
+    item 2's precedent is that it records what a review READ, and a data re-read is not a page
+    review. **Three readings, and the recommendation is the third.** Take the goal to mean the
+    citation date alone, and the footer goes on saying something a reader can check and find out of
+    step. Re-read each page as its figures are re-read, which is the pre-publication review's job
+    and multiplies this item. Or unweld the sentence, so `last_reviewed` keeps meaning what item 2
+    says it means and the figures' currency is stated to live in the citation. That last one is one
+    string in `content/_includes/base.njk` plus the string `scripts/check-build.mjs` matches it on,
+    which has to move with it and has to be a phrase the old sentence does not contain, or the check
+    passes on both and stops telling them apart. Draft, for the half that renders only where a page
+    carries a figure: "Its figures are not a live count: each citation says when we last checked
+    that figure against its source." **[you]**, and nothing is built either way.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
