@@ -58,8 +58,8 @@ arrivals</a>.</p>
   title: 'UK net migration, 2012 to 2025',
   summary: 'Net migration rose sharply from 2021 and reached ' ~ (nm.data | at(2022) | number) ~ ' in 2022, the highest point on this calendar-year series. It has fallen in each of the three years since, to ' ~ (netMigration.value | number) ~ '.',
   unit: 'people per year',
-  source: 'ONS, long-term international migration, provisional: year ending December 2025',
-  sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/bulletins/longterminternationalmigrationprovisional/yearendingdecember2025',
+  source: 'ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)',
+  sourceUrl: 'https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx',
   breakAfter: 2020,
   note: 'ONS advises that estimates before and after June 2021 should be compared with caution, because the methods used to produce them differ. The break is marked on the chart. What changed is the source of the estimate: before it, migration was estimated from the International Passenger Survey, a sample survey of travellers at ports and airports; after it, from administrative data already held by government, chiefly Home Office visa and border records and, for British and Irish nationals, other administrative sources. ONS calls the second its "new approach", and it is why estimates either side are not a like-for-like series rather than simply revised. Every point comes from a single ONS release, and figures from different releases must not be mixed. The 2022 estimate has moved across revisions, from 606,000 when first published in May 2023 to ' ~ (nm.data | at(2022) | number) ~ ' in the current series. The highest twelve-month net migration estimate ONS publishes is ' ~ (netMigrationPeak.value | number) ~ ', in the ' ~ netMigrationPeak.period_label ~ ', a window a calendar-year series cannot show.'
 } %}
@@ -92,8 +92,8 @@ only way to see which is to look at the flows separately.</p>
   title: 'Long-term immigration and emigration, 2012 to 2025',
   summary: 'Immigration was highest in 2023 on this calendar-year series, at ' ~ (fl.data | at(2023) | number) ~ ', and has fallen since. Emigration fell for two years to 2021, then rose in each of the three years after it, to ' ~ (fl.emigration.data | at(2024) | number) ~ ' in 2024, easing to ' ~ (emigrationTotal.value | number) ~ ' in 2025.',
   unit: 'people per year',
-  source: 'ONS, long-term international immigration, emigration and net migration flows, provisional',
-  sourceUrl: 'https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional',
+  source: 'ONS, Long-term international immigration, emigration and net migration flows, provisional (May 2026 publication spreadsheet, Table 1)',
+  sourceUrl: 'https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/internationalmigration/datasets/longterminternationalimmigrationemigrationandnetmigrationflowsprovisional/yearendingdecember2025/may2026publicationspreadsheet.xlsx',
   breakAfter: 2020,
   note: 'Between 2023 and 2024, net migration fell from ' ~ (nm.data | at(2023) | number) ~ ' to ' ~ (nm.data | at(2024) | number) ~ ' while immigration fell from ' ~ (fl.data | at(2023) | number) ~ ' to ' ~ (fl.data | at(2024) | number) ~ '. Emigration went the other way, from ' ~ (fl.emigration.data | at(2023) | number) ~ ' to ' ~ (fl.emigration.data | at(2024) | number) ~ ': more people leaving, not only fewer arriving. These are calendar years. The highest twelve-month immigration estimate ONS publishes is ' ~ (immigrationPeak.value | number) ~ ', in the ' ~ immigrationPeak.period_label ~ ', a window a calendar-year series cannot show.'
 } %}
