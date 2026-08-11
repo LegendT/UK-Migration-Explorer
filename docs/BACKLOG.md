@@ -465,77 +465,24 @@ below.
     and the first runs a six-month clock that starts at it, so choosing them before launch is worth
     more than choosing them well after. **[you]**, and nothing is built either way.
 
-24. **NOT A GATE. The minor findings of the pre-launch critique, which is R6 below. MERGED
-    6 August 2026 (PR #167), and the code tidy with it.** **This entry read "BUILT on the same
-    branch and not merged" until 10 August 2026**, the third of the three that did, and the only
-    one of the three that stays open on its own account rather than on that sentence. Applied: the Migration Observatory
-    grades and their evidence entries, the counts in `README.md`, `docs/foundation.md` and
-    `docs/UPDATE-AUTOMATION.md`, the census entry in `data/sources.json`, the glossary
-    cross-references, `content/404.md`, the provenance disclosure's target size, and both
-    accessibility gaps: the page list is compared against the build in both directions and the
-    dark palette is audited on every run. **The code tidy of 6 August 2026**: the HTML escaper had
-    one home made for it in `lib/escape.mjs` where five files each held a copy, the withdrawn
-    y-label flag is gone from `lib/charts.mjs` with the measurement that withdrew it kept and the
-    three comments that outlived it corrected, the bar chart's text size is carried per rendering
-    and held against `content/assets/style.css` by `scripts/check-build.mjs`, the inputs that
-    produced NaN coordinates are refused with the chart named, and `eleventy.config.js` lost an
-    unread global and a note describing a defect fixed the day before. **Both refactors were
-    proved to change nothing**, the built site being compared byte for byte against the commit
-    before them.
-    **Two findings were refused rather than fixed.** The bar labels on `/costs/` were reported as
-    unitless against the style guide, and `content/style-guide.md` carries no rule about units,
-    its subject being contested vocabulary, while the chart's own heading states the unit. And
-    two unread global registrations were reported in `eleventy.config.js` where there was one.
-    **BOTH LABELLING POINTS ARE BUILT, on branch `item-24-labelling`.** Both premises
-    were reproduced against the built site first. The table on the most-immigration-is-asylum
-    check had no `<caption>` and its scrolling region was named "What the data says", the heading
-    above it, which says nothing about a table of reasons. A `{caption}` marker fixes both at once
-    because `table-captions` runs before `scrollable-regions` and that transform prefers a caption
-    to a heading, so one declaration names the table and the region. And a claim page's `h1` was
-    the bare claim, so a screen-reader user navigating BY HEADING met "Most immigration is asylum
-    seekers." with nothing marking it as a claim being checked, which is the same defect as an
-    unqualified share card arriving by a route a screenshot cannot reach. The heading now carries
-    a visually-hidden "The claim: " prefix, on the idiom `lib/citation.mjs` and `lib/charts.mjs`
-    already use, so what a sighted reader sees is unchanged. Both claim states carry it, live and
-    paused. **The visible "The claim" label is `aria-hidden` with it**, because the heading now
-    carries that label in its own accessible name and without hiding the visible one a screen
-    reader reading linearly announces it twice. Only that label: "The short answer" below it is
-    carried by nothing else and stays. What a sighted reader sees is unchanged either way.
-    `npm run a11y` passes on every page in both palettes. **[me]**, and it stays tagged
-    until it is on `main`: an item is done here when it is merged, not when it is built.
-25. **NOT A GATE, and it is the one thing under R6 that is not cosmetic. An evidence entry can be
-    retired from every pass by editing its own value.** `scripts/check-evidence.mjs` audits an
-    entry only where the record still exists and still holds exactly what the entry declares,
-    which is deliberate and is what stops the audit trail having to be deleted when a figure
-    moves. The gap is the other side of it: the base-branch loop asks about figures that moved,
-    so if the ENTRY moves instead, by a hand editing its `value`, the entry stops being read and
-    nothing asks why. Nothing suggests it has happened; the quotes were re-read on 6 August 2026.
-    **Deliberately not taken in the same session as the sign fix**, because this is the script the
-    whole evidence contract rests on and the shape of the remedy is a real question: probably that
-    a branch changing an entry's `value` must show the record moving with it, which is the
-    machinery the base-branch comparison already has. **[me]**, as its own piece of work.
-    **BUILT, on branch `item-25-evidence-entry-drift`, and the prescription was one third of the
-    defect.** The premise was reproduced first: editing one entry's `value` to a wrong number and
-    leaving its record alone dropped it out of the audit and the run exited 0 saying nothing. But
-    an entry leaves the audit by three routes, not one. Its `value` can be edited, its `ref` can
-    be edited, or it can be deleted, and building only what was prescribed would have shipped a
-    change that reads as a fix while leaving two of the three open.
-    **One rule covers all three**: an entry that WAS audited on the base branch may stop being
-    audited only because its record moved. If the record still holds what that entry declared,
-    the entry cannot have stopped being evidence for it, so the trail was edited rather than the
-    data. Matching on ref AND value is what makes one rule reach three edits.
-    **Probed on all four cases before it was wired in**: value edited, ref edited and entry
-    deleted are each caught; a figure that genuinely moved, leaving its entry behind as history,
-    is still allowed, which is the behaviour the audit exists to protect and the whole reason it
-    reads only entries whose record still matches.
-    **A critique then found two more routes and both are closed.** A RANGE entry carries
-    `range_min` and `range_max` and no `value`, so reading `entry.value` dropped it before the
-    comparison ran and editing the fiscal-impact entry's `range_min` was silent; entries are now
-    compared on the same shape a record publishes. And a SERIES entry retires itself the same way
-    by having its `file`, `block` or `vintage` edited, which took the series audit from three to
-    two in silence. **That second one is PR #147's asymmetry repeating**: the figures half guarded
-    and the series half not, in the same script, by the hand that had just read the entry saying
-    so. Six routes are caught now, and a figure that genuinely moved is still allowed.
+24. **CLOSED 11 August 2026 (PR #184).** R6's two labelling points. The table on the
+    most-immigration-is-asylum check had no caption and its scrolling region was named from the
+    heading above it, which said nothing about a table of reasons; one `{caption}` marker names
+    both, because `table-captions` runs before `scrollable-regions` and that transform prefers a
+    caption. And a claim page's `h1` was the bare claim, so a screen-reader user navigating by
+    heading met it with nothing marking it as a claim being checked; it now carries a
+    visually-hidden "The claim: " prefix and the visible label beside it is `aria-hidden`, so the
+    label is announced once rather than twice. The rest of R6 merged on 6 August 2026 in PR #167.
+    It is under *Completed*.
+
+25. **CLOSED 11 August 2026 (PR #185).** An evidence entry could retire itself from every pass.
+    **The backlog's prescription was one third of it**, and reproducing the premise is what showed
+    that: an entry leaves the audit by having its `value` edited, its `ref` edited or by being
+    deleted, and a critique then found two more, a range entry carrying `range_min` and no `value`
+    at all, and a series entry doing the same by its `vintage` or `block`. **That last one was PR
+    #147's asymmetry repeating in the same script**, the figures half guarded and the series half
+    not. One rule covers all six: an entry audited on the base branch may stop being audited only
+    because its record moved. It is under *Completed*.
 
 26. **NOT A GATE, and it is the first thing AFTER launch. Bring `docs/UPDATING-DATA.md` up to
     date for a site that has readers.** The owner asked for a document telling him what to do to
@@ -1549,6 +1496,8 @@ Kept so that a future session can see what was decided and when, rather than reo
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
 
+- **R6's two labelling points, The order's item 24**, 11 August 2026. PR #184.
+- **An evidence entry retiring itself, The order's item 25**, 11 August 2026. PR #185.
 - **The pre-launch sweep's gate, The order's item 15**, 10 August 2026. PR #170, closing R7.
   Five reader-facing and sourcing findings, each taken at its root rather than at the site the
   finding named: the card defect was three cards and is fixed by a filter over all of them, and

@@ -91,6 +91,14 @@ every page that cites it, because a citation protects the number and never
 the sentence around it.
 
 Branch and PR, never straight to main, and the PR body carries the
+NAME THE PATHS YOU COMMIT. `git add -A` while resolving a merge swept two
+files the owner had left untracked before the session onto the launch branch,
+where merging would have published them; every other commit that day named its
+paths and the one that did not is the one that committed someone else's work.
+No check can see this: validate, the build and CI all reason about files they
+already know. `git status --short` at the start tells you which strays exist,
+and the same list must still be untracked at the end. (11 August 2026.)
+
 reasoning. Cut the branch from main before your first EDIT of each item,
 not when you are ready to commit: on 5 August 2026 a session running three
 items committed two of them onto the previous item's branch, and the check
