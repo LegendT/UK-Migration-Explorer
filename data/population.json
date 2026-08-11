@@ -31,7 +31,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Roughly one in six residents, of a total population of 66.9 million at the time. Up from about 9% in 2004. NOT AN ACCREDITED FIGURE AND NOT AN OFFICIAL RELEASE, REGRADED 4 August 2026 under R1 call 8. The Migration Observatory builds this share itself, saying it combines 2021 data for England, Wales and Northern Ireland with 2022 data for Scotland, and no census release carries a UK-wide share. Nor is any UK-level figure accredited: ONS grants accreditation to the England and Wales and Northern Ireland statistics in its census-based UK release and states that the Scotland, Great Britain and UK ones have \"just Official Statistics status, without accreditation\". The source was NOT moved onto that ONS release, and the reason is mechanical: its table UK05 prints country-of-birth cells by sex and age and no totals at all, so a numerator and a denominator taken from it are sums of 36 rows rather than published values, and could not be quoted as components. CHECKED AGAINST IT ANYWAY, 4 August 2026: summing UK05 gives 10,724,293 of 66,912,612 usual residents, 16.03%, and a control against UK01 agrees on the population to twenty-five people. So the published 16% is independently corroborated by ONS even though it is read from the briefing. For the later provisional estimate see foreign-born-share-mid-2024.",
       "confidence_level": "estimated"
     },
@@ -79,7 +79,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Foreign-citizen (non-British nationality) share, up from about 5% in 2004. Differs from the foreign-born group: many migrants naturalise, and some UK-born residents are non-citizens.",
       "confidence_level": "estimated"
     },
@@ -111,7 +111,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "India was the largest single country of birth (9%). The top five, India (9%), Poland (8%), Pakistan (6%), Romania (5%), Ireland (4%), together accounted for 32% of the foreign-born population.",
       "confidence_level": "estimated"
     },
@@ -279,7 +279,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "About 47% of foreign-born residents lived in London and the South East, against 27% of the overall population.",
       "confidence_level": "estimated"
     },
@@ -295,7 +295,7 @@
       "source_id": "migration-observatory",
       "source_url": "https://migrationobservatory.ox.ac.uk/resources/briefings/migrants-in-the-uk-an-overview/",
       "published_date": "2024-08-09",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "THE SOURCE GIVES A FLOOR AND THIS RECORD HOLDS A POINT: the briefing says 'More than 40% of its residents had been born abroad', so 40 is the least it can be and not an estimate of what it is. Anything written from this record has to say at least, and a sentence reading 40% of Londoners were born abroad is not supported by it. The 2021 Census figure itself is not quoted by the briefing. Highest of any region. National average 16%. Lowest: North East (7%), Wales (7%), Northern Ireland (9%).",
       "confidence_level": "estimated"
     }
