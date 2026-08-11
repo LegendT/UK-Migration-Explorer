@@ -61,7 +61,7 @@ Home Office made {{asylum/asylum-initial-decisions-total}} initial decisions. Th
 {{asylum/asylum-appeals-backlog}} appeals outstanding at the end of it, at a different
 publisher. {{asylum/people-in-receipt-of-asylum-support}} people were receiving
 [asylum support](/what-the-words-mean/#asylum-support) on one date, and
-{{asylum/returns-asylum-related}} asylum-related [returns](/what-the-words-mean/#return) took
+{{asylum/returns-asylum-related}} asylum-related [returns](/returns/) took
 place. A number counting arrivals on one route answers none of those questions, and the costs,
 the waiting times and the outcomes that most arguments are actually about all live in them.
 

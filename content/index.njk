@@ -17,9 +17,15 @@ review_due: 2027-07-23
 <ul class="panels">
   <li class="panel">
     <h2>Migration is not the same as asylum</h2>
-    <p>Asylum is one route among several. Among non-EU+ arrivals, which is the only basis
-    the reason split is published on, study and work were both larger in the most recent
-    year. <a href="/common-claims/most-immigration-is-asylum/">What share of
+    {#- "non-EU+" is a nationality grouping, not a route, and this panel is the first thing a
+        reader meets on what is effectively the home page. It went unlinked and unglossed until
+        10 August 2026. The gloss is here rather than only behind the link because a reader who
+        does not already know the term cannot tell that they need to follow it. -#}
+    <p>Asylum is one route among several. Among
+    <a href="/what-the-words-mean/#non-eu-plus">non-EU+</a> arrivals, meaning people who are
+    neither British nor nationals of the EU, Norway, Iceland, Liechtenstein or Switzerland, and
+    which is the only basis the reason split is published on, study and work were both larger in
+    the most recent year. <a href="/common-claims/most-immigration-is-asylum/">What share of
     immigration is asylum</a>.</p>
   </li>
   <li class="panel">
@@ -54,9 +60,14 @@ grade is our judgement about how far the figure can be relied on, not the publis
   {%- set m = card.ref | metric %}
   <li class="card">
     <h3>{{ card.shortLabel }}</h3>
+    {#- The unit sits WITH the number rather than on the line below it. On a site about migration
+        statistics the commonest unit is "people", and a card that renders the count on one line and
+        "people" on the next invites the number to be read, quoted and screenshotted without the
+        noun that says what is being counted. The period stays on its own line, because that is a
+        qualification rather than part of the quantity. -#}
     {%- set symbolised = m.unit == "%" or m.unit == "£ billion" %}
-    <span class="value">{% if m.unit == "£ billion" %}£{% endif %}{{ m.value | number }}{% if m.unit == "%" %}%{% endif %}{% if m.unit == "£ billion" %} billion{% endif %}</span>
-    <span class="period">{% if not symbolised %}{{ m.unit }} · {% endif %}{{ m.period_label }}</span>
+    <span class="value">{% if m.unit == "£ billion" %}£{% endif %}{{ m.value | number }}{% if m.unit == "%" %}%{% endif %}{% if m.unit == "£ billion" %} billion{% endif %}{% if not symbolised %} <span class="unit">{{ m.unit }}</span>{% endif %}</span>
+    <span class="period">{{ m.period_label }}</span>
     <p class="means">{{ card.whatThisMeans }}</p>
     <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
     {#- Foundation 2.1 promises that where a publication date is not recorded the figure says
@@ -66,9 +77,22 @@ grade is our judgement about how far the figure can be relied on, not the publis
     {% if m.published_date %}Published {{ m.published_date | longDate }}{% else %}Publication date not recorded{% endif %}<br>
     {#- The date we last checked the figure against its source, which is a different thing
         from when the source published it. A reader judging whether this site is up to date
-        needs the second, and it was only ever in the data files. Foundation 17. -#}
-    Checked {{ m.retrieved_date | longDate }}<br>
+        needs the second, and it was only ever in the data files. Foundation 17.
+        "Checked by us on" rather than a bare "Checked", because the bare form does not say who
+        did the checking and the owner read it as ambiguous. The SAME words are used by the
+        citation blocks in lib/citation.mjs: two wordings for one concept is what invited the
+        question, and this file briefly carried the second of them. -#}
+    Checked by us on {{ m.retrieved_date | longDate }}<br>
     <span class="grade">{{ m.confidence_level }}</span></p>
+    {#- A card's source line above belongs to its headline figure. Where the prose beside it
+        quotes a figure from a different publisher, that publisher is named here rather than
+        left behind a link that does not print the number. Derived by the `citedSources`
+        filter, which says why it is derived and not typed. -#}
+    {%- set alsoCited = card | citedSources %}
+    {%- if alsoCited | length %}
+    <p class="source also-cited">Figures quoted above also come from
+      {%- for s in alsoCited %} <a href="{{ s.url }}">{{ s.name }}</a>{% if not loop.last %},{% endif %}{% endfor %}.</p>
+    {%- endif %}
   </li>
   {%- endfor %}
 </ul>

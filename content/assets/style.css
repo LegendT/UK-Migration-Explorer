@@ -302,6 +302,12 @@ th.nested-2 { padding-left: 2.75rem; }
 }
 .card h3 { margin: 0 0 0.25rem; font-size: 1rem; }
 .card .value { display: block; font-size: 2rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+/* The unit rides WITH the number, at the weight of the prose rather than of the figure, so a
+   count and its noun read as one quantity and the number cannot be quoted bare. Smaller and
+   lighter than the value on purpose: the noun has to be legible without competing with the
+   digits, and at the value's own size it wrapped to a second line on a narrow card, which is
+   the layout this change exists to prevent. */
+.card .value .unit { font-size: 1rem; font-weight: 400; }
 .card .period { display: block; color: var(--ink-soft); font-size: 0.875rem; margin-top: 0.25rem; }
 /* The auto bottom margin is what does the pushing: everything after the explanation goes
    to the foot of the card, and the source below keeps its own top margin as a minimum for

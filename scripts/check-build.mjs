@@ -383,6 +383,66 @@ if (counts) {
   }
 }
 
+// --- the review sign-off's page count, against the pages the build actually produced --------
+// CHANGELOG.md records that a human reviewed this site before publication, and says how many
+// pages that signature covers out of how many the build produces. It is the last promise
+// /sources-and-method/ makes, and until now the denominator was prose that nothing read.
+//
+// It has gone short twice. Written as "all 22 pages the build produces" when the build made 23,
+// corrected on 6 August 2026; then correct at 23 until a new page on 10 August made the build 24
+// and nothing said so. Both times the defect is the same shape and it is the one the entry's own
+// argument is about: a signature that rounds up to "every page" is the scope silence this site
+// objects to in others. Adding a page is exactly when it happens, and adding a page is exactly
+// when nobody is thinking about the changelog.
+//
+// Only the DENOMINATOR is checked. How many pages a human actually signed is a claim about what
+// a person did, which no script can verify and which this file must not appear to; the covered
+// count is read out beside it so the gap is visible, and a reader is told it is unchecked.
+const signoff = readFileSync(`${repoRoot}CHANGELOG.md`, 'utf8')
+  .match(/signature covers (\d+) of the (\d+) pages the build produces other than the 404/);
+const contentPages = pages.filter((f) => !f.endsWith('404.html')).length;
+let signedCovered = null;
+if (!signoff) {
+  errors.push('CHANGELOG.md: the review sign-off sentence naming how many pages the signature covers is gone or reworded. It is the last promise /sources-and-method/ makes; if it moved, move this check with it.');
+} else {
+  signedCovered = Number(signoff[1]);
+  const claimed = Number(signoff[2]);
+  if (claimed !== contentPages) {
+    errors.push(`CHANGELOG.md: the review sign-off says the build produces ${claimed} pages other than the 404 and it produces ${contentPages}. A page was added or removed and the signature's scope was not revisited, which is the defect the entry itself is about. Correct the count, and name any page standing outside the signature rather than absorbing it.`);
+  }
+  if (signedCovered > contentPages) {
+    errors.push(`CHANGELOG.md: the review sign-off claims to cover ${signedCovered} pages and the build produces ${contentPages} other than the 404. A signature cannot cover more pages than exist.`);
+  }
+}
+
+// --- the review footer, checked against whether the page has a figure to be true about ---
+// The shared footer states "Its figures were the latest published at that date" under a page's
+// review date. It used to state it unconditionally, so it rendered under /about/,
+// /common-claims/, /style-guide/ and the 404, none of which prints a figure at all: a sentence
+// about figures on a page that has none is not a small imprecision on a site whose subject is
+// statements that describe nothing.
+//
+// The template decides by testing its own rendered content, and this checks the decision at the
+// end where the truth is. Compared BOTH ways, which is this project's rule for comparing two
+// sets: one direction catches the sentence returning to a page with no figures, the other
+// catches a page that gained figures and lost the sentence, which is the failure the first
+// direction cannot see and the one a front-matter flag would have shipped.
+let footerPages = 0;
+for (const file of pages) {
+  const html = readFileSync(file, 'utf8');
+  const where = `/${relative(siteDir, file).replace(/\\/g, '/')}`;
+  const claimsFigures = html.includes('latest published at that date');
+  const hasFigures = html.includes('class="figure"');
+  if (!html.includes('This page was last reviewed on')) continue;
+  footerPages += 1;
+  if (claimsFigures && !hasFigures) {
+    errors.push(`${where}: the review footer says its figures were the latest published at that date, and the page renders no figure. Either the page lost its figures or the condition in content/_includes/base.njk stopped being asked.`);
+  }
+  if (!claimsFigures && hasFigures) {
+    errors.push(`${where}: the page renders a figure and the review footer does not say when it was current. The carriesAFigure filter missed a route that puts a figure on a page.`);
+  }
+}
+
 // --- the sitemap, checked against the pages the build actually produced -----------------
 // A generated list is only worth having if something asks whether it still matches. Compared
 // BOTH ways, which is this project's rule for comparing two sets: one direction finds a page
@@ -648,6 +708,8 @@ if (errors.length) {
 const internal = pages.reduce((n, f) => n + internalHrefs(readFileSync(f, 'utf8')).length, 0);
 console.log(`Every "Cited for" line in the built site names a figure whose own record cites the publication it is printed under: ${citedForNames} name(s) checked. Not established: that the publication contains the figure, which is the far-end trace no check does.`);
 console.log(`Build checks passed: ${pages.length} pages; ${internal} internal links and all same-page fragments resolve; no id is on two elements; robots.txt admits crawlers, announces the sitemap at ${site.url}/sitemap.xml and refuses no citing retrieval agent.`);
+console.log(`The review sign-off in CHANGELOG.md names ${contentPages} page(s) other than the 404, which is what this build produced, and says the signature covers ${signedCovered}. Not established: that a human reviewed that many, which is a claim about a person; only the denominator is checked here, and the ${contentPages - signedCovered} page(s) outside it have to be named in the entry by hand.`);
+console.log(`${footerPages} page(s) carry a review footer, and on each one the sentence about when its figures were current is present exactly where the page renders a figure, matched in both directions.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
 console.log(`Of those, ${counts.tokenRefs.size} match the refs in the built HTML exactly, in both directions, outside comments. Not established: that the other ${counts.published - counts.tokenRefs.size}, reaching a reader through a chart bar or a dashboard card, render at all, because those routes put a value on the page with no ref beside it to match.`);

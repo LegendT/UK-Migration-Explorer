@@ -57,8 +57,10 @@
    launched yet, served from the commit that launches it, would be false on every page. It goes
    at launch was decided on 27 July 2026 (PR #54) and is stated in README.md and in
    docs/BACKLOG.md under the review's closing steps. Of the two links it carried, /about/ and
-   /sources-and-method/, both are in the navigation on all 23 built pages, counted against the
-   build rather than assumed. The #updates FRAGMENT is not: this banner was the only thing on
+   /sources-and-method/, both are in the navigation on every built page, counted against the
+   build rather than assumed. This sentence said "all 23 built pages" until 11 August 2026,
+   written when the build made 23 and left behind when it made more; a count of this
+   repository in a comment rots exactly like one in a document. The #updates FRAGMENT is not: this banner was the only thing on
    the site linking straight to the update cadence, and after it the page is one click away in
    the navigation and the fragment is not linked from anywhere. That is a reader-facing wording
    question and it is the owner's, so nothing is invented here to replace it. #}
@@ -94,9 +96,15 @@
 
   {{ content | safe }}
 
+  {#- "This page was last reviewed" rather than "Last reviewed", because the pre-launch notice
+      above states the date of the site-wide pre-publication review and the owner read the two
+      as a contradiction. They are different facts and now say which they are. The second
+      sentence is stated only where the page has a figure to be true about: it rendered under
+      /about/, /common-claims/, /style-guide/ and the 404, none of which prints one. -#}
   {% if last_reviewed %}
-  <p class="reviewed">Last reviewed {{ last_reviewed | longDate }}.
-  Figures are the latest published at that date, not a live count.</p>
+  <p class="reviewed">This page was last reviewed on {{ last_reviewed | longDate }}.
+  {%- if content | carriesAFigure %} Its figures were the latest published at that date, not a
+  live count.{% endif %}</p>
   {% endif %}
 </main>
 
@@ -108,7 +116,6 @@
       <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>.
       <a href="https://github.com/LegendT/UK-Migration-Explorer">Source and data on GitHub</a>.</p>
     <p><strong>Found an error?</strong> Tell us which figure and what you think it should be:
-      email <a href="mailto:corrections@ukmigrationexplorer.org">corrections@ukmigrationexplorer.org</a>, or
       <a href="https://github.com/LegendT/UK-Migration-Explorer/issues/new">open an issue</a>.
       Every change to a published figure is recorded in the
       <a href="https://github.com/LegendT/UK-Migration-Explorer/blob/main/CHANGELOG.md">public changelog</a>.</p>

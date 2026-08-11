@@ -183,18 +183,19 @@ below.
     identical false sentence is the shape this file already names**, a correction landing at its
     named site and going stale one reference away, and here neither reference had a correction to
     miss: the branch merged and no hand returned to the list. It is under *Completed*.
-15. **GATE. The pre-launch sweep of 10 August 2026, which is R7 below.** The owner read the built
-    site as a reader and the findings were checked against the repository one at a time. What
-    survives is a launch PR that would merge into a branch that is already history; a site-wide
-    footer calling every figure an official statistic on a site whose own grades say four
-    different things; a comparison of appeal cases with people on the page whose subject is that
-    the two must not be compared; a home page card citing a figure from a source that is not the
-    one its link goes to; and five records reading from an edition of the Home Office accounts
-    that has been superseded, where the supersession decision is recorded in one field of
-    `data/sources.json` and reaches no reader. **A gate on the reasoning of 4 August 2026**, that
-    a site whose subject is other people's misuse of statistics cannot launch with its own trust
-    work outstanding, widened to these by the owner on 10 August 2026. **[me]**, except the two
-    calls named under R7, which are **[you]**.
+15. **CLOSED 10 August 2026 (PR #170).** The pre-launch sweep's gate, which is R7 below. All
+    five findings are applied and on `main`: the footer that called every figure an official
+    statistic, appeal cases compared with people, three cards citing publishers their link did
+    not reach, the `ho-ara` supersession review, and the review footer's figures sentence on
+    pages with no figures. The two **[you]** calls were applied as recommended drafts, the
+    footer's wording and the card's date label, and overruling either changes one string.
+    **This entry read "BUILT IN THE PULL REQUEST THAT CARRIES THIS LINE AND NOT YET MERGED"
+    for the rest of the day after PR #170 merged**, which is the defect it was written to
+    replace: items 13 and 14 carried that same sentence for four days and this file closed them
+    for it that morning. **The sentence is self-falsifying and should not be written again**, in
+    any entry, because the pull request that carries it is by definition open when it is written
+    and merged the moment the entry becomes true. Say which branch, or say nothing. It is under
+    *Completed*.
 16. **NOT A GATE. The reader-facing batch from the same sweep, which is R8 below.** Definitions
     the home page's own cards assume and never link, two glossary terms the money pages use and
     the glossary does not hold, a denominator that is correct and unnamed, a chart marking a
@@ -1209,9 +1210,12 @@ than a date defect and is where R7's last entry comes from.
   `covers` field. **That leaves the rest undecided and the decided one invisible**: the two per-day
   averages, the hotel total, the health surcharge and the fee income each need the newer edition
   opened and the answer recorded per record, and where the older figure stands it needs the
-  supersession note the snagging list drafts. **Nobody has opened the 2025-26 accounts**, so
-  whether it restates the surcharge and the fee income is the thing to establish and not a thing
-  to assume; the recommendation that it would was withdrawn before it reached this file.
+  supersession note the snagging list drafts. **Whether HC 440 restates the surcharge and the fee income is the thing to establish and not a
+  thing to assume**, and the recommendation that it would was withdrawn before it reached this
+  file. **This entry said "nobody has opened the 2025-26 accounts" until 10 August 2026, and that
+  was false**: the hotel record's own notes already carried a reading of HC 440 naming a page and
+  a figure. It was missed by reading those notes truncated, which is the same defect as quoting a
+  number from a truncated display.
 
 - **The three displayed dates mean three different things and wear one vocabulary.** The
   pre-launch banner's date is the site-wide pre-publication review, a page footer's is that page's
@@ -1221,6 +1225,26 @@ than a date defect and is where R7's last entry comes from.
   prints "Figures are the latest published at that date" under every page that has a review date,
   including the style guide and the 404**, where the sentence describes nothing. Naming the three
   concepts is **[me]**; what the card's label should say to a reader is **[you]**.
+
+**What taking it found, kept because three of the six were larger than the finding said.** The
+cost card was not the only card citing a publisher it does not name: the first-decision queue
+quotes HMCTS appeal figures under a Home Office link and the born-abroad card quotes ONS under a
+Migration Observatory one, so the remedy is a filter over every card rather than a sentence on
+one. The review footer's figures sentence rendered on four pages with no figure, not two: `/about/`
+and `/common-claims/` were missed by a reading that went looking for the two it already knew. And
+the annual report split three ways rather than holding or moving as a block: the health surcharge
+and the fee income are both superseded and are moved, with the surcharge's Consolidated Fund half
+now printed as a dash so that the two-part sum the old record described no longer exists; the hotel
+total and both per-day averages are NOT superseded, HC 440 printing no hotel cost figure and no
+daily average in either the report or its Core Data Tables, and they carry that decision in their
+notes and on `/costs/`.
+
+**One thing was found by moving a figure rather than by looking for it.** `£3 billion` on
+`/costs/` is the 2023-24 hotel spend, and it passed the longhand scan for as long as it did only
+by colliding with the visa and immigration fee income record, which held a value of 3 in the same
+unit for an unrelated figure. Moving that record to the newer edition failed the build on the
+collision. **A collision is not coverage**, and nothing distinguishes the two while the numbers
+agree; the figure is now declared with its reason.
 
 ### R8. The reader-facing batch, none of it a false statement
 
@@ -1265,6 +1289,44 @@ than a date defect and is where R7's last entry comes from.
 Kept so that a future session can see what was decided and when, rather than reopening it. **The
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
+
+- **The pre-launch sweep's gate, The order's item 15**, 10 August 2026. PR #170, closing R7.
+  Five reader-facing and sourcing findings, each taken at its root rather than at the site the
+  finding named: the card defect was three cards and is fixed by a filter over all of them, and
+  the review-footer defect was four pages and is now derived from each page's own content with a
+  check comparing the two in both directions. **HC 440 was downloaded and read**, which moved the
+  health surcharge and the fee income to the newer edition and established that the hotel figures
+  are not superseded. **Two entries in this file were wrong about that work and are corrected on
+  11 August**: it claimed nobody had opened the 2025-26 accounts when one record's notes already
+  carried a reading of it, missed by reading those notes truncated. **And this entry's own item
+  said it was unmerged after it merged**, which is what items 13 and 14 had said for four days
+  and what closing them that morning was supposed to have taught.
+
+- **`/returns/` went through the pre-publication review**, 10 August 2026, recorded in
+  `docs/PRE-PUBLICATION-REVIEW-RETURNS.md`. The page was live and outside the signature because it
+  was added after it; the owner chose reviewing it over naming it as unreviewed. **Its literals
+  were already empty**, so the review read prose rather than numbers, and found two: a claim about
+  the non-asylum remainder that was true and evidenced by nothing, and an absence claimed across
+  every publisher and checked in one. Both are fixed. The signature now covers 23 of the 24 pages
+  the build produces other than the 404, and `scripts/check-build.mjs` holds that denominator
+  against the build.
+
+- **Returns and removals are covered**, 10 August 2026, at `content/returns.njk`. **This
+  supersedes call 9 under R1**, which on 4 August 2026 decided the subject was an unstated scope
+  silence and closed it by DECLARING the omission on `/sources-and-method/` rather than by
+  covering it. The declaration was the cheaper half and it held for six days; the owner asked for
+  the page. Nothing new was sourced: the data layer already held all five records and two of them
+  already reached a reader with no page explaining either, which the scope statement itself called
+  the same silence as not holding them. **The page is built around the two traps the records
+  document rather than around the total**: returns count events and not people, so no figure on it
+  is a headcount of individuals; and the categories do not nest, port refusals being published
+  outside the headline total and asylum-related returns being a subset already inside it. Both
+  additions a reader is invited to make are named and refused in terms. The scope statement on
+  `/sources-and-method/` is rewritten from "not yet covered" to what is now true, rather than left
+  to rot into another correction that missed its siblings, which this file already records twice
+  by that name and which no entry should be numbering a third time. **`.pa11yci.json` was
+  updated in the same change**, that list being hand-maintained and having once reported a full
+  pass with a new page absent from it.
 
 - **Reader-facing accuracy and sourcing, The order's items 13 and 14**, 6 August 2026. PR #167,
   closing R4 and R5 together. Six statements a reader met that this repository contradicted, and

@@ -1,6 +1,6 @@
 {
   "theme": "Asylum and refugees",
-  "lastUpdated": "2026-08-05",
+  "lastUpdated": "2026-08-10",
   "note": "Latest Home Office Immigration system statistics release is year ending March 2026 (published 21 May 2026). Asylum appeals come from a separate publisher (HMCTS/Ministry of Justice tribunals statistics, January to March 2026). Reference periods differ between measures, so do not mix calendar-year, year-ending, and point-in-time figures.",
   "metrics": [
     {
@@ -37,6 +37,22 @@
         "Asy_00a"
       ],
       "notes": "PEOPLE, main applicants plus dependants. A calendar year, so it does not line up with the year-ending-March figures used elsewhere on this site. Held twice deliberately: it is also the 2025 point of the asylum applications series, and series_ref keeps the two from drifting. It exists as a metric because Markdown pages cannot cite a series point and two of them were rounding it to 100,000 longhand.",
+      "confidence_level": "official"
+    },
+    {
+      "id": "asylum-claims-from-unaccompanied-children",
+      "metric_name": "Asylum claims from unaccompanied asylum-seeking children",
+      "value": 3627,
+      "unit": "claims",
+      "date": "2026-03-31",
+      "period_label": "year ending March 2026",
+      "geography": "United Kingdom",
+      "source_name": "Home Office, Immigration system statistics, year ending March 2026, How many people claim asylum in the UK?",
+      "source_id": "ho-immigration-stats",
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-claim-asylum-in-the-uk",
+      "published_date": "2026-05-21",
+      "retrieved_date": "2026-08-10",
+      "notes": "A FLOW, and it exists on this site to answer a question a stock cannot. The asylum support total excludes unaccompanied asylum-seeking children, who are supported by local authorities, and NO UK-WIDE COUNT OF THOSE CHILDREN IN LOCAL AUTHORITY CARE IS PUBLISHED BESIDE IT: the Home Office's support tables exclude them by definition, and the looked-after-children statistics that do count them are published by the Department for Education for England alone, so they are not comparable in geography with a United Kingdom support figure. This is what the publisher does state, claims made in the year rather than children being supported on a date, and it must not be read as the missing queue. 4% of all claims in the same period, and the release states four-fifths of these children were aged 16 or 17. Added 10 August 2026.",
       "confidence_level": "official"
     },
     {
@@ -575,7 +591,7 @@
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
       "retrieved_date": "2026-07-22",
-      "notes": "Up 17% on the year ending March 2025. Of which 3,475 enforced and 8,443 voluntary. A subset of total returns, not an addition to them. Return events, not unique people.",
+      "notes": "Up 17% on the year ending March 2025. Of which 3,475 enforced and 8,443 voluntary. A subset of total returns, not an addition to them. Return events, not unique people. THE PUBLISHER'S DEFINITION, added 10 August 2026 by the pre-publication review of /returns/: \"Asylum-related returns relate to cases where there has been an asylum claim or further submission at some stage prior to the return.\" It is recorded because the page says the remaining returns involve people with no asylum claim at all, and that sentence rests entirely on this definition being drawn on whether a claim was EVER made rather than on why the person was returned. Nothing in this data layer established it before.",
       "confidence_level": "provisional"
     },
     {

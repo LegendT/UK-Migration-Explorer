@@ -385,6 +385,14 @@
           "quote": "Asy_01b - Total, Year ending March 2026: 93,525"
         }
       ]
+    },
+    {
+      "ref": "asylum/asylum-claims-from-unaccompanied-children",
+      "previous_value": null,
+      "value": 3627,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-claim-asylum-in-the-uk",
+      "fetched_at": "2026-08-10",
+      "quote": "In the YE March 2026, 4% of claims (3,627) were from unaccompanied asylum-seeking children (UASC)."
     }
   ]
 }

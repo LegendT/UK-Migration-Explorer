@@ -44,6 +44,27 @@ function renderFigure(ref) {
   return `<span class="figure" data-metric="${escape(ref)}">${escape(metric.value.toLocaleString('en-GB'))}</span>`;
 }
 
+// A link written inside data prose, as {{link:/path/#anchor|the words a reader sees}}.
+//
+// Prose in data/ is plain text everywhere in this repository: nothing under data/ carries markup,
+// the caveats partial escapes what it renders, and the card prose is printed by an autoescaping
+// engine. So a dashboard card could not define its own terms, and the home page's cards used
+// "main-applicant", "Also a stock" and "Naturalisation" with no route to the glossary that
+// defines all three. This keeps the convention and resolves the link at build time instead.
+//
+// The anchor is deliberately NOT validated here. `scripts/check-build.mjs` already resolves every
+// internal link and its fragment against the pages the build produced, cross-page fragments
+// included, so a glossary anchor renamed under one of these fails the build at the end where the
+// truth is. A second check here would be a copy of that one, kept in step by hand.
+const LINK_TOKEN = /^link:(\S+)\|(.+)$/s;
+
+function resolveToken(raw) {
+  const link = LINK_TOKEN.exec(raw);
+  if (!link) return renderFigure(raw);
+  const [, href, text] = link;
+  return `<a href="${escape(href)}">${escape(text.trim())}</a>`;
+}
+
 // Structural blocks rendered from the data layer rather than restated in prose, so a page
 // describing the sources cannot drift from them.
 const PARTIALS = {
@@ -262,6 +283,66 @@ export default function (eleventyConfig) {
     return metric;
   });
 
+  // Whether a page carries any figure at all, tested against its own rendered content rather
+  // than declared in front matter. The shared footer used to state "Figures are the latest
+  // published at that date" under every page with a review date, and four pages have no figure
+  // on them at all: /about/, /common-claims/, /style-guide/ and the 404. The finding named two
+  // of the four, which is why this is derived. A hand-kept list of which pages have figures is
+  // the thing that passes by omission the first time a page is added.
+  //
+  // Two routes are tested. A {{theme/id}} token is still a token when a layout sees the
+  // content, because resolve-citations is a transform and runs after layouts; the
+  // {% figure %} shortcode has already rendered its span by then.
+  //
+  // A THIRD ROUTE IS NOT TESTED AND THIS COMMENT CLAIMED IT WAS. A dashboard card value and a
+  // chart bar put a number on a page with no token and no span, which is the same set
+  // check-build already reports as unmatched at the end of every run. `check-build.mjs` reads
+  // `class="figure"` to decide the same question this filter reads it to decide, so the two
+  // agree by construction and cannot catch each other missing that route. No page relies on it
+  // today: the home page's cards carry tokens in their prose and the chart pages carry them in
+  // theirs. A page whose ONLY figures came through a card value or a bar would silently lose
+  // the sentence, and nothing would say so.
+  eleventyConfig.addFilter('carriesAFigure', (content) =>
+    /class="figure"/.test(content) || /\{\{\s*[a-z]+\/[a-z0-9-]+\s*\}\}/.test(content));
+
+  // The publishers a card QUOTES but does not NAME. A card renders one source line, built from
+  // its own headline metric, while its prose cites other records by reference and those can
+  // belong to anyone. On the asylum cost card the hotel figure is the Home Office's own accounts
+  // under a link to the NAO, so a reader who followed the link met a report that does not print
+  // the number, which is the far-end defect the trace of 2 August 2026 exists to catch, arriving
+  // by a route the trace cannot see: it checks a record against its source, and this is a second
+  // record's figure quoted inside a first record's prose.
+  //
+  // Derived rather than declared, because a hand-kept list beside the prose is the thing that
+  // goes stale the next time a sentence is edited. Two other cards had the same defect and
+  // neither was in the finding that started this: the first-decision queue quotes HMCTS appeal
+  // figures under a Home Office link, and the born-abroad card quotes ONS under a Migration
+  // Observatory one.
+  eleventyConfig.addFilter('citedSources', (card) => {
+    const own = registry.get(card.ref);
+    if (!own) throw new Error(`Unknown metric reference: ${card.ref}`);
+    const seen = new Set([own.source_id]);
+    const extra = [];
+    for (const [, ref] of card.whatThisMeans.matchAll(/\{\{([^}]+)\}\}/g)) {
+      // A card's prose holds two kinds of token and only one of them names a publisher. Tested
+      // against LINK_TOKEN rather than a second pattern here: this filter throws on a reference
+      // nothing owns, which is what caught the first link token added to a card, and a private
+      // copy of the rule would go out of step with the resolver the moment either changed.
+      if (LINK_TOKEN.test(ref.trim())) continue;
+      const quoted = registry.get(ref.trim());
+      // A card citing a reference nothing owns is a build failure everywhere else in this
+      // file, and it is one here: the token would render through renderFigure and this filter
+      // would silently drop the publisher behind it.
+      if (!quoted) throw new Error(`Card ${card.id} cites unknown metric reference: ${ref.trim()}`);
+      if (seen.has(quoted.source_id)) continue;
+      seen.add(quoted.source_id);
+      const source = sources.find((s) => s.id === quoted.source_id);
+      if (!source) throw new Error(`Card ${card.id} cites ${quoted.source_id}, which is not in the source catalogue`);
+      extra.push(source);
+    }
+    return extra;
+  });
+
   // Throws rather than rendering an empty string. A range record's value is deliberately
   // null and a typoed property in a chart summary is undefined; either would otherwise ship
   // as an invisible blank in a sentence, which is the quiet failure renderFigure and the
@@ -326,7 +407,7 @@ export default function (eleventyConfig) {
     return content
       .replace(new RegExp(String.raw`<p>\s*${PARTIAL_TOKEN}\s*</p>`, 'g'), (_, name) => renderPartial(name))
       .replace(new RegExp(PARTIAL_TOKEN, 'g'), (_, name) => renderPartial(name))
-      .replace(/\{\{([^}]+)\}\}/g, (_, raw) => renderFigure(raw.trim()));
+      .replace(/\{\{([^}]+)\}\}/g, (_, raw) => resolveToken(raw.trim()));
   });
 
   // Heading anchors. Markdown does not support {#id} natively, so without this the syntax
