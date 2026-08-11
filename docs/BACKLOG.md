@@ -1296,6 +1296,15 @@ maintained here. Newest first.
   said it was unmerged after it merged**, which is what items 13 and 14 had said for four days
   and what closing them that morning was supposed to have taught.
 
+- **`/returns/` went through the pre-publication review**, 10 August 2026, recorded in
+  `docs/PRE-PUBLICATION-REVIEW-RETURNS.md`. The page was live and outside the signature because it
+  was added after it; the owner chose reviewing it over naming it as unreviewed. **Its literals
+  were already empty**, so the review read prose rather than numbers, and found two: a claim about
+  the non-asylum remainder that was true and evidenced by nothing, and an absence claimed across
+  every publisher and checked in one. Both are fixed. The signature now covers 23 of the 24 pages
+  the build produces other than the 404, and `scripts/check-build.mjs` holds that denominator
+  against the build.
+
 - **Returns and removals are covered**, 10 August 2026, at `content/returns.njk`. **This
   supersedes call 9 under R1**, which on 4 August 2026 decided the subject was an unstated scope
   silence and closed it by DECLARING the omission on `/sources-and-method/` rather than by

@@ -15,8 +15,8 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 is the last thing `/sources-and-method/` promises and had not been given: "Before this site
 publishes, a human reviews the figures and the claims."
 
-**The signature covers 22 of the 23 pages the build produces other than the 404, and the three
-routes are not the same route.** Saying so is the point, because a single "reviewed" would imply
+**The signature covers 23 of the 24 pages the build produces other than the 404, and the routes
+are not the same route.** Saying so is the point, because a single "reviewed" would imply
 one process covered everything and it did not:
 
 - **Ten pages went through the review of 27 July 2026**, whose evidence is `verification.txt` at
@@ -30,12 +30,27 @@ one process covered everything and it did not:
   owner's verdict before or at merge. That is a different method from the review's, applied per
   page rather than as a pass, and it is recorded separately here rather than folded in.
 
+**A fourth route, one page.** `content/returns.njk` went through `docs/PRE-PUBLICATION-REVIEW.md`'s
+method on 10 August 2026, recorded in `docs/PRE-PUBLICATION-REVIEW-RETURNS.md`. Its literals were
+already empty, every figure being a citation, so the review read the prose against the data and
+against the publication. It found two things: a sentence about who the remaining returns involve
+that was sound and evidenced by nothing, now carrying the publisher's definition in the record;
+and an absence claimed across every publisher and checked in one. That second one was first
+"fixed" by narrowing the claim to the Home Office, which made it true by shrinking it; checking
+the other sources this site accepts overturned it instead. The Migration Observatory publishes
+the estimates the page said nobody published, and the page now says what is actually true: the
+Home Office declines to estimate, the independent figures carry large margins of error, and the
+most quoted was retracted in 2025.
+
 **One page is outside the signature and is named rather than absorbed**: the lifetime
 contribution claim, `content/claims/average-migrant-contributes-341000-over-a-lifetime.md`,
-drafted after the last of the six above and so in none of the three routes. It is named here on
-the same reasoning the rest of this entry runs on, that a signature which quietly rounds up to
-"every page" is the scope silence this site objects to in others. **Corrected on 6 August 2026**,
-this entry having read "all 22 pages the build produces" from the day it was written.
+drafted after the last of the six above and so in none of the routes. It is named here on the same reasoning the rest of this entry runs on,
+that a signature which quietly rounds up to "every page" is the scope silence this site objects
+to in others. **Corrected twice**: on 6 August 2026, this entry having read "all 22 pages the
+build produces" from the day it was written; and on 10 August 2026, when a new page made the
+count short again and nothing was watching. `scripts/check-build.mjs` now compares the number in
+this sentence against the pages the build actually produced, so a third recurrence fails the
+build instead of waiting to be noticed.
 
 **The scope was decided as sixteen pages on 2 August 2026 and is signed at 22.** Six claim pages
 were published after that decision and none of them was in the ten or the six. Signing at sixteen
