@@ -298,10 +298,14 @@ below.
     in no version of the retired sentence, which the old sentence's own "not a live count" would
     have satisfied; forcing the sentence onto a page with no figure is caught, and removing it
     from the pages that have one is caught on every one of them.
-    **What this does NOT close is the gap it was raised for.** Those two pages still print
-    published figures with no date anywhere on them, in the open or in a disclosure. That is a
-    smaller and more specific thing than the question that started here, and it is not this
-    change's to fix.
+    **What this does NOT close is the gap it was raised for, and on two pages it widens it.**
+    `/sources-and-method/` and `/what-the-words-mean/` carried the retired sentence too, so they
+    had a currency claim, a false one, and now have none: no date for their figures in the open
+    and no citation block to hold one. Everywhere else the change trades a wrong date for the
+    citation's right one; there it trades a wrong date for no date. That is defensible, a false
+    date being worse than none, but it is a change to those pages rather than a state they were
+    already in, and nothing in the build asks about it. It is a smaller and more specific thing
+    than the question that started here.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
