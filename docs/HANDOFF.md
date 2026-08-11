@@ -622,6 +622,25 @@ is already here to adding a neighbour beside it.
   trying to find an X. This is the same discipline as *Test the inference, not just the caveat*
   below, applied to your own sentence.
 
+- **A file that tells its reader to check it against an outside source is a file nobody has
+  checked.** `content/robots.txt` carries the sentence "Check it against the operators' own
+  published documentation" and, on 11 August 2026, nine of its claims about other companies'
+  crawlers did not survive that check being run for the first time. Three named agents their
+  operator documents nowhere; one refused a training crawler while its operator publishes that it
+  runs none; one named a Huawei chatbot product as a crawler; and one told readers Amazon
+  described a bot as serving answers rather than training, where Amazon's page says it "may be
+  used to train Amazon AI models". **The instruction is the tell**: it is written by somebody who
+  knew verification was needed and did not do it, and so are "as at <date>", "this will go stale"
+  and "re-read rather than assumed". Treat every one as a work item. Fetch the operator's own page
+  rather than an aggregator, because a token that exists only in third-party crawler lists is the
+  commonest way a name that names nothing gets into a file; render a JavaScript page before
+  believing a zero; and run a control on the same page that must hit.
+  **And never write "all N checked" without enumerating N by script.** That pass reported "all 25
+  crawler names" in a commit message. The file named twenty-nine, and six had not been read, which
+  is a count of this project's own state written beside a sweep that computes it. Two of its own
+  corrections were wrong the same way, each written after checking part of a list and before
+  checking the rest. State what was checked, never that everything was.
+
 - **Reconcile a derived figure against published ones before writing it.** The 5,931 was summed
   from a pivot over four quarters. The same four quarters reproduce the published 79,719 refusals,
   16,901 withdrawals and 48,581 grants, and the grand total 151,132 equals the decisions total plus
@@ -1119,7 +1138,13 @@ is already here to adding a neighbour beside it.
   reverts everything and cost an hour. The single-file form has the same failure whenever the
   file carries the session's own uncommitted edits: it restores the last commit, not the
   pre-probe state, and on 2 August 2026 it silently took two of a session's fixes with the
-  probe, recovered only because the harness reported the file changed on disk. Reverse the
+  probe, recovered only because the harness reported the file changed on disk. **It happened again
+  on 11 August 2026 and nothing reported it**: a loop of seven probes ended each iteration with
+  `git checkout -- content/robots.txt`, which reverted an uncommitted correction made minutes
+  earlier, and it was found by grepping the file for that correction rather than by any signal. So
+  the recovery route named above is not a safety net, and inside a loop the `git diff` check below
+  is impractical anyway. Copy the file to the scratch directory before the first probe and restore
+  from the copy every time. Reverse the
   exact edit instead, or snapshot to a scratch directory first and restore from there, chaining
   the restore with `;` rather than `&&`, because a failing `grep` in the middle will otherwise
   skip it. If checkout is ever the tool, run `git diff` on the file first and confirm the probe
