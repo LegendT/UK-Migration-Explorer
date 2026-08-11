@@ -258,14 +258,24 @@ below.
     **What came back for the owner is below, and none of it is a figure that moved.** First, EMP06: the
     same sheet that gives this site its Oct-Dec 2025 employment rates also prints Jan-Mar 2026, so
     both records are a quarter behind their own source, and ONS publishes again on 18 August 2026.
-    Moving them moves published figures, and doing it now means doing it twice inside a week;
-    the recommendation is to move them once, at that release. Second, what the LTIM citations
-    should point at. The dataset landing page contains no figure, so a citation resting on it
-    still fails A1's standard that the named source CONTAINS the figure, and it carries no edition
-    either, so `check-releases.mjs` cannot compare it. Citing the edition-bearing spreadsheet file,
-    which is what the evidence entries already name and what this site already does for the Home
-    Office `.ods` tables, answers both at once. It reaches records this batch did not touch, so it
-    is a call rather than a tidy.
+    Moving them moves published figures, and doing it now means doing it twice inside a week.
+    **DECIDED: they move once, at the 18 August 2026 release, and not before.** Nothing changes
+    in the data until then; what changes is that the choice is on the record rather than being a
+    thing nobody looked at.
+    Second, what the LTIM citations should point at. **DECIDED AND BUILT**: every record and
+    series point that cited the dataset landing page now cites the edition-bearing spreadsheet
+    file, which is what the evidence entries already name and what this site already does for the
+    Home Office `.ods` tables. The landing page contains no figure at all, so a citation resting
+    on it failed A1's standard that the named source CONTAINS the figure.
+    **The second half of that recommendation was wrong about the tooling and building it is what
+    found out.** It said the file URL would also let `check-releases.mjs` compare the edition. It
+    did not: ONS serves a dataset file from `/file` with the whole path in a `uri` QUERY
+    parameter, so `citedEdition` read a pathname of `/file` and fell through to "evergreen, names
+    no edition". The checker is taught to read that query here, taking the segment BEFORE the
+    filename, because the file is named for the publication month while the edition names the
+    period, and on this release those are two different dates. Probed against both, and against
+    the bulletin, the Home Office assets and the pages that must stay evergreen. Every LTIM
+    citation is now compared where seven of them could not be.
     **A third thing is for the owner, and one of its three answers changes what the remaining
     batches owe.** The reading and the date move are the same work under all three, so no batch
     waits on this; what waits is whether a batch also owes a page review. This item's own goal is
