@@ -285,8 +285,23 @@ below.
     string in `content/_includes/base.njk` plus the string `scripts/check-build.mjs` matches it on,
     which has to move with it and has to be a phrase the old sentence does not contain, or the check
     passes on both and stops telling them apart. Draft, for the half that renders only where a page
-    carries a figure: "Its figures are not a live count: each citation says when we last checked
-    that figure against its source." **[you]**, and nothing is built either way.
+    carries a figure. **DECIDED AND BUILT, on branch `footer-unweld-figure-currency`**: the owner
+    took the third reading. The footer now says "This page was last reviewed on <date>. Its
+    figures are not a live count", and the weld is gone.
+    **The recommended draft was wrong and reproducing it before building is what caught that.**
+    It ended "each citation says when we last checked that figure against its source", which
+    points a reader at something two pages do not have: `/sources-and-method/` and
+    `/what-the-words-mean/` render live record values through tokens and carry no citation block
+    at all. A sentence true on most pages and false on two is the defect the change exists to
+    remove, so the replacement promises no location and states only what holds everywhere.
+    **The check moved with it and was probed in both directions**: the phrase it matches appears
+    in no version of the retired sentence, which the old sentence's own "not a live count" would
+    have satisfied; forcing the sentence onto a page with no figure is caught, and removing it
+    from the pages that have one is caught on every one of them.
+    **What this does NOT close is the gap it was raised for.** Those two pages still print
+    published figures with no date anywhere on them, in the open or in a disclosure. That is a
+    smaller and more specific thing than the question that started here, and it is not this
+    change's to fix.
     **And a check that gates nothing is failing on `main`, found by running it here**:
     `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
     is open because it is the launch. The bullet names it as the thing that needed retargeting
