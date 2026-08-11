@@ -1068,11 +1068,12 @@ grade decisions its first bullet waits on.
   the crawling in place, so refusing Webzio is a judgement about a data broker rather than about a
   model trainer. **IT LEAVES ONE THING OPEN AND APPLYING IT IS WHAT SHOWED THAT**: `Omgilibot` is
   the same company's retired token, still sent, and is not refused, so Webz.io is now refused under
-  its current name and admitted under its old one. **Recommended: refuse `Omgilibot` as well**, one
-  line, which is the only version of this decision that does what it was taken to do. Refusing it
-  would also part company with `Diffbot`, which stays admitted on its operator's own words that it
-  does not crawl for training, so "sells web data" would remain a ground this file does not refuse
-  on by itself. **[you]**. **NOT YET APPLIED, and it gates The
+  its current name and admitted under its old one. **APPLIED: `Omgilibot` is refused too**, on the
+  owner's instruction of 11 August 2026 to take the recommended option, which was to refuse it,
+  because refusing one and not the other does not do what the Webzio decision was taken to do.
+  **`Diffbot` stays admitted** on its operator's own words that it "does not crawl pages for
+  training generative AI foundation models", so "sells web data" remains a ground this file does
+  not refuse on by itself. Nothing is left of this bullet. **NOT YET APPLIED, and it gates The
   order's item 18.**
 - **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
   and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from

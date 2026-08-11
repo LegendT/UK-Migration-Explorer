@@ -79,12 +79,13 @@
 # is a decision about a data broker rather than about a model trainer, and this file says so
 # rather than filing it under a test it does not meet. Until that decision Webzio was named
 # nowhere here while its sibling was refused, which was a gap rather than a choice.
-# **Omgilibot is the retired name of the same company's crawler and is NOT refused**, kept in this
-# paragraph because the token is still sent: Webz.io writes "Omgilibot served us well" in the past
-# tense. **So Webz.io is refused under its current name and admitted under its old one**, which is
-# stated here rather than left to be discovered, and whether to close it is in docs/BACKLOG.md
-# under call 26. Diffbot stays admitted on its operator's own words above, so "sells web data" is
-# not on its own a ground this file refuses on.
+# **Omgilibot is refused with it**, being the retired name of the same company's crawler and still
+# sent: Webz.io writes "Omgilibot served us well" in the past tense. Refusing one and not the other
+# would have left Webz.io refused under its current name and admitted under its old one, which is
+# the whole of what the Webzio decision was for. **That leaves "sells web data" as a ground this
+# file still does not refuse on by itself**: Diffbot stays admitted on its operator's own words
+# that it "does not crawl pages for training generative AI foundation models", and the Webz.io pair
+# is refused for collection its own consent token exists to gate rather than for being a broker.
 
 User-agent: *
 Disallow:
@@ -102,6 +103,7 @@ User-agent: cohere-ai
 User-agent: AI2Bot
 User-agent: PanguBot
 User-agent: Timpibot
+User-agent: Omgilibot
 User-agent: Webzio
 User-agent: Webzio-Extended
 Disallow: /
