@@ -14,15 +14,35 @@
 # line below is the ONLY list of them, and scripts/check-build.mjs parses it out of this file and
 # refuses a build that puts any of them in a group disallowing everything. Edit the line, not a
 # copy of it. As at 5 August 2026:
-# Admits: Googlebot, Bingbot, DuckDuckBot, Applebot, OAI-SearchBot, ChatGPT-User, PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User, DuckAssistBot, Gemini-Deep-Research
+# Admits: Googlebot, Bingbot, DuckDuckBot, Applebot, OAI-SearchBot, ChatGPT-User, PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User, DuckAssistBot
 #
-# THE REFUSAL LIST BELOW IS A SNAPSHOT AND WILL GO STALE. It names the crawlers whose own
-# operators document them as gathering data to train models. A crawler that is not on it is
+# THE REFUSAL LIST BELOW IS A SNAPSHOT AND WILL GO STALE. It names the tokens that keep this
+# site's content out of model training: crawlers whose operators document them as gathering data
+# to train, AND the control tokens some operators use instead, which crawl nothing and only say
+# how data their sibling already took may be used. Google-Extended and Applebot-Extended are the
+# second kind. Apple states it outright, "Applebot-Extended does not crawl webpages", so a header
+# saying every entry gathers data was false of them; it said that until 11 August 2026.
+# A crawler that is not on the list is
 # allowed, which is the safe direction for this site and means the list has to be re-read
-# rather than assumed. Check it against the operators' own published documentation. The
-# omissions below are deliberate, and each fails the test in the line above. Amazonbot and Applebot are
-# described by their operators as serving answers rather than training, and Google-Extended and
-# Applebot-Extended are the training tokens for those two companies. FacebookExternalHit fetches a
+# rather than assumed. Check it against the operators' own published documentation. Every
+# omission below is deliberate. **CCBot is the one entry the training test does not reach**:
+# Common Crawl's own page documents an open repository "universally accessible and analyzable by
+# anyone" and says nothing about training, so it is refused for what its corpus is used for
+# rather than for what its operator says, and that exception is stated here rather than left to
+# look like an oversight.
+# **APPLEBOT IS ADMITTED ON APPLE'S OWN OPT-OUT, NOT ON ITS PURPOSE.** Apple documents that
+# "the data crawled by Applebot may also be used to help train Apple foundation models" and that
+# publishers opt out "by disallowing Applebot-Extended", which this file does. Until 11 August
+# 2026 this said Apple described Applebot as serving answers rather than training. Apple says no
+# such thing, and the opt-out is the whole of why admitting it is consistent with call 26.
+# **AMAZONBOT IS A DECISION THIS FILE HAS NOT TAKEN, and it is recorded rather than answered
+# here.** Until 11 August 2026 this named Amazonbot beside Applebot as serving answers rather
+# than training. Amazon's own page now reads "may be used to train Amazon AI models", so under
+# the test above Amazonbot belongs on the refusal list, and the reason it was left off is no
+# longer true. Amazon has since split out Amzn-SearchBot and Amzn-User, both documented as not
+# crawling for generative AI training, which are the tokens the old sentence described. Changing
+# what this site refuses is a call 26 decision and it sits in docs/BACKLOG.md.
+# FacebookExternalHit fetches a
 # page to build the link preview shown when somebody shares it, which Meta documents as gathering
 # "the title, description and thumbnail image": distribution rather than training, and a thing this
 # site wants. THAT SENTENCE NAMED "FacebookBot" UNTIL 11 AUGUST 2026 AND WAS FALSE. Meta's crawler
@@ -39,7 +59,6 @@ Disallow:
 # Training data collection. Refused under call 26.
 User-agent: GPTBot
 User-agent: ClaudeBot
-User-agent: anthropic-ai
 User-agent: Google-Extended
 User-agent: Applebot-Extended
 User-agent: CCBot

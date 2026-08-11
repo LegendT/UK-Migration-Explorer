@@ -971,7 +971,29 @@ grade decisions its first bullet waits on.
 
 - **Call 26. AI crawlers**, and it is not binary. Allow retrieval bots that emit linked citations,
   refuse training-only bots. Retrieval citation is success measure 2's most likely route, and
-  blocking keeps the option open where allowing does not. **NOT YET APPLIED, and it gates The
+  blocking keeps the option open where allowing does not.
+  **ONE ENTRY IS NOW OPEN AGAIN AND IT IS THE OWNER'S: Amazonbot.** The published file left it off
+  the refusal list on the stated ground that Amazon "described it as serving answers rather than
+  training". Amazon's own page now reads "Amazonbot is used to improve our products and services.
+  This helps us provide more accurate information to customers and may be used to train Amazon AI
+  models", so under call 26's own test it belongs on the refusal list and the reason for omitting
+  it has gone. **Amazon has split out `Amzn-SearchBot` and `Amzn-User`**, both documented as not
+  crawling for generative AI training, which are the tokens the old sentence actually described.
+  **Recommended: refuse `Amazonbot`, and name the two split tokens as the admitted ones.** The
+  alternative is to keep admitting it and say why, which means publishing a reason Amazon's
+  documentation contradicts. The false sentence is already gone from `content/robots.txt`; what
+  waits is whether the site's behaviour changes. **[you]**, and nothing else waits on it.
+  **Found by checking all 25 crawler names in that file against their operators' documentation on
+  11 August 2026**, which the file has always told its reader to do and which nothing had done.
+  Six claims did not survive it. Three named tokens their operator documents nowhere, `FacebookBot`,
+  `Gemini-Deep-Research` and `anthropic-ai`; the Apple sentence attributed to Apple a description
+  Apple does not make; the refusal header called every entry a data-gathering crawler when
+  `Google-Extended` and `Applebot-Extended` crawl nothing and only signal how a sibling's data may
+  be used; and `CCBot` is refused for what its corpus feeds rather than for anything Common Crawl
+  documents. All six are corrected in the file except this one, because only this one changes what
+  the site does. **`Webzio-Extended` is the one claim still unverified**: both routes to Webz.io's
+  documentation failed, one 404 and one DNS failure, which is a fact about the fetches and not
+  about the token. **NOT YET APPLIED, and it gates The
   order's item 18.**
 - **Call 27. Structured data. APPLIED (PR #143, 5 August 2026).** The home page carries `WebSite`
   and `Organization`; `/sources-and-method/` carries a `Dataset` whose file list is generated from
