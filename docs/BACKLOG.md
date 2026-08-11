@@ -236,6 +236,63 @@ below.
     that implies: a record, an evidence quote lifted from the source, and the pages that cite it.
     **[me]** for the reading and the mechanical updates; **[you]** for any figure that moves and
     for the wording around it, batched rather than one at a time.
+
+    **Taken by publisher, because one fetch covers a publisher at once**, which is the shape A1's
+    batches used. **The ONS family is re-read, on branch `item-17-source-reread-ons` (PR #177).** Every ONS
+    record and every ONS series point was checked against a source fetched on 11 August 2026: the
+    long-term international migration spreadsheet, the bulletin it accompanies, EMP06, the mid-2024
+    population bulletin and the discontinued LTIM 2.00 table. **No published figure moved**, and
+    every checkable claim in the record notes held against the source as fetched, including each
+    maximum re-derived over the whole column and the nationality and reason breakdowns
+    re-reconciled to their totals. What the run printed is where the numbers are.
+    **It found the shape A1 exists for, in a record and in a series.**
+    `migration/net-migration-2023` and every point of `netMigrationTimeseries` cited the ONS
+    bulletin, and the bulletin prints neither that record's figure nor most of that series. Both now
+    cite the dataset page their siblings already cite, so no value moves. **That reduces the defect
+    rather than closing it, and this says so because the pull request first claimed otherwise**: the
+    dataset landing page prints no figure either, its whole content being links to the spreadsheet,
+    and the evidence entries name that spreadsheet FILE rather than the page. The far end is the
+    file, and what the citations should point at is the second question below. **The absence was established with a control that hit**, because a stem search that
+    could not have matched reads exactly like one that did, and one apparent match here turned out to
+    be a substring of an unrelated figure in another table.
+    **What came back for the owner is below, and none of it is a figure that moved.** First, EMP06: the
+    same sheet that gives this site its Oct-Dec 2025 employment rates also prints Jan-Mar 2026, so
+    both records are a quarter behind their own source, and ONS publishes again on 18 August 2026.
+    Moving them moves published figures, and doing it now means doing it twice inside a week;
+    the recommendation is to move them once, at that release. Second, what the LTIM citations
+    should point at. The dataset landing page contains no figure, so a citation resting on it
+    still fails A1's standard that the named source CONTAINS the figure, and it carries no edition
+    either, so `check-releases.mjs` cannot compare it. Citing the edition-bearing spreadsheet file,
+    which is what the evidence entries already name and what this site already does for the Home
+    Office `.ods` tables, answers both at once. It reaches records this batch did not touch, so it
+    is a call rather than a tidy.
+    **A third thing is for the owner, and one of its three answers changes what the remaining
+    batches owe.** The reading and the date move are the same work under all three, so no batch
+    waits on this; what waits is whether a batch also owes a page review. This item's own goal is
+    that the date a reader meets and the date the figures were checked are the same day, and
+    `retrieved_date` does not reach that on its own. It
+    renders only inside the closed *How to cite this* disclosure, while the date a reader meets
+    without opening anything is `last_reviewed` in the page footer, whose next sentence says "Its
+    figures were the latest published at that date". So a re-read moves the figure's date and
+    leaves the footer welding the figures' currency to a review date that is now the older of the
+    two, which is the wrong way round. **`last_reviewed` cannot honestly be moved by this item**:
+    item 2's precedent is that it records what a review READ, and a data re-read is not a page
+    review. **Three readings, and the recommendation is the third.** Take the goal to mean the
+    citation date alone, and the footer goes on saying something a reader can check and find out of
+    step. Re-read each page as its figures are re-read, which is the pre-publication review's job
+    and multiplies this item. Or unweld the sentence, so `last_reviewed` keeps meaning what item 2
+    says it means and the figures' currency is stated to live in the citation. That last one is one
+    string in `content/_includes/base.njk` plus the string `scripts/check-build.mjs` matches it on,
+    which has to move with it and has to be a phrase the old sentence does not contain, or the check
+    passes on both and stops telling them apart. Draft, for the half that renders only where a page
+    carries a figure: "Its figures are not a live count: each citation says when we last checked
+    that figure against its source." **[you]**, and nothing is built either way.
+    **And a check that gates nothing is failing on `main`, found by running it here**:
+    `node scripts/check-backlog.mjs --online` refuses R7's first bullet for naming PR #168, which
+    is open because it is the launch. The bullet names it as the thing that needed retargeting
+    rather than as the record of work, and the retarget is done, `gh pr view 168` now reporting
+    `main` as its base. The check cannot tell those two uses apart. Left as found: it is R7's
+    text, under a closed item, and rewriting it here would be a second deliverable.
 18. **GATE, and deliberately last of the gates. Launch**: delete `content/robots.txt` and its
     guard in `scripts/check-build.mjs`. **The UX review says write that file rather than only
     delete it**, so what is outstanding is the file itself plus the `Sitemap:` line pointing at
