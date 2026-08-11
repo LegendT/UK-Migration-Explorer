@@ -1,6 +1,6 @@
 {
   "theme": "Asylum and refugees",
-  "lastUpdated": "2026-08-10",
+  "lastUpdated": "2026-08-11",
   "note": "Latest Home Office Immigration system statistics release is year ending March 2026 (published 21 May 2026). Asylum appeals come from a separate publisher (HMCTS/Ministry of Justice tribunals statistics, January to March 2026). Reference periods differ between measures, so do not mix calendar-year, year-ending, and point-in-time figures.",
   "metrics": [
     {
@@ -15,7 +15,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-claim-asylum-in-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Counts people (main applicants and dependants). Down 12% on the year ending March 2025. Peak was 110,051 in the year ending September 2025.",
       "confidence_level": "official"
     },
@@ -32,7 +32,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-30",
+      "retrieved_date": "2026-08-11",
       "table_reference": [
         "Asy_00a"
       ],
@@ -51,7 +51,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-claim-asylum-in-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-10",
+      "retrieved_date": "2026-08-11",
       "notes": "A FLOW, and it exists on this site to answer a question a stock cannot. The asylum support total excludes unaccompanied asylum-seeking children, who are supported by local authorities, and NO UK-WIDE COUNT OF THOSE CHILDREN IN LOCAL AUTHORITY CARE IS PUBLISHED BESIDE IT: the Home Office's support tables exclude them by definition, and the looked-after-children statistics that do count them are published by the Department for Education for England alone, so they are not comparable in geography with a United Kingdom support figure. This is what the publisher does state, claims made in the year rather than children being supported on a date, and it must not be read as the missing queue. 4% of all claims in the same period, and the release states four-fifths of these children were aged 16 or 17. Added 10 August 2026.",
       "confidence_level": "official"
     },
@@ -67,7 +67,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "Main-applicant total (excludes dependants); the count of asylum cases requiring Home Office consideration. 76,714 main applicants within 93,525 people, a 9% decrease on the previous 12 months. RE-SOURCED FROM THE COMMONS LIBRARY TO THE HOME OFFICE ON 3 AUGUST 2026: the Library rounds this to 76,700 and prints no exact figure, while table Asy_01a prints 76,714 in the same row-block as the 93,525 this site already publishes. The value and the grade are unchanged; only the citation moved.",
       "confidence_level": "official",
       "table_reference": [
@@ -90,7 +90,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-granted-asylum-in-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Proportion of initial decisions (main applicants) resulting in a grant of protection or other leave; excludes withdrawals and administrative outcomes. Down from 49% a year earlier; peak was 77% (year ending September 2022). This site's rule, not a Home Office instruction: do not add a cohort uplift to this rate. The Home Office puts the grant rate at the latest outcome 17 to 29 percentage points above the initial rate for each year of claim between 2007 and 2020. That range belongs to the detailed cohort analysis Asy_D04, which covers claims made from 2007 and is what the bulletin cites under Figure 4; the summary table Asy_04 presents the same analysis from 2010 onwards, names Asy_D04 as its own source, and is where note 48 sits, saying that table's initial rate \"will not match the grant rate in the 'initial decisions' dataset as they relate to a different cohort of initial decisions\". Do not attach the 2007 window to Asy_04, which does not reach back that far. The publisher attributes the gap to appeals and reconsiderations. Asy_04's note 46 separately records that claims withdrawn or given an administrative outcome may later be reinstated and given a substantive outcome; reading that as a third route into the later figure is this site's inference and not a link the publisher draws. The Home Office's terms for the later figure are 'latest outcome' and 'latest decision'; it does not call it final. Two publisher caveats sit on Asy_D04: its note 4 says outcomes are as at January 2026, and its note 5 says appeals data was not available at extraction for this release, because immigration data is moving to a new caseworking system. The bulletin dates the same outcomes to April 2026 instead. January is followed here, being the date the cohort table publishes for itself and the earlier of the two, so this record claims no more currency than the publisher's own table does.",
       "confidence_level": "official"
     },
@@ -106,7 +106,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-granted-asylum-in-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Includes main applicants and dependants. Up 5% on the previous year. Of 128,300 people who received an initial decision, 79,719 were refused (up 57%).",
       "confidence_level": "official"
     },
@@ -122,7 +122,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Relates to 35,744 cases. Down 55% on March 2025; lowest since September 2019; down 72% from the June 2023 peak, which is held as its own record rather than restated here. Both percentages are the Home Office's own, stated on the release page this record cites. A point-in-time stock figure.",
       "confidence_level": "official"
     },
@@ -138,7 +138,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Cases are main applicants only. The 48,758 people awaiting an initial decision relate to these 35,744 cases.",
       "confidence_level": "official"
     },
@@ -154,7 +154,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "THIS IS A MAXIMUM, SO RE-DERIVE IT AT EVERY RELEASE RATHER THAN CARRYING IT FORWARD. The Home Office states it as a peak in its own words on the release page, which is why this record cites that page rather than the summary table: the asylum summary table this site charts from publishes year-end columns only and cannot show a June figure at all. It is deliberately not declared in table_reference here, because this value is not read from it. That is the same shape as the ONS peaks in migration.json, and it is why the chart on /asylum/ says the within-year peak was higher than either line shows.",
       "confidence_level": "official"
     },
@@ -174,7 +174,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-02",
+      "retrieved_date": "2026-08-11",
       "notes": "The starting point of the rise the everyone-in-asylum-accommodation-arrived-recently claim page describes, and the last year-end before the queue began to climb steeply. Held as a record because that page is markdown and only a Nunjucks chart summary can cite a series point directly; series_ref keeps it in step with the point the chart draws. The page rounded it to about 51,000 until 2 August 2026, which collided with a different figure of the same rounding, the appeals backlog a year before the current one.",
       "confidence_level": "official"
     },
@@ -193,7 +193,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Total work in progress: cases awaiting an initial decision plus those awaiting appeal or removal. NOT current, the latest full figure is June 2024 (a record high) because the wider breakdown was suspended pending a new caseworking system. Do not confuse with the current 'awaiting initial decision' figure.",
       "confidence_level": "official"
     },
@@ -209,7 +209,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "Second-highest annual total on record; 13% higher than 2024. The peak it is second to is held as its own record rather than restated here. Finalised calendar-year total, and the Home Office states it as one: table IER_01 of the summary tables prints small boat arrivals by calendar year, 2018 to 2025, and its 2025 cell is this figure. RE-SOURCED 3 August 2026: this record previously cited the data tables index page, which lists spreadsheets and contains no figures at all, and named the detailed dataset, which publishes quarters only. The dataset was titled 'Irregular migration to the UK detailed dataset (illegal entry routes)' until the year ending December 2025 edition; the edition used here carries the current title.",
       "table_reference": [
         "IER_01"
@@ -232,7 +232,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "The highest calendar year for small boat arrivals. REGRADED FROM calculated TO official ON 3 AUGUST 2026, and the reason it was calculated was false: it read 'the Home Office publishes this dataset by quarter and states no calendar-year total', and table IER_01 prints 45,774 as a 2022 calendar-year cell, as does the Total column of IER_02a. The absolute negative was never tested, which is the failure the handoff already describes. 2025 is the second highest at 41,472, held as its own record rather than restated here.",
       "confidence_level": "official"
     },
@@ -252,7 +252,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3d05f39105e0848a2c5/illegal-entry-routes-to-the-uk-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "About a 3% increase year-on-year, 39,271 against 38,023. 95-99% of small boat arrivals go on to claim asylum. RE-SOURCED AND REGRADED ON 3 AUGUST 2026. It cited the Commons Library, which rounds this to 39,000; no publisher prints the exact figure at all, because IER_01's columns are calendar years plus a January-to-March 2026 stub and no year-ending-March total exists. It is the sum of IER_02a's twelve printed monthly cells for April 2025 to March 2026, so it is calculated by this project, which is this site's convention for a summed figure. The share of all detected unauthorised arrivals is no longer stated here: the denominator is now its own record and the asylum page cites both, so a note restating either would be a second copy that can drift.",
       "confidence_level": "calculated"
     },
@@ -268,7 +268,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e3b7ee62840dba48a2c7/illegal-entry-routes-to-the-uk-dataset-mar-2026.xlsx",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-30",
+      "retrieved_date": "2026-08-11",
       "table_reference": [
         "IER_D01"
       ],
@@ -383,7 +383,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "In receipt of accommodation and/or subsistence support. Down 9% on March 2025; 21% below the September 2023 peak of 123,758. Excludes unaccompanied asylum-seeking children (supported by local authorities).",
       "confidence_level": "official"
     },
@@ -399,7 +399,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "21% of the supported population. Down 35% on March 2025 and 63% below the September 2023 peak of 56,018. A further 75% were in other accommodation and 4% on subsistence-only support.",
       "confidence_level": "official"
     },
@@ -415,7 +415,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-in-the-uk-asylum-system",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-27",
+      "retrieved_date": "2026-08-11",
       "notes": "CALCULATED by this project as the sum of two published components: 20,885 in hotel accommodation plus 72,768 in other accommodation, including initial, contingency and dispersal. The Home Office publishes those two and the 97,519 support total, but not this sum. It is the accommodation figure, and is NOT the support total: 3,866 people received subsistence support only and are in the 97,519 but not here. Excludes unaccompanied asylum-seeking children.",
       "confidence_level": "calculated"
     },
@@ -434,7 +434,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "THE SHARE IS THIS SITE'S ARITHMETIC AND NO PUBLISHER STATES IT: Pakistan 9,438 of the 93,525 total is 10.09%, both cells printed in the Year ending March 2026 column of Asy_01b. Graded official until 3 August 2026, when the fetch found the Home Office states no share for any single nationality in this period. Pakistan is the largest named nationality, ahead of Eritrea at 8,212; the larger Other cell is a residual category rather than a nationality. Top six (Pakistan, Eritrea, Iran, Afghanistan, Bangladesh, Sudan) together about 46% of claimants. Notable changes: Somali claims up 151%, Eritrean up 46%, Sudanese up 20%; Syrian down 72% (after the fall of the Assad regime in December 2024), Vietnamese down 56%.",
       "confidence_level": "calculated"
     },
@@ -450,7 +450,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Visas granted, not arrivals (some unused). 14,725 out-of-country grants in the latest year. About 105,900 people (45%) who arrived had left the UK by end March 2026. A further 140,191 in-country extensions (mostly Ukraine Permission Extension scheme) were granted in the latest year.",
       "confidence_level": "official"
     },
@@ -466,7 +466,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Out-of-country BN(O) visa grants since the route opened on 31 January 2021. 7,214 grants in the latest year; grants have fallen every year since the year ending March 2022 peak of 86,439.",
       "confidence_level": "official"
     },
@@ -485,7 +485,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Breakdown: ARAP 20,028; ACRS 14,091; Afghanistan Response Route 4,468. In July 2025 the government confirmed the schemes were closing to new applicants; existing applications are still being processed. The three scheme figures sum to 38,587; the remaining 30 people are recorded under the programme with scheme name unknown, so the breakdown does not sum to the total. The Home Office states: 'Breakdowns exclude cases where scheme name is unknown but totals include them. Total resettled therefore may not sum.' Note also that the Home Office is inconsistent with itself on the third route: the topic page calls it the Afghanistan Response Route, its own table Res_01 calls it the Afghanistan Relocation Route.",
       "confidence_level": "official"
     },
@@ -501,7 +501,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-06-17",
+      "retrieved_date": "2026-08-11",
       "notes": "Down 37% on the previous year. 90% via the Afghan Resettlement Programme; 10% via the UK Resettlement Scheme and Mandate Scheme. Most common nationality Afghan (90%).",
       "confidence_level": "official"
     },
@@ -520,7 +520,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-08-03",
+      "retrieved_date": "2026-08-11",
       "notes": "The Home Office states this figure: 'Of the 39,007 returns from the UK in the latest year, three-quarters returned voluntarily and one-quarter were enforced'. It ALSO prints a rounded 'A total of 39,000 returns' earlier on the same page, and until 3 August 2026 this record was graded calculated on a note saying that page 'publishes no exact combined figure', which was false. It equals 9,723 enforced plus 29,284 voluntary, both printed in table Ret_01, which is a reconciliation rather than the origin of the figure; Ret_01 stays declared so that a correction to either component is still watched. COUNTS RETURN EVENTS, NOT PEOPLE: one individual returned more than once is counted more than once. EXCLUDES 17,623 refused-entry-at-port departures, which the Home Office counts separately, adding them to this total is a common error. Both components are flagged provisional by the Home Office, and so is this sum: the release states that the latest seven quarters are revised each time, so the period is provisional. It was regraded from calculated to OFFICIAL on 3 August 2026 and that was the wrong destination, corrected the same day: calculated was wrong because the figure is printed, and official is wrong because meta.json defines provisional as official but flagged by the publisher as subject to revision, which is exactly what this is. Its four sibling returns figures were provisional throughout.",
       "confidence_level": "provisional"
     },
@@ -539,7 +539,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Up 13% on the 8,595 in the year ending March 2025. Return events, not unique people. Flagged provisional in table Ret_01.",
       "confidence_level": "provisional"
     },
@@ -555,7 +555,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Up 5% on the year ending March 2025. Comprises assisted (10,476), controlled (5,818) and other verified (12,990) returns. Return events, not unique people. Flagged provisional.",
       "confidence_level": "provisional"
     },
@@ -574,7 +574,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e54b22977ebc82cb3fb8/returns-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Counted SEPARATELY from the enforced-plus-voluntary returns total; down 21% on the previous year. Held here specifically to prevent the common misuse of folding port refusals into 'returns'. Flagged provisional.",
       "confidence_level": "provisional"
     },
@@ -590,7 +590,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-march-2026/how-many-people-are-returned-from-the-uk",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "Up 17% on the year ending March 2025. Of which 3,475 enforced and 8,443 voluntary. A subset of total returns, not an addition to them. Return events, not unique people. THE PUBLISHER'S DEFINITION, added 10 August 2026 by the pre-publication review of /returns/: \"Asylum-related returns relate to cases where there has been an asylum claim or further submission at some stage prior to the return.\" It is recorded because the page says the remaining returns involve people with no asylum claim at all, and that sentence rests entirely on this definition being drawn on whether a claim was EVER made rather than on why the person was returned. Nothing in this data layer established it before.",
       "confidence_level": "provisional"
     },
@@ -609,7 +609,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "PEOPLE basis: main applicants plus dependants. Equals grants (48,581) plus refusals (79,719); EXCLUDES withdrawals (16,901). Up 32% on the previous year. Do not recompute the published 39% grant rate from these people-based figures, 48,581/128,300 gives 37.9% because the published rate is calculated on main applicants. This is a worked example of the people-versus-cases caveat.",
       "confidence_level": "official"
     },
@@ -628,7 +628,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "PEOPLE basis: main applicants plus dependants. Up 57% on the year ending March 2025 (50,803). Around 40% of asylum appeals are allowed, so refusals at initial decision overstate final refusals.",
       "confidence_level": "official"
     },
@@ -647,7 +647,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-22",
+      "retrieved_date": "2026-08-11",
       "notes": "PEOPLE basis: main applicants plus dependants. Down 6% on the year ending March 2025 (17,956). Withdrawals are NOT part of the 128,300 people receiving initial decisions, and are excluded from the grant rate.",
       "confidence_level": "official"
     },
@@ -666,7 +666,7 @@
       "source_id": "ho-immigration-stats",
       "source_url": "https://assets.publishing.service.gov.uk/media/6a05df9d97000cb6073e4e25/asylum-claims-datasets-mar-2026.xlsx",
       "published_date": "2026-05-21",
-      "retrieved_date": "2026-07-27",
+      "retrieved_date": "2026-08-11",
       "notes": "CALCULATED by this project, summed from published quarterly cells; whether the Asy_D02 pivot itself prints a year-ending-March total has not been re-checked. PEOPLE basis: main applicants plus dependants, all applicant types. Summed from the Asy_D02 pivot over 2025 Q2 to 2026 Q1: 3,858 + 855 + 844 + 374. The pivot splits the same four quarters into void 4,896, suspended 642, other 387 and deceased 6, so voided cases are the great majority. The Home Office table notes say the category 'includes a small number of cases that were previously categorised as a withdrawal, as well as other administrative outcomes including voided and suspended cases'. Like withdrawals, these are NOT part of the 128,300 people receiving initial decisions and are excluded from the grant rate. The same four quarters of that pivot give 79,719 refusals, 16,901 withdrawals and 48,581 grants, and a grand total of 151,132, which is how this figure's basis and period were confirmed.",
       "confidence_level": "calculated"
     }
