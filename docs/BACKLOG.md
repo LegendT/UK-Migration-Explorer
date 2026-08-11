@@ -607,6 +607,26 @@ below.
     failure moves from silent and wrong to noisy and obvious. **Why not now**: it touches every
     rendering path on the critical path to launch, and the thing it protects against has not
     happened. **[me]**.
+    **SIZED ON 11 AUGUST 2026 AND DELIBERATELY NOT BUILT, with what was established so the next
+    session does not re-derive it.** The residual is narrower than this entry's opening implies. A
+    traceless route on a page with NO other trace already fails loudly: the transform produces no
+    date, `base.njk` leaves `datetime="pending"`, and `check-build.mjs` refuses it. **So the only
+    silent case is a traceless route added to a page that already carries another figure**, where
+    it would narrow the date set rather than empty it. That is the whole of what the inversion buys.
+    **What the inversion costs, measured rather than guessed.** The five routes do not share an
+    emitter. Routes 1, 2 and 5 go through `renderFigure`, which has no page context because the
+    `figure` shortcode is an arrow and token resolution happens inside the `resolve-citations`
+    transform; routes 3 and 4 emit their date from `lib/citation.mjs`, `lib/provenance.mjs` and a
+    Nunjucks loop in `content/index.njk`. A register keyed by `outputPath` is the concurrency-safe
+    shape, since Eleventy renders templates in parallel and a module-level "current page" would be
+    wrong under it. **The cheaper alternative was weighed and does not work as it stands**: making
+    routes 3 and 4 emit `data-metric` too would let `check-build.mjs` compare all published refs in
+    both directions rather than the token routes alone, but the `"ref" | metric` summary sub-route
+    interpolates a bare number into a string with no element to carry an attribute, so that route
+    would fail the comparison in the other direction. Either it gains a wrapper or the comparison
+    stays partial.
+    **Neither half was started**, because the site is live, nothing is currently wrong, and a
+    partial trace scheme would move footer dates on a live site while looking like an improvement.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
