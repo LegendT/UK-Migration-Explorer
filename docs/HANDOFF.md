@@ -1827,9 +1827,14 @@ and getting it backwards does the most damage available. Everything else
 below is an imperative with a date; docs/HANDOFF.md holds the incident.
 Work is tagged [me] or [you] from the
 SESSION's side, so the tags invert against the pronouns in this message.
-Use the mapping, never the pronoun:
-  [me] = a factual or mechanical change against a cited source. YOU do it.
-  [you] = a call or a task that is the owner's. Propose and stop.
+The tag names WHO ACTS, which is how The order's own header puts it. Use
+that, never the pronoun and never the kind of work:
+  [me] = the session acts. YOU do it.
+  [you] = the owner acts. Propose and stop.
+Usually [me] is a mechanical change against a cited source and [you] is a
+judgement, but that is a description, not the test. When a [me] item turns
+out to need a judgement, the tag still says you act on everything around
+it: bring the judgement, do not take it, and do not retag the item.
 Check it against The order's own header in docs/BACKLOG.md, which says
 in one sentence which side takes which. On a list mixing both, do all
 the [me] work first and batch the [you] items for the owner,
@@ -1841,17 +1846,16 @@ told you otherwise in this message. Its header defines that in one
 sentence; read it rather than assuming, because the word it turns on
 has been misread before. Read every subsection an item's header names
 before deciding that item is finished, against the BUILT SITE rather than
-against its pull request: one closed on a sentence covering a third of its
-own scope on 5 August 2026, and on 11 August item 16 would have closed with
-two of its entries never shipped, because its PR had merged. A merged PR
-says some of the item is done, not all of it. Closing early is worse than
-leaving it open: a closed item is never read again. Reproduce the item's
+against its pull request. A merged PR says some of the item is done, not
+all of it. Closing early is worse than leaving it open, because a closed
+item is never read again. (5 and 11 August 2026.) Reproduce the item's
 premise before building what
 it prescribes: a recommendation is a claim about what can be built, and one
 taken on trust cost a reversal on 4 August 2026.
 
-Tell me which item you are taking and what you expect to change before
-you start. If it is larger than a session, propose a split. If it is
+Say which item you are taking and what you expect to change, then start.
+That is an announcement, not a request: do not wait for my reply. If it is
+larger than a session, propose a split and start the first part. If it is
 wholly gated on a decision of mine, do not stall and do not take the
 decision: bring it to me and start the next item that is not waiting
 on me, saying which.
@@ -1864,11 +1868,10 @@ time:
   npm run check-evidence
  Read what a passing run says it did NOT establish, rather than
 taking silence as clearance. Before writing that anything is absent, name
-every store that could hold it and sweep each: narrowing a claim until it
-is true is not establishing it, and one such "fix" was refused on 10 August
-2026 and then overturned by actually looking. Read a field in full before
-making a claim about it; notes surveyed at [:700] produced a false statement
-about this repository. Read the COUNT in a pass line against
+every store that could hold it and sweep each. Narrowing a claim until it
+is true is not establishing it. Read a field in full before making a claim
+about it: a survey printed at [:700] hid the evidence that made the claim
+false. (10 August 2026.) Read the COUNT in a pass line against
 what the build printed: a11y took its URLs from a hand-written list and
 reported 17 of 17 with a new page missing from it. If a11y cannot launch
 a browser,
@@ -1892,9 +1895,8 @@ finish an item, mark it done in docs/BACKLOG.md with its PR and a date,
 and move it to Completed when nothing is left. Do not delete it.
 NEVER write that work is unmerged in a document the merge will publish.
 "Built in the pull request that carries this line and not yet merged" is
-false the moment anyone reads it on main, and it was written four times in
-six days; once it left the last launch gate reading as open while its work
-was already there. Name the branch, or say nothing.
+false the moment anyone reads it on main. Name the branch, or say nothing.
+(Written four times in six days, to 11 August 2026.)
 
 Before you finish, run BOTH of these. They answer different questions and
 the pass state is different for each:
