@@ -596,7 +596,9 @@ below.
     section names the same three and the same month. It is under *Completed*.
 
 27. **NOT A GATE, and it is for after launch. The footer's currency date is read back out of the
-    built HTML, and a rendering path that leaves no trace would narrow it in silence.** The
+    built HTML, and a rendering path that leaves no trace would narrow it in silence. THE [me] HALF
+    IS BUILT (PR #192, 12 August 2026) AND WHAT IS LEFT IS ONE [you] QUESTION, both at the end of
+    this entry.** The
     `figure-currency` transform in `eleventy.config.js` collects two kinds of trace, a
     `data-metric` attribute and a machine-readable `datetime`, and takes the earliest. Every route
     `lib/published.mjs` names leaves one of the two today and that was checked rather than
@@ -627,6 +629,62 @@ below.
     stays partial.
     **Neither half was started**, because the site is live, nothing is currently wrong, and a
     partial trace scheme would move footer dates on a live site while looking like an improvement.
+
+    **THE [me] HALF IS BUILT on branch `item-27-currency-audit` (PR #192, 12 August 2026), AND WHAT
+    THIS ENTRY PRESCRIBED IS NOT WHAT WAS BUILT.** Reproducing the premise refuted it. The sentence
+    above says a path that forgets to register "produces no date at all, which
+    `scripts/check-build.mjs` already refuses loudly". It does not: a route that forgets to register
+    leaves the page's OTHER figures registered, so a date is still produced and still narrowed. That
+    is precisely the case the sizing paragraph above isolates, a traceless route on a page that
+    already carries a figure, so this entry's remedy and this entry's own residual never met. The
+    silence would have moved from one omission to another, and the inversion would have touched every
+    rendering path on a live site to buy it. **The wrong sentence is kept rather than replaced**,
+    because the next entry here is written by the same hand.
+    **What closes it is a second derivation, and it already existed unconnected.**
+    `scripts/validate-content.mjs` refuses a page that renders a ref it does not list under
+    `figures:`, in all four citation syntaxes: a markdown token, a `{% figure %}` shortcode, a chart
+    bar's `ref` and a `"ref" | metric` summary. So the front matter names what those four routes put
+    on a page whether or not they left a trace, and the card route is read from the source that
+    iterates `dashboard.cards`. The new `figure-currency-audit` transform recomputes each page's
+    oldest checked figure from that and fails the build where the footer claims a later date. **One
+    direction, deliberately**: a footer date OLDER than the oldest figure understates this site's own
+    currency, which "on or after" already hedges, where a LATER one tells a reader a figure was
+    checked when it was not.
+    **The case it protects is in production today rather than hypothetical.** This site's net fiscal
+    impact figure is written as rounded prose, "under 1% of GDP", on claim pages that declare the
+    record and never tokenise it, so a reader meets it with no trace of any kind beside it. It is
+    dated only because those pages carry a citation block, and `lib/citation.mjs` keeps the EARLIEST
+    `retrieved_date` when merging records under one name, so a declared figure's date cannot be lost
+    upward.
+    **Probed in both directions, and the case the first probe set missed is the one worth recording.**
+    Every must-catch probe produced the single-date footer wording, so nothing had shown the audit can
+    read the "on or after" form it will actually meet once records are read on different days, which
+    is the whole point. A critique round caught it and it is probed now. The rest: an aged chart-bar
+    record and an aged dashboard-card record are refused by name with the `<time>` route disabled; a
+    token-route record aged the same way is not, because the footer follows it; a figure checked LATER
+    than the footer says is not; and with the declaration deleted this check falls through quietly
+    while `validate-content.mjs` refuses it by name, so the two hold together rather than either
+    alone. **No published byte changes**, proved by `diff -r` against a build of the same tree taken
+    before the change.
+    **WHAT IS LEFT IS [you] AND IT IS ONE LINE EITHER WAY.** `/sources-and-method/` declares
+    `migration/net-migration` under `figures:`, prints `migration/net-migration-2`, and renders no
+    citation block, so nothing on that page carries the first record's date. It is the only
+    declaration on the site the new check could ever fire on wrongly, and it cannot fire while every
+    record shares one `retrieved_date`. Either the declaration is real, in which case that page owes
+    the figure a date a reader can see, or it is stale and goes. Two more declarations have the same
+    shape and cannot fire, both sitting on pages with a citation block:
+    `content/claims/average-migrant-contributes-341000-over-a-lifetime.md` and
+    `content/claims/a-refusal-means-the-claim-was-obviously-false.md`. It is named in the transform's
+    own comment rather than quietly excluded, because a rule that drops whatever would have fired is
+    not a check. **[you]**.
+    **The blindness this did NOT close is stated in the build's own output rather than left silent.**
+    Whether a page carries the currency sentence at all is asked from `class="figure"`, which the
+    card and chart-bar routes do not emit, so a page whose only figures arrived that way would lose
+    the sentence and nothing would say so. Requiring it from the declaration instead would demand it
+    of a page that declares a figure and renders none, which claim pages do by design, so it is
+    published as a limit rather than built. The residual on the date itself is a route using a syntax
+    neither `figures:` nor `lib/published.mjs` knows, which also breaks the counts on
+    `/sources-and-method/` and so is not invisible everywhere.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
