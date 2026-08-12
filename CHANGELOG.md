@@ -9,6 +9,13 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+## 1.0.0, 12 August 2026
+
+Everything below this heading. The site went live on 11 August 2026 and this is the first
+version the repository names, so 1.0.0 covers the whole of the work up to it rather than a
+release cut from an earlier one. **A later entry belongs under *Unreleased* above, not here**,
+because this heading is a claim about what was published on a date and nothing checks it.
+
 ### The pre-publication review is recorded as passed, 6 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** It records a signature, which

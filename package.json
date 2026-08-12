@@ -1,6 +1,6 @@
 {
   "name": "uk-migration-explorer",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A plain-English guide to what UK migration and asylum statistics do, and do not, show.",
   "private": true,
   "type": "module",
