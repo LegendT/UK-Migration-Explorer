@@ -465,6 +465,104 @@ export default function (eleventyConfig) {
       `<span class="figure-currency-clause">${clause}</span>`);
   });
 
+  // The date the transform above writes is derived by SCRAPING the page it has just built, so a
+  // rendering route that leaves neither of the two traces narrows it in silence: the page still
+  // gets a date, from its other figures, and a reader is told every figure on it was checked more
+  // recently than one of them was. Backlog item 27. This is the second derivation of that date,
+  // and a second derivation is the only thing that makes the failure loud rather than quiet.
+  //
+  // WHAT ITEM 27 PRESCRIBED WOULD NOT HAVE DONE IT, and reproducing the premise is what showed
+  // that. A register each renderer writes to, read here instead of the scrape, was said to leave a
+  // forgetful route producing "no date at all". It does not. A route that forgets to register
+  // leaves the page's OTHER figures registered, so a date is still produced and still narrowed,
+  // which is precisely the one case item 27's own sizing leaves open: a traceless route on a page
+  // that already carries a figure. The silence moves from one omission to another; it does not
+  // close, and the inversion would have touched every rendering path to buy that.
+  //
+  // WHAT CLOSES IT IS A DECLARATION NOTHING HERE SCRAPED, and it already existed unconnected.
+  // scripts/validate-content.mjs refuses a page that renders a ref it does not list under
+  // `figures:`, in all four citation syntaxes: a markdown token, a {% figure %} shortcode, a chart
+  // bar's `ref` and a `"ref" | metric` summary. So the front matter names everything those four
+  // routes put on the page whether or not it left a trace, and the footer may not claim a date
+  // LATER than the oldest of them. The fifth route, a dashboard card, is the one with no
+  // front-matter declaration of its own: a page whose source iterates `dashboard.cards` renders
+  // every card's figure, and that is read from the source here for the same reason.
+  //
+  // ONE DIRECTION, deliberately. A footer date OLDER than the oldest figure on the page understates
+  // this site's own currency, which is what "on or after" already hedges; a date LATER than it tells
+  // a reader a figure was checked when it was not, which is the error this site exists to correct in
+  // others. TWO THINGS ARE NOT ESTABLISHED, and a passing build does not say otherwise: that the
+  // date is not needlessly old, and that a page carries the sentence at all. The second is
+  // check-build.mjs's question and it is asked from `class="figure"`, which is blind to the card and
+  // chart-bar routes exactly as the scrape above is; requiring the sentence from the declaration
+  // instead would demand it of a page that declares a figure and renders none, which claim pages do
+  // by design.
+  //
+  // THE DECLARATION IS THE RIGHT SET AND THAT WAS MEASURED RATHER THAN ASSUMED. On every theme
+  // page the declared list and the refs its own body cites are the same set. On some claim pages it
+  // is wider, and the case that matters is this site's net fiscal impact figure: it is written as
+  // rounded prose, "under 1% of GDP", on pages that declare
+  // `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp` and never tokenise it. That is a
+  // figure a reader meets with no trace of any kind beside it, which is this check's own case in
+  // production today. It is dated only because those pages render a citation block, and
+  // lib/citation.mjs merges records under one name by keeping the EARLIEST retrieved_date, so a
+  // declared figure's date cannot be lost upward and this cannot fire on a page that carries one.
+  //
+  // NO COUNT IS WRITTEN IN THAT PARAGRAPH, because it carried one and the count was wrong. It said
+  // three claim pages write that figure as prose. Three DECLARE the record and two write it; the
+  // third declares it and prints it nowhere, which is the same unexplained shape as the declaration
+  // named below, and the comment on the `citation` shortcode above says two and means the two that
+  // print. A count of this project's own state, in a comment, beside a check about exactly that.
+  //
+  // ONE DECLARATION IS DATED NOWHERE, AND IT IS NAMED HERE RATHER THAN QUIETLY EXCLUDED.
+  // /sources-and-method/ declares `migration/net-migration` while printing
+  // `migration/net-migration-2`, and it renders no citation block, so nothing on it carries the
+  // first record's date. While every record shares one retrieved_date this cannot fire. The first
+  // re-read that leaves that record older than the rest of that page's figures fails the build
+  // naming it, and the answer is one line either way: the declaration is real, in which case that
+  // page owes the figure a date a reader can see, or it is stale and goes. It is the owner's call
+  // and docs/BACKLOG.md item 27 carries it. Excluding it here instead would have meant writing a
+  // rule that drops whatever would have fired, which is not a check.
+  //
+  // The front matter is parsed here rather than imported from validate-content.mjs, on the same
+  // reasoning the scroll-region patterns are duplicated: this is the check that has to disagree with
+  // the transform above, and a reader shared with the file that writes the declaration would be one
+  // assumption neither side could catch. Comments are stripped from the traced half, as they are at
+  // every other end that compares, and a ref surviving only in a comment can only make this check
+  // more forgiving rather than less.
+  const cardRefs = (read('dashboard.json').cards ?? []).map((card) => card.ref).filter(Boolean);
+  const DECLARED_REF = /^\s*-\s+(\S+\/\S+)$/gm;
+
+  eleventyConfig.addTransform('figure-currency-audit', function (content) {
+    if (!(this.page.outputPath ?? '').endsWith('.html')) return content;
+    // An unresolved placeholder does not match, and that is check-build.mjs's failure rather than
+    // this one: a page carrying the sentence and no date is refused there by name.
+    const stamped = /<time class="figure-currency" datetime="(\d{4}-\d{2}-\d{2})">/.exec(content);
+    if (!stamped) return content;
+
+    const source = readFileSync(this.page.inputPath, 'utf8');
+    const front = /^---\n([\s\S]*?)\n---\n/.exec(source)?.[1] ?? '';
+    const refs = new Set([...front.matchAll(DECLARED_REF)].map(([, ref]) => ref));
+    if (/\bdashboard\.cards\b/.test(source)) for (const ref of cardRefs) refs.add(ref);
+    for (const [, ref] of content.replace(/<!--[\s\S]*?-->/g, '').matchAll(/data-metric="([^"]+)"/g)) {
+      refs.add(ref);
+    }
+
+    let oldest = null;
+    let owner = null;
+    for (const ref of refs) {
+      const checked = registry.get(ref)?.retrieved_date;
+      if (checked && (oldest === null || checked < oldest)) {
+        oldest = checked;
+        owner = ref;
+      }
+    }
+    if (oldest && stamped[1] > oldest) {
+      throw new Error(`${this.page.url}: the review footer dates this page's figures to ${stamped[1]}, and ${owner}, which the page renders or declares, was last checked against its source on ${oldest}. The figure-currency transform derives that date by scraping the built page, so a figure reaching a reader by a route that leaves no data-metric and no <time> is invisible to it and the footer claims a currency the data layer does not support. Either that route needs a trace or the transform needs to read the declaration too.`);
+    }
+    return content;
+  });
+
   eleventyConfig.addTransform('published-counts', function (content) {
     if (!(this.page.outputPath ?? '').endsWith('.html') || !content.includes('{count')) return content;
     const counts = publishedCounts();
