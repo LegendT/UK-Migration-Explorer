@@ -693,6 +693,19 @@ below.
     a finished half of another entry. Neither could fire, both pages carrying a citation block, so
     this item never waited on either. **The false sentence is quoted rather than tidied away**,
     because three declarations were called one shape on the strength of their front matter alone.
+    **WHAT THE CHECK CAN AND CANNOT FIRE ON, measured across every page that renders a figure rather
+    than argued from the code.** Its date set is a subset of the transform's on all of them, so it has
+    no findings today, which is what a correct check on a correct site looks like rather than an empty
+    one. Every theme page and every claim page hands its whole declaration to a dated block,
+    `figureProvenance` or `citation`, so a declaration added to any of them is dated by that block
+    automatically and this can never fire on it: what it guards there is the block itself failing,
+    which is the condition the probes forced by disabling the `<time>` route.
+    `/sources-and-method/` and `/what-the-words-mean/` hand their declarations to no block at all, so
+    a declared ref that leaves no trace on either of those fires. **That is where the standing reach
+    is**, and deleting the stale declaration removed the one live instance of it rather than emptying
+    the check. **A critique had this backwards and it is recorded because the misreading is the
+    natural one**: it took the subset relation for absence of reach, where the subset relation is the
+    check passing and the reach is a property of which pages date their own declarations.
     **THE SENTENCE HALF IS WHAT IS LEFT, and it is stated in the build's own output rather than left
     silent while it waits.** Whether a page carries the currency sentence at all is asked from
     `class="figure"`, which the card and chart-bar routes do not emit, so a page whose only figures
