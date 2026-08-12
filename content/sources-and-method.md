@@ -11,7 +11,6 @@ strapline: >-
 last_reviewed: 2026-07-23
 review_due: 2027-07-23
 figures:
-  - migration/net-migration
   - asylum/asylum-applications
   - asylum/asylum-applications-main-applicants
   - migration/net-migration-2

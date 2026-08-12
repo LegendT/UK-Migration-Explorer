@@ -596,9 +596,13 @@ below.
     section names the same three and the same month. It is under *Completed*.
 
 27. **NOT A GATE, and it is for after launch. The footer's currency date is read back out of the
-    built HTML, and a rendering path that leaves no trace would narrow it in silence. THE [me] HALF
-    IS BUILT (PR #192, 12 August 2026) AND WHAT IS LEFT IS ONE [you] QUESTION, both at the end of
-    this entry.** The
+    built HTML, and a rendering path that leaves no trace would narrow it in silence. THE DATE HALF
+    IS BUILT (PR #192, 12 August 2026) and the one [you] question inside it is decided and applied.
+    WHAT IS LEFT IS THE SENTENCE HALF AND IT IS [me]**: whether a page carries the currency sentence
+    at all is still decided from a marker that two of the five rendering routes do not emit, which is
+    at the end of this entry with what the option costs. **This item does not close on the date half
+    alone**, because nothing else in this list points at the sentence half, and a section the ordered
+    list no longer reaches is how A6 and item 21 were orphaned. The
     `figure-currency` transform in `eleventy.config.js` collects two kinds of trace, a
     `data-metric` attribute and a machine-readable `datetime`, and takes the earliest. Every route
     `lib/published.mjs` names leaves one of the two today and that was checked rather than
@@ -666,39 +670,69 @@ below.
     while `validate-content.mjs` refuses it by name, so the two hold together rather than either
     alone. **No published byte changes**, proved by `diff -r` against a build of the same tree taken
     before the change.
-    **WHAT IS LEFT IS [you] AND IT IS ONE LINE.** `/sources-and-method/` declares
-    `migration/net-migration` under `figures:`, prints `migration/net-migration-2`, and renders no
-    citation block, so nothing on that page carries the first record's date. It is the only
-    declaration on the site the new check could ever fire on wrongly. **RECOMMENDED: delete the
-    line.** It is stale rather than a dependency, established by removing it rather than by reading
-    it: the built site is byte-identical without it, `validate-content.mjs` still passes, and
-    `git log -S` over the file's whole history finds that `{{migration/net-migration}}` has never
-    been written on that page, against a control on `{{migration/net-migration-2}}` that hits the
-    commit which created it. The alternative is to leave it, which is defensible and costs nothing
-    today: the check can only fire if the two records diverge, because they are the same ONS bulletin
-    under the same `source_id` and the second is rendered on that page, so any re-read that moves one
-    moves both. Making the footer honour the declaration instead was refused: it would date a page by
-    a figure a reader cannot see, and it would leave the transform and its check reading one signal.
-    **[you]**.
+    **THE ONE [you] QUESTION IS DECIDED AND APPLIED, by the owner on 12 August 2026 and in his own
+    words, "delete the line".** `/sources-and-method/` declared `migration/net-migration` under
+    `figures:` while printing `migration/net-migration-2`, and rendered no citation block, so nothing
+    on that page carried the first record's date and it was the only declaration on the site the new
+    check could ever have fired on wrongly. It was stale rather than a dependency, established by
+    removing it rather than by reading it: the built site is byte-identical without it,
+    `validate-content.mjs` still passes, and `git log -S` over the file's whole history finds that
+    `{{migration/net-migration}}` had never been written on that page, against a control on
+    `{{migration/net-migration-2}}` that hits the commit which created it. Leaving it was the
+    alternative and would have cost nothing today, the check firing only if the two records diverged,
+    since they are one ONS bulletin under one `source_id` and the second renders on that page.
+    Making the footer honour the declaration instead was refused: it would date a page by a figure a
+    reader cannot see, and it would leave the transform and its check reading one signal.
     **THE TWO OTHER DECLARATIONS ARE NOT THE SAME SHAPE AND THIS ENTRY SAID THEY WERE**, corrected
     here after each was removed, rebuilt and diffed. Both are deliberate and both are reader-facing.
     `content/claims/average-migrant-contributes-341000-over-a-lifetime.md` rests a sentence on the
     net fiscal impact record with no number in it, and removing the declaration takes the whole
     Migration Observatory entry out of that page's citation block.
-    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` is the one worth a second look
-    and it is a different question from this item: its prose never mentions the appeals backlog in
-    any wording, and the declaration puts "Asylum appeals backlog" and table FIA_4 into the citation
-    block, so that block names a figure the page does not use. Neither can fire, both pages carrying
-    a citation block. **The false sentence is quoted rather than tidied away**, because three
-    declarations were called one shape on the strength of their front matter alone.
-    **The blindness this did NOT close is stated in the build's own output rather than left silent.**
-    Whether a page carries the currency sentence at all is asked from `class="figure"`, which the
-    card and chart-bar routes do not emit, so a page whose only figures arrived that way would lose
-    the sentence and nothing would say so. Requiring it from the declaration instead would demand it
-    of a page that declares a figure and renders none, which claim pages do by design, so it is
-    published as a limit rather than built. The residual on the date itself is a route using a syntax
-    neither `figures:` nor `lib/published.mjs` knows, which also breaks the counts on
-    `/sources-and-method/` and so is not invisible everywhere.
+    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` is a different question from
+    this item and **it is item 28 below**, which is where it goes rather than being left as a
+    sentence in a closed half of another entry. Neither can fire, both pages carrying a citation
+    block. **The false sentence is quoted rather than tidied away**, because three declarations were
+    called one shape on the strength of their front matter alone.
+    **THE SENTENCE HALF IS WHAT IS LEFT, and it is stated in the build's own output rather than left
+    silent while it waits.** Whether a page carries the currency sentence at all is asked from
+    `class="figure"`, which the card and chart-bar routes do not emit, so a page whose only figures
+    arrived that way would lose the sentence and nothing would say so. **The remedy is the cheaper
+    alternative this entry already costed**: make those two routes emit `data-metric` as the token
+    routes do, which would also take `check-build.mjs`'s both-directions comparison from the token
+    refs to every published ref. **What it needs beyond that is one wrapper**, because the
+    `"ref" | metric` sub-route interpolates a bare number into a string with no element to carry an
+    attribute. Requiring the sentence from the `figures:` declaration instead was refused, because it
+    would demand it of a page that declares a figure and renders none, which claim pages do by
+    design. **[me]**, and nothing waits on it: no page relies on that route today, checked rather
+    than assumed, every page carrying a token as well.
+    The residual on the date itself is a route using a syntax neither `figures:` nor
+    `lib/published.mjs` knows, which also breaks the counts on `/sources-and-method/` and so is not
+    invisible everywhere.
+
+28. **NOT A GATE. A claim page's citation block names a figure the page does not use.** Found while
+    verifying item 27's declaration question on 12 August 2026, and it is a different question from
+    that one, which is why it is here rather than inside it.
+    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` declares
+    `asylum/asylum-appeals-backlog` under `figures:` and its prose never mentions the appeals backlog
+    in any wording, checked with the hard wrap joined rather than line by line. The `citation`
+    shortcode builds that page's block from `figures:`, so the declaration puts "Asylum appeals
+    backlog (First-tier Tribunal, outstanding cases)" on the block's *Cited for* line and adds table
+    FIA_4 to the HMCTS entry. **Established by removing the line, rebuilding and diffing rather than
+    by reading**: both the name and the table disappear from that page and nothing else in the built
+    site moves.
+    **Why it matters on this site rather than being tidy-up.** A citation block that names a figure
+    its page does not use tells a reader the page rests on something it does not, which is the scope
+    silence `/sources-and-method/` objects to in others, and it is the mirror of the defect the block
+    exists to prevent. It is small: one line on one page, and no figure and no date move.
+    **RECOMMENDED: delete the declaration**, on the reasoning that the block should name what the
+    page uses. **The alternative is that the page SHOULD use it**, the argument at its
+    "attributes that gap to appeals and reconsiderations" resting on the stock of outstanding
+    appeals, in which case the fix is a sentence and a token rather than a deletion, and that is a
+    bigger change than the defect. Either way it changes a published citation block, so **[you]**.
+    **The same shape elsewhere was checked and is not there**: every other page's declared refs
+    either render on it or, on the two pages that write this site's net fiscal impact figure as
+    rounded prose and the one that rests a sentence on it, are the deliberate case the `citation`
+    shortcode's own comment describes.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
