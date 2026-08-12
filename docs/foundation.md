@@ -74,8 +74,10 @@ None of these audiences has been asked. The table describes who the project woul
 serve, inferred from the subject matter. Talking to five real people was added to phase 1 on
 the reasoning that the cheapest possible outcome of this project is discovering early that
 nobody wants it. The build ran ahead of it and is now finished, so the saving that argument
-promised is gone; what is left is finding out before launch whether anyone wants what has
-been built, which is still worth a week. It remains outstanding, see section 14.
+promised is gone. **The launch then ran ahead of it too, on 11 August 2026**, so the remaining
+version is not "before launch" and this sentence said it was until 12 August: it is finding out
+whether anyone wants what is now published, which is still worth a week and is now the cheapest
+way to learn that the answer is no. It remains outstanding, see section 14.
 
 ## 4.1 Why this exists when the Migration Observatory already does
 

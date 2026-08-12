@@ -1,6 +1,18 @@
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
 
+THE SITE IS LIVE, at https://ukmigrationexplorer.org, since 11 August 2026.
+Netlify deploys `main`, so a merge reaches readers and crawlers within minutes
+and there is no staging step between the two. Check what is serving rather than
+trusting this line. Two things follow. Anything you merge is published, so the
+pull request is the last point at which a person sees it. And DO NOT MERGE
+anything that changes what the site publishes without the owner saying so in
+the conversation you are in: on 11 August 2026 an assistant read a statement of
+plan as authorisation and merged the launch, four days before the owner had
+said to, and the backlog then recorded a decision he had never made. A plan he
+described, a goal you were given, and a stop condition demanding it are none of
+them his word.
+
 READ FIRST, in this order, and do not re-derive what they already settle:
   1. docs/BACKLOG.md, starting with The order at its top: the single
      numbered list of everything outstanding, gates marked and work
