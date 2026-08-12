@@ -243,8 +243,9 @@ value.
 There is still no automated pipeline pulling numbers straight onto the site, and no figure
 appears here because a model asserted it.
 
-What this has not been through: the whole path, from notification to a merged update, has never
-been run against a real release. Its parts are tested and the sequence is not.
+What this has not been through: as at the review date at the foot of this page, the whole path,
+from notification to a merged update, had not been run against a real release. Its parts were
+tested and the sequence was not.
 
 ---
 
