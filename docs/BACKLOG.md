@@ -780,6 +780,26 @@ below.
     **The sequencing that would have held it up is clear.** PRs #192 and #193 both touched this file
     and both merged on 12 August 2026, so the rewrite cuts from `main` rather than waiting on either.
 
+    **BUILT ON BRANCH `item-29-readme-reader-facing`, AND IT STOPS SHORT OF THE SIZE THE PLAN
+    ESTIMATED.** The front door and the retirement of `## Status` are done, every figure and every
+    live self-count is out of the file, and the history that `docs/HANDOFF.md` and this file provably
+    hold is compressed: the responsive measurements, the scroll-x incident and the green-run and
+    pa11y paragraphs. **One of those was a correction rather than a compression**: the *Known gaps*
+    bullet on far-end traceability called the evidence backfill unfinished and "several more
+    sessions" six days after item 8 closed it, and now states what is actually still open, that
+    nothing re-fetches a source.
+    **THE ESTIMATE IN THE PLAN DOES NOT SURVIVE MEASUREMENT AND THAT IS WHY.** Reaching it meant
+    compressing the checking-apparatus table, which is where the remaining length is, and comparing
+    each of its rows against the handoff's equivalent shows it cannot be done uniformly. Most rows
+    are covered there and two are not: the rows for `validate-content.mjs` and `check-evidence.mjs`
+    carry thirty-three and thirty-seven distinct words the handoff's rows do not, so cutting them to
+    a clause would lose content rather than move it, and a table of one-clause rows beside two long
+    ones reads as broken. **A recommendation is a claim about what can be built, and this one was
+    mine**: the size was offered in the options and is not achievable the way the option described.
+    What is left of the item is therefore a judgement rather than a compression, and it is the
+    owner's: leave the table as the fuller of the two homes, or move the two uncovered rows into
+    `docs/HANDOFF.md` first and then cut. **[you]** for that, **[me]** for whichever it is.
+
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item. A closed item
