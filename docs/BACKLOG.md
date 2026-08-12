@@ -596,7 +596,13 @@ below.
     section names the same three and the same month. It is under *Completed*.
 
 27. **NOT A GATE, and it is for after launch. The footer's currency date is read back out of the
-    built HTML, and a rendering path that leaves no trace would narrow it in silence.** The
+    built HTML, and a rendering path that leaves no trace would narrow it in silence. THE DATE HALF
+    IS BUILT (PR #192, 12 August 2026) and the one [you] question inside it is decided and applied.
+    WHAT IS LEFT IS THE SENTENCE HALF AND IT IS [me]**: whether a page carries the currency sentence
+    at all is still decided from a marker that two of the five rendering routes do not emit, which is
+    at the end of this entry with what the option costs. **This item does not close on the date half
+    alone**, because nothing else in this list points at the sentence half, and a section the ordered
+    list no longer reaches is how A6 and item 21 were orphaned. The
     `figure-currency` transform in `eleventy.config.js` collects two kinds of trace, a
     `data-metric` attribute and a machine-readable `datetime`, and takes the earliest. Every route
     `lib/published.mjs` names leaves one of the two today and that was checked rather than
@@ -627,6 +633,107 @@ below.
     stays partial.
     **Neither half was started**, because the site is live, nothing is currently wrong, and a
     partial trace scheme would move footer dates on a live site while looking like an improvement.
+
+    **THE [me] HALF IS BUILT on branch `item-27-currency-audit` (PR #192, 12 August 2026), AND WHAT
+    THIS ENTRY PRESCRIBED IS NOT WHAT WAS BUILT.** Reproducing the premise refuted it. The sentence
+    above says a path that forgets to register "produces no date at all, which
+    `scripts/check-build.mjs` already refuses loudly". It does not: a route that forgets to register
+    leaves the page's OTHER figures registered, so a date is still produced and still narrowed. That
+    is precisely the case the sizing paragraph above isolates, a traceless route on a page that
+    already carries a figure, so this entry's remedy and this entry's own residual never met. The
+    silence would have moved from one omission to another, and the inversion would have touched every
+    rendering path on a live site to buy it. **The wrong sentence is kept rather than replaced**,
+    because the next entry here is written by the same hand.
+    **What closes it is a second derivation, and it already existed unconnected.**
+    `scripts/validate-content.mjs` refuses a page that renders a ref it does not list under
+    `figures:`, in all four citation syntaxes: a markdown token, a `{% figure %}` shortcode, a chart
+    bar's `ref` and a `"ref" | metric` summary. So the front matter names what those four routes put
+    on a page whether or not they left a trace, and the card route is read from the source that
+    iterates `dashboard.cards`. The new `figure-currency-audit` transform recomputes each page's
+    oldest checked figure from that and fails the build where the footer claims a later date. **One
+    direction, deliberately**: a footer date OLDER than the oldest figure understates this site's own
+    currency, which "on or after" already hedges, where a LATER one tells a reader a figure was
+    checked when it was not.
+    **The case it protects is in production today rather than hypothetical.** This site's net fiscal
+    impact figure is written as rounded prose, "under 1% of GDP", on claim pages that declare the
+    record and never tokenise it, so a reader meets it with no trace of any kind beside it. It is
+    dated only because those pages carry a citation block, and `lib/citation.mjs` keeps the EARLIEST
+    `retrieved_date` when merging records under one name, so a declared figure's date cannot be lost
+    upward.
+    **Probed in both directions, and the case the first probe set missed is the one worth recording.**
+    Every must-catch probe produced the single-date footer wording, so nothing had shown the audit can
+    read the "on or after" form it will actually meet once records are read on different days, which
+    is the whole point. A critique round caught it and it is probed now. The rest: an aged chart-bar
+    record and an aged dashboard-card record are refused by name with the `<time>` route disabled; a
+    token-route record aged the same way is not, because the footer follows it; a figure checked LATER
+    than the footer says is not; and with the declaration deleted this check falls through quietly
+    while `validate-content.mjs` refuses it by name, so the two hold together rather than either
+    alone. **No published byte changes**, proved by `diff -r` against a build of the same tree taken
+    before the change.
+    **THE ONE [you] QUESTION IS DECIDED AND APPLIED, by the owner on 12 August 2026 and in his own
+    words, "delete the line".** `/sources-and-method/` declared `migration/net-migration` under
+    `figures:` while printing `migration/net-migration-2`, and rendered no citation block, so nothing
+    on that page carried the first record's date and it was the only declaration on the site the new
+    check could ever have fired on wrongly. It was stale rather than a dependency, established by
+    removing it rather than by reading it: the built site is byte-identical without it,
+    `validate-content.mjs` still passes, and `git log -S` over the file's whole history finds that
+    `{{migration/net-migration}}` had never been written on that page, against a control on
+    `{{migration/net-migration-2}}` that hits the commit which created it. Leaving it was the
+    alternative and would have cost nothing today, the check firing only if the two records diverged,
+    since they are one ONS bulletin under one `source_id` and the second renders on that page.
+    Making the footer honour the declaration instead was refused: it would date a page by a figure a
+    reader cannot see, and it would leave the transform and its check reading one signal.
+    **THE TWO OTHER DECLARATIONS ARE NOT THE SAME SHAPE AND THIS ENTRY SAID THEY WERE**, corrected
+    here after each was removed, rebuilt and diffed. Both are deliberate and both are reader-facing.
+    `content/claims/average-migrant-contributes-341000-over-a-lifetime.md` rests a sentence on the
+    net fiscal impact record with no number in it, and removing the declaration takes the whole
+    Migration Observatory entry out of that page's citation block.
+    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` was a different question from
+    this item and **became item 28 below, which is closed**, rather than being left as a sentence in
+    a finished half of another entry. Neither could fire, both pages carrying a citation block, so
+    this item never waited on either. **The false sentence is quoted rather than tidied away**,
+    because three declarations were called one shape on the strength of their front matter alone.
+    **WHAT THE CHECK CAN AND CANNOT FIRE ON, measured across every page that renders a figure rather
+    than argued from the code.** Its date set is a subset of the transform's on all of them, so it has
+    no findings today, which is what a correct check on a correct site looks like rather than an empty
+    one. Every theme page and every claim page hands its whole declaration to a dated block,
+    `figureProvenance` or `citation`, so a declaration added to any of them is dated by that block
+    automatically and this can never fire on it: what it guards there is the block itself failing,
+    which is the condition the probes forced by disabling the `<time>` route.
+    `/sources-and-method/` and `/what-the-words-mean/` hand their declarations to no block at all, so
+    a declared ref that leaves no trace on either of those fires. **That is where the standing reach
+    is**, and deleting the stale declaration removed the one live instance of it rather than emptying
+    the check. **A critique had this backwards and it is recorded because the misreading is the
+    natural one**: it took the subset relation for absence of reach, where the subset relation is the
+    check passing and the reach is a property of which pages date their own declarations.
+    **THE SENTENCE HALF IS WHAT IS LEFT, and it is stated in the build's own output rather than left
+    silent while it waits.** Whether a page carries the currency sentence at all is asked from
+    `class="figure"`, which the card and chart-bar routes do not emit, so a page whose only figures
+    arrived that way would lose the sentence and nothing would say so. **The remedy is the cheaper
+    alternative this entry already costed**: make those two routes emit `data-metric` as the token
+    routes do, which would also take `check-build.mjs`'s both-directions comparison from the token
+    refs to every published ref. **What it needs beyond that is one wrapper**, because the
+    `"ref" | metric` sub-route interpolates a bare number into a string with no element to carry an
+    attribute. Requiring the sentence from the `figures:` declaration instead was refused, because it
+    would demand it of a page that declares a figure and renders none, which claim pages do by
+    design. **[me]**, and nothing waits on it: no page relies on that route today, checked rather
+    than assumed, every page carrying a token as well.
+    The residual on the date itself is a route using a syntax neither `figures:` nor
+    `lib/published.mjs` knows, which also breaks the counts on `/sources-and-method/` and so is not
+    invisible everywhere.
+
+28. **CLOSED 12 August 2026 (PR #192), the day it was raised.** A claim page's citation block named a
+    figure the page does not use. `content/claims/a-refusal-means-the-claim-was-obviously-false.md`
+    declared `asylum/asylum-appeals-backlog` while its prose never mentions the appeals backlog in
+    any wording, checked with the hard wrap joined, so the block the `citation` shortcode builds from
+    `figures:` put that figure on its *Cited for* line and added table FIA_4 to the HMCTS entry:
+    a page telling a reader it rests on something it does not, which is the scope silence
+    `/sources-and-method/` objects to in others. **The declaration is deleted, on the owner's word**,
+    and the alternative was that the page SHOULD use the figure, its "attributes that gap to appeals
+    and reconsiderations" argument resting on the stock of outstanding appeals, which would have been
+    a sentence and a token rather than a deletion. **Table FIA_4 belongs to the appeals-backlog
+    records alone**, so the page now names only tables it uses, and the whole-site diff is those two
+    lines: no figure, no date and no published count moves. It is under *Completed*.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -1683,6 +1790,12 @@ Kept so that a future session can see what was decided and when, rather than reo
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
 
+- **A citation block naming a figure its page does not use, The order's item 28**, 12 August 2026.
+  PR #192. One line out of one claim page's front matter, so the *Cited for* line and table FIA_4
+  leave that page's block and nothing else in the built site moves. **Raised and closed the same
+  day**, having been found while verifying item 27's own declaration question rather than by looking
+  for it, and each of the three declarations that looked alike was removed, rebuilt and diffed rather
+  than judged from its front matter: one was stale, one was deliberate, and this one was neither.
 - **`docs/UPDATING-DATA.md` brought up to date for a site with readers, The order's item 26**,
   11 August 2026. PR #190. The launch half it named, plus a correction-from-a-reader path, plus three stale
   facts found by reading it against the data rather than editing on top of it.

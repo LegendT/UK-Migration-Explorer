@@ -18,7 +18,6 @@ figures:
   - asylum/asylum-refusals
   - asylum/asylum-appeal-success-rate
   - asylum/asylum-appeals-disposed-of
-  - asylum/asylum-appeals-backlog
 layout: claim.njk
 permalink: /common-claims/a-refusal-means-the-claim-was-obviously-false/
 order: 9
