@@ -509,10 +509,15 @@ export default function (eleventyConfig) {
   // declared figure's date cannot be lost upward and this cannot fire on a page that carries one.
   //
   // NO COUNT IS WRITTEN IN THAT PARAGRAPH, because it carried one and the count was wrong. It said
-  // three claim pages write that figure as prose. Three DECLARE the record and two write it; the
-  // third declares it and prints it nowhere, which is the same unexplained shape as the declaration
-  // named below, and the comment on the `citation` shortcode above says two and means the two that
-  // print. A count of this project's own state, in a comment, beside a check about exactly that.
+  // three claim pages write that figure as prose. Three DECLARE the record and two print the
+  // rounded prose; the comment on the `citation` shortcode above says two and means those two. A
+  // count of this project's own state, in a comment, beside a check about exactly that.
+  // **The third page is not a loose end and this said it was**, until each case was removed, rebuilt
+  // and diffed rather than argued about. `average-migrant-contributes-341000-over-a-lifetime.md`
+  // declares the record and rests a sentence on it with no number in it, "effects small in magnitude
+  // relative to the economy, positive in some and negative in others", and removing the declaration
+  // takes the whole Migration Observatory entry out of that page's citation block. So it is the same
+  // deliberate case as the other two, reaching a reader through a sentence rather than a figure.
   //
   // ONE DECLARATION IS DATED NOWHERE, AND IT IS NAMED HERE RATHER THAN QUIETLY EXCLUDED.
   // /sources-and-method/ declares `migration/net-migration` while printing

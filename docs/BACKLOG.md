@@ -666,17 +666,31 @@ below.
     while `validate-content.mjs` refuses it by name, so the two hold together rather than either
     alone. **No published byte changes**, proved by `diff -r` against a build of the same tree taken
     before the change.
-    **WHAT IS LEFT IS [you] AND IT IS ONE LINE EITHER WAY.** `/sources-and-method/` declares
+    **WHAT IS LEFT IS [you] AND IT IS ONE LINE.** `/sources-and-method/` declares
     `migration/net-migration` under `figures:`, prints `migration/net-migration-2`, and renders no
     citation block, so nothing on that page carries the first record's date. It is the only
-    declaration on the site the new check could ever fire on wrongly, and it cannot fire while every
-    record shares one `retrieved_date`. Either the declaration is real, in which case that page owes
-    the figure a date a reader can see, or it is stale and goes. Two more declarations have the same
-    shape and cannot fire, both sitting on pages with a citation block:
-    `content/claims/average-migrant-contributes-341000-over-a-lifetime.md` and
-    `content/claims/a-refusal-means-the-claim-was-obviously-false.md`. It is named in the transform's
-    own comment rather than quietly excluded, because a rule that drops whatever would have fired is
-    not a check. **[you]**.
+    declaration on the site the new check could ever fire on wrongly. **RECOMMENDED: delete the
+    line.** It is stale rather than a dependency, established by removing it rather than by reading
+    it: the built site is byte-identical without it, `validate-content.mjs` still passes, and
+    `git log -S` over the file's whole history finds that `{{migration/net-migration}}` has never
+    been written on that page, against a control on `{{migration/net-migration-2}}` that hits the
+    commit which created it. The alternative is to leave it, which is defensible and costs nothing
+    today: the check can only fire if the two records diverge, because they are the same ONS bulletin
+    under the same `source_id` and the second is rendered on that page, so any re-read that moves one
+    moves both. Making the footer honour the declaration instead was refused: it would date a page by
+    a figure a reader cannot see, and it would leave the transform and its check reading one signal.
+    **[you]**.
+    **THE TWO OTHER DECLARATIONS ARE NOT THE SAME SHAPE AND THIS ENTRY SAID THEY WERE**, corrected
+    here after each was removed, rebuilt and diffed. Both are deliberate and both are reader-facing.
+    `content/claims/average-migrant-contributes-341000-over-a-lifetime.md` rests a sentence on the
+    net fiscal impact record with no number in it, and removing the declaration takes the whole
+    Migration Observatory entry out of that page's citation block.
+    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` is the one worth a second look
+    and it is a different question from this item: its prose never mentions the appeals backlog in
+    any wording, and the declaration puts "Asylum appeals backlog" and table FIA_4 into the citation
+    block, so that block names a figure the page does not use. Neither can fire, both pages carrying
+    a citation block. **The false sentence is quoted rather than tidied away**, because three
+    declarations were called one shape on the strength of their front matter alone.
     **The blindness this did NOT close is stated in the build's own output rather than left silent.**
     Whether a page carries the currency sentence at all is asked from `class="figure"`, which the
     card and chart-bar routes do not emit, so a page whose only figures arrived that way would lose
