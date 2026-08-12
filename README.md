@@ -47,12 +47,6 @@ sense and do appear.
 Launched on 11 August 2026. **Whether it is still serving, and what it is serving, is operational
 state** rather than something this line can tell you: fetch the site.
 
-What is outstanding is in [`docs/BACKLOG.md`](docs/BACKLOG.md), which is the single durable list and
-is where every other document points. How the project works and what earlier sessions cost is in
-[`docs/HANDOFF.md`](docs/HANDOFF.md). The history that used to fill this section, the
-pre-publication review, the pre-launch audit, the launch readiness review and the launch itself, is
-recorded in those two and is not restated here.
-
 ## Layout
 
 ```
