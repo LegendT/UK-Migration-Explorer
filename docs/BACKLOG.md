@@ -735,6 +735,71 @@ below.
     records alone**, so the page now names only tables it uses, and the whole-site diff is those two
     lines: no figure, no date and no published count moves. It is under *Completed*.
 
+29. **NOT A GATE. `README.md` is written for a maintainer and a reader arrives at it.** The site's own
+    footer sends a reader to the repository, where the first thing they meet under `## Status` is a
+    narrative of the pre-publication review, the pre-launch audit, a headline misattribution, the
+    launch readiness review, a round of independent critiques and the launch. How long the file is,
+    and how much of it is that one section, is what `wc -l README.md` and its own heading list print.
+    **OPTION A, CHOSEN BY THE OWNER ON 12 AUGUST 2026** from four put to him: a reader-facing front
+    door, then the reference sections compressed, then `## Status` collapsed to a pointer at this
+    file. The front door is what the site is, a link to it, and the questions a reader actually has,
+    each answered in a line and a link to the page that owns the answer.
+    **THE TAG IS SPLIT, AND IT READ [me] FOR THE WHOLE OF IT UNTIL A CRITIQUE CAUGHT THAT.**
+    Compressing the reference sections, collapsing `## Status` against what `docs/HANDOFF.md` and
+    this file already carry, and taking every figure out are **[me]**: each is mechanical and each is
+    checkable against another document or against the data. **The front door's own WORDING is
+    [you]**, on the precedent this project has kept twice, A4 and R1 below, both headed "reader-facing
+    wording, all of it yours". It comes as a recommended draft in the pull request rather than as a
+    question first, which is what item 15's two calls did, so overruling it costs one word.
+
+    **What the verification established, so the next session does not re-derive it.**
+
+    - **The site already answers every reader question**, on `/sources-and-method/` and `/about/`:
+      what it is and is not, where the figures come from, how each one is recorded, the confidence
+      grades, what the checks do not establish, the update cadence, corrections, what it does not
+      cover, how it was built, reuse, who runs it and who pays. So the front door POINTS rather than
+      restating, or the repository gains a second copy of the site's own trust pages and the two
+      drift, which is the defect this project spends most of its checks on.
+    - **`README.md` is the single home for *Layout* by a decision of 30 July 2026**, recorded in
+      `docs/HANDOFF.md`, which had carried a duplicate of that section line for line and dropped it.
+      So the maintainer half is compressed where it stands rather than moved into that document, and
+      the option that moved it into a new `docs/` file was refused for the same reason.
+    - **The `Status` narrative is carried by `docs/HANDOFF.md` and by this file**, spot-checked with
+      a control rather than assumed, so it can be deleted rather than moved.
+    - **No figure may appear in the rewritten file.** `validate-content.mjs` puts `README.md` in
+      `STYLE_FILES`, which is the house-style scan and not the longhand-value scan, so a figure there
+      is protected by nothing while every figure on the site is refused unless it comes from a
+      record. One live value is asserted as fact today, in the asylum hotel spending sentence, and the
+      rewrite names the publication and the page without the number. Other record values appear as
+      illustrations of what a token renders, which is smaller and is why the rule is "no figure"
+      rather than "correct that sentence".
+    - **And no count of this project's own state**, which has gone wrong in this file more than once:
+      the Eleventy transform count was corrected in PR #192, having been one short since the day
+      `figure-currency` was added and enumerated one short with it.
+
+    **The sequencing that would have held it up is clear.** PRs #192 and #193 both touched this file
+    and both merged on 12 August 2026, so the rewrite cuts from `main` rather than waiting on either.
+
+    **BUILT ON BRANCH `item-29-readme-reader-facing`, AND IT STOPS SHORT OF THE SIZE THE PLAN
+    ESTIMATED.** The front door and the retirement of `## Status` are done, every figure and every
+    live self-count is out of the file, and the history that `docs/HANDOFF.md` and this file provably
+    hold is compressed: the responsive measurements, the scroll-x incident and the green-run and
+    pa11y paragraphs. **One of those was a correction rather than a compression**: the *Known gaps*
+    bullet on far-end traceability called the evidence backfill unfinished and "several more
+    sessions" six days after item 8 closed it, and now states what is actually still open, that
+    nothing re-fetches a source.
+    **THE ESTIMATE IN THE PLAN DOES NOT SURVIVE MEASUREMENT AND THAT IS WHY.** Reaching it meant
+    compressing the checking-apparatus table, which is where the remaining length is, and comparing
+    each of its rows against the handoff's equivalent shows it cannot be done uniformly. Most rows
+    are covered there and two are not: the rows for `validate-content.mjs` and `check-evidence.mjs`
+    carry thirty-three and thirty-seven distinct words the handoff's rows do not, so cutting them to
+    a clause would lose content rather than move it, and a table of one-clause rows beside two long
+    ones reads as broken. **A recommendation is a claim about what can be built, and this one was
+    mine**: the size was offered in the options and is not achievable the way the option described.
+    What is left of the item is therefore a judgement rather than a compression, and it is the
+    owner's: leave the table as the fuller of the two homes, or move the two uncovered rows into
+    `docs/HANDOFF.md` first and then cut. **[you]** for that, **[me]** for whichever it is.
+
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item. A closed item

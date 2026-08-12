@@ -10,114 +10,48 @@ The site is neutral on policy preferences. It is not neutral on statistical misu
 either direction. The claim set corrects misuses from both sides of the debate, and the
 selection criteria are published rather than assumed.
 
+**The site is at <https://ukmigrationexplorer.org>.** That is what this repository builds, and it
+is where the answers are. This file is the source.
+
+## Start with the site
+
+Everything a reader needs is published on the site itself, on pages built for it. This file does not
+restate them, because a second copy would drift from the first.
+
+- **Where every figure comes from, and how it is recorded**:
+  [Sources and method](https://ukmigrationexplorer.org/sources-and-method/). Each figure names its
+  publication, its edition, the table behind it, and the date it was last checked against that
+  source. The page also states, in its own words, what its checks do not establish.
+- **Who runs the site, who pays for it, and what that means for what you read**:
+  [About](https://ukmigrationexplorer.org/about/).
+- **How claims are chosen for checking, and which directions they correct**:
+  [Common claims](https://ukmigrationexplorer.org/common-claims/).
+- **Found an error?** Tell us which figure and what you think it should be:
+  [open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new). Every change to a
+  published figure is recorded in [`CHANGELOG.md`](CHANGELOG.md).
+
+**What is in this repository, for anyone reading the source.** A static site built by Eleventy 3
+from a governed data layer: metric records and timeseries of dated points, charts rendered as inline
+SVG at build time, and no client-side JavaScript anywhere. The sections below are how it is built,
+what the data layer guarantees, what each check establishes, and what none of them does.
+
+**No figure appears in this file, deliberately.** Every figure on the site comes from a record and
+the build refuses one typed into a page; this file sits outside that scan, so a number here would be
+a hand-typed copy that nothing checks. It carries none, and no live count of the repository's own
+contents either: the runs print those, and every one written down here has gone stale. Dates, pull
+request numbers, HTTP status codes and a count that is explicitly historical are not figures in that
+sense and do appear.
+
 ## Status
 
-Launched on 11 August 2026 and live at https://ukmigrationexplorer.org. **Whether it is still
-serving, and what it is serving, is operational state**: fetch the site rather than trust this
-line, which is the same rule `docs/HANDOFF.md` applies to the deploy.
-A static site from a governed data layer of metric records and four
-timeseries of dated points, on Eleventy 3, with charts rendered as inline SVG at build time and
-no client-side JavaScript anywhere. **How many pages, how many of each, and how many of the records reach a
-reader rather than being held as unpublished reserve, is what `npm run validate` and
-`npm run build` print.** They were typed into this paragraph until 2 August 2026, under a
-sentence admitting that nothing checked them, and they were wrong by then: the counts are
-derived by `lib/published.mjs` and every record added moves them. A number in prose beside a
-run that computes it is the defect this project spends most of its checks on. The site is
-crawlable: `content/robots.txt` was rewritten under backlog call 26 to admit retrieval agents
-that emit a linked citation and refuse crawlers documented as collecting training data.
-**This section opened "Built and not yet launched" until 11 August 2026**, three sentences above
-its own statement that the site is crawlable and that the notice had gone with it. The launch
-changeset rewrote the paragraph and left its first four words standing, so the shortest and
-most-read line in the repository contradicted the rest of its own paragraph. Nothing checks this
-file. **The
-pre-launch notice went with it**, in the same change rather than a later one, because it existed
-to cover a site reachable by URL while every crawler was refused, and a page served from the
-commit that launches saying the site is not launched yet would be false. **The launch domain was decided on 4 August 2026 and is
-`ukmigrationexplorer.org`**, which is what `content/_data/site.js` holds, so canonical links,
-the sitemap and every citation block print it; the Netlify address remains the deploy URL.
-**That rule governed indexing, not access**, which is why a notice on every page did the work
-while it stood: the site was always reachable by anyone holding the URL, and refusing crawlers
-never made it private. Neither half applies now.
+Launched on 11 August 2026. **Whether it is still serving, and what it is serving, is operational
+state** rather than something this line can tell you: fetch the site.
 
-**The pre-publication review has been conducted, and its corrections have landed.** It ran
-on 27 July 2026 against the evidence assembled in `docs/PRE-PUBLICATION-REVIEW.md`, and its
-outcome was a corrections list rather than an approval: four claim pages carried "do not
-publish as written" or "substantial revision required". Those became corrections 1a to 1i,
-all of which were completed by 28 July 2026.
-
-**A whole-project pre-launch audit ran on 30 and 31 July 2026**, merged as PR #70 and written up in
-`docs/PRE-LAUNCH-AUDIT.md`. Like the review before it, its outcome is a findings list rather than an
-approval. It applied the mechanical half and left every editorial and sourcing call. **Its two
-blockers were both in `content/glossary.md` and both closed on 2 August 2026, PR #83.** The finding
-underneath them outlasts them: the pre-publication review read ten of the site's pages, and neither
-blocker was on one it opened. The other six were put through the same evidence method on 2 August,
-in `docs/PRE-PUBLICATION-REVIEW-SIX-PAGES.md`.
-
-It also found, by reading sources rather than the repository, that a headline figure on the home
-page cited a publication that does not contain it. **Corrected on 1 August 2026, PR #73**: the
-£2.1 billion of spending on asylum hotels was always real and official, and is in the Home Office
-Annual Report and Accounts 2024-25 at page 75. The NAO report it named does not carry it. The
-figure had rendered in three places, including the home page, with every check green, because
-nothing here verifies that a named source contains the figure naming it. **That gap is backlog item A1, and its
-mechanical half closed on 3 August 2026: every record in the data layer now carries an entry in
-`data/evidence/` naming a source and quoting it**, except a handful referred to the owner because
-the fix is a sourcing or naming call rather than a fetch. Six batches did it, by publisher, and
-every one of them found more of the same defect. What is outstanding is in `docs/BACKLOG.md`
-rather than counted here.
-
-**It found more of the same defect each time it looked.** A small-boats figure citing an index page
-that carries no figures at all; a record naming table Asy_00a for a figure that table does not
-carry; three records rounding to what their source printed while a Home Office table printed the
-exact figure; and the OBR lifetime contribution, which turned out to be the age-80 point of a chart
-whose age nobody had written down, and which is now published at 82, the life expectancy OBR itself
-states. **No published value moved except that one**, and it moved because a trace found what the
-figure actually was rather than because a publisher released a new one.
-
-**What an entry does and does not establish** is worth keeping straight: it establishes that a
-quoted source states the value. It does not establish that the sentence around the figure describes
-it correctly, which is what the pre-publication review covers, and `npm run validate` says so on
-every run.
-
-**A launch readiness review ran on 2 August 2026**, written up in
-`docs/LAUNCH-READINESS-REVIEW.md`: seven review dimensions with every finding adversarially
-verified, a far-end trace that confirmed **all eight home page figures against their live
-sources with verbatim quotes**, and a visual pass over the rendered pages. Its mechanical half
-landed with the PR that opened it, including two reader-facing blockers: every line chart
-clipped its y-axis labels into different plausible numbers, and a label a correction had
-retired survived in four places. Everything editorial from it is in `docs/BACKLOG.md`, which
-now opens with **The order**, the single ordered list of all outstanding work.
-
-**Five independent critiques then read the whole open stack**, one per pull request, each told to
-verify against the repository rather than trust the pull request body. Nineteen findings, sixteen
-upheld and three rejected on evidence. Two were live suppressions in checks: a duplicate guard that
-skipped on a premise it never tested, silencing a declared figure in every branch at once, and a
-`series_ref` guard comparing three attributes and no identity field, so a reference naming the
-wrong year passed wherever two years share a value. Both are closed and negative-tested in both
-directions. **Seven of the nineteen were a comment or a message asserting a property the code beside
-it did not have**, which is this project's signature defect, committed while fixing instances of it.
-
-**The corrections landing is not the review passing, and all three closing steps are now
-settled.** `last_reviewed` carries 27 July on the ten pages the review actually read and the other
-six keep their older dates, because that field records what a review READ rather than when a page
-was corrected. The pre-launch banner was corrected rather than removed. And the review is recorded
-as passed in `CHANGELOG.md` on 6 August 2026, its scope stated as three named routes rather than
-one word, because the pages did not all reach it the same way. The banner went with the launch.
-Outstanding work is tracked
-in `docs/BACKLOG.md`, which is the durable list; this file does not restate it.
-
-The update commitment was signed on 23 July 2026: **one month** from each of the three
-cadenced releases, named on the sources page. Sources that publish irregularly carry no
-promised schedule.
-
-`content/robots.txt` is no longer a blanket refusal, and its guard in `scripts/check-build.mjs`
-now asserts the launch state instead of the pre-launch one: no `User-agent: *` group disallows the
-site, the `Sitemap:` line matches `site.url`, no citing retrieval agent sits in a group that
-disallows everything, and some group still refuses, which is call 26's other half.
-**This sentence listed the first three and not the fourth until 11 August 2026**, and the table row
-below it was corrected in the same sitting while this was left standing: one file describing one
-check in two places, and a correction reaching one of them. That is the shape this repository
-records against itself four times over, committed here by the hand fixing an instance of it.
-Setting up Search Console is what is left, and it is deliberate.
+What is outstanding is in [`docs/BACKLOG.md`](docs/BACKLOG.md), which is the single durable list and
+is where every other document points. How the project works and what earlier sessions cost is in
+[`docs/HANDOFF.md`](docs/HANDOFF.md). The history that used to fill this section, the
+pre-publication review, the pre-launch audit, the launch readiness review and the launch itself, is
+recorded in those two and is not restated here.
 
 ## Layout
 
@@ -192,18 +126,17 @@ LICENCE                 MIT for everything but the figures in data/, which are O
 section of `/sources-and-method/`, generated from the directory rather than typed. That page had
 promised the files were public and linked none of them.
 
-**Two things change shape below 40em, and they do it in opposite ways.** The navigation is the
-same ten items at every width, in one `<nav>` and one `<details>`: below 40em the `<summary>` is
-the control that opens them, and above it the summary is `display: none` and the items lay out as
-the flat row they have always been. Nine flat items needed about 980px of line length, which is
-what a 280px column could not give them. **The charts are the case that really does render twice.**
-Each is drawn wide and narrow at build time and CSS shows one, because SVG text is in viewBox
-units, so squeezing the 760-unit chart into a 280px column would render its 17px labels at 6.3px,
-and the 32rem floor that prevents that is what put 45% of every chart off-screen at 320px. The
-hidden member of each chart pair is `display: none` rather than clipped, which is the only form
-that takes it out of the accessibility tree, so a screen reader meets one image per chart. Both
-were measured at real device sizes rather than calculated; `docs/BACKLOG.md` under *U6* records
-what the measuring found, and what it found and nobody has yet fixed.
+**Two things change shape on a narrow screen, in opposite ways.** The navigation is the same items
+at every width, in one `<nav>` and one `<details>`: narrow, the `<summary>` is the control that
+opens them; wide, the summary is `display: none` and the items lay out as a flat row, which is what
+a phone column cannot give them the line length for. **The charts are the case that really does
+render twice.** Each is drawn wide and narrow at build time and CSS shows one, because SVG text is
+in viewBox units, so squeezing the wide chart into a phone column would render its labels far below
+the legible floor. The hidden member of each pair is `display: none` rather than clipped, which is
+the only form that takes it out of the accessibility tree, so a screen reader meets one image per
+chart. **Both were measured at real device sizes rather than calculated, and the measurements live
+in `docs/BACKLOG.md` under *U6*** rather than here, along with what the measuring found and what
+nobody has fixed.
 
 ## Data contract
 
@@ -293,18 +226,13 @@ page can be linked to. It skips the `h1`, whose link is the page URL, and a head
 `<caption>`. `scrollable-regions` then wraps any unwrapped table and gives every scrolling box a
 `tabindex`, a role and a name taken from its caption or the heading above it.
 
-**A `.scroll-x` div may carry a second class** (PR #149, 5 August 2026). It could not until then:
-this transform and `check-build.mjs` both recognised the wrapper by matching `class="scroll-x"` up
-to the closing quote, so an extra class made a wrapper read as no wrapper. The transform wrapped
-the table again and shipped a scrolling region nested inside one, with the build check and pa11y
-green; it was found by counting `class="scroll-x"` in the built HTML. All four patterns now match
-`scroll-x` as a whole member of the space-separated class list, and the transform writes the class
-attribute back rather than rebuilding it, so a second class survives being named.
-
-**The two files still hold their own copy of that pattern, deliberately.** `check-build.mjs` exists
-to disagree with the transform, so one expression imported by both would be one assumption neither
-side could catch, which is how four patterns went blind together in the first place. The sources
-catalogue still puts its toggle class on an outer div, which is correct and no longer required.
+**A `.scroll-x` div may carry a second class**, and could not until PR #149. Every pattern here and
+in `check-build.mjs` now matches `scroll-x` as a whole member of the space-separated class list
+rather than as the whole attribute, and the transform writes the class attribute back rather than
+rebuilding it. **The two files keep their own copy of that pattern, deliberately**: the checker
+exists to disagree with the transform, and one expression imported by both would be one assumption
+neither side could catch, which is how four of them went blind together. What that cost is in
+`docs/HANDOFF.md` under *Building a check, and trusting it*.
 
 Two orderings carry the weight. Run `scrollable-regions` before `heading-anchors` and a heading
 still carrying its `{#id}` names the region, shipping raw syntax inside an `aria-label` where
@@ -351,19 +279,15 @@ of its paragraphs on.
 | `check-releases.mjs` | Two questions. Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. And whether a table the site declares in `table_reference` was corrected *inside* the edition it cites, matched against the Home Office change history and reported only where the figure has not been re-read since. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
 | `npm run a11y` | pa11y at WCAG2AA over every URL listed in `.pa11yci.json`. Fails the build. Pinned rather than fetched at run time, so two runs a month apart test against the same code |
 
-**Read this before trusting a green run.** Repeatedly in this project a checker has passed while
-a real defect shipped, and the July 2026 audit added to the tally rather than closing it: a success
-message claiming no page writes a live value longhand while four sat on a published page, and a
-figure whose cited source does not contain it. **The count is deliberately no longer written here.**
-It was eight for a while, then nine, and a number that only ever goes up is one more thing to keep
-correct. `docs/HANDOFF.md` holds the incidents. Every one had the same shape: the check verified a property of the
-*source or the declaration* rather than the property a reader depends on, and the success
-message claimed the latter. The messages now state only what they verify.
+**Read this before trusting a green run.** A checker here has repeatedly passed while a real defect
+shipped, and every instance had one shape: the check verified a property of the *source or the
+declaration* rather than the property a reader depends on, and its success message claimed the
+latter. The messages now state only what they verify. **The incidents are in `docs/HANDOFF.md`** and
+are deliberately neither counted nor listed twice.
 
-**pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
-believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
-value took it to 0/16. It flagged none of the five accessibility defects found by hand,
-which is the point: it is a floor.
+**pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being believed,
+in both directions, and it flagged none of the accessibility defects that were found by hand. That
+is the point of calling it a floor.
 
 Known limits, published on the sources page under *What the checks do not establish*:
 
@@ -371,8 +295,8 @@ Known limits, published on the sources page under *What the checks do not establ
   data it sits beside. Four false summaries were found by reading, not by tooling. Citing a
   series point fixes the value and not the sentence: `at(2018)` under a sentence naming 2019
   builds cleanly.
-- **Sub-100 figures are matched with their unit only** (`21%`, `£3`) and reported as
-  warnings rather than failures, because many metrics share a value. How many surface is
+- **A figure below one hundred is matched only with its unit attached** and reported as a warning
+  rather than a failure, because many metrics share a small value. How many surface is
   what the run prints, and it is deliberately not repeated here: a count kept in two files is
   how this project once had six in one and twelve in the other. Review them; do not
   suppress them, and re-derive them per item rather than trusting a stored note that they
@@ -390,9 +314,9 @@ limit left to disclose.
 ## Content
 
 `content/claims/` holds the claim checks and `content/glossary.md` the definitions. The
-candidate set of fifteen is specified in `docs/foundation.md` section 8.5.3; how many of them
-are drafted is what `content/claims/` holds and what `npm run validate` prints as the direction
-split, and it is not written here because it moves.
+candidate set is specified in `docs/foundation.md` section 8.5.3; how many of them are drafted is
+what `content/claims/` holds and what `npm run validate` prints as the direction split, and
+neither number is written here because both move.
 
 **Every chart and every claim card carries a "How to cite this" block**, added on 4 August 2026.
 It gives the publication, its edition, its tables, the URL as its own link text so that
@@ -414,10 +338,10 @@ pre-processed as templates, so the brace syntax would be evaluated as an express
 silently produce `NaN`. Both forms call the same renderer. A chart bar carries `ref`, not
 `value`, and the shortcode throws on a literal.
 
-A token renders the **formatted value only**, `48,758`, `4.9`, `39`, never the unit.
-Units are prose: `%` attaches, `£` prefixes, `people` follows. The author writes them and
-the validator confirms it, because the first draft rendered "4.9 billion" where it meant
-"£4.9 billion". Range metrics have no single value and cannot be tokenised at all.
+A token renders the **formatted value only**, grouped with commas where the value is large, and
+never the unit. Units are prose: `%` attaches, `£` prefixes, `people` follows. The author writes
+them and the validator confirms it, because an early draft rendered a value in billions with the
+currency sign missing. Range metrics have no single value and cannot be tokenised at all.
 
 Writing a number longhand opts out of this protection, so a literal matching a current metric
 value fails the build unless declared under `historical_literals`, which is **semicolon
@@ -427,13 +351,13 @@ in `data/` that reaches a page as well as to content files: the card paragraphs 
 Data files have no front matter, so they declare frozen figures in a sibling
 `historical_literals` key.
 
-**A figure written with a scale word, "2.2 million" or "£1.3 billion", is read as a number
-too**, and compared at the record's own scale, because a record of `4.9` with unit `£ billion`
-is 4.9 billion pounds. It **warns** rather than fails where it equals a record value, and the
-difference is the remedy rather than the confidence: a token renders `10,700,000`, so it cannot
-reproduce "10.7 million" and citing it changes the wording. Where nothing holds the value it
-joins the report below. Still unread: `2 200 000`, `two million`, `£1.3bn`, `2.2 thousand` and
-front matter, and the run says so on every invocation.
+**A figure written with a scale word is read as a number too**, and compared at the record's own
+scale, because a record whose unit is `£ billion` holds a value in billions. It **warns** rather
+than fails where it equals a record value, and the difference is the remedy rather than the
+confidence: a token renders the grouped digits, so it cannot reproduce the scale-word form, and
+citing it changes the wording. Where nothing holds the value it joins the report below. Still
+unread: a value spaced rather than grouped, one spelled out in words, an abbreviated scale word,
+a scale word below a million, and front matter. The run says so on every invocation.
 
 **A figure the data layer never recorded fails the build**, as of 2 August 2026. It began at
 report level under a ratchet whose count could fall and never rise, because erroring on day one
@@ -543,17 +467,17 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and it is what was read, but it is not VoiceOver or NVDA reading a page
   aloud.
-- **Traceability at the far end is being established by hand, record by record, and is not
-  finished.** Every check verifies that a figure names a source; **no automated check verifies that
-  the source contains the figure**, and that gap has produced two real defects: a headline figure
-  citing an NAO report that does not carry it, found by the July 2026 audit, and a small-boats
-  figure citing a data-tables index page that contains no figures at all, found on 3 August 2026.
-  How many records reach a reader is what `npm run build` prints; it is deliberately not written
-  here. Of them, the eight home page figures were verified with verbatim quotes by the launch
-  readiness review, and the 26 belonging to the Home Office year-ending-March-2026 release were
-  traced to primary tables on 3 August 2026. The rest have not been asked. Backfilling
-  `data/evidence/` for every record is backlog item A1, batched by publisher, and it is several
-  more sessions.
+- **No automated check verifies that a source CONTAINS the figure citing it.** Every check verifies
+  that a figure names a source, which is not the same thing, and the gap produced two real defects:
+  a headline figure citing an NAO report that does not carry it, and a small-boats figure citing a
+  data-tables index page that carries no figures at all. **The backfill against it is done**, on
+  6 August 2026: every record in the data layer carries an entry in `data/evidence/` quoting a
+  fetched source, `check-evidence.mjs` re-reads every entry on every run, and every record was
+  re-read against its source on 11 August 2026. **What remains unclosed is the shape, not the
+  backlog**: nothing re-fetches a source, so an entry that is well formed and wrong passes for as
+  long as its figure holds. `docs/BACKLOG.md` under A1 has the standard each record was held to.
+  **This bullet said the backfill was unfinished and "several more sessions" until 12 August 2026**,
+  six days after it closed.
 - **Print was unstyled until 31 July 2026**, so a printed page lost every chart's figures, which sit
   inside a closed disclosure, and every source link's destination. The first fix did not survive
   contact with Chrome, which hides a closed disclosure's contents beyond the reach of child display
