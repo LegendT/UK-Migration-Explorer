@@ -688,11 +688,11 @@ below.
     `content/claims/average-migrant-contributes-341000-over-a-lifetime.md` rests a sentence on the
     net fiscal impact record with no number in it, and removing the declaration takes the whole
     Migration Observatory entry out of that page's citation block.
-    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` is a different question from
-    this item and **it is item 28 below**, which is where it goes rather than being left as a
-    sentence in a closed half of another entry. Neither can fire, both pages carrying a citation
-    block. **The false sentence is quoted rather than tidied away**, because three declarations were
-    called one shape on the strength of their front matter alone.
+    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` was a different question from
+    this item and **became item 28 below, which is closed**, rather than being left as a sentence in
+    a finished half of another entry. Neither could fire, both pages carrying a citation block, so
+    this item never waited on either. **The false sentence is quoted rather than tidied away**,
+    because three declarations were called one shape on the strength of their front matter alone.
     **THE SENTENCE HALF IS WHAT IS LEFT, and it is stated in the build's own output rather than left
     silent while it waits.** Whether a page carries the currency sentence at all is asked from
     `class="figure"`, which the card and chart-bar routes do not emit, so a page whose only figures
@@ -709,30 +709,18 @@ below.
     `lib/published.mjs` knows, which also breaks the counts on `/sources-and-method/` and so is not
     invisible everywhere.
 
-28. **NOT A GATE. A claim page's citation block names a figure the page does not use.** Found while
-    verifying item 27's declaration question on 12 August 2026, and it is a different question from
-    that one, which is why it is here rather than inside it.
-    `content/claims/a-refusal-means-the-claim-was-obviously-false.md` declares
-    `asylum/asylum-appeals-backlog` under `figures:` and its prose never mentions the appeals backlog
-    in any wording, checked with the hard wrap joined rather than line by line. The `citation`
-    shortcode builds that page's block from `figures:`, so the declaration puts "Asylum appeals
-    backlog (First-tier Tribunal, outstanding cases)" on the block's *Cited for* line and adds table
-    FIA_4 to the HMCTS entry. **Established by removing the line, rebuilding and diffing rather than
-    by reading**: both the name and the table disappear from that page and nothing else in the built
-    site moves.
-    **Why it matters on this site rather than being tidy-up.** A citation block that names a figure
-    its page does not use tells a reader the page rests on something it does not, which is the scope
-    silence `/sources-and-method/` objects to in others, and it is the mirror of the defect the block
-    exists to prevent. It is small: one line on one page, and no figure and no date move.
-    **RECOMMENDED: delete the declaration**, on the reasoning that the block should name what the
-    page uses. **The alternative is that the page SHOULD use it**, the argument at its
-    "attributes that gap to appeals and reconsiderations" resting on the stock of outstanding
-    appeals, in which case the fix is a sentence and a token rather than a deletion, and that is a
-    bigger change than the defect. Either way it changes a published citation block, so **[you]**.
-    **The same shape elsewhere was checked and is not there**: every other page's declared refs
-    either render on it or, on the two pages that write this site's net fiscal impact figure as
-    rounded prose and the one that rests a sentence on it, are the deliberate case the `citation`
-    shortcode's own comment describes.
+28. **CLOSED 12 August 2026 (PR #192), the day it was raised.** A claim page's citation block named a
+    figure the page does not use. `content/claims/a-refusal-means-the-claim-was-obviously-false.md`
+    declared `asylum/asylum-appeals-backlog` while its prose never mentions the appeals backlog in
+    any wording, checked with the hard wrap joined, so the block the `citation` shortcode builds from
+    `figures:` put that figure on its *Cited for* line and added table FIA_4 to the HMCTS entry:
+    a page telling a reader it rests on something it does not, which is the scope silence
+    `/sources-and-method/` objects to in others. **The declaration is deleted, on the owner's word**,
+    and the alternative was that the page SHOULD use the figure, its "attributes that gap to appeals
+    and reconsiderations" argument resting on the stock of outstanding appeals, which would have been
+    a sentence and a token rather than a deletion. **Table FIA_4 belongs to the appeals-backlog
+    records alone**, so the page now names only tables it uses, and the whole-site diff is those two
+    lines: no figure, no date and no published count moves. It is under *Completed*.
 
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
@@ -1789,6 +1777,12 @@ Kept so that a future session can see what was decided and when, rather than reo
 reasoning is in the pull request each entry names**, which is durable and does not have to be
 maintained here. Newest first.
 
+- **A citation block naming a figure its page does not use, The order's item 28**, 12 August 2026.
+  PR #192. One line out of one claim page's front matter, so the *Cited for* line and table FIA_4
+  leave that page's block and nothing else in the built site moves. **Raised and closed the same
+  day**, having been found while verifying item 27's own declaration question rather than by looking
+  for it, and each of the three declarations that looked alike was removed, rebuilt and diffed rather
+  than judged from its front matter: one was stale, one was deliberate, and this one was neither.
 - **`docs/UPDATING-DATA.md` brought up to date for a site with readers, The order's item 26**,
   11 August 2026. PR #190. The launch half it named, plus a correction-from-a-reader path, plus three stale
   facts found by reading it against the data rather than editing on top of it.
