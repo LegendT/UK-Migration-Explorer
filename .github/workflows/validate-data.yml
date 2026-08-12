@@ -48,13 +48,6 @@ jobs:
 
       - name: Content contract
         run: node scripts/validate-content.mjs
-      - name: Backlog contract
-        # Runs here as its own step rather than through `npm run validate`, because this workflow
-        # calls each script directly and never invokes that npm script. A check added only to
-        # `validate` runs on a laptop and gates nothing on a pull request, which is what happened
-        # to this one on 3 August 2026 between it being written and this step being added.
-        run: node scripts/check-backlog.mjs
-
       - name: Pipeline contract, that this file and npm run validate agree
         # The step that makes the comment above mechanical. Adding a check to `npm run validate`
         # and not here now fails, and so does adding one here and not declaring it, because the
@@ -69,7 +62,7 @@ jobs:
         # outage. It is not the whole of the standard. Keyboard operation of the scrolling
         # regions, what the charts announce, focus against both palettes and reflow at 400%
         # were measured by hand during the July 2026 accessibility rounds. Successive
-        # rewrites of docs/HANDOFF.md dropped those records while this comment went on
+        # rewrites of the planning notes dropped those records while this comment went on
         # pointing at them, so do not read this as saying the evidence is still filed
         # somewhere. Nothing here proves them, and a green run must not be read as though
         # it did.

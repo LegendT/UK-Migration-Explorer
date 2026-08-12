@@ -7,6 +7,10 @@ dist/
 release-check.txt
 .history/
 
+# Planning documents. Kept in the working copy and deliberately not versioned, so nothing in
+# this repository may read them or point a reader at them.
+docs/
+
 # Written by scripts/check-a11y-dark.mjs and deleted in its finally block. Ignored because an
 # interrupted run bypasses that block and leaves the file where git add -A would take it.
 .pa11yci.dark.generated.json

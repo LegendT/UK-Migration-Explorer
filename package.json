@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "node scripts/validate-data.mjs && node scripts/validate-content.mjs",
-    "validate": "node scripts/validate-data.mjs --verbose && node scripts/validate-content.mjs && node scripts/check-backlog.mjs && node scripts/check-pipeline.mjs",
+    "validate": "node scripts/validate-data.mjs --verbose && node scripts/validate-content.mjs && node scripts/check-pipeline.mjs",
     "check-sources": "node scripts/check-sources.mjs",
     "check-evidence": "node scripts/check-evidence.mjs",
     "check-releases": "node scripts/check-releases.mjs",
@@ -15,8 +15,7 @@
     "check-build": "node scripts/check-build.mjs",
     "a11y": "npm run build && start-server-and-test a11y:serve http://127.0.0.1:8081 \"npm run a11y:ci\"",
     "a11y:serve": "http-server _site -p 8081 -s -c-1",
-    "a11y:ci": "pa11y-ci && node scripts/check-a11y-dark.mjs",
-    "check-backlog": "node scripts/check-backlog.mjs --online"
+    "a11y:ci": "pa11y-ci && node scripts/check-a11y-dark.mjs"
   },
   "license": "MIT",
   "repository": {

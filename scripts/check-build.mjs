@@ -649,9 +649,8 @@ for (const file of pages) {
 // notice it changing. What is checked now is the launch state: the site is crawlable, the sitemap
 // is announced at the address site.url gives, and BOTH halves of call 26 hold: no admitted
 // retrieval agent sits in a refusing group, and some group still refuses. It guarded the allow
-// half alone until 11 August 2026, and the sentence here said so while README.md and
-// docs/HANDOFF.md both described it as asserting "the launch robots.txt state under call 26",
-// which is twice what it did. Three ways past it were found by probing and are fixed below:
+// half alone until 11 August 2026, and the sentence here said so while README.md described it
+// as asserting "the launch robots.txt state under call 26", which is twice what it did. Three ways past it were found by probing and are fixed below:
 // a path form it could not read, a second wildcard group it never looked at, and the refuse
 // half it never asked about. Each one passed while this printed that the site admits crawlers.
 //

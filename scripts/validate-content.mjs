@@ -140,9 +140,9 @@ const paused = [];
 // reached zero, which is the condition the constant always named for its own deletion, so the
 // constant is gone and an unrecorded figure now fails the build.
 //
-// The step-by-step ledger that lived here is not reproduced. Every step is in docs/BACKLOG.md
-// under Completed with the pull request that took it, and keeping a second copy beside a
-// constant that no longer exists is the two-lists problem this project has been bitten by twice.
+// The step-by-step ledger that lived here is not reproduced. Every step is in the merged pull
+// requests that took it, and keeping a second copy beside a constant that no longer exists is
+// the two-lists problem this project has been bitten by twice.
 //
 // What this still does NOT establish, and the failure message says so: that the figures a page
 // DOES write are right. It establishes that every one of them has a home.
@@ -299,90 +299,12 @@ if (claims.length) {
   }
 }
 
-// --- outstanding work has one home ------------------------------------------------
-// A handoff is rewritten every session, and a rewrite is where work quietly falls out: this
-// project has already lost a scope document's contents that way once, by copying them into
-// the handoff and then editing the copy. docs/BACKLOG.md is the durable list, and every
-// planning document has to be referenced from it, so a scope cannot be written and forgotten.
-//
-// foundation.md is the record of intent rather than outstanding work, and HANDOFF.md and
-// BACKLOG.md are the two documents doing the tracking, so all three are exempt.
-const PLANNING_EXEMPT = new Set(['foundation.md', 'HANDOFF.md', 'BACKLOG.md']);
-const docsDir = fileURLToPath(new URL('../docs/', import.meta.url));
-
-// Recursive, and it was not until 30 July 2026. `readdirSync` on its own does not descend, so a
-// document one directory down escaped the rule whose entire purpose is that a planning document
-// cannot be written and forgotten. It went unnoticed while `docs/` was flat, and was found the
-// moment the first subdirectory was added, by the session adding it: `docs/prompts/` would have
-// been invisible here on the day it was created.
-//
-// Matched on `docs/` plus the path relative to docs/, and the prefix is the load-bearing part.
-// Matching the relative path alone fixed only one direction: a top-level name is a SUFFIX of any
-// nested path ending in it, so a reference to `docs/prompts/X.md` silently satisfied `docs/X.md`.
-// Worse, the same flaw was already live between top-level files, because a substring test cannot
-// tell a filename from the tail of a longer one: an unreferenced `docs/ATA.md` raised nothing,
-// satisfied by the `UPDATING-DATA.md` references. Found by a second model after this comment had
-// claimed both directions were covered and a negative test had exercised only one.
-//
-// Every reference in the backlog carries the `docs/` prefix, so requiring it costs nothing today
-// and makes the match a path rather than a fragment of one.
-//
-// What this still does NOT catch: an `.md` under a symlinked directory inside `docs/`, because a
-// symlink dirent is neither a directory nor a `.md` file, so the walk skips it. Following one
-// would mean handling cycles for a case nobody has created.
-const planningDocs = (dir, prefix = '') =>
-  readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
-    entry.isDirectory()
-      ? planningDocs(`${dir}${entry.name}/`, `${prefix}${entry.name}/`)
-      : entry.name.endsWith('.md') ? [`${prefix}${entry.name}`] : []);
-
-try {
-  const backlog = readFileSync(`${docsDir}BACKLOG.md`, 'utf8');
-  for (const file of planningDocs(docsDir)) {
-    if (PLANNING_EXEMPT.has(file)) continue;
-    if (!backlog.includes(`docs/${file}`)) {
-      errors.push(`docs/BACKLOG.md: does not reference docs/${file}, so the work it describes can be lost in the next handoff rewrite. Add it, or move it under Completed.`);
-    }
-  }
-  if (!readFileSync(`${docsDir}HANDOFF.md`, 'utf8').includes('BACKLOG.md')) {
-    errors.push('docs/HANDOFF.md: does not point at docs/BACKLOG.md, which is where outstanding work lives.');
-  }
-} catch (error) {
-  if (error.code !== 'ENOENT') throw error;
-  errors.push('docs/BACKLOG.md: missing. It is the durable list of outstanding work.');
-}
-
-// --- one list, and only one ---------------------------------------------------------
-// docs/BACKLOG.md is the durable list of outstanding work. On 31 July 2026 a pre-launch audit built
-// a SECOND one inside its own document: a 53-row table with DONE markers, its own ids and its own
-// severities. Both then had to be maintained in step, they diverged twice within a day, and the
-// backlog was edited to say the audit's list was "the live one", so this project's one-list rule was
-// suspended in writing to accommodate the artefact that broke it. 23 of that branch's 33 commits went
-// to maintaining that document rather than doing the work.
-//
-// So the rule is a build failure rather than a resolution. A planning document may hold reasoning, a
-// finding, or a frozen record; it may not hold work STATE. State means a row marked done, withdrawn
-// or struck, which is what turns a table into a list somebody has to keep true.
-//
-// Matched on a table ROW, not on the words anywhere in the file, because a document should be able to
-// say in prose that something was withdrawn. It is the row-with-a-marker shape that is a second list.
-// verification.txt is not scanned: it sits outside docs/ for its own reasons.
-const STATE_ROW = /^\s*\|.*\*\*(DONE|Withdrawn|Struck)\b/i;
-for (const file of planningDocs(docsDir)) {
-  if (file === 'BACKLOG.md') continue;
-  const rows = readFileSync(`${docsDir}${file}`, 'utf8').split('\n')
-    .map((line, i) => [i + 1, line]).filter(([, line]) => STATE_ROW.test(line));
-  if (rows.length) {
-    errors.push(`docs/${file}: ${rows.length} table row(s) carry work state, from line ${rows[0][0]}. Only docs/BACKLOG.md tracks what is outstanding. A second list has to be kept true in two places, and this project watched two diverge twice in one day. Move the work to the backlog and leave the reasoning here.`);
-  }
-}
-
 // --- house style: no em-dashes ------------------------------------------------
 // Matches the sibling projects' rule. The em-dash is banned in authored copy, literal or
 // URL-encoded; the en-dash stays available for numeric ranges. Data files are excluded
 // where they carry a source's own words, but notes and card text are ours, so data/ is
 // scanned too. Anything under node_modules or _site is generated, not authored.
-const STYLE_DIRS = ['content', 'docs', 'scripts', 'lib', 'data', '.github'];
+const STYLE_DIRS = ['content', 'scripts', 'lib', 'data', '.github'];
 const STYLE_FILES = ['README.md', 'CHANGELOG.md', 'eleventy.config.js', 'netlify.toml', 'LICENCE'];
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 
@@ -431,9 +353,8 @@ const styleTargets = [
 
 // --- editorial lint, foundation section 5.2 ----------------------------------------
 // The language rules had no enforcement, so the only thing standing between the site and
-// the vocabulary it criticises was remembering. This scans the pages a reader sees, not
-// docs/, because the foundation document quotes the banned terms in the rules table that
-// bans them.
+// the vocabulary it criticises was remembering. This scans the pages a reader sees, which is
+// every authored surface this repository still carries.
 //
 // Quoted text is exempt, and that exemption is the whole reason this can be automated
 // here. The site quotes its sources verbatim as a matter of policy: the Home Office
