@@ -111,6 +111,15 @@
       from July. A page's prose is reviewed; a figure is checked against its source; the second
       happens more often and is recorded per source in the citation block.
 
+      WHAT FOLLOWS THAT CLAUSE IS NOT WRITTEN HERE. The currency date, and the wording around it,
+      are substituted by the figure-currency transform in eleventy.config.js, which derives them
+      per page from the records the page renders: "they were all checked against their sources on
+      <date>" where a page's dates agree, and "every one was checked against its source on or
+      after <date>" where they do not. The placeholder below is what it replaces, and a page it
+      cannot date keeps the word "pending", which scripts/check-build.mjs refuses. That comment
+      says which traces it reads and why the earliest wins; this one only has to say that the
+      sentence is finished elsewhere, so nobody edits the prose here expecting it to be the whole.
+
       The replacement promises no location, deliberately. Pointing a reader at "the citation
       beside it" is false on /sources-and-method/ and /what-the-words-mean/, which render live
       record values through tokens and carry no citation block at all. A sentence true on
