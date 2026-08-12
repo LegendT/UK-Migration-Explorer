@@ -735,7 +735,8 @@ below.
     records alone**, so the page now names only tables it uses, and the whole-site diff is those two
     lines: no figure, no date and no published count moves. It is under *Completed*.
 
-29. **CLOSED 12 August 2026 (PR #194, with the Status paragraph in PR #195).** `README.md` was
+29. **CLOSED 12 August 2026 (PR #194; the Status paragraph follows on branch
+    `readme-status-trim`).** `README.md` was
     written for a maintainer and a reader arrives at it from the site's footer on every page. Option
     A of four: a reader-facing front door that answers a reader's questions by pointing at the page
     that owns each answer, `## Status` retired from a narrative of every review this project has run
@@ -1810,7 +1811,7 @@ reasoning is in the pull request each entry names**, which is durable and does n
 maintained here. Newest first.
 
 - **`README.md` reoriented for a reader, The order's item 29**, 12 August 2026. PR #194, with the
-  Status paragraph in PR #195. A front door that answers a reader's questions by pointing at the
+  Status paragraph following on branch `readme-status-trim`. A front door that answers a reader's questions by pointing at the
   page that owns each answer, `## Status` retired from a narrative of every review this project has
   run, and every figure and live self-count out of a file that sits outside the scan which would
   have caught them. **The size the plan offered did not survive measurement**, the
