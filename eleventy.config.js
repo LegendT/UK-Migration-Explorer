@@ -519,15 +519,14 @@ export default function (eleventyConfig) {
   // takes the whole Migration Observatory entry out of that page's citation block. So it is the same
   // deliberate case as the other two, reaching a reader through a sentence rather than a figure.
   //
-  // ONE DECLARATION IS DATED NOWHERE, AND IT IS NAMED HERE RATHER THAN QUIETLY EXCLUDED.
-  // /sources-and-method/ declares `migration/net-migration` while printing
-  // `migration/net-migration-2`, and it renders no citation block, so nothing on it carries the
-  // first record's date. While every record shares one retrieved_date this cannot fire. The first
-  // re-read that leaves that record older than the rest of that page's figures fails the build
-  // naming it, and the answer is one line either way: the declaration is real, in which case that
-  // page owes the figure a date a reader can see, or it is stale and goes. It is the owner's call
-  // and docs/BACKLOG.md item 27 carries it. Excluding it here instead would have meant writing a
-  // rule that drops whatever would have fired, which is not a check.
+  // NO DECLARATION ON THE SITE IS DATED NOWHERE, and the one that was is deleted rather than
+  // excluded here. /sources-and-method/ declared `migration/net-migration` while printing
+  // `migration/net-migration-2` and rendering no citation block, so nothing on it carried the first
+  // record's date and it was the only page this could ever have fired on wrongly. It was stale, and
+  // the change that added this check removed it. THIS PARAGRAPH CALLED IT AN OPEN QUESTION UNTIL
+  // THEN, in the same pull request, which is a comment going stale one reference from the decision
+  // that settled it and is why the sentence is corrected rather than deleted. Excluding it here
+  // instead would have meant a rule that drops whatever would have fired, which is not a check.
   //
   // The front matter is parsed here rather than imported from validate-content.mjs, on the same
   // reasoning the scroll-region patterns are duplicated: this is the check that has to disagree with
