@@ -346,7 +346,7 @@ const points = seriesPoints();
 // value and two different confidence levels, and the mechanism built to stop a figure held twice
 // drifting could not see it. Every field the two sides both carry is compared now.
 //
-// The grades agree because the convention was settled first, A6 in docs/BACKLOG.md: the grade
+// The grades agree because the convention was settled first: the grade
 // follows the source, so every ONS point is `provisional` as every ONS metric already was, and
 // the publisher's per-vintage marker lives in `ons_marker` alone. Landing this check without that
 // decision would have turned the branch red and invited whichever regrade made it green.

@@ -9,14 +9,13 @@ data/ and are covered by clause 2 below. Those two are the figures themselves, a
 the passages quoted from the publications the figures came from.
 
 So this clause covers the site's own prose in content/, the build code in lib/,
-scripts/ and eleventy.config.js, the documentation in docs/, README.md,
-CHANGELOG.md, the workflows in .github/, and the writing carried in the data files
-themselves: the card paragraphs, notes and caveats are this project's words, not
-the publishers'.
+scripts/ and eleventy.config.js, README.md, CHANGELOG.md, the workflows in
+.github/, and the writing carried in the data files themselves: the card
+paragraphs, notes and caveats are this project's words, not the publishers'.
 
 The scope is written this way round on purpose. It was an enumeration, and an
-enumeration is a list of what someone remembered: it named scripts/, README.md
-and docs/, so every word of the pages a reader actually reads was licensed by
+enumeration is a list of what someone remembered: it named scripts/ and
+README.md, so every word of the pages a reader actually reads was licensed by
 neither clause. A reuser should not have to guess, and a citing outlet's legal
 desk will not.
 

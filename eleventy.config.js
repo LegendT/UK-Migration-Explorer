@@ -45,7 +45,7 @@ const dataFiles = readdirSync(new URL('./data/', import.meta.url))
 
 
 // A figure renders as its formatted value and nothing else, the unit is prose, written by
-// the author. See the token contract in docs/foundation.md section 15. The wrapper carries
+// the author, under the project's token contract. The wrapper carries
 // the metric id so a published figure can always be traced back to its record.
 function renderFigure(ref) {
   const metric = registry.get(ref);

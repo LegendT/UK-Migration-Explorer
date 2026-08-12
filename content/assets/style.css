@@ -519,9 +519,9 @@ th.nested-2 { padding-left: 2.75rem; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
-/* The pre-launch band's rules went with the banner at launch. What they taught outlives them
-   and is in docs/HANDOFF.md: a rule reaching inside a utility class, `.prelaunch p` against
-   `.wrap`, outranks it on specificity and silently undoes the declarations doing the centring. */
+/* The pre-launch band's rules went with the banner at launch. What they taught outlives them:
+   a rule reaching inside a utility class, `.prelaunch p` against `.wrap`, outranks it on
+   specificity and silently undoes the declarations doing the centring. */
 
 /* A substantive revision, disclosed on the claim it changed. Styled like the site-wide
    notice so it reads as a statement about the page rather than part of the argument. */

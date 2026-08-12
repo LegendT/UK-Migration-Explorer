@@ -13,7 +13,7 @@
 // "current" while one figure sits a release behind, which is exactly what happened to
 // population/eu-settlement-scheme-settled-status-grants, found by hand on 28 July.
 //
-// Reasoning in docs/UPDATE-AUTOMATION.md, phase 1. Reports, never gates.
+// Reports, never gates.
 //
 // Run: node scripts/check-releases.mjs
 

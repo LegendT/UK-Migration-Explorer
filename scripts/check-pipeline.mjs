@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // The pipeline check. `npm run validate` and .github/workflows/validate-data.yml were two lists
 // of checks and neither read the other, so a check added to one gated nothing on the other. That
-// is not hypothetical: it is what happened to check-backlog.mjs on 3 August 2026, between it
-// being written and a CI step being added by hand minutes later. For those minutes the file's own
-// claim that it was checked was true on a laptop and false on a pull request.
+// is not hypothetical: it is what happened to a check on 3 August 2026, between it being written
+// and a CI step being added by hand minutes later. For those minutes the file's own claim that it
+// was checked was true on a laptop and false on a pull request.
 //
 // The manifest below is what both lists are now measured against. It is a comparison rather than
 // a shared import because neither side can import anything: package.json is JSON and a workflow
@@ -35,7 +35,6 @@ const errors = [];
 const CHECKS = [
   { script: 'validate-data.mjs', local: true, ci: true, gates: true },
   { script: 'validate-content.mjs', local: true, ci: true, gates: true },
-  { script: 'check-backlog.mjs', local: true, ci: true, gates: true },
   { script: 'check-pipeline.mjs', local: true, ci: true, gates: true },
   { script: 'check-build.mjs', local: false, ci: true, gates: true, why: 'runs inside `npm run build`, which needs a built site' },
   { script: 'check-evidence.mjs', local: false, ci: true, gates: true, why: 'compares against a base branch a laptop may not have fetched' },
