@@ -436,8 +436,16 @@ author: the y-axis always starts at zero, the gridline interval is chosen from t
 people count in rather than by dividing the top into four, every chart carries its figures as a
 real table, and no series is distinguished by colour alone.
 
-**Five Eleventy transforms run on the built HTML, and the order is load-bearing.**
+**The Eleventy transforms run on the built HTML in the order they are registered, and the order is
+load-bearing. No count is written here**, for the reason every other self-count here is not:
+`grep -c addTransform eleventy.config.js` answers it, and this sentence said five while the file held
+six from 11 August 2026, having been written before `figure-currency` and never revisited with it.
 `resolve-citations` renders the tokens and block partials, and throws on anything unresolved.
+`figure-currency` derives the footer's checked-against-source date from the traces on the page and
+takes the earliest, and `figure-currency-audit` recomputes it from each page's own `figures:`
+declaration and its dashboard cards and throws where the footer claims a figure was checked later
+than it was. Both run after `resolve-citations`, which is what puts the refs into the HTML, and the
+audit runs after the transform it disagrees with rather than sharing its reading.
 `published-counts` replaces `{count:source-id}` and `{count-in-words:...}` on
 `/sources-and-method/` with the derived number of records that reach a reader from each
 publisher, because markdown templating is off site-wide and a markdown page cannot call a

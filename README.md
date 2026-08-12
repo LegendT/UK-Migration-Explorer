@@ -119,7 +119,7 @@ Setting up Search Console is what is left, and it is deliberate.
 ## Layout
 
 ```
-eleventy.config.js      Build: citation resolution, partials, filters, five HTML transforms
+eleventy.config.js      Build: citation resolution, partials, filters, the HTML transforms
 content/                Eleventy input
   index.njk               Overview: three distinction panels, eight cards, generated periods
   migration.njk           Net migration, the two flows, reason splits, ONS vs Home Office
@@ -269,8 +269,17 @@ a Liquid expression, silently breaking the guarantee that no figure is hard-code
 Citations resolve in a post-render transform, and anything unresolved throws rather than
 shipping `{{...}}` to a reader.
 
-**Five Eleventy transforms run on the built HTML and the order is load-bearing.**
+**The Eleventy transforms run on the built HTML in the order they are registered, and the order is
+load-bearing. No count is written here**: `grep -c addTransform eleventy.config.js` answers it, and
+this sentence said five while the file held six from 11 August 2026, having gone one short the day
+`figure-currency` was added and been enumerated one short with it.
 `resolve-citations` renders the tokens and block partials and throws on anything unresolved.
+`figure-currency` derives the footer's date from the traces on the page, a `data-metric` ref or a
+machine-readable `datetime`, and takes the earliest, so a page states when its figures were last
+checked rather than carrying a typed date. `figure-currency-audit` then recomputes that date from a
+second derivation, each page's own `figures:` declaration plus its dashboard cards, and throws where
+the footer claims a figure was checked later than it was. Both run after `resolve-citations`, which
+is what puts the refs into the HTML, and the audit runs after the transform it disagrees with.
 `published-counts` renders the figure counts on `/sources-and-method/` from `lib/published.mjs`
 and throws on a marker it cannot resolve. `heading-anchors` turns `{#id}` syntax into real ids,
 and derives one from the heading's own text where none is declared, so every section of every
