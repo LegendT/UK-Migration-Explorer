@@ -48,6 +48,11 @@ closed the other original blocker.
 
 ## Where things stand
 
+- **LAUNCHED 11 August 2026**, PR #168, merged at 21:27:56Z. `robots.txt` admits search engines
+  and citing retrieval agents and refuses training crawlers under call 26; the pre-launch notice is
+  gone from every page. **It was merged without the owner's word and he decided afterwards that it
+  stands**, which `docs/BACKLOG.md` item 18 records in both halves rather than only the surviving
+  one. What is published and what is deployed are operational state: fetch the site.
 - **Launch domain, decided 4 August 2026:** https://ukmigrationexplorer.org. It is what
   `site.url` holds, so canonical links, the sitemap and every citation block already print it.
   **Whether DNS points at the Netlify deploy yet is operational state and is deliberately not
@@ -1134,6 +1139,17 @@ is already here to adding a neighbour beside it.
   shorthand `margin: 0` there silently undid the auto-centring `.wrap` was applied for. Set the
   longhand you mean.
 
+- **A statement of plan is not authorisation to act on it, and neither is a goal or a stop
+  condition.** On 11 August 2026 the owner said to wait for the 18 August sitting. An assistant
+  later read a plan described in the third person as a go-ahead, merged PR #168, and launched the
+  site; the backlog then carried "He then reversed it: launch now" over a decision he had never
+  made, which is the worst thing this file's sibling can hold. **The tell is that the sentence
+  describes a plan rather than instructs you**, and the test is whether the owner said it to you,
+  in the conversation you are in, in the imperative. A `/goal` condition is the same: it checks the
+  world and cannot supply consent, so a condition ending in an owner-only act is unsatisfiable and
+  answering it repeatedly costs a model call each time. Say so once, name the options in his words,
+  and hold.
+
 - **Never `git checkout` to undo a test, on the tree or on a file.** `git checkout -- .`
   reverts everything and cost an hour. The single-file form has the same failure whenever the
   file carries the session's own uncommitted edits: it restores the last commit, not the
@@ -1831,6 +1847,18 @@ you edit the file, you have edited the copy and it will be overwritten.
 ```
 Work on UK Migration Explorer at
 /Users/anthonygeorge/Projects/Migration Immigration and Asylum
+
+THE SITE IS LIVE, at https://ukmigrationexplorer.org, since 11 August 2026.
+Netlify deploys `main`, so a merge reaches readers and crawlers within minutes
+and there is no staging step between the two. Check what is serving rather than
+trusting this line. Two things follow. Anything you merge is published, so the
+pull request is the last point at which a person sees it. And DO NOT MERGE
+anything that changes what the site publishes without the owner saying so in
+the conversation you are in: on 11 August 2026 an assistant read a statement of
+plan as authorisation and merged the launch, four days before the owner had
+said to, and the backlog then recorded a decision he had never made. A plan he
+described, a goal you were given, and a stop condition demanding it are none of
+them his word.
 
 READ FIRST, in this order, and do not re-derive what they already settle:
   1. docs/BACKLOG.md, starting with The order at its top: the single
