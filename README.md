@@ -126,18 +126,17 @@ LICENCE                 MIT for everything but the figures in data/, which are O
 section of `/sources-and-method/`, generated from the directory rather than typed. That page had
 promised the files were public and linked none of them.
 
-**Two things change shape below 40em, and they do it in opposite ways.** The navigation is the
-same ten items at every width, in one `<nav>` and one `<details>`: below 40em the `<summary>` is
-the control that opens them, and above it the summary is `display: none` and the items lay out as
-the flat row they have always been. Nine flat items needed about 980px of line length, which is
-what a 280px column could not give them. **The charts are the case that really does render twice.**
-Each is drawn wide and narrow at build time and CSS shows one, because SVG text is in viewBox
-units, so squeezing the 760-unit chart into a 280px column would render its 17px labels at 6.3px,
-and the 32rem floor that prevents that is what put 45% of every chart off-screen at 320px. The
-hidden member of each chart pair is `display: none` rather than clipped, which is the only form
-that takes it out of the accessibility tree, so a screen reader meets one image per chart. Both
-were measured at real device sizes rather than calculated; `docs/BACKLOG.md` under *U6* records
-what the measuring found, and what it found and nobody has yet fixed.
+**Two things change shape on a narrow screen, in opposite ways.** The navigation is the same items
+at every width, in one `<nav>` and one `<details>`: narrow, the `<summary>` is the control that
+opens them; wide, the summary is `display: none` and the items lay out as a flat row, which is what
+a phone column cannot give them the line length for. **The charts are the case that really does
+render twice.** Each is drawn wide and narrow at build time and CSS shows one, because SVG text is
+in viewBox units, so squeezing the wide chart into a phone column would render its labels far below
+the legible floor. The hidden member of each pair is `display: none` rather than clipped, which is
+the only form that takes it out of the accessibility tree, so a screen reader meets one image per
+chart. **Both were measured at real device sizes rather than calculated, and the measurements live
+in `docs/BACKLOG.md` under *U6*** rather than here, along with what the measuring found and what
+nobody has fixed.
 
 ## Data contract
 
@@ -227,18 +226,13 @@ page can be linked to. It skips the `h1`, whose link is the page URL, and a head
 `<caption>`. `scrollable-regions` then wraps any unwrapped table and gives every scrolling box a
 `tabindex`, a role and a name taken from its caption or the heading above it.
 
-**A `.scroll-x` div may carry a second class** (PR #149, 5 August 2026). It could not until then:
-this transform and `check-build.mjs` both recognised the wrapper by matching `class="scroll-x"` up
-to the closing quote, so an extra class made a wrapper read as no wrapper. The transform wrapped
-the table again and shipped a scrolling region nested inside one, with the build check and pa11y
-green; it was found by counting `class="scroll-x"` in the built HTML. All four patterns now match
-`scroll-x` as a whole member of the space-separated class list, and the transform writes the class
-attribute back rather than rebuilding it, so a second class survives being named.
-
-**The two files still hold their own copy of that pattern, deliberately.** `check-build.mjs` exists
-to disagree with the transform, so one expression imported by both would be one assumption neither
-side could catch, which is how four patterns went blind together in the first place. The sources
-catalogue still puts its toggle class on an outer div, which is correct and no longer required.
+**A `.scroll-x` div may carry a second class**, and could not until PR #149. Every pattern here and
+in `check-build.mjs` now matches `scroll-x` as a whole member of the space-separated class list
+rather than as the whole attribute, and the transform writes the class attribute back rather than
+rebuilding it. **The two files keep their own copy of that pattern, deliberately**: the checker
+exists to disagree with the transform, and one expression imported by both would be one assumption
+neither side could catch, which is how four of them went blind together. What that cost is in
+`docs/HANDOFF.md` under *Building a check, and trusting it*.
 
 Two orderings carry the weight. Run `scrollable-regions` before `heading-anchors` and a heading
 still carrying its `{#id}` names the region, shipping raw syntax inside an `aria-label` where
@@ -285,19 +279,15 @@ of its paragraphs on.
 | `check-releases.mjs` | Two questions. Whether any watched source has published a newer edition than the one each record and series file cites, compared by the month and year in the URL rather than by timestamp. And whether a table the site declares in `table_reference` was corrected *inside* the edition it cites, matched against the Home Office change history and reported only where the figure has not been re-read since. Network; reports and never gates, and opens one deduplicated issue from `main` or the weekly cron |
 | `npm run a11y` | pa11y at WCAG2AA over every URL listed in `.pa11yci.json`. Fails the build. Pinned rather than fetched at run time, so two runs a month apart test against the same code |
 
-**Read this before trusting a green run.** Repeatedly in this project a checker has passed while
-a real defect shipped, and the July 2026 audit added to the tally rather than closing it: a success
-message claiming no page writes a live value longhand while four sat on a published page, and a
-figure whose cited source does not contain it. **The count is deliberately no longer written here.**
-It was eight for a while, then nine, and a number that only ever goes up is one more thing to keep
-correct. `docs/HANDOFF.md` holds the incidents. Every one had the same shape: the check verified a property of the
-*source or the declaration* rather than the property a reader depends on, and the success
-message claimed the latter. The messages now state only what they verify.
+**Read this before trusting a green run.** A checker here has repeatedly passed while a real defect
+shipped, and every instance had one shape: the check verified a property of the *source or the
+declaration* rather than the property a reader depends on, and its success message claimed the
+latter. The messages now state only what they verify. **The incidents are in `docs/HANDOFF.md`** and
+are deliberately neither counted nor listed twice.
 
-**pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being
-believed: an isolated missing `lang` took it to 15/16 and named the rule, a failing contrast
-value took it to 0/16. It flagged none of the five accessibility defects found by hand,
-which is the point: it is a floor.
+**pa11y is a floor, not a verdict, and CI says so.** It was negative-tested before being believed,
+in both directions, and it flagged none of the accessibility defects that were found by hand. That
+is the point of calling it a floor.
 
 Known limits, published on the sources page under *What the checks do not establish*:
 
@@ -477,17 +467,17 @@ Full detail in `docs/foundation.md`. The rules that most affect code:
 - **No real screen reader has been run.** Chrome's accessibility tree is what assistive
   technology consumes and it is what was read, but it is not VoiceOver or NVDA reading a page
   aloud.
-- **Traceability at the far end is being established by hand, record by record, and is not
-  finished.** Every check verifies that a figure names a source; **no automated check verifies that
-  the source contains the figure**, and that gap has produced two real defects: a headline figure
-  citing an NAO report that does not carry it, found by the July 2026 audit, and a small-boats
-  figure citing a data-tables index page that contains no figures at all, found on 3 August 2026.
-  How many records reach a reader is what `npm run build` prints; it is deliberately not written
-  here. Of them, the home page figures were verified with verbatim quotes by the launch
-  readiness review, and those belonging to the Home Office year-ending-March-2026 release were
-  traced to primary tables on 3 August 2026. The rest have not been asked. Backfilling
-  `data/evidence/` for every record is backlog item A1, batched by publisher, and it is several
-  more sessions.
+- **No automated check verifies that a source CONTAINS the figure citing it.** Every check verifies
+  that a figure names a source, which is not the same thing, and the gap produced two real defects:
+  a headline figure citing an NAO report that does not carry it, and a small-boats figure citing a
+  data-tables index page that carries no figures at all. **The backfill against it is done**, on
+  6 August 2026: every record in the data layer carries an entry in `data/evidence/` quoting a
+  fetched source, `check-evidence.mjs` re-reads every entry on every run, and every record was
+  re-read against its source on 11 August 2026. **What remains unclosed is the shape, not the
+  backlog**: nothing re-fetches a source, so an entry that is well formed and wrong passes for as
+  long as its figure holds. `docs/BACKLOG.md` under A1 has the standard each record was held to.
+  **This bullet said the backfill was unfinished and "several more sessions" until 12 August 2026**,
+  six days after it closed.
 - **Print was unstyled until 31 July 2026**, so a printed page lost every chart's figures, which sit
   inside a closed disclosure, and every source link's destination. The first fix did not survive
   contact with Chrome, which hides a closed disclosure's contents beyond the reach of child display
