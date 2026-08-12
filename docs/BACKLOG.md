@@ -755,6 +755,65 @@ below.
     live count of the repository's own contents, because the runs print those. **Neither is enforced
     by anything**, which is the one thing this item leaves behind and is stated here rather than
     implied. It is under *Completed*.
+30. **NOT A GATE. Verify, critique and update `docs/UPDATING-DATA.md`, and give the procedure a Fable
+    critique step.** **DECIDED BY THE OWNER ON 12 AUGUST 2026**: Fable's role is to critique, not to
+    drive. The procedure gains a step where a Fable critic reads the update before the pull request
+    opens; the two alternatives, Fable performing the update itself and Fable driving with a
+    different model critiquing, were put to him and refused. **[me]**.
+
+    - **Both documents move together.** `docs/UPDATING-DATA.md` is the procedure and
+      `docs/prompts/update-from-release.md` is what a session is actually handed. Changing one and
+      leaving the other is the two-copies defect this file records against itself, so a change to the
+      step list lands in both or in neither.
+    - **The step carries the error rate or it is worse than nothing.** `docs/HANDOFF.md` records a
+      fable critic reading two pull requests, finding a real defect in both, and getting one of its
+      own corrections wrong: it rewrote a correct note on the strength of searching a briefing for a
+      form that briefing does not print. So the step says verify each finding against the source
+      before acting on it, and says what a reader that cannot run anything is unable to establish.
+    - **THE VERIFY PASS HAS SOMETHING SPECIFIC TO CHECK, because the repository moved after item 26
+      closed this document on 11 August 2026.** Item 27 added a build-time audit that reads each
+      page's `figures:` declaration against its records' `retrieved_date`, and this runbook moves
+      that field in several steps. Whether an ordinary update can make that audit fire is
+      unestablished: test it rather than reason about it, because the answer decides whether the
+      procedure needs a step or a warning.
+    - **Where the step sits is a judgement to bring rather than take.** Before the pull request
+      opens, so the findings are in the body a reviewer reads, or after it, so the critic sees what
+      the reviewer sees. Recommended: before, because this project's own critique practice puts the
+      second reader ahead of the decision rather than after it.
+
+31. **NOT A GATE. Research who, how and when to market the site, and write the action plan.** Asked
+    for on 12 August 2026, with four calls made the same day. **[me]** for the research and the
+    draft; **[you]** for the plan itself, because which audiences to approach, in what order and in
+    whose name is a judgement about the project rather than a fact about it.
+
+    - **DECIDED: it lives in a new `docs/MARKETING.md`**, referenced from this file because
+      `validate-content.mjs` requires every planning document in `docs/` to be, and carrying no work
+      state, because no planning document but this one may. The alternatives, entries in The order
+      alone and a section of `docs/foundation.md`, were put and refused.
+    - **DECIDED: the research names real targets and sources each one.** Outlets, journalists,
+      newsletters, briefings and organisations, each with a fetched URL and a reason, held to the
+      same rule as a figure: anything unverifiable comes back marked unverified and is left out. A
+      framework with no names was offered and refused.
+    - **WHAT THE SITE HAS ALREADY PUBLISHED CONSTRAINS EVERY CHANNEL IN IT.** `/about/` states there
+      is no grant, no advertising, no sponsorship, no commercial relationship with any organisation
+      working in this field, and no payment from anyone with an interest in how migration statistics
+      are reported. So the plan is unpaid throughout, and proposing otherwise would contradict a live
+      page. Read that page before drafting, not after: an outside recommendation does not know what
+      this site has promised its readers, which is a practice `docs/HANDOFF.md` earned.
+    - **The only target statements that exist are `docs/foundation.md` 4.2's three candidates, and
+      none is adopted.** Cited by a named outlet or briefing within six months; organic search
+      entries on definitional queries; return visits in the week after a major data release. **DECIDED:
+      the research feeds that choice.** The plan recommends which to adopt and why, and adopting one
+      is item 23 and stays the owner's.
+    - **The timing has pegs already on this list rather than needing invention**: the ONS release of
+      18 August 2026, the Home Office release of 27 August 2026, and the published commitment to
+      update within one month of each cadenced release. A release is also the only moment the third
+      candidate measure can be read at all.
+    - **What it must say it is assuming.** `docs/foundation.md` names five audiences and says in
+      terms that none of them has been asked; item 19 is that conversation and it has not happened.
+      So the plan rests on an inferred audience and has to say so where it does, rather than reading
+      as though the audience were established.
+
 If you reorder, or complete something, **move the entries and renumber** rather than adding a
 sentence explaining that the order is not the order. That trap was set once, on 28 July 2026,
 and a fresh session following the instruction would have taken the wrong item. A closed item
