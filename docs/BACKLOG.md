@@ -743,7 +743,14 @@ below.
     **OPTION A, CHOSEN BY THE OWNER ON 12 AUGUST 2026** from four put to him: a reader-facing front
     door, then the reference sections compressed, then `## Status` collapsed to a pointer at this
     file. The front door is what the site is, a link to it, and the questions a reader actually has,
-    each answered in a line and a link to the page that owns the answer. **[me]**.
+    each answered in a line and a link to the page that owns the answer.
+    **THE TAG IS SPLIT, AND IT READ [me] FOR THE WHOLE OF IT UNTIL A CRITIQUE CAUGHT THAT.**
+    Compressing the reference sections, collapsing `## Status` against what `docs/HANDOFF.md` and
+    this file already carry, and taking every figure out are **[me]**: each is mechanical and each is
+    checkable against another document or against the data. **The front door's own WORDING is
+    [you]**, on the precedent this project has kept twice, A4 and R1 below, both headed "reader-facing
+    wording, all of it yours". It comes as a recommended draft in the pull request rather than as a
+    question first, which is what item 15's two calls did, so overruling it costs one word.
 
     **What the verification established, so the next session does not re-derive it.**
 
