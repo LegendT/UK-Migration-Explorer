@@ -11,6 +11,11 @@ release-check.txt
 # this repository may read them or point a reader at them.
 docs/
 
+# The backup of the above, which lives in the working copy. Ignored for the same reason docs/ is:
+# the folder is only out of this repository as long as no archive of it walks back in, and a
+# `git add -A` would take this file without anyone reading the diff.
+docs.zip
+
 # Written by scripts/check-a11y-dark.mjs and deleted in its finally block. Ignored because an
 # interrupted run bypasses that block and leaves the file where git add -A would take it.
 .pa11yci.dark.generated.json
