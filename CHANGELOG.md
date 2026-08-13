@@ -16,6 +16,86 @@ version the repository names, so 1.0.0 covers the whole of the work up to it rat
 release cut from an earlier one. **A later entry belongs under *Unreleased* above, not here**,
 because this heading is a claim about what was published on a date and nothing checks it.
 
+### Two Home Office income figures move to the 2025-26 accounts, 10 August 2026
+
+**£2.3 billion for the financial year 2025-26**, replacing £2.6 billion for the financial year
+2024-25, for Immigration Health Surcharge revenue. And **£3.6 billion for the financial year
+2025-26**, replacing £3 billion for the financial year 2024-25, for Home Office visa and
+immigration fee income. Both moved because the department published a new edition of its
+accounts, HC 440, and both records were read against it on 10 August 2026. Both are
+`calculated` rather than `official`, because each is rounded or summed by this site rather
+than printed in the accounts as one number, which is what `/costs/` tells a reader in terms.
+
+Source: Home Office, Annual Report and Accounts 2025-26, HC 440, Note 3 (Income), pages
+278-279. Evidence in `data/evidence/ho-ara-2025-26.json`, which carries the derivation and the
+quoted component behind each.
+
+- **The surcharge figure fell because one half of it went to nil, not because less was collected.**
+  The 2025-26 accounts print the surcharge in the same two places as the year before, and the
+  Consolidated Fund half is now nil: 2,318,923 thousand retained by the department and
+  nothing payable to the Consolidated Fund, so the total is 2,318,923 thousand, £2.32
+  billion, published here as £2.3 billion. In 2024-25 the two halves were 2,420,109 and
+  200,769, summing to 2,620,878, which is the £2.6 billion this record carried until 10
+  August 2026. The Consolidated Fund half is printed as a dash rather than a zero and so is
+  stated here rather than carried as a component, a component being something that can quote
+  its own value: "Home Office Annual Report and Accounts 2025-26, HC 440, printed page 279,
+  Note 3 Income. Other operating income - payable to Consolidated Fund. Immigration Health
+  Surcharge – – 200,769 200,769".
+  Quoted: "Home Office Annual Report and Accounts 2025-26, HC 440, printed page 278, Note 3
+  Income. Other operating income. Immigration Health Surcharge 2,318,923 2,318,923 2,420,109
+  2,420,109"
+
+- **The fee income figure rose, and the whole of its derivation is a rounding.**
+  The 2025-26 accounts print 3,574,088 thousand, £3.57 billion, and this site rounds it to
+  £3.6 billion. Nothing is summed; the rounding is the whole of the derivation, and it is
+  recorded here because a rounded figure appears in no source exactly and so cannot be
+  quoted. The Fees and Charges disclosure in the same document prints 3,574,081 for the same
+  stream, seven thousand lower; Note 3 is the audited financial statement and is what this
+  record and its predecessor both read.
+  Quoted: "Home Office Annual Report and Accounts 2025-26, HC 440, printed page 278, Note 3
+  Income. Revenue from contracts with customers. Visa and immigration income 3,574,088
+  3,574,088 2,978,355 2,978,355"
+
+- **A reader saw both.** Each is rendered on `/costs/`, on `/what-the-words-mean/` and on the
+  lifetime contribution claim page, checked by grepping the built site rather than by reading
+  the change. The prose around them carries the period, so the sentences moved with the
+  figures.
+
+- **The same edition did not move the hotel figures, so `/costs/` now dates its two sides a
+  year apart, and the page says so rather than leaving a reader to notice.** Asylum hotel
+  accommodation stays at £2.1 billion for the financial year 2024-25, from HC 1133, because
+  the 2025-26 edition prints no hotel spending total, no per-day rate and no unit cost. **Not
+  that it names no hotel money**, which is the over-broad version of this sentence the
+  record's own notes exist to refuse: HC 440 gives hotel headcounts, and a £22.9m constructive
+  loss on a single contract at page 218. The page states that the income is
+  2025-26 and the spending 2024-25 and that the two must not be subtracted, which is the
+  wording that moved with the figures. The reading of the edition itself is recorded in the
+  `/sources-and-method/` catalogue entry for this publication, not established again here.
+
+
+### Asylum claims from unaccompanied children become a record, 10 August 2026
+
+**3,627 for the year ending March 2026**, a figure this site had not published in any form. It
+is new rather than moved, and it is recorded here on the reasoning that a reader meeting a
+figure for the first time has the same question about where it came from as a reader meeting
+one that changed. **Four pages already named these children and none of them counted any**:
+`/asylum/`, `/costs/`, `/what-the-words-mean/` and the claim page on who is in asylum
+accommodation each said the support total excludes them, which states an absence and leaves
+its size unsaid.
+
+Source: Home Office, Immigration system statistics, year ending March 2026, How many people
+claim asylum in the UK?. "In the YE March 2026, 4% of claims (3,627) were from unaccompanied
+asylum-seeking children (UASC)." Evidence in
+`data/evidence/ho-immigration-stats-year-ending-march-2026.json`.
+
+- **It answers a question the asylum support total cannot**, that total excluding
+  unaccompanied children, who are supported by local authorities. It is a flow, claims made
+  in a year, and not a count of children being supported on a date. **No UK-wide count of the
+  second thing is published at all**: the Home Office support tables exclude them by
+  definition and the looked-after-children statistics that do count them are published for
+  England alone, so the record says so rather than leaving the absence to be inferred.
+
+
 ### The pre-publication review is recorded as passed, 6 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** It records a signature, which
