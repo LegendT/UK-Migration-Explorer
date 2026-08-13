@@ -47,7 +47,24 @@ const WATCHED = {
   // bulletin's own /latest works, and its watch target is derived from the records below,
   // because sources.json holds the topic landing page and not the bulletin.
   'ons-ltim': { latestFromRecords: true },
+  // A THIRD SHAPE, and the reason it took until 13 August 2026 to watch. EMP06 is a dataset
+  // republished IN PLACE: one address for ever, no edition anywhere in the URL, so `citedEdition`
+  // finds nothing and every record here landed in the uncomparable pile. What identifies the
+  // edition is the page's own release date, and the records already store the matching value in
+  // `published_date`, so the comparison is that field against the page. Same set-membership shape
+  // as the two above, keyed on a date the publisher states rather than on a slug.
+  //
+  // NOT A CADENCED SOURCE. `/sources-and-method/` promises one month for three releases and says
+  // in terms that the others carry no promised schedule, so a newer edition here is reported and
+  // is never called late.
+  'ons-emp06': {
+    dataset: 'https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06',
+  },
 };
+
+// The three the site promises to follow within one month. Anything else is watched here without
+// a deadline, because reporting one would assert a commitment the site does not make.
+const CADENCED = new Set(['ho-immigration-stats', 'hmcts-tribunals', 'ons-ltim']);
 
 // Phase 1b, the corrections watch. A correction *inside* an edition leaves the slug alone, so
 // everything above reports the edition as current and is right to: the site does cite the edition
@@ -86,6 +103,32 @@ function editionKey(text) {
   const month = MONTHS.findIndex((m) => m.startsWith(last[1])) + 1;
   return `${last[2]}-${String(month).padStart(2, '0')}`;
 }
+
+// --- the one-month commitment -------------------------------------------------------------
+// /sources-and-method/ promises an update "within one month" of each cadenced release. Nothing
+// measured that until 13 August 2026: this file reported a source BEHIND and never for how long,
+// so the number the published promise turns on was the one number nobody had. Added as part of
+// the monthly check, which had a person doing this arithmetic by hand every month.
+
+// A publisher's timestamp is UTC and the release date it prints is London. ONS files its
+// bulletins at London midnight, so 2026-05-20T23:00:00.000Z IS "Release date: 21 May 2026".
+// Slicing the ISO string reports every British Summer Time release a day early, which at a
+// month boundary is the difference between kept and broken.
+function londonDate(iso) {
+  if (!iso) return null;
+  const date = new Date(iso);
+  return Number.isNaN(date.getTime()) ? null : date.toLocaleDateString('en-CA', { timeZone: 'Europe/London' });
+}
+
+// One CALENDAR month, not thirty days, because that is the word the site publishes. Clamped at
+// month end, so a 31 January release is due 28 February rather than rolling into March.
+function oneMonthAfter(ymd) {
+  const [y, m, d] = ymd.split('-').map(Number);
+  const lastDayOfNextMonth = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  return new Date(Date.UTC(y, m, Math.min(d, lastDayOfNextMonth))).toISOString().slice(0, 10);
+}
+
+const daysBetween = (from, to) => Math.round((Date.parse(to) - Date.parse(from)) / 86400000);
 
 // Where the edition sits differs by URL shape, so the segment is extracted before it is
 // parsed. Reading the whole path would let a hex media id supply a month and a year.
@@ -130,6 +173,35 @@ async function get(url) {
   }
 }
 
+// WHAT THE COMMITMENT RUNS FROM, and the collection listing does not carry it. Its documents
+// expose `public_updated_at` alone, which is when the page last CHANGED: the year-ending-March-2026
+// immigration statistics were first published on 21 May 2026 and last updated on 16 July, the
+// update being a note on an unrelated sub-page. Measuring from that hid 56 days of lateness, in
+// the direction that flatters this site, and it is what this file did on 13 August 2026 until a
+// critique caught it. `first_published_at` is on the edition's own content item, so this is one
+// extra fetch, made only for a source that is actually behind.
+async function firstPublished(slug) {
+  const { body, error } = await get(`https://www.gov.uk/api/content/government/statistics/${slug}`);
+  if (error) return null;
+  try {
+    return londonDate(JSON.parse(body).first_published_at);
+  } catch {
+    return null;
+  }
+}
+
+// A dataset page states its own release date, and usually the next one. Both are read: the first
+// is the comparison, the second is the only place in this whole check that says when to come back.
+async function newestFromDataset(url) {
+  const { body, error } = await get(url);
+  if (error) return { error: `${error} fetching ${url}` };
+  const published = londonDate(/"datePublished"\s*:\s*"([^"]+)"/.exec(body)?.[1]);
+  if (!published) return { error: `no datePublished on ${url}, so which edition is current cannot be established` };
+  const text = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  const next = /Next release:\s*([0-9]{1,2} [A-Z][a-z]+ [0-9]{4})/.exec(text)?.[1] ?? null;
+  return { slug: published, key: published, published, next };
+}
+
 async function newestFromCollection({ api, editionPrefix }) {
   const { body, error } = await get(api);
   if (error) return { error: `${error} fetching ${api}` };
@@ -146,7 +218,12 @@ async function newestFromCollection({ api, editionPrefix }) {
   if (!editions.length) {
     return { error: `no document under ${editionPrefix}, the series may have been renamed. ${documents.length} document(s) in the collection.` };
   }
-  return editions.sort((a, b) => b.key.localeCompare(a.key))[0];
+  // EVERY edition, not just the newest. The commitment runs from the OLDEST edition this site
+  // has not taken, so a source two editions behind is late from the first one it missed, and
+  // returning only the newest would have measured the deadline from the wrong release and
+  // reported time still in hand on a promise already broken.
+  const sorted = editions.sort((a, b) => b.key.localeCompare(a.key));
+  return { ...sorted[0], editions: sorted };
 }
 
 // The canonical link, never a match over the page: /latest also links to the previous edition,
@@ -159,7 +236,22 @@ async function newestFromLatest(url) {
   const slug = canonical.split('/').filter(Boolean).pop();
   const key = editionKey(slug);
   if (!key) return { error: `canonical link on ${url} names no edition: ${canonical}` };
-  return { slug, key };
+  // ONS states the release date in JSON-LD as UTC midnight LONDON time, so this bulletin's
+  // "Release date: 21 May 2026" arrives as 2026-05-20T23:00:00.000Z. Slicing the ISO string
+  // would report every summer release a day early, and a day matters at a month boundary.
+  //
+  // One `datePublished` is on the page today and the match is not anchored to the bulletin's own
+  // JSON-LD entity, so a second entity would make this read a date belonging to something else.
+  // Counted rather than assumed, and refused loudly if that changes, which is cheaper than
+  // parsing every block to guard a case that does not exist yet.
+  const dates = [...body.matchAll(/"datePublished"\s*:\s*"([^"]+)"/g)];
+  if (dates.length > 1) {
+    return { error: `${url} carries ${dates.length} datePublished values, so which one is the bulletin's own release date is no longer obvious. Parse the JSON-LD blocks and take the bulletin's.` };
+  }
+  // Only the newest edition is knowable here: unlike the GOV.UK collection this page lists no
+  // back catalogue, so a source two editions behind is measured from the newer of the two and
+  // its lateness is understated. Said in the output rather than left implicit.
+  return { slug, key, published: londonDate(dates[0]?.[1]), newestOnly: true };
 }
 
 // --- what the site cites ----------------------------------------------------------------
@@ -179,7 +271,13 @@ for (const file of THEME_FILES) {
   const theme = file.replace('.json', '');
   for (const metric of read(file).metrics ?? []) {
     if (!cited.has(metric.source_id)) cited.set(metric.source_id, []);
-    cited.get(metric.source_id).push({ ref: `${theme}/${metric.id}`, url: metric.source_url });
+    cited.get(metric.source_id).push({
+      ref: `${theme}/${metric.id}`,
+      url: metric.source_url,
+      // Only the dataset route reads this: where the address never changes, the record's own
+      // published_date is the only thing saying which edition it was read from.
+      published: metric.published_date,
+    });
     if (metric.table_reference?.length) {
       declared.push({
         ref: `${theme}/${metric.id}`,
@@ -231,7 +329,12 @@ for (const [id, config] of Object.entries(WATCHED)) {
   const editions = new Map();
   const undated = [];
   for (const record of records) {
-    const { slug, key } = citedEdition(record.url);
+    // On the dataset route the address never names an edition, so the record's own published_date
+    // is the key. A record with none is uncomparable here for the same reason a URL with no
+    // edition is on the other routes, and lands in the same pile rather than passing quietly.
+    const { slug, key } = config.dataset
+      ? { slug: record.published, key: record.published }
+      : citedEdition(record.url);
     if (!key) {
       undated.push(record);
       continue;
@@ -259,11 +362,30 @@ for (const [id, config] of Object.entries(WATCHED)) {
       const failed = found.find((f) => f.error);
       newest = failed ?? found.sort((a, b) => b.key.localeCompare(a.key))[0];
     }
+  } else if (config.dataset) {
+    newest = await newestFromDataset(config.dataset);
   } else {
     newest = await newestFromCollection(config);
   }
 
-  reports.push({ id, newest, editions, undated, records: records.length });
+  // The oldest edition newer than anything cited: the release whose one month ran out first.
+  // Resolved here rather than at print time because it needs a fetch.
+  // Keyed off the OLDEST citation that is out of date, not off the newest one. Most records move
+  // together, so the newest cited edition is usually current even where one record is two behind,
+  // and testing against that found nothing to be owed in every probe. What the site owes is the
+  // first edition published after the oldest citation it left behind.
+  let missed = null;
+  if (!newest.error && editions.size) {
+    const stale = [...editions.keys()].filter((key) => key < newest.key).sort();
+    if (stale.length) {
+      const owed = (newest.editions ?? [newest]).filter((edition) => edition.key > stale[0]);
+      missed = { ...owed.sort((a, b) => a.key.localeCompare(b.key))[0] };
+      missed.published = newest.newestOnly ? newest.published : await firstPublished(missed.slug);
+      missed.only = Boolean(newest.newestOnly);
+    }
+  }
+
+  reports.push({ id, newest, missed, editions, undated, records: records.length });
 }
 
 // --- ask each corrections route what it has amended ----------------------------------------
@@ -328,6 +450,10 @@ for (const [id, config] of Object.entries(CORRECTIONS)) {
 const behind = [];
 const unchecked = [];
 
+// One `today` for the whole run: two sources measured against different days would be a
+// difference nobody could see in the output.
+const today = londonDate(new Date().toISOString());
+
 console.log(`Release check: ${reports.length} watched source(s), against the editions the site cites.\n`);
 
 for (const report of reports) {
@@ -350,6 +476,28 @@ for (const report of reports) {
   if (stale.length) behind.push({ report, stale });
   console.log(`${report.id}: ${stale.length ? 'BEHIND' : 'current'}`);
   console.log(`  newest published edition: ${report.newest.slug} (${report.newest.key})`);
+  if (report.newest.next) console.log(`  the publisher announces its next release for ${report.newest.next}.`);
+  // The commitment, measured rather than left to a person doing it by hand every month. Only a
+  // BEHIND source can be late: where the site already cites the newest edition there is nothing
+  // outstanding to be late for, whatever that edition's age, so being current is said first and
+  // no date is discussed at all. Saying "unmeasured" about a current source implied something
+  // might be outstanding when nothing is.
+  if (!stale.length) {
+    console.log('  the site cites the newest edition, so nothing is outstanding.');
+  } else if (!CADENCED.has(report.id)) {
+    // No promised schedule for this publisher, so a newer edition is reported and never called
+    // late: /sources-and-method/ says in terms that only the three cadenced releases carry one.
+    console.log(`  a newer edition was published on ${report.newest.published}, ${daysBetween(report.newest.published, today)} day(s) ago. This site promises no schedule for this publisher, so it is not late; it is out of date.`);
+  } else if (!report.missed?.published) {
+    console.log(`  the release this site owes is ${report.missed?.slug ?? 'unresolved'}, and its publication date could not be established, so how late this is was not measured.`);
+  } else {
+    const { published, slug, only } = report.missed;
+    const due = oneMonthAfter(published);
+    const over = daysBetween(due, today);
+    console.log(`  owes ${slug}, published ${published}, ${daysBetween(published, today)} day(s) ago. The commitment is one month, so it was due ${due}: `
+      + (over > 0 ? `LATE BY ${over} DAY(S).` : `${-over} day(s) left.`)
+      + (only ? ' This route lists no back catalogue, so an older missed edition would be later still.' : ''));
+  }
   for (const [key, { slug, refs }] of [...report.editions.entries()].sort()) {
     const mark = key < report.newest.key ? 'BEHIND' : 'current';
     console.log(`  cites ${slug} (${key}), ${mark}, in ${refs.length} citation(s)`);
