@@ -9,6 +9,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { THEME_FILES, seriesPoints } from '../lib/series.mjs';
+import { publishedCounts, CADENCED_SOURCES } from '../lib/published.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const claimsDir = fileURLToPath(new URL('../content/claims/', import.meta.url));
@@ -937,6 +938,79 @@ function checkLiterals(file, prose, allowed) {
     // published a number it holds no record of, so nothing can tell you when that number ages.
     if (/^\d{1,3}(?:,\d{3})+(?:\.\d+)?$/.test(literal)) {
       unrecorded.push(`${file}: writes ${literal} longhand and no record or series point holds that value, so nothing can tell you when it goes stale. Give it a record and cite it, or list it under ${declareIn} if it is a frozen historical figure.`);
+    }
+  }
+}
+
+// --- the publishers named beside their own derived count ----------------------------
+// /sources-and-method/ renders {count-in-words:other-publishers} and then NAMES those
+// publishers in typed prose. Two homes for one fact, which the page admits in its own words,
+// and it has already gone wrong once: the House of Commons Library stood in the list after it
+// stopped sourcing anything a reader meets, so the list said seven where the count said six.
+// The monthly check had a person reconciling this by hand for ever. A defect checked for ever
+// is a defect kept, so it is checked here and the reader's prose is untouched.
+//
+// THREE RULES, BECAUSE ONE AND THEN TWO WERE BOTH PROVED INSUFFICIENT BY PROBING.
+// A name match alone missed the case it exists for: the catalogue files the Commons Library as
+// "House of Commons Library research briefings" and prose writes "the House of Commons Library",
+// so putting the stale entry back did not fire. Adding a count of the list's items did not fix it
+// either, because the entry can be smuggled INSIDE another item, leaving the count unchanged.
+// Reading the code said both were exact; running them said otherwise.
+{
+  const page = 'content/sources-and-method.md';
+  const catalogue = new Map(read('sources.json').sources.map((source) => [source.id, source.name]));
+  // The page hard-wraps, so the anchor is matched with whitespace collapsed. Searched in the
+  // wrapped form this found nothing and read exactly like a page carrying no such list. The
+  // capture ends at the sentence's full stop rather than at the next bold, which would widen
+  // silently the day the adjacent emphasis moved.
+  const flat = readFileSync(fileURLToPath(new URL(`../${page}`, import.meta.url)), 'utf8').replace(/\s+/g, ' ');
+  const listed = /none of them carries a promised update schedule here:(.*?)\./.exec(flat);
+  const derived = [...publishedCounts().bySource.keys()].filter((id) => !CADENCED_SOURCES.includes(id));
+  const words = (text) => text
+    .replace(/\s*\([^)]*\)/g, '')
+    .toLowerCase()
+    .replace(/['\u2019]s\b/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter((word) => word && !['the', 'and', 'of', 'a'].includes(word));
+
+  if (!listed) {
+    errors.push(`${page}: the sentence naming the publishers outside the three cadenced cycles is gone or reworded, so the check comparing it with the derived count cannot run. If it moved, move this check with it.`);
+  } else if (!derived.length) {
+    // Blaming the prose for a derivation that returned nothing would send an editor to the wrong file.
+    errors.push(`${page}: no publisher outside the three cadenced cycles has a published figure, so there is nothing to compare the sentence against and this check did not run. That is a change in data/, not in the page.`);
+  } else {
+    const uncatalogued = derived.filter((id) => !catalogue.has(id));
+    if (uncatalogued.length) {
+      // Without this an unknown id yields an empty word list, and every() over an empty list is
+      // true, so it would read as correctly named and the remedy would say Add "undefined".
+      errors.push(`${page}: ${uncatalogued.join(', ')} has published figures and no entry in data/sources.json, so this check cannot tell whether the sentence names it.`);
+    }
+    const items = listed[1].split(/,\s*/).map((item) => item.replace(/^and\s+/, '').trim()).filter(Boolean);
+    const known = derived.filter((id) => catalogue.has(id));
+
+    // 1. every publisher with published figures is named somewhere in the list
+    for (const id of known) {
+      if (!words(catalogue.get(id)).every((word) => words(listed[1]).includes(word))) {
+        errors.push(`${page}: ${id} has published figures outside the three cadenced cycles and the sentence listing them does not name it, so the typed list is short of the count derived beside it. Name it there in the page's own prose.`);
+      }
+    }
+    // 2. no OTHER catalogued publisher is named. Matched on the first three significant words of
+    //    the catalogue name, because prose drops the trailing qualifier: "House of Commons Library
+    //    research briefings" is written "the House of Commons Library". This is the rule that
+    //    catches the defect that actually happened, and the full-name match could not.
+    for (const [id, name] of catalogue) {
+      if (known.includes(id) || CADENCED_SOURCES.includes(id)) continue;
+      const distinctive = words(name).slice(0, 3);
+      if (distinctive.length && distinctive.every((word) => words(listed[1]).includes(word))) {
+        errors.push(`${page}: the sentence listing publishers outside the three cadenced cycles names ${id}, which has no published figure, so it claims more than the count derived beside it. This is what made the list say seven where the count said six.`);
+      }
+    }
+    // 3. and it names no more things than that, which catches an entry belonging to no catalogue
+    //    publisher at all. Counted by commas, so a non-Oxford "A, B and C" is reported here rather
+    //    than passing: the sentence's form is part of what this check holds.
+    if (items.length !== known.length) {
+      errors.push(`${page}: the sentence names ${items.length} publisher(s), counted by commas, and ${known.length} have published figures outside the three cadenced cycles. Named: ${items.join('; ')}.`);
     }
   }
 }
