@@ -64,7 +64,10 @@ quoted component behind each.
 - **The same edition did not move the hotel figures, so `/costs/` now dates its two sides a
   year apart, and the page says so rather than leaving a reader to notice.** Asylum hotel
   accommodation stays at £2.1 billion for the financial year 2024-25, from HC 1133, because
-  the 2025-26 edition prints no hotel figure at all. The page states that the income is
+  the 2025-26 edition prints no hotel spending total, no per-day rate and no unit cost. **Not
+  that it names no hotel money**, which is the over-broad version of this sentence the
+  record's own notes exist to refuse: HC 440 gives hotel headcounts, and a £22.9m constructive
+  loss on a single contract at page 218. The page states that the income is
   2025-26 and the spending 2024-25 and that the two must not be subtracted, which is the
   wording that moved with the figures. The reading of the edition itself is recorded in the
   `/sources-and-method/` catalogue entry for this publication, not established again here.
