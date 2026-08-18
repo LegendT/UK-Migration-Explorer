@@ -9,6 +9,78 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Both EMP06 employment rates move to the August 2026 edition, 18 August 2026
+
+**74.6% for Apr-Jun 2026**, replacing 74.7% for Oct-Dec 2025, for the UK-born employment rate
+aged 16 to 64. And **80.9% for Apr-Jun 2026**, replacing 80.4% for Oct-Dec 2025, for the
+EU-born rate on the same base. Both moved because ONS published a new edition of EMP06 on
+18 August 2026, and both records were read against it the same day. Both stay `calculated`
+rather than `official`, because each is the published figure rounded to one decimal place and
+a record holds a value and not a precision, so the number ONS prints and the number recorded
+here are not the same string.
+
+Source: ONS, EMP06: Employment by country of birth and nationality, August 2026 edition, sheet
+"Country of birth rates". Evidence in `data/evidence/ons-emp06-2026-08.json`, which carries the
+derivation and the quoted component or components behind each.
+
+- **The UK-born rate.** Quoted: "Table EMP06: Employment rates by country of birth: People aged
+  16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column "UK"
+  (dataset identifier code LFM6), row "Apr-Jun 2026": 74.59831093304143."
+- **The EU-born rate.** Quoted: "Table EMP06: Employment rates by country of birth: People aged
+  16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column "Total
+  EU (EU27)2" (dataset identifier code EQ4Y), row "Apr-Jun 2026": 80.87340649377246. The sheet
+  prints this column 2 times, under different groupings and the one dataset identifier code,
+  each carrying the same value."
+- **The non-EU rate the UK-born note states as a comparison.** It is not an input to the
+  rounding, and is carried as a quoted component so that a figure this site states is checkable
+  rather than asserted. Quoted: "Table EMP06: Employment rates by country of birth: People aged
+  16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column "Total
+  non-EU" (dataset identifier code EQ52), row "Apr-Jun 2026": 74.79424013005602."
+
+**It is two quarters rather than one, and the entry that scheduled this move named a moving
+target.** It said the records were a quarter behind their own source, which was true when it
+was written: the re-read of 11 August 2026 recorded that the May 2026 edition already printed
+Jan-Mar 2026 beside the Oct-Dec 2025 figures this site held, and nobody opened that edition
+here. It named the destination as the quarter the sheet already prints and deferred the move
+rather than forecasting its size. The August edition adds Apr-Jun 2026, so moving to the newest
+quarter moves them two.
+
+**The citation moved with the figures, from the dataset landing page to the workbook.** The
+landing page holds no figure at all, only links, which is the state this project's far-end
+trace refuses, and the same reasoning re-pointed the long-term migration records on 11 August
+2026. ONS keeps each edition's file at a /current/ address named for its publication month, so
+the citation does not rot at the next edition: the August, May and February 2026 files all
+answer there today. The paragraph below says what that changed for a reader, which is nothing.
+
+**The Oct-Dec 2025 figures were not revised.** This edition still prints 74.68465773259211 and
+80.39374408928576 for that quarter, the values the superseded records held, so nothing here is
+a correction to what was published before.
+
+**No reader sees either figure.** Neither record is rendered on any page, by any of the five
+routes, so nothing a reader meets changed. That was checked by building the site before and
+after and comparing the two directory trees: the only differences are the two data files
+themselves and the `dateModified` in the `Dataset` structured-data block on
+`/sources-and-method/`, which moves from 2026-08-11 to 2026-08-18. **No page footer moved**, and
+none changed its wording: all 21 pages that carry a currency sentence still say the figures were
+all checked on 11 August 2026, because the footer takes the earliest date of the records a page
+renders and these two reach none.
+
+**The record notes were re-read against the release and one claim was corrected.** They said
+ONS labels EMP06 official statistics in development. The August edition states
+"These are official statistics", on the workbook's own Note sheet and on the dataset page, and
+the notes now say that. Whether ONS relabelled between editions was not established: the archive
+lookup for the May page returned 429, which is a refusal rather than an absence.
+
+**One note claim was sharpened from approximate to checked.** The EU-born note said the EU-born
+rate has exceeded the UK-born and non-EU rates "since about 2006". Computed over all 118
+quarters the sheet publishes, from Jan-Mar 1997, the last quarter in which it did not was
+Oct-Dec 2005, so it holds in every quarter from Jan-Mar 2006 and the note now says so.
+
+**What the checks did not establish.** The arithmetic is a rounding and nothing recomputes it;
+`check-evidence` matched the digits in each quote and says in terms that it catches an invented
+figure and not a misread one. The sentence in the UK-born note about the gender split is not a
+claim this sheet can settle and was not re-checked against any source here.
+
 ## 1.0.0, 12 August 2026
 
 Everything below this heading. The site went live on 11 August 2026 and this is the first
