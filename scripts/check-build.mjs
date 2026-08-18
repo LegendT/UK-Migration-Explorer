@@ -340,9 +340,13 @@ for (const [url, found] of ldTypes) {
 // three of its five routes are a proxy for rendering rather than rendering itself, and a token
 // in a page that never builds would be counted for a reader who never sees it.
 //
-// This is the end where that can be checked, and it is compared BOTH ways. Every data-metric in
-// the output comes from renderFigure, which only the token routes reach, so the two sets must be
-// EQUAL rather than one contained in the other. A one-way check finds only an overcount, and the
+// This is the end where that can be checked, and it is compared BOTH ways, on two different sets
+// since 18 August 2026. Every ref counted from a TOKEN must appear in the output, which is
+// equality in that direction and unchanged. Every data-metric found in the output must be a ref
+// this site counts as published, which is the direction that widened: `data-metric` no longer
+// comes from renderFigure alone, because a chart bar and a dashboard card now carry the record
+// they draw. Comparing the output against the token set alone would now fail on every bar and
+// card ref that is not also written as a token, which is three of them today. A one-way check finds only an overcount, and the
 // undercount is the easier mistake: the scan's pattern has to match everything the RENDERER
 // accepts, and resolve-citations takes "{{ theme/id }}" with spaces. A citation written that way
 // would reach a reader and be counted for nobody, leaving the page's numbers quietly low. Both
@@ -354,11 +358,20 @@ for (const [url, found] of ldTypes) {
 // "confirm" a figure no reader can see. Both ends have to be blind to the same text or the
 // agreement between them means nothing.
 //
-// What it does NOT establish, and this is the half that cannot be closed here: a chart bar's
-// ref and a dashboard card's ref render their values as plain text with nothing beside them
-// naming the record, so six of the counted figures leave no trace to match. Confirming those
-// would mean emitting a ref into the chart markup, which is a change to what a reader gets in
-// order to make a check easier, and that trade has not been made.
+// THAT TRADE WAS MADE ON 18 AUGUST 2026 AND THIS COMMENT SAID IT HAD NOT BEEN. A chart bar and a
+// dashboard card now carry `data-metric` naming the record they draw, so their values are
+// confirmable here where they were not. It changes no rendered text, no layout and no accessible
+// name: the attribute is the one every token route already emits, and the built pages are
+// otherwise byte-identical. What it bought is not mainly this comparison, which gained three
+// refs; it is that the currency sentence is no longer decided from a marker two published routes
+// never emit.
+//
+// What it does NOT establish, and this is the half that is still open: a `"ref" | metric` chart
+// summary interpolates a bare number into a concatenated string, so seven of the counted figures
+// still leave no trace to match. The obvious wrapper does not build. That string is escaped into
+// the chart's SVG <desc> as its accessible description, so marking it up means either shipping
+// literal tags to a screen reader or holding the same sentence in two forms, and neither is a
+// change to make in order to make a check easier.
 const inOutput = new Set();
 for (const file of pages) {
   const visible = readFileSync(file, 'utf8').replace(/<!--[\s\S]*?-->/g, '');
@@ -374,7 +387,8 @@ try {
 }
 if (counts) {
   const missing = [...counts.tokenRefs].filter((ref) => !inOutput.has(ref));
-  const uncounted = [...inOutput].filter((ref) => !counts.tokenRefs.has(ref));
+  const published = new Set([...counts.tokenRefs, ...counts.renderedRefs]);
+  const uncounted = [...inOutput].filter((ref) => !published.has(ref));
   if (missing.length) {
     errors.push(`published counts: ${missing.join(', ')} is counted as reaching a reader, from a token in the source, but renders on no page a reader sees. The counts on /sources-and-method/ are overstated by ${missing.length}.`);
   }
@@ -438,7 +452,7 @@ for (const file of pages) {
   const html = readFileSync(file, 'utf8');
   const where = `/${relative(siteDir, file).replace(/\\/g, '/')}`;
   const claimsFigures = html.includes(FIGURE_CURRENCY);
-  const hasFigures = html.includes('class="figure"');
+  const hasFigures = html.includes('data-metric="');
   if (!html.includes('This page was last reviewed on')) continue;
   footerPages += 1;
   if (claimsFigures && !hasFigures) {
@@ -757,9 +771,9 @@ console.log(`Build checks passed: ${pages.length} pages; ${internal} internal li
 console.log(`The review sign-off in CHANGELOG.md names ${contentPages} page(s) other than the 404, which is what this build produced, and says the signature covers ${signedCovered}. Not established: that a human reviewed that many, which is a claim about a person; only the denominator is checked here, and the ${contentPages - signedCovered} page(s) outside it have to be named in the entry by hand.`);
 // The line below names a check that runs in eleventy.config.js rather than here, because a check
 // nobody can see in a run is a check nobody maintains.
-console.log(`${footerPages} page(s) carry a review footer, and on each one "${FIGURE_CURRENCY}" is present exactly where the page renders a figure, matched in both directions. The date in that sentence is compared against a second derivation from each page's own declaration by the figure-currency-audit transform in eleventy.config.js, which fails the build where the footer claims a figure was checked later than it was. Not established, there or here: that the date is not needlessly OLD, which understates this site's currency rather than overstating it, and that a page whose only figures arrive by a chart bar or a dashboard card carries the sentence at all, which is asked above from class="figure" and is blind to both of those routes.`);
+console.log(`${footerPages} page(s) carry a review footer, and on each one "${FIGURE_CURRENCY}" is present exactly where the page renders a figure, matched in both directions. The date in that sentence is compared against a second derivation from each page's own declaration by the figure-currency-audit transform in eleventy.config.js, which fails the build where the footer claims a figure was checked later than it was. Not established, there or here: that the date is not needlessly OLD, which understates this site's currency rather than overstating it, and that a page whose only figures arrive by a \`"ref" | metric\` chart summary carries the sentence at all. That question is asked above from \`data-metric\`, which every published route emits except that one; the chart-bar and dashboard-card routes were blind to it until 18 August 2026.`);
 console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 404.html, matched in both directions. Not established: that the URLs resolve once deployed, which is a claim about the host rather than the build.`);
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
-console.log(`Of those, ${counts.tokenRefs.size} match the refs in the built HTML exactly, in both directions, outside comments. Not established: that the other ${counts.published - counts.tokenRefs.size}, reaching a reader through a chart bar or a dashboard card, render at all, because those routes put a value on the page with no ref beside it to match.`);
+console.log(`Of those, ${inOutput.size} are confirmed in the built HTML, outside comments: every ref counted from a token must appear there, and every ref appearing there must be one this site counts as published. Not established: that the other ${counts.published - inOutput.size}, reaching a reader only through a \`"ref" | metric\` chart summary, render at all. That route interpolates a bare number into a concatenated string with no element to carry an attribute, and the string is escaped into the chart's SVG <desc> as its accessible description, so tracing it means holding the same sentence in two forms rather than adding a wrapper. The chart-bar and dashboard-card routes were in this residual until 18 August 2026 and now name their record.`);
 console.log(`Structured data: ${[...ldTypes].map(([url, types]) => `${url} ${[...types].sort().join(', ')}`).join('; ')}. Every block parses and every URL in one that points at this site resolves. Not established: that a consumer accepts the vocabulary, which is a claim about a schema and about Google rather than about this build.`);
 console.log('External source URLs are not checked here, run npm run check-sources.');
