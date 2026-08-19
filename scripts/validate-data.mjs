@@ -21,7 +21,16 @@ const METRIC_FIELDS = [
   'confidence_level',
 ];
 // Timeseries points inherit unit, geography and period basis from the series envelope.
-const POINT_FIELDS = ['date', 'value', 'confidence_level', 'source_name', 'source_url', 'published_date'];
+// `retrieved_date` is here because it is the field that DATES every chart drawing the series, and
+// it was the one this list omitted. `lib/citation.mjs` reads it, and throws at build time rather
+// than render "Checked Invalid Date" where a point reaching a citation block has none: that catches
+// absence, only on the points a citation block renders, and never staleness. So a series array
+// replaced whole whose points kept the old date built green and told a reader the series was
+// checked on a day nobody checked it. Added 19 August 2026, The order's item 34, after item 30's
+// verify pass found it by ageing the records under a series and watching the footer hedge. Every
+// point carried the field already, so this is a missing guard rather than a live defect: 100 of
+// 100 on the day it landed, which is the count `npm run validate` prints for itself.
+const POINT_FIELDS = ['date', 'value', 'confidence_level', 'source_name', 'source_url', 'published_date', 'retrieved_date'];
 const SOURCE_FIELDS = ['id', 'name', 'publisher', 'url', 'covers', 'updateFrequency', 'confidence_level'];
 
 // published_date is contractual but not yet recorded for every figure. Null is an
