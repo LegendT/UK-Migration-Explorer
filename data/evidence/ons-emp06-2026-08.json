@@ -1,0 +1,37 @@
+{
+  "figures": [
+    {
+      "ref": "fiscal/employment-rate-uk-born-population",
+      "previous_value": 74.7,
+      "value": 74.6,
+      "fetched_at": "2026-08-18",
+      "derivation": "ONS publishes 74.59831093304143 and this record holds it rounded to one decimal place, 74.6. The rounding is the whole of the derivation: no figure is combined with any other, and any further component below is context the notes state rather than an input. It is calculated rather than official because a record holds a value and not a precision, so the published number and the recorded one are not the same string, and check-evidence refuses a quote that does not contain the value it evidences. The record's notes also state the Total non-EU rate for this quarter, 74.79424013005602, as a comparison, and it is quoted as a component so that a figure this site states is checkable rather than asserted.",
+      "components": [
+        {
+          "value": 74.59831093304143,
+          "source_url": "https://www.ons.gov.uk/file?uri=/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06/current/emp06aug2026.xls",
+          "quote": "Table EMP06: Employment rates by country of birth: People aged 16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column \"UK\" (dataset identifier code LFM6), row \"Apr-Jun 2026\": 74.59831093304143."
+        },
+        {
+          "value": 74.79424013005602,
+          "source_url": "https://www.ons.gov.uk/file?uri=/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06/current/emp06aug2026.xls",
+          "quote": "Table EMP06: Employment rates by country of birth: People aged 16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column \"Total non-EU\" (dataset identifier code EQ52), row \"Apr-Jun 2026\": 74.79424013005602."
+        }
+      ]
+    },
+    {
+      "ref": "fiscal/employment-rate-eu-born-residents",
+      "previous_value": 80.4,
+      "value": 80.9,
+      "fetched_at": "2026-08-18",
+      "derivation": "ONS publishes 80.87340649377246 and this record holds it rounded to one decimal place, 80.9. The rounding is the whole of the derivation: no figure is combined with any other, and any further component below is context the notes state rather than an input. It is calculated rather than official because a record holds a value and not a precision, so the published number and the recorded one are not the same string, and check-evidence refuses a quote that does not contain the value it evidences.",
+      "components": [
+        {
+          "value": 80.87340649377246,
+          "source_url": "https://www.ons.gov.uk/file?uri=/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/employmentbycountryofbirthandnationalityemp06/current/emp06aug2026.xls",
+          "quote": "Table EMP06: Employment rates by country of birth: People aged 16 to 64 (not seasonally adjusted). United Kingdom (%) not seasonally adjusted. Column \"Total EU (EU27)2\" (dataset identifier code EQ4Y), row \"Apr-Jun 2026\": 80.87340649377246. The sheet prints this column 2 times, under different groupings and the one dataset identifier code, each carrying the same value."
+        }
+      ]
+    }
+  ]
+}
