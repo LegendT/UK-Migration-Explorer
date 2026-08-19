@@ -130,6 +130,30 @@ function oneMonthAfter(ymd) {
 
 const daysBetween = (from, to) => Math.round((Date.parse(to) - Date.parse(from)) / 86400000);
 
+// WHEN A SOURCE CANNOT BE COMPARED, THE RUN STILL KNOWS SOMETHING: when this site last read it.
+// Without this a week of refusals reads exactly like one bad morning, and the only thing that
+// eventually notices is the staleness check in validate-data.mjs, which ages a figure against its
+// source's PUBLICATION CYCLE. For the three cadenced sources that cycle is far longer than the one
+// month `/sources-and-method/` promises, twice yearly in the worst case, so a persistent refusal
+// could hide a missed promise for months while every run looked the same. This says nothing about
+// whether a new edition exists, which is precisely what could not be established; it says how long
+// this site has gone without confirming, which is the part that grows.
+//
+// The OLDEST read date, not the newest, because it is the figure at most risk and it is what any
+// promise bites on. Series files cite these sources too and their points carry their own dates,
+// which this does not read: the number is derived from the metric records alone and the line says
+// so rather than implying it covers everything.
+function uncomparedFor(records, sourceId, today) {
+  const dates = records.map((r) => r.checked).filter(Boolean).sort();
+  if (!dates.length) return '  No record citing it carries a read date, so how long it has gone unconfirmed cannot be said here.';
+  const age = daysBetween(dates[0], today);
+  const line = `  Not confirmed by this run. The oldest of its metric records was read ${age} day(s) ago, on ${dates[0]}.`;
+  if (!CADENCED.has(sourceId)) {
+    return `${line} This site promises no schedule for this publisher, so the age is context rather than a deadline.`;
+  }
+  return `${line} This site promises to update within one month of each release from it, so a refusal that persists past that is the shape in which a missed promise would go unseen. It does NOT mean one was missed: whether a newer edition exists is what could not be established.`;
+}
+
 // Where the edition sits differs by URL shape, so the segment is extracted before it is
 // parsed. Reading the whole path would let a hex media id supply a month and a year.
 function citedEdition(url) {
@@ -277,6 +301,8 @@ for (const file of THEME_FILES) {
       // Only the dataset route reads this: where the address never changes, the record's own
       // published_date is the only thing saying which edition it was read from.
       published: metric.published_date,
+      // Read only when this source CANNOT be compared, to say how long it has gone unverified.
+      checked: metric.retrieved_date,
     });
     if (metric.table_reference?.length) {
       declared.push({
@@ -461,7 +487,8 @@ for (const report of reports) {
   if (report.newest.error) {
     unchecked.push(report);
     console.log(`${report.id}: COULD NOT CHECK. ${report.newest.error}`);
-    console.log(`  ${report.records} citation(s) point at ${name}, and none of them was compared with anything.\n`);
+    console.log(`  ${report.records} citation(s) point at ${name}, and none of them was compared with anything.`);
+    console.log(`${uncomparedFor(cited.get(report.id) ?? [], report.id, today)}\n`);
     continue;
   }
   // Nothing cited an edition, so nothing was compared. Printing "current" here would be the
