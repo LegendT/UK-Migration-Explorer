@@ -8,8 +8,8 @@ title: Sources and method
 strapline: >-
   Where every figure on this site comes from, how it is recorded, what it does not show,
   and how to tell when this site is out of date.
-last_reviewed: 2026-07-23
-review_due: 2027-07-23
+last_reviewed: 2026-08-19
+review_due: 2027-08-19
 figures:
   - asylum/asylum-applications
   - asylum/asylum-applications-main-applicants
@@ -253,9 +253,14 @@ value.
 There is still no automated pipeline pulling numbers straight onto the site, and no figure
 appears here because a model asserted it.
 
-What this has not been through: as at the review date at the foot of this page, the whole path,
-from notification to a merged update, had not been run against a real release. Its parts were
-tested and the sequence was not.
+What this has now been through: on 18 and 19 August 2026 the whole path ran against a real
+release for the first time. ONS republished the dataset behind two figures in this site's data
+layer, the release check reported both as citing a superseded edition, each was re-read against
+the source and updated by hand, and the change was reviewed and merged. **One part of it was
+not exercised and is worth saying so:** the check was run by hand on the morning of the release
+rather than raising its own issue, which it does weekly, so the step where this site is told
+rather than goes looking is still proved only in its parts. What that update found, including
+what it corrected in its own notes, is in the changelog.
 
 ---
 
@@ -315,7 +320,9 @@ The figures were assembled in two stages. An initial research pass in June 2026 
 figures and sources. A verification pass in July 2026 checked them against primary
 publications, quoting the specific sentence or table cell behind each value it covered. Where a
 figure has been checked that way, the quotation is recorded in `data/evidence/` and a check refuses a
-changed value whose quotation does not contain it. That does not yet cover every figure here.
+changed value whose quotation does not contain it. Every figure here now has one. The backfill finished on 6 August 2026, and since then the check
+re-reads every quotation on file on every run rather than only the ones a change has touched, so
+an entry cannot be written once and never asked about again.
 
 That verification found real errors, which is the point of doing it. One long-run series
 had to be rebuilt entirely: it had silently mixed three different vintages of the same ONS

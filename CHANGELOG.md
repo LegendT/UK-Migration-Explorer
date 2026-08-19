@@ -76,6 +76,17 @@ rate has exceeded the UK-born and non-EU rates "since about 2006". Computed over
 quarters the sheet publishes, from Jan-Mar 1997, the last quarter in which it did not was
 Oct-Dec 2005, so it holds in every quarter from Jan-Mar 2006 and the note now says so.
 
+**Two sentences on `/sources-and-method/` changed with this update, and page prose normally
+does not.** The first is required by the runbook rather than optional: that page told a reader
+the whole path from notification to a merged update had never been run against a real release,
+and merging this is what makes that untrue, so it is retired here rather than left for a later
+sweep to find. It is replaced by what actually happened, including the part that was not
+exercised: the release check was run by hand on the morning of the release rather than raising
+its own issue. The second is a correction found by the monthly check of 18 August 2026: the
+same page said the evidence quotations did "not yet cover every figure here", which stopped
+being true on 6 August 2026 when the backfill closed. Both sit under a review date moved to 19
+August, because changing them is a review of those passages.
+
 **What the checks did not establish.** The arithmetic is a rounding and nothing recomputes it;
 `check-evidence` matched the digits in each quote and says in terms that it catches an invented
 figure and not a misread one. The sentence in the UK-born note about the gender split is not a
