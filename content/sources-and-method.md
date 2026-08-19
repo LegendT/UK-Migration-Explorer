@@ -135,6 +135,16 @@ for more than it does is worse than no check at all:
   site does not look. **This is the limit most likely to leave a wrong number on a page**
   rather than an unchecked one, and it is why the citation block under each page prints the
   date every source behind it was last read.
+- **A figure written into a chart's summary sentence cannot be traced back out of the page.**
+  Every other figure here carries the id of its record in the page's own markup. That is how the
+  build confirms that the figures a reader meets and the figures this site counts as published
+  are the same set, and it is how each page works out the date it prints at its foot. A chart
+  summary is composed as a single sentence and then handed to a screen reader as the chart's
+  description, so an id cannot be attached to a number inside it without either showing the
+  markup to that reader or keeping the same sentence in two versions. Neither is worth doing to
+  make a check easier. Those figures are recorded, sourced and evidenced like every other one;
+  what is not checked is that they reached the page, and a page whose only figures arrived that
+  way would print no line at its foot saying when its figures were last checked.
 - **No real screen reader has been run over these pages.** The accessibility checks here are
   an automated audit against WCAG 2.2 AA on every page, plus reading the accessibility tree
   that assistive technology actually consumes. That is not the same as someone listening to a
