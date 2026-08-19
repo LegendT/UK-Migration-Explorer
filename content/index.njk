@@ -66,7 +66,7 @@ grade is our judgement about how far the figure can be relied on, not the publis
         noun that says what is being counted. The period stays on its own line, because that is a
         qualification rather than part of the quantity. -#}
     {%- set symbolised = m.unit == "%" or m.unit == "£ billion" %}
-    <span class="value">{% if m.unit == "£ billion" %}£{% endif %}{{ m.value | number }}{% if m.unit == "%" %}%{% endif %}{% if m.unit == "£ billion" %} billion{% endif %}{% if not symbolised %} <span class="unit">{{ m.unit }}</span>{% endif %}</span>
+    <span class="value" data-metric="{{ card.ref }}">{% if m.unit == "£ billion" %}£{% endif %}{{ m.value | number }}{% if m.unit == "%" %}%{% endif %}{% if m.unit == "£ billion" %} billion{% endif %}{% if not symbolised %} <span class="unit">{{ m.unit }}</span>{% endif %}</span>
     <span class="period">{{ m.period_label }}</span>
     <p class="means">{{ card.whatThisMeans }}</p>
     <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
