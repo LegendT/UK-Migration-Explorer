@@ -603,11 +603,23 @@ if (!behind.length && !unchecked.length && !corrected.length && !correctionsUnch
 // A deterministic title, so the weekly cron reuses one issue while the condition lasts and
 // opens a new one when the state changes. Fifty-two identical issues is how a notifier gets
 // muted.
-const signature = [
+//
+// WHAT NAMES OUTSTANDING WORK IS IN THE TITLE. WHAT NAMES A FAILED FETCH IS NOT, and until
+// 19 August 2026 both were, which cost two issues for one condition and would have cost worse.
+// A source that could not be reached is not a job: it is this run failing to establish anything
+// about that source, it clears itself the moment the host answers, and it is reported in the
+// BODY either way, which is the whole run. Putting it in the title had two consequences, and the
+// second is the one that was not noticed:
+//
+//   1. A second unreachable source made a different title, so #182 and #207 are both open for the
+//      same nothing, eight days apart.
+//   2. A network flap changed the title of a GENUINE issue. With one source behind and another
+//      unreachable, the title carried both; the week the host answered again, the same behind
+//      source produced a different title and a second issue for work already open. Every ONS
+//      failure this project has had is a 429 to the runner that the same check passes on a
+//      laptop, so the flap is the normal case rather than the rare one.
+const outstanding = [
   ...behind.map(({ report }) => `${report.id} ${report.newest.key}`),
-  // Not "unreachable": a collection that answers 200 while matching no document is the
-  // rename case, and it is the failure this title most needs to be honest about.
-  ...unchecked.map((report) => `${report.id} could not be checked`),
   // The tables and the count, not just the source, so that a second correction landing while the
   // first is open changes the title and opens a second issue rather than hiding inside the first.
   // The count is what carries two corrections to the same table on the same day, which the tables
@@ -617,7 +629,15 @@ const signature = [
     const latest = report.outstanding.map((hit) => hit.entry.date).sort().pop();
     return `${report.id} ${report.outstanding.length} correction(s) to ${tables} since ${latest}`;
   }),
-  ...correctionsUnchecked.map((id) => `${id} corrections could not be checked`),
-].sort().join(', ');
+].sort();
+
+// Not "unreachable": a collection that answers 200 while matching no document is the rename case,
+// and it is the failure this most needs to be honest about. It keeps a title of its own, constant
+// whichever sources failed and however many, so the condition owns one issue rather than one per
+// combination. The run still exits non-zero and the body still names every source it could not
+// compare, with how many citations went uncompared.
+const signature = outstanding.length
+  ? outstanding.join(', ')
+  : 'a watched source could not be checked';
 console.log(`\nISSUE-TITLE: Release check: ${signature}`);
 process.exit(1);
