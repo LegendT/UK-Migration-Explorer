@@ -10,6 +10,12 @@ on:
   # left the risk register's top risk unmechanised.
   schedule:
     - cron: '0 7 * * 1'
+    # And a monthly one, which raises docs/MONTHLY-CHECK.md. That procedure was written on
+    # 12 August 2026 and depended on somebody remembering until this existed, which is the
+    # failure mode for anything monthly. The two entries are told apart by
+    # `github.event.schedule`, which carries the cron expression that fired, so the weekly run
+    # never opens the monthly issue and the monthly run still does everything the weekly does.
+    - cron: '0 7 1 * *'
 
 jobs:
   validate:
@@ -86,6 +92,52 @@ jobs:
         continue-on-error: true
         shell: bash
         run: node scripts/check-releases.mjs | tee release-check.txt
+
+      - name: Raise the monthly check
+        # Monthly only. The weekly entry must not fire this, and `github.event.schedule` is what
+        # tells them apart: it is the cron expression of the entry that triggered the run, and it
+        # is absent on a push, a pull request and a manual dispatch, so all three are excluded by
+        # the same condition.
+        #
+        # ONE CONSTANT TITLE, reused rather than duplicated, which is the release notifier's
+        # pattern and matters more here. A monthly condition persists until a person acts on it,
+        # so an open issue means the check has not been done and a second one adds nothing. The
+        # cost is stated rather than hidden: if last month's issue is never closed, this opens
+        # nothing next month, and the procedure is then raised by nobody again.
+        #
+        # It carries the release check's own output, which is the one part of step 1 the job has
+        # already run, and points at the procedure for the rest rather than restating it. Two of
+        # that procedure's steps stopped being human work on 13 August 2026, lateness and the
+        # publisher list, so the body does not ask for them.
+        if: github.event_name == 'schedule' && github.event.schedule == '0 7 1 * *'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          title='Monthly check: run docs/MONTHLY-CHECK.md'
+          if gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -Fxq "$title"; then
+            echo "Already open, not duplicating: $title"
+            exit 0
+          fi
+          {
+            echo "The monthly check is due. The procedure is \`docs/MONTHLY-CHECK.md\` and the"
+            echo "prompt beside it is \`docs/prompts/monthly-check.md\`. Nothing here restates it:"
+            echo "changing the procedure has to change the job."
+            echo
+            echo "What it finds goes to \`docs/BACKLOG.md\` in its format. It is not a second list,"
+            echo "and it changes no published figure: if one has moved, that is"
+            echo "\`docs/UPDATING-DATA.md\` and a separate job."
+            echo
+            echo "Close this when the run is done, including a run that finds nothing. While it is"
+            echo "open, no new monthly issue is raised."
+            echo
+            echo '## The release check, from this run'
+            echo
+            echo '```'
+            cat release-check.txt 2>/dev/null || echo "The release check did not produce output in this run."
+            echo '```'
+          } > monthly-issue.md
+          gh issue create --title "$title" --body-file monthly-issue.md
 
       - name: Open an issue when a release is newer or a table was corrected
         # Only from main and the weekly cron. A pull request must not open issues about the
