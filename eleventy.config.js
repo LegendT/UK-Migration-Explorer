@@ -304,16 +304,27 @@ export default function (eleventyConfig) {
   // content, because resolve-citations is a transform and runs after layouts; the
   // {% figure %} shortcode has already rendered its span by then.
   //
-  // A THIRD ROUTE IS NOT TESTED AND THIS COMMENT CLAIMED IT WAS. A dashboard card value and a
-  // chart bar put a number on a page with no token and no span, which is the same set
-  // check-build already reports as unmatched at the end of every run. `check-build.mjs` reads
-  // `class="figure"` to decide the same question this filter reads it to decide, so the two
-  // agree by construction and cannot catch each other missing that route. No page relies on it
-  // today: the home page's cards carry tokens in their prose and the chart pages carry them in
-  // theirs. A page whose ONLY figures came through a card value or a bar would silently lose
-  // the sentence, and nothing would say so.
+  // A THIRD ROUTE WAS NOT TESTED AND THIS COMMENT ONCE CLAIMED IT WAS: a dashboard card value and
+  // a chart bar put a number on a page with no token and no span, so a page whose ONLY figures
+  // came through one of them would silently lose the sentence. **Closed on 18 August 2026** by
+  // making both routes name the record they draw, and by asking this question from `data-metric`
+  // rather than from `class="figure"`. Every published route emits that attribute now except one.
+  //
+  // THE ONE IS A `"ref" | metric` CHART SUMMARY, which interpolates a bare number into a
+  // concatenated string that is then escaped into the chart's SVG <desc> as its accessible
+  // description. There is no element to carry an attribute and no way to add one without holding
+  // the same sentence in two forms, so this filter is still blind to it. No page relies on that
+  // route alone today, checked on the built site rather than assumed: every page carrying the
+  // sentence also carries a token.
+  //
+  // `check-build.mjs` asks the same question from the same attribute, so the two still agree by
+  // construction and still cannot catch each other missing a route. That is unchanged and is the
+  // residual: what moved is which routes they are jointly blind to, from two to one. Requiring the
+  // sentence from the `figures:` declaration instead would give a genuinely second signal and is
+  // refused for the reason the audit transform below states, that a claim page declares figures it
+  // deliberately renders none of.
   eleventyConfig.addFilter('carriesAFigure', (content) =>
-    /class="figure"/.test(content) || /\{\{\s*[a-z]+\/[a-z0-9-]+\s*\}\}/.test(content));
+    /data-metric="/.test(content) || /\{\{\s*[a-z]+\/[a-z0-9-]+\s*\}\}/.test(content));
 
   // The publishers a card QUOTES but does not NAME. A card renders one source line, built from
   // its own headline metric, while its prose cites other records by reference and those can
@@ -493,10 +504,11 @@ export default function (eleventyConfig) {
   // a reader a figure was checked when it was not, which is the error this site exists to correct in
   // others. TWO THINGS ARE NOT ESTABLISHED, and a passing build does not say otherwise: that the
   // date is not needlessly old, and that a page carries the sentence at all. The second is
-  // check-build.mjs's question and it is asked from `class="figure"`, which is blind to the card and
-  // chart-bar routes exactly as the scrape above is; requiring the sentence from the declaration
-  // instead would demand it of a page that declares a figure and renders none, which claim pages do
-  // by design.
+  // check-build.mjs's question and it is asked from `data-metric`, which since 18 August 2026 the
+  // card and chart-bar routes emit and only a `"ref" | metric` summary does not; requiring the
+  // sentence from the declaration instead would demand it of a page that declares a figure and
+  // renders none, which claim pages do by design, and that is why this transform's set is the
+  // right one for a DATE and the wrong one for the sentence.
   //
   // THE DECLARATION IS THE RIGHT SET AND THAT WAS MEASURED RATHER THAN ASSUMED. On every theme
   // page the declared list and the refs its own body cites are the same set. On some claim pages it
