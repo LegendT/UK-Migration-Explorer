@@ -90,8 +90,12 @@ jobs:
       - name: Open an issue when a release is newer or a table was corrected
         # Only from main and the weekly cron. A pull request must not open issues about the
         # state of the world: it did not cause it, and every open PR would race for the same
-        # one. The condition it reports persists until a person acts on it, so the title is
-        # deterministic and an existing open issue is reused rather than duplicated.
+        # one. The title is deterministic and an existing open issue is reused rather than
+        # duplicated. Since 19 August 2026 it names OUTSTANDING WORK only: a source that could
+        # not be fetched shares one constant title however many failed, because that condition
+        # clears itself when the host answers and is not a job anyone acts on. Before then a
+        # network flap changed the title of a genuine issue and opened a second one for work
+        # already open, and two issues sat open for the same failed fetch.
         if: steps.releases.outcome == 'failure' && (github.event_name == 'schedule' || github.ref == 'refs/heads/main')
         env:
           GH_TOKEN: ${{ github.token }}
