@@ -241,9 +241,9 @@
       "source_name": "Skills for Care, The state of the adult social care sector and workforce in England 2025",
       "source_id": "skills-for-care",
       "source_url": "https://www.skillsforcare.org.uk/Adult-Social-Care-Workforce-Data/workforceintelligence/resources/Reports/National/The-state-of-the-adult-social-care-sector-and-workforce-in-England-2025.pdf",
-      "published_date": "2025-09-30",
+      "published_date": "2025-10-15",
       "retrieved_date": "2026-08-11",
-      "notes": "Skills for Care prints no non-British share. It states that 69% of the local authority and independent sector workforce had a British nationality in 2024/25, so 31% is 100 minus that, and the two components it publishes for the same base, 25% non-EU and 6% EU, reconcile to the same 31%. THE BASE IS NARROWER THAN THIS RECORD'S NAME: for the whole workforce, including direct payment recipients, the report gives 71% British, which is 29% non-British. Non-EU share has risen from 10% to 25% since 2021-22, around 245,000 filled posts. Overseas arrivals to care roles fell from 105,000 (2023-24) to 50,000 (2024-25).",
+      "notes": "Skills for Care prints no non-British share. It states that 69% of the local authority and independent sector workforce had a British nationality in 2024/25, so 31% is 100 minus that, and the two components it publishes for the same base, 25% non-EU and 6% EU, reconcile to the same 31%. THE BASE IS NARROWER THAN THIS RECORD'S NAME: for the whole workforce, including direct payment recipients, the report gives 71% British, which is 29% non-British. Non-EU share has risen from 10% to 25% since 2021-22, around 245,000 filled posts. Overseas arrivals to care roles fell from 105,000 (2023-24) to 50,000 (2024-25). The publication date here is the publisher's own, from the report's page on skillsforcare.org.uk, which states \"Published: 15 October 2025 (data from 2024/25)\" and gives October 2026 as the next update. It read 2025-09-30 until 19 August 2026 and nothing states that date. The PDF itself carries only the year, and its file CreationDate is July 2026, which is when the file was regenerated rather than when the report was published, so neither could settle it.",
       "confidence_level": "calculated"
     },
     {
