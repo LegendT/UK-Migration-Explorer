@@ -36,6 +36,7 @@ const CHECKS = [
   { script: 'validate-data.mjs', local: true, ci: true, gates: true },
   { script: 'validate-content.mjs', local: true, ci: true, gates: true },
   { script: 'check-pipeline.mjs', local: true, ci: true, gates: true },
+  { script: 'check-fetch-retry.mjs', local: true, ci: true, gates: true },
   { script: 'check-build.mjs', local: false, ci: true, gates: true, why: 'runs inside `npm run build`, which needs a built site' },
   { script: 'check-evidence.mjs', local: false, ci: true, gates: true, why: 'compares against a base branch a laptop may not have fetched' },
   { script: 'check-a11y-dark.mjs', local: false, ci: true, gates: true, why: 'needs a served site, so it runs inside `npm run a11y` beside the light pass rather than in `npm run validate`' },
