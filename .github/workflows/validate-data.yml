@@ -154,9 +154,31 @@ jobs:
         shell: bash
         run: |
           title=$(sed -n 's/^ISSUE-TITLE: //p' release-check.txt)
-          if [ -z "$title" ]; then
-            echo "The release check failed without naming a title, which it should never do."
+          kind=$(sed -n 's/^ISSUE-KIND: //p' release-check.txt)
+          if [ -z "$title" ] || [ -z "$kind" ]; then
+            echo "The release check failed without naming a title and a kind, which it should never do."
             exit 1
+          fi
+          # A REFUSED FETCH IS NOT A JOB, AND THE SCRIPT HAS SAID SO IN A COMMENT SINCE
+          # 19 AUGUST 2026 WHILE THIS STEP OPENED AN ISSUE FOR IT ANYWAY. Five of the six
+          # release-check issues ever opened were that: #107, #182, #207, #211, #218 and #221,
+          # against one that named real work. Every one was ONS rate-limiting the runner, cleared
+          # by itself, and closed by hand.
+          #
+          # So a refusal raises nothing on a push. It still raises on the crons, weekly and
+          # monthly, which is what makes a refusal that PERSISTS visible: the body's own sentence
+          # is that a refusal outliving the one-month promise is the shape in which a missed
+          # promise would go unseen. A flap at merge time is not that; the same condition still
+          # standing on Monday is.
+          #
+          # It reads ISSUE-KIND rather than matching the title, because the title string would
+          # then exist here and in the script, and the copy that drifts is the one nobody reads:
+          # the wording changes, the match stops firing, and this quietly opens issues again with
+          # every check green.
+          if [ "$kind" = unreachable ] && [ "$GITHUB_EVENT_NAME" != schedule ]; then
+            echo "A source could not be reached on a $GITHUB_EVENT_NAME. Not raising it; the cron will if it lasts."
+            echo "$title"
+            exit 0
           fi
           if gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -Fxq "$title"; then
             echo "Already open, not duplicating: $title"
