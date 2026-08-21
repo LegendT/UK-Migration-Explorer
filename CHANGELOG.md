@@ -9,6 +9,33 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The backlog check was removed, 12 August 2026, recorded 21 August 2026
+
+**No figure moved and no page a reader sees changed by this entry.** It records a methodology
+change nine days after it happened, and the delay is why it is worth writing at all: until now
+this file's only word on `scripts/check-backlog.mjs` was the entry of 3 August below, which says
+it "now reads `docs/BACKLOG.md` on every run of `npm run validate` and as its own CI step".
+That stopped being true on 12 August. **So the newest thing this file said about that script was
+a false thing**, and it said it for nine days.
+
+`docs/` was taken out of the repository on 12 August 2026 (PR #198): it is ignored and untracked
+and lives in the working copy alone. `scripts/check-backlog.mjs` went with it, along with its
+npm script, its CI step and its entry in the pipeline manifest, and the planning-document rules
+came out of `scripts/validate-content.mjs` in the same change.
+
+**What is no longer checked.** Nothing reads `docs/BACKLOG.md` now: not that its backticked paths
+exist, not that its cross-references resolve, not that The order is contiguously numbered, not
+that every item carries a tag or opens by citing the pull request that closed it, and not that no
+item writes a count of this project's own state. Guarding those rules with a directory-exists test
+was the alternative and was refused, because a check that passes quietly when its input is absent
+is worse than no check.
+
+**Found by reading the documents against the repository on 21 August 2026, not by anything
+failing**, which is the shape of it. The check that would have caught a stale reference to
+`check-backlog.mjs` was `check-backlog.mjs`. Two things read this file and neither would notice:
+`check-build.mjs` reads one sentence of it, the review sign-off's page count, and
+`validate-content.mjs` scans it for house style rather than for truth.
+
 ### Both EMP06 employment rates move to the August 2026 edition, 18 August 2026
 
 **74.6% for Apr-Jun 2026**, replacing 74.7% for Oct-Dec 2025, for the UK-born employment rate
