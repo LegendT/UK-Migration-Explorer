@@ -54,6 +54,12 @@ jobs:
 
       - name: Content contract
         run: node scripts/validate-content.mjs
+      - name: The retry in lib/fetch-retry.mjs, both directions
+        # Gates. It is a unit probe rather than a network check: it passes its own fetch and
+        # sleep in, so there is nothing transient about it and a red run here means the logic
+        # moved. The half worth gating is the negative one, that a 404 is answered once and
+        # never waited on, which no reading of the module establishes.
+        run: node scripts/check-fetch-retry.mjs
       - name: Pipeline contract, that this file and npm run validate agree
         # The step that makes the comment above mechanical. Adding a check to `npm run validate`
         # and not here now fails, and so does adding one here and not declaring it, because the
