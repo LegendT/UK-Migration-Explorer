@@ -19,7 +19,6 @@
 //
 // Run: node scripts/check-fetch-retry.mjs
 
-import assert from 'node:assert/strict';
 import { get, retryAfterMs, BACKOFF_MS, RETRY_STATUS } from '../lib/fetch-retry.mjs';
 
 const failures = [];
@@ -71,6 +70,7 @@ const harness = (sequence) => {
   const h = harness([res(503), res(200, { body: 'later' })]);
   const r = await get('u', h);
   check('503 is retried too', r.body === 'later' && h.calls.length === 2, JSON.stringify(r));
+  check('  and waits the declared backoff', JSON.stringify(h.slept) === JSON.stringify([BACKOFF_MS[0]]), JSON.stringify(h.slept));
 }
 
 // --- IT DOES NOT WAIT ON AN ANSWER, which is the half a reading cannot establish ---------------

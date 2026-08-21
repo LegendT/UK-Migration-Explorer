@@ -26,7 +26,6 @@ import { sameTable, tablesIn } from '../lib/tables.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
 const read = (file) => JSON.parse(readFileSync(dataDir + file, 'utf8'));
-const TIMEOUT_MS = 20000;
 
 // One route per watched source. `editionPrefix` matters more than it looks: the Home Office
 // collection holds 112 documents including the pre-2022 `immigration-statistics-...` series,
