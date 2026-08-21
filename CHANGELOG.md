@@ -9,6 +9,69 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The release check waits when a publisher says later, 21 August 2026
+
+**No figure moved and no page a reader sees changed by this entry.** It records what
+`scripts/check-releases.mjs` now does when a publisher refuses it, and when that refusal becomes
+a job for a person.
+
+**Every ONS refusal this project has had is a rate limit on the runner's address, and the release
+check pays for the step before it.** `check-sources.mjs` asks ONS for 55 URLs six at a time and
+the release check runs one second later asking for two more. Measured on run 32461238890, which
+opened issue #221: the source check logged a 429 from ONS at 08:03:39 and both of the release
+check's ONS fetches were refused at 08:03:40. **The limit is marginal rather than absolute**, which
+is why waiting works at all: on 19 August the source check took two 429s and the release check
+passed two seconds later, same runner, same host.
+
+**A browser user-agent is not the fix and was measured not to be.** `check-sources.mjs` already
+sends the full header set and is the step that drew the first 429, and its own comment records
+obr.uk answering a laptop and refusing the runner. An address-reputation limit is not something a
+header reaches, so the fetch waits instead of dressing up as a browser.
+
+The fetch moved to `lib/fetch-retry.mjs` and retries 429 and 503 on a 2s, 5s, 12s backoff,
+honouring a delta-seconds `Retry-After` and giving up rather than sleeping through one longer than
+the run should wait. A 404 is an answer and is never retried.
+
+**And a refused fetch no longer opens an issue on a push.** The script had said in a comment since
+19 August that a source which could not be reached is not a job, while the workflow opened one
+anyway. Six of the seven issues this check has ever opened were exactly that, #107, #182, #207,
+#211, #218 and #221, against #210, which named real work. It still raises on the crons, which is
+what keeps a refusal that PERSISTS visible: the promise is one month from a release, and a refusal
+outliving it is how a missed promise would go unseen.
+
+**Not established: that the retry clears a real ONS 429.** That refusal is address-based and cannot
+be reproduced off the runner, which is why the issue guard exists rather than the wait being
+trusted alone. Neither half has met a live refusal since.
+
+PR #222.
+
+### Two guards on the checking apparatus, 21 August 2026
+
+**No figure moved and no page a reader sees changed by this entry.** Both are checks on the
+checking, added because the day produced two defects that nothing would have caught.
+
+**The retry above is now held by a check rather than by a comment.**
+`scripts/check-fetch-retry.mjs` asserts `lib/fetch-retry.mjs` in both directions with no network
+and no waiting: that 429 and 503 are retried on the declared backoff and give up saying how many
+times they were refused, and **that a 404, a 500 and a thrown error are answered once and never
+waited on**. That second half is the one no reading establishes, and getting it wrong would spend
+four requests learning what one already said, on the budget the next source needs. Probed rather
+than trusted: adding 404 to the retried set turns four of its assertions red and reversing that
+edit returns them to green. PR #225.
+
+**And `README.md`'s two lists are now held against the directories they describe.**
+`check-pipeline.mjs` already stopped a check script running nowhere; nothing stopped the README
+describing a set of checks that is not the set that exists. On 21 August that happened twice, a
+ninth check script added with no row in the checking-apparatus table and `lib/fetch-retry.mjs`
+added with no line in the layout block, both found by reading rather than by anything failing. Both
+lists are now compared in both directions, so a file with no entry and an entry with no file each
+fail. Probed in five directions, the fifth being the block renamed away, because a pattern matching
+nothing passes forever and reads as green. PR #226.
+
+**What neither covers.** `docs/HANDOFF.md` holds a second copy of the checking-apparatus table and
+is deliberately not read, because `docs/` is outside this repository so that nothing in it reads
+them. That copy stays hand-maintained.
+
 ### The backlog check was removed, 12 August 2026, recorded 21 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** It records a methodology
