@@ -21,6 +21,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { SERIES_FILES, THEME_FILES } from '../lib/series.mjs';
+import { get } from '../lib/fetch-retry.mjs';
 import { sameTable, tablesIn } from '../lib/tables.mjs';
 
 const dataDir = fileURLToPath(new URL('../data/', import.meta.url));
@@ -183,20 +184,9 @@ function citedEdition(url) {
   return { slug: null, key: null };
 }
 
-async function get(url) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
-  try {
-    const response = await fetch(url, { redirect: 'follow', signal: controller.signal });
-    if (!response.ok) return { error: `HTTP ${response.status}` };
-    return { body: await response.text() };
-  } catch (error) {
-    return { error: error.name === 'AbortError' ? 'timed out' : 'unreachable' };
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
+// The fetch that waits when a host says "later" lives in lib/fetch-retry.mjs, with the
+// measurement that put it there. It is a module rather than a function here so that the retry
+// can be probed without a network, which is the only way to establish that a 404 is NOT retried.
 // WHAT THE COMMITMENT RUNS FROM, and the collection listing does not carry it. Its documents
 // expose `public_updated_at` alone, which is when the page last CHANGED: the year-ending-March-2026
 // immigration statistics were first published on 21 May 2026 and last updated on 16 July, the
@@ -667,4 +657,10 @@ const signature = outstanding.length
   ? outstanding.join(', ')
   : 'a watched source could not be checked';
 console.log(`\nISSUE-TITLE: Release check: ${signature}`);
+// WHICH KIND OF CONDITION THIS IS, for the workflow to act on rather than re-deriving it by
+// matching the title string. Two copies of that string, one here and one in YAML, is a pair that
+// drifts silently the first time the wording changes: the workflow would stop recognising the
+// case and start opening issues again, with every check green. `outstanding` is the same value
+// the title is built from, so the two cannot disagree.
+console.log(`ISSUE-KIND: ${outstanding.length ? 'outstanding' : 'unreachable'}`);
 process.exit(1);
