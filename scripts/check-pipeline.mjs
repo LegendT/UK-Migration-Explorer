@@ -59,6 +59,49 @@ for (const { script } of CHECKS) {
   if (!onDisk.includes(script)) errors.push(`CHECKS declares scripts/${script}, which does not exist.`);
 }
 
+// --- the README's two lists must name what is on disk, both ways ---------------------------
+// The manifest above stops a check script running nowhere. It does NOT stop README.md describing
+// a set of checks that is not the set that exists, and on 21 August 2026 that happened twice in
+// one day: a ninth check script was added with no row in the checking-apparatus table, and
+// lib/fetch-retry.mjs was added with no line in the layout block. Both were found by reading the
+// document against the repository rather than by anything failing, which is what a list nothing
+// holds is for.
+//
+// The README already declines to write a COUNT of these, having had one wrong until 4 August 2026
+// when it said six scripts and there were seven. The count was never the part that rots hardest.
+// The list is, because adding a file is precisely the moment nobody opens the document.
+//
+// Both directions, for the same reason the manifest checks both: a file with no entry is a
+// document understating what exists, and an entry with no file is a document naming something
+// deleted. The second is how a reader is sent looking for a check that is gone.
+//
+// docs/HANDOFF.md holds a SECOND COPY of the checking-apparatus table and is deliberately not
+// read here. docs/ is gitignored so that nothing in this repository reads it or points a reader
+// at it, and widening this check to reach it would spend that decision on a table. That copy
+// stays hand-maintained and this paragraph is the whole of its protection.
+let libListed = 0;
+let scriptsListed = 0;
+const readme = readFileSync(`${repoRoot}README.md`, 'utf8');
+
+for (const [label, pattern, dir] of [
+  ['the layout block', /^lib\/([a-z0-9-]+\.mjs)\s/gm, 'lib'],
+  ['the checking-apparatus table', /^\| `([a-z0-9-]+\.mjs)` \|/gm, 'scripts'],
+]) {
+  const inReadme = new Set([...readme.matchAll(pattern)].map((match) => match[1]));
+  if (dir === 'lib') libListed = inReadme.size; else scriptsListed = inReadme.size;
+  const present = readdirSync(`${repoRoot}${dir}/`).filter((name) => name.endsWith('.mjs'));
+  if (!inReadme.size) {
+    errors.push(`README.md: ${label} matched no ${dir}/ entries at all, so this check is reading nothing. The block moved or was reformatted, and the pattern in scripts/check-pipeline.mjs has to move with it.`);
+    continue;
+  }
+  for (const name of present) {
+    if (!inReadme.has(name)) errors.push(`${dir}/${name} exists and README.md's ${label} does not name it, so the document understates what this repository contains.`);
+  }
+  for (const name of inReadme) {
+    if (!present.includes(name)) errors.push(`README.md's ${label} names ${dir}/${name}, which does not exist, so a reader is sent looking for something that is gone.`);
+  }
+}
+
 // --- a check that runs locally must run in CI, and one that does not must say why ------------
 for (const { script, local, ci, why } of CHECKS) {
   if (local && !ci) {
@@ -171,6 +214,11 @@ if (errors.length) {
 
 const gating = CHECKS.filter((check) => check.gates);
 console.log(`Pipeline check passed: ${CHECKS.length} check scripts, each declared, each where it says it is.`);
+console.log(`README.md names them too: its layout block lists ${libListed} lib/ module(s) and its`);
+console.log(`checking-apparatus table ${scriptsListed} script(s), matched against the directories in both directions, so`);
+console.log("neither can understate what exists nor name something deleted. Not covered: the second copy");
+console.log("of that table in docs/HANDOFF.md, which is outside this repository on purpose and so stays a");
+console.log("hand-maintained list.");
 console.log(`${inValidate.size} run in \`npm run validate\`, ${inCi.size} run in ${workflowPath}, and ${gating.length} of those fail the job:`);
 console.log(`  ${gating.map((check) => check.script).join(', ')}`);
 console.log('Out of `npm run validate` on purpose, each with the reason it is declared with:');
