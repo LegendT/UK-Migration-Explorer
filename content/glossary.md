@@ -333,7 +333,7 @@ in general elections.
 ### British citizenship and naturalisation {#citizenship}
 
 Becoming a British citizen. **Naturalisation** is the main route for adults:
-{{population/british-citizenship-grants}} grants of citizenship in the year ending March
+{{population/british-citizenship-grants}} grants of citizenship in the year ending June
 2026.
 
 **Why it matters.** Citizenship usually follows settlement rather than replacing it, so a

@@ -14,7 +14,7 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 **The Home Office published the year ending June 2026 release at 09:30 on 27 August 2026**, taken
 from `first_published_at` rather than `public_updated_at`, which is when a page last changed and
 has been believed here before. It is one of the three cadenced releases the site promises to
-update within one month of. 40 published figures move, 6 hold, and both Home Office series are
+update within one month of. 36 published figures move, 4 unpublished reserve records move with them, 6 hold, and both Home Office series are
 replaced whole under the single-vintage rule.
 
 **Source and evidence.** Every value was read from the publisher's own tables or release pages,

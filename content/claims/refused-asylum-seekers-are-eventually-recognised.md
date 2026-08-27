@@ -91,7 +91,7 @@ and other grants. A rise in grants of protection or other leave is therefore not
 as a rise in refugee recognition, which is what this claim asserts.
 
 There is also a period problem worth naming. The {{asylum/asylum-initial-decision-grant-rate}}% initial grant rate covers a full
-year to March 2026. The {{asylum/asylum-appeal-success-rate}}% appeal success rate covers a single quarter. Setting one
+year to June 2026. The {{asylum/asylum-appeal-success-rate}}% appeal success rate covers a single quarter. Setting one
 directly against the other, as though they described the same population over the same
 period, is not a valid comparison, and it is the comparison the claim implicitly makes.
 

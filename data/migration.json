@@ -1,7 +1,7 @@
 {
   "theme": "Net migration and visas",
   "lastUpdated": "2026-08-27",
-  "note": "Net migration figures come from ONS Long-term international migration (year ending December 2025, provisional, published 21 May 2026). Visa-grant figures come from Home Office Immigration system statistics (year ending March 2026). The two sources are not interchangeable: ONS counts people staying 12 months or more; the Home Office counts visas granted, which is always higher. ONS reason splits are for non-EU+ arrivals (inflow), not net migration by reason.",
+  "note": "Net migration figures come from ONS Long-term international migration (year ending December 2025, provisional, published 21 May 2026). Visa-grant figures come from Home Office Immigration system statistics (year ending June 2026). The two sources are not interchangeable: ONS counts people staying 12 months or more; the Home Office counts visas granted, which is always higher. ONS reason splits are for non-EU+ arrivals (inflow), not net migration by reason.",
   "metrics": [
     {
       "id": "net-migration",
