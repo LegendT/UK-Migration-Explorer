@@ -166,10 +166,12 @@ jobs:
             exit 1
           fi
           # A REFUSED FETCH IS NOT A JOB, AND THE SCRIPT HAS SAID SO IN A COMMENT SINCE
-          # 19 AUGUST 2026 WHILE THIS STEP OPENED AN ISSUE FOR IT ANYWAY. Five of the six
+          # 19 AUGUST 2026 WHILE THIS STEP OPENED AN ISSUE FOR IT ANYWAY. Six of the seven
           # release-check issues ever opened were that: #107, #182, #207, #211, #218 and #221,
-          # against one that named real work. Every one was ONS rate-limiting the runner, cleared
-          # by itself, and closed by hand.
+          # against #210, which named real work. This comment said "five of the six" and then
+          # listed six numbers until 21 August 2026, which is a count disagreeing with the
+          # evidence beside it in the same sentence. Every one of the six was ONS rate-limiting the
+          # runner, cleared by itself, and closed by hand.
           #
           # So a refusal raises nothing on a push. It still raises on the crons, weekly and
           # monthly, which is what makes a refusal that PERSISTS visible: the body's own sentence
