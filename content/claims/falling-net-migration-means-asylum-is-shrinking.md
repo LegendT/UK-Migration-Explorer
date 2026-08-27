@@ -7,8 +7,8 @@ short_answer: >-
   record. One queue inside the asylum system did shrink; the appeals queue behind it grew.
 direction: pro-migration
 error_type: one series read as a proxy for another
-last_reviewed: 2026-08-04
-review_due: 2027-08-04
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - migration/net-migration
   - migration/net-migration-2

@@ -8,8 +8,8 @@ short_answer: >-
   count of cases, and they differ by more than a third.
 direction: restrictionist
 error_type: distinct queues collapsed into one figure
-last_reviewed: 2026-08-04
-review_due: 2027-08-04
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - asylum/asylum-backlog-people-awaiting-an-initial-decision
   - asylum/asylum-backlog-cases-awaiting-an-initial-decision

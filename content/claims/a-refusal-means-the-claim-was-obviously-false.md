@@ -10,8 +10,8 @@ short_answer: >-
 direction: restrictionist
 error_type: a legal outcome read as a finding of fact
 mirror_of: refused-asylum-seekers-are-eventually-recognised
-last_reviewed: 2026-08-04
-review_due: 2027-08-04
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - asylum/asylum-initial-decision-grant-rate
   - asylum/asylum-initial-decisions-total

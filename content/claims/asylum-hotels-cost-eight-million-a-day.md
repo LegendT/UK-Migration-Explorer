@@ -15,8 +15,8 @@ error_type: a figure from a past year repeated as current, and hotels read as th
 # examine, and the page would make no sense if it moved. The Home Office's own averages, which do
 # move, are cited as records below rather than written longhand.
 historical_literals: £8 million
-last_reviewed: 2026-08-05
-review_due: 2027-08-05
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - fiscal/home-office-spending-on-asylum-hotels-per-day
   - fiscal/home-office-spending-on-asylum-hotels-per-day-previous-year

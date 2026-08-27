@@ -9,8 +9,8 @@ short_answer: >-
 direction: pro-migration
 error_type: appeal success rate generalised to all refusals
 mirror_of: a-refusal-means-the-claim-was-obviously-false
-last_reviewed: 2026-07-27
-review_due: 2027-07-27
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - asylum/asylum-initial-decision-grant-rate
   - asylum/asylum-appeal-success-rate

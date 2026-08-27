@@ -9,8 +9,8 @@ short_answer: >-
   counted separately.
 direction: restrictionist
 error_type: a route of arrival read as the whole system
-last_reviewed: 2026-08-05
-review_due: 2027-08-05
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - asylum/small-boat-arrivals-latest-year
   - asylum/asylum-applications

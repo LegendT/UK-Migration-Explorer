@@ -9,6 +9,39 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The review date moves on the 15 pages the June 2026 update rewrote, 27 August 2026
+
+**No figure moved.** `last_reviewed` and `review_due` move on the fifteen pages whose
+reader-facing prose the year ending June 2026 update rewrote, from dates running 23 July to
+19 August 2026 to 27 August 2026. The 365-day gap between the two fields is preserved on every
+one, which is the convention all 25 dated pages follow.
+
+**The nine pages whose prose did not change keep their older dates**, so this is not a
+site-wide bump: `/about/`, `/common-claims/`, `/costs/`, `/style-guide/` and five claim pages
+still show when they were last read.
+
+**WHY THIS IS A DEPARTURE, STATED RATHER THAN SLID IN.** The standing precedent, set by PR #54
+and held to by the six-page review, is that `last_reviewed` records what a page REVIEW read, and
+that a data re-read is not a page review. That precedent still governs a release that moves only
+figures. What it did not cover is a release that rewrites the sentences around them: sixty period
+edits across sixteen files, plus three queue-date sentences, left pages whose text was written on
+27 August displaying a review date up to five weeks older. The owner decided on 27 August 2026
+that a prose rewrite is a review event and the date should move.
+
+**The set was derived twice, and the first derivation was wrong.** Taking "pages that changed"
+from `content/` alone gave fourteen and missed the home page, whose card prose lives in
+`data/dashboard.json`: five of its sentences were rewritten, including "down 9%" to "down 20%"
+and "about a quarter smaller" to "about a fifth smaller". `lib/published.mjs` already names
+`meta.json`, `dashboard.json` and `sources.json` as data files carrying prose, which is what
+settled it. `meta.json`'s rewritten caveats render only on `/sources-and-method/`, and
+`sources.json`'s on the same page, both already in the set.
+
+**Checked against the built pages, not the front matter**: fifteen pages render 27 August 2026
+and nine render an older date, and those fifteen are exactly the pages that render a figure read
+on 27 August. The figures-currency sentence is untouched and still derives its own date, so a
+page can still tell a reader its text was reviewed more recently than its oldest figure was
+checked, which is the honest order.
+
 ### Two checks on period labels and the periods pages state, 27 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** Both checks were written

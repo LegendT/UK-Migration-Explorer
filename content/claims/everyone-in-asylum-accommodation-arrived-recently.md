@@ -6,8 +6,8 @@ short_answer: >-
   on a single day. It is a stock, not a flow, and it does not record when anyone arrived.
 direction: restrictionist
 error_type: stock read as flow
-last_reviewed: 2026-07-27
-review_due: 2027-07-27
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - asylum/asylum-applications-2025
   - asylum/people-in-receipt-of-asylum-support

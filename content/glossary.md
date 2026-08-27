@@ -8,8 +8,8 @@ title: What the words mean
 strapline: >-
   Migration statistics use ordinary words in precise ways. Most public disagreements about
   the numbers are really disagreements about which number is being discussed.
-last_reviewed: 2026-07-23
-review_due: 2027-07-23
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - fiscal/home-office-visa-and-immigration-fee-income
   - fiscal/immigration-health-surcharge-revenue

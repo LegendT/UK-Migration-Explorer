@@ -8,8 +8,8 @@ short_answer: >-
   work were both larger.
 direction: restrictionist
 error_type: category confusion
-last_reviewed: 2026-07-27
-review_due: 2027-07-27
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - migration/total-long-term-immigration
   - migration/non-eu-plus-long-term-immigration

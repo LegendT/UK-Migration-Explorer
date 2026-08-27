@@ -9,8 +9,8 @@ short_answer: >-
   versions of the same number and are not meant to match.
 direction: restrictionist
 error_type: permission counted as arrival
-last_reviewed: 2026-08-05
-review_due: 2027-08-05
+last_reviewed: 2026-08-27
+review_due: 2027-08-27
 figures:
   - migration/total-entry-clearance-visas-granted
   - migration/visitor-visas-granted
