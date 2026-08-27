@@ -135,10 +135,19 @@ published 336,229.
 a period beside a token that now renders a June 2026 figure. Six references to HMCTS appeals
 figures are deliberately untouched, because that publisher is on a different cycle and did not move.
 
-**What this release leaves unresolved.** It splits what used to be a single date: asylum support and
-the first-decision queue are now at 30 June 2026 while the appeals queue is still at 31 March 2026.
-Three sentences that treat them as one date are outstanding, on `/sources-and-method/` and on two
-claim pages, and are recorded in `docs/BACKLOG.md` rather than fixed here.
+**What this release splits, and the three sentences it corrects.** It splits what used to be a
+single date: asylum support and the first-decision queue are now at 30 June 2026, while the appeals
+queue is still at 31 March 2026 because HMCTS publishes on its own cycle. Three sentences treated
+them as one date, on `/sources-and-method/` and on two claim pages. No substitution reached them,
+which is why they were left when the other 60 period edits were applied: each needed a sentence
+rather than a date. All three are corrected here.
+
+**That correction has a known expiry, and it is stated rather than left to be discovered.** The
+Ministry of Justice publishes tribunals statistics for April to June 2026 on 10 September 2026,
+taken from GOV.UK's own statistics announcement. That release moves the appeals figures to
+30 June 2026 and puts the two queues back on one date, so all three sentences go false again in the
+opposite direction on the day it lands. The period check added the same day catches the figures
+beside them; it cannot catch the prose, which stays a published limit.
 
 ### The release check waits when a publisher says later, 21 August 2026
 
