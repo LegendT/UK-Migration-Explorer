@@ -9,6 +9,38 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Two checks on period labels and the periods pages state, 27 August 2026
+
+**No figure moved and no page a reader sees changed by this entry.** Both checks were written
+after a critique of the year ending June 2026 update found defects that every existing check had
+passed.
+
+**`validate-data.mjs` now asks whether a period label names a real day.** The rule beside it asks
+only that the date's YEAR appears in the label, so `"as at 31 June 2026"` satisfied it on five
+published records: the substitution that rewrote the month ran before the one that would have
+rewritten the day, and nothing looked at the day. It now refuses a label naming a date that does
+not exist, and refuses an `as at` label whose day disagrees with the record's own `date`. Probed
+in both directions: three impossible or mismatched labels caught, and four legitimate shapes
+ignored, including a day range that is not a point in time and an `as at` label with trailing
+prose.
+
+**`check-build.mjs` now compares the period a sentence STATES against the periods its cited
+figures cover.** Two live sentences stated the year ending March 2026 beside a June 2026 figure,
+and both had survived a sweep of `content/` because the phrase wrapped across source lines: one
+ended "year ending March" and the next began "2026.". This reads the built page, where the wrap
+is gone. It is deliberately narrow, judging only a sentence that states exactly one period, and
+it excludes citation blocks, because the edition a citation names is not the period the figure
+covers.
+
+**THE SECOND CHECK DID NOT WORK WHEN FIRST WRITTEN, TWICE, AND ONLY PROBING SHOWED IT.** It was
+inserted below the line that reports errors and exits, so every problem it found was pushed into
+an array nobody read and the build stayed green. Moved above the verdict, it then skipped the
+defect it was written for, because it required a sentence to cite exactly one figure and the
+sentence carrying that defect cited two. Reading the code said it was correct both times.
+
+**What neither establishes.** Nothing about the verb around a figure, which stays the published
+limit: a sentence can name the right period and still describe the data wrongly. And a sentence
+naming two periods is skipped as ordinary rather than judged.
 ### The release check waits when a publisher says later, 21 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** It records what
