@@ -26,8 +26,8 @@ figures:
   - asylum/people-in-asylum-accommodation
   - asylum/people-in-asylum-hotel-accommodation
   - asylum/people-in-receipt-of-asylum-support
-  - asylum/small-boat-arrivals-year-ending-march-2026
-  - asylum/detected-unauthorised-arrivals-year-ending-march-2026
+  - asylum/small-boat-arrivals-latest-year
+  - asylum/detected-unauthorised-arrivals-latest-year
   - asylum/total-asylum-cases-in-the-casework-system
 ---
 <p>A claim is made, a first decision follows, a refusal can be appealed, and throughout that
@@ -39,11 +39,11 @@ at its own moment. A figure from one stage tells you very little about another.<
   <caption>The asylum system, stage by stage, as at the latest published figures</caption>
   <thead><tr><th scope="col">Stage</th><th scope="col">Latest figure</th><th scope="col">What it counts</th></tr></thead>
   <tbody>
-    <tr><th scope="row">Claims made</th><td>{% figure "asylum/asylum-applications" %} people</td><td>A flow over the year ending March 2026. Relates to {% figure "asylum/asylum-applications-main-applicants" %} main-applicant applications</td></tr>
-    <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people</td><td>A stock at 31 March 2026, not an annual intake</td></tr>
+    <tr><th scope="row">Claims made</th><td>{% figure "asylum/asylum-applications" %} people</td><td>A flow over the year ending June 2026. Relates to {% figure "asylum/asylum-applications-main-applicants" %} main-applicant applications</td></tr>
+    <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people</td><td>A stock at 30 June 2026, not an annual intake</td></tr>
     <tr><th scope="row">Decisions issued</th><td>{% figure "asylum/asylum-initial-decisions-total" %} people</td><td>Grants plus refusals over the year. Excludes withdrawals and administrative outcomes</td></tr>
     <tr><th scope="row">Appealing a refusal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases</td><td>A different queue, from a different publisher, at a record high</td></tr>
-    <tr><th scope="row">Receiving support</th><td>{% figure "asylum/people-in-receipt-of-asylum-support" %} people</td><td>A stock at 31 March 2026, including people at every stage above</td></tr>
+    <tr><th scope="row">Receiving support</th><td>{% figure "asylum/people-in-receipt-of-asylum-support" %} people</td><td>A stock at 30 June 2026, including people at every stage above</td></tr>
   </tbody>
 </table>
 </div>
@@ -63,8 +63,8 @@ the cases basis; and that one also comes from a different publisher on a differe
   summary: 'Claims roughly doubled across the 2010s, from ' ~ (aa.data | at(2010) | number) ~ ' in 2010 to ' ~ (aa.data | at(2019) | number) ~ ' in 2019. They rose steeply to ' ~ (aa.data | at(2022) | number) ~ ' in 2022, fell 8% in 2023, and reached a high of ' ~ (aa.data | at(2024) | number) ~ ' in 2024 before easing to ' ~ (aa.data | at(2025) | number) ~ ' in 2025.',
   unit: 'people per calendar year',
   source: 'Home Office, immigration system statistics, asylum summary tables',
-  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods',
-  note: 'PEOPLE basis throughout: main applicants plus dependants. The applications series counts main applicants only and is roughly a fifth lower. Never splice the two. These are calendar years, so they do not line up with the year-ending-March figures elsewhere on this site.'
+  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods',
+  note: 'PEOPLE basis throughout: main applicants plus dependants. The applications series counts main applicants only and is roughly a fifth lower. Never splice the two. These are calendar years, so they do not line up with the year-ending-June figures elsewhere on this site.'
 } %}
 
 <h2>What happens to a claim</h2>
@@ -83,16 +83,16 @@ to the whole.</p>
 {% barChart {
   id: 'initial-decisions-by-outcome',
   bars: [
-    { name: 'Refused', ref: 'asylum/asylum-refusals', note: 'Up 57% on the previous year. Around ' ~ appealRate.value ~ '% of asylum appeals determined in the quarter to March 2026 were allowed, so this overstates final refusals' },
-    { name: 'Granted protection or leave', ref: 'asylum/people-granted-protection-or-other-leave-at-initial-decision', note: 'Up 5% on the previous year' },
+    { name: 'Refused', ref: 'asylum/asylum-refusals', note: 'Up 23% on the previous year. Around ' ~ appealRate.value ~ '% of asylum appeals determined in the quarter to March 2026 were allowed, so this overstates final refusals' },
+    { name: 'Granted protection or leave', ref: 'asylum/people-granted-protection-or-other-leave-at-initial-decision', note: 'Down 21% on the previous year' },
     { name: 'Withdrawn', ref: 'asylum/asylum-withdrawals', note: 'Not part of the decisions total, and excluded from the grant rate' }
   ],
-  title: 'Initial decisions and withdrawals, year ending March 2026',
+  title: 'Initial decisions and withdrawals, year ending June 2026',
   summary: 'Of ' ~ (decisions.value | number) ~ ' people receiving an initial decision, ' ~ (granted.value | number) ~ ' were granted protection or other leave and ' ~ (refused.value | number) ~ ' were refused. Separately, ' ~ (withdrawn.value | number) ~ ' people had their asylum claims withdrawn.',
   unit: 'people',
   source: 'Home Office, immigration system statistics, asylum summary tables',
-  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods',
-  note: 'These three bars are not every outcome. A further ' ~ (administrative.value | number) ~ ' people had an administrative outcome over the same period, mostly voided or suspended cases, and the chart does not show them. The published grant rate of ' ~ grantRate.value ~ '% is calculated on main applicants. Recomputing it from these people-based figures gives 37.9%, which is a different measure, a worked example of why the basis has to be checked before dividing one figure by another.'
+  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods',
+  note: 'These three bars are not every outcome. A further ' ~ (administrative.value | number) ~ ' people had an administrative outcome over the same period, mostly voided or suspended cases, and the chart does not show them. The published grant rate of ' ~ grantRate.value ~ '% is calculated on main applicants. Recomputing it from these people-based figures gives 36.6%, which is a different measure, a worked example of why the basis has to be checked before dividing one figure by another.'
 } %}
 
 <p>A refusal at first decision is not the end. For claims made between 2007 and 2020, the
@@ -119,7 +119,7 @@ refusals are overturned"</a> nor "a refusal settles it" survives contact with th
   summary: 'The queue grew substantially through the 2010s, and among the year-end points shown it peaked at the end of 2022. It has since fallen by 60% on the people basis and 63% on the cases basis. The two lines are the same queue counted two ways.',
   unit: 'waiting at 31 December',
   source: 'Home Office, immigration system statistics, asylum summary tables',
-  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods',
+  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods',
   note: 'Both lines describe the same people. The upper counts people including dependants; the lower counts main-applicant cases. Quoting one and comparing it with the other is the most common error made with this figure. Growth through the 2010s was substantial but not uniform: the people line fell between the end of 2014 and the end of 2015, from ' ~ (ab.data | at(2014) | number) ~ ' to ' ~ (ab.data | at(2015) | number) ~ ', while the cases line rose in every year of the decade. The within-year peak was higher than either line shows: ' ~ (backlogPeak.value | number) ~ ' people in ' ~ backlogPeak.period_label ~ '.'
 } %}
 
@@ -133,7 +133,7 @@ they are counted differently, and they have been moving in opposite directions.<
   <caption>Three separate queues</caption>
   <thead><tr><th scope="col">Queue</th><th scope="col">Latest</th><th scope="col">Direction</th></tr></thead>
   <tbody>
-    <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people, 31 March 2026</td><td>Down 55% on the year, and 72% below the June 2023 peak</td></tr>
+    <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people, 30 June 2026</td><td>Down 56% on the year, and 77% below the June 2023 peak</td></tr>
     <tr><th scope="row">Awaiting an appeal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases, 31 March 2026</td><td>A record high, up from {% figure "asylum/asylum-appeals-backlog-previous-year" %} a year earlier</td></tr>
     <tr><th scope="row">Total casework in progress</th><td>{% figure "asylum/total-asylum-cases-in-the-casework-system" %} cases, June 2024</td><td><strong>Not current.</strong> The breakdown was suspended and no later complete figure exists</td></tr>
   </tbody>
@@ -152,7 +152,7 @@ are not the same measure and should not be quoted for each other.</p>
 <h2>Support and accommodation</h2>
 
 <p>{% figure "asylum/people-in-receipt-of-asylum-support" %} people were receiving asylum
-support at 31 March 2026. Support means accommodation, subsistence payments, or both, so
+support at 30 June 2026. Support means accommodation, subsistence payments, or both, so
 being supported and being accommodated are not the same count:
 {% figure "asylum/people-in-asylum-accommodation" %} people were in accommodation, and the
 rest received subsistence payments only. Hotels held
@@ -169,13 +169,13 @@ local authorities and counted separately.</p>
 
 <h2>Small boats are a route, not the system</h2>
 
-<p>{% figure "asylum/small-boat-arrivals-year-ending-march-2026" %} people were detected arriving by
-small boat in the year ending March 2026, against
+<p>{% figure "asylum/small-boat-arrivals-latest-year" %} people were detected arriving by
+small boat in the year ending June 2026, against
 {% figure "asylum/asylum-applications" %} people claiming asylum over the same period.</p>
 
 <p>Small boats are most of the unauthorised arrivals the Home Office detects, but not all of
 them. Detected arrivals by every illegal route came to
-{% figure "asylum/detected-unauthorised-arrivals-year-ending-march-2026" %} over the same twelve
+{% figure "asylum/detected-unauthorised-arrivals-latest-year" %} over the same twelve
 months, the rest being people arriving by air without adequate documents and people detected
 inside the UK or at its ports. <strong>Detected means detected:</strong> the figure cannot count
 anyone nobody found, so it is a floor and not a total.</p>

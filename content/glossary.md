@@ -25,7 +25,7 @@ figures:
   - asylum/asylum-appeal-success-rate
   - asylum/asylum-initial-decision-grant-rate
   - asylum/people-in-receipt-of-asylum-support
-  - asylum/small-boat-arrivals-year-ending-march-2026
+  - asylum/small-boat-arrivals-latest-year
   - population/foreign-born-share-of-total-uk-population
   - population/non-british-share-of-uk-population
   - population/settlement-grants
@@ -64,7 +64,7 @@ in supported accommodation on 31 March, people living in the UK who were born ab
 **Why it matters.** The two answer different questions and cannot be compared or
 subtracted. {{asylum/asylum-applications-2025}} people claimed asylum during 2025, a flow. About
 {{asylum/people-in-receipt-of-asylum-support}} people were receiving asylum support on one
-day in March 2026, a stock. Those figures are of similar size and describe entirely
+day in June 2026, a stock. Those figures are of similar size and describe entirely
 different things. Someone who claimed in 2023 and is still waiting appears in the second
 but not the first.
 
@@ -79,7 +79,7 @@ immigration, emigration and net migration figures.
 **Why it matters.** It excludes visitors, short courses, seasonal work under twelve
 months, and business trips. Millions of people enter the UK each year who are not counted
 in migration statistics at all, because they are not migrating by this definition. In the
-year ending March 2026 the Home Office granted {{migration/visitor-visas-granted}} visitor
+year ending June 2026 the Home Office granted {{migration/visitor-visas-granted}} visitor
 visas, none of which appear in migration figures.
 
 **The common mistake.** Assuming migration statistics count everyone who crosses the
@@ -112,7 +112,7 @@ sources appearing to contradict each other.
 - **Applications** or **cases** counts main applicants only.
 
 **Why it matters.** The same underlying reality produces two very different numbers. In
-the year ending March 2026 there were {{asylum/asylum-applications}} people claiming
+the year ending June 2026 there were {{asylum/asylum-applications}} people claiming
 asylum, and {{asylum/asylum-applications-main-applicants}} main-applicant applications.
 Both are correct. Neither is "the" figure.
 
@@ -219,7 +219,7 @@ than silently renaming it. Our reasoning is set out on the [style guide](/style-
 ### Small boat arrivals {#small-boat-arrivals}
 
 People detected arriving by small boat across the Channel:
-{{asylum/small-boat-arrivals-year-ending-march-2026}} in the year ending March 2026.
+{{asylum/small-boat-arrivals-latest-year}} in the year ending June 2026.
 
 **Why it matters.** This is one route of arrival, not the asylum system. Most people who
 arrive this way do claim asylum, but they are a subset of all claims, and the figure is
@@ -241,7 +241,7 @@ succeeded.
 ### Grant rate {#grant-rate}
 
 The share of initial decisions resulting in a grant of protection or other leave:
-{{asylum/asylum-initial-decision-grant-rate}}% in the year ending March 2026.
+{{asylum/asylum-initial-decision-grant-rate}}% in the year ending June 2026.
 
 **Why it matters.** The published rate is calculated on main applicants, and excludes
 withdrawals and administrative outcomes. It describes decisions made in a period, not the
@@ -275,7 +275,7 @@ of very different sizes:
 
 | Queue | Latest figure | What it is |
 | --- | --- | --- |
-| Initial decision backlog | {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people (31 March 2026) | Waiting for a first Home Office decision |
+| Initial decision backlog | {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people (30 June 2026) | Waiting for a first Home Office decision |
 | Appeals backlog | {{asylum/asylum-appeals-backlog}} cases (31 March 2026) | Refused, appealing to the First-tier Tribunal |
 | Total casework work in progress | {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current**: the breakdown was suspended |
 
@@ -293,7 +293,7 @@ with a case-based figure for another.
 
 Accommodation, subsistence payments, or both, provided to people whose claims are being
 considered and who would otherwise be destitute:
-{{asylum/people-in-receipt-of-asylum-support}} people as at 31 March 2026.
+{{asylum/people-in-receipt-of-asylum-support}} people as at 30 June 2026.
 
 **Why it matters.** It is a [stock](#flow-and-stock), counted on one day. It excludes
 unaccompanied asylum-seeking children, who are supported by local authorities and counted
@@ -324,7 +324,7 @@ See [returns](/returns/) for what each category counts and why they do not add u
 ### Settlement, or indefinite leave to remain {#settlement}
 
 Permission to live in the UK without a time limit: {{population/settlement-grants}} grants
-in the year ending March 2026.
+in the year ending June 2026.
 
 **The common mistake.** Confusing it with citizenship. Someone with settlement is not a
 British citizen, cannot hold a British passport on that basis, and does not have the vote
@@ -333,7 +333,7 @@ in general elections.
 ### British citizenship and naturalisation {#citizenship}
 
 Becoming a British citizen. **Naturalisation** is the main route for adults:
-{{population/british-citizenship-grants}} grants of citizenship in the year ending March
+{{population/british-citizenship-grants}} grants of citizenship in the year ending June
 2026.
 
 **Why it matters.** Citizenship usually follows settlement rather than replacing it, so a

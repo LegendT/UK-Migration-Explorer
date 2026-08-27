@@ -41,6 +41,114 @@ sentence carrying that defect cited two. Reading the code said it was correct bo
 **What neither establishes.** Nothing about the verb around a figure, which stays the published
 limit: a sentence can name the right period and still describe the data wrongly. And a sentence
 naming two periods is skipped as ordinary rather than judged.
+### The data layer moves onto immigration system statistics, year ending June 2026, 27 August 2026
+
+**The Home Office published the year ending June 2026 release at 09:30 on 27 August 2026**, taken
+from `first_published_at` rather than `public_updated_at`, which is when a page last changed and
+has been believed here before. It is one of the three cadenced releases the site promises to
+update within one month of. 36 published figures move, 4 unpublished reserve records move with them, 6 hold, and both Home Office series are
+replaced whole under the single-vintage rule.
+
+**Source and evidence.** Every value was read from the publisher's own tables or release pages,
+located by row AND column label and asserted against the expected figure before anything was
+written, so a shifted table throws rather than agreeing. The quotes are in
+`data/evidence/ho-immigration-stats-year-ending-june-2026.json`, one entry per figure plus three
+series blocks.
+
+**Four reconciliations hold rather than being assumed**: grants plus refusals equals the decisions
+total; naturalisation plus registration equals total citizenship grants; the visa total equals the
+published total less visitor and transit, and separately equals the four route rows summed; and the
+asylum-related enforced and voluntary sub-rows sum to the asylum-related total across two different
+workbooks. The two cumulative figures were summed independently from the year columns and each
+equals what the publisher states in prose.
+
+| Figure | Was | Now |
+| --- | --- | --- |
+| `asylum/asylum-applications` | 93,525 | 85,891 |
+| `asylum/asylum-initial-decisions-total` | 128,300 | 115,872 |
+| `asylum/people-granted-protection-or-other-leave-at-initial-decision` | 48,581 | 42,394 |
+| `asylum/asylum-refusals` | 79,719 | 73,478 |
+| `asylum/asylum-withdrawals` | 16,901 | 16,265 |
+| `asylum/asylum-backlog-people-awaiting-an-initial-decision` | 48,758 | 40,168 |
+| `asylum/asylum-backlog-cases-awaiting-an-initial-decision` | 35,744 | 32,401 |
+| `asylum/people-in-receipt-of-asylum-support` | 97,519 | 93,293 |
+| `asylum/people-in-asylum-hotel-accommodation` | 20,885 | 16,021 |
+| `asylum/returns-asylum-related` | 11,918 | 12,568 |
+| `asylum/asylum-applications-main-applicants` | 76,714 | 69,848 |
+| `asylum/small-boat-arrivals-latest-year` | 39,271 (renamed) | 33,374 |
+| `asylum/detected-unauthorised-arrivals-latest-year` | 43,806 (renamed) | 38,086 |
+| `asylum/returns-enforced` | 9,723 | 9,669 |
+| `asylum/returns-voluntary` | 29,284 | 30,936 |
+| `asylum/returns-refused-entry-at-port` | 17,623 | 18,646 |
+| `asylum/returns-enforced-plus-voluntary` | 39,007 | 40,605 |
+| `population/british-citizenship-grants` | 236,512 | 245,520 |
+| `population/british-citizenship-applications` | 312,063 | 315,224 |
+| `population/british-citizenship-grants-by-naturalisation` | 165,429 | 171,435 |
+| `population/british-citizenship-grants-by-registration` | 71,083 | 74,085 |
+| `population/british-citizenship-grants-previous-year` | 269,178 | 257,070 |
+| `population/british-citizenship-applications-previous-year` | 263,440 | 270,254 |
+| `population/settlement-grants` | 152,306 | 199,628 |
+| `migration/work-visas-granted` | 252,775 | 234,841 |
+| `migration/sponsored-study-visas-granted` | 409,954 | 383,455 |
+| `migration/family-visas-granted` | 62,470 | 57,590 |
+| `migration/visitor-visas-granted` | 2,241,997 | 2,185,158 |
+| `migration/total-entry-clearance-visas-granted` | 778,625 | 727,487 |
+| `asylum/asylum-administrative-outcomes` | 5,931 | 2,347 |
+| `asylum/asylum-claims-from-unaccompanied-children` | 3,627 | 4,275 |
+| `asylum/ukraine-schemes-cumulative-out-of-country-visas-granted` | 286,143 | 290,044 |
+| `asylum/hong-kong-bn-visas-cumulative-grants-since-january-2021` | 186,319 | 187,552 |
+| `asylum/afghan-resettlement-programme-cumulative-arrivals` | 38,617 | 39,058 |
+| `asylum/total-people-resettled-latest-year` | 4,894 | 3,840 |
+| `population/eu-settlement-scheme-settled-status-grants` | 370,535 | 336,229 |
+| `migration/health-and-care-worker-visas-granted` | 10,509 | 7,228 |
+| `asylum/asylum-initial-decision-grant-rate` | 39 | 38 |
+| `asylum/people-in-asylum-accommodation` | 93,653 | 89,089 |
+| `asylum/asylum-applications-2025` | 100,625 | 101,911 |
+
+**Six figures were re-read and held**: the June 2023 backlog peak of 175,457, which the Home Office
+restates in its own words; the casework-system total of 224,742, which the release still calls the
+latest available; the 2022 small boats peak of 45,774, re-derived as the unique maximum across the
+whole row rather than carried forward; the calendar-2025 small boats total; the 2019 backlog point;
+and Pakistan's 10% share, where the underlying arithmetic moved from 9,438 of 93,525 to 8,305 of
+85,891 and still rounds to 10. Their citations moved to this edition even though their values did
+not, because a record left on the old edition reads as behind for ever.
+
+**Two record ids were renamed.** `small-boat-arrivals-year-ending-march-2026` and
+`detected-unauthorised-arrivals-year-ending-march-2026` carried a period this release made false.
+They are now `-latest-year`; the period lives in `period_label` and `date`, where the contract puts
+it. Their March evidence entries keep the old refs as history.
+
+**One grade changed, because the source changed shape.** `small-boat-arrivals` was `calculated`
+only because table IER_01 had no year-ending column and the figure had to be summed from IER_02a's
+monthly cells. This edition prints a Year ending June 2026 column, so the Home Office states the
+figure and the derivation is retired. Nothing was wrong before.
+
+**Three things a reader should not misread.** Administrative outcomes fall from 5,931 to 2,347
+because a 2025 Q2 spike of 3,807, mostly 3,131 voided cases, leaves the twelve-month window: that
+is the window and not a trend. The publisher has revised the older quarters, so the four that
+produced 5,931 now print 5,807. And the EU Settlement Scheme settled-status figure no longer
+reconciles exactly against table EUSS_QTR as it did last edition: settled conclusions of 258,205
+plus the 78,210 automated grants the release states give 336,415, which is 186 more than the
+published 336,229.
+
+**Page prose moved with the figures**, 60 asserted edits across 16 files, wherever a sentence named
+a period beside a token that now renders a June 2026 figure. Six references to HMCTS appeals
+figures are deliberately untouched, because that publisher is on a different cycle and did not move.
+
+**What this release splits, and the three sentences it corrects.** It splits what used to be a
+single date: asylum support and the first-decision queue are now at 30 June 2026, while the appeals
+queue is still at 31 March 2026 because HMCTS publishes on its own cycle. Three sentences treated
+them as one date, on `/sources-and-method/` and on two claim pages. No substitution reached them,
+which is why they were left when the other 60 period edits were applied: each needed a sentence
+rather than a date. All three are corrected here.
+
+**That correction has a known expiry, and it is stated rather than left to be discovered.** The
+Ministry of Justice publishes tribunals statistics for April to June 2026 on 10 September 2026,
+taken from GOV.UK's own statistics announcement. That release moves the appeals figures to
+30 June 2026 and puts the two queues back on one date, so all three sentences go false again in the
+opposite direction on the day it lands. The period check added the same day catches the figures
+beside them; it cannot catch the prose, which stays a published limit.
+
 ### The release check waits when a publisher says later, 21 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** It records what

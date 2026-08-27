@@ -37,7 +37,7 @@ change, but the direction is not in doubt.
 
 Asylum did not fall with it. {{asylum/asylum-applications-2025}} people claimed asylum in
 calendar year 2025, the second highest figure in the calendar-year series this site holds,
-behind 2024 alone. On the year ending March 2026, the measure the rest of this site uses,
+behind 2024 alone. On the year ending June 2026, the measure the rest of this site uses,
 the figure is {{asylum/asylum-applications}}.
 
 So over the period in which net migration fell by most of its value, asylum claims stayed
@@ -108,7 +108,7 @@ development. ONS advises that estimates either side of June 2021 are not directl
 because the method used to produce them changed.
 
 Asylum applications and the initial-decision queue: Home Office, immigration system
-statistics, year ending March 2026, published 21 May 2026, on the
+statistics, year ending June 2026, published 27 August 2026, on the
 [people basis](/what-the-words-mean/#people-and-cases), main applicants plus dependants.
 
 Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics. A
@@ -117,7 +117,8 @@ different publisher on a different cycle, and provisional.
 **This page compares periods that do not line up, and says so rather than hiding it.** The
 net migration peak is a year ending March; the latest net migration figure is a year ending
 December; the asylum applications figure is a calendar year; the queues are point-in-time
-stocks at 31 March 2026. None of those can be subtracted from another. The argument here does
+stocks at different dates, the first-decision queue at 30 June 2026 and the appeals queue at
+31 March 2026. None of those can be subtracted from another. The argument here does
 not need them to be: it needs only that one series fell steeply while the other did not, which
 holds on any of the periods available.
 

@@ -21,13 +21,13 @@ layout: claim.njk
 permalink: /common-claims/refused-asylum-seekers-are-eventually-recognised/
 order: 6
 suppressPageHeader: true
-period: year ending March 2026
+period: year ending June 2026
 source: Home Office; Ministry of Justice/HMCTS
 ---
 
 ## What the data says
 
-In the year ending March 2026, {{asylum/asylum-initial-decision-grant-rate}}% of initial
+In the year ending June 2026, {{asylum/asylum-initial-decision-grant-rate}}% of initial
 decisions resulted in a grant of protection or other leave. That rate is published on the
 **main-applicant** basis.
 
@@ -42,8 +42,8 @@ at a hearing or on the papers at the First-tier Tribunal in the quarter January 
 asylum and protection appeals disposed of in that quarter were determined at all: 35% were
 withdrawn, 6% struck out and 6% invalid or out of time.
 
-Separately, for claims made between 2007 and 2020, the Home Office's cohort analysis puts
-the grant rate at the latest outcome 17 to 29 percentage points above the initial rate
+Separately, for claims made between 2007 and 2022, the Home Office's cohort analysis puts
+the grant rate at the latest outcome 8 to 29 percentage points above the initial rate
 for the same cohort, a gap the publisher attributes to appeals and reconsiderations, so it
 is not appeals alone. Claims reinstated after a withdrawal or an administrative outcome may
 also feed the later figure; that reading is this site's inference, not a link the publisher
@@ -91,7 +91,7 @@ and other grants. A rise in grants of protection or other leave is therefore not
 as a rise in refugee recognition, which is what this claim asserts.
 
 There is also a period problem worth naming. The {{asylum/asylum-initial-decision-grant-rate}}% initial grant rate covers a full
-year to March 2026. The {{asylum/asylum-appeal-success-rate}}% appeal success rate covers a single quarter. Setting one
+year to June 2026. The {{asylum/asylum-appeal-success-rate}}% appeal success rate covers a single quarter. Setting one
 directly against the other, as though they described the same population over the same
 period, is not a valid comparison, and it is the comparison the claim implicitly makes.
 
@@ -122,7 +122,7 @@ a large tranche of the relevant cases has not concluded.
 ## Source notes
 
 Initial decisions and grant rate: Home Office, immigration system statistics, year ending
-March 2026, published 21 May 2026. The published [grant rate](/what-the-words-mean/#grant-rate) is calculated on main
+June 2026, published 27 August 2026. The published [grant rate](/what-the-words-mean/#grant-rate) is calculated on main
 applicants; the refusal count above is on the [people basis](/what-the-words-mean/#people-and-cases),
 including dependants. The two
 bases are not interchangeable, which is why the rate and the count are cited separately
@@ -135,11 +135,11 @@ provisional and liable to revision; the three quarters before it in the same tab
 already been revised once.
 
 **This page mixes three reference periods,** and they cannot be set against one another: a
-year to March 2026 for the initial decisions, a quarter to March 2026 for the appeals, and
-cohorts of claims made between 2007 and 2020 for the later grant rates.
+year to June 2026 for the initial decisions, a quarter to March 2026 for the appeals, and
+cohorts of claims made between 2007 and 2022 for the later grant rates.
 
-The 17 to 29 percentage point gap is a cohort measurement covering claims made between
-2007 and 2020, not a current one, and it must not be applied to the latest year to produce
+The 8 to 29 percentage point gap is a cohort measurement covering claims made between
+2007 and 2022, not a current one, and it must not be applied to the latest year to produce
 a final rate. The Home Office says the initial rate in its cohort table "will not match the
 grant rate in the 'initial decisions' dataset as they relate to a different cohort of
 initial decisions", and that more recent cohorts are not comparable because more of their

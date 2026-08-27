@@ -70,7 +70,7 @@ interchangeably in this argument:
   estimate of the non-EU+ long-term arrivals it counts as asylum applicants in the year
   ending December 2025. Humanitarian routes are a separate category and are not in it.
 - **Asylum applications**, {{asylum/asylum-applications}}, a Home Office count of people
-  claiming asylum in the year ending **March 2026**.
+  claiming asylum in the year ending **June 2026**.
 - **Small boat arrivals**, [a count of one route of arrival](/what-the-words-mean/#small-boat-arrivals), which overlaps with both of
   the above without being either.
 
@@ -99,7 +99,7 @@ back further.
 
 Office for National Statistics, long-term international migration, provisional, year
 ending December 2025, published 21 May 2026. Home Office, immigration system statistics,
-year ending March 2026, published 21 May 2026.
+year ending June 2026, published 27 August 2026.
 
 **Important limitation on the reason breakdown.** ONS publishes reason splits for non-EU+
 arrivals only, and they describe the inflow, not net migration. There is no headline

@@ -4,8 +4,8 @@ claim: A refusal means the original claim was obviously false.
 short_answer: >-
   Not necessarily. A refusal records that the legal test was not met on the evidence before
   the decision-maker, which is not the same as a finding that the account was untrue. For
-  claims made between 2007 and 2020 the Home Office puts the grant rate at the latest
-  outcome 17 to 29 percentage points above the initial rate, so refusals are overturned at
+  claims made between 2007 and 2022 the Home Office puts the grant rate at the latest
+  outcome 8 to 29 percentage points above the initial rate, so refusals are overturned at
   scale. Most still stand, which is what the mirror claim gets wrong.
 direction: restrictionist
 error_type: a legal outcome read as a finding of fact
@@ -22,13 +22,13 @@ layout: claim.njk
 permalink: /common-claims/a-refusal-means-the-claim-was-obviously-false/
 order: 9
 suppressPageHeader: true
-period: year ending March 2026
+period: year ending June 2026
 source: Home Office; Ministry of Justice/HMCTS
 ---
 
 ## What the data says
 
-In the year ending March 2026, {{asylum/asylum-initial-decisions-total}} people received an
+In the year ending June 2026, {{asylum/asylum-initial-decisions-total}} people received an
 initial decision on an asylum claim and {{asylum/asylum-refusals}} were refused. Both counts
 are on the **people** basis, main applicants plus dependants. The published
 [grant rate](/what-the-words-mean/#grant-rate) for the same period is
@@ -36,7 +36,7 @@ are on the **people** basis, main applicants plus dependants. The published
 and the counts are not two views of one sum and must not be divided into each other.
 
 **Refusals are overturned at scale.** For claims made between 2007 and
-2020, the Home Office's own cohort analysis puts the grant rate at the latest outcome 17 to
+2022, the Home Office's own cohort analysis puts the grant rate at the latest outcome 8 to
 29 percentage points above the initial rate for the same year of claim. The publisher
 attributes that gap to appeals and reconsiderations. Whatever else it shows, a body of
 refusals that large being replaced by grants is hard to square with those claims having been
@@ -103,12 +103,12 @@ says it does not make.
 ## Source notes
 
 Initial decisions, refusals and the grant rate: Home Office, immigration system statistics,
-year ending March 2026, published 21 May 2026. The counts are on the
+year ending June 2026, published 27 August 2026. The counts are on the
 [people basis](/what-the-words-mean/#people-and-cases) and the rate is on main applicants;
 the two bases are not interchangeable.
 
 The cohort figures: the Home Office's outcome analysis of asylum claims, covering claims made
-between 2007 and 2020. It is a cohort measurement and not a current one, and it must not be
+between 2007 and 2022. It is a cohort measurement and not a current one, and it must not be
 applied to the latest year to produce a final rate. The Home Office says the initial rate in
 that table "will not match the grant rate in the 'initial decisions' dataset as they relate
 to a different cohort of initial decisions". Its own terms for the later figure are "latest
@@ -120,8 +120,8 @@ to March 2026. A different publisher on a different cycle, and a single quarter 
 year. The latest quarter is provisional.
 
 **This page mixes reference periods and does not set them against one another:** a year to
-March 2026 for the decisions, a quarter to March 2026 for the appeals, and cohorts of claims
-made between 2007 and 2020 for the later grant rates.
+June 2026 for the decisions, a quarter to March 2026 for the appeals, and cohorts of claims
+made between 2007 and 2022 for the later grant rates.
 
 **On selection.** This site checks propositions that circulate rather than quotations
 attributed to particular people, as the [style guide](/style-guide/) sets out.
