@@ -117,7 +117,8 @@ different publisher on a different cycle, and provisional.
 **This page compares periods that do not line up, and says so rather than hiding it.** The
 net migration peak is a year ending March; the latest net migration figure is a year ending
 December; the asylum applications figure is a calendar year; the queues are point-in-time
-stocks at 31 March 2026. None of those can be subtracted from another. The argument here does
+stocks at different dates, the first-decision queue at 30 June 2026 and the appeals queue at
+31 March 2026. None of those can be subtracted from another. The argument here does
 not need them to be: it needs only that one series fell steeply while the other did not, which
 holds on any of the periods available.
 

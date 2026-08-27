@@ -119,7 +119,7 @@ current, and deliberately shown as stale rather than dropped**, because the gap 
 the wider breakdown was suspended pending a new caseworking system.
 
 **This page compares stocks with stocks and does not subtract across publishers.** The
-first-decision and appeals queues are both point-in-time counts at 31 March 2026, but they are
+first-decision and appeals queues are point-in-time counts at different dates, 30 June 2026 and 31 March 2026, and they are
 counted by different bodies in different units, so the sentence naming both gives each its own
 figure rather than a total or a difference.
 
