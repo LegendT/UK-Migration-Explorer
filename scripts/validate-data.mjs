@@ -195,6 +195,38 @@ function checkPeriod(where, metric) {
   if (!metric.period_label.includes(String(year)) && !metric.period_label.includes(String(year - 1))) {
     errors.push(`${where}: date ${metric.date} does not fall in period "${metric.period_label}"`);
   }
+  checkLabelDays(where, metric);
+}
+
+// The rule above asks only that the YEAR appears, which is why "as at 31 June 2026" passed it
+// on five published records on 27 August 2026: the substitution that rewrote the month ran
+// before the one that would have rewritten the day, and nothing looked at the day at all.
+// A month name and a day are both in the label, so both are checkable.
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+const DAY_IN_LABEL = /\b(\d{1,2}) (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})\b/g;
+
+function checkLabelDays(where, metric) {
+  const label = metric.period_label;
+  for (const [, d, month, y] of label.matchAll(DAY_IN_LABEL)) {
+    const day = Number(d);
+    const monthIndex = MONTHS.indexOf(month);
+    // Date rolls an impossible day into the next month, so a round trip catches it.
+    const probe = new Date(Date.UTC(Number(y), monthIndex, day));
+    if (probe.getUTCMonth() !== monthIndex || probe.getUTCDate() !== day) {
+      errors.push(`${where}: period "${label}" names ${d} ${month} ${y}, which is not a real date`);
+    }
+  }
+  // A point-in-time label states the same day the record is filed under, or one of them is wrong.
+  if (/^as at /.test(label)) {
+    const m = label.match(/^as at (\d{1,2}) (January|February|March|April|May|June|July|August|September|October|November|December) (\d{4})/);
+    if (m) {
+      const iso = `${m[3]}-${String(MONTHS.indexOf(m[2]) + 1).padStart(2, '0')}-${String(Number(m[1])).padStart(2, '0')}`;
+      if (iso !== metric.date) {
+        errors.push(`${where}: period "${label}" is a point in time but date is ${metric.date}`);
+      }
+    }
+  }
 }
 
 // --- no data file goes unvalidated ---------------------------------------------

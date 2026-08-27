@@ -759,6 +759,51 @@ if (!robots) {
   }
 }
 
+// A CITATION PROTECTS THE VALUE AND NEVER THE SENTENCE AROUND IT, which this site publishes as
+// a limit. On 27 August 2026 that let two live sentences state the year ending March 2026 beside
+// a figure from the year ending June 2026, and both had survived a sweep of content/ because the
+// phrase wrapped across source lines: one line ended "year ending March" and the next began
+// "2026.". The built page is where that wrap is gone, so this reads the output, not the source.
+//
+// DELIBERATELY NARROW. Only a sentence stating exactly ONE period and citing exactly ONE record
+// is judged. A sentence naming two periods, or two figures, is ordinary on this site and is
+// skipped rather than guessed at: a first draft that judged those too produced four false hits in
+// seven, every one a card's citation block running into the next card's.
+const MONTH_NAMES = 'January|February|March|April|May|June|July|August|September|October|November|December';
+const STATED_PERIOD = new RegExp('(?:year ending|year to|quarter to|as at \\d{1,2}) (' + MONTH_NAMES + ') (\\d{4})', 'g');
+const REF_MARKER = /\[\[([a-z]+\/[a-z0-9-]+)\]\]/g;
+const periodRecords = registry();
+let periodSentences = 0;
+
+for (const file of pages) {
+  const where = relative(siteDir, file);
+  // A citation block names the EDITION a figure was read from, which is a different thing from
+  // the period the figure covers and is legitimately "year ending March 2026" beside a 2022 peak.
+  // Scanning those produced two false hits on the first run, both a card's source line.
+  const marked = readFileSync(file, 'utf8')
+    .replace(/<p[^>]*class="[^"]*source[^"]*"[\s\S]*?<\/p>/g, ' ')
+    .replace(/<span[^>]*data-metric="([^"]+)"[^>]*>/g, ' [[$1]] ');
+  const text = unescape(marked.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
+
+  for (const sentence of text.split(/(?<=\.)\s+/)) {
+    const periods = [...new Set([...sentence.matchAll(STATED_PERIOD)].map((m) => m[1] + ' ' + m[2]))];
+    const refs = [...new Set([...sentence.matchAll(REF_MARKER)].map((m) => m[1]))]
+      .filter((r) => periodRecords.has(r));
+    if (periods.length !== 1 || refs.length === 0) continue;
+    periodSentences += 1;
+    // At least one cited figure must actually be from the period the sentence states. Requiring
+    // ALL of them to be would fire on an ordinary sentence that names a current figure and a
+    // historical peak in one breath; requiring exactly one ref, as this first did, skipped the
+    // defect it was written for, because the sentence that carried it cited two.
+    const covers = refs.filter((r) => periodRecords.get(r).period_label.includes(periods[0]));
+    if (covers.length === 0) {
+      errors.push(where + ': "' + sentence.trim().slice(0, 120) + '" states ' + periods[0]
+        + ', and no figure it cites is from that period: '
+        + refs.map((r) => r + ' covers "' + periodRecords.get(r).period_label + '"').join('; '));
+    }
+  }
+}
+
 if (errors.length) {
   console.error(`Build checks failed, ${errors.length} problem(s):\n`);
   for (const error of errors) console.error(`  ${error}`);
@@ -776,4 +821,5 @@ console.log(`sitemap.xml lists ${sitemapUrls} URLs, the built pages other than 4
 console.log(`${counts.published} of ${counts.records} records reach a reader, ${counts.reserve} are unpublished reserve, and the counts on /sources-and-method/ render from that rather than being typed.`);
 console.log(`Of those, ${inOutput.size} are confirmed in the built HTML, outside comments: every ref counted from a token must appear there, and every ref appearing there must be one this site counts as published. Not established: that the other ${counts.published - inOutput.size}, reaching a reader only through a \`"ref" | metric\` chart summary, render at all. That route interpolates a bare number into a concatenated string with no element to carry an attribute, and the string is escaped into the chart's SVG <desc> as its accessible description, so tracing it means holding the same sentence in two forms rather than adding a wrapper. The chart-bar and dashboard-card routes were in this residual until 18 August 2026 and now name their record.`);
 console.log(`Structured data: ${[...ldTypes].map(([url, types]) => `${url} ${[...types].sort().join(', ')}`).join('; ')}. Every block parses and every URL in one that points at this site resolves. Not established: that a consumer accepts the vocabulary, which is a claim about a schema and about Google rather than about this build.`);
+console.log(`${periodSentences} sentence(s) in the built site state exactly one period beside at least one cited figure, and in each the stated period is one that some figure it cites actually covers. Not established: a sentence naming two periods, which is skipped as ordinary here; whether the OTHER figures in such a sentence belong to that period; and anything about the VERB around a figure, which stays the published limit.`);
 console.log('External source URLs are not checked here, run npm run check-sources.');
