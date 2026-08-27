@@ -56,7 +56,7 @@ support figure is a subset of its own system total. The hotel figure is the Home
 out of a different aggregate in the accounts, and no publisher places it inside either of the
 other two.
 
-**Hotels also house a minority of the people being accommodated.** As at 30 June 2026, a year
+**Hotels also house a minority of the people being accommodated.** As at 30 June 2026, fifteen months
 later than the spending figures above, there were
 {{asylum/people-in-asylum-hotel-accommodation}} people in hotel accommodation and
 {{asylum/people-in-asylum-accommodation}} in asylum accommodation of all kinds, so fewer than a
