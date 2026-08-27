@@ -162,7 +162,7 @@ the reason two honest sources can appear to contradict each other.
 
 The two that catch people most often are worth putting in plain terms.
 
-**People and cases are different counts.** In the year ending March 2026 there were
+**People and cases are different counts.** In the year ending June 2026 there were
 {{asylum/asylum-applications}} people claiming asylum and
 {{asylum/asylum-applications-main-applicants}} main-applicant applications. Both are
 correct; they count different things. Dividing one by the other, or comparing a figure on
@@ -185,13 +185,13 @@ cycles, and not every period is a twelve-month window. At the last update:
 
 | Measure | Period |
 | --- | --- |
-| Asylum, returns, visas, settlement, citizenship | Year ending March 2026 |
+| Asylum, returns, visas, settlement, citizenship | Year ending June 2026 |
 | Net migration, immigration, emigration | Year ending December 2025 |
 | Asylum support, backlogs, appeals | Point-in-time, 31 March 2026, one date rather than a window |
 | Foreign-born population | 2021/22 Census, with a rolled-forward estimate for mid-2024 |
 | Asylum system spending | Financial year 2024-25 |
 
-Comparing a year-ending-March figure with a year-ending-December one and calling the
+Comparing a year-ending-June figure with a year-ending-December one and calling the
 difference a change is invalid. Where this site puts two figures near each other, it labels
 the period on both.
 

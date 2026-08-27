@@ -25,13 +25,13 @@ layout: claim.njk
 permalink: /common-claims/small-boat-arrivals-are-the-whole-asylum-system/
 order: 11
 suppressPageHeader: true
-period: year ending March 2026
+period: year ending June 2026
 source: Home Office
 ---
 
 ## What the data says
 
-**Two figures, one year, one publisher.** In the year ending March 2026 there were
+**Two figures, one year, one publisher.** In the year ending June 2026 there were
 {{asylum/small-boat-arrivals-latest-year}}
 [small boat arrivals](/what-the-words-mean/#small-boat-arrivals) and
 {{asylum/asylum-applications}} people
@@ -108,7 +108,7 @@ choosing which denominator goes unmentioned.
 
 Small boat arrivals, detected unauthorised arrivals, asylum claims, initial decisions, asylum
 support, asylum-related returns and resettlement: Home Office, immigration system statistics,
-year ending March 2026, published 21 May 2026. Appeals: HM Courts and Tribunals Service and
+year ending June 2026, published 27 August 2026. Appeals: HM Courts and Tribunals Service and
 the Ministry of Justice, as at 31 March 2026, a different publisher on a different cycle.
 
 **Two of the figures on this page are summed by this site rather than published as totals**,

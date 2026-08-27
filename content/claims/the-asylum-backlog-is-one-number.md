@@ -23,14 +23,14 @@ layout: claim.njk
 permalink: /common-claims/the-asylum-backlog-is-one-number/
 order: 10
 suppressPageHeader: true
-period: as at 31 March 2026
+period: as at 30 June 2026
 source: Home Office; Ministry of Justice/HMCTS
 ---
 
 ## What the data says
 
 **Start with the smallest version of the problem.** One queue, the wait for a first Home
-Office decision, is published as two figures for the same 31 March 2026:
+Office decision, is published as two figures for the same 30 June 2026:
 {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people, or
 {{asylum/asylum-backlog-cases-awaiting-an-initial-decision}} cases. Nothing is wrong with
 either. They count [people or main applicants](/what-the-words-mean/#people-and-cases), and
@@ -108,7 +108,7 @@ queue is meant, which is why the fix for both is the same question.
 ## Source notes
 
 First-decision queue, the peak, the 2019 figure and asylum support: Home Office, immigration
-system statistics, year ending March 2026, published 21 May 2026. The people and cases
+system statistics, year ending June 2026, published 27 August 2026. The people and cases
 figures for the queue come from the same release and count different things.
 
 Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics, as at 31

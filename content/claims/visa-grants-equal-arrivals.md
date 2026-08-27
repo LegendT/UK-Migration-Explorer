@@ -23,14 +23,14 @@ layout: claim.njk
 permalink: /common-claims/visa-grants-equal-arrivals/
 order: 12
 suppressPageHeader: true
-period: year ending March 2026
+period: year ending June 2026
 source: Home Office and ONS
 ---
 
 ## What the data says
 
 **Two counts, two publishers, and they are not two versions of one number.** In the year ending
-March 2026 the Home Office granted {{migration/total-entry-clearance-visas-granted}} entry
+June 2026 the Home Office granted {{migration/total-entry-clearance-visas-granted}} entry
 clearance [visas](/what-the-words-mean/#visa-grant), excluding visitor and transit routes. Over
 the year ending December 2025 the ONS estimated that
 {{migration/total-long-term-immigration}} people immigrated to the UK long-term. Both totals are
@@ -58,7 +58,7 @@ because the labels do.
 
 **A grant is permission, and permission can go unused.** The clearest case the data layer holds is
 the Ukraine schemes, where {{asylum/ukraine-schemes-cumulative-out-of-country-visas-granted}}
-out-of-country visas were granted between March 2022 and the end of March 2026. Out of country is
+out-of-country visas were granted between March 2022 and the end of June 2026. Out of country is
 in the name of the
 measure: it counts permission issued to people who were not in the UK, which is a different event
 from anyone landing. The grant total is not an arrivals total and nothing on this page turns it
@@ -119,7 +119,7 @@ into "these are unrelated", which does not follow.
 ## Source notes
 
 Entry clearance, visitor, sponsored study, work and family visa grants, and the Ukraine schemes
-total: Home Office, immigration system statistics, year ending March 2026, published 21 May 2026.
+total: Home Office, immigration system statistics, year ending June 2026, published 27 August 2026.
 Long-term immigration: ONS, long-term international migration, provisional, year ending
 December 2025, a different publisher on a different period and a different definition.
 

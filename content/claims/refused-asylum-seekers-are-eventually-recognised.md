@@ -21,13 +21,13 @@ layout: claim.njk
 permalink: /common-claims/refused-asylum-seekers-are-eventually-recognised/
 order: 6
 suppressPageHeader: true
-period: year ending March 2026
+period: year ending June 2026
 source: Home Office; Ministry of Justice/HMCTS
 ---
 
 ## What the data says
 
-In the year ending March 2026, {{asylum/asylum-initial-decision-grant-rate}}% of initial
+In the year ending June 2026, {{asylum/asylum-initial-decision-grant-rate}}% of initial
 decisions resulted in a grant of protection or other leave. That rate is published on the
 **main-applicant** basis.
 
@@ -122,7 +122,7 @@ a large tranche of the relevant cases has not concluded.
 ## Source notes
 
 Initial decisions and grant rate: Home Office, immigration system statistics, year ending
-March 2026, published 21 May 2026. The published [grant rate](/what-the-words-mean/#grant-rate) is calculated on main
+June 2026, published 27 August 2026. The published [grant rate](/what-the-words-mean/#grant-rate) is calculated on main
 applicants; the refusal count above is on the [people basis](/what-the-words-mean/#people-and-cases),
 including dependants. The two
 bases are not interchangeable, which is why the rate and the count are cited separately
@@ -135,7 +135,7 @@ provisional and liable to revision; the three quarters before it in the same tab
 already been revised once.
 
 **This page mixes three reference periods,** and they cannot be set against one another: a
-year to March 2026 for the initial decisions, a quarter to March 2026 for the appeals, and
+year to June 2026 for the initial decisions, a quarter to March 2026 for the appeals, and
 cohorts of claims made between 2007 and 2020 for the later grant rates.
 
 The 17 to 29 percentage point gap is a cohort measurement covering claims made between

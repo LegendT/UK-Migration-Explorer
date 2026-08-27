@@ -56,7 +56,7 @@ support figure is a subset of its own system total. The hotel figure is the Home
 out of a different aggregate in the accounts, and no publisher places it inside either of the
 other two.
 
-**Hotels also house a minority of the people being accommodated.** As at 31 March 2026, a year
+**Hotels also house a minority of the people being accommodated.** As at 30 June 2026, a year
 later than the spending figures above, there were
 {{asylum/people-in-asylum-hotel-accommodation}} people in hotel accommodation and
 {{asylum/people-in-asylum-accommodation}} in asylum accommodation of all kinds, so fewer than a
@@ -143,7 +143,7 @@ Cost per person per night: Home Office April 2024 business case, quoted in the I
 Inspector of Borders and Immigration, An inspection of contingency asylum accommodation, paragraph
 5.14. Approximate, for the three months to June 2023, and the oldest figures on this page.
 
-People in accommodation: Home Office, immigration system statistics, year ending March 2026. The
+People in accommodation: Home Office, immigration system statistics, year ending June 2026. The
 hotel count is published; the accommodation total is this site's sum of the two components the
 Home Office publishes, hotel accommodation and other accommodation. It is not the support total,
 which also includes people receiving subsistence only.

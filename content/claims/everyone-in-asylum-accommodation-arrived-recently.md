@@ -20,13 +20,13 @@ layout: claim.njk
 permalink: /common-claims/everyone-in-asylum-accommodation-arrived-recently/
 order: 4
 suppressPageHeader: true
-period: as at 31 March 2026
+period: as at 30 June 2026
 source: Home Office
 ---
 
 ## What the data says
 
-As at 31 March 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
+As at 30 June 2026, {{asylum/people-in-receipt-of-asylum-support}} people were in
 receipt of [asylum support](/what-the-words-mean/#asylum-support): accommodation,
 subsistence payments, or both. Being supported and being accommodated are not the same
 count. {{asylum/people-in-asylum-accommodation}} people were in accommodation, hotel or
@@ -50,7 +50,7 @@ interchangeable.
 
 The confusion is easy to fall into because the two figures happen to be of similar
 magnitude. {{asylum/asylum-applications-2025}} people claimed asylum during 2025; {{asylum/people-in-receipt-of-asylum-support}} were being
-supported on one day in March 2026. Those look like the same quantity and are not. One is
+supported on one day in June 2026. Those look like the same quantity and are not. One is
 a flow measured over twelve months; the other is a stock measured at an instant. Someone
 who claimed asylum in 2023 and is still waiting could appear in the second and not the
 first, if they are receiving support. Someone who claimed and was granted status quickly
@@ -79,8 +79,8 @@ question the available figures do not answer.
 
 ## Source notes
 
-Home Office, immigration system statistics, year ending March 2026, published 21 May
-2026. Support and accommodation figures are point-in-time counts as at 31 March 2026.
+Home Office, immigration system statistics, year ending June 2026, published 27 August
+2026. Support and accommodation figures are point-in-time counts as at 30 June 2026.
 
 The support figure excludes unaccompanied asylum-seeking children, who are supported by
 local authorities and counted separately. It is not the accommodation figure: it also

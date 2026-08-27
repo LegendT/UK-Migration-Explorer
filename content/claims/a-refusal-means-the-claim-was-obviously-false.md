@@ -22,13 +22,13 @@ layout: claim.njk
 permalink: /common-claims/a-refusal-means-the-claim-was-obviously-false/
 order: 9
 suppressPageHeader: true
-period: year ending March 2026
+period: year ending June 2026
 source: Home Office; Ministry of Justice/HMCTS
 ---
 
 ## What the data says
 
-In the year ending March 2026, {{asylum/asylum-initial-decisions-total}} people received an
+In the year ending June 2026, {{asylum/asylum-initial-decisions-total}} people received an
 initial decision on an asylum claim and {{asylum/asylum-refusals}} were refused. Both counts
 are on the **people** basis, main applicants plus dependants. The published
 [grant rate](/what-the-words-mean/#grant-rate) for the same period is
@@ -103,7 +103,7 @@ says it does not make.
 ## Source notes
 
 Initial decisions, refusals and the grant rate: Home Office, immigration system statistics,
-year ending March 2026, published 21 May 2026. The counts are on the
+year ending June 2026, published 27 August 2026. The counts are on the
 [people basis](/what-the-words-mean/#people-and-cases) and the rate is on main applicants;
 the two bases are not interchangeable.
 
@@ -120,7 +120,7 @@ to March 2026. A different publisher on a different cycle, and a single quarter 
 year. The latest quarter is provisional.
 
 **This page mixes reference periods and does not set them against one another:** a year to
-March 2026 for the decisions, a quarter to March 2026 for the appeals, and cohorts of claims
+June 2026 for the decisions, a quarter to March 2026 for the appeals, and cohorts of claims
 made between 2007 and 2020 for the later grant rates.
 
 **On selection.** This site checks propositions that circulate rather than quotations
