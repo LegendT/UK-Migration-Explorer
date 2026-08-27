@@ -12,9 +12,9 @@ error_type: a route of arrival read as the whole system
 last_reviewed: 2026-08-05
 review_due: 2027-08-05
 figures:
-  - asylum/small-boat-arrivals-year-ending-march-2026
+  - asylum/small-boat-arrivals-latest-year
   - asylum/asylum-applications
-  - asylum/detected-unauthorised-arrivals-year-ending-march-2026
+  - asylum/detected-unauthorised-arrivals-latest-year
   - asylum/asylum-initial-decisions-total
   - asylum/asylum-appeals-backlog
   - asylum/people-in-receipt-of-asylum-support
@@ -32,7 +32,7 @@ source: Home Office
 ## What the data says
 
 **Two figures, one year, one publisher.** In the year ending March 2026 there were
-{{asylum/small-boat-arrivals-year-ending-march-2026}}
+{{asylum/small-boat-arrivals-latest-year}}
 [small boat arrivals](/what-the-words-mean/#small-boat-arrivals) and
 {{asylum/asylum-applications}} people
 [claimed asylum](/what-the-words-mean/#asylum-application). There were fewer than half as many
@@ -49,7 +49,7 @@ The two numbers sit side by side above; what they do not do is answer a question
 same people.
 
 **Small boats are most of one narrower thing.** Of the
-{{asylum/detected-unauthorised-arrivals-year-ending-march-2026}} people detected arriving
+{{asylum/detected-unauthorised-arrivals-latest-year}} people detected arriving
 without permission in the same year, by boat, hidden in vehicles, at ports or found inland,
 small boats are the large majority. That is the sentence the figure actually supports:
 the main [irregular route](/what-the-words-mean/#irregular-arrival), not the main route.

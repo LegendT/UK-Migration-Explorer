@@ -26,8 +26,8 @@ figures:
   - asylum/people-in-asylum-accommodation
   - asylum/people-in-asylum-hotel-accommodation
   - asylum/people-in-receipt-of-asylum-support
-  - asylum/small-boat-arrivals-year-ending-march-2026
-  - asylum/detected-unauthorised-arrivals-year-ending-march-2026
+  - asylum/small-boat-arrivals-latest-year
+  - asylum/detected-unauthorised-arrivals-latest-year
   - asylum/total-asylum-cases-in-the-casework-system
 ---
 <p>A claim is made, a first decision follows, a refusal can be appealed, and throughout that
@@ -63,7 +63,7 @@ the cases basis; and that one also comes from a different publisher on a differe
   summary: 'Claims roughly doubled across the 2010s, from ' ~ (aa.data | at(2010) | number) ~ ' in 2010 to ' ~ (aa.data | at(2019) | number) ~ ' in 2019. They rose steeply to ' ~ (aa.data | at(2022) | number) ~ ' in 2022, fell 8% in 2023, and reached a high of ' ~ (aa.data | at(2024) | number) ~ ' in 2024 before easing to ' ~ (aa.data | at(2025) | number) ~ ' in 2025.',
   unit: 'people per calendar year',
   source: 'Home Office, immigration system statistics, asylum summary tables',
-  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods',
+  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods',
   note: 'PEOPLE basis throughout: main applicants plus dependants. The applications series counts main applicants only and is roughly a fifth lower. Never splice the two. These are calendar years, so they do not line up with the year-ending-March figures elsewhere on this site.'
 } %}
 
@@ -91,7 +91,7 @@ to the whole.</p>
   summary: 'Of ' ~ (decisions.value | number) ~ ' people receiving an initial decision, ' ~ (granted.value | number) ~ ' were granted protection or other leave and ' ~ (refused.value | number) ~ ' were refused. Separately, ' ~ (withdrawn.value | number) ~ ' people had their asylum claims withdrawn.',
   unit: 'people',
   source: 'Home Office, immigration system statistics, asylum summary tables',
-  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods',
+  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods',
   note: 'These three bars are not every outcome. A further ' ~ (administrative.value | number) ~ ' people had an administrative outcome over the same period, mostly voided or suspended cases, and the chart does not show them. The published grant rate of ' ~ grantRate.value ~ '% is calculated on main applicants. Recomputing it from these people-based figures gives 37.9%, which is a different measure, a worked example of why the basis has to be checked before dividing one figure by another.'
 } %}
 
@@ -119,7 +119,7 @@ refusals are overturned"</a> nor "a refusal settles it" survives contact with th
   summary: 'The queue grew substantially through the 2010s, and among the year-end points shown it peaked at the end of 2022. It has since fallen by 60% on the people basis and 63% on the cases basis. The two lines are the same queue counted two ways.',
   unit: 'waiting at 31 December',
   source: 'Home Office, immigration system statistics, asylum summary tables',
-  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a05e023da82768016cb3fa5/asylum-summary-mar-2026-tables.ods',
+  sourceUrl: 'https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods',
   note: 'Both lines describe the same people. The upper counts people including dependants; the lower counts main-applicant cases. Quoting one and comparing it with the other is the most common error made with this figure. Growth through the 2010s was substantial but not uniform: the people line fell between the end of 2014 and the end of 2015, from ' ~ (ab.data | at(2014) | number) ~ ' to ' ~ (ab.data | at(2015) | number) ~ ', while the cases line rose in every year of the decade. The within-year peak was higher than either line shows: ' ~ (backlogPeak.value | number) ~ ' people in ' ~ backlogPeak.period_label ~ '.'
 } %}
 
@@ -169,13 +169,13 @@ local authorities and counted separately.</p>
 
 <h2>Small boats are a route, not the system</h2>
 
-<p>{% figure "asylum/small-boat-arrivals-year-ending-march-2026" %} people were detected arriving by
+<p>{% figure "asylum/small-boat-arrivals-latest-year" %} people were detected arriving by
 small boat in the year ending March 2026, against
 {% figure "asylum/asylum-applications" %} people claiming asylum over the same period.</p>
 
 <p>Small boats are most of the unauthorised arrivals the Home Office detects, but not all of
 them. Detected arrivals by every illegal route came to
-{% figure "asylum/detected-unauthorised-arrivals-year-ending-march-2026" %} over the same twelve
+{% figure "asylum/detected-unauthorised-arrivals-latest-year" %} over the same twelve
 months, the rest being people arriving by air without adequate documents and people detected
 inside the UK or at its ports. <strong>Detected means detected:</strong> the figure cannot count
 anyone nobody found, so it is a floor and not a total.</p>

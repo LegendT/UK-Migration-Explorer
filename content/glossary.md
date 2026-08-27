@@ -25,7 +25,7 @@ figures:
   - asylum/asylum-appeal-success-rate
   - asylum/asylum-initial-decision-grant-rate
   - asylum/people-in-receipt-of-asylum-support
-  - asylum/small-boat-arrivals-year-ending-march-2026
+  - asylum/small-boat-arrivals-latest-year
   - population/foreign-born-share-of-total-uk-population
   - population/non-british-share-of-uk-population
   - population/settlement-grants
@@ -219,7 +219,7 @@ than silently renaming it. Our reasoning is set out on the [style guide](/style-
 ### Small boat arrivals {#small-boat-arrivals}
 
 People detected arriving by small boat across the Channel:
-{{asylum/small-boat-arrivals-year-ending-march-2026}} in the year ending March 2026.
+{{asylum/small-boat-arrivals-latest-year}} in the year ending March 2026.
 
 **Why it matters.** This is one route of arrival, not the asylum system. Most people who
 arrive this way do claim asylum, but they are a subset of all claims, and the figure is

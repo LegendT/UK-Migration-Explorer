@@ -1,0 +1,456 @@
+{
+  "figures": [
+    {
+      "ref": "asylum/asylum-applications",
+      "previous_value": 93525,
+      "value": 85891,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "People claiming asylum, Year ending June 2026: 85,891"
+    },
+    {
+      "ref": "asylum/asylum-initial-decisions-total",
+      "previous_value": 128300,
+      "value": 115872,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "People receiving initial decisions, Year ending June 2026: 115,872"
+    },
+    {
+      "ref": "asylum/people-granted-protection-or-other-leave-at-initial-decision",
+      "previous_value": 48581,
+      "value": 42394,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "Grants of protection or other leave, Year ending June 2026: 42,394"
+    },
+    {
+      "ref": "asylum/asylum-refusals",
+      "previous_value": 79719,
+      "value": 73478,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "Refusals, Year ending June 2026: 73,478"
+    },
+    {
+      "ref": "asylum/asylum-withdrawals",
+      "previous_value": 16901,
+      "value": 16265,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "Withdrawals, Year ending June 2026: 16,265"
+    },
+    {
+      "ref": "asylum/asylum-backlog-people-awaiting-an-initial-decision",
+      "previous_value": 48758,
+      "value": 40168,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "People awaiting an initial decision, Year ending June 2026: 40,168"
+    },
+    {
+      "ref": "asylum/asylum-backlog-cases-awaiting-an-initial-decision",
+      "previous_value": 35744,
+      "value": 32401,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "Cases awaiting an initial decision, Year ending June 2026: 32,401"
+    },
+    {
+      "ref": "asylum/people-in-receipt-of-asylum-support",
+      "previous_value": 97519,
+      "value": 93293,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "Asylum seekers in receipt of support, Year ending June 2026: 93,293"
+    },
+    {
+      "ref": "asylum/people-in-asylum-hotel-accommodation",
+      "previous_value": 20885,
+      "value": 16021,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "Of which accommodated in hotels, Year ending June 2026: 16,021"
+    },
+    {
+      "ref": "asylum/returns-asylum-related",
+      "previous_value": 11918,
+      "value": 12568,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "Asylum-related returns, Year ending June 2026: 12,568"
+    },
+    {
+      "ref": "asylum/asylum-applications-main-applicants",
+      "previous_value": 76714,
+      "value": 69848,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_01a",
+      "quote": "Main applicants, Year ending June 2026: 69,848"
+    },
+    {
+      "ref": "asylum/small-boat-arrivals-latest-year",
+      "previous_value": null,
+      "value": 33374,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a8c11c3a8f84a582b84281a/illegal-entry-routes-to-the-uk-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "IER_01",
+      "quote": "Small boat arrivals, Year ending June 2026: 33,374"
+    },
+    {
+      "ref": "asylum/detected-unauthorised-arrivals-latest-year",
+      "previous_value": null,
+      "value": 38086,
+      "fetched_at": "2026-08-27",
+      "derivation": "33,374 small boat arrivals plus 2,492 inadequately documented air arrivals plus 1,962 recorded detections in the UK plus 258 recorded detections at UK ports, all four the Year ending June 2026 column of table IER_01. The Home Office prints no total row.",
+      "components": [
+        {
+          "value": 33374,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a8c11c3a8f84a582b84281a/illegal-entry-routes-to-the-uk-summary-jun-2026-tables.ods",
+          "quote": "Small boat arrivals, Year ending June 2026: 33,374"
+        },
+        {
+          "value": 2492,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a8c11c3a8f84a582b84281a/illegal-entry-routes-to-the-uk-summary-jun-2026-tables.ods",
+          "quote": "Inadequately documented air arrivals, Year ending June 2026: 2,492"
+        },
+        {
+          "value": 1962,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a8c11c3a8f84a582b84281a/illegal-entry-routes-to-the-uk-summary-jun-2026-tables.ods",
+          "quote": "Recorded detections in the UK, Year ending June 2026: 1,962"
+        },
+        {
+          "value": 258,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a8c11c3a8f84a582b84281a/illegal-entry-routes-to-the-uk-summary-jun-2026-tables.ods",
+          "quote": "Recorded detections at UK ports, Year ending June 2026: 258"
+        }
+      ]
+    },
+    {
+      "ref": "asylum/returns-enforced",
+      "previous_value": 9723,
+      "value": 9669,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c576b0504df9f2c89805/returns-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Ret_01",
+      "quote": "Enforced returns, total, year ending June 2026 [p]: 9,669"
+    },
+    {
+      "ref": "asylum/returns-voluntary",
+      "previous_value": 29284,
+      "value": 30936,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c576b0504df9f2c89805/returns-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Ret_01",
+      "quote": "Voluntary returns, total, year ending June 2026 [p]: 30,936"
+    },
+    {
+      "ref": "asylum/returns-refused-entry-at-port",
+      "previous_value": 17623,
+      "value": 18646,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c576b0504df9f2c89805/returns-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Ret_01",
+      "quote": "Refused entry at port and subsequently departed, total, year ending June 2026 [p]: 18,646"
+    },
+    {
+      "ref": "asylum/returns-enforced-plus-voluntary",
+      "previous_value": 39007,
+      "value": 40605,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-are-returned-from-the-uk",
+      "fetched_at": "2026-08-27",
+      "quote": "Of the 40,605 returns from the UK in the latest year, three-quarters (76%) returned voluntarily and one-quarter (24%) were enforced by the Home Office."
+    },
+    {
+      "ref": "population/british-citizenship-grants",
+      "previous_value": 236512,
+      "value": 245520,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c344b0504df9f2c89801/citizenship-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Cit_01",
+      "quote": "Total grants, Year ending June 2026: 245,520"
+    },
+    {
+      "ref": "population/british-citizenship-applications",
+      "previous_value": 312063,
+      "value": 315224,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c344b0504df9f2c89801/citizenship-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Cit_01",
+      "quote": "Total applications, Year ending June 2026: 315,224"
+    },
+    {
+      "ref": "population/british-citizenship-grants-by-naturalisation",
+      "previous_value": 165429,
+      "value": 171435,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c344b0504df9f2c89801/citizenship-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Cit_01",
+      "quote": "Naturalisation grants, Year ending June 2026: 171,435"
+    },
+    {
+      "ref": "population/british-citizenship-grants-by-registration",
+      "previous_value": 71083,
+      "value": 74085,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c344b0504df9f2c89801/citizenship-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Cit_01",
+      "quote": "Registration grants, Year ending June 2026: 74,085"
+    },
+    {
+      "ref": "population/british-citizenship-grants-previous-year",
+      "previous_value": 269178,
+      "value": 257070,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c344b0504df9f2c89801/citizenship-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Cit_01",
+      "quote": "Total grants, Year ending June 2025: 257,070"
+    },
+    {
+      "ref": "population/british-citizenship-applications-previous-year",
+      "previous_value": 263440,
+      "value": 270254,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c344b0504df9f2c89801/citizenship-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Cit_01",
+      "quote": "Total applications, Year ending June 2025: 270,254"
+    },
+    {
+      "ref": "population/settlement-grants",
+      "previous_value": 152306,
+      "value": 199628,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c5beb0504df9f2c89808/settlement-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Se_02",
+      "quote": "Total Grants of settlement, Year ending June 2026: 199,628"
+    },
+    {
+      "ref": "migration/work-visas-granted",
+      "previous_value": 252775,
+      "value": 234841,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c6003d82f78d5c514552/visas-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Vis_01",
+      "quote": "Work visas, Year ending June 2026: 234,841"
+    },
+    {
+      "ref": "migration/sponsored-study-visas-granted",
+      "previous_value": 409954,
+      "value": 383455,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c6003d82f78d5c514552/visas-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Vis_01",
+      "quote": "Sponsored study, Year ending June 2026: 383,455"
+    },
+    {
+      "ref": "migration/family-visas-granted",
+      "previous_value": 62470,
+      "value": 57590,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c6003d82f78d5c514552/visas-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Vis_01",
+      "quote": "Family visas, Year ending June 2026: 57,590"
+    },
+    {
+      "ref": "migration/visitor-visas-granted",
+      "previous_value": 2241997,
+      "value": 2185158,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c6003d82f78d5c514552/visas-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Vis_01",
+      "quote": "Visitor visas, Year ending June 2026: 2,185,158"
+    },
+    {
+      "ref": "migration/total-entry-clearance-visas-granted",
+      "previous_value": 778625,
+      "value": 727487,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-come-to-the-uk-each-year",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Vis_01",
+      "quote": "There were 727,487 non-Visitor or Transit visas granted in the YE June 2026, 15% fewer than the previous year."
+    },
+    {
+      "ref": "asylum/asylum-administrative-outcomes",
+      "previous_value": 5931,
+      "value": 2347,
+      "fetched_at": "2026-08-27",
+      "derivation": "839 plus 802 plus 359 plus 347, the four quarters of the year ending June 2026 in the Asy_D02 pivot. The Home Office publishes no year-ending total for this row.",
+      "components": [
+        {
+          "value": 839,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a85c2d7c9205b515d421eeb/asylum-claims-datasets-jun-2026.xlsx",
+          "quote": "Administrative Outcome, 2025 Q3: 839"
+        },
+        {
+          "value": 802,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a85c2d7c9205b515d421eeb/asylum-claims-datasets-jun-2026.xlsx",
+          "quote": "Administrative Outcome, 2025 Q4: 802"
+        },
+        {
+          "value": 359,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a85c2d7c9205b515d421eeb/asylum-claims-datasets-jun-2026.xlsx",
+          "quote": "Administrative Outcome, 2026 Q1: 359"
+        },
+        {
+          "value": 347,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a85c2d7c9205b515d421eeb/asylum-claims-datasets-jun-2026.xlsx",
+          "quote": "Administrative Outcome, 2026 Q2: 347"
+        }
+      ]
+    },
+    {
+      "ref": "asylum/asylum-claims-from-unaccompanied-children",
+      "previous_value": 3627,
+      "value": 4275,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-claim-asylum-in-the-uk",
+      "fetched_at": "2026-08-27",
+      "quote": "In the YE June 2026, 5% of claims (4,275) were from unaccompanied asylum-seeking children ( UASC )."
+    },
+    {
+      "ref": "asylum/ukraine-schemes-cumulative-out-of-country-visas-granted",
+      "previous_value": 286143,
+      "value": 290044,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-27",
+      "quote": "There were 15,595 grants of out-of-country visas under the Ukraine Schemes in the YE June 2026 (a 9% increase compared to the previous year), bringing the total grants to 290,044 visas since the schemes opened in March 2022."
+    },
+    {
+      "ref": "asylum/hong-kong-bn-visas-cumulative-grants-since-january-2021",
+      "previous_value": 186319,
+      "value": 187552,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-27",
+      "quote": "There were 5,944 grants of BN(O) visas in the YE June 2026, bringing the total number of grants to 187,552 since the scheme opened."
+    },
+    {
+      "ref": "asylum/afghan-resettlement-programme-cumulative-arrivals",
+      "previous_value": 38617,
+      "value": 39058,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-27",
+      "quote": "Since the first arrivals in 2021, the Afghan Resettlement Programme has resettled a total of 39,058 people."
+    },
+    {
+      "ref": "asylum/total-people-resettled-latest-year",
+      "previous_value": 4894,
+      "value": 3840,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-come-to-the-uk-via-safe-and-legal-humanitarian-routes",
+      "fetched_at": "2026-08-27",
+      "quote": "There were 3,840 people resettled in the YE June 2026."
+    },
+    {
+      "ref": "population/eu-settlement-scheme-settled-status-grants",
+      "previous_value": 370535,
+      "value": 336229,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-indefinite-leave-settlement-and-euss-settled-status-grants-have-been-issued-in-the-uk",
+      "fetched_at": "2026-08-27",
+      "quote": "Of these, 63% (336,229) were settled status grants under the EUSS ."
+    },
+    {
+      "ref": "migration/health-and-care-worker-visas-granted",
+      "previous_value": 10509,
+      "value": 7228,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/why-do-people-come-to-the-uk-work",
+      "fetched_at": "2026-08-27",
+      "quote": "Figure 2: Worker visas granted between the YE December 2021 and the YE June 2026 Source: Entry clearance visa applications and outcomes – Vis_D02 Compared to the previous year, the number of Health and Care Worker visas issued has fallen by 45% to 34,143 in the YE June 2026, of which main applicants and dependants fell to 7,228 (-65%) and 26,915 (-35%) respectively."
+    },
+    {
+      "ref": "asylum/asylum-initial-decision-grant-rate",
+      "previous_value": 39,
+      "value": 38,
+      "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-are-granted-asylum-in-the-uk",
+      "fetched_at": "2026-08-27",
+      "quote": "Figure 2: Asylum grant rate at initial decision, YE June 2002 to YE June 2026 Source: Asylum claims and initial decisions - Asy_D02 Figure 2 shows that the grant rate was 38% in YE June 2026."
+    },
+    {
+      "ref": "asylum/people-in-asylum-accommodation",
+      "previous_value": 93653,
+      "value": 89089,
+      "fetched_at": "2026-08-27",
+      "derivation": "16,021 in hotel accommodation plus 73,068 in non-hotel accommodation, both stated on the release page for the end of June 2026. The Home Office publishes no combined accommodation total.",
+      "components": [
+        {
+          "value": 16021,
+          "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-are-in-the-uk-asylum-system",
+          "quote": "Of the individuals receiving asylum support at the end of June 2026: 16,021 (17%) were in hotel accommodation, 50% lower than at the end of June 2025, and 71% lower than the peak of 56,018 at the end of September 2023 73,068 (78%) were in non-hotel accommodation, such as dispersal, 3% higher than at the end of June 2025 4,204 (5%) were in receipt of subsistence support only, 31% higher than at the end of June 2025 A decade prior on 30 June 2016, there were less than half as many supported asylum seekers (42,651) compared to 30 June 2026."
+        },
+        {
+          "value": 73068,
+          "source_url": "https://www.gov.uk/government/statistics/immigration-system-statistics-year-ending-june-2026/how-many-people-are-in-the-uk-asylum-system",
+          "quote": "Of the individuals receiving asylum support at the end of June 2026: 16,021 (17%) were in hotel accommodation, 50% lower than at the end of June 2025, and 71% lower than the peak of 56,018 at the end of September 2023 73,068 (78%) were in non-hotel accommodation, such as dispersal, 3% higher than at the end of June 2025 4,204 (5%) were in receipt of subsistence support only, 31% higher than at the end of June 2025 A decade prior on 30 June 2016, there were less than half as many supported asylum seekers (42,651) compared to 30 June 2026."
+        }
+      ]
+    },
+    {
+      "ref": "asylum/asylum-applications-2025",
+      "previous_value": 100625,
+      "value": 101911,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "table_reference": "Asy_00a",
+      "quote": "People claiming asylum, 2025: 101,911"
+    },
+    {
+      "ref": "asylum/largest-nationality-claiming-asylum-pakistan",
+      "previous_value": 10,
+      "value": 10,
+      "fetched_at": "2026-08-27",
+      "derivation": "8,305 Pakistani claimants of the 85,891 total, both the Year ending June 2026 column of table Asy_01b, is 9.67%, which rounds to the 10% held here. The Home Office states no share for any single nationality.",
+      "components": [
+        {
+          "value": 8305,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+          "quote": "Pakistan, Year ending June 2026: 8,305"
+        },
+        {
+          "value": 85891,
+          "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+          "quote": "Total, Year ending June 2026: 85,891"
+        }
+      ]
+    }
+  ],
+  "series": [
+    {
+      "file": "asylumApplicationsTimeseries.json",
+      "block": "primary",
+      "previous_vintage": "2026-05-21",
+      "vintage": "2026-08-27",
+      "points": 16,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "quote": "People claiming asylum, 2010: 22,644 ... People claiming asylum, 2025: 101,911"
+    },
+    {
+      "file": "asylumBacklogTimeseries.json",
+      "block": "primary",
+      "previous_vintage": "2026-05-21",
+      "vintage": "2026-08-27",
+      "points": 16,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "quote": "People awaiting an initial decision, 2010: 7,240 ... People awaiting an initial decision, 2025: 64,426"
+    },
+    {
+      "file": "asylumBacklogTimeseries.json",
+      "block": "alternate_basis",
+      "previous_vintage": "2026-05-21",
+      "vintage": "2026-08-27",
+      "points": 16,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6a85c315b0504df9f2c89800/asylum-summary-jun-2026-tables.ods",
+      "fetched_at": "2026-08-27",
+      "quote": "Cases awaiting an initial decision, 2010: 5,978 ... Cases awaiting an initial decision, 2025: 48,723"
+    }
+  ]
+}
