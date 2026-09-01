@@ -143,5 +143,12 @@
       <a href="https://github.com/LegendT/UK-Migration-Explorer/blob/main/CHANGELOG.md">public changelog</a>.</p>
   </div>
 </footer>
+
+{#- Cloudflare Web Analytics. The only client-side JavaScript on the site: it is cookieless and
+    stores nothing on the reader's device, and every page still works with scripting off, which is
+    what the no-JavaScript charts in lib/charts.mjs exist to keep true. The beacon host and the
+    endpoint it posts to are the two Content-Security-Policy exceptions in netlify.toml; without
+    both, the browser blocks this silently. #}
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a30338dab2f04838a3dd8e4a4e13780a"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

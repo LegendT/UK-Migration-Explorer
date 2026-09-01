@@ -32,8 +32,9 @@ restate them, because a second copy would drift from the first.
 
 **What is in this repository, for anyone reading the source.** A static site built by Eleventy 3
 from a governed data layer: metric records and timeseries of dated points, charts rendered as inline
-SVG at build time, and no client-side JavaScript anywhere. The sections below are how it is built,
-what the data layer guarantees, what each check establishes, and what none of them does.
+SVG at build time, and one client-side script: the cookieless Cloudflare Web Analytics beacon in
+`base.njk`, which sets no cookies and which every page works without. The sections below are how it
+is built, what the data layer guarantees, what each check establishes, and what none of them does.
 
 **No figure appears in this file, deliberately.** Every figure on the site comes from a record and
 the build refuses one typed into a page; this file sits outside that scan, so a number here would be
