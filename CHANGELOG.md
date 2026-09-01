@@ -9,6 +9,45 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Cloudflare Web Analytics, and a claim in this file it falsified, 1 September 2026
+
+**No figure moved and no page a reader sees changed by this entry**, beyond one script element
+added to every page's markup.
+
+**The site now carries analytics, which it did not before.** Cloudflare Web Analytics sits in
+`content/_includes/base.njk` and renders on all 25 built pages, counted by name rather than by
+total. It is cookieless: Cloudflare states that it "does not use any client-side state, such as
+cookies or localStorage, to collect usage metrics" and does not fingerprint individuals by IP
+address or User Agent string (cloudflare.com/web-analytics/, fetched 1 September 2026). Every
+page still works with scripting off, which is what the build-time SVG charts exist to keep true.
+
+**It needed two Content-Security-Policy exceptions and would have failed silently without them.**
+The policy in `netlify.toml` was `default-src 'self'` with `script-src 'self'`, so the browser
+would have refused the beacon with no error an author or a reader would ever see, the first
+symptom being an empty dashboard weeks later. `script-src` now admits
+`static.cloudflareinsights.com`, which serves the script, and `connect-src` now admits
+`cloudflareinsights.com`, which receives the measurement. `connect-src` had been falling through
+to `default-src` and so had to be named before it would allow anything.
+
+**AN OLDER ENTRY IN THIS FILE IS NOW WRONG AND IS DELIBERATELY NOT BEING EDITED.** The `Added,
+Eleventy site` entry under `1.0.0, 12 August 2026` ends "Also sets a strict content security
+policy; the site loads no external resources at all". That was true on the day it was written and
+is false of the site from this change onward. It stays as written, because an entry in a dated log
+records what shipped that day, and correcting it in place would leave the log unable to say when
+this changed. This entry is where that correction lives. `README.md` was the opposite case and was
+edited: it describes the site as it stands rather than as it was, and it said "no client-side
+JavaScript anywhere".
+
+**What this does not measure.** Nothing recognises the same reader twice, so candidate 3 of the
+foundation document's section 4.2, return visits in the week after a major data release, is still
+unreadable. It is unreadable for a new reason, which is the part worth recording: the site now has
+measurement, and this measurement cannot answer that question. Reading the dashboard as though it
+could would be reading a page-view count as a count of people.
+
+**Not established here.** That the beacon reports anything at all once deployed. That is a claim
+about Cloudflare and about the host rather than about this build, and it wants checking in the
+dashboard after the first real traffic.
+
 ### Two checks on period labels and the periods pages state, 27 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** Both checks were written
