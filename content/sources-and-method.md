@@ -92,7 +92,7 @@ Three consequences worth stating plainly:
   figure is now, so it cannot hold what a figure used to be; each frozen number is listed in
   its own page's front matter with the reason it is frozen, and the build refuses an undeclared
   one.
-- **The build enforces these rules**, rather than a person remembering them. A figure missing
+- **Checks enforce these rules**, rather than a person remembering them. A figure missing
   its source, a date that does not fall within the period it claims, a range presented as a
   single number, two versions of the same measure, a chart bar with a number typed into it, or
   a current value written out longhand anywhere in a page will each stop the site being built.
