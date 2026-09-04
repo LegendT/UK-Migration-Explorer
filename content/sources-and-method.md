@@ -42,22 +42,22 @@ taken.
 It is **not** a live system. Figures are the latest published at the time of the last
 update, not a real-time count. There are no live counters on this site, deliberately.
 
-It is **not** neutral about statistical misuse, though it takes no position on what
-immigration policy should be. Where a claim misuses a definition, a denominator or a
-time period, we say so, and we apply that test in every direction. How claims are chosen
-is set out on the [common claims](/common-claims) page.
+It is **not** neutral about statistical misuse, though it takes no position on what immigration
+policy should be. Where a claim misuses a definition, a denominator or a time period, we say
+so, and we apply that test in every direction. The [common claims](/common-claims) page says
+how claims are chosen.
 
 ---
 
 ## Where the figures come from {#sources}
 
-Official statistics are the primary source throughout. Independent research bodies are used
-for context and for periods official sources no longer cover.
+Official statistics are the primary source throughout. We use independent research bodies
+for context, and for periods official sources no longer cover.
 
 {{> sources-catalogue }}
 
 **On the Migration Observatory and Skills for Care.** These are not official statistics
-producers, and figures attributed to them are marked as such. They are used where they add
+producers, and figures attributed to them are marked as such. We use them where they add
 methodological context, or where they hold the most reliable available figure for something
 the official series no longer covers, the foreign-born population being the main example.
 
@@ -83,20 +83,19 @@ Three consequences worth stating plainly:
   record it draws rather than carrying a number of its own. This is why you will not find
   two different figures for the same measure on different pages, a failure common enough on
   data sites to be worth designing against.
-- **Prose cites records, it does not restate them.** Where a number appears in a sentence
-  on this site, it is inserted from the record when the page is built. Updating a figure
-  updates every sentence that quotes it, chart summaries included. **One kind of number is
-  written out instead, and it is declared rather than tolerated:** a figure that was true
-  when it was published and has since been superseded, where the point of the sentence is
-  that it moved. The two earlier net migration estimates under *Estimates get revised* are
-  exactly that. A record holds what a figure is now, so it cannot hold what a figure used to
-  be; each frozen number is listed in its own page's front matter with the reason it is
-  frozen, and the build refuses an undeclared one.
-- **The rules are enforced automatically**, not by remembering them. A figure missing its
-  source, a date that does not fall within the period it claims, a range presented as a
-  single number, two versions of the same measure, a chart bar with a number typed into it,
-  or a current value written out longhand anywhere in a page will each stop the site being
-  built.
+- **Prose cites records, it does not restate them.** Where a number appears in a sentence on
+  this site, the build inserts it from the record. Updating a figure updates every sentence
+  that quotes it, chart summaries included. **One kind of number is written out instead, and it
+  is declared rather than tolerated:** a figure that was true when it was published and has
+  since been superseded, where the point of the sentence is that it moved. The two earlier net
+  migration estimates under *Estimates get revised* are exactly that. A record holds what a
+  figure is now, so it cannot hold what a figure used to be; each frozen number is listed in
+  its own page's front matter with the reason it is frozen, and the build refuses an undeclared
+  one.
+- **The build enforces these rules**, rather than a person remembering them. A figure missing
+  its source, a date that does not fall within the period it claims, a range presented as a
+  single number, two versions of the same measure, a chart bar with a number typed into it, or
+  a current value written out longhand anywhere in a page will each stop the site being built.
 
 ### Confidence levels {#confidence}
 
@@ -114,8 +113,8 @@ for more than it does is worse than no check at all:
 
 - **A description of a figure is not checked against the figure.** A chart summary saying a
   series rose when it fell would build cleanly, and so would one that quotes the right
-  number against the wrong year. False summaries have been found on this site, by reading,
-  not by tooling.
+  number against the wrong year. Reading has found false summaries on this site. Tooling
+  has not.
 - **Values under 100 are reported for review rather than refused.** Too many measures share
   a small value for a match to mean much, so those are flagged on every build and looked
   at, not blocked.
@@ -164,9 +163,10 @@ The two that catch people most often are worth putting in plain terms.
 
 **People and cases are different counts.** In the year ending June 2026 there were
 {{asylum/asylum-applications}} people claiming asylum and
-{{asylum/asylum-applications-main-applicants}} main-applicant applications. Both are
-correct; they count different things. Dividing one by the other, or comparing a figure on
-one basis with a figure on the other, produces answers wrong by roughly a fifth, invisibly. Every figure on this site states its basis.
+{{asylum/asylum-applications-main-applicants}} main-applicant applications. Both are correct;
+they count different things. Dividing one by the other, or comparing a figure on one basis with
+a figure on the other, produces answers wrong by roughly a fifth, and the error does not show
+unless you check the basis. Every figure on this site states its basis.
 
 **Estimates get revised, sometimes heavily.** Net migration for the year ending December
 2024 was first published at 431,000, then about 345,000, and now stands at
@@ -242,14 +242,13 @@ table a figure here is read from. It reads publication pages and never touches a
 When an update is then made, an assistant may draft it: reading the release, proposing which
 records move, and opening a pull request. It cannot publish. Every figure whose value changes
 must carry a quotation from the source that contains the new number, and a check refuses the
-change if it does not. That catches an invented figure rather than a misread one, which is why a
-person still reads the source. Merging is a person's, and this site's main branch refuses a
-change that has not passed the checks set to block one. Some checks here report rather than
-block, and this site's documentation says which.
+change if it does not. That catches an invented figure rather than a misread one, which is why
+a person still reads the source. Merging is a person's decision, and this site's main branch
+refuses a change that has not passed the checks set to block one. Some checks here report
+rather than block, and this site's documentation says which.
 
-Work on a whole series is handed back to a person on purpose, which covers two of the three
-regular releases rather than one, because a series is easier to get subtly wrong than a single
-value.
+A whole series always goes back to a person, which covers two of the three regular releases
+rather than one. A series is easier to get wrong in ways nobody notices than a single value.
 
 There is still no automated pipeline pulling numbers straight onto the site, and no figure
 appears here because a model asserted it.
@@ -281,7 +280,7 @@ are at handling its own mistakes.
 
 If something here is wrong, please say so. Tell us which figure, and what you think it
 should be: [open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new).
-Corrections are handled in public, so the objection and the answer stay attached to the figure
+Corrections happen in public, so the objection and the answer stay attached to the figure
 rather than sitting in somebody's inbox. **That does mean a correction needs a GitHub account**,
 which is free but is a step. Until 10 August 2026 this page offered an email address instead and
 said a correction should not depend on having an account; the address was withdrawn, and the
@@ -330,12 +329,11 @@ had to be rebuilt entirely: it had silently mixed three different vintages of th
 statistic, and one value in it matched no figure ONS had ever published. It was withdrawn
 and replaced rather than patched.
 
-**AI was used in producing this site, and it is right that you know that.** AI assistance
-was used for research, drafting and checking. It is not a substitute for verification, and
-it is exactly why the verification rules above exist: every figure requires a fetched
-source and a quoted value, anything unverifiable is left out rather than filled in, and the
-automated checks exist to catch what review misses. No figure appears here because a model
-asserted it.
+**We used AI in producing this site, and it is right that you know that.** It helped with
+research, drafting and checking. It is not a substitute for verification, and it is exactly why
+the verification rules above exist: every figure requires a fetched source and a quoted value,
+anything unverifiable is left out rather than filled in, and the automated checks exist to
+catch what review misses. No figure appears here because a model asserted it.
 
 Before this site publishes, a human reviews the figures and the claims. That is a
 commitment about the launch process, not a description of the research stage.

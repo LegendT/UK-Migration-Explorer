@@ -70,7 +70,7 @@ number:
   collective spending to migrants changes the result substantially, and there is no neutral
   answer to that question.
 - **Who leaves, and when.** Assumptions about return migration have a large effect on lifetime
-  estimates. Historical departure data exist, but future behaviour must be projected.
+  estimates. Historical departure data exist; a study has to project future behaviour.
 
 The aggregate also hides substantial differences behind a single average. Fiscal contribution
 depends on age at arrival, earnings, family composition and length of stay, so one figure
@@ -93,7 +93,7 @@ National Audit Office's analysis of actual costs. It is a reasonably firm figure
 system, but the NAO notes it excludes some costs, particularly those falling on local
 authorities.
 
-The two get conflated constantly, in both directions. A spending total tells you what a system
+The two get conflated in both directions. A spending total tells you what a system
 costs to run. It does not tell you the net fiscal position of migrants generally, and it is
 not evidence for or against this claim.
 
@@ -118,5 +118,5 @@ Asylum system spending: National Audit Office, financial year 2024-25. An NAO es
 on actual costs, covering the Home Office and Ministry of Justice only, so it understates the
 full system cost, particularly costs falling on local authorities.
 
-This is the most contested area covered by this site. Every figure here should be presented
+This is the most contested area covered by this site. Present every figure here
 with its method and its source attached, never as a settled fact.

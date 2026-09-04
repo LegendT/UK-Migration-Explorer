@@ -69,8 +69,8 @@ a count of permissions.
 living here, on a route they are already on. It adds to a grant count and moves nobody across a
 border. The Ukraine figure above is out-of-country grants only, and the extensions granted under
 those schemes are counted apart from it, which is the publisher being careful. The hazard is a
-headline "visas granted" that has not been, because the phrase itself does not tell a reader
-which of the two it is.
+headline "visas granted" written without that care, because the phrase itself does not tell a
+reader which of the two it is.
 
 **The unit is a grant, not a person.** Someone granted two visas in the same year is counted
 twice, and a visa granted to a main applicant with dependants is counted for each of them. This

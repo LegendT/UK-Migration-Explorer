@@ -113,9 +113,9 @@ is defensible on that scenario; its precision and its noun are not.
 immigration health surcharge raised about £{{fiscal/immigration-health-surcharge-revenue}}
 billion and Home Office visa and immigration fee income about
 £{{fiscal/home-office-visa-and-immigration-fee-income}} billion, both of which are collected
-before any tax is paid and are counted in nobody's argument about whether the figure above is
-341 or something else. Those are measurements rather than projections, and they are a single
-year rather than the lifetime the claim is about.
+before any tax is paid and are counted in nobody's argument about whether the lifetime figure
+is the one this claim gives or something else. Those are measurements rather than projections,
+and they are a single year rather than the lifetime the claim is about.
 
 ## The mirror claim fails too
 

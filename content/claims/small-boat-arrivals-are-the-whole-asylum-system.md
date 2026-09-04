@@ -41,8 +41,8 @@ boat arrivals as asylum claims. Whatever else is true, the boats are not the sys
 **But that comparison is looser than it looks, and the looseness is the point.** Arriving and
 claiming are two different events, counted separately: an arrival is recorded on the day
 someone is detected and a claim on the day it is made, so one person can sit in one year's
-arrivals and another year's claims. A claim can also be made by someone who arrived on a valid
-visa and whose circumstances changed. So dividing
+arrivals and another year's claims. Someone who arrived on a valid visa and whose
+circumstances changed can also make a claim. So dividing
 one of these totals by the other does not give the share of claims made by people who came by
 boat, and this site does not publish that share, because these two counts cannot produce it.
 The two numbers sit side by side above; what they do not do is answer a question about the
@@ -111,7 +111,7 @@ support, asylum-related returns and resettlement: Home Office, immigration syste
 year ending June 2026, published 27 August 2026. Appeals: HM Courts and Tribunals Service and
 the Ministry of Justice, as at 31 March 2026, a different publisher on a different cycle.
 
-**Two of the figures on this page are summed by this site rather than published as totals**,
+**This site sums two of the figures on this page rather than reading them off as totals**,
 and both say so in their own records: the year-ending small boat figure, because the Home
 Office prints that route by calendar year and by month but not on a year-ending basis, and the
 detected unauthorised arrivals total, which the Home Office publishes by quarter and by

@@ -98,7 +98,7 @@ invention. The number of people in asylum hotels peaked in September 2023, insid
 year, and is far below that peak now. That is a headcount rather than a cost: this page holds no
 hotel spending figure earlier than 2023-24, so it cannot say which year spending was highest.
 
-**Hotels genuinely are the expensive form of accommodation.** In the three months to June 2023 a
+**Hotels are the expensive form of accommodation.** In the three months to June 2023 a
 hotel place cost about £{{fiscal/average-cost-of-an-asylum-hotel-place-per-person-per-night}} per
 person per night against about
 £{{fiscal/cost-of-a-dispersal-accommodation-place-per-person-per-night}} for dispersal

@@ -63,7 +63,7 @@ deaths data it needs are not yet available.
 
 ## Why the claim needs care, even though the number is about right
 
-The "19%" figure circulates widely, usually stated flatly as a settled current fact. The problem
+The "19%" figure circulates widely, usually as a settled current fact. The problem
 with it is no longer that it is too high or invented. It is that it is presented as a precise,
 current, official measurement when it is none of those three.
 
@@ -91,7 +91,7 @@ published in May 2026.
 
 One caution. A separate ONS ad hoc release, based on the Annual Population Survey, gives a much
 lower foreign-born total of about 10.6 million against a different population base. It does not
-reconcile with the mid-2024 population estimate and should not be used for this figure.
+reconcile with the mid-2024 population estimate. Do not use it for this figure.
 
 ## Better questions to ask
 
