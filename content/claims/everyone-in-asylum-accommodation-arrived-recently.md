@@ -36,11 +36,11 @@ other, and the rest received subsistence payments only. Hotels held
 All three are [point-in-time figures](/what-the-words-mean/#flow-and-stock). They count people being supported on that particular
 day, regardless of when they arrived or how long they have been waiting.
 
-At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people
-were still waiting for an initial decision on their claim. Waiting for a decision is not
-the same as receiving support. A person has to apply for support, and a caseworker decides
-each application on whether they are homeless or have no money for food. Support can
-continue through an appeal, and it is not automatic at any point.
+At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people were
+still waiting for an initial decision on their claim. Waiting for a decision is not the same as
+receiving support. A person has to apply for support, and a caseworker decides each application
+on whether the applicant is homeless or has no money for food. Support can continue through an
+appeal, and it is not automatic at any point.
 
 ## Why the claim is misleading
 

@@ -56,7 +56,7 @@ of statistics, and applies that in every direction.
 
 If something here is wrong, please say so, and say which figure and what you think it should
 be. [Open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new), which needs a
-free GitHub account. Corrections happen in public, which is the same standard this site
+free GitHub account. This site handles corrections in public, which is the same standard it
 asks of the figures it checks, and [sources and method](/sources-and-method/#corrections) says
 what that costs a reader who has no account.
 

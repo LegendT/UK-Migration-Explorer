@@ -93,9 +93,9 @@ National Audit Office's analysis of actual costs. It is a reasonably firm figure
 system, but the NAO notes it excludes some costs, particularly those falling on local
 authorities.
 
-The two get conflated in both directions. A spending total tells you what a system
-costs to run. It does not tell you the net fiscal position of migrants generally, and it is
-not evidence for or against this claim.
+The two get conflated constantly, in both directions. A spending total tells you what a system
+costs to run. It does not tell you the net fiscal position of migrants generally, and it is not
+evidence for or against this claim.
 
 ## Better questions to ask
 
@@ -118,5 +118,5 @@ Asylum system spending: National Audit Office, financial year 2024-25. An NAO es
 on actual costs, covering the Home Office and Ministry of Justice only, so it understates the
 full system cost, particularly costs falling on local authorities.
 
-This is the most contested area covered by this site. Present every figure here
-with its method and its source attached, never as a settled fact.
+This is the most contested area covered by this site. This site presents every figure here with
+its method and its source attached, never as a settled fact.

@@ -57,10 +57,9 @@ site's own division rather than a published figure.
 
 ## Why the claim is misleading
 
-It treats one reason for coming as though it were the whole of immigration. Asylum
-is a real part of the picture, but it is not the largest part, and the
-system that produces asylum statistics is separate from the one that produces visa and
-migration estimates.
+It treats one reason for coming as though it were the whole of immigration. Asylum is a real
+and significant part of the picture, but it is not the largest part, and the system that
+produces asylum statistics is separate from the one that produces visa and migration estimates.
 
 The claim has a second, quieter problem: it invites you to compare figures that are not
 comparable. Three different numbers get used

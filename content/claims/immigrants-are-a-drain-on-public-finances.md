@@ -53,11 +53,11 @@ them supports. "Drain" is also never defined, and it can mean two different thin
 negative fiscal balance, or simply a less favourable one than the UK-born population. Those are different tests, and in a year when the whole country runs a deficit
 they can give opposite answers.
 
-The same three disagreements that prevent a firm positive answer prevent a firm negative
-one: whether you measure a single year or a lifetime, which collective spending you
-attribute to migrants, and what you assume about who leaves and when. None of those has a
-neutral answer, and changing these assumptions can change the result and, in some
-comparisons, its sign.
+The same three disagreements that prevent a firm positive answer prevent a firm negative one:
+whether you measure a single year or a lifetime, which collective spending you attribute to
+migrants, and what you assume about who leaves and when. None of those has a neutral answer,
+and changing these assumptions can materially affect the result and, in some comparisons, its
+sign.
 
 The aggregate also conceals substantial differences behind a single average. Fiscal
 contribution depends on age at arrival, earnings, family composition and length of stay. The

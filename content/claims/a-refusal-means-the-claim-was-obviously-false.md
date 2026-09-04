@@ -85,11 +85,12 @@ makes, and it is as wrong as this one.
 
 ## The mirror claim fails too
 
-"Almost all refused asylum seekers are eventually recognised as refugees" is
-[checked on its own page](/common-claims/refused-asylum-seekers-are-eventually-recognised/) and fails for the same underlying reason: both claims take a real and partial effect
-and inflate it into a total one. We publish this pair on both sides, as we do the
-fiscal pair, because a site that corrected only one of them would be making the choice it
-says it does not make.
+"Almost all refused asylum seekers are eventually recognised as refugees" is [checked on its
+own page](/common-claims/refused-asylum-seekers-are-eventually-recognised/) and fails for the
+same underlying reason: both claims take a real and partial effect and inflate it into a total
+one. This site publishes this pair on both sides deliberately, as it does the fiscal pair,
+because a site that corrected only one of them would be making the choice it says it does not
+make.
 
 ## Better questions to ask
 

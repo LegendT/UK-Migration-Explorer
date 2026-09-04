@@ -111,9 +111,9 @@ support, asylum-related returns and resettlement: Home Office, immigration syste
 year ending June 2026, published 27 August 2026. Appeals: HM Courts and Tribunals Service and
 the Ministry of Justice, as at 31 March 2026, a different publisher on a different cycle.
 
-**This site sums two of the figures on this page rather than reading them off as totals**,
-and both say so in their own records: the year-ending small boat figure, because the Home
-Office prints that route by calendar year and by month but not on a year-ending basis, and the
+**This site sums two of the figures on this page rather than reading a published total**, and
+both say so in their own records: the year-ending small boat figure, because the Home Office
+prints that route by calendar year and by month but not on a year-ending basis, and the
 detected unauthorised arrivals total, which the Home Office publishes by quarter and by
 calendar year.
 

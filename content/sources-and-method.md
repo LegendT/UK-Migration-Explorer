@@ -112,9 +112,8 @@ is right, and the last of these is not about numbers at all. Stated because a ch
 for more than it does is worse than no check at all:
 
 - **A description of a figure is not checked against the figure.** A chart summary saying a
-  series rose when it fell would build cleanly, and so would one that quotes the right
-  number against the wrong year. Reading has found false summaries on this site. Tooling
-  has not.
+  series rose when it fell would build cleanly, and so would one that quotes the right number
+  against the wrong year. Reading, not tooling, has found the false summaries on this site.
 - **Values under 100 are reported for review rather than refused.** Too many measures share
   a small value for a match to mean much, so those are flagged on every build and looked
   at, not blocked.
@@ -247,8 +246,8 @@ a person still reads the source. Merging is a person's decision, and this site's
 refuses a change that has not passed the checks set to block one. Some checks here report
 rather than block, and this site's documentation says which.
 
-A whole series always goes back to a person, which covers two of the three regular releases
-rather than one. A series is easier to get wrong in ways nobody notices than a single value.
+A whole series goes back to a person on purpose, which covers two of the three regular releases
+rather than one, because a series is easier to get subtly wrong than a single value.
 
 There is still no automated pipeline pulling numbers straight onto the site, and no figure
 appears here because a model asserted it.
@@ -278,13 +277,14 @@ are at handling its own mistakes.
 - Every claim shows when it was last reviewed. A claim unreviewed for twelve months is
   taken down until it has been.
 
-If something here is wrong, please say so. Tell us which figure, and what you think it
-should be: [open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new).
-Corrections happen in public, so the objection and the answer stay attached to the figure
-rather than sitting in somebody's inbox. **That does mean a correction needs a GitHub account**,
-which is free but is a step. Until 10 August 2026 this page offered an email address instead and
-said a correction should not depend on having an account; the address was withdrawn, and the
-condition it existed to avoid now applies. It is a real cost and it is stated rather than dropped.
+If something here is wrong, please say so. Tell us which figure, and what you think it should
+be: [open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new). This site
+handles corrections in public, so the objection and the answer stay attached to the figure
+rather than sitting in somebody's inbox. **That does mean a correction needs a GitHub
+account**, which is free but is a step. Until 10 August 2026 this page offered an email address
+instead and said a correction should not depend on having an account; the address was
+withdrawn, and the condition it existed to avoid now applies. It is a real cost and it is
+stated rather than dropped.
 
 ---
 

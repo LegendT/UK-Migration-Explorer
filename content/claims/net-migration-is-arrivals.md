@@ -54,8 +54,8 @@ Emigration went the other way, rising from {{migration/total-long-term-emigratio
 {{migration/total-long-term-emigration-2024}}: more people leaving, not fewer arriving.
 
 A fall in net migration is therefore consistent with arrivals falling, staying flat, or in
-principle rising. It depends on what emigration does at the same time. Reading the net figure
-as an arrivals figure hides all of that.
+principle rising. Which of those it is depends on what emigration does at the same time.
+Reading the net figure as an arrivals figure hides all of that.
 
 One further caution: these are estimates, and they are revised. The year ending December
 2024 figure was first published as 431,000, revised to about 345,000, and now stands at
