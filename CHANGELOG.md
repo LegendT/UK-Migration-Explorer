@@ -9,6 +9,46 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Three corrections the wording pass turned up, 5 September 2026
+
+**No figure moved, and no source, period, date or confidence grade moved.** PRs #236, #237 and
+#238, all merged and verified against the live site rather than against the build.
+
+**Two published pages told readers the BUILD refuses what only the checks refuse.** PR #236,
+three sentences. `/sources-and-method/` said a figure missing its source, a date outside its
+period and four other defects "will each stop the site being built", and that "the build refuses"
+an undeclared frozen figure; `/common-claims/` said a set correcting only one side "would fail the
+build". Probed each way, with the break confirmed to fire first: a record `date` outside its own
+`period_label`, an undeclared longhand figure in a page, and the claim-direction floor below its
+minimum all leave `npm run build` at exit 0 and are caught by `npm test`. **Only the mechanism was
+wrong.** `main` requires the `validate` status check with `enforce_admins` on, and Netlify's build
+command is `npm test && npm run build`, so every rule those sentences list does block a merge and a
+merge is what publishes. They now say the change is stopped from being published. Three other
+sentences naming the build are correct and were left: the build does insert a figure from its
+record, does confirm that the figures a reader meets are the figures this site counts as published,
+and would build a chart summary that describes its data wrongly.
+
+**A claim page named the wrong publication cycle, twice.** PR #237. The visa-grants claim check
+said "The Home Office publishes visas on a year ending March" while every visa record it cites is
+year ending June 2026. The Home Office publishes quarterly, on a rolling year-ending basis, so the
+sentence was wrong about the shape of the cycle as well as the date, and the caution that followed
+it pointed at the wrong pair of windows. It now names no period at all, because both windows move
+at the next release. Nothing here could have caught it: `check-build.mjs` prints on every run that
+a sentence naming two periods is skipped as ordinary, and that one named two.
+
+**And `/sources-and-method/` stopped promising a review the launch had spent.** PR #237. "Before
+this site publishes, a human reviews the figures and the claims" was a forward commitment about a
+process completed on 11 August 2026, on the page whose subject is how far this site can be trusted.
+Cut rather than reworded: the paragraph above it already says a person reads every source and that
+merging is a person's decision.
+
+**`/about/`'s strapline no longer reaches for a metaphor it never defined.** PR #238. "astroturf"
+appeared exactly once on the site, in the string a reader meets in a search result before opening
+the page, and was defined nowhere. It now reads "There is no good reason to trust a site that
+corrects other people's figures and will not say who runs it", which borrows the construction
+`/style-guide/` opens with. At 145 characters against 156 it also stops truncating part-way through
+"what we are not", which could leave a search snippet ending on "what we are".
+
 ### A wording pass over every reader-facing page, and the three claims it invented, 5 September 2026
 
 **No figure moved. No source, period, date or confidence grade moved. No claim changed direction
