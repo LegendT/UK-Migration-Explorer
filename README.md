@@ -36,12 +36,12 @@ SVG at build time, and one client-side script: the cookieless Cloudflare Web Ana
 `base.njk`, which sets no cookies and which every page works without. The sections below are how it
 is built, what the data layer guarantees, what each check establishes, and what none of them does.
 
-**No figure appears in this file, deliberately.** Every figure on the site comes from a record and
-the build refuses one typed into a page; this file sits outside that scan, so a number here would be
-a hand-typed copy that nothing checks. It carries none, and no live count of the repository's own
-contents either: the runs print those, and every one written down here has gone stale. Dates, pull
-request numbers, HTTP status codes and a count that is explicitly historical are not figures in that
-sense and do appear.
+**No figure appears in this file, deliberately.** Every figure on the site comes from a record
+and the checks refuse one typed into a page; this file sits outside that scan, so a number here
+would be a hand-typed copy that nothing checks. It carries none, and no live count of the
+repository's own contents either: the runs print those, and every one written down here has
+gone stale. Dates, pull request numbers, HTTP status codes and a count that is explicitly
+historical are not figures in that sense and do appear.
 
 ## Status
 
@@ -259,7 +259,7 @@ of its paragraphs on.
 | `check-pipeline.mjs` | That `npm run validate`, `.github/workflows/validate-data.yml` and `scripts/` name the same checks, measured against one manifest, including which CI steps carry `continue-on-error`. A check declared to run on a laptop and not in CI is refused, which is what stops a check being added to one list and gating nothing on the other. **And that this file's own two lists name what is on disk, both ways**: every `lib/` module has a line in the layout block above and every script has a row in this table, and neither may name a file that does not exist. Both drifted on 21 August 2026, on the day a tenth module and a ninth script were added, and were found by reading rather than by anything failing. It does not establish that a red job blocks a merge, and it deliberately does not read the second copy of this table in `docs/HANDOFF.md`, which is outside the repository and stays hand-maintained |
 | `check-releases.mjs` | Three things, over three route shapes. Whether any watched source has published a newer edition than the one each record and series file cites: a GOV.UK collection compared by the month and year in the URL, an ONS bulletin at its own `/latest`, and **since 13 August 2026 a dataset republished IN PLACE**, where no URL names an edition at all and the comparison is the page's own release date against each record's `published_date`. **And how long a behind source has been outstanding**, measured from `first_published_at` of the FIRST edition the site left behind against the one calendar month `/sources-and-method/` promises; a publisher with no promised schedule is reported and never called late. And whether a table the site declares in `table_reference` was corrected *inside* the edition it cites, matched against the Home Office change history and reported only where the figure has not been re-read since. Network; reports and never gates, and opens one deduplicated issue for outstanding work from `main` or the weekly cron. **Since 19 August 2026 the issue title names outstanding work only**: sources it could not fetch share one constant title, whichever failed and however many, because that condition clears itself when the host answers, and while it was in the title a network flap opened a second issue for work already open. **And since 21 August 2026 a refused fetch opens nothing on a push at all**, only on the crons, because six of the seven issues this check had ever opened were ONS rate-limiting the runner rather than work: the workflow reads an `ISSUE-KIND` line rather than matching the title, and the fetch itself now waits on a 429, in `lib/fetch-retry.mjs` |
 | `check-fetch-retry.mjs` | The retry in `lib/fetch-retry.mjs`, both directions and with no network: that 429 and 503 are retried on the declared backoff and give up saying how many times they were refused, and **that a 404, a 500 and a thrown error are answered once and never waited on**, which is the half no reading of the module establishes. Retry-After is read in delta-seconds, and one longer than the run will wait ends the attempt rather than shortening it. Gates. Not established, and it says so: that the retry clears a real ONS 429, which is address-based and cannot be reproduced off the runner |
-| `npm run a11y` | pa11y at WCAG2AA over every URL listed in `.pa11yci.json`. Fails the build. Pinned rather than fetched at run time, so two runs a month apart test against the same code |
+| `npm run a11y` | pa11y at WCAG2AA over every URL listed in `.pa11yci.json`. Fails `npm run a11y`, and the CI job with it, but is not part of `npm run build` and so does not gate the Netlify deploy. Pinned rather than fetched at run time, so two runs a month apart test against the same code |
 
 **Read this before trusting a green run.** A checker here has repeatedly passed while a real defect
 shipped, and every instance had one shape: the check verified a property of the *source or the
@@ -389,8 +389,9 @@ The rules that most affect code:
 
 - No number is shown without its definition, period and source visible without hovering.
 - Flows and stocks are never mixed without saying so.
-- Reference periods differ between measures. Asylum data runs to March 2026; net
-  migration to December 2025. Do not compare across them.
+- Reference periods differ between measures, and each figure states its own. Do not compare
+  across them, and do not name a period here: this line said asylum ran to March 2026 for nine
+  days after the data layer moved to the year ending June 2026.
 - Claim cards will be screenshotted. Period, source and date go inside the card's visual
   boundary, not beside it. There is no share image and section 8.5.4 records why.
 - Every link says where it goes when read on its own.
@@ -431,9 +432,9 @@ The rules that most affect code:
   named the Home Office data tables anchor, while the run named two others, having gone stale
   the way every count typed beside a run that computes it does here.
 - **A correction is only seen where the publisher is watched at all.** `check-releases.mjs`
-  watches three publisher routes, two gov.uk collections and one ONS bulletin. Most of the
-  cited sources have no corrections route of any
-  kind, and the run names them and counts them on every invocation. The NAO is one of them: it
+  watches four publisher routes: two gov.uk collections, one ONS bulletin at its own `/latest`,
+  and one dataset republished in place. Most of the cited sources have no corrections route of
+  any kind, and the run names them and counts them on every invocation. The NAO is one of them: it
   corrected HC 874 by a slip inside the PDF on 1 July 2025, and this site carried the retracted
   wording in a record's notes until 31 July 2026 with every check green. Within the publishers
   that are watched, the records and series files that name a table declare a `table_reference`,
@@ -457,6 +458,7 @@ The rules that most affect code:
   fetched source, `check-evidence.mjs` re-reads every entry on every run, and every record was
   re-read against its source on 11 August 2026. **What remains unclosed is the shape, not the
   backlog**: nothing re-fetches a source, so an entry that is well formed and wrong passes for as
+  long as the figure holds.
   **This bullet said the backfill was unfinished and "several more sessions" until 12 August 2026**,
   six days after it closed.
 - **Print was unstyled until 31 July 2026**, so a printed page lost every chart's figures, which sit
