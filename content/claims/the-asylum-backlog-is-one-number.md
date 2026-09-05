@@ -119,9 +119,9 @@ current, and shown as stale rather than dropped**, because the gap is the point:
 the wider breakdown was suspended pending a new caseworking system.
 
 **This page compares stocks with stocks and does not subtract across publishers.** The
-first-decision and appeals queues are point-in-time counts at different dates, 30 June 2026 and 31 March 2026, and they are
-counted by different bodies in different units, so the sentence naming both gives each its own
-figure rather than a total or a difference.
+first-decision queue is a point-in-time count at 30 June 2026 and the appeals queue one at 31
+March 2026, each from a different body on its own cycle and in its own unit, so the sentence
+naming both gives each its own figure rather than a total or a difference.
 
 **On selection.** This site checks propositions that circulate rather than quotations
 attributed to particular people, as the [style guide](/style-guide/) sets out. This

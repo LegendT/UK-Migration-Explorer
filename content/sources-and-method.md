@@ -188,7 +188,7 @@ cycles, and not every period is a twelve-month window. At the last update:
 | Asylum, returns, visas, settlement, citizenship | Year ending June 2026 |
 | Net migration, immigration, emigration | Year ending December 2025 |
 | Asylum support and the first-decision backlog | Point-in-time, 30 June 2026, one date rather than a window |
-| Appeals backlog | Point-in-time, 31 March 2026, a different publisher on a different cycle |
+| Appeals backlog | Point-in-time, 31 March 2026, from a different publisher on its own cycle |
 | Foreign-born population | 2021/22 Census, with a rolled-forward estimate for mid-2024 |
 | Asylum system spending | Financial year 2024-25 |
 
