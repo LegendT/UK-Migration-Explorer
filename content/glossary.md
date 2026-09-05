@@ -3,7 +3,14 @@ id: glossary
 # Published vintages of the year ending December 2024 net migration estimate: what ONS said at
 # the time, not what it says now. A first-published number never changes, so no record holds
 # one, and citing the live estimate would destroy the sentence, whose point is that it moved.
-historical_literals: 431,000; 345,000
+# £47 billion is the Migration Advisory Committee's, from its December 2025 static and dynamic
+# analysis of the 2022/23 Skilled Worker cohort, Table 23, given in its own summary as "around
+# £47bn". Declared rather than recorded on the same reasoning as the NAO pair on
+# content/costs.njk: a closed cohort in a closed publication, which MAC will not restate. It
+# says it intends to extend the model to OTHER routes, and analysis of another route would be a
+# new figure rather than a revision of this one. If MAC ever restates this cohort, this
+# sentence is rewritten rather than the declaration updated.
+historical_literals: 431,000; 345,000; £47 billion
 title: What the words mean
 strapline: >-
   Migration statistics use ordinary words in precise ways. Most public disagreements about
@@ -431,7 +438,10 @@ summarised by the Migration Observatory, the estimated net fiscal impact of the 
 population is small in magnitude, under 1% of GDP, and comes out positive in some studies
 and negative in others. Those are separate studies of different groups, periods and
 methods, not one estimate with a margin of error, and no equivalent analysis covers the
-whole post-Brexit immigration system.
+whole post-Brexit immigration system. The Migration Advisory Committee published a static
+and dynamic estimate for one route in December 2025, the 2022/23 Skilled Worker cohort,
+putting its lifetime net contribution at about £47 billion, and says it intends to extend
+the model to other routes.
 
 **The common mistake.** Quoting one study's result as the answer. Both "immigrants pay
 more in than they take out" and "immigrants are a drain" fail this test equally, and
