@@ -122,8 +122,8 @@
       "id": "osr",
       "name": "Office for Statistics Regulation: guidance on migration and asylum statistics",
       "publisher": "Office for Statistics Regulation",
-      "url": "https://osr.statisticsauthority.gov.uk/guidance/2026-what-to-look-out-for-migration-and-the-asylum-system-statistics/",
-      "covers": "Guidance on responsible interpretation of migration and asylum statistics: which comparisons are valid, how to handle revisions, and where published figures are commonly misread. Used for methodology and caveat design rather than as a source of figures.",
+      "url": "https://osr.statisticsauthority.gov.uk/guidance/migration-and-the-asylum-system-statistics/",
+      "covers": "Guidance on responsible interpretation of migration and asylum statistics: which comparisons are valid, and where published figures are commonly misread. Used for methodology and caveat design rather than as a source of figures.",
       "updateFrequency": "Occasional",
       "confidence_level": "official"
     },
