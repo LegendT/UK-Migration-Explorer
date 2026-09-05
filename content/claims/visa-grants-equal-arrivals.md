@@ -87,12 +87,12 @@ match and are not supposed to.
 ## What the claim gets right
 
 **Grants are the more recent number, and that is a real reason to reach for them.** The Home
-Office publishes visas on a year ending March and the ONS publishes immigration on a year ending
-December, on its own cycle, so the grant totals on this page cover a later twelve months than the
-immigration estimate beside them does. Anyone asking what has happened since is asking a question
-the immigration estimate cannot yet answer, and the grant figures can, read against their own earlier
-years rather than against the estimate. Setting a year ending March beside a year ending December
-and calling the difference a change is a caution this site publishes in its own right.
+Office publishes quarterly and the ONS twice a year, so the grant totals on this page cover a
+later twelve months than the immigration estimate beside them does. Anyone asking what has
+happened since is asking a question the immigration estimate cannot yet answer, and the grant
+figures can, read against their own earlier years rather than against the estimate. Setting one
+year-ending window beside another and calling the difference a change is a caution this site
+publishes in its own right.
 
 **And the two really are connected.** A visa grant is what makes a long-term arrival lawful for
 somebody who needs one, so the claim is reaching for a real relationship rather than inventing
