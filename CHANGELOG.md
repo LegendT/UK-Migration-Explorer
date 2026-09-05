@@ -9,51 +9,12 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
-### Three corrections the wording pass turned up, 5 September 2026
-
-**No figure moved, and no source, period, date or confidence grade moved.** PRs #236, #237 and
-#238, all merged and verified against the live site rather than against the build.
-
-**Two published pages told readers the BUILD refuses what only the checks refuse.** PR #236,
-three sentences. `/sources-and-method/` said a figure missing its source, a date outside its
-period and four other defects "will each stop the site being built", and that "the build refuses"
-an undeclared frozen figure; `/common-claims/` said a set correcting only one side "would fail the
-build". Probed each way, with the break confirmed to fire first: a record `date` outside its own
-`period_label`, an undeclared longhand figure in a page, and the claim-direction floor below its
-minimum all leave `npm run build` at exit 0 and are caught by `npm test`. **Only the mechanism was
-wrong.** `main` requires the `validate` status check with `enforce_admins` on, and Netlify's build
-command is `npm test && npm run build`, so every rule those sentences list does block a merge and a
-merge is what publishes. They now say the change is stopped from being published. Three other
-sentences naming the build are correct and were left: the build does insert a figure from its
-record, does confirm that the figures a reader meets are the figures this site counts as published,
-and would build a chart summary that describes its data wrongly.
-
-**A claim page named the wrong publication cycle, twice.** PR #237. The visa-grants claim check
-said "The Home Office publishes visas on a year ending March" while every visa record it cites is
-year ending June 2026. The Home Office publishes quarterly, on a rolling year-ending basis, so the
-sentence was wrong about the shape of the cycle as well as the date, and the caution that followed
-it pointed at the wrong pair of windows. It now names no period at all, because both windows move
-at the next release. Nothing here could have caught it: `check-build.mjs` prints on every run that
-a sentence naming two periods is skipped as ordinary, and that one named two.
-
-**And `/sources-and-method/` stopped promising a review the launch had spent.** PR #237. "Before
-this site publishes, a human reviews the figures and the claims" was a forward commitment about a
-process completed on 11 August 2026, on the page whose subject is how far this site can be trusted.
-Cut rather than reworded: the paragraph above it already says a person reads every source and that
-merging is a person's decision.
-
-**`/about/`'s strapline no longer reaches for a metaphor it never defined.** PR #238. "astroturf"
-appeared exactly once on the site, in the string a reader meets in a search result before opening
-the page, and was defined nowhere. It now reads "There is no good reason to trust a site that
-corrects other people's figures and will not say who runs it", which borrows the construction
-`/style-guide/` opens with. At 145 characters against 156 it also stops truncating part-way through
-"what we are not", which could leave a search snippet ending on "what we are".
-
-### A wording pass over every reader-facing page, and the three claims it invented, 5 September 2026
+### The reader-facing prose, reworked and then corrected, 5 September 2026
 
 **No figure moved. No source, period, date or confidence grade moved. No claim changed direction
-or conclusion.** PR #235, three commits, 22 files, 139 insertions against 140 deletions. What
-changed is voice, and then what the change to voice broke.
+or conclusion.** PRs #235, #236, #237 and #238. What changed is voice, then what the change to
+voice broke, then three things the pass turned up on its way past. One entry, because it is one
+piece of work.
 
 **Twenty-six of the `unslop` skill's thirty-one rules found nothing**, which is what the same pass
 found on the UK Public Finances Explorer. There are no em-dashes, no literal curly quotes, no
@@ -61,10 +22,11 @@ emoji, no title-case headings and no AI vocabulary in `content/`. The thirty-two
 in `data/evidence/` and `data/population.json`, inside verbatim quoted source material in
 provenance records that render to no page, so the straight-quotes rule does not reach them.
 Fifty-five edits were put to the owner as a numbered list and applied only after he picked them.
+PR #235, three commits, 22 files, 139 insertions against 140 deletions.
 
-**Then a critique found the pass had invented three claims about this project's own machinery or
-its sources**, which is the failure worth recording rather than the pass itself. Each was probed,
-not argued.
+**A critique found the pass had invented three claims about this project's own machinery or its
+sources**, which is the failure worth recording rather than the pass itself. Each was probed, not
+argued, and each was fixed inside PR #235.
 
 - `/sources-and-method/` was made to say "the build enforces these rules" of checks
   `npm run build` does not run. Setting a record's `date` outside its own `period_label` leaves
@@ -92,12 +54,50 @@ gave a page carrying "this site" three times its only "we".
 **Of the fifty-five approved edits, thirty-five stand as first applied, seven are fully reverted
 and thirteen were reworded** keeping the change from passive to active that was the point.
 
+**THREE MORE THINGS THE PASS TURNED UP, CORRECTED SEPARATELY.** Two published pages told
+readers the BUILD refuses what only the checks refuse. PR #236, three sentences.
+`/sources-and-method/` said a figure missing its source, a date outside its period and four
+other defects "will each stop the site being built", and that "the build refuses" an undeclared
+frozen figure; `/common-claims/` said a set correcting only one side "would fail the build".
+Probed each way, with the break confirmed to fire first: a record `date` outside its own
+`period_label`, an undeclared longhand figure in a page, and the claim-direction floor below
+its minimum all leave `npm run build` at exit 0 and are caught by `npm test`. **Only the
+mechanism was wrong.** `main` requires the `validate` status check with `enforce_admins` on,
+and Netlify's build command is `npm test && npm run build`, so every rule those sentences list
+does block a merge and a merge is what publishes. They now say the change is stopped from being
+published. Three other sentences naming the build are correct and were left: the build does
+insert a figure from its record, does confirm that the figures a reader meets are the figures
+this site counts as published, and would build a chart summary that describes its data wrongly.
+
+**A claim page named the wrong publication cycle, twice.** PR #237. The visa-grants claim check
+said "The Home Office publishes visas on a year ending March" while every visa record it cites is
+year ending June 2026. The Home Office publishes quarterly, on a rolling year-ending basis, so the
+sentence was wrong about the shape of the cycle as well as the date, and the caution that followed
+it pointed at the wrong pair of windows. It now names no period at all, because both windows move
+at the next release. Nothing here could have caught it: `check-build.mjs` prints on every run that
+a sentence naming two periods is skipped as ordinary, and that one named two.
+
+**And `/sources-and-method/` stopped promising a review the launch had spent.** PR #237. "Before
+this site publishes, a human reviews the figures and the claims" was a forward commitment about a
+process completed on 11 August 2026, on the page whose subject is how far this site can be trusted.
+Cut rather than reworded: the paragraph above it already says a person reads every source and that
+merging is a person's decision.
+
+**`/about/`'s strapline no longer reaches for a metaphor it never defined.** PR #238. "astroturf"
+appeared exactly once on the site, in the string a reader meets in a search result before opening
+the page, and was defined nowhere. It now reads "There is no good reason to trust a site that
+corrects other people's figures and will not say who runs it", which borrows the construction
+`/style-guide/` opens with. At 145 characters against 156 it also stops truncating part-way through
+"what we are not", which could leave a search snippet ending on "what we are".
+
 **What checked it.** `npm test`, `npm run validate`, `npm run build`, `npm run check-build`,
-`npm run check-evidence` and `npm run a11y` all pass, the last on 25 of 25 URLs in both palettes,
-which is the page count the build printed. Every phrase removed by the first commit was grepped
-out of the built site, the published JSON copies, all 50 title, meta, og and twitter descriptions
-and both JSON-LD blocks, each sweep with a control that had to hit and one that had to miss.
-Nothing here was established by reading the source.
+`npm run check-evidence` and `npm run a11y` all pass, the last on 25 of 25 URLs in both
+palettes, which is the page count the build printed. Every phrase removed by PR #235's first
+commit was grepped out of the built site, the published JSON copies, all 50 title, meta, og and
+twitter descriptions and both JSON-LD blocks, each sweep with a control that had to hit and one
+that had to miss. The four merges were then read back off `ukmigrationexplorer.org` rather than
+off the build, eleven assertions each in the direction that could fail. Nothing here was
+established by reading the source.
 
 ### Cloudflare Web Analytics, and a claim in this file it falsified, 1 September 2026
 
