@@ -136,8 +136,11 @@ is to show sensitivity, stop it at the age that suits, and quote the height as a
 ## Source notes
 
 The chart: Office for Budget Responsibility, *Fiscal risks and sustainability*, September 2024,
-chart 4.13, corrected 14 November 2024. The figure this site publishes is read from the chart's
-own data at age 82 and rounded to the nearest thousand. OBR prints no value from it, which is why
+chart 4.13, corrected 14 November 2024. OBR has published *Fiscal risks and sustainability*
+twice since, in July 2025 and July 2026, and neither repeats this analysis, so this is the
+latest of its kind rather than the latest anyone looked at. The figure this site publishes is
+read from the chart's own data at age 82 and rounded to the nearest
+thousand. OBR prints no value from it, which is why
 the record is graded as an estimate and says so.
 
 The age: OBR's text gives 82 as the life expectancy of an average person in 2028. The choice was
