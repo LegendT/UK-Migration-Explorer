@@ -4,8 +4,8 @@ permalink: /about/
 id: about
 title: Who runs this, and who pays for it
 strapline: >-
-  On this subject an anonymous corrective site is assumed to be astroturf by default, and
-  the assumption is reasonable. So: names, money, and what we are not.
+  There is no good reason to trust a site that corrects other people's figures and will not
+  say who runs it. So: names, money, and what we are not.
 last_reviewed: 2026-07-23
 review_due: 2027-07-23
 ---
