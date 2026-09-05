@@ -335,9 +335,6 @@ the verification rules above exist: every figure requires a fetched source and a
 anything unverifiable is left out rather than filled in, and the automated checks exist to
 catch what review misses. No figure appears here because a model asserted it.
 
-Before this site publishes, a human reviews the figures and the claims. That is a
-commitment about the launch process, not a description of the research stage.
-
 ---
 
 ## Reuse {#reuse}
