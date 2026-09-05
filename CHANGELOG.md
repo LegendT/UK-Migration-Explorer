@@ -9,6 +9,56 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### A wording pass over every reader-facing page, and the three claims it invented, 5 September 2026
+
+**No figure moved. No source, period, date or confidence grade moved. No claim changed direction
+or conclusion.** PR #235, three commits, 22 files, 139 insertions against 140 deletions. What
+changed is voice, and then what the change to voice broke.
+
+**Twenty-six of the `unslop` skill's thirty-one rules found nothing**, which is what the same pass
+found on the UK Public Finances Explorer. There are no em-dashes, no literal curly quotes, no
+emoji, no title-case headings and no AI vocabulary in `content/`. The thirty-two curly quotes are
+in `data/evidence/` and `data/population.json`, inside verbatim quoted source material in
+provenance records that render to no page, so the straight-quotes rule does not reach them.
+Fifty-five edits were put to the owner as a numbered list and applied only after he picked them.
+
+**Then a critique found the pass had invented three claims about this project's own machinery or
+its sources**, which is the failure worth recording rather than the pass itself. Each was probed,
+not argued.
+
+- `/sources-and-method/` was made to say "the build enforces these rules" of checks
+  `npm run build` does not run. Setting a record's `date` outside its own `period_label` leaves
+  the build at exit 0 and is caught by `npm test` alone. It now says "Checks enforce these rules".
+- `/costs/` was made to say "Neither is printed there as a single number" of the visa fee income
+  and the health surcharge. The accounts print the fee income as 3,574,088 thousand and this site
+  only rounds it. The old wording's disjunction, rounded **or** summed, was accurate and is back.
+- `data/meta.json` lost the sentence "The older framing is out of date", which marks everything
+  after it as the superseded description of ONS's series. Without it the caveat told a reader on
+  `/sources-and-method/` that ONS publishes one continuous series *including 2020* and, in the next
+  sentence, that it "treated 2020 as unpublishable". Restored, reversing an approved edit.
+
+A fourth defect broke a reference rather than inventing a claim: `/returns/` was left opening a
+paragraph with "And they do not measure enforcement effort against any total, for the same reason"
+after the sentence that reason referred to had been cut.
+
+**And the rule about adverbs had been over-applied, which is the general lesson.** The skill's rule
+targets an adverb propping up a weak verb. Applied as a sweep it also removed **heavily**,
+**constantly** twice, **routinely**, **regularly**, **materially** and **significant**, which are
+claims about how much and how often, on a pass whose one hard rule was that meaning must not
+change. All six were put back. Four further edits had removed an actor while claiming to add one:
+"Corrections happen in public" is agentless where "are handled" was not, and "We publish this pair"
+gave a page carrying "this site" three times its only "we".
+
+**Of the fifty-five approved edits, thirty-five stand as first applied, seven are fully reverted
+and thirteen were reworded** keeping the change from passive to active that was the point.
+
+**What checked it.** `npm test`, `npm run validate`, `npm run build`, `npm run check-build`,
+`npm run check-evidence` and `npm run a11y` all pass, the last on 25 of 25 URLs in both palettes,
+which is the page count the build printed. Every phrase removed by the first commit was grepped
+out of the built site, the published JSON copies, all 50 title, meta, og and twitter descriptions
+and both JSON-LD blocks, each sweep with a control that had to hit and one that had to miss.
+Nothing here was established by reading the source.
+
 ### Cloudflare Web Analytics, and a claim in this file it falsified, 1 September 2026
 
 **No figure moved and no page a reader sees changed by this entry**, beyond one script element
