@@ -209,12 +209,13 @@ Arrival without prior permission, or through an unauthorised route.
 be. A person may arrive irregularly and go on to be recognised as a refugee; another may
 arrive on a valid visa and later claim asylum.
 
-**A note on wording.** This site uses "irregular arrival" as its default. Our own sources
-do not always: the Home Office publishes a dataset titled "Irregular migration to the UK
-detailed dataset (illegal entry routes)", renamed "Illegal entry routes to the UK detailed
-dataset" from the year ending December 2025 edition, and ONS reason splits include arrivals "via
-illegal entry". Where a source uses different words we quote its title as published rather
-than silently renaming it. Our reasoning is set out on the [style guide](/style-guide/), which distinguishes our precision rules from our value judgements.
+**A note on wording.** This site uses "irregular arrival" as its default. Our own sources do
+not always: the Home Office publishes a dataset titled "Irregular migration to the UK detailed
+dataset (illegal entry routes)", renamed "Illegal entry routes to the UK detailed dataset" from
+the year ending December 2025 edition, and ONS reason splits include arrivals "via illegal
+entry". Where a source uses different words we quote its title as published rather than
+silently renaming it. The [style guide](/style-guide/) sets out our reasoning, and
+distinguishes our precision rules from our value judgements.
 
 ### Small boat arrivals {#small-boat-arrivals}
 
@@ -338,7 +339,7 @@ Becoming a British citizen. **Naturalisation** is the main route for adults:
 
 **Why it matters.** Citizenship usually follows settlement rather than replacing it, so a
 person may appear in both statistics in different years. Neither figure is a count of
-arrivals, people granted citizenship in 2026 typically arrived years earlier.
+arrivals: people granted citizenship in 2026 typically arrived years earlier.
 
 ### Foreign-born population {#foreign-born}
 

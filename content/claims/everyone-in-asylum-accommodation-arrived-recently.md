@@ -36,11 +36,11 @@ other, and the rest received subsistence payments only. Hotels held
 All three are [point-in-time figures](/what-the-words-mean/#flow-and-stock). They count people being supported on that particular
 day, regardless of when they arrived or how long they have been waiting.
 
-At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people
-were still waiting for an initial decision on their claim. Waiting for a decision is not
-the same as receiving support. Support has to be applied for, and a caseworker decides
-each application on whether the person is homeless or has no money for food. Support can
-continue through an appeal, and it is not automatic at any point.
+At the same date, {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people were
+still waiting for an initial decision on their claim. Waiting for a decision is not the same as
+receiving support. A person has to apply for support, and a caseworker decides each application
+on whether the applicant is homeless or has no money for food. Support can continue through an
+appeal, and it is not automatic at any point.
 
 ## Why the claim is misleading
 
@@ -99,6 +99,6 @@ is a separate error, covered by its own claim check.
 **On selection.** This site checks propositions that circulate rather than quotations
 attributed to particular people, as the [style guide](/style-guide/) sets out. For this
 claim we have not located a published example in these exact words. That is a gap in how it
-was selected rather than a point in its favour, and it is recorded here instead of being
-left unsaid. It is checked because reading a stock as a flow is a common and consequential
+was selected rather than a point in its favour, and we record it here instead of leaving
+it unsaid. We check it because reading a stock as a flow is a common and consequential
 error, and because the correction holds whether or not anyone has put the claim this baldly.

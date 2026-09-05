@@ -68,7 +68,7 @@ would recognise.
 
 **Support is not a queue at all.** The number of people receiving asylum support is a
 [stock](/what-the-words-mean/#flow-and-stock) of people being housed and supported, some of
-whom have already had a decision. It is quoted as a backlog often, and it is not one.
+whom have already had a decision. It is often quoted as a backlog, and it is not one.
 
 **The one figure that would settle it is out of date.** The nearest thing to a single number
 is the total casework work in progress, {{asylum/total-asylum-cases-in-the-casework-system}}
@@ -86,10 +86,10 @@ The habit has a reason. There was a period when one figure did most of the work,
 first-decision queue was so much larger than the others that treating it as "the backlog" was
 roughly true. That stopped being so as the queues diverged, and the wording did not follow.
 
-There is also a real problem underneath the phrasing. A total approaching a quarter of a
-million cases was in the system when it was last counted, and the appeals queue is at a
-record. Someone reaching for one number is usually reaching at something real. The number
-does not exist; the pressure does.
+There is also a real problem underneath the phrasing. When it was last counted the system held
+a total approaching a quarter of a million cases, and the appeals queue is at a record. Someone
+reaching for one number is usually reaching at something real. The number does not exist; the
+pressure does.
 
 ## The mirror claim fails too
 
@@ -115,7 +115,7 @@ Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statist
 March 2026. A different publisher on a different cycle, and provisional.
 
 Total casework work in progress: Home Office, as at 30 June 2024, the latest available. **Not
-current, and deliberately shown as stale rather than dropped**, because the gap is the point:
+current, and shown as stale rather than dropped**, because the gap is the point:
 the wider breakdown was suspended pending a new caseworking system.
 
 **This page compares stocks with stocks and does not subtract across publishers.** The

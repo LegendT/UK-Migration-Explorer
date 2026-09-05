@@ -54,13 +54,13 @@ breakdown, and it is held in one place rather than two so the two cannot drift a
 
 **A refusal is a decision about a legal test, not a verdict on honesty.** To be granted
 protection, a claim has to meet a definition in law on the evidence available to the
-decision-maker. A claim can fail that test while every word of the account is true: because
-the harm feared does not fall within the definition, because protection is judged available
-elsewhere in the country, or because the evidence available does not reach the standard even
-where nothing in it is disbelieved. "Not established" and "false" are different findings, and
-this site makes the same distinction about fiscal
-estimates, where the verdict is "not established as a general claim" rather than "false", on
-[the page checking whether immigrants pay more than they cost](/common-claims/immigrants-pay-far-more-than-they-cost/).
+decision-maker. A claim can fail that test while every word of the account is true: because the
+harm feared does not fall within the definition, because the decision-maker judges protection
+available elsewhere in the country, or because the evidence available does not reach the
+standard even where nothing in it is disbelieved. "Not established" and "false" are different
+findings, and this site makes the same distinction about fiscal estimates, where the verdict is
+"not established as a general claim" rather than "false", on [the page checking whether
+immigrants pay more than they cost](/common-claims/immigrants-pay-far-more-than-they-cost/).
 
 **The published statistics do not record why.** The tables behind the figures above give
 outcomes, not reasons. This site holds no breakdown of refusals by ground, so it cannot tell
@@ -85,11 +85,12 @@ makes, and it is as wrong as this one.
 
 ## The mirror claim fails too
 
-"Almost all refused asylum seekers are eventually recognised as refugees" is
-[checked on its own page](/common-claims/refused-asylum-seekers-are-eventually-recognised/) and fails for the same underlying reason: both claims take a real and partial effect
-and inflate it into a total one. This pair is published on both sides deliberately, as the
-fiscal pair is, because a site that corrected only one of them would be making the choice it
-says it does not make.
+"Almost all refused asylum seekers are eventually recognised as refugees" is [checked on its
+own page](/common-claims/refused-asylum-seekers-are-eventually-recognised/) and fails for the
+same underlying reason: both claims take a real and partial effect and inflate it into a total
+one. This site publishes this pair on both sides deliberately, as it does the fiscal pair,
+because a site that corrected only one of them would be making the choice it says it does not
+make.
 
 ## Better questions to ask
 

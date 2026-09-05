@@ -50,7 +50,7 @@ also feed the later figure; that reading is this site's inference, not a link th
 draws.
 
 So the direction of the claim is right, and the size of the effect is not trivial. A
-refusal at initial decision is genuinely not the end of the matter, and a substantial
+refusal at initial decision is not the end of the matter, and a substantial
 minority of claims end differently from how they started.
 
 Taken on its own terms, though, the cohort measure does not say "almost all". The Home
@@ -77,7 +77,7 @@ involves three errors compounding.
 
 First, **not every refusal is appealed.** The appeal success rate describes the outcomes
 of appeals that were lodged and then determined. It says nothing about refused claimants
-who did not appeal, and they cannot be assumed to have the same profile as those who did.
+who did not appeal, and nobody can assume they have the same profile as those who did.
 
 Second, **an appeal allowed is not itself a grant of status.** Appeals can succeed on
 procedural or human rights grounds, and the tribunal does not issue the leave. The Home
@@ -108,8 +108,8 @@ it into a total one.
 The [appeals backlog](/what-the-words-mean/#backlog) stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 31
 March 2026, a record high, and the mean age of an asylum appeal at conclusion was 67
 weeks. That means a large number of people whose final outcome is not yet known, and it
-means any figure for "eventual" recognition is provisional in a fairly deep sense, because
-a large tranche of the relevant cases has not concluded.
+means any figure for "eventual" recognition is provisional, because a large share of the
+relevant cases has not concluded.
 
 ## Better questions to ask
 

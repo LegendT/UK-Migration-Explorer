@@ -33,7 +33,7 @@ Being unfunded is not a claim to neutrality. It removes one category of pressure
 every other one in place: my own assumptions, the sources I happen to know about, and the
 questions it does not occur to me to ask.
 
-What is offered instead of a claim to be unbiased is a claim to be **checkable**. Every
+What this site offers instead of a claim to be unbiased is a claim to be **checkable**. Every
 figure on this site carries the publication it came from, the period it covers, what it
 counts, and when it was last verified. The underlying data files are public, the code that
 renders them is public, and the record of every change to a published figure is public. If a
@@ -56,7 +56,7 @@ of statistics, and applies that in every direction.
 
 If something here is wrong, please say so, and say which figure and what you think it should
 be. [Open an issue](https://github.com/LegendT/UK-Migration-Explorer/issues/new), which needs a
-free GitHub account. Corrections are handled in public, which is the same standard this site
+free GitHub account. This site handles corrections in public, which is the same standard it
 asks of the figures it checks, and [sources and method](/sources-and-method/#corrections) says
 what that costs a reader who has no account.
 

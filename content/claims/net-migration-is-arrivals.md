@@ -53,9 +53,9 @@ ending December 2024, net migration fell from {{migration/net-migration-2023}} t
 Emigration went the other way, rising from {{migration/total-long-term-emigration-2023}} to
 {{migration/total-long-term-emigration-2024}}: more people leaving, not fewer arriving.
 
-A fall in net migration is therefore consistent with arrivals falling, arrivals staying
-flat, or in principle arrivals rising, depending on what emigration does at the same
-time. Reading the net figure as an arrivals figure hides all of that.
+A fall in net migration is therefore consistent with arrivals falling, staying flat, or in
+principle rising. Which of those it is depends on what emigration does at the same time.
+Reading the net figure as an arrivals figure hides all of that.
 
 One further caution: these are estimates, and they are revised. The year ending December
 2024 figure was first published as 431,000, revised to about 345,000, and now stands at
@@ -78,6 +78,6 @@ estimates are provisional and have been revised substantially in recent releases
 [Long-term migration](/what-the-words-mean/#long-term-migration) counts moves of 12 months or more. It does not count visits, and it
 is not the same as [visas granted](/what-the-words-mean/#visa-grant).
 
-The 2023 and 2024 comparison above uses ONS's current series, in which both years
-appear on the same methodological basis. Figures are rounded by ONS, so the components do not always sum exactly to the
-published net figure.
+The 2023 and 2024 comparison above uses ONS's current series, in which both years appear on the
+same methodological basis. ONS rounds its figures, so the components do not always sum exactly
+to the published net figure.
