@@ -9,6 +9,49 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Four changes to the checking apparatus that went unrecorded, 13 to 19 August 2026
+
+**No figure moved and no page a reader sees changed by this entry.** Backlog item 46. Recorded on
+5 September 2026, weeks after the fact, which is the point of the entry: this file records a
+check's removal and had not been recording the additions beside it.
+
+**Which of these belong here was the question the item asked, and the answer is not all of them.**
+This file's stated scope is data updates and methodology changes. A check that changes what a
+figure must carry, or what this site can tell a reader it has verified, is a methodology change. A
+change to how a script talks to a network, or to the identity of an issue it opens, is not. Two
+were left out on that reasoning and are named at the end so the decision is visible rather than
+silent.
+
+**Every series point must carry a `retrieved_date`, 19 August 2026.** `validate-data.mjs` now
+refuses a series block whose points do not. The date a figure was last checked against its source
+is what `/sources-and-method/` promises a reader for every figure, and a series point could be
+published without one.
+
+**The one-month update commitment is measured rather than asserted, 13 August 2026.**
+`check-releases.mjs` now reports how long a behind source has been outstanding, measured against
+the one calendar month `/sources-and-method/` promises. The same change made
+`validate-content.mjs` refuse that page where the publishers its prose names are not exactly those
+its derived count is about, because a typed list beside a derived count is two homes for one fact.
+
+**A chart's Source line is compared against the data the chart draws, 19 August 2026.**
+`lib/charts.mjs` now throws at build time unless the publication linked under a chart is one the
+chart's own data cites. On 11 August 2026 both line charts on `/migration/` linked a page their
+plotted series is not in, one of them carrying no figure at all, while the citation block beneath
+named the spreadsheet: the two were built from different things and nothing compared them. It
+checks rather than derives, on the owner's decision, because a chart may draw from more than one
+publication and its line may name any one of them.
+
+**A dashboard card and a chart bar now name the record they draw, 18 August 2026.** Those two
+routes rendered a value with no `data-metric` attribute, so the transform that derives each page's
+"checked on" date could not see them, and a page whose only figures arrived that way would have
+printed no currency line at all.
+
+**Two changes were considered and deliberately not recorded**, and this sentence is the record of
+that: `scripts/check-fetch-retry.mjs` gating the retry helper's logic, and keeping a failed fetch
+out of the release issue's identity. Neither alters how a figure is derived or verified. Deciding
+they differ is a legitimate outcome; deciding it by writing nothing, which is what happened until
+now, is not.
+
 ### The reader-facing prose, reworked and then corrected, 5 September 2026
 
 **No figure moved. No source, period, date or confidence grade moved. No claim changed direction
