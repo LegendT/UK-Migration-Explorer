@@ -34,6 +34,47 @@ const errors = [];
 // actually defines.
 const served = new Set(built.map((f) => `/${relative(siteDir, f).replace(/\\/g, '/')}`));
 const anchors = new Map();
+// Markup conventions, from README "Markup conventions". Five of the rules a reading used to hold
+// are asked of the built HTML: a headline card is an article, a caveat is a div with role="note"
+// opening with a heading, no aside, no list item opening with a bold label and a colon, and the
+// label-value blocks the sweep converted, named in PAIRS below, are description lists. The rest
+// of that list (dates, ARIA, sections) stays a reading. Probed below before it is trusted,
+// on every run, with the strings it must catch and the ones it must not.
+function markupConventions(html) {
+  const problems = [];
+  for (const [, tag] of html.matchAll(/<([a-z]+)[^>]*class="(?:[^"]*\s)?card(?:\s[^"]*)?"/g)) {
+    if (tag !== 'article') problems.push(`a .card is a <${tag}>, and a headline figure with its explanation is an article`);
+  }
+  for (const [, tag, inner] of html.matchAll(/<([a-z]+)[^>]*role="note"[^>]*>([\s\S]*?)<\/\1>/g)) {
+    if (tag !== 'div' || !/^\s*<h[1-6][\s>]/.test(inner)) problems.push('a role="note" is not a div opening with a heading, so the caveat has no name in the outline');
+  }
+  if (/<aside[\s>]/.test(html)) problems.push('an <aside> is used, and a caveat is a div with role="note" and a heading');
+  for (const [item] of html.matchAll(/<li>\s*<strong>[^<]*<\/strong>:/g)) {
+    problems.push(`a list item opens with a bold label and a colon, "${item.slice(0, 60)}", and a label with one value is a dl`);
+  }
+  // The blocks the sweep converted, by class token, so a template that reverts one fails here.
+  // `source also-cited` is a sentence and stays a paragraph, so that token exempts it.
+  const PAIRS = ['periods', 'claim-tags', 'claim-list-meta', 'claim-meta', 'claim-answer-list', 'source'];
+  for (const [, tag, cls] of html.matchAll(/<([a-z]+)[^>]*class="([^"]*)"/g)) {
+    const tokens = cls.split(/\s+/);
+    if (PAIRS.some((c) => tokens.includes(c)) && !tokens.includes('also-cited') && tag !== 'dl') {
+      problems.push(`a .${cls} is a <${tag}>, and a label with one value is a dl`);
+    }
+  }
+  return problems;
+}
+{
+  const mustCatch = ['<li class="card"><h3>x</h3></li>', '<p class="c" role="note"><strong>x</strong></p>',
+    '<div role="note"><p>x</p></div>', '<aside>x</aside>', '<li><strong>Net migration</strong>: 2025</li>',
+    '<p class="claim-meta">x</p>', '<p class="source">x</p>', '<ul class="periods"></ul>',
+    '<p class="claim-answer-list">x</p>', '<p class="source wide">x</p>'];
+  const mustIgnore = ['<article class="card"><h3>x</h3></article>', '<div class="correction" role="note">\n<h2>x</h2><p>y</p></div>',
+    '<div class="claim-card">x</div>', '<li><strong>Bold.</strong> text: more</li>', '<p><strong>Found an error?</strong> Tell us: x</p>',
+    '<dl class="claim-meta"></dl>', '<p class="source also-cited">x</p>', '<span class="claim-list-meta-x">y</span>'];
+  for (const s of mustCatch) if (!markupConventions(s).length) throw new Error(`markupConventions did not catch ${s}`);
+  for (const s of mustIgnore) if (markupConventions(s).length) throw new Error(`markupConventions wrongly caught ${s}: ${markupConventions(s)}`);
+}
+
 for (const file of pages) {
   const url = `/${relative(siteDir, file).replace(/index\.html$/, '').replace(/\\/g, '/')}`;
   served.add(url);
@@ -223,6 +264,7 @@ for (const file of pages) {
     if (!/role="region"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no role, so focus lands on an anonymous box`);
     if (!/aria-label="[^"]+"/.test(attrs)) errors.push(`${where}: a .scroll-x region has no accessible name`);
   }
+  for (const problem of markupConventions(html)) errors.push(`${where}: ${problem}`);
 
   // Two elements answering to the same id. The anchors map above is a Set, so a duplicate is
   // invisible to every check that reads it: a fragment link resolves, an aria reference
@@ -346,7 +388,7 @@ for (const [url, found] of ldTypes) {
 // this site counts as published, which is the direction that widened: `data-metric` no longer
 // comes from renderFigure alone, because a chart bar and a dashboard card now carry the record
 // they draw. Comparing the output against the token set alone would now fail on every bar and
-// card ref that is not also written as a token, which is three of them today. A one-way check finds only an overcount, and the
+// card ref that is not also written as a token, which the bar and card routes emit. A one-way check finds only an overcount, and the
 // undercount is the easier mistake: the scan's pattern has to match everything the RENDERER
 // accepts, and resolve-citations takes "{{ theme/id }}" with spaces. A citation written that way
 // would reach a reader and be counted for nobody, leaving the page's numbers quietly low. Both
@@ -367,8 +409,8 @@ for (const [url, found] of ldTypes) {
 // never emit.
 //
 // What it does NOT establish, and this is the half that is still open: a `"ref" | metric` chart
-// summary interpolates a bare number into a concatenated string, so seven of the counted figures
-// still leave no trace to match. The obvious wrapper does not build. That string is escaped into
+// summary interpolates a bare number into a concatenated string, so a figure reached only that
+// way leaves no trace to match, and the run prints how many. The obvious wrapper does not build. That string is escaped into
 // the chart's SVG <desc> as its accessible description, so marking it up means either shipping
 // literal tags to a screen reader or holding the same sentence in two forms, and neither is a
 // change to make in order to make a check easier.
@@ -469,7 +511,7 @@ for (const file of pages) {
   if (claimsFigures) {
     const stamped = /<time class="figure-currency" datetime="(\d{4}-\d{2}-\d{2})">/.exec(html);
     if (!stamped) {
-      errors.push(`${where}: the review footer says when its figures were checked and carries no resolved date. The figure-currency transform in eleventy.config.js found no data-metric ref and no citation datetime on this page, so it left the placeholder.`);
+      errors.push(`${where}: the review footer says when its figures were checked and carries no resolved date. The figure-currency transform in eleventy.config.js found no data-metric ref and no <time class="checked"> trace on this page, so it left the placeholder.`);
     } else if (stamped[1] > new Date().toISOString().slice(0, 10)) {
       errors.push(`${where}: the review footer dates its figures to ${stamped[1]}, which is in the future.`);
     }
@@ -777,12 +819,16 @@ let periodSentences = 0;
 
 for (const file of pages) {
   const where = relative(siteDir, file);
-  // A citation block names the EDITION a figure was read from, which is a different thing from
-  // the period the figure covers and is legitimately "year ending March 2026" beside a 2022 peak.
-  // Scanning those produced two false hits on the first run, both a card's source line.
+  // A card's or chart's source line names the EDITION a figure was read from, which is a different
+  // thing from the period the figure covers and is legitimately "year ending March 2026" beside a
+  // 2022 peak. Scanning those produced two false hits on the first run, so they are stripped. A
+  // citation block names editions too but carries no ref marker, so it is never judged.
   const marked = readFileSync(file, 'utf8')
-    .replace(/<p[^>]*class="[^"]*source[^"]*"[\s\S]*?<\/p>/g, ' ')
-    .replace(/<span[^>]*data-metric="([^"]+)"[^>]*>/g, ' [[$1]] ');
+    // p or dl: the dashboard card's source line became a description list on 22 September 2026.
+    .replace(/<(p|dl)[^>]*class="[^"]*source[^"]*"[\s\S]*?<\/\1>/g, ' ')
+    // Any element, not only a span: a dashboard card's headline value became a <p> on 22 September
+    // 2026 and this pattern, qualified to span, dropped it from its sentence in silence.
+    .replace(/<[a-z]+[^>]*data-metric="([^"]+)"[^>]*>/g, ' [[$1]] ');
   const text = unescape(marked.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
 
   for (const sentence of text.split(/(?<=\.)\s+/)) {

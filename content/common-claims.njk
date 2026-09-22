@@ -46,9 +46,10 @@ want to see. A rule that prevents you correcting a claim is measuring the wrong 
           error, and how fresh the check is, the two things that help a reader choose
           which claim to open. Same component in both places invited the reading that
           they should carry the same fields. -#}
-      <p class="claim-list-meta">Misuse: {{ claim.data.error_type }}
-        <span class="sep" aria-hidden="true">·</span>
-        Reviewed {{ claim.data.last_reviewed | longDate }}</p>
+      <dl class="claim-list-meta">
+        <div><dt>Misuse</dt> <dd>{{ claim.data.error_type }}</dd></div>
+        <div><dt>Reviewed</dt> <dd>{{ claim.data.last_reviewed | timeTag | safe }}</dd></div>
+      </dl>
     </article>
   </li>
   {%- endfor %}

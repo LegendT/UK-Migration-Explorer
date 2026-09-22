@@ -58,7 +58,10 @@ grade is our judgement about how far the figure can be relied on, not the publis
 <ul class="cards">
   {%- for card in dashboard.cards %}
   {%- set m = card.ref | metric %}
-  <li class="card">
+  <li>
+    {#- An article, not a bare list item: a headline figure with its explanation and source is a
+        self-contained composition, the same call the claim cards below make. -#}
+    <article class="card">
     <h3>{{ card.shortLabel }}</h3>
     {#- The unit sits WITH the number rather than on the line below it. On a site about migration
         statistics the commonest unit is "people", and a card that renders the count on one line and
@@ -66,29 +69,32 @@ grade is our judgement about how far the figure can be relied on, not the publis
         noun that says what is being counted. The period stays on its own line, because that is a
         qualification rather than part of the quantity. -#}
     {%- set symbolised = m.unit == "%" or m.unit == "£ billion" %}
-    <span class="value" data-metric="{{ card.ref }}">{% if m.unit == "£ billion" %}£{% endif %}{{ m.value | number }}{% if m.unit == "%" %}%{% endif %}{% if m.unit == "£ billion" %} billion{% endif %}{% if not symbolised %} <span class="unit">{{ m.unit }}</span>{% endif %}</span>
-    <span class="period">{{ m.period_label }}</span>
+    <p class="value" data-metric="{{ card.ref }}">{% if m.unit == "£ billion" %}£{% endif %}{{ m.value | number }}{% if m.unit == "%" %}%{% endif %}{% if m.unit == "£ billion" %} billion{% endif %}{% if not symbolised %} <span class="unit">{{ m.unit }}</span>{% endif %}</p>
+    <p class="period">{{ m.period_label }}</p>
     <p class="means">{{ card.whatThisMeans }}</p>
-    <p class="source"><a href="{{ m.source_url }}">{{ m.source_name }}</a><br>
+    {#- Four labelled facts, so a description list rather than a paragraph broken with <br>. -#}
+    <dl class="source">
+      <div><dt>Source</dt> <dd><a href="{{ m.source_url }}">{{ m.source_name }}</a></dd></div>
     {#- Foundation 2.1 promises that where a publication date is not recorded the figure says
         so rather than guessing. There was no branch here, and longDate returns an empty
         string for a null, so the card would have rendered "Published" followed by nothing,
         which reads as a date that failed to load rather than one that was never published. -#}
-    {% if m.published_date %}Published {{ m.published_date | longDate }}{% else %}Publication date not recorded{% endif %}<br>
+      <div><dt>Published</dt> <dd>{% if m.published_date %}{{ m.published_date | timeTag | safe }}{% else %}not recorded{% endif %}</dd></div>
     {#- The date we last checked the figure against its source, which is a different thing
         from when the source published it. A reader judging whether this site is up to date
         needs the second, and it was only ever in the data files. Foundation 17.
         "Checked by us on" rather than a bare "Checked", because the bare form does not say who
         did the checking and the owner read it as ambiguous. The SAME words are used by the
         citation blocks in lib/citation.mjs: two wordings for one concept is what invited the
-        question, and this file briefly carried the second of them. -#}
-    {#- A machine-readable date, on the same terms as lib/citation.mjs and lib/provenance.mjs.
-        A dashboard card renders its own value with no ref beside it, so this line is the ONLY
-        trace of when that figure was checked, and the figure-currency transform reads traces.
-        Without it the home page's footer date was computed from the comparison figures in the
-        prose alone, and every headline card figure was invisible to it. -#}
-    Checked by us on <time datetime="{{ m.retrieved_date }}">{{ m.retrieved_date | longDate }}</time><br>
-    <span class="grade">{{ m.confidence_level }}</span></p>
+        question, and this file briefly carried the second of them. As a list label it drops
+        the "on", the colon the stylesheet draws doing that word's work. -#}
+    {#- A machine-readable date, on the same terms as lib/citation.mjs and lib/provenance.mjs,
+        rendered here because a reader needs it. It is also a trace the figure-currency transform
+        reads, marked `checked`; the card's own `data-metric` above has been the other trace since
+        18 August 2026, and before that this line was the only one. -#}
+      <div><dt>Checked by us</dt> <dd><time class="checked" datetime="{{ m.retrieved_date }}">{{ m.retrieved_date | longDate }}</time></dd></div>
+      <div><dt>Confidence</dt> <dd><span class="grade">{{ m.confidence_level }}</span></dd></div>
+    </dl>
     {#- A card's source line above belongs to its headline figure. Where the prose beside it
         quotes a figure from a different publisher, that publisher is named here rather than
         left behind a link that does not print the number. Derived by the `citedSources`
@@ -98,6 +104,7 @@ grade is our judgement about how far the figure can be relied on, not the publis
     <p class="source also-cited">Figures quoted above also come from
       {%- for s in alsoCited %} <a href="{{ s.url }}">{{ s.name }}</a>{% if not loop.last %},{% endif %}{% endfor %}.</p>
     {%- endif %}
+    </article>
   </li>
   {%- endfor %}
 </ul>
@@ -111,12 +118,13 @@ spent. Set out together, the periods are:</p>
 {#- Generated from the cards themselves. The previous version of this paragraph described a
     card set that did not exist: it named routes with no card and miscounted the ones there
     were. A paragraph whose whole job is period discipline cannot be maintained by hand. -#}
-<ul class="periods">
+{#- A label with one value is a name-value pair, so a description list rather than bold text. -#}
+<dl class="periods">
   {%- for card in dashboard.cards %}
   {%- set m = card.ref | metric %}
-  <li><strong>{{ card.shortLabel }}</strong>: {{ m.period_label }}</li>
+  <div><dt>{{ card.shortLabel }}</dt> <dd>{{ m.period_label }}</dd></div>
   {%- endfor %}
-</ul>
+</dl>
 
 <p>Comparing a figure from one of those windows with a figure from another, and calling the
 difference a change, is not valid.</p>

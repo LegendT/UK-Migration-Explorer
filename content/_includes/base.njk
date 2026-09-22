@@ -7,11 +7,11 @@
     place a reader reads before opening the page. Backlog call 28. -#}
 <title>{% if claim and paused %}Claim check paused: {{ claim }} | {{ site.name }}{% elif claim %}Claim checked: {{ claim }} | {{ site.name }}{% elif title %}{{ title }} | {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
 {#- `description` is for a page whose meta description should not be its visible strapline. The
-    404 page is the only one today: it has no strapline, so it fell through to the site's own and
-    was the one duplicated description among the seventeen pages. #}
+    404 page is the only one today: it has no strapline, so its description fell through to the
+    site's own. #}
 {#- `short_answer` is skipped on a paused claim for the same reason the page no longer prints it:
     a description tag is published text, and the pause took that answer down. -#}
-<meta name="description" content="{% if claim and paused %}This claim check is paused pending re-review. The page says what the claim was and why the check came down.{% else %}{{ description or short_answer or strapline or site.strapline }}{% endif %}">
+<meta name="description" content="{% if claim and paused %}This claim check is paused pending re-review. The page says what the claim was.{% else %}{{ description or short_answer or strapline or site.strapline }}{% endif %}">
 {#- The two --paper values from content/assets/style.css, which is where the palette lives. They
     cannot be read from CSS by markup, so this is the one place a colour is written twice, and it
     is only the page background: a browser that tints its own chrome otherwise picks white against
@@ -69,11 +69,12 @@
   <div class="wrap">
     <p class="brand"><a href="/">{{ site.name }}</a></p>
     <nav aria-label="Main">
-      {#- A disclosure rather than a flat list. The nine labels need about 980px of line length,
-          so at 320px they wrapped to five 50px rows and put every page's h1 below the fold.
-          `details` carries this with no client-side JavaScript; above 40em the summary is hidden
-          and the list is revealed, so wide screens keep the row they have always had. The
-          stylesheet's nav block says how, and what happens where the reveal is unsupported. #}
+      {#- A disclosure rather than a flat list, because a flat list of these labels wrapped to
+          five rows at 320px and put every page's h1 below the fold; the measurement is in the
+          stylesheet's nav block, which is the one home for it. `details` carries this with no
+          client-side JavaScript; above 40em the summary is hidden and the list is revealed, so
+          wide screens keep the row they have always had. The stylesheet's nav block also says
+          what happens where the reveal is unsupported. #}
       <details class="nav-menu">
         <summary>Menu</summary>
         <ul>
@@ -125,7 +126,7 @@
       record values through tokens and carry no citation block at all. A sentence true on
       nineteen pages and false on two is the defect this one was written to remove. -#}
   {% if last_reviewed %}
-  <p class="reviewed">This page was last reviewed on {{ last_reviewed | longDate }}.
+  <p class="reviewed">This page was last reviewed on {{ last_reviewed | timeTag | safe }}.
   {%- if content | carriesAFigure %} Its figures are not a live count;<span class="figure-currency-clause"> every one was checked against its source on or after <time class="figure-currency" datetime="pending">pending</time></span>.{% endif %}</p>
   {% endif %}
 </main>
