@@ -295,9 +295,10 @@ export default function (eleventyConfig) {
 
   // Whether a page carries any figure at all, tested against its own rendered content rather
   // than declared in front matter. The shared footer used to state "Figures are the latest
-  // published at that date" under every page with a review date, and four pages have no figure
-  // on them at all: /about/, /common-claims/, /style-guide/ and the 404. The finding named two
-  // of the four, which is why this is derived. A hand-kept list of which pages have figures is
+  // published at that date" under every page with a review date, and some pages have no figure
+  // on them at all. The finding that raised it named only half of those pages, which is why this
+  // is derived; check-build.mjs keeps that incident's own list where it checks the footer. A
+  // hand-kept list of which pages have figures is
   // the thing that passes by omission the first time a page is added.
   //
   // Two routes are tested. A {{theme/id}} token is still a token when a layout sees the
@@ -387,6 +388,22 @@ export default function (eleventyConfig) {
   // copy is how two renderings of the same date drift apart.
   eleventyConfig.addFilter('longDate', longDate);
 
+  // timeTag: the same words inside <time datetime="YYYY-MM-DD">, for a date a template prints in
+  // prose. longDate stays for text that markup cannot enter. What this emits is NOT a checked-date
+  // trace: the figure-currency transform below reads only <time class="checked">, which the three
+  // trace emitters (index.njk, lib/citation.mjs, lib/provenance.mjs) write by hand, so a review,
+  // publication or correction date wrapped here cannot move a footer's date earlier. Before this
+  // filter existed the transform read every <time datetime>, which was safe only because the
+  // checked traces were the only <time> elements a page carried; wrapping the home page's review
+  // date, 23 July 2026, under that rule would have pulled its footer back from 11 August. The
+  // probe is the footer date of every built page, unchanged by this filter's arrival.
+  eleventyConfig.addFilter('timeTag', (value) => {
+    if (!value) return '';
+    const date = value instanceof Date ? value : new Date(`${value}T00:00:00Z`);
+    if (Number.isNaN(date.getTime())) throw new Error(`Not a date: ${value}`);
+    return `<time datetime="${date.toISOString().slice(0, 10)}">${longDate(date)}</time>`;
+  });
+
   eleventyConfig.addFilter('limit', (array, n) => array.slice(0, n));
 
   // The claims page states its own split. Typed by hand it was a number the next claim
@@ -441,10 +458,11 @@ export default function (eleventyConfig) {
   // "Its figures were the latest published at that date", welding the figures' currency to the
   // page's prose-review date; those are two different facts and the older one spoke for the newer.
   //
-  // Two routes put a dated figure on a page and both are read here, because reading one would
-  // quietly speak for the other. A token renders as `data-metric="theme/id"`, which resolves to a
-  // record's retrieved_date. A chart or a card renders no ref at all, and reaches a reader through
-  // a citation block, which now carries a machine-readable `datetime` for exactly this reason.
+  // Two kinds of trace put a dated figure on a page and both are read here, because reading one
+  // would quietly speak for the other. A token, a chart bar and a dashboard card each render
+  // `data-metric="theme/id"`, the last two since 18 August 2026, which resolves to a record's
+  // retrieved_date. A citation block or a provenance row carries `<time class="checked">` for the
+  // same reason, and that class is what separates a trace from a date the timeTag filter prints.
   //
   // The EARLIEST wins, and the sentence says "on or after", because a page mixing a figure read
   // today with one read last month is only honestly described by its oldest. That is the same rule
@@ -461,7 +479,9 @@ export default function (eleventyConfig) {
       const held = registry.get(ref)?.retrieved_date;
       if (held) dates.add(held);
     }
-    for (const [, iso] of content.matchAll(/<time datetime="(\d{4}-\d{2}-\d{2})"/g)) dates.add(iso);
+    // Only a marked trace. A timeTag date is a <time> too, and reading it would date the figures
+    // to a review or publication that says nothing about when they were checked.
+    for (const [, iso] of content.matchAll(/<time class="checked" datetime="(\d{4}-\d{2}-\d{2})"/g)) dates.add(iso);
     if (!dates.size) return content;
     const earliest = [...dates].sort()[0];
     // One date on the page is the common case and "on or after" hedges it for no reason, on a
@@ -477,75 +497,38 @@ export default function (eleventyConfig) {
   });
 
   // The date the transform above writes is derived by SCRAPING the page it has just built, so a
-  // rendering route that leaves neither of the two traces narrows it in silence: the page still
-  // gets a date, from its other figures, and a reader is told every figure on it was checked more
-  // recently than one of them was. Backlog item 27. This is the second derivation of that date,
-  // and a second derivation is the only thing that makes the failure loud rather than quiet.
+  // rendering route that leaves neither trace narrows it in silence: the page still gets a date
+  // from its other figures, and a reader is told every figure on it was checked more recently
+  // than one of them was. This is a second derivation of that date, from a set nothing above
+  // scraped, and a second derivation is what makes that failure loud rather than quiet.
   //
-  // WHAT ITEM 27 PRESCRIBED WOULD NOT HAVE DONE IT, and reproducing the premise is what showed
-  // that. A register each renderer writes to, read here instead of the scrape, was said to leave a
-  // forgetful route producing "no date at all". It does not. A route that forgets to register
-  // leaves the page's OTHER figures registered, so a date is still produced and still narrowed,
-  // which is precisely the one case item 27's own sizing leaves open: a traceless route on a page
-  // that already carries a figure. The silence moves from one omission to another; it does not
-  // close, and the inversion would have touched every rendering path to buy that.
+  // THE RULE. scripts/validate-content.mjs refuses a page that renders a ref it does not list
+  // under `figures:`, in every citation syntax, so the front matter names everything the page
+  // puts on it whether or not it left a trace. A dashboard card is the one route with no
+  // declaration of its own, so a page that iterates `dashboard.cards` is read from the source
+  // here for the same reason. The footer may not claim a date LATER than the oldest of those.
   //
-  // WHAT CLOSES IT IS A DECLARATION NOTHING HERE SCRAPED, and it already existed unconnected.
-  // scripts/validate-content.mjs refuses a page that renders a ref it does not list under
-  // `figures:`, in all four citation syntaxes: a markdown token, a {% figure %} shortcode, a chart
-  // bar's `ref` and a `"ref" | metric` summary. So the front matter names everything those four
-  // routes put on the page whether or not it left a trace, and the footer may not claim a date
-  // LATER than the oldest of them. The fifth route, a dashboard card, is the one with no
-  // front-matter declaration of its own: a page whose source iterates `dashboard.cards` renders
-  // every card's figure, and that is read from the source here for the same reason.
+  // ONE DIRECTION, deliberately. A footer date OLDER than the oldest figure understates this
+  // site's own currency, which "on or after" already hedges; a date LATER than it tells a reader
+  // a figure was checked when it was not, which is the error this site exists to correct in
+  // others. A declared figure that reaches a reader only as rounded prose, the net fiscal impact
+  // record on the claim pages that carry it, is dated by their citation block, which keeps the
+  // EARLIEST retrieved_date under a merged name, so a declared date cannot be lost upward.
   //
-  // ONE DIRECTION, deliberately. A footer date OLDER than the oldest figure on the page understates
-  // this site's own currency, which is what "on or after" already hedges; a date LATER than it tells
-  // a reader a figure was checked when it was not, which is the error this site exists to correct in
-  // others. TWO THINGS ARE NOT ESTABLISHED, and a passing build does not say otherwise: that the
-  // date is not needlessly old, and that a page carries the sentence at all. The second is
-  // check-build.mjs's question and it is asked from `data-metric`, which since 18 August 2026 the
-  // card and chart-bar routes emit and only a `"ref" | metric` summary does not; requiring the
-  // sentence from the declaration instead would demand it of a page that declares a figure and
-  // renders none, which claim pages do by design, and that is why this transform's set is the
-  // right one for a DATE and the wrong one for the sentence.
+  // NOT ESTABLISHED, and a passing build does not say otherwise: that the date is not needlessly
+  // old, and that a page carries the sentence at all. The second is check-build.mjs's question,
+  // asked from `data-metric`, because a claim page declares figures it never renders by design,
+  // so this set is the right one for a DATE and the wrong one for the sentence.
   //
-  // THE DECLARATION IS THE RIGHT SET AND THAT WAS MEASURED RATHER THAN ASSUMED. On every theme
-  // page the declared list and the refs its own body cites are the same set. On some claim pages it
-  // is wider, and the case that matters is this site's net fiscal impact figure: it is written as
-  // rounded prose, "under 1% of GDP", on pages that declare
-  // `fiscal/net-fiscal-impact-of-immigration-as-a-share-of-gdp` and never tokenise it. That is a
-  // figure a reader meets with no trace of any kind beside it, which is this check's own case in
-  // production today. It is dated only because those pages render a citation block, and
-  // lib/citation.mjs merges records under one name by keeping the EARLIEST retrieved_date, so a
-  // declared figure's date cannot be lost upward and this cannot fire on a page that carries one.
-  //
-  // NO COUNT IS WRITTEN IN THAT PARAGRAPH, because it carried one and the count was wrong. It said
-  // three claim pages write that figure as prose. Three DECLARE the record and two print the
-  // rounded prose; the comment on the `citation` shortcode above says two and means those two. A
-  // count of this project's own state, in a comment, beside a check about exactly that.
-  // **The third page is not a loose end and this said it was**, until each case was removed, rebuilt
-  // and diffed rather than argued about. `average-migrant-contributes-341000-over-a-lifetime.md`
-  // declares the record and rests a sentence on it with no number in it, "effects small in magnitude
-  // relative to the economy, positive in some and negative in others", and removing the declaration
-  // takes the whole Migration Observatory entry out of that page's citation block. So it is the same
-  // deliberate case as the other two, reaching a reader through a sentence rather than a figure.
-  //
-  // NO DECLARATION ON THE SITE IS DATED NOWHERE, and the one that was is deleted rather than
-  // excluded here. /sources-and-method/ declared `migration/net-migration` while printing
-  // `migration/net-migration-2` and rendering no citation block, so nothing on it carried the first
-  // record's date and it was the only page this could ever have fired on wrongly. It was stale, and
-  // the change that added this check removed it. THIS PARAGRAPH CALLED IT AN OPEN QUESTION UNTIL
-  // THEN, in the same pull request, which is a comment going stale one reference from the decision
-  // that settled it and is why the sentence is corrected rather than deleted. Excluding it here
-  // instead would have meant a rule that drops whatever would have fired, which is not a check.
-  //
-  // The front matter is parsed here rather than imported from validate-content.mjs, on the same
-  // reasoning the scroll-region patterns are duplicated: this is the check that has to disagree with
-  // the transform above, and a reader shared with the file that writes the declaration would be one
-  // assumption neither side could catch. Comments are stripped from the traced half, as they are at
-  // every other end that compares, and a ref surviving only in a comment can only make this check
-  // more forgiving rather than less.
+  // A register each renderer writes to, which The order's item 27 prescribed instead, was refuted
+  // by reproducing its premise on 12 August 2026: a route that forgets to register leaves the
+  // page's other figures registered, so a date is still produced and still narrowed. The front
+  // matter is parsed here rather than imported from validate-content.mjs, on the same reasoning
+  // the scroll-region patterns are duplicated: this is the check that has to disagree with the
+  // transform above, and a shared reader would be one assumption neither side could catch.
+  // Comments are stripped from the traced half, so a ref surviving only in a comment can make
+  // this check more forgiving, never less. The history this block used to narrate, a wrong count
+  // and a stale declaration it once called open, is in the pull requests that settled them.
   const cardRefs = (read('dashboard.json').cards ?? []).map((card) => card.ref).filter(Boolean);
   const DECLARED_REF = /^\s*-\s+(\S+\/\S+)$/gm;
 
@@ -703,7 +686,7 @@ export default function (eleventyConfig) {
   // Every table and every chart sits in a horizontally scrolling box. A box that scrolls
   // has to be reachable and operable by keyboard, which means it must be focusable and
   // must say what it is when focus lands on it. Doing that here rather than at each of the
-  // nine places that write a .scroll-x means a table added later cannot arrive without it,
+  // every place that writes a .scroll-x means a table added later cannot arrive without it,
   // and it reaches the markdown tables, which had no wrapper at all: four of the sixteen
   // tables on the site could not scroll and so could not be read below about 420px.
   //

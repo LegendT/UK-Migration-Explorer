@@ -34,7 +34,7 @@ layout: base.njk
     {#- aria-hidden because the h1 below now carries "The claim: " in its own accessible name.
         Without this a screen reader reading linearly announces the label twice, once here and
         once in the heading. The visible label stays exactly where it is; only the duplicate
-        announcement goes. "The short answer" below is NOT hidden: nothing else carries it. -#}
+        announcement goes. -#}
     <p class="claim-label" aria-hidden="true">The claim</p>
     <h1 class="claim-text"><span class="visually-hidden">The claim: </span>{{ claim }}</h1>
     {#- The reason is stated only where the page states one. An earlier version of this sentence
@@ -43,14 +43,16 @@ layout: base.njk
         obvious case. That would have put a confident false cause on a site whose subject is
         confident false causes. Where no reason is given the page says what it knows, which is
         that the answer is down pending re-review. -#}
-    <p class="claim-label">This check is paused</p>
-    <p class="claim-answer">The answer and the figures that were on this page came down on
-    {{ paused | longDate }}, pending re-review. It was last reviewed on
-    {{ last_reviewed | longDate }}.{% if paused_reason %} {{ paused_reason }}{% endif %}</p>
-    <p class="claim-meta">
-      <span>Reviewed {{ last_reviewed | longDate }}</span>
-      <span class="sep" aria-hidden="true">·</span><span>Paused {{ paused | longDate }}</span>
-    </p>
+    <dl class="claim-answer-list">
+      <dt class="claim-label">This check is paused</dt>
+      <dd class="claim-answer">The answer and the figures that were on this page came down on
+      {{ paused | timeTag | safe }}, pending re-review. It was last reviewed on
+      {{ last_reviewed | timeTag | safe }}.{% if paused_reason %} {{ paused_reason }}{% endif %}</dd>
+    </dl>
+    <dl class="claim-meta">
+      <div><dt>Reviewed</dt> <dd>{{ last_reviewed | timeTag | safe }}</dd></div>
+      <div><dt>Paused</dt> <dd>{{ paused | timeTag | safe }}</dd></div>
+    </dl>
   </div>
 
   <p>The page stays at this address rather than disappearing, so a link taken when the check was
@@ -70,34 +72,44 @@ layout: base.njk
         announcement goes. "The short answer" below is NOT hidden: nothing else carries it. -#}
     <p class="claim-label" aria-hidden="true">The claim</p>
     <h1 class="claim-text"><span class="visually-hidden">The claim: </span>{{ claim }}</h1>
-    <p class="claim-label">The short answer</p>
-    <p class="claim-answer">{{ short_answer }}</p>
+    {#- A label with one value: a description list, the label keeping its class so it looks as
+        it did. -#}
+    <dl class="claim-answer-list">
+      <dt class="claim-label">The short answer</dt>
+      <dd class="claim-answer">{{ short_answer }}</dd>
+    </dl>
     {#- The site name was here as a byline. The header, the footer and the browser tab all
         carry it already, and inside the card it read as one more undifferentiated item in
         a row that needed fewer, not more. -#}
-    {#- The separator is a character with aria-hidden rather than a CSS ::before, so it is
-        skipped by a screen reader and still present when the stylesheet is not. -#}
-    <p class="claim-meta">
-      <span>Reviewed {{ last_reviewed | longDate }}</span>
-      {% if period %}<span class="sep" aria-hidden="true">·</span><span>{{ period }}</span>{% endif %}
-      {% if source %}<span class="sep" aria-hidden="true">·</span><span>{{ source }}</span>{% endif %}
-    </p>
+    {#- Three labelled values. The labels replaced the aria-hidden dot separators on 22 September
+        2026: a period and a publisher set side by side with no label read as one phrase, and a
+        description list names each. -#}
+    <dl class="claim-meta">
+      <div><dt>Reviewed</dt> <dd>{{ last_reviewed | timeTag | safe }}</dd></div>
+      {% if period %}<div><dt>Period</dt> <dd>{{ period }}</dd></div>{% endif %}
+      {% if source %}<div><dt>Source</dt> <dd>{{ source }}</dd></div>{% endif %}
+    </dl>
     {#- Inside the card, so that a screenshot of the card carries the citation with it. The
         publications a reader should cite are the Home Office's and the ONS's, not this page. -#}
     {% citation figures, claim %}
   </div>
 
-  <p class="claim-tags">
-    <span class="tag">Misuse: {{ error_type }}</span>
-    <span class="tag">Direction: {{ direction }}</span>
-  </p>
+  {#- Two labels with one value each: a description list, styled as pills. -#}
+  <dl class="claim-tags">
+    <div class="tag"><dt>Misuse</dt> <dd>{{ error_type }}</dd></div>
+    <div class="tag"><dt>Direction</dt> <dd>{{ direction }}</dd></div>
+  </dl>
 
   {#- A substantive revision is disclosed on the claim it changed, not only in the
       changelog, because a reader of this page will not go looking for the changelog. See
       the corrections policy on the sources page. -#}
+  {#- A div with role="note" and a real heading, not an aside and not a bold run-in: the
+      correction is part of the page's content and belongs in its outline. -#}
   {% if correction %}
-  <p class="correction" role="note"><strong>Correction, {{ corrected_on | longDate }}.</strong>
-  {{ correction }}</p>
+  <div class="correction" role="note">
+    <h2>Correction, {{ corrected_on | timeTag | safe }}</h2>
+    <p>{{ correction }}</p>
+  </div>
   {% endif %}
 
   {{ content | safe }}

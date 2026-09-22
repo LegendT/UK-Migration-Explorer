@@ -80,7 +80,7 @@ a:hover { text-decoration-thickness: 2px; }
 .brand a:hover,
 .brand a:focus-visible { color: var(--accent); }
 
-/* The nav is a disclosure at narrow widths. Nine labels need about 980px of line length, so a
+/* The nav is a disclosure at narrow widths. The labels need about 980px of line length, so a
    flat list wrapped to five 50px rows at 320px, taking 55% of the first screen and putting every
    page's h1 below the fold. Measured at real device sizes in PR #98, not calculated: the review
    before it worked the wrapping out on paper and got four rows. Reopening at the wide breakpoint
@@ -121,7 +121,7 @@ a:hover { text-decoration-thickness: 2px; }
   margin: 0;
   padding: 0 0 0.5rem;
 }
-/* Nine targets stacked at a 0 row-gap is the mis-tap risk that survives every one of them
+/* Targets stacked at a 0 row-gap is the mis-tap risk that survives every one of them
    clearing 44px, so the rows are separated rather than only tall. */
 .site-header nav li + li { border-top: 1px solid var(--rule); }
 .site-header nav a {
@@ -292,6 +292,9 @@ th.nested-2 { padding-left: 2.75rem; }
    use: the provenance block is pushed to the foot of every card, so the source, the
    publication date and the grade sit on one line across a row instead of ending wherever
    the explanation above them happened to stop. */
+/* The card is an article inside a list item. The item is a grid so the article stretches to
+   the row height, which is what lets the auto margin below push the source to the foot. */
+.cards > li { display: grid; }
 .card {
   display: flex;
   flex-direction: column;
@@ -301,14 +304,27 @@ th.nested-2 { padding-left: 2.75rem; }
   background: var(--paper);
 }
 .card h3 { margin: 0 0 0.25rem; font-size: 1rem; }
-.card .value { display: block; font-size: 2rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.card .value { margin: 0; font-size: 2rem; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; }
 /* The unit rides WITH the number, at the weight of the prose rather than of the figure, so a
    count and its noun read as one quantity and the number cannot be quoted bare. Smaller and
    lighter than the value on purpose: the noun has to be legible without competing with the
    digits, and at the value's own size it wrapped to a second line on a narrow card, which is
    the layout this change exists to prevent. */
 .card .value .unit { font-size: 1rem; font-weight: 400; }
-.card .period { display: block; color: var(--ink-soft); font-size: 0.875rem; margin-top: 0.25rem; }
+.card .period { color: var(--ink-soft); font-size: 0.875rem; margin: 0.25rem 0 0; }
+/* Name-value pairs kept on one line. The colon is generated so it is absent where the
+   stylesheet is, and there a dl already lays the pairs out on their own lines. Generated content
+   is announced, which is why the provenance block below refuses a "·" between values: a dot
+   between unrelated parts is a symbol read aloud with nothing to attach to, whereas a colon after
+   a label is the pause a typed colon gives, and the label it follows is what the pair means. */
+.periods div { margin: 0 0 0.25rem; }
+.periods dt, .periods dd, .tag dt, .tag dd, .claim-list-meta dt, .claim-list-meta dd,
+.card .source dt, .card .source dd, .claim-meta dt, .claim-meta dd { display: inline; margin: 0; }
+.periods dt { font-weight: 600; }
+.periods dt::after, .tag dt::after, .claim-list-meta dt::after,
+.card .source dt::after, .claim-meta dt::after { content: ":"; }
+.card .source div, .claim-meta div { margin: 0; }
+.claim-card dl { margin: 0; }
 /* The auto bottom margin is what does the pushing: everything after the explanation goes
    to the foot of the card, and the source below keeps its own top margin as a minimum for
    the tallest card in the row, where there is no free space left to distribute. */
@@ -329,9 +345,9 @@ th.nested-2 { padding-left: 2.75rem; }
   letter-spacing: 0.01em;
   color: var(--ink-soft);
 }
-/* The badge sits under three lines of source text on a card and beside its own term in the
-   provenance list, so the offset that separates it there belongs to the card and not to the
-   badge. It was written into .card .grade when the card was the only place a grade rendered. */
+/* The badge sits in the last row of a card's source list, under three rows of text, and beside
+   its own term in the provenance list, so the offset that separates it from the row above belongs
+   to the card and not to the badge. */
 .card .grade { margin-top: 0.35rem; }
 
 /* Every figure on this page --------------------------------------------
@@ -339,7 +355,7 @@ th.nested-2 { padding-left: 2.75rem; }
 
    A flex row with a gap rather than separator characters between the three parts. A "·" put
    in with ::before content is announced by some screen readers and is read out once per
-   figure, which on /asylum/ is twenty-one times; a gap is spacing and has no text to read.
+   figure, on a page that lists many; a gap is spacing and has no text to read.
    It wraps at any width without a media query, which is what the 280px column needs. */
 .provenance-block { margin-top: 0.5rem; }
 .provenance { margin: 1.5rem 0 0; }
@@ -383,14 +399,8 @@ th.nested-2 { padding-left: 2.75rem; }
   font-size: 0.8125rem;
   color: var(--ink-soft);
 }
-/* Separated, not merely spaced. A review date, a period and a publisher set side by side
-   with nothing between them read as one run-on phrase: "2021/22 Census Migration
-   Observatory". The separator is a real character in the markup carrying aria-hidden,
-   not a CSS ::before: it is the same mechanism the claims index uses, and unlike generated
-   content it survives a stylesheet that does not arrive, which is the one condition under
-   which a reader needs the separation most. It needs no rule of its own: it inherits the
-   meta line's colour. Setting it to --rule-strong, which is a 3:1 colour for borders and
-   not for text, put it at 3.2:1 and pa11y refused the page. */
+/* Each value carries a visible label since 22 September 2026, and the labels do the separating
+   that an aria-hidden dot character did before. */
 
 /* The claim article is exempt from the page measure so the card can run full width.
    Its prose is not, 99 characters per line is well past comfortable reading. The short
@@ -421,7 +431,11 @@ th.nested-2 { padding-left: 2.75rem; }
   margin: 0.75rem 0 0;
   color: var(--ink-soft);
   font-size: 0.8125rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
 }
+.claim-list .claim-list-meta div { margin: 0; }
 
 .claim-list { list-style: none; margin: 1.5rem 0; padding: 0; display: grid; gap: 1rem; }
 .claim-list article {
@@ -533,6 +547,8 @@ th.nested-2 { padding-left: 2.75rem; }
   border-left: 4px solid var(--accent);
   font-size: 0.9375rem;
 }
+.correction h2 { margin: 0 0 0.35rem; font-size: 1rem; }
+.correction p { margin: 0; }
 
 /* Charts ---------------------------------------------------------------- */
 
