@@ -9,6 +9,36 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### The markup conventions, and the checks that hold five of them, 22 September 2026
+
+**No figure moved and no page's figures changed by this entry.** What a reader sees changed in
+shape, not in value: a headline card on the home page is now an `article` with a description
+list for its source, published, checked and confidence lines; the period list on the home page,
+the short answer and the reviewed, period and source row on a claim page, the claim pills and
+the claims-index metadata line are description lists; a correction note is a `div` with
+`role="note"` and a heading, so it sits in the page outline; `/returns/` carries the provenance
+block the other theme pages carry. The conventions are listed in `README.md` under *Markup
+conventions*, swept against the checklist ukpublicfinances.org uses.
+
+**Two changes to the checking apparatus.** `check-build.mjs` now asks five of those conventions
+of every built page and probes itself on every run, with the strings it must catch and the ones
+it must not: a `.card` is an `article`, a `role="note"` is a `div` opening with a heading, no
+`aside`, no list item opening with a bold label and a colon, and the converted label-value blocks
+stay description lists. Planted in a built page, an `aside`, a card that is a list item and a
+metadata row that is a paragraph were each refused. Its period-sentence check also now reads a
+`data-metric` on any element, having matched `span` alone and dropped a card's headline value
+from its sentence the moment that value became a paragraph, which failed three cards and would
+have passed had the card cited nothing else.
+
+**One change to what a date on a page means to the build.** Every date a template prints now
+goes through a `timeTag` filter and carries `datetime`. The three "Checked by us" traces carry
+`class="checked"` as well, and the `figure-currency` transform, which dates each page's footer
+from the earliest trace on it, reads only those. Before this it read every `<time datetime>`,
+which was safe only because the checked traces were the only `time` elements a page carried;
+wrapping the home page's review date under that rule would have pulled its footer back from
+11 August to 23 July. Probed by the footer date of every built page, unchanged by the change:
+nineteen at 11 August 2026 and two at 27 August 2026 before and after. PR #246.
+
 ### Four changes to the checking apparatus that went unrecorded, 13 to 19 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** Backlog item 46. Recorded on
