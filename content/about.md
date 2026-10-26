@@ -14,9 +14,12 @@ review_due: 2027-07-23
 
 This site is built and maintained by **Anthony George**.
 
-It is the companion to the [UK Public Finances Explorer](https://ukpublicfinances.org),
+It is a companion to the [UK Public Finances Explorer](https://ukpublicfinances.org),
 which applies the same method to government debt and borrowing: official statistics,
 per-figure provenance, and plain English about what each number does and does not measure.
+
+The [UK State Pension Explorer](https://ukstatepensionexplorer.org/) is another, on current
+State Pension rates, the triple lock, what pensions can cover and the options for reform.
 
 ## Who pays
 
