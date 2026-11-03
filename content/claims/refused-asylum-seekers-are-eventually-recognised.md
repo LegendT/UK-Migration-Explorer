@@ -37,10 +37,10 @@ sum: dividing one by the other mixes the bases, which is the error this site war
 most often.
 
 Around {{asylum/asylum-appeal-success-rate}}% of asylum and protection appeals determined
-at a hearing or on the papers at the First-tier Tribunal in the quarter January to March
+at a hearing or on the papers at the First-tier Tribunal in the quarter April to June
 2026 were allowed. That is a share of the appeals determined, and only about half of the
-asylum and protection appeals disposed of in that quarter were determined at all: 35% were
-withdrawn, 6% struck out and 6% invalid or out of time.
+asylum and protection appeals disposed of in that quarter were determined at all: 37% were
+withdrawn, 3% struck out and 5% invalid or out of time.
 
 Separately, for claims made between 2007 and 2022, the Home Office's cohort analysis puts
 the grant rate at the latest outcome 8 to 29 percentage points above the initial rate
@@ -105,8 +105,8 @@ it into a total one.
 
 ## What follows from the delay
 
-The [appeals backlog](/what-the-words-mean/#backlog) stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 31
-March 2026, a record high, and the mean age of an asylum appeal at conclusion was 67
+The [appeals backlog](/what-the-words-mean/#backlog) stood at {{asylum/asylum-appeals-backlog}} outstanding cases at 30
+June 2026, a record high, and the mean age of an asylum appeal at conclusion was 72
 weeks. That means a large number of people whose final outcome is not yet known, and it
 means any figure for "eventual" recognition is provisional, because a large share of the
 relevant cases has not concluded.
@@ -129,13 +129,13 @@ bases are not interchangeable, which is why the rate and the count are cited sep
 here rather than divided into one another.
 
 Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics,
-January to March 2026, table FIA_3. A different publisher on a different cycle from the
+April to June 2026, table FIA_3. A different publisher on a different cycle from the
 Home Office figures, and a single quarter rather than a year. The latest quarter is
-provisional and liable to revision; the three quarters before it in the same table have
-already been revised once.
+provisional and liable to revision; the quarter before it is marked revised in the same
+table.
 
 **This page mixes three reference periods,** and they cannot be set against one another: a
-year to June 2026 for the initial decisions, a quarter to March 2026 for the appeals, and
+year to June 2026 for the initial decisions, a quarter to June 2026 for the appeals, and
 cohorts of claims made between 2007 and 2022 for the later grant rates.
 
 The 8 to 29 percentage point gap is a cohort measurement covering claims made between

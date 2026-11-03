@@ -243,7 +243,7 @@ The Home Office's first decision on a claim: a grant of protection or other leav
 refusal.
 
 **The common mistake.** Treating it as final. It can be appealed, and
-{{asylum/asylum-appeal-success-rate}}% of appeals decided in the quarter to March 2026
+{{asylum/asylum-appeal-success-rate}}% of appeals decided in the quarter to June 2026
 succeeded.
 
 ### Grant rate {#grant-rate}
@@ -284,7 +284,7 @@ of very different sizes:
 | Queue | Latest figure | What it is |
 | --- | --- | --- |
 | Initial decision backlog | {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people (30 June 2026) | Waiting for a first Home Office decision |
-| Appeals backlog | {{asylum/asylum-appeals-backlog}} cases (31 March 2026) | Refused, appealing to the First-tier Tribunal |
+| Appeals backlog | {{asylum/asylum-appeals-backlog}} cases (30 June 2026) | Refused, appealing to the First-tier Tribunal |
 | Total casework work in progress | {{asylum/total-asylum-cases-in-the-casework-system}} cases (June 2024) | Everything in the system. **Not current**: the breakdown was suspended |
 
 **Why it matters.** These measure different things and move independently. The initial

@@ -5,7 +5,7 @@ short_answer: >-
   No. There are several queues at different stages, counted by different bodies on different
   bases, and they have lately moved in opposite directions. Even a single queue is two
   numbers: the wait for a first decision is published both as a count of people and as a
-  count of cases, and they differ by more than a third.
+  count of cases, and the people figure is about a quarter larger.
 direction: restrictionist
 error_type: distinct queues collapsed into one figure
 last_reviewed: 2026-08-04
@@ -34,7 +34,7 @@ Office decision, is published as two figures for the same 30 June 2026:
 {{asylum/asylum-backlog-people-awaiting-an-initial-decision}} people, or
 {{asylum/asylum-backlog-cases-awaiting-an-initial-decision}} cases. Nothing is wrong with
 either. They count [people or main applicants](/what-the-words-mean/#people-and-cases), and
-the gap between them is more than a third of the smaller one. Before any queue is added to any
+the gap between them is about a quarter of the smaller one. Before any queue is added to any
 other, a single queue already has two right answers.
 
 **Then the queues themselves.** The wait for a first decision, the appeals queue at the
@@ -45,8 +45,8 @@ four different measures at four different stages. They are set out side by side 
 **They are not moving together.** The first-decision queue is down from a peak of
 {{asylum/asylum-backlog-peak}} people in June 2023, and now sits below where it stood at the
 end of 2019, when it was {{asylum/asylum-backlog-2019}}. Over the same recent period the
-appeals queue went the other way: {{asylum/asylum-appeals-backlog}} cases outstanding at 31
-March 2026, against {{asylum/asylum-appeals-backlog-previous-year}} a year earlier. **On a
+appeals queue went the other way: {{asylum/asylum-appeals-backlog}} cases outstanding at 30
+June 2026, against {{asylum/asylum-appeals-backlog-previous-year}} a year earlier. **On a
 cases basis the appeals queue is now the larger**:
 {{asylum/asylum-appeals-backlog}} appeal cases against
 {{asylum/asylum-backlog-cases-awaiting-an-initial-decision}} cases awaiting a first decision.
@@ -101,7 +101,7 @@ queue is meant, which is why the fix for both is the same question.
 ## Better questions to ask
 
 - Which queue: first decisions, appeals, total work in progress, or people being supported?
-- People or cases? The same queue gives two figures and they differ by about a third.
+- People or cases? The same queue gives two figures and they differ by about a quarter.
 - On what date? These are stocks, and a stock from one date cannot be compared with a flow
   over a year.
 
@@ -111,16 +111,16 @@ First-decision queue, the peak, the 2019 figure and asylum support: Home Office,
 system statistics, year ending June 2026, published 27 August 2026. The people and cases
 figures for the queue come from the same release and count different things.
 
-Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics, as at 31
-March 2026. A different publisher on a different cycle, and provisional.
+Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics, as at 30
+June 2026. A different publisher on a different cycle, and provisional.
 
 Total casework work in progress: Home Office, as at 30 June 2024, the latest available. **Not
 current, and shown as stale rather than dropped**, because the gap is the point:
 the wider breakdown was suspended pending a new caseworking system.
 
 **This page compares stocks with stocks and does not subtract across publishers.** The
-first-decision queue is a point-in-time count at 30 June 2026 and the appeals queue one at 31
-March 2026, each from a different body on its own cycle and in its own unit, so the sentence
+first-decision queue and the appeals queue are both point-in-time counts at 30 June 2026, each
+from a different body on its own cycle and in its own unit, so the sentence
 naming both gives each its own figure rather than a total or a difference.
 
 **On selection.** This site checks propositions that circulate rather than quotations

@@ -9,6 +9,76 @@ underlying statistics. Each figure carries its own `published_date` and `retriev
 
 ## Unreleased
 
+### Asylum appeals moved to April to June 2026, 3 November 2026
+
+**A new edition, read 54 days after it was published and 24 days after this site's own one-month
+commitment fell due.** Ministry of Justice, Tribunals statistics quarterly, April to June 2026,
+published 10 September 2026. Every value was read from the accessible main tables, published on
+20 October 2026. The five record values are quoted from their cells in
+`data/evidence/hmcts-tribunals-april-to-june-2026.json`, each from the row for asylum, protection
+and revocation of protection in quarter 2026/27 Q1, or 2025/26 Q1 for the year-earlier backlog.
+The other numbers in the notes and prose below, the revision, the waiting times and the
+chamber-wide rate, were read from the same file and the bulletin, and no check holds them.
+
+| Figure | Was | Now |
+| --- | --- | --- |
+| Asylum appeals lodged, table FIA_1 | 14,748, January to March 2026 | 11,596, April to June 2026 |
+| Asylum appeals disposed of, table FIA_2 | 7,799, January to March 2026 | 8,709, April to June 2026 |
+| Asylum appeal success rate, table FIA_3 | 40%, January to March 2026 | 39%, April to June 2026 |
+| Asylum appeals backlog, table FIA_4 | 87,450 at 31 March 2026 | 90,341 at 30 June 2026 |
+| Asylum appeals backlog a year earlier, table FIA_4 | 50,976 at 31 March 2025 | 59,925 at 30 June 2025 |
+
+**The release revised the quarter it replaces**, and the site no longer shows that quarter, so
+nothing published moves because of it: lodged went from 14,748 to 14,749 and disposed of from
+7,799 to 7,789. The 40% rate and both 31 March backlogs are unchanged.
+
+**Record notes were re-read against the release, and one claim in them had stopped being true.**
+The notes said appeals lodged ran at roughly twice disposals. That held for the three quarters to
+March 2026 and does not for April to June 2026, at 11,596 against 8,709. The mean time to clear an
+asylum or protection appeal moved from 67 to 72 weeks, and the chamber-wide figure the bulletin
+headlines from 61 to 65 weeks. The record high and the receipts peak were re-checked against every
+quarter in the tables and both still hold.
+
+**Page prose was edited at every site that named the old period**, which the backlog's item 48 set
+out in advance: the asylum page, the glossary, the period table on `/sources-and-method/`, and five
+claim pages. The sentences that said the two asylum queues are counted at different dates now say
+both are at 30 June 2026, from different publishers. The home page card now dates both ends of the
+appeals comparison. Because that sentence names two periods, the period check does not read it,
+so the next tribunals update has to move both dates by hand.
+
+**Not established**: that the provisional April to June figures will stand. The next edition, due
+10 December 2026, will revise them.
+
+### Five sentences that disagreed with the figures beside them, 3 November 2026
+
+**No figure moved.** Each sentence below stated a share, a comparison or a source relationship
+that the records it sits beside did not support. Found by a two-model critique of the built site,
+each one recomputed from the records or checked against the publisher's table before it changed.
+
+- **The hotel share on `/asylum/` and on the claim that everyone in accommodation arrived
+  recently.** It said around 21% of everyone supported. That was true at 31 March 2026, when
+  20,885 of 97,519 were in hotels, and went stale when the 27 August 2026 update moved both
+  figures: 16,021 of 93,293 is around 17%. The asylum page now computes it from the two records.
+  The claim page still types it, because Markdown pages here have no template engine, so it
+  goes stale at the next Home Office release unless that update re-reads it.
+- **The net migration card on the home page.** It said 171,000 was the lowest annual figure since
+  2021, but the calendar-year series on `/migration/` has 2021 at 467,000. It now gives ONS's own
+  wording, from the year ending December 2025 bulletin: this level was last seen when the new
+  immigration system was introduced in early 2021.
+- **The claim that the asylum backlog is one number.** It said the people and cases counts of the
+  first-decision queue differ by more than a third, and in one place by about a third. At 30 June
+  2026 they are 40,168 and 32,401, which is about a quarter. The conclusion is unchanged, so no
+  correction note is carried.
+- **The cohort range on `/asylum/`.** It still gave claims made between 2007 and 2020, and a gap
+  of 17 to 29 percentage points, from the year ending March 2026 edition. The 27 August 2026 fix
+  moved both claim pages to 2007 to 2022 and 8 to 29 and missed this page.
+- **The claim that small boat arrivals are the whole asylum system.** It said this site sums the
+  year-ending small boat figure. That record was regraded official on 27 August 2026, when table
+  IER_01 began printing it, so only the detected unauthorised arrivals total is still summed.
+- **The Commons Library entry in the source catalogue.** `/sources-and-method/` listed it as a
+  source and, further down, said it sources nothing a reader meets. The entry now says it is
+  listed because one figure from it is held in reserve.
+
 ### Four changes to the checking apparatus that went unrecorded, 13 to 19 August 2026
 
 **No figure moved and no page a reader sees changed by this entry.** Backlog item 46. Recorded on

@@ -78,7 +78,7 @@ and not the only one**: withdrawals and administrative outcomes leave the queue 
 [asylum page](/asylum/) shows both sitting outside the decisions total rather than inside it,
 which is why grants and refusals do not sum to everything that left. Why cases were cleared
 faster is a question about casework this site's figures cannot answer. And it did not shrink the system, it moved the work:
-the appeals queue stood at {{asylum/asylum-appeals-backlog}} at 31 March 2026, against
+the appeals queue stood at {{asylum/asylum-appeals-backlog}} at 30 June 2026, against
 {{asylum/asylum-appeals-backlog-previous-year}} a year earlier. Deciding a claim faster
 produces a refusal that can be appealed, and the appeal is a queue of its own.
 
@@ -117,9 +117,8 @@ different publisher on a different cycle, and provisional.
 **This page compares periods that do not line up, and says so rather than hiding it.** The net
 migration peak is a year ending March; the latest net migration figure is a year ending
 December; the asylum applications figure is a calendar year; the queues are point-in-time
-stocks, the first-decision queue at 30 June 2026 and the appeals queue at 31 March 2026, each
-on its own publisher's cycle. None of those can be subtracted from another. The argument here
-does not need them to be: it needs only that one series fell steeply while the other did not,
+stocks, both at 30 June 2026 but each on its own publisher's cycle. None of those can be
+subtracted from another. The argument here does not need them to be: it needs only that one series fell steeply while the other did not,
 which holds on any of the periods available.
 
 **On selection.** This site checks propositions that circulate rather than quotations

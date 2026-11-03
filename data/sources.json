@@ -97,7 +97,7 @@
       "publisher": "Ministry of Justice",
       "url": "https://www.gov.uk/government/collections/tribunals-statistics",
       "covers": "Asylum and immigration appeals: lodged, decided, outstanding, success rates, and waiting times.",
-      "updateFrequency": "Quarterly (latest: January to March 2026)",
+      "updateFrequency": "Quarterly (latest: April to June 2026)",
       "confidence_level": "official"
     },
     {
@@ -105,7 +105,7 @@
       "name": "House of Commons Library research briefings",
       "publisher": "UK Parliament",
       "url": "https://commonslibrary.parliament.uk/",
-      "covers": "Plain-English summaries of asylum statistics, small boat crossings, NHS overseas staff, and immigration fees, drawing on the primary sources above.",
+      "covers": "Plain-English summaries of asylum statistics, small boat crossings, NHS overseas staff, and immigration fees, drawing on the primary sources above. No figure a reader meets on this site comes from it at present. It stays listed because this site holds one figure from it in reserve, its share of NHS staff who are not British nationals.",
       "updateFrequency": "Ongoing",
       "confidence_level": "official"
     },

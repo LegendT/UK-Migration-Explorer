@@ -1,0 +1,49 @@
+{
+  "figures": [
+    {
+      "ref": "asylum/asylum-appeals-lodged",
+      "previous_value": 14748,
+      "value": 11596,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ad7731e8ef5e8a9fc8ed612/Tribunals_Statistics_Quarterly_Accessible_Main_Tables_Q1_2026_27.ods",
+      "fetched_at": "2026-11-03",
+      "table_reference": "FIA_1",
+      "quote": "Table_FIA_1 - First-tier Tribunal (Immigration and Asylum Chamber) - Total number of receipts by case type. 2026/27 Q1 [p]: Total 21,762; Asylum/Protection/Revocation of Protection 11,596"
+    },
+    {
+      "ref": "asylum/asylum-appeals-backlog",
+      "previous_value": 87450,
+      "value": 90341,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ad7731e8ef5e8a9fc8ed612/Tribunals_Statistics_Quarterly_Accessible_Main_Tables_Q1_2026_27.ods",
+      "fetched_at": "2026-11-03",
+      "table_reference": "FIA_4",
+      "quote": "Table_FIA_4 - First-tier Tribunal (Immigration and Asylum Chamber) - Total open caseload by case type. 2026/27 Q1: Total 155,798; Asylum/Protection/Revocation of Protection 90,341"
+    },
+    {
+      "ref": "asylum/asylum-appeals-backlog-previous-year",
+      "previous_value": 50976,
+      "value": 59925,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ad7731e8ef5e8a9fc8ed612/Tribunals_Statistics_Quarterly_Accessible_Main_Tables_Q1_2026_27.ods",
+      "fetched_at": "2026-11-03",
+      "table_reference": "FIA_4",
+      "quote": "Table_FIA_4 - First-tier Tribunal (Immigration and Asylum Chamber) - Total open caseload by case type. 2025/26 Q1: Total 105,522; Asylum/Protection/Revocation of Protection 59,925"
+    },
+    {
+      "ref": "asylum/asylum-appeals-disposed-of",
+      "previous_value": 7799,
+      "value": 8709,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ad7731e8ef5e8a9fc8ed612/Tribunals_Statistics_Quarterly_Accessible_Main_Tables_Q1_2026_27.ods",
+      "fetched_at": "2026-11-03",
+      "table_reference": "FIA_2",
+      "quote": "Table_FIA_2 - First-tier Tribunal (Immigration and Asylum Chamber) - Number of appeals disposed of by category and by case type. 2026/27 Q1 [p], Asylum/Protection/Revocation of Protection: Disposals 8,709; Determined 55%; Withdrawn 37%; Invalid/Out of Time 5%; Struck Out 3%"
+    },
+    {
+      "ref": "asylum/asylum-appeal-success-rate",
+      "previous_value": 40,
+      "value": 39,
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ad7731e8ef5e8a9fc8ed612/Tribunals_Statistics_Quarterly_Accessible_Main_Tables_Q1_2026_27.ods",
+      "fetched_at": "2026-11-03",
+      "table_reference": "FIA_3",
+      "quote": "Table_FIA_3 - First-tier Tribunal (Immigration and Asylum Chamber) - Number of appeals determined at hearing or on paper, by outcome category and case type. 2026/27 Q1 [p], Asylum/Protection/Revocation of Protection: Number of Cases Determined at hearing / papers 4,828; Percentage of Cases Allowed/Granted 39%; Percentage of Cases Dismissed/Refused 61%"
+    }
+  ]
+}
