@@ -83,7 +83,7 @@ to the whole.</p>
 {% barChart {
   id: 'initial-decisions-by-outcome',
   bars: [
-    { name: 'Refused', ref: 'asylum/asylum-refusals', note: 'Up 23% on the previous year. Around ' ~ appealRate.value ~ '% of asylum appeals determined in the quarter to March 2026 were allowed, so this overstates final refusals' },
+    { name: 'Refused', ref: 'asylum/asylum-refusals', note: 'Up 23% on the previous year. Around ' ~ appealRate.value ~ '% of asylum appeals determined in the quarter to June 2026 were allowed, so this overstates final refusals' },
     { name: 'Granted protection or leave', ref: 'asylum/people-granted-protection-or-other-leave-at-initial-decision', note: 'Down 21% on the previous year' },
     { name: 'Withdrawn', ref: 'asylum/asylum-withdrawals', note: 'Not part of the decisions total, and excluded from the grant rate' }
   ],
@@ -95,8 +95,8 @@ to the whole.</p>
   note: 'These three bars are not every outcome. A further ' ~ (administrative.value | number) ~ ' people had an administrative outcome over the same period, mostly voided or suspended cases, and the chart does not show them. The published grant rate of ' ~ grantRate.value ~ '% is calculated on main applicants. Recomputing it from these people-based figures gives 36.6%, which is a different measure, a worked example of why the basis has to be checked before dividing one figure by another.'
 } %}
 
-<p>A refusal at first decision is not the end. For claims made between 2007 and 2020, the
-Home Office's cohort analysis puts the grant rate at the latest outcome 17 to 29
+<p>A refusal at first decision is not the end. For claims made between 2007 and 2022, the
+Home Office's cohort analysis puts the grant rate at the latest outcome 8 to 29
 percentage points above the initial rate for the same cohort, a gap the publisher
 attributes to appeals and reconsiderations. Claims reinstated after a withdrawal or an
 administrative outcome may also feed the later figure; that reading is this site's
@@ -134,19 +134,19 @@ they are counted differently, and they have been moving in opposite directions.<
   <thead><tr><th scope="col">Queue</th><th scope="col">Latest</th><th scope="col">Direction</th></tr></thead>
   <tbody>
     <tr><th scope="row">Awaiting a first decision</th><td>{% figure "asylum/asylum-backlog-people-awaiting-an-initial-decision" %} people, 30 June 2026</td><td>Down 56% on the year, and 77% below the June 2023 peak</td></tr>
-    <tr><th scope="row">Awaiting an appeal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases, 31 March 2026</td><td>A record high, up from {% figure "asylum/asylum-appeals-backlog-previous-year" %} a year earlier</td></tr>
+    <tr><th scope="row">Awaiting an appeal</th><td>{% figure "asylum/asylum-appeals-backlog" %} cases, 30 June 2026</td><td>A record high, up from {% figure "asylum/asylum-appeals-backlog-previous-year" %} a year earlier</td></tr>
     <tr><th scope="row">Total casework in progress</th><td>{% figure "asylum/total-asylum-cases-in-the-casework-system" %} cases, June 2024</td><td><strong>Not current.</strong> The breakdown was suspended and no later complete figure exists</td></tr>
   </tbody>
 </table>
 </div>
 
 <p>Someone saying "the backlog has halved" and someone saying "the backlog is at a record
-high" can both be right, about different queues. In the January to March 2026 quarter
+high" can both be right, about different queues. In the April to June 2026 quarter
 {% figure "asylum/asylum-appeals-lodged" %} asylum appeals were lodged and
 {% figure "asylum/asylum-appeals-disposed-of" %} were disposed of, so the appeal queue grows
-while the decision queue shrinks. Mean time to clear an asylum or protection appeal was 67 weeks
+while the decision queue shrinks. Mean time to clear an asylum or protection appeal was 72 weeks
 in that quarter, from the Ministry of Justice's asylum and protection table. The bulletin's
-headline figure of 61 weeks is the chamber-wide one across every case type it hears, so the two
+headline figure of 65 weeks is the chamber-wide one across every case type it hears, so the two
 are not the same measure and should not be quoted for each other.</p>
 
 <h2>Support and accommodation</h2>
@@ -156,8 +156,11 @@ support at 30 June 2026. Support means accommodation, subsistence payments, or b
 being supported and being accommodated are not the same count:
 {% figure "asylum/people-in-asylum-accommodation" %} people were in accommodation, and the
 rest received subsistence payments only. Hotels held
-{% figure "asylum/people-in-asylum-hotel-accommodation" %} people, around 21% of everyone
-supported.</p>
+{% figure "asylum/people-in-asylum-hotel-accommodation" %} people, around
+{#- ponytail: computed from the two records, because a typed share went stale at the 27 August 2026 update -#}
+{%- set hotels = "asylum/people-in-asylum-hotel-accommodation" | metric %}
+{%- set supported = "asylum/people-in-receipt-of-asylum-support" | metric %}
+{{ (hotels.value / supported.value * 100) | round }}% of everyone supported.</p>
 
 <p>These are stocks, counted on one day. They include people at every stage of the system,
 some waiting since well before the current year, and they are not a count of arrivals. See

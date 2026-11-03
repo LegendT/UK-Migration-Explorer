@@ -43,7 +43,7 @@ refusals that large being replaced by grants is hard to square with those claims
 obviously false when they were made.
 
 Around {{asylum/asylum-appeal-success-rate}}% of asylum and protection appeals determined at
-a hearing or on the papers at the First-tier Tribunal in the quarter January to March 2026
+a hearing or on the papers at the First-tier Tribunal in the quarter April to June 2026
 were allowed. That is a share of appeals **determined**, not of refusals: of the
 {{asylum/asylum-appeals-disposed-of}} appeals disposed of in that quarter, only about half
 were determined at all, the rest being withdrawn, struck out, or invalid or out of time. The
@@ -116,12 +116,12 @@ to a different cohort of initial decisions". Its own terms for the later figure 
 outcome" and "latest decision"; it does not call it final. The outcomes in that table are
 dated as at January 2026, so anything decided after that is not in them.
 
-Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics, January
-to March 2026. A different publisher on a different cycle, and a single quarter rather than a
+Appeals: HM Courts and Tribunals Service / Ministry of Justice tribunals statistics, April
+to June 2026. A different publisher on a different cycle, and a single quarter rather than a
 year. The latest quarter is provisional.
 
 **This page mixes reference periods and does not set them against one another:** a year to
-June 2026 for the decisions, a quarter to March 2026 for the appeals, and cohorts of claims
+June 2026 for the decisions, a quarter to June 2026 for the appeals, and cohorts of claims
 made between 2007 and 2022 for the later grant rates.
 
 **On selection.** This site checks propositions that circulate rather than quotations

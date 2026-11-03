@@ -31,7 +31,7 @@ receipt of [asylum support](/what-the-words-mean/#asylum-support): accommodation
 subsistence payments, or both. Being supported and being accommodated are not the same
 count. {{asylum/people-in-asylum-accommodation}} people were in accommodation, hotel or
 other, and the rest received subsistence payments only. Hotels held
-{{asylum/people-in-asylum-hotel-accommodation}} people, around 21% of everyone supported.
+{{asylum/people-in-asylum-hotel-accommodation}} people, around 17% of everyone supported.
 
 All three are [point-in-time figures](/what-the-words-mean/#flow-and-stock). They count people being supported on that particular
 day, regardless of when they arrived or how long they have been waiting.

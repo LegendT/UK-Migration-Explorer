@@ -109,13 +109,12 @@ choosing which denominator goes unmentioned.
 Small boat arrivals, detected unauthorised arrivals, asylum claims, initial decisions, asylum
 support, asylum-related returns and resettlement: Home Office, immigration system statistics,
 year ending June 2026, published 27 August 2026. Appeals: HM Courts and Tribunals Service and
-the Ministry of Justice, as at 31 March 2026, a different publisher on a different cycle.
+the Ministry of Justice, as at 30 June 2026, a different publisher on a different cycle.
 
-**This site sums two of the figures on this page rather than reading a published total**, and
-both say so in their own records: the year-ending small boat figure, because the Home Office
-prints that route by calendar year and by month but not on a year-ending basis, and the
-detected unauthorised arrivals total, which the Home Office publishes by quarter and by
-calendar year.
+**This site sums one of the figures on this page rather than reading a published total**, and
+its record says so: the detected unauthorised arrivals total, because table IER_01 prints each
+method of entry for the year ending June 2026 but no total row. The year-ending small boat
+figure was summed the same way until 27 August 2026, when the Home Office began printing it.
 
 **This page does not divide one of these figures by another.** The share of asylum claims made
 by people who arrived by small boat is not published, and it cannot be derived from these
